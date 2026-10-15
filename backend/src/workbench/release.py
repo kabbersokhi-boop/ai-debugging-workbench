@@ -138,7 +138,9 @@ async def recording(recording_id: str):
 
 @app.get("/api/recorded-assets/{name}")
 async def asset(name: str):
-    allowed = {"live-repair-before-after.png", "live-repair-checks.png"}
+    allowed = {"live-repair-before-after.png", "live-repair-checks.png"} | {
+        r["comparison_asset"] for r in catalog()["records"] if r.get("comparison_asset")
+    }
     if name not in allowed or not (RECORDINGS / name).is_file():
         raise HTTPException(404, "Recorded asset not found")
     return FileResponse(RECORDINGS / name)

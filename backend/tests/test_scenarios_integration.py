@@ -101,12 +101,16 @@ async def test_development_scenarios_reproduce_through_existing_api():
 
 
 async def test_remote_preview_rejects_commands_and_kills_nonresponsive_script(broker_url):
+    import json
+
     import docker
     from test_repair import offline_patch
 
+    from workbench.config import ROOT
+
     repair_id = uuid4()
     async with connect_tools(repair_id, load_snapshot().id, broker_url) as tools:
-        await tools.call(
+        candidate = await tools.call(
             "apply_candidate",
             {
                 "patch": offline_patch(
@@ -125,8 +129,26 @@ async def test_remote_preview_rejects_commands_and_kills_nonresponsive_script(br
         assert response.status_code in (503, 504)
     docker_client = docker.from_env()
     try:
-        assert not docker_client.containers.list(
+        retained_containers = docker_client.containers.list(
             all=True, filters={"label": f"ai-debugging-workbench.repair={repair_id}-1"}
+        )
+        assert not retained_containers
+        folder = ROOT / "artifacts/milestone-04"
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / "remote-timeout-record.json").write_text(
+            json.dumps(
+                {
+                    "mode": "offline_security_probe",
+                    "repair_id": str(repair_id),
+                    "candidate": candidate,
+                    "mcp_events": tools.events,
+                    "remote_status": response.status_code,
+                    "remote_response": response.json(),
+                    "retained_containers": len(retained_containers),
+                    "verification_performed": False,
+                },
+                indent=2,
+            )
         )
     finally:
         docker_client.close()

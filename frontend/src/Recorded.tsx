@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { api } from "./types";
 
 const Diff = lazy(() => import("./Diff"));
-type Item = { id: string; title: string; outcome: string; mode: string };
+type Item = { id: string; title: string; outcome: string; mode: string; comparison_asset?: string };
 type Recording = {
   recording_sha256: string;
   recording: { id: string; note: string; implementation_commit: string };
@@ -29,6 +29,7 @@ export default function RecordedExplorer() {
     return () => {disposed = true;};
   }, [id]);
   const attempt = record?.repair.state.attempts.at(-1);
+  const comparison = items.find(x => x.id === id)?.comparison_asset ?? (id === "m3-live-success" ? "live-repair-before-after.png" : null);
   return <main id="workspace" className="workspace recorded-explorer">
     <a className="skip-link" href="#recorded-result">Skip to result</a>
     <header className="page-intro"><div><span className="eyebrow">RECORDED RUN EXPLORER · NO NEW INFERENCE</span>
@@ -47,8 +48,8 @@ export default function RecordedExplorer() {
         <nav className="release-links"><a href="#recorded-comparison">Original / candidate</a><a href="#recorded-diff">Exact diff</a><a href="#recorded-checks">Verification checks</a><a href="#recorded-sources">Sources and trace</a></nav>
       </section>
       {attempt?.candidate && <>
-        <section id="recorded-comparison" className="report-panel"><h2>Original and candidate · captured browser comparison</h2><p>Historical pixels from actual interaction at quantity three. Viewing this image does not execute candidate code or perform a new repair.</p>
-          {id === "m3-live-success" && <img className="recorded-comparison" src="/api/recorded-assets/live-repair-before-after.png" alt="Captured quantity-three comparison: original total $72; verified candidate total $192" />}</section>
+        <section id="recorded-comparison" className="report-panel"><h2>Original and candidate · captured browser comparison</h2><p>{comparison ? "Historical pixels from actual browser interaction. Viewing this image does not execute candidate code or perform a new repair." : "No comparison image exists for this stopped execution. Inspect the retained failure and cleanup evidence below."}</p>
+          {comparison && <img className="recorded-comparison" src={`/api/recorded-assets/${comparison}`} alt="Captured original and candidate storefronts from this historical execution" />}</section>
         <section id="recorded-diff" className="report-panel"><h2>Exact recorded diff</h2><Suspense fallback={<p>Loading local diff viewer…</p>}><Diff original={attempt.candidate.original} modified={attempt.candidate.content} /></Suspense><details><summary>Plain diff</summary><pre>{attempt.candidate.diff}</pre></details></section>
       </>}
       <section id="recorded-checks" className="report-panel"><h2>Independent recorded checks</h2>

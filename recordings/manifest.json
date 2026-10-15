@@ -2,11 +2,26 @@
   "version": "recordings-v1",
   "records": [
     {
+      "id": "m4-shipping-success",
+      "title": "Shipping eligibility \u00b7 real NVIDIA repair",
+      "outcome": "verified",
+      "mode": "recorded_live_nvidia",
+      "file": "m4-shipping-success.json",
+      "comparison_asset": "live-shipping-comparison.png"
+    },
+    {
       "id": "m3-live-success",
       "title": "Cart quantity \u00b7 historical NVIDIA repair",
       "outcome": "verified",
       "mode": "recorded_live_nvidia",
       "file": "m3-live-success.json"
+    },
+    {
+      "id": "remote-timeout",
+      "title": "Nonresponsive script \u00b7 stopped offline security probe",
+      "outcome": "stopped; no verification",
+      "mode": "recorded_offline_security_probe",
+      "file": "remote-timeout.json"
     }
   ]
 }
