@@ -200,6 +200,37 @@ async def test_offline_repair_browser_diff_preview_download_and_saved_history():
             await page.locator(".history-item").filter(has_text=run_id[:6]).click()
             await page.get_by_role("tab", name="Investigation", exact=True).click()
             await inspect_candidate(page, run_id, folder, "offline-repair")
+            # Startup/reset must retire the previous viewer before its delayed response.
+            # Otherwise a click can reset the old widget, which the response then replaces.
+            await page.set_viewport_size({"width": 1512, "height": 1100})
+            await page.get_by_role(
+                "button", name="Start / reset candidate preview", exact=True
+            ).click()
+            remote = page.get_by_role("region", name="Remote candidate application")
+            await remote.get_by_role("button", name="Reset candidate", exact=True).click()
+            await expect(remote.get_by_test_id("remote-quantity")).to_have_text("0", timeout=15000)
+            preview_started, preview_release = asyncio.Event(), asyncio.Event()
+
+            async def delayed_reset(route):
+                preview_started.set()
+                await preview_release.wait()
+                await route.fulfill(json={"url": f"/repairs/{saved['id']}/attempts/1/remote"})
+
+            await page.route("**/api/repairs/*/attempts/*/preview", delayed_reset)
+            await page.get_by_role(
+                "button", name="Start / reset candidate preview", exact=True
+            ).click()
+            async with asyncio.timeout(10):
+                await preview_started.wait()
+            await expect(remote).to_have_count(0)
+            async with page.expect_response(
+                lambda r: r.url.endswith("/preview")
+            ) as preview_response:
+                preview_release.set()
+            await (await preview_response.value).finished()
+            await remote.get_by_role("button", name="Reset candidate", exact=True).click()
+            await expect(remote.get_by_test_id("remote-quantity")).to_have_text("0", timeout=15000)
+            await page.unroute("**/api/repairs/*/attempts/*/preview", delayed_reset)
             # An old preview response must not appear under a newly selected repair identity.
             second = {**saved, "id": str(uuid4())}
             await page.route(

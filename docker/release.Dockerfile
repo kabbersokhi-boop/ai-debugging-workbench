@@ -6,7 +6,8 @@ COPY frontend/ ./
 RUN npm run build
 
 FROM python:3.12-slim AS release
-RUN pip install --no-cache-dir fastapi==0.143.2 uvicorn==0.54.0
+COPY docker/release-requirements.txt /tmp/release-requirements.txt
+RUN pip install --no-cache-dir -r /tmp/release-requirements.txt
 WORKDIR /release
 COPY backend/src/workbench/release.py ./release.py
 COPY recordings/ ./recordings/

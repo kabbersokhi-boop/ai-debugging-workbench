@@ -1,0 +1,81 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 105 items / 104 deselected / 1 selected
+
+tests/test_release_browser.py::test_m4_live_workflow_shipping_scenario_video FAILED [100%]
+
+=================================== FAILURES ===================================
+________________ test_m4_live_workflow_shipping_scenario_video _________________
+
+    @pytest.mark.skipif(
+        os.environ.get("LIVE_NVIDIA_M4") != "1", reason="Explicit live milestone 4 demonstration"
+    )
+    async def test_m4_live_workflow_shipping_scenario_video():
+        import httpx
+    
+        folder = ROOT / "artifacts/milestone-04"
+        folder.mkdir(parents=True, exist_ok=True)
+        async with async_playwright() as p:
+            browser = await p.chromium.launch()
+            context = await browser.new_context(
+                viewport={"width": 1440, "height": 1000},
+                record_video_dir=folder / "video",
+                record_video_size={"width": 1280, "height": 888},
+            )
+            page = await context.new_page()
+            errors = []
+            page.on("pageerror", lambda error: errors.append(str(error)))
+            run_id = None
+            try:
+                await page.goto(BASE)
+                await page.locator("#scenario").select_option("shipping-threshold")
+                async with page.expect_response(
+                    lambda r: r.request.method == "POST" and r.url.endswith("/api/runs")
+                ) as response:
+                    await page.get_by_role("button", name="Start full workflow", exact=True).click()
+                run_id = (await (await response.value).json())["id"]
+                await expect(
+                    page.locator(".workflow-launcher").get_by_role(
+                        "heading", name="Verified for the supported checks", exact=True
+                    )
+                ).to_be_visible(timeout=550000)
+                await page.get_by_role(
+                    "link", name="Inspect diff, checks and original / candidate comparison ↓"
+                ).click()
+                await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
+                await page.get_by_role(
+                    "button", name="Start / reset candidate preview", exact=True
+                ).click()
+                remote = page.get_by_role("region", name="Remote candidate application")
+                await remote.get_by_role("button", name="Reset candidate", exact=True).click()
+                await expect(remote.get_by_test_id("remote-quantity")).to_have_text("0", timeout=15000)
+                for label in ("Add to bag", "Increase quantity"):
+                    await remote.get_by_role("button", name=label, exact=True).click()
+                    await expect(remote.get_by_role("button", name=label, exact=True)).to_be_enabled(
+                        timeout=15000
+                    )
+                await expect(remote.get_by_test_id("remote-total")).to_have_text("$128.00")
+                original = page.frame_locator('iframe[title="Original application"]')
+                await original.locator("#add-to-cart").click()
+                await original.locator("#increase").click()
+                await expect(original.get_by_test_id("total")).to_have_text("$136.00")
+                await page.locator(".repair-previews").screenshot(
+                    path=folder / "live-shipping-comparison.png"
+                )
+                await page.screenshot(path=folder / "live-shipping-workspace.png", full_page=True)
+>               assert not errors, errors
+E               AssertionError: ['TextModel got disposed before DiffEditorWidget model got reset
+E                 
+E                 Error: TextModel got disposed before DiffEditorWidget model got reset']
+E               assert not ['TextModel got disposed before DiffEditorWidget model got reset\n\nError: TextModel got disposed before DiffEditorWidget model got reset']
+
+tests/test_release_browser.py:180: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_release_browser.py::test_m4_live_workflow_shipping_scenario_video
+====================== 1 failed, 104 deselected in 58.75s ======================

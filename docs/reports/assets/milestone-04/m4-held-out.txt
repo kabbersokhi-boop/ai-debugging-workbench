@@ -1,0 +1,72 @@
+(node:2409776) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "line-amount", "condition": "one-shot-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 28248}
+(node:2411812) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "line-amount", "condition": "loop-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 20004}
+(node:2414422) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "line-amount", "condition": "loop-retrieval", "status": "verified", "resolved": true, "model_calls": 2, "latency_ms": 34734}
+(node:2417263) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "total-sign", "condition": "one-shot-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 29557}
+(node:2419620) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "total-sign", "condition": "loop-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 26452}
+(node:2422644) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "total-sign", "condition": "loop-retrieval", "status": "verified", "resolved": true, "model_calls": 2, "latency_ms": 41520}
+(node:2425916) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "empty-shipping", "condition": "one-shot-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 37716}
+(node:2427861) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "empty-shipping", "condition": "loop-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 19897}
+(node:2430561) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "empty-shipping", "condition": "loop-retrieval", "status": "verified", "resolved": true, "model_calls": 2, "latency_ms": 37689}
+(node:2433221) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "single-free", "condition": "one-shot-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 28343}
+(node:2435033) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "single-free", "condition": "loop-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 19487}
+(node:2437911) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "single-free", "condition": "loop-retrieval", "status": "verified", "resolved": true, "model_calls": 2, "latency_ms": 39299}
+(node:2440495) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "increment-skip", "condition": "one-shot-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 28548}
+(node:2442321) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "increment-skip", "condition": "loop-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 20251}
+(node:2444995) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "increment-skip", "condition": "loop-retrieval", "status": "verified", "resolved": true, "model_calls": 2, "latency_ms": 36485}
+(node:2447640) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "add-reset", "condition": "one-shot-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 28524}
+(node:2449415) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "add-reset", "condition": "loop-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 18648}
+(node:2452802) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "add-reset", "condition": "loop-retrieval", "status": "verified", "resolved": true, "model_calls": 2, "latency_ms": 53473}
+(node:2455806) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "clamp-upper", "condition": "one-shot-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 28652}
+(node:2457809) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "clamp-upper", "condition": "loop-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 24392}
+(node:2460757) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "clamp-upper", "condition": "loop-retrieval", "status": "verified", "resolved": true, "model_calls": 2, "latency_ms": 42237}
+(node:2465040) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "invalid-default", "condition": "one-shot-whole", "status": "verified", "resolved": true, "model_calls": 2, "latency_ms": 63157}
+(node:2467258) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "invalid-default", "condition": "loop-whole", "status": "verified", "resolved": true, "model_calls": 1, "latency_ms": 27159}
+(node:2469833) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"case": "invalid-default", "condition": "loop-retrieval", "status": "verified", "resolved": true, "model_calls": 2, "latency_ms": 33813}

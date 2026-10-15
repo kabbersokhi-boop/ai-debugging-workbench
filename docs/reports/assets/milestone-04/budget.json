@@ -1,0 +1,6 @@
+{
+  "http_requests": 81,
+  "reserved_output_tokens": 66000,
+  "deadline": "2026-10-16T00:25:25.935981+00:00",
+  "configuration_sha256": "e4b319b0881395f940e2828bba8a179be0195e4a6e01c0d084aa78c6a176d138"
+}

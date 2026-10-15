@@ -174,6 +174,21 @@ async def test_recorded_explorer_first_visit_mobile_and_no_live_requests():
         await page.get_by_role("link", name="Original / candidate", exact=True).click()
         await expect(page.locator(".recorded-comparison")).to_be_visible()
         await page.screenshot(path=folder / "recorded-desktop.png", full_page=True)
+        await page.locator("#recording").select_option("remote-timeout")
+        await expect(
+            page.get_by_role("heading", name="remote preview stopped", exact=True)
+        ).to_be_visible()
+        await expect(
+            page.get_by_text(
+                "No completed candidate verification. This outcome is not a verified fix."
+            )
+        ).to_be_visible()
+        await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
+        await expect(page.locator("iframe")).to_have_count(0)
+        await page.locator("#recording").select_option("m4-shipping-success")
+        await expect(
+            page.get_by_role("heading", name="Verified for the recorded checks")
+        ).to_be_visible()
         await page.set_viewport_size({"width": 390, "height": 844})
         await page.get_by_role(
             "heading", name="Verified for the recorded checks"
@@ -182,6 +197,21 @@ async def test_recorded_explorer_first_visit_mobile_and_no_live_requests():
         assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth")
         assert not mutations
         assert not errors
+        await browser.close()
+
+
+async def test_selected_scenario_manual_view_is_bound_before_any_reproduction():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto(BASE)
+        await page.locator("#scenario").select_option("shipping-threshold")
+        await page.get_by_role("button", name="Interactive storefront", exact=True).click()
+        frame = page.frame_locator('iframe[title="Interactive synthetic retail storefront"]')
+        await frame.locator("#add-to-cart").click()
+        await frame.locator("#increase").click()
+        await expect(frame.get_by_test_id("total")).to_have_text("$136.00")
+        await expect(page.locator(".browser-footer")).to_contain_text("Interactive fixture")
         await browser.close()
 
 

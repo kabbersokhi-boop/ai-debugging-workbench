@@ -111,3 +111,37 @@ def test_recordings_are_saved_actual_records_not_live_fixtures():
     assert record["recording"]["mode"] == "recorded_live_nvidia"
     assert record["repair"]["state"]["provider_calls"]
     assert record["repair"]["id"] != str(uuid4())
+
+
+async def test_frozen_experiment_transport_rejects_expired_or_exhausted_budget(
+    tmp_path, monkeypatch
+):
+    import importlib.util
+    from datetime import UTC, datetime, timedelta
+
+    from workbench.rag.provider import ProviderError
+
+    spec = importlib.util.spec_from_file_location(
+        "budget_probe", ROOT / "scripts/evaluate_repairs.py"
+    )
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    monkeypatch.setattr(module, "OUTPUT", tmp_path)
+    for deadline, calls in (
+        (datetime.now(UTC) - timedelta(seconds=1), 0),
+        (datetime.now(UTC) + timedelta(seconds=60), 256),
+    ):
+        ledger = {
+            "deadline": deadline.isoformat(),
+            "http_requests": calls,
+            "reserved_output_tokens": 0,
+        }
+        transport = module.BudgetTransport(ledger)
+        with pytest.raises(ProviderError, match="budget exhausted"):
+            await transport.handle_async_request(
+                httpx.Request("POST", "https://provider.invalid", json={"max_tokens": 2000})
+            )
+        assert ledger["http_requests"] == calls
+        await transport.aclose()
+    assert not (tmp_path / "budget.json").exists()

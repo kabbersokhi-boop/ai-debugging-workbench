@@ -1,0 +1,3 @@
+{"case": "cart-quantity", "reproduction": "reproduced", "diagnosis": "completed", "repair": "verified"}
+{"case": "decrement-skip", "reproduction": "reproduced", "diagnosis": "completed", "repair": "verified"}
+{"case": "clamp-zero", "reproduction": "reproduced", "diagnosis": "completed", "repair": "verified"}

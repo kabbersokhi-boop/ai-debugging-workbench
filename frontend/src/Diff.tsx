@@ -15,7 +15,8 @@ export default function CandidateDiff({ original, modified }: { original: string
     const editor = monaco.editor.createDiffEditor(container.current, {
       theme: "vs-dark", readOnly: true, originalEditable: false,
       minimap: { enabled: false }, scrollBeyondLastLine: false, fontSize: 12,
-      renderSideBySide: true, automaticLayout: true, accessibilitySupport: "on",
+      renderSideBySide: true, renderSideBySideInlineBreakpoint: 700,
+      useInlineViewWhenSpaceIsLimited: true, automaticLayout: true, accessibilitySupport: "on",
     });
     editor.setModel({ original: before, modified: after });
     return () => {

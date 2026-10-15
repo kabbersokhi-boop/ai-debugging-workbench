@@ -1,0 +1,484 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "final-input--12",
+      "quantity": 1,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$64.00",
+        "subtotal": "$64.00",
+        "shipping": "$8.00",
+        "total": "$72.00",
+        "bag-count": "1",
+        "item-count": "1 item"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$64.00",
+        "subtotal": "$64.00",
+        "shipping": "$8.00",
+        "total": "$72.00",
+        "bag-count": "1",
+        "item-count": "1 item"
+      },
+      "expected_controls": {
+        "quantity": "1",
+        "decrease_disabled": true,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "1",
+        "decrease_disabled": true,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-input-0",
+      "quantity": 1,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$64.00",
+        "subtotal": "$64.00",
+        "shipping": "$8.00",
+        "total": "$72.00",
+        "bag-count": "1",
+        "item-count": "1 item"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$64.00",
+        "subtotal": "$64.00",
+        "shipping": "$8.00",
+        "total": "$72.00",
+        "bag-count": "1",
+        "item-count": "1 item"
+      },
+      "expected_controls": {
+        "quantity": "1",
+        "decrease_disabled": true,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "1",
+        "decrease_disabled": true,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-input-2",
+      "quantity": 2,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$128.00",
+        "subtotal": "$128.00",
+        "shipping": "$0.00",
+        "total": "$128.00",
+        "bag-count": "2",
+        "item-count": "2 items"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$128.00",
+        "subtotal": "$128.00",
+        "shipping": "$0.00",
+        "total": "$128.00",
+        "bag-count": "2",
+        "item-count": "2 items"
+      },
+      "expected_controls": {
+        "quantity": "2",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "2",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-input-4",
+      "quantity": 4,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$256.00",
+        "subtotal": "$256.00",
+        "shipping": "$0.00",
+        "total": "$256.00",
+        "bag-count": "4",
+        "item-count": "4 items"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$256.00",
+        "subtotal": "$256.00",
+        "shipping": "$0.00",
+        "total": "$256.00",
+        "bag-count": "4",
+        "item-count": "4 items"
+      },
+      "expected_controls": {
+        "quantity": "4",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "4",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-input-7",
+      "quantity": 7,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$448.00",
+        "subtotal": "$448.00",
+        "shipping": "$0.00",
+        "total": "$448.00",
+        "bag-count": "7",
+        "item-count": "7 items"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$448.00",
+        "subtotal": "$448.00",
+        "shipping": "$0.00",
+        "total": "$448.00",
+        "bag-count": "7",
+        "item-count": "7 items"
+      },
+      "expected_controls": {
+        "quantity": "7",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "7",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-input-9",
+      "quantity": 9,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$576.00",
+        "subtotal": "$576.00",
+        "shipping": "$0.00",
+        "total": "$576.00",
+        "bag-count": "9",
+        "item-count": "9 items"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$576.00",
+        "subtotal": "$576.00",
+        "shipping": "$0.00",
+        "total": "$576.00",
+        "bag-count": "9",
+        "item-count": "9 items"
+      },
+      "expected_controls": {
+        "quantity": "9",
+        "decrease_disabled": false,
+        "increase_disabled": true,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "9",
+        "decrease_disabled": false,
+        "increase_disabled": true,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-input-12",
+      "quantity": 9,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$576.00",
+        "subtotal": "$576.00",
+        "shipping": "$0.00",
+        "total": "$576.00",
+        "bag-count": "9",
+        "item-count": "9 items"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$576.00",
+        "subtotal": "$576.00",
+        "shipping": "$0.00",
+        "total": "$576.00",
+        "bag-count": "9",
+        "item-count": "9 items"
+      },
+      "expected_controls": {
+        "quantity": "9",
+        "decrease_disabled": false,
+        "increase_disabled": true,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "9",
+        "decrease_disabled": false,
+        "increase_disabled": true,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-input-3.9",
+      "quantity": 3,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$192.00",
+        "subtotal": "$192.00",
+        "shipping": "$0.00",
+        "total": "$192.00",
+        "bag-count": "3",
+        "item-count": "3 items"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$192.00",
+        "subtotal": "$192.00",
+        "shipping": "$0.00",
+        "total": "$192.00",
+        "bag-count": "3",
+        "item-count": "3 items"
+      },
+      "expected_controls": {
+        "quantity": "3",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "3",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-input-blank",
+      "quantity": 1,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$64.00",
+        "subtotal": "$64.00",
+        "shipping": "$8.00",
+        "total": "$72.00",
+        "bag-count": "1",
+        "item-count": "1 item"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$64.00",
+        "subtotal": "$64.00",
+        "shipping": "$8.00",
+        "total": "$72.00",
+        "bag-count": "1",
+        "item-count": "1 item"
+      },
+      "expected_controls": {
+        "quantity": "1",
+        "decrease_disabled": true,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "1",
+        "decrease_disabled": true,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-add-six",
+      "quantity": 6,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$384.00",
+        "subtotal": "$384.00",
+        "shipping": "$0.00",
+        "total": "$384.00",
+        "bag-count": "6",
+        "item-count": "6 items"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$384.00",
+        "subtotal": "$384.00",
+        "shipping": "$0.00",
+        "total": "$384.00",
+        "bag-count": "6",
+        "item-count": "6 items"
+      },
+      "expected_controls": {
+        "quantity": "6",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "6",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-decrease-five",
+      "quantity": 5,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$320.00",
+        "subtotal": "$320.00",
+        "shipping": "$0.00",
+        "total": "$320.00",
+        "bag-count": "5",
+        "item-count": "5 items"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$320.00",
+        "subtotal": "$320.00",
+        "shipping": "$0.00",
+        "total": "$320.00",
+        "bag-count": "5",
+        "item-count": "5 items"
+      },
+      "expected_controls": {
+        "quantity": "5",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "5",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    },
+    {
+      "name": "final-increase-six",
+      "quantity": 6,
+      "expected": {
+        "unit-price": "$64.00 each",
+        "line-total": "$384.00",
+        "subtotal": "$384.00",
+        "shipping": "$0.00",
+        "total": "$384.00",
+        "bag-count": "6",
+        "item-count": "6 items"
+      },
+      "observed": {
+        "unit-price": "$64.00 each",
+        "line-total": "$384.00",
+        "subtotal": "$384.00",
+        "shipping": "$0.00",
+        "total": "$384.00",
+        "bag-count": "6",
+        "item-count": "6 items"
+      },
+      "expected_controls": {
+        "quantity": "6",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "controls": {
+        "quantity": "6",
+        "decrease_disabled": false,
+        "increase_disabled": false,
+        "empty_visible": false,
+        "item_visible": true
+      },
+      "monetary_text_visible": true,
+      "output_truncated": false,
+      "passed": true
+    }
+  ],
+  "visibility": "evaluation_only_after_final_candidate",
+  "version": "retail-final-v1",
+  "candidate_hash": "ba81dc08bc5dd18ec310024de858bf41d9e816972f3dcdb03110bc7d28f4f608",
+  "source_snapshot": "aea6746f63baf2adb988ce1edc0315dcaffda12e786db84550ed179ea9ea654c",
+  "container_image_id": "sha256:edaa4ae5534a7d6ed8ec84fc3808b90fbb305fab28763022650c06f83b94251a",
+  "executed_file_hashes": {
+    "fixtures/retail/cart.js": "3d435824bea3b1750ec31dcc3f4ece8ff668e4cfcddc76fa605caa4d9a8c1791",
+    "fixtures/retail/index.html": "c3b530a2a069e73d9c22f2ddff744512306659318a856527f35e03e2250a01cf",
+    "fixtures/retail/styles.css": "88ddbe681475b6653c82bf55669d6a01a04ef2384aaa427b45b19a129230609f"
+  },
+  "final_checks_sha256": "0f48291d5ecede994ce56749cb64c84639bdfcb69995967d2b94e95cf4017607"
+}

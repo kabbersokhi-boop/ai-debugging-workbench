@@ -8,6 +8,8 @@ Four development scenarios are selectable: quantity aggregation, shipping eligib
 
 ![Actual shipping comparison: original $136, candidate $128](recordings/live-shipping-comparison.png)
 
+[Captioned walkthrough of the actual saved NVIDIA run](docs/demo/walkthrough.mp4) · [Transcript and provenance](docs/demo/README.md)
+
 ## Explore without a provider key
 
 ```bash

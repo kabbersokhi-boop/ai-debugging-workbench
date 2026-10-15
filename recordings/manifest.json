@@ -7,7 +7,8 @@
       "outcome": "verified",
       "mode": "recorded_live_nvidia",
       "file": "m4-shipping-success.json",
-      "comparison_asset": "live-shipping-comparison.png"
+      "comparison_asset": "live-shipping-comparison.png",
+      "walkthrough_asset": "walkthrough.mp4"
     },
     {
       "id": "m3-live-success",

@@ -280,7 +280,7 @@ function App() {
         >
           <span className="bug-marker" />
           <div>
-            <span className="mono issue-code">RETAIL-001</span>
+            <span className="mono issue-code">{bug?.id ?? "RETAIL"}</span>
             <strong>{bug?.title ?? "Select a scenario"}</strong>
             <span>Checkout · Pricing</span>
           </div>
@@ -382,7 +382,7 @@ function App() {
             </div>
             <div className="case-copy">
               <div className="case-meta">
-                <span className="mono">RETAIL-001</span>
+                <span className="mono">{bug?.id ?? "RETAIL"}</span>
                 <span className="severity">
                   <span />
                   High priority
@@ -609,7 +609,7 @@ function App() {
                         <iframe
                           key={liveKey}
                           title="Interactive synthetic retail storefront"
-                          src={run?.bug_id && run.bug_id !== "cart-quantity" ? `/scenarios/${run.bug_id}/retail/` : "/retail/"}
+                          src={bug?.id && bug.id !== "cart-quantity" ? `/scenarios/${bug.id}/retail/` : "/retail/"}
                           sandbox="allow-scripts allow-same-origin"
                         />
                       ) : shownCapture && run ? (
@@ -692,7 +692,7 @@ function App() {
                         {view === "live"
                           ? "Interactive fixture · Separate from the automated session"
                           : shownCapture
-                            ? `Captured by Playwright · ${shownCapture === "before.png" ? "Baseline state" : "Quantity changed to 3"}`
+                            ? `Captured by Playwright · ${shownCapture === "before.png" ? "Baseline state" : bug?.id === "cart-quantity" ? "Quantity changed to 3" : "Reported scenario action"}`
                             : "Waiting for browser evidence"}
                       </span>
                       <span>
@@ -745,6 +745,7 @@ function App() {
                       </div>
                     ) : (
                       <div className="assertion-placeholder">
+                        {bug?.id === "cart-quantity" ? <>
                         <div>
                           <span>Subtotal</span>
                           <strong>$192.00</strong>
@@ -762,6 +763,7 @@ function App() {
                           <br />
                           Observed values appear after reproduction.
                         </p>
+                        </> : <p>{bug?.expected}<br/>Run this scenario to capture actual quantities, prices and named behavior checks.</p>}
                       </div>
                     )}
                     <div className="contract-note">

@@ -104,6 +104,9 @@ export function RepairWorkspace({ investigation, scenarioId = "cart-quantity" }:
   }
   async function openPreview() {
     if (!current || !attempt) return;
+    // Retire the previous controls immediately. A delayed startup response must
+    // not let a reset land on a viewer that is about to be replaced.
+    invalidatePreview();
     const requestId = ++previewRequest.current;
     setPreviewBusy(true); setError("");
     try {

@@ -1,0 +1,74 @@
+{
+  "backup": "pre-milestone-04.dump",
+  "migration": "004 -> 005 -> 004 -> 005 on disposable restored database",
+  "tables": {
+    "public.investigations": {
+      "prior_rows": 10,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "d655bd1795d91feccfbb9daf67b867579a752f3e35844044b97bd2c75fb9fb5e"
+    },
+    "public.repairs": {
+      "prior_rows": 8,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "075b235ea8f8535ff10fd7fc60dc2a26d6862a44c5a63311256220e9df8a58d8"
+    },
+    "public.repository_indexes": {
+      "prior_rows": 1,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "e449223fd1b4a1e6598c89af7baf753c646341457150aca403c4f24d3fad6c6b"
+    },
+    "public.run_events": {
+      "prior_rows": 245,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "c9b028dc4c1ef89c232d65056d2cb1e5423a7855a5d0dd5d9c792cb018dc79fc"
+    },
+    "public.runs": {
+      "prior_rows": 54,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "cf5d2324b75c8c02c8bb9ce34760de71e1f7257f7e6e8218364661d35e941d2c"
+    },
+    "public.source_chunks": {
+      "prior_rows": 84,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "75ca23247fcd70c80347fdc41ba09b09f1c8be3f87b4622df07285e7e3989e6e"
+    },
+    "public.source_snapshots": {
+      "prior_rows": 1,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "90a7cc5a754431c00a14d6d2c31fa14a2448225c35b5b0fb7930db1b8977c23d"
+    },
+    "repair_graph.checkpoint_blobs": {
+      "prior_rows": 891,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "a1273c7fa35f2e12c360ee1f14e490fac029a29d2bddcb8ece1ed133b7a1b654"
+    },
+    "repair_graph.checkpoint_migrations": {
+      "prior_rows": 10,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "7112f5afb86c745a846eec14e3e3f88b37b3e838462fca2739a8ff651fabaa5b"
+    },
+    "repair_graph.checkpoint_writes": {
+      "prior_rows": 2436,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "3ef4f64aab3f4a530163108cf4f3b098eea60ee0e2ca04d65a398f6f6d49b7e0"
+    },
+    "repair_graph.checkpoints": {
+      "prior_rows": 286,
+      "all_prior_rows_unchanged": true,
+      "prior_rows_sha256": "48df83aa824f0615e5bfbe121e58bac5fc2dedb0aa7dbed4d99d0b500d2f1f2b"
+    }
+  },
+  "source_and_historical_reports_unchanged": true,
+  "restored_revision": "005",
+  "current_revision": "005",
+  "reviewed_milestone_01_artifacts": {
+    "before.png": {
+      "sha256": "addefe4e77d7b26f6ddf09af6f034c7939bd7f3e8f7f4c4fe421a78764a2a3a5",
+      "unchanged": true
+    },
+    "after.png": {
+      "sha256": "69d81a27523e61bb668e17d451e822b8903973459e06a9058f913437d3797b2a",
+      "unchanged": true
+    }
+  }
+}

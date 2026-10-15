@@ -1,0 +1,35 @@
+{
+  "api_image_id": "sha256:50962893dc0054a0696f826785e387497baf86386fd1fdbc1e58134777f213cb",
+  "actual_source_sha256": {
+    "backend/src/workbench/api.py": "d7da3a951d5afae03c527fddaec5953bc82e267dfef66f971cb49dac57bc5c90",
+    "backend/src/workbench/runner.py": "687078de1a4aca45a5c982dbce21937c819f9c8244712d5cef3b0c23ef8bcbf5",
+    "backend/src/workbench/__init__.py": "8481a252f9c893e22d77aa40539decb7e9563838380715912c276181e3c44533",
+    "backend/src/workbench/db.py": "362e6a21d6448bb36d10240d551c3eb56fe37e806105e9415ee10e5fcfcdfe14",
+    "backend/src/workbench/service.py": "a5f2491bb5e325cb4b1303a0a421e11b65ea188cd505901b36a6ba339ecd7fa5",
+    "backend/src/workbench/access.py": "1b6bf223cd2c5eac36e7ed4ea6e567f549dad269d8f4b004d42519eccb131a3a",
+    "backend/src/workbench/config.py": "18d829896048eefc5446037682b969fd812e35d3b05420f74888b01fa1e1fe55",
+    "backend/src/workbench/contracts.py": "2e6abcdb8b8d1453109a05343b154cc499aaba68bed05727f5fb166742331c75",
+    "backend/src/workbench/release.py": "294769ccae8901accb7d0f544a0dc76e41110369cc965e54682d61b004e7e0f0",
+    "backend/src/workbench/rag/diagnosis.py": "f8f7a3d408d742006f709f88e43e5960f2a7ac8e59b0dea9544690e8fb126d93",
+    "backend/src/workbench/rag/provider.py": "9a48bdd8a1b925be9f19f2fbe679cf5519dbb745b64631fe14529932ccffa877",
+    "backend/src/workbench/rag/snapshot.py": "768a6dbfe9c45ad8142f6287115ed296d56ec1df04b3fec1715f493cd820d40f",
+    "backend/src/workbench/rag/__init__.py": "fcee259c321c6bee14a732fcb6ca05e50704c8c9d6d27cc16d5ac2d44e904e1a",
+    "backend/src/workbench/rag/service.py": "1f59a5bbea9697d467c98590abae5eed413cb463e6089ea7d50eb6f1750fcb50",
+    "backend/src/workbench/rag/retrieval.py": "288b618b1efa8b5b0cc26d2392d904ab722568346a6de0daf848bf95918ca9b1",
+    "backend/src/workbench/rag/contracts.py": "ebf17031f00beb3d54b490e3ce7414bc15850719908bbbfbab5f3ecd973e71b3",
+    "backend/src/workbench/repair/mcp_server.py": "6886a0731126668d142165ba5b4cc21aaaba0941186ce52939e2c38cd6464ca1",
+    "backend/src/workbench/repair/graph.py": "081d4d3802c6effcc77684df50d7fdd302f5df2771ae74cf35b250e62bfb588f",
+    "backend/src/workbench/repair/__init__.py": "9b00cc012cb65c86bac292c33a5e8d44df63b2560475703830017faef20a9505",
+    "backend/src/workbench/repair/mcp_client.py": "9f3c9b15d7065d608dc4dc5105f491de6df2b4693689e3f0bd33dc7e6e783f40",
+    "backend/src/workbench/repair/service.py": "dbaf67061325eb900d1b383454d6d0f19cf61a708ce26c7f8df71909e995326c",
+    "backend/src/workbench/repair/verifier.py": "fa6b8149e83bfbb332ba9ac347a302b35714550589cb74582efcc68ce5cff6f1",
+    "backend/src/workbench/repair/contracts.py": "ba292d7a9393f16ed2dd825f9760bc37815bd8c29b7d5c5f848711e6708a91b3",
+    "backend/src/workbench/repair/broker.py": "02b580fb0168f7491b150b21ef0c120680d8c2454fbc38f7b4d649e16abf4871"
+  },
+  "differences_from_fc918a6": [
+    "backend/src/workbench/api.py",
+    "backend/src/workbench/runner.py",
+    "backend/src/workbench/contracts.py",
+    "backend/src/workbench/release.py"
+  ]
+}

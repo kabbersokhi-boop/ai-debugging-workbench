@@ -110,6 +110,9 @@ async def health():
         for record in manifest["records"]:
             if not (RECORDINGS / record["file"]).is_file():
                 raise ValueError("Missing recording")
+            for key in ("comparison_asset", "walkthrough_asset"):
+                if record.get(key) and not (RECORDINGS / record[key]).is_file():
+                    raise ValueError("Missing declared recording asset")
     except (OSError, ValueError, KeyError):
         raise HTTPException(
             503, "Recorded evidence unavailable; no live fallback is enabled"
@@ -138,9 +141,11 @@ async def recording(recording_id: str):
 
 @app.get("/api/recorded-assets/{name}")
 async def asset(name: str):
-    allowed = {"live-repair-before-after.png", "live-repair-checks.png"} | {
-        r["comparison_asset"] for r in catalog()["records"] if r.get("comparison_asset")
-    }
+    allowed = (
+        {"live-repair-before-after.png", "live-repair-checks.png"}
+        | {r["comparison_asset"] for r in catalog()["records"] if r.get("comparison_asset")}
+        | {r["walkthrough_asset"] for r in catalog()["records"] if r.get("walkthrough_asset")}
+    )
     if name not in allowed or not (RECORDINGS / name).is_file():
         raise HTTPException(404, "Recorded asset not found")
     return FileResponse(RECORDINGS / name)
