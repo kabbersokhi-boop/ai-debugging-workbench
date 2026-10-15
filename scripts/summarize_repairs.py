@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 config_path = ROOT / "evals/experiment-v2.json"
 config = json.loads(config_path.read_text())
 base = ROOT / "artifacts/evaluation-m4-v2"
+if not (base / "evaluation-results.json").is_file():
+    base = ROOT / "docs/reports/assets/milestone-04"
 rows = json.loads((base / "evaluation-results.json").read_text())
 expected = {
     (c["id"], method)

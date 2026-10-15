@@ -14,7 +14,7 @@ foundation	Run ./scripts/e2e	2026-10-15T22:57:27.8750464Z testpaths: tests
 foundation	Run ./scripts/e2e	2026-10-15T22:57:27.8751524Z plugins: asyncio-1.4.0, langsmith-0.14.9, anyio-4.15.1
 foundation	Run ./scripts/e2e	2026-10-15T22:57:27.8753128Z asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
 foundation	Run ./scripts/e2e	2026-10-15T22:57:29.2700012Z collecting ... collected 106 items / 56 deselected / 50 selected
-foundation	Run ./scripts/e2e	2026-10-15T22:57:29.2700906Z 
+foundation	Run ./scripts/e2e	2026-10-15T22:57:29.2700906Z
 foundation	Run ./scripts/e2e	2026-10-15T22:57:29.6360966Z tests/test_access_integration.py::test_guest_ownership_artifacts_idempotency_and_expiry PASSED [  2%]
 foundation	Run ./scripts/e2e	2026-10-15T22:57:29.7693144Z tests/test_access_integration.py::test_reservations_are_atomic_persisted_and_server_wide PASSED [  4%]
 foundation	Run ./scripts/e2e	2026-10-15T22:57:32.2008576Z tests/test_diagnosis_browser.py::test_presentation_regression_for_passed_checks_and_interactive_footer PASSED [  6%]
@@ -65,10 +65,10 @@ foundation	Run ./scripts/e2e	2026-10-15T23:01:33.8028367Z tests/test_service.py:
 foundation	Run ./scripts/e2e	2026-10-15T23:01:33.9597455Z tests/test_service.py::test_runner_failures_never_become_reproduced[timeout] PASSED [ 96%]
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.1122838Z tests/test_service.py::test_restart_recovers_unfinished_runs_and_preserves_terminal_outcomes PASSED [ 98%]
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6080701Z tests/test_service.py::test_concurrent_duplicate_requests_produce_one_run PASSED [100%]
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6082080Z 
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6082080Z
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6082702Z =================================== FAILURES ===================================
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6083769Z _____ test_offline_repair_browser_diff_preview_download_and_saved_history ______
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6084426Z 
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6084426Z
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6084975Z     async def test_offline_repair_browser_diff_preview_download_and_saved_history():
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6086135Z         """Real candidate/verifier/browser with an explicitly deterministic OFFLINE provider."""
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6087127Z         folder = ROOT / "artifacts/milestone-03"
@@ -130,15 +130,15 @@ foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6124742Z                 await 
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6125501Z                 await page.locator(".history-item").filter(has_text=run_id[:6]).click()
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6126433Z                 await page.get_by_role("tab", name="Investigation", exact=True).click()
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6127411Z >               await inspect_candidate(page, run_id, folder, "offline-repair")
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6127944Z 
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6128265Z tests/test_repair_browser.py:202: 
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6128962Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6129424Z 
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6127944Z
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6128265Z tests/test_repair_browser.py:202:
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6128962Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6129424Z
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6132548Z page = <Page url='http://127.0.0.1:8010/'>
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6134706Z run_id = '9fc2bb00-cddc-42c9-8ddd-bf49ec7846be'
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6135876Z folder = PosixPath('/home/runner/work/ai-debugging-workbench/ai-debugging-workbench/artifacts/milestone-03')
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6136836Z prefix = 'offline-repair'
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6137174Z 
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6137174Z
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6137675Z     async def inspect_candidate(page, run_id, folder, prefix="live-repair"):
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6139422Z         await expect(
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6140178Z             page.get_by_role("heading", name="Verified for the supported checks", exact=True)
@@ -175,18 +175,18 @@ foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6188567Z         await candidat
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6189783Z >       await expect(candidate.get_by_test_id("remote-quantity")).to_have_text("0", timeout=15000)
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6190782Z E       AssertionError: Locator expected to have text '0'
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6191771Z E       Actual value: 3
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6192356Z E       Error: element(s) not found 
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6192356Z E       Error: element(s) not found
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6192923Z E       Call log:
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6193533Z E         - Expect "to_have_text" with timeout 15000ms
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6194676Z E         - waiting for get_by_role("region", name="Remote candidate application").get_by_test_id("remote-quantity")
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6195896Z E           - locator resolved to <strong data-testid="remote-quantity">3</strong>
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6196708Z E           - unexpected value "3"
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6197148Z 
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6197148Z
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6197570Z tests/test_repair_browser.py:57: AssertionError
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6198381Z =========================== short test summary info ============================
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6199917Z FAILED tests/test_repair_browser.py::test_offline_repair_browser_diff_preview_download_and_saved_history - AssertionError: Locator expected to have text '0'
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6201059Z Actual value: 3
-foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6201773Z Error: element(s) not found 
+foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6201773Z Error: element(s) not found
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6202272Z Call log:
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6202810Z   - Expect "to_have_text" with timeout 15000ms
 foundation	Run ./scripts/e2e	2026-10-15T23:01:34.6204074Z   - waiting for get_by_role("region", name="Remote candidate application").get_by_test_id("remote-quantity")

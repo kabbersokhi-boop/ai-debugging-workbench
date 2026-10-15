@@ -51,9 +51,11 @@ uv run --project backend playwright install --with-deps chromium
 ./scripts/e2e                       # offline fixtures + real PostgreSQL/MCP/Docker/browser
 ./scripts/recovery-smoke            # after e2e; local stack only
 
-# Explicit real-provider opt-in; consumes the frozen experiment budget:
-uv run --project backend python scripts/evaluate_repairs.py --live --split evaluation
+# Recompute the committed measured-results summary; no provider call:
+uv run --project backend python scripts/summarize_repairs.py
 ```
+
+For a fresh real-provider replication, follow the versioned freeze/commit/run commands in the [evaluation protocol](evals/README.md#fresh-host-replication). It consumes the finite experiment budget; the original v2 runtime identity is intentionally not replaced by a new build.
 
 The experiment checks its committed configuration, source and runtime hashes, retains failed output and charges retries before network execution. [Protocol](evals/README.md), [results and limitations](docs/RESULTS.md), [engineering report](docs/reports/MILESTONE-04.md). Existing results are reused only under the exact experiment identity; a changed experiment requires a new version.
 

@@ -18,7 +18,7 @@ ________________ test_m4_live_workflow_shipping_scenario_video _________________
     )
     async def test_m4_live_workflow_shipping_scenario_video():
         import httpx
-    
+
         folder = ROOT / "artifacts/milestone-04"
         folder.mkdir(parents=True, exist_ok=True)
         async with async_playwright() as p:
@@ -71,7 +71,7 @@ ________________ test_m4_live_workflow_shipping_scenario_video _________________
                 await page.screenshot(path=folder / "live-shipping-workspace.png", full_page=True)
 >               assert not errors, errors
 E               AssertionError: ['TextModel got disposed before DiffEditorWidget model got reset
-E                 
+E
 E                 Error: TextModel got disposed before DiffEditorWidget model got reset']
 E               assert not ['TextModel got disposed before DiffEditorWidget model got reset\n\nError: TextModel got disposed before DiffEditorWidget model got reset']
 

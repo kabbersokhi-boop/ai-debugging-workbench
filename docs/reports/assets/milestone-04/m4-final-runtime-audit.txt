@@ -1,0 +1,26 @@
+{
+  "implementation_commit": "cbff375a3af2eb70ffaa60324fcdf2ca32b71213",
+  "services": {
+    "api": {
+      "image_id": "sha256:8c2603bb8f14972f9c657b0523599198cf5b57a343e8f9ebb5809db550c5e930",
+      "source_files_matching": 24,
+      "nvidia_environment": true,
+      "environment_files_in_image": false,
+      "docker_socket": false
+    },
+    "runner": {
+      "image_id": "sha256:8c2603bb8f14972f9c657b0523599198cf5b57a343e8f9ebb5809db550c5e930",
+      "source_files_matching": 24,
+      "nvidia_environment": false,
+      "environment_files_in_image": false,
+      "docker_socket": false
+    },
+    "repair-broker": {
+      "image_id": "sha256:8c2603bb8f14972f9c657b0523599198cf5b57a343e8f9ebb5809db550c5e930",
+      "source_files_matching": 24,
+      "nvidia_environment": false,
+      "environment_files_in_image": false,
+      "docker_socket": true
+    }
+  }
+}

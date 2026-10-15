@@ -21,3 +21,23 @@ The previous eight-query retrieval smoke measurements remain in the Milestone 2 
 If an implementation correction is needed after held-out execution, retain v1 and create a new versioned experiment. Never overwrite a failed experiment or tune a prompt against its outcomes.
 
 Protocol v1 was frozen but never executed. A pre-execution audit found that resumed processes did not enforce the persisted wall deadline; v2 adds that guard and caps each condition to the remaining shared deadline. V1 remains in Git. No held-out outcome or provider call informed the correction.
+
+## Fresh-host replication
+
+The committed v2 outcomes can be summarized without a key or Docker:
+
+```bash
+uv run --project backend python scripts/summarize_repairs.py
+```
+
+The original live command requires the exact frozen broker/candidate images. A rebuilt image deliberately fails that identity guard. To repeat the protocol with the current local build, keep v2 and create a new replication version before any provider calls:
+
+```bash
+docker compose up --build -d --wait api
+uv run --project backend python scripts/evaluate_repairs.py --experiment evals/experiment-v3.json --output artifacts/evaluation-m4-v3 --freeze
+git add evals/experiment-v3.json
+git commit -m 'Freeze explicitly versioned replication before execution'
+uv run --project backend python scripts/evaluate_repairs.py --experiment evals/experiment-v3.json --output artifacts/evaluation-m4-v3 --live --split evaluation
+```
+
+This is an explicit real-provider opt-in with the same finite ceiling. Do not run it just to obtain a preferred result. These cases are no longer untouched after v2. Retain all replication failures and the earlier v2 records.
