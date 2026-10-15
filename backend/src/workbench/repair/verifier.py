@@ -42,9 +42,13 @@ async def observation(page: Page, name: str, quantity: int) -> dict[str, Any]:
         "bag-count": str(quantity),
         "item-count": f"{quantity} {'item' if quantity == 1 else 'items'}",
     }
-    actual = {key: (await page.get_by_test_id(key).inner_text()).strip() for key in expected}
+    raw_text = {key: await page.get_by_test_id(key).inner_text() for key in expected}
+    output_truncated = any(len(text) > 200 for text in raw_text.values())
+    actual = {key: text.strip()[:200] for key, text in raw_text.items()}
+    quantity_value = await page.locator("#quantity").input_value()
+    output_truncated = output_truncated or len(quantity_value) > 50
     controls = {
-        "quantity": await page.locator("#quantity").input_value(),
+        "quantity": quantity_value[:50],
         "decrease_disabled": await page.locator("#decrease").is_disabled(),
         "increase_disabled": await page.locator("#increase").is_disabled(),
         "empty_visible": await page.locator("#empty").is_visible(),
@@ -69,7 +73,13 @@ async def observation(page: Page, name: str, quantity: int) -> dict[str, Any]:
         "expected_controls": expected_controls,
         "controls": controls,
         "monetary_text_visible": visible_money,
-        "passed": actual == expected and controls == expected_controls and visible_money,
+        "output_truncated": output_truncated,
+        "passed": (
+            actual == expected
+            and controls == expected_controls
+            and visible_money
+            and not output_truncated
+        ),
     }
 
 
@@ -80,7 +90,7 @@ async def verify(browser: Browser, candidate_hash: str, screenshot: Path) -> dic
     page = await context.new_page()
     checks: list[dict[str, Any]] = []
     errors: list[str] = []
-    page.on("pageerror", lambda error: errors.append(str(error)[:300]))
+    page.on("pageerror", lambda error: errors.append(str(error)[:300]) if len(errors) < 5 else None)
     # Only immutable target resources. Even local CDP and other containers are blocked.
     allowed = {
         "http://127.0.0.1:8080/retail/",

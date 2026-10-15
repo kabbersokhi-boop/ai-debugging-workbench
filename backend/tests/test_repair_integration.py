@@ -93,6 +93,12 @@ async def test_real_mcp_discovery_permission_and_stale_base(broker_url):
             "(document.querySelector('[data-testid=total]').hidden = true, 0)",
             "failed",
         ),
+        (
+            "sum + item.unitPriceCents * item.quantity + "
+            "(setTimeout(() => document.querySelector('[data-testid=total]').textContent = "
+            "'x'.repeat(10000), 0), 0)",
+            "failed",
+        ),
     ],
 )
 async def test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash(
@@ -125,6 +131,13 @@ async def test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash(
             assert result["container_image_id"].startswith("sha256:")
             assert result["check_names"] == CHECK_NAMES
             assert len(result["checks"]) == 12
+            assert all(
+                len(text) <= 200
+                for check in result["checks"]
+                for text in check["observed"].values()
+            )
+            if "repeat(10000)" in new:
+                assert any(check["output_truncated"] for check in result["checks"])
             if expected == "passed":
                 assert all(c["passed"] for c in result["checks"])
             repeated = (await client.post(f"/candidates/{repair_id}/1/verify")).json()

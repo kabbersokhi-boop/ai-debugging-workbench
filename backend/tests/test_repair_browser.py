@@ -230,8 +230,12 @@ async def test_offline_repair_browser_diff_preview_download_and_saved_history():
                 page.get_by_role("button", name="Starting candidate preview…", exact=True)
             ).to_be_disabled()
             await page.locator("#saved-repairs").select_option(second["id"])
-            async with page.expect_response(lambda r: r.url.endswith("/preview")):
+            async with page.expect_response(lambda r: r.url.endswith("/preview")) as pending:
                 release.set()
+            await (await pending.value).finished()
+            await page.evaluate(
+                "new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))"
+            )
             await expect(page.locator('iframe[title="Candidate application"]')).to_have_count(0)
             assert not errors, errors
             await browser.close()
