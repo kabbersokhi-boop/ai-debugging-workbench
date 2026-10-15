@@ -2,6 +2,7 @@
 
 import asyncio
 import math
+import re
 import time
 from typing import Any, Literal, Protocol
 
@@ -13,9 +14,18 @@ from workbench.config import ProviderSettings
 
 
 class ProviderError(Exception):
-    def __init__(self, code: str, message: str):
+    def __init__(self, code: str, message: str, raw_response: str | None = None):
         self.code = code
+        self.raw_response = raw_response
         super().__init__(message)
+
+
+def sanitize_model_text(value: str, limit: int = 24000) -> str:
+    """Retain bounded model text, never reflected credentials or auth lines."""
+    value = re.sub(r"nvapi-[A-Za-z0-9_-]+", "[REDACTED]", value)
+    value = re.sub(r"(?i)bearer\s+[A-Za-z0-9_.-]+", "Bearer [REDACTED]", value)
+    value = re.sub(r"(?im)^.*authorization.*$", "[REDACTED AUTHORIZATION]", value)
+    return value.encode()[:limit].decode(errors="ignore")
 
 
 class Provider(Protocol):
@@ -55,7 +65,9 @@ class NvidiaProvider:
             transport=transport,
             follow_redirects=False,
         )
+        self.output_budget_remaining: int | None = None
         self.requests = 0
+        self.last_raw_response: str | None = None
 
     async def close(self) -> None:
         await self.client.aclose()
@@ -66,6 +78,12 @@ class NvidiaProvider:
                 raise ProviderError(
                     "request_budget", "The investigation reached its provider request budget."
                 )
+            if self.output_budget_remaining is not None and workload == "chat":
+                reserved = int(payload.get("max_tokens", 0))
+                if reserved > self.output_budget_remaining:
+                    raise ProviderError("output_budget", "Shared repair output budget exhausted.")
+                # Reserve the maximum even for failed requests/retries; never reset per node.
+                self.output_budget_remaining -= reserved
             self.requests += 1
             started = time.monotonic()
             record: dict[str, Any] = {
@@ -181,6 +199,7 @@ class NvidiaProvider:
             ) from None
 
     async def chat(self, prompt: ChatPromptValue) -> str:
+        self.last_raw_response = None
         messages = [
             {"role": "system" if m.type == "system" else "user", "content": str(m.content)}
             for m in prompt.to_messages()
@@ -204,6 +223,12 @@ class NvidiaProvider:
         try:
             choice = body["choices"][0]
             content = choice["message"]["content"]
+            if isinstance(content, str):
+                self.last_raw_response = sanitize_model_text(
+                    content.replace(self.config.nvidia_api_key.get_secret_value(), "[REDACTED]")
+                    if self.config.nvidia_api_key
+                    else content
+                )
             if (
                 choice.get("finish_reason") != "stop"
                 or not isinstance(content, str)
@@ -217,4 +242,5 @@ class NvidiaProvider:
             raise ProviderError(
                 "invalid_model_output",
                 "NVIDIA chat output was empty, truncated, or invalid. No diagnosis was accepted.",
+                self.last_raw_response,
             ) from None

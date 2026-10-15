@@ -16,7 +16,7 @@ COPY backend/alembic.ini ./alembic.ini
 RUN uv sync --frozen --no-dev --python 3.12
 COPY fixtures/ /app/fixtures/
 COPY --from=web /web/dist /app/frontend/dist
-RUN mkdir -p /app/artifacts && chown -R pwuser:pwuser /app
+RUN mkdir -p /app/artifacts && chown pwuser:pwuser /app/artifacts
 USER pwuser
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 CMD [".venv/bin/uvicorn", "workbench.api:app", "--host", "0.0.0.0", "--port", "8010", "--workers", "1"]

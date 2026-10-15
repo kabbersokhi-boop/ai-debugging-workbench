@@ -10,6 +10,7 @@ import {
   Square,
 } from "lucide-react";
 import { api, type Run } from "./types";
+import { RepairWorkspace } from "./Repair";
 
 type Chunk = {
   source_id: string;
@@ -35,13 +36,14 @@ type Citation = {
   snapshot_id: string;
   source_commit: string;
 };
-type Investigation = {
+export type Investigation = {
   id: string;
   status: string;
   created_at: string;
   report: string;
   error: string | null;
   error_code: string | null;
+  raw_response: string | null;
   snapshot_id: string;
   model_input: Record<string, unknown> | null;
   retrieval: {
@@ -220,7 +222,7 @@ export function InvestigationWorkspace({
     <div className="diagnosis-workspace">
       <section className="report-panel diagnosis-intro">
         <div>
-          <span className="eyebrow">MILESTONE 02 · GROUNDED DIAGNOSIS</span>
+          <span className="eyebrow">GROUNDED DIAGNOSIS</span>
           <h2>Investigate the evidence.</h2>
           <p>
             A real NVIDIA model reads the report, browser observations, and
@@ -254,8 +256,8 @@ export function InvestigationWorkspace({
         </p>
       )}
       <details className="investigation-report">
-        <summary>Report supplied to the investigator</summary>
-        <label htmlFor="investigation-report">Supported retail report</label>
+        <summary>Draft for the next investigation</summary>
+        <label htmlFor="investigation-report">Editable report · used only for a future investigation</label>
         <textarea
           id="investigation-report"
           value={customReport}
@@ -299,6 +301,13 @@ export function InvestigationWorkspace({
         </div>
       )}
       {current && (
+        <section className="report-panel saved-report" aria-label="Saved investigation report">
+          <h3>Saved report · immutable input</h3>
+          <p>{current.report}</p>
+          <small>Investigation {current.id}</small>
+        </section>
+      )}
+      {current && (
         <section
           className="report-panel investigation-events"
           aria-label="Investigation execution"
@@ -323,6 +332,12 @@ export function InvestigationWorkspace({
             </div>
           )}
         </section>
+      )}
+      {current?.raw_response && current.error && (
+        <details className="raw-data report-panel">
+          <summary>Rejected model output · never accepted</summary>
+          <p>{current.error}</p><pre>{current.raw_response}</pre>
+        </details>
       )}
       {diagnosis && (
         <section className="report-panel diagnosis-result">
@@ -370,10 +385,11 @@ export function InvestigationWorkspace({
             </div>
           </div>
           <p className="citation-validity">
-            {diagnosis.citation_validity} No patch was generated or verified.
+            {diagnosis.citation_validity} This diagnosis stage did not generate or verify a patch.
           </p>
         </section>
       )}
+      {current?.status === "completed" && <RepairWorkspace investigation={current} />}
       {trace && (
         <section
           id="retrieval-inspector"

@@ -280,16 +280,16 @@ function App() {
         <div className="sidebar-bottom">
           <div className="foundation-badge">
             <Box size={14} />
-            Milestone 02<span>GROUNDING</span>
+            Milestone 03<span>REPAIR</span>
           </div>
           <p>
             Live reproduction. Real evidence.
             <br />
-            Grounded diagnosis is available in Investigation.
+            Diagnosis and candidate repair are available in Investigation.
           </p>
           <div className="repo-label">
             <GitBranch size={13} />
-            <span>milestone/01</span>
+            <span>milestone/03</span>
             <span className="private">Private</span>
           </div>
         </div>

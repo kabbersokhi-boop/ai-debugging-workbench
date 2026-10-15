@@ -147,6 +147,9 @@ async def test_saved_investigation_preserves_evidence_and_failure_classification
     await asyncio.gather(*list(manager.tasks.values()))
     saved = await manager.get(created["id"])
     assert saved["status"] == status, saved
+    if behavior == "invalid":
+        assert saved["raw_response"] == "not structured JSON"
+        assert saved["error_code"] == "invalid_model_output"
     assert saved["retrieval"]["supplied_context"]
     assert saved["model_input"]["browser_evidence"]
     assert (

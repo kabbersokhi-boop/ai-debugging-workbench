@@ -182,8 +182,23 @@ class InvestigationManager:
                     model_input=inputs,
                     provider_calls=provider.calls,
                 )
+
+                async def retain(raw: str) -> None:
+                    await self.update(
+                        investigation_id,
+                        "diagnosing",
+                        "Model response retained",
+                        "Bounded, sanitized output saved before schema and citation validation.",
+                        raw_response=raw,
+                    )
+
                 output, raw = await diagnose(
-                    provider, inputs, trace.supplied_context, snapshot.id, snapshot.source_commit
+                    provider,
+                    inputs,
+                    trace.supplied_context,
+                    snapshot.id,
+                    snapshot.source_commit,
+                    retain,
                 )
                 status = (
                     "completed" if output["outcome"] == "diagnosis" else "insufficient_evidence"
@@ -221,6 +236,7 @@ class InvestigationManager:
                 str(error),
                 error=str(error),
                 error_code=error.code,
+                raw_response=error.raw_response,
                 provider_calls=provider.calls if provider else [],
             )
         except TimeoutError:

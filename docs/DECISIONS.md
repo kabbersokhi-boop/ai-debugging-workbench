@@ -44,3 +44,13 @@ Use an async NVIDIA transport adapter plus LangChain Core prompt/runnable/Pydant
 ## 011 — Preserve unfavorable evaluation results
 
 On this four-file target, lexical retrieval had better recall than dense/hybrid variants, and whole-target diagnosis was competitive with RAG. Retain the required inspectable hybrid pipeline and simpler baselines without claiming a superiority that was not measured. An out-of-range no-answer citation was rejected instead of clipped into a valid range. Future evaluation can justify simplification or a different default; eight queries over one defect cannot establish general debugging accuracy.
+
+
+## Milestone 3 — bounded repair
+
+- Use one typed LangGraph with native PostgreSQL checkpoints and a schema-validated NVIDIA tool-decision loop. Native model tool calling is unnecessary for this narrow supported workflow. Source tools, candidate creation and verification use actual official-SDK MCP communication.
+- Generate exact-text edits against the frozen original, restricted to cart.js. Unique old-text matches avoid fuzzy patch application; canonical proposal, source and candidate hashes bind artifacts. No reference patch is available to the runtime.
+- Add a trusted Docker broker rather than give the API/agent a Docker socket or expand the reproduction runner. Only a separate minimal image executes candidate JavaScript. Trusted Playwright expectations stay outside that container. The broker's Docker authority is explicit and remains a trusted local infrastructure boundary.
+- Keep the candidate preview on a separate loopback origin, with an opaque iframe sandbox and restrictive CSP. This preserves interactive before/after behavior without serving generated code on the privileged workbench origin. Browser-tab resource limits differ from container verification limits and are documented.
+- Reconcile and interrupt after restart instead of automatically replaying externally visible candidate/verification operations. Checkpoints provide inspectable intermediate state; safe resumption remains unproven.
+- Preserve rejected model text and immutable saved reports; initialize evaluation outputs before inference. These are carry-forward review corrections, not new formal milestones. No retrieval tuning, large benchmark or GitHub publication agent was added.

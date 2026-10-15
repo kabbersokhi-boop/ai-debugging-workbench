@@ -5,7 +5,7 @@ from uuid import UUID
 
 import httpx
 from fastapi import FastAPI, Header, HTTPException, Request
-from fastapi.responses import FileResponse, RedirectResponse
+from fastapi.responses import FileResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import select, text
 
@@ -14,6 +14,7 @@ from workbench.contracts import BUG, Bug, CreateRun, RunSummary, RunView
 from workbench.db import Run, SourceSnapshot, engine, sessions
 from workbench.rag.contracts import InvestigationRequest
 from workbench.rag.service import InvestigationManager
+from workbench.repair.service import RepairManager
 from workbench.service import RunManager, get_run
 
 
@@ -33,9 +34,13 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
                 investigations = InvestigationManager()
                 app.state.investigations = investigations
                 await investigations.recover()
+                repairs = RepairManager()
+                app.state.repairs = repairs
+                await repairs.recover()
                 try:
                     yield
                 finally:
+                    await repairs.close()
                     await investigations.close()
                     await manager.close()
         finally:
@@ -155,6 +160,89 @@ async def snapshot_detail(snapshot_id: str):
         if row is None:
             raise HTTPException(404, "Saved source snapshot not found")
         return row.manifest
+
+
+@app.post("/api/investigations/{investigation_id}/repairs", status_code=202)
+async def start_repair(investigation_id: UUID, request: Request):
+    return await request.app.state.repairs.create(investigation_id)
+
+
+@app.get("/api/investigations/{investigation_id}/repairs")
+async def repair_history(investigation_id: UUID, request: Request):
+    return await request.app.state.repairs.history(investigation_id)
+
+
+@app.get("/api/repairs/{repair_id}")
+async def repair_detail(repair_id: UUID, request: Request):
+    return await request.app.state.repairs.get(repair_id)
+
+
+@app.post("/api/repairs/{repair_id}/cancel")
+async def cancel_repair(repair_id: UUID, request: Request):
+    return await request.app.state.repairs.cancel(repair_id)
+
+
+async def saved_attempt(repair_id: UUID, attempt: int, request: Request):
+    row = await request.app.state.repairs.get(repair_id)
+    candidate = next((a for a in row["state"]["attempts"] if a["number"] == attempt), None)
+    if candidate is None or not candidate.get("candidate"):
+        raise HTTPException(404, "Candidate attempt not found")
+    return candidate
+
+
+@app.get("/api/repairs/{repair_id}/attempts/{attempt}/patch")
+async def patch_download(repair_id: UUID, attempt: int, request: Request):
+    candidate = await saved_attempt(repair_id, attempt, request)
+    return Response(
+        candidate["candidate"]["diff"],
+        media_type="text/plain",
+        headers={"Content-Disposition": 'attachment; filename="candidate.patch"'},
+    )
+
+
+@app.get("/api/repairs/{repair_id}/evidence")
+async def repair_evidence(repair_id: UUID, request: Request):
+    import json
+
+    from fastapi.encoders import jsonable_encoder
+
+    row = await request.app.state.repairs.get(repair_id)
+    return Response(
+        json.dumps(jsonable_encoder(row), indent=2),
+        media_type="application/json",
+        headers={"Content-Disposition": 'attachment; filename="repair-evidence.json"'},
+    )
+
+
+@app.post("/api/repairs/{repair_id}/attempts/{attempt}/preview")
+async def candidate_preview(repair_id: UUID, attempt: int, request: Request):
+    candidate = await saved_attempt(repair_id, attempt, request)
+    manager = request.app.state.repairs
+    try:
+        result = await manager.broker(f"/candidates/{repair_id}/{attempt}/preview")
+    except httpx.HTTPError:
+        raise HTTPException(
+            503, "Candidate preview is unavailable. Retry when the executor is ready."
+        ) from None
+    if result["candidate_hash"] != candidate["candidate"]["candidate_hash"]:
+        raise HTTPException(409, "Preview identity does not match the saved candidate")
+    return {**result, "url": settings.repair_preview_origin + result["path"]}
+
+
+@app.get("/api/repairs/{repair_id}/attempts/{attempt}/screenshot")
+async def candidate_screenshot(repair_id: UUID, attempt: int, request: Request):
+    candidate = await saved_attempt(repair_id, attempt, request)
+    verification = candidate.get("verification")
+    if not verification:
+        raise HTTPException(404, "No trusted candidate capture exists")
+    version = verification["verifier_version"]
+    async with httpx.AsyncClient(timeout=10) as client:
+        response = await client.get(
+            f"{settings.repair_broker_url}/candidates/{repair_id}/{attempt}/artifacts/after-{version}.png"
+        )
+        if response.status_code != 200 or len(response.content) > 2000000:
+            raise HTTPException(404, "Candidate screenshot unavailable")
+    return Response(response.content, media_type="image/png")
 
 
 # The same immutable fixture can be explored manually without exposing the runner API.

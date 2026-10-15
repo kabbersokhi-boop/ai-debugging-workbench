@@ -18,11 +18,23 @@ from workbench.rag.retrieval import RepositoryRetriever
 from workbench.rag.snapshot import load_snapshot
 
 
+def prepare_output(directory: Path) -> Path:
+    directory.mkdir(parents=True, exist_ok=True)
+    return directory
+
+
+def save_measurements(directory: Path, name: str, rows: list) -> None:
+    temporary = directory / f".{name}.tmp"
+    temporary.write_text(json.dumps(rows, indent=2))
+    temporary.replace(directory / name)
+
+
 async def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--live", action="store_true", required=True)
     parser.add_argument("--run-id", required=True)
     args = parser.parse_args()
+    folder = prepare_output(Path("artifacts/milestone-02"))
     snapshot = load_snapshot()
     suite = json.loads(Path("evals/retrieval-smoke.json").read_text())
     assert suite["snapshot_id"] == snapshot.id
@@ -82,6 +94,7 @@ async def main() -> None:
                         "provider_calls": provider.calls,
                     }
                 )
+                save_measurements(folder, "retrieval-measurements.json", results)
             finally:
                 await provider.close()
     whole = [
@@ -97,8 +110,7 @@ async def main() -> None:
         )
         for source in snapshot.files
     ]
-    progress = Path("artifacts/milestone-02/retrieval-measurements.json")
-    progress.write_text(json.dumps(results, indent=2))
+    save_measurements(folder, "retrieval-measurements.json", results)
     diagnoses = []
     for task_id, report in [
         ("single-cart-defect", BUG.report),
@@ -124,7 +136,7 @@ async def main() -> None:
                     )
                     error = None
                 except ProviderError as failure:
-                    output, raw = None, None
+                    output, raw = None, failure.raw_response
                     error = {"code": failure.code, "message": str(failure)}
                 diagnoses.append(
                     {
@@ -144,9 +156,7 @@ async def main() -> None:
                         "raw_response": raw,
                     }
                 )
-                Path("artifacts/milestone-02/diagnosis-measurements.json").write_text(
-                    json.dumps(diagnoses, indent=2)
-                )
+                save_measurements(folder, "diagnosis-measurements.json", diagnoses)
             finally:
                 await provider.close()
     summary = {}

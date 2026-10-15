@@ -17,6 +17,11 @@ class Settings(BaseSettings):
     frontend_dir: Path = ROOT / "frontend/dist"
     run_timeout_seconds: int = 60
     max_active_runs: int = 2
+    repair_broker_url: str = "http://127.0.0.1:8012"
+    repair_preview_origin: str = "http://127.0.0.1:8013"
+    repair_timeout_seconds: int = Field(default=300, ge=20, le=600)
+    repair_max_requests: int = Field(default=8, ge=1, le=12)
+    repair_output_budget: int = Field(default=16000, ge=3000, le=24000)
     chat_model: str = "nvidia/nemotron-3.5-super-vl-120b-a12b"
     embedding_model: str = "nvidia/nemotron-3-embed-1b"
     rerank_model: str = "nvidia/llama-nemotron-rerank-vl-1b-v2"
