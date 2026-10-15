@@ -1,0 +1,43 @@
+{
+  "observations": [
+    {
+      "implementation_commit": "ff2fe46b4061c8315bd7871a8c9516085752673d",
+      "all_api_source_files_match_worktree": true,
+      "source_files": 23,
+      "images": {
+        "ai-debugging-workbench:milestone-03": "sha256:5b73cdc2501c20d787e96ef203e52c80a26338176a7ac5c5ccc5cb57e3b902b0",
+        "ai-debugging-candidate:milestone-03": "sha256:edaa4ae5534a7d6ed8ec84fc3808b90fbb305fab28763022650c06f83b94251a"
+      },
+      "api": {
+        "nvidia_key_present": true,
+        "database_url_present": true,
+        "docker_socket": false,
+        "credential_file_in_image": false
+      },
+      "runner": {
+        "nvidia_key_present": false,
+        "database_url_present": false,
+        "docker_socket": false,
+        "credential_file_in_image": false
+      },
+      "repair-broker": {
+        "nvidia_key_present": false,
+        "database_url_present": false,
+        "docker_socket": true,
+        "credential_file_in_image": false
+      }
+    },
+    {
+      "implementation_commit": "ad77d47297175f3a4288f544b5973d85b26151b1",
+      "all_runtime_source_and_frontend_files_match": true,
+      "matching_files": 29,
+      "image_id": "sha256:1306e64abfbd16998aa80151311b17ea1038270dc3da29d7be28ce52501a7ef9"
+    },
+    {
+      "implementation_commit": "c6f8739b84509eeb84df836fd5a480fea7977889",
+      "all_runtime_source_and_frontend_files_match": true,
+      "matching_files": 29,
+      "image_id": "sha256:fd55a21a38fbf8147f7bb50fe05816feb01beb0b3a41d270dd22ee2229527944"
+    }
+  ]
+}

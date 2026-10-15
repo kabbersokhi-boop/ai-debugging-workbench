@@ -1,0 +1,83 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 1 item
+
+backend/tests/test_repair_browser.py::test_live_nvidia_repair_diff_verification_preview_and_reopen FAILED
+
+=================================== FAILURES ===================================
+_________ test_live_nvidia_repair_diff_verification_preview_and_reopen _________
+
+    @pytest.mark.skipif(
+        os.environ.get("LIVE_NVIDIA_REPAIR") != "1", reason="Opt-in required for live NVIDIA repair"
+    )
+    async def test_live_nvidia_repair_diff_verification_preview_and_reopen():
+        folder = Path("../artifacts/milestone-03")
+        await asyncio.to_thread(folder.mkdir, parents=True, exist_ok=True)
+        repair_id = None
+        run_id = None
+        investigation_id = None
+        errors = []
+        async with async_playwright() as p:
+            browser = await p.chromium.launch()
+            page = await browser.new_page(
+                viewport={"width": 1512, "height": 1100}, reduced_motion="reduce"
+            )
+            page.on("pageerror", lambda error: errors.append(str(error)))
+            try:
+                await page.goto(BASE_URL)
+                async with page.expect_response(
+                    lambda r: r.request.method == "POST" and r.url.endswith("/api/runs")
+                ) as response:
+                    await page.get_by_role("button", name="Reproduce bug").click()
+                run_id = (await (await response.value).json())["id"]
+                await expect(
+                    page.get_by_role("heading", name="Defect reproduced", exact=True)
+                ).to_be_visible(timeout=75000)
+                await page.get_by_role("tab", name="Investigation", exact=True).click()
+                async with page.expect_response(
+                    lambda r: r.request.method == "POST" and r.url.endswith("/investigations")
+                ) as response:
+                    await page.get_by_role("button", name="Investigate with NVIDIA", exact=True).click()
+                investigation_id = (await (await response.value).json())["id"]
+                await expect(
+                    page.get_by_role("heading", name="Diagnosis proposed", exact=True)
+                ).to_be_visible(timeout=190000)
+                async with page.expect_response(
+                    lambda r: r.request.method == "POST" and r.url.endswith("/repairs")
+                ) as response:
+                    await page.get_by_role(
+                        "button", name="Generate candidate with NVIDIA", exact=True
+                    ).click()
+                repair_id = (await (await response.value).json())["id"]
+                await expect(
+                    page.get_by_role("heading", name="Verified for the supported checks", exact=True)
+                ).to_be_visible(timeout=310000)
+                await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
+                await page.get_by_role(
+                    "button", name="Start / reset candidate preview", exact=True
+                ).click()
+                original = page.frame_locator('iframe[title="Original application"]')
+                candidate = page.frame_locator('iframe[title="Candidate application"]')
+                for frame in (original, candidate):
+                    await frame.locator("#add-to-cart").click()
+                    await frame.locator("#increase").click()
+                    await frame.locator("#increase").click()
+                    await expect(frame.locator("#quantity")).to_have_value("3")
+>               await expect(original.get_by_test_id("total")).to_have_text("$72.00")
+E               AssertionError: Locator expected to have text '$72.00'
+E               Actual value: $0.00
+E               Call log:
+E                 - Expect "to_have_text" with timeout 5000ms
+E                 - waiting for locator("iframe[title=\"Original application\"]").content_frame.get_by_test_id("total")
+E                   9 × locator resolved to <strong data-cents="0" data-testid="total">$0.00</strong>
+E                     - unexpected value "$0.00"
+
+backend/tests/test_repair_browser.py:72: AssertionError
+=========================== short test summary info ============================
+FAILED backend/tests/test_repair_browser.py::test_live_nvidia_repair_diff_verification_preview_and_reopen
+============================== 1 failed in 26.38s ==============================

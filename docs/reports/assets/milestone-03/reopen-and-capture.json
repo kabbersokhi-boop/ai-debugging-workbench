@@ -1,0 +1,9 @@
+{
+  "mode": "saved_live_nvidia_evidence_reopened_without_inference",
+  "repair_id": "eb3cd0d8-273d-40f9-b639-50feb1bbd9f3",
+  "completed_repair_unchanged_after_actual_api_crash": true,
+  "before_after_visible_text_passed": true,
+  "patch_download_and_history_passed": true,
+  "candidate_reset_preserves_original": true,
+  "implementation_commit": "c6f8739b84509eeb84df836fd5a480fea7977889"
+}
