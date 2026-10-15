@@ -27,7 +27,7 @@ async def inspect_candidate(page, run_id, folder, prefix="live-repair"):
     ).to_be_visible(timeout=310000)
     await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
     await page.get_by_role("button", name="Start / reset candidate preview", exact=True).click()
-    await expect(page.locator('iframe[title="Candidate application"]')).to_be_visible()
+    await expect(page.locator('iframe[title="Candidate application"]')).to_be_visible(timeout=25000)
     original = page.frame_locator('iframe[title="Original application"]')
     candidate = page.frame_locator('iframe[title="Candidate application"]')
     for frame in (original, candidate):
@@ -44,6 +44,11 @@ async def inspect_candidate(page, run_id, folder, prefix="live-repair"):
         catch (error) { return error.name; }
     }""")
     assert blocked == "SecurityError"
+    await original.get_by_test_id("total").scroll_into_view_if_needed()
+    await candidate.get_by_test_id("total").scroll_into_view_if_needed()
+    await page.locator(".repair-previews").screenshot(path=folder / f"{prefix}-before-after.png")
+    await page.locator(".monaco-diff-editor").screenshot(path=folder / f"{prefix}-diff.png")
+    await page.locator(".verification-table").screenshot(path=folder / f"{prefix}-checks.png")
     await page.evaluate("window.scrollTo(0,0)")
     await page.screenshot(path=folder / f"{prefix}.png", full_page=True)
     await page.get_by_role("button", name="Start / reset candidate preview", exact=True).click()
@@ -193,6 +198,41 @@ async def test_offline_repair_browser_diff_preview_download_and_saved_history():
             await page.locator(".history-item").filter(has_text=run_id[:6]).click()
             await page.get_by_role("tab", name="Investigation", exact=True).click()
             await inspect_candidate(page, run_id, folder, "offline-repair")
+            # An old preview response must not appear under a newly selected repair identity.
+            second = {**saved, "id": str(uuid4())}
+            await page.route(
+                f"**/investigations/{investigation_id}/repairs",
+                lambda route: route.fulfill(
+                    json=[
+                        json.loads(json.dumps(saved, default=str)),
+                        json.loads(json.dumps(second, default=str)),
+                    ]
+                ),
+            )
+            await page.set_viewport_size({"width": 1512, "height": 1100})
+            await page.reload()
+            await page.locator(".history-item").filter(has_text=run_id[:6]).click()
+            await page.get_by_role("tab", name="Investigation", exact=True).click()
+            started, release = asyncio.Event(), asyncio.Event()
+
+            async def delayed_preview(route):
+                started.set()
+                await release.wait()
+                await route.fulfill(json={"url": "http://127.0.0.1:8013/preview/stale-response/"})
+
+            await page.route("**/api/repairs/*/attempts/*/preview", delayed_preview)
+            await page.get_by_role(
+                "button", name="Start / reset candidate preview", exact=True
+            ).click()
+            async with asyncio.timeout(10):
+                await started.wait()
+            await expect(
+                page.get_by_role("button", name="Starting candidate preview…", exact=True)
+            ).to_be_disabled()
+            await page.locator("#saved-repairs").select_option(second["id"])
+            async with page.expect_response(lambda r: r.url.endswith("/preview")):
+                release.set()
+            await expect(page.locator('iframe[title="Candidate application"]')).to_have_count(0)
             assert not errors, errors
             await browser.close()
         await manager.close()

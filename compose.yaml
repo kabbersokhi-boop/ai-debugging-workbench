@@ -120,7 +120,7 @@ services:
       candidate-image: {condition: service_completed_successfully}
       migrate: {condition: service_completed_successfully}
     healthcheck:
-      test: ["CMD", ".venv/bin/python", "-c", "import socket,urllib.request; urllib.request.urlopen('http://'+socket.gethostbyname(socket.gethostname())+':8012/health', timeout=2)"]
+      test: ["CMD", ".venv/bin/python", "-c", "import os,socket,urllib.request; urllib.request.urlopen('http://'+socket.gethostbyname(os.environ['REPAIR_CONTROL_HOST'])+':8012/health', timeout=2)"]
       interval: 5s
       timeout: 3s
       retries: 20

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { ArrowRight, Download, LoaderCircle, ShieldCheck, Square, Wrench } from "lucide-react";
 import { api } from "./types";
 import type { Investigation } from "./Investigation";
@@ -37,10 +37,17 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
   const [preview, setPreview] = useState("");
   const [reset, setReset] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [previewBusy, setPreviewBusy] = useState(false);
+  const previewRequest = useRef(0);
+  function invalidatePreview() {
+    previewRequest.current += 1;
+    setPreview("");
+    setPreviewBusy(false);
+  }
   const [error, setError] = useState("");
   useEffect(() => {
     let disposed = false;
-    setCurrent(null); setRows([]); setPreview(""); setSelected(0); setError("");
+    setCurrent(null); setRows([]); invalidatePreview(); setSelected(0); setError("");
     api<Repair[]>(`/investigations/${investigation.id}/repairs`).then((next) => {
       if (!disposed) { setRows(next); setCurrent(next[0] ?? null); }
     }).catch((e) => { if (!disposed) setError((e as Error).message); });
@@ -62,7 +69,7 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
   }, [current?.id, current?.status]);
   const attempt = current?.state.attempts.find((a) => a.number === selected) ?? current?.state.attempts.at(-1);
   async function start() {
-    setBusy(true); setError(""); setPreview(""); setSelected(0);
+    setBusy(true); setError(""); invalidatePreview(); setSelected(0);
     try {
       const row = await api<Repair>(`/investigations/${investigation.id}/repairs`, { method: "POST" });
       setCurrent(row); setRows((prior) => [row, ...prior.filter((x) => x.id !== row.id)]);
@@ -76,23 +83,26 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
   }
   async function openPreview() {
     if (!current || !attempt) return;
-    setBusy(true); setError("");
+    const requestId = ++previewRequest.current;
+    setPreviewBusy(true); setError("");
     try {
       const result = await api<{url: string}>(`/repairs/${current.id}/attempts/${attempt.number}/preview`, { method: "POST" });
+      if (requestId !== previewRequest.current) return;
       setPreview(result.url); setReset((n) => n + 1);
-    } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+    } catch (e) { if (requestId === previewRequest.current) setError((e as Error).message); }
+    finally { if (requestId === previewRequest.current) setPreviewBusy(false); }
   }
   return <section className="report-panel repair-workspace" aria-label="Repair workspace">
     <div className="repair-heading"><div><span className="eyebrow">BOUNDED MODEL REPAIR · ORIGINAL PRESERVED</span>
       <h2><Wrench size={19} /> Build a candidate. Check its behavior.</h2>
       <p>NVIDIA can fetch missing source through MCP and propose up to two patches. Trusted browser checks decide the result.</p></div>
       {active(current?.status) ? <button className="secondary-button" onClick={cancel} disabled={busy}><Square size={13} />Cancel repair</button> :
-        <button className="primary-button" onClick={start} disabled={busy || investigation.status !== "completed"}>
+        <button className="primary-button" onClick={start} disabled={busy || previewBusy || investigation.status !== "completed"}>
           {busy ? <LoaderCircle size={14} className="spin" /> : <Wrench size={14} />}Generate candidate with NVIDIA<ArrowRight size={13} /></button>}
     </div>
     {error && <p role="alert" className="error-banner">{error}</p>}
     {rows.length > 0 && <div className="investigation-history"><label htmlFor="saved-repairs">Saved repairs</label>
-      <select id="saved-repairs" value={current?.id ?? ""} onChange={(e) => { setCurrent(rows.find((r) => r.id === e.target.value) ?? null); setPreview(""); setSelected(0); }}>
+      <select id="saved-repairs" value={current?.id ?? ""} onChange={(e) => { setCurrent(rows.find((r) => r.id === e.target.value) ?? null); invalidatePreview(); setSelected(0); }}>
         {rows.map((r) => <option key={r.id} value={r.id}>{new Date(r.created_at).toLocaleTimeString()} · {label(r.status)} · {r.id.slice(0,8)}</option>)}
       </select><span className="run-status">{active(current?.status) && <LoaderCircle size={13} className="spin" />}{label(current?.status)}</span></div>}
     {current && <>
@@ -100,7 +110,7 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
       <details className="repair-events" open={active(current.status)}><summary>Observable repair events</summary><ol>{current.events.map((e) => <li key={e.sequence}><strong>{e.title}</strong><p>{e.detail}</p></li>)}</ol></details>
       <h3 aria-live="polite">{label(current.status)}</h3>
       {current.error && <p className="error-banner">{current.error} <code>{current.error_code}</code></p>}
-      <div className="repair-attempts" aria-label="Candidate attempts">{current.state.attempts.map((a) => <button key={a.number} className={a.number === attempt?.number ? "selected" : ""} onClick={() => { setSelected(a.number); setPreview(""); }}>Attempt {a.number} · {label(a.status)}</button>)}</div>
+      <div className="repair-attempts" aria-label="Candidate attempts">{current.state.attempts.map((a) => <button key={a.number} className={a.number === attempt?.number ? "selected" : ""} onClick={() => { setSelected(a.number); invalidatePreview(); }}>Attempt {a.number} · {label(a.status)}</button>)}</div>
       {attempt && <><p>{attempt.proposal.explanation}</p>{attempt.rejection && <p role="alert">Rejected: {attempt.rejection}</p>}
         {attempt.candidate && <>
           <dl className="snapshot-identity"><div><dt>Candidate SHA-256</dt><dd className="mono">{attempt.candidate.candidate_hash}</dd></div><div><dt>Source snapshot</dt><dd className="mono">{current.state.snapshot_id}</dd></div></dl>
@@ -111,7 +121,7 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
           {attempt.verification && <><p>{attempt.verification.scope}</p><p className="mono verification-identity">Verifier {attempt.verification.verifier_version}<br/>Candidate {attempt.verification.candidate_hash}</p>
             <div className="verification-table"><table><thead><tr><th>Trusted check</th><th>Original</th><th>Candidate</th></tr></thead><tbody>{attempt.verification.checks.map((c) => <tr key={c.name}><th>{c.name}</th><td>{current.state.original_verification?.checks.find((x) => x.name === c.name)?.passed ? "Passed" : "Failed"}</td><td><details><summary>{c.passed ? "Passed" : "Failed"}</summary><pre>{JSON.stringify({expected: c.expected, observed: c.observed}, null, 2)}</pre></details></td></tr>)}</tbody></table></div>
             <a href={`/api/repairs/${current.id}/attempts/${attempt.number}/screenshot`} target="_blank" rel="noreferrer">Captured candidate browser evidence ↗</a></>}
-          <div className="section-heading"><h3>Try the behavior yourself</h3><button className="secondary-button" onClick={openPreview} disabled={busy}>Start / reset candidate preview</button></div>
+          <div className="section-heading"><h3>Try the behavior yourself</h3><button className="secondary-button" onClick={openPreview} disabled={busy || previewBusy || active(current.status)}>{previewBusy ? <><LoaderCircle size={13} className="spin" />Starting candidate preview…</> : "Start / reset candidate preview"}</button></div>
           <p className="citation-validity">Separate browser sessions. The candidate uses an opaque sandbox origin with network requests blocked by CSP. Preview environments expire after ten minutes; reset starts a fresh session.</p>
           <div className="repair-previews"><div><strong>Original · defective frozen storefront</strong><iframe title="Original application" src="/retail/" sandbox="allow-scripts" key={`original-${investigation.id}`} /></div><div><strong>Candidate · {attempt.candidate.candidate_hash.slice(0,12)}</strong>{preview ? <iframe title="Candidate application" src={preview} sandbox="allow-scripts" referrerPolicy="no-referrer" key={`${preview}-${reset}`} /> : <div className="preview-empty">Start the candidate preview to interact with the proposed change.</div>}</div></div>
         </>}
