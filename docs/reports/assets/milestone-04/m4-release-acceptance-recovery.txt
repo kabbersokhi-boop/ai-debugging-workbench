@@ -1,0 +1,5 @@
+ Container ai-debugging-workbench-api-1 Killing
+ Container ai-debugging-workbench-api-1 Killed
+ Container ai-debugging-workbench-api-1 Starting
+ Container ai-debugging-workbench-api-1 Started
+{"checkpoint_before_crash": "running", "completed_history_unchanged": true, "fresh_run_after_recovery": "ccf4888f-40d9-4beb-adf6-0ecda5ef087e", "fresh_run_status": "reproduced", "runner_cleanup_errors": false}

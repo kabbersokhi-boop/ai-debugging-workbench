@@ -1,0 +1,10 @@
+{
+  "configuration_sha256": "e4b319b0881395f940e2828bba8a179be0195e4a6e01c0d084aa78c6a176d138",
+  "frozen_files": 32,
+  "all_current_frozen_engine_source_hashes_match": true,
+  "tested_release_commit": "d60344756baf75ae43152c7f1547b8db69d78522",
+  "frozen_candidate_image_id": "sha256:edaa4ae5534a7d6ed8ec84fc3808b90fbb305fab28763022650c06f83b94251a",
+  "retained_candidate_image_id": "sha256:edaa4ae5534a7d6ed8ec84fc3808b90fbb305fab28763022650c06f83b94251a",
+  "frozen_broker_image_id": "sha256:0abfd845a03d191fdee177cea24fd8ccd8087ab2af723b781a9001f6cb9b17d6",
+  "retained_broker_image_id": "sha256:0abfd845a03d191fdee177cea24fd8ccd8087ab2af723b781a9001f6cb9b17d6"
+}

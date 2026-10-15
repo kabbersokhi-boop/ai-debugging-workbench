@@ -11,3 +11,5 @@
 - Final check, offline acceptance, release audit and browser logs identify the final tested image separately from older live evidence.
 
 JSON records preserve actual sanitized structured evidence. Committed text transcripts strip trailing whitespace from tool output; outcomes/errors/timings are retained. Screenshots contain only the synthetic application. No provider key, authorization header, environment file, database dump or private user repository is included.
+
+`m4-release-browser-84f0d79.txt` retains the first mobile-layout test authoring failure: string evaluation was blocked by release CSP. The final locator/geometry assertion passed without adding unsafe-eval. `protocol-identity.json` confirms all frozen engine/scoring/snapshot hashes still match at the final release implementation and both exact experiment images remain retained.

@@ -1,0 +1,63 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 108 items / 57 deselected / 51 selected
+
+tests/test_access_integration.py::test_guest_ownership_artifacts_idempotency_and_expiry PASSED [  1%]
+tests/test_access_integration.py::test_reservations_are_atomic_persisted_and_server_wide PASSED [  3%]
+tests/test_diagnosis_browser.py::test_presentation_regression_for_passed_checks_and_interactive_footer PASSED [  5%]
+tests/test_diagnosis_browser.py::test_live_nvidia_investigation_citations_inspector_and_reopened_history SKIPPED [  7%]
+tests/test_diagnosis_browser.py::test_saved_investigation_reports_are_immutable_and_separate_from_draft PASSED [  9%]
+tests/test_e2e.py::test_first_visitor_can_reproduce_inspect_and_reopen_history PASSED [ 11%]
+tests/test_e2e.py::test_actual_api_evidence_and_idempotency PASSED       [ 13%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload0] PASSED [ 15%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload1] PASSED [ 17%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload2] PASSED [ 19%]
+tests/test_e2e.py::test_capacity_cancellation_and_no_late_success PASSED [ 21%]
+tests/test_evaluation_harness.py::test_offline_one_shot_harness_executes_sealed_final_checks PASSED [ 23%]
+tests/test_rag_integration.py::test_real_pgvector_fts_index_dedup_and_snapshot_isolation PASSED [ 25%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[insufficient-insufficient_evidence] PASSED [ 27%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[invalid-invalid_output] PASSED [ 29%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[failure-provider_error] PASSED [ 31%]
+tests/test_rag_integration.py::test_investigation_cancel_and_restart_keep_reproduction_separate PASSED [ 33%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[start] PASSED [ 35%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[cancel] PASSED [ 37%]
+tests/test_release_browser.py::test_m4_saved_shipping_reopen_without_inference_after_ui_correction PASSED [ 39%]
+tests/test_release_browser.py::test_recorded_explorer_first_visit_mobile_and_no_live_requests PASSED [ 41%]
+tests/test_release_browser.py::test_selected_scenario_manual_view_is_bound_before_any_reproduction PASSED [ 43%]
+tests/test_release_browser.py::test_m4_live_workflow_shipping_scenario_video SKIPPED [ 45%]
+tests/test_repair_browser.py::test_live_nvidia_repair_diff_verification_preview_and_reopen SKIPPED [ 47%]
+tests/test_repair_browser.py::test_offline_repair_browser_diff_preview_download_and_saved_history PASSED [ 49%]
+tests/test_repair_integration.py::test_real_mcp_discovery_permission_and_stale_base PASSED [ 50%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity-passed] PASSED [ 52%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * 3-failed] PASSED [ 54%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents + 0-failed] PASSED [ 56%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (document.querySelector('[data-testid=total]').hidden = true, 0)-failed] PASSED [ 58%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (setTimeout(() => document.querySelector('[data-testid=total]').textContent = 'x'.repeat(10000), 0), 0)-failed] PASSED [ 60%]
+tests/test_repair_integration.py::test_candidate_isolation_cleanup_and_preview_headers PASSED [ 62%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[valid-verified] PASSED [ 64%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[fail-verification_failed] PASSED [ 66%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[invalid-invalid_output] PASSED [ 68%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[failure-provider_error] PASSED [ 70%]
+tests/test_repair_integration.py::test_repair_cancellation_and_interruption_preserve_prior_statuses PASSED [ 72%]
+tests/test_repair_integration.py::test_shared_wall_clock_timeout_keeps_no_verification_claim PASSED [ 74%]
+tests/test_repair_integration.py::test_real_mcp_executor_outage_is_an_execution_error PASSED [ 76%]
+tests/test_scenarios_integration.py::test_two_real_indexes_reject_cross_snapshot_context PASSED [ 78%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[shipping-threshold] PASSED [ 80%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[decrement-skip] PASSED [ 82%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[clamp-zero] PASSED [ 84%]
+tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 86%]
+tests/test_scenarios_integration.py::test_remote_preview_rejects_commands_and_kills_nonresponsive_script PASSED [ 88%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[unavailable] PASSED [ 90%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[empty] PASSED [ 92%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[invalid] PASSED [ 94%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[timeout] PASSED [ 96%]
+tests/test_service.py::test_restart_recovers_unfinished_runs_and_preserves_terminal_outcomes PASSED [ 98%]
+tests/test_service.py::test_concurrent_duplicate_requests_produce_one_run PASSED [100%]
+
+=========== 48 passed, 3 skipped, 57 deselected in 229.00s (0:03:48) ===========

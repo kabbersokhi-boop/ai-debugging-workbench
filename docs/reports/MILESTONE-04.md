@@ -70,7 +70,7 @@ Actual transport usage: **81/256 HTTP attempts**, **66,000/256,000 reserved outp
 
 Median initial context was 15,431 JSON UTF-8 bytes for whole context versus 3,775.5 for retrieval. Retrieval's additional source decisions/workloads increased measured aggregate usage; it did not improve resolution. Fixed condition order, original-check cache reuse, cold indexing and shared-host noise prevent a causal speed claim. The prior M2 eight-query retrieval suite is reused honestly: lexical mean recall@5 1.000 over six labeled queries versus 0.833 for hybrid/reranking, plus two no-answer cases. It was one defect, not eight.
 
-Exact frozen candidate runtime: `sha256:edaa4ae5534a7d6ed8ec84fc3808b90fbb305fab28763022650c06f83b94251a`. Frozen broker image: `sha256:0abfd845a03d191fdee177cea24fd8ccd8087ab2af723b781a9001f6cb9b17d6`, retained locally as `ai-debugging-workbench:eval-v2`. Frozen verifier: `c39b63186c6c3d9d7d3d9196729044db38efa1f76484afd87d205423b8e9b11a`. The committed protocol contains code/runtime hashes and refuses changed identities. On a different host without these exact images, create a new versioned replication as documented; do not overwrite v2 or call these cases untouched again.
+Exact frozen candidate runtime: `sha256:edaa4ae5534a7d6ed8ec84fc3808b90fbb305fab28763022650c06f83b94251a`. Frozen broker image: `sha256:0abfd845a03d191fdee177cea24fd8ccd8087ab2af723b781a9001f6cb9b17d6`, retained locally as `ai-debugging-workbench:eval-v2`. Frozen verifier: `c39b63186c6c3d9d7d3d9196729044db38efa1f76484afd87d205423b8e9b11a`. The committed protocol contains code/runtime hashes and refuses changed identities. [Final identity audit](assets/milestone-04/protocol-identity.json) confirms all 32 frozen engine/scoring/snapshot hashes still match and both exact experiment images are retained. On a different host without these exact images, create a new versioned replication as documented; do not overwrite v2 or call these cases untouched again.
 
 ### Actual product workflows
 
@@ -85,9 +85,10 @@ The following commands were executed; final implementation and image coverage ar
 | Command / actual check | Result |
 | --- | --- |
 | `./scripts/check` | Ruff/format passed, Pyright 0 errors; 57 unit tests passed; TypeScript/Vite production build passed |
+| `M4_SAVED_REOPEN=1 ./scripts/e2e` | 48 passed, three explicit real-provider opt-in skips, 57 deselected in 229.00 s on tested implementation `d603447`; includes final compact mobile geometry and actual saved-run reopening without inference |
 | `./scripts/e2e` | 47 passed, four explicit opt-in skips, 57 deselected in 238.21 s; final presentation also covered by the final-image browser checks below |
-| `M4_SAVED_REOPEN=1 ./scripts/e2e -k 'm4_saved_shipping or repair_action_response or offline_repair_browser or recorded_explorer_first or selected_scenario'` | Six passed in 58.40 s on final images; saved NVIDIA run, delayed selection/reset, diff lifecycle, evidence, source identity and recorded desktop/mobile |
-| Final source/credential/image audit | 24 backend source files match each service; only API has NVIDIA configuration; no environment file in images; only broker has Docker socket |
+| `M4_SAVED_REOPEN=1 ./scripts/e2e -k 'm4_saved_shipping or repair_action_response or offline_repair_browser or recorded_explorer_first or selected_scenario'` | Earlier image: six passed in 58.40 s before the mobile/dependency follow-up; saved NVIDIA run, delayed selection/reset, diff lifecycle, evidence, source identity and recorded desktop/mobile |
+| Final source/credential/image audit | 24 backend source files match each service; private/public frontend index matches the production build; only API has NVIDIA configuration; no environment file in images; only broker has Docker socket |
 | `./scripts/recovery-smoke` | API SIGKILL/restart; unfinished reproduction interrupted, historical completed rows retained, fresh reproduction succeeds |
 | `M4_SAVED_REOPEN=1 ./scripts/e2e -k 'm4_saved_shipping or repair_action_response'` | 3 passed; actual saved shipping comparison and delayed start/cancel identity tests, no new inference |
 | `LIVE_NVIDIA_M4=1 ./scripts/e2e -k m4_live_workflow` | Actual shipping repair verified; browser test exposed Monaco teardown error. Original/candidate $136/$128 evidence retained. Corrected UI tested by saved reopen |
@@ -96,15 +97,17 @@ The following commands were executed; final implementation and image coverage ar
 | `uv run --project backend python scripts/summarize_repairs.py` | Complete denominator and configuration identity validated; read-only summary generation |
 | `docker compose -f compose.release.yaml up --build -d --wait` | Actual minimal recorded container built and healthy |
 | `uv run --project backend python scripts/check_release.py` | Passed actual Docker/resource/authority/API audit; no credential or execution authority |
-| `E2E_BASE_URL=http://127.0.0.1:8020 ./scripts/e2e -k recorded_explorer_first` | 1 passed in 4.07 s; desktop/mobile, stopped record selection, no live request or page error |
+| `E2E_BASE_URL=http://127.0.0.1:8020 ./scripts/e2e -k recorded_explorer_first` | 1 passed in 3.09 s on `d603447`; desktop/mobile, stopped record selection, no live request or page error |
+| `npm audit --prefix frontend --omit=dev --json` | Zero findings after the sanitizer patch override; initial two low findings retained |
+| `uvx pip-audit --no-deps --disable-pip -r docker/release-requirements.txt --format json` | No known vulnerabilities in the fourteen pinned public Python packages |
 | Backup restore + Alembic 004 → 005 → 004 → 005 | Passed on disposable restored DB; production volume never reset |
 | Historical subset / artifact / source comparison | All prior rows unchanged; reviewed M1 screenshots byte-identical; original fixture/snapshot and M1–M3 reports unchanged |
 | Staged credential scan / `git diff --check` | Passed staged credential scan and whitespace validation after transcript normalization |
-| GitHub Actions offline acceptance | Implementation acceptance is running at [38822693122](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/38822693122); final status will be recorded before delivery |
+| GitHub Actions offline acceptance | Core implementation passed [38822693122](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/38822693122); final `d603447` mobile/dependency acceptance passed [38823735676](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/38823735676), including full offline suite, crash recovery, recorded build, actual container audit and desktop/mobile browser checks |
 
 Focused coverage includes scenario/source/cache isolation, exact verification identity, retrieval leakage boundaries, private guest ownership/artifact access/idempotency/expiry, atomic shared quotas, candidate/network/filesystem restrictions, cancellation/recovery/cleanup, invalid outputs and failed checks, recorded mode, first-visit/mobile flows, and deterministic delayed-response selection/reset regressions. CI requires no NVIDIA key.
 
-Logs: [final checks](assets/milestone-04/m4-release-final-check.txt), [full offline suite](assets/milestone-04/m4-final-e2e.txt), [final-image browser journey](assets/milestone-04/m4-final-image-browser.txt), [recorded container audit](assets/milestone-04/release-boundary.json), [source/credential identity audit](assets/milestone-04/final-runtime-binding.json), [recorded public browser](assets/milestone-04/m4-release-final-browser.txt).
+Logs: [final checks](assets/milestone-04/m4-final-acceptance-check.txt), [full offline suite](assets/milestone-04/m4-final-acceptance-e2e.txt), [final-image browser journey](assets/milestone-04/m4-final-image-browser.txt), [recorded container audit](assets/milestone-04/release-boundary.json), [source/credential identity audit](assets/milestone-04/final-runtime-binding.json), [recorded public browser](assets/milestone-04/m4-final-acceptance-public-browser.txt), [final crash recovery](assets/milestone-04/m4-release-acceptance-recovery.txt), [clean-runner implementation CI](assets/milestone-04/ci-final-implementation.json).
 
 [Preservation audit](assets/milestone-04/preservation.json): all pre-M4 54 runs, 245 events, ten investigations, eight repairs, one snapshot/index, 84 chunks and PostgreSQL checkpoint rows retained unchanged. Revision 005 adds nullable ownership plus guest/quota tables; old evidence is not rewritten. Reviewed M1 screenshot hashes remain `addefe4e…a2a3a5` and `69d81a27…97b2a`.
 
@@ -114,6 +117,7 @@ Logs: [final checks](assets/milestone-04/m4-release-final-check.txt), [full offl
 - **Preview replacement race:** initial remote CI run `38820202280` passed 45 browser/integration cases but failed one cold preview-reset interaction. Old controls remained clickable while replacement startup was pending. Startup now removes the previous viewer immediately; a deterministic delayed-reset test checks this boundary. The original failed CI log is retained.
 - **Monaco lifecycle:** initial real shipping workflow verified the patch but hit `TextModel got disposed before DiffEditorWidget model got reset`. The diff now owns model/widget teardown and detaches models before disposal. Reopening the same actual repair, changing views, remote comparison and mobile navigation passed without inference or page errors. Initial failure evidence remains available.
 - **Remote exhaustion:** the negative probe must invoke Add to exercise an infinite `reduce` callback; an empty reset alone does not execute it. The actual probe now proves bounded error/timeout and environment cleanup. It never became an AI success.
+- **Mobile diff and dependency review:** forced screen-reader mode prevented compact inline rendering for ordinary mobile viewers. Detected accessibility mode preserves screen-reader support and permits inline rendering; the browser regression checks the actual compact geometry. Locator assertions avoid unsafe evaluation under the unchanged strict release CSP. A patch override updates Monaco's pinned DOMPurify dependency to 3.4.17 after two low-severity advisories; final npm audit has zero findings.
 - **Release packaging:** environment-provided root is resolved without eagerly evaluating a development path inside the minimal image. Health validates declared assets. Dependencies are pinned; actual image authority/resource checks and desktop/mobile acceptance cover the release image.
 
 Live development evidence predates the final UI corrections. [Image/source binding](assets/milestone-04/live-engine-binding.json) records its actual image and source hashes, including four files differing from `fc918a6`. It is not falsely attributed to the final commit. The held-out protocol and final offline checks have their own exact identities. Final UI reopening demonstrates the corrected interaction with the saved model candidate; it does not claim fresh model inference at the final review head.
@@ -121,6 +125,8 @@ Live development evidence predates the final UI corrections. [Image/source bindi
 ## 7. Limits and activation requirements
 
 **Known release-blocking correctness/security defects:** none known for the stated read-only recorded release and bounded private live scope after the final checks. The private stack is not approved for public hostile-code execution.
+
+Dependency checks cover the built frontend and pinned minimal public Python image. The first npm audit found two low-severity sanitizer/editor advisories; the sanitizer patch override removes those findings without replacing Monaco. Initial and final audit records are retained. This is an advisory-database check, not proof of absence of vulnerabilities.
 
 **Public activation blocker:** no authorized hosting destination/TLS origin was supplied. Owner authorization must identify one, deploy only the recorded image, enable secure cookies, retain tested limits and rerun health/recorded-browser acceptance at that origin. There is no public URL. This is an explicit activation dependency, not a claimed deployment.
 
@@ -131,9 +137,9 @@ Live development evidence predates the final UI corrections. [Image/source bindi
 - Private repository: https://github.com/kabbersokhi-boop/ai-debugging-workbench.
 - Branch: `milestone/04-release-readiness`.
 - Base: accepted `milestone/03-verified-repair`, `0c2dc0348d1b0b3f961466f214884e53c21bc14d`; PR #3 remains unmerged.
-- Tested release implementation: [`cbff375a3af2eb70ffaa60324fcdf2ca32b71213`](https://github.com/kabbersokhi-boop/ai-debugging-workbench/commit/cbff375a3af2eb70ffaa60324fcdf2ca32b71213).
+- Tested release implementation: [`d60344756baf75ae43152c7f1547b8db69d78522`](https://github.com/kabbersokhi-boop/ai-debugging-workbench/commit/d60344756baf75ae43152c7f1547b8db69d78522).
 - Frozen experiment implementation/configuration: `78989e3`; original scenario sources: `9e8668b`.
-- Review PR: Stacked review PR is created after this report commit; its exact reference is added before final delivery..
+- Review PR: https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/4.
 - Final review head: [`review/milestone-04`](https://github.com/kabbersokhi-boop/ai-debugging-workbench/tree/review/milestone-04), a tag pointing to the final report/evidence commit. Exact SHA is in the PR delivery summary.
 - Report: `docs/reports/MILESTONE-04.md`.
 - Source tour: [critical code map](../CODE_TOUR.md), [architecture](../ARCHITECTURE.md), [decisions](../DECISIONS.md), [results](../RESULTS.md), [walkthrough provenance](../demo/README.md).

@@ -63,3 +63,5 @@ On this four-file target, lexical retrieval had better recall than dense/hybrid 
 - Ship a separate read-only recorded explorer for public activation. Current Docker/Chromium assumptions do not justify public live execution. Recordings never silently answer a live request.
 - Use one frozen eight-case held-out comparison of one-shot whole context, loop whole context and loop retrieval. Keep the existing model/settings, count failures and retries, retain sealed final checks outside model feedback, and report raw denominators without general accuracy or RAG-superiority claims.
 - Own Monaco models and detach the widget before disposing them. The initial live browser run exposed an async teardown error; the actual repair/check success was retained and the UI was corrected/retested by reopening it without new inference.
+
+- Keep Monaco and override its pinned DOMPurify dependency to patched 3.4.17: the initial npm advisory check found two low-severity findings, while the patched dependency passes the same audit and browser checks. Detected accessibility mode permits Monaco's compact inline diff on mobile; the test asserts geometry without weakening CSP.

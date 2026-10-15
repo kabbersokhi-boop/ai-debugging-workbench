@@ -1,6 +1,6 @@
 {
   "mode": "real_recorded_container_audit",
-  "container_image_id": "sha256:201c450f313ae126dd80436d066e548b3ae31adc4636150fb3efd0cfc13509d2",
+  "container_image_id": "sha256:15c2d452b827d17abe57d935a499fb609efbcc9cabcd66574f2a546c8034ae7a",
   "nonroot": true,
   "read_only": true,
   "memory_bytes": 201326592,
