@@ -73,6 +73,13 @@ def docker_identity():
 
 def frozen_config():
     _, image_id = docker_identity()
+    client = docker.from_env()
+    try:
+        broker_image_id = client.containers.get("ai-debugging-workbench-repair-broker-1").attrs[
+            "Image"
+        ]
+    finally:
+        client.close()
     paths = [
         *FROZEN_FILES,
         *[
@@ -82,7 +89,7 @@ def frozen_config():
         "backend/src/workbench/rag/retail-snapshot.json",
     ]
     return {
-        "experiment": "retail-repair-comparison-v1",
+        "experiment": f"retail-repair-comparison-{CONFIG.stem}",
         "scenario_version": "retail-scenarios-v1",
         "cases": scenario_manifest()["cases"],
         "conditions": list(CONDITIONS),
@@ -123,6 +130,7 @@ def frozen_config():
         "provider_timeout_seconds": settings.provider_timeout_seconds,
         "retry_limit": settings.provider_retries,
         "candidate_runtime_image_id": image_id,
+        "broker_image_id": broker_image_id,
         "verifier_version": VERIFIER_VERSION,
         "final_checks_version": "retail-final-v1",
         "scoring": (
@@ -173,6 +181,11 @@ async def final_score(broker_url, repair_id, attempt, output):
     async with httpx.AsyncClient(timeout=20) as client:
         response = await client.post(f"{broker_url}/candidates/{repair_id}/{attempt}/preview")
         response.raise_for_status()
+        saved = await client.get(
+            f"{broker_url}/candidates/{repair_id}/{attempt}/artifacts/candidate.json"
+        )
+        saved.raise_for_status()
+        candidate = saved.json()
     docker_client = docker.from_env()
     try:
         container = docker_client.containers.list(
@@ -193,9 +206,38 @@ async def final_score(broker_url, repair_id, attempt, output):
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
+    snapshot = load_snapshot(candidate["snapshot_id"])
+
+    async def served_hashes():
+        hashes = {}
+        async with httpx.AsyncClient(timeout=3, trust_env=False) as client:
+            for source in snapshot.files:
+                name = source.path.rsplit("/", 1)[-1]
+                if name not in ("cart.js", "index.html", "styles.css"):
+                    continue
+                response = await client.get(
+                    f"http://{ip}:8080/retail/{'' if name == 'index.html' else name}"
+                )
+                expected = candidate["content"] if name == "cart.js" else source.content
+                if response.status_code != 200 or response.content != expected.encode():
+                    raise ValueError("Final-check candidate bytes differ from approved identity")
+                hashes[source.path] = hashlib.sha256(response.content).hexdigest()
+        return hashes
+
+    before = await served_hashes()
     async with asyncio.timeout(45), async_playwright() as p:
         browser = await p.chromium.connect_over_cdp(f"http://{ip}:9223", timeout=10000)
-        return await module.score(browser, output / "final.png")
+        scored = await module.score(browser, output / "final.png")
+    if before != await served_hashes():
+        raise ValueError("Final-check source changed during execution")
+    return {
+        **scored,
+        "candidate_hash": candidate["candidate_hash"],
+        "source_snapshot": snapshot.id,
+        "container_image_id": image_id,
+        "executed_file_hashes": before,
+        "final_checks_sha256": digest(ROOT / "evals/final_checks.py"),
+    }
 
 
 async def execute_case(case, condition, ledger, broker_url):
@@ -357,6 +399,11 @@ async def execute_case(case, condition, ledger, broker_url):
 
 
 async def main(args):
+    global CONFIG, OUTPUT
+    if args.experiment:
+        CONFIG = ROOT / args.experiment
+    if args.output:
+        OUTPUT = ROOT / args.output
     if args.freeze:
         if CONFIG.exists():
             raise SystemExit(
@@ -435,5 +482,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--freeze", action="store_true")
     parser.add_argument("--live", action="store_true")
+    parser.add_argument(
+        "--experiment", help="Versioned configuration path; never overwrite a prior experiment"
+    )
+    parser.add_argument("--output", help="Separate result directory for the versioned experiment")
     parser.add_argument("--split", choices=["development", "evaluation"], default="evaluation")
     asyncio.run(main(parser.parse_args()))

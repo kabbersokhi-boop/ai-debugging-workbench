@@ -27,6 +27,8 @@ async def test_repair_action_response_cannot_cross_investigation_selection(actio
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page(viewport={"width": 1512, "height": 1100})
+        errors = []
+        page.on("pageerror", lambda error: errors.append(str(error)))
 
         async def route_api(route):
             path = route.request.url.split("/api", 1)[1]
@@ -64,6 +66,8 @@ async def test_repair_action_response_cannot_cross_investigation_selection(actio
         await page.get_by_role("tab", name="Investigation", exact=True).click()
         await expect(page.locator("#saved-investigations")).to_have_value(a["id"])
         button = "Generate candidate with NVIDIA" if action == "start" else "Cancel repair"
+        if action == "cancel":
+            await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
         await page.get_by_role("button", name=button, exact=True).click()
         async with asyncio.timeout(10):
             await pending.wait()
@@ -85,6 +89,66 @@ async def test_repair_action_response_cannot_cross_investigation_selection(actio
         await expect(
             page.get_by_role("button", name="Generate candidate with NVIDIA", exact=True)
         ).to_be_enabled()
+        assert not errors, errors
+        await browser.close()
+
+
+@pytest.mark.skipif(
+    os.environ.get("M4_SAVED_REOPEN") != "1",
+    reason="Requires the saved local M4 live run; makes no inference",
+)
+async def test_m4_saved_shipping_reopen_without_inference_after_ui_correction():
+    folder = ROOT / "artifacts/milestone-04"
+    saved = json.loads((folder / "live-shipping-run.json").read_text())
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        context = await browser.new_context(
+            viewport={"width": 1440, "height": 1000},
+            record_video_dir=folder / "reopen-video",
+            record_video_size={"width": 1280, "height": 888},
+        )
+        page = await context.new_page()
+        errors, inference = [], []
+        page.on("pageerror", lambda e: errors.append(str(e)))
+        page.on(
+            "request",
+            lambda r: (
+                inference.append(r.url)
+                if r.method == "POST"
+                and (r.url.endswith("/investigations") or r.url.endswith("/repairs"))
+                else None
+            ),
+        )
+        await page.goto(BASE)
+        await page.locator(".history-item").filter(has_text=saved["reproduction"]["id"][:6]).click()
+        await page.get_by_role("tab", name="Investigation", exact=True).click()
+        await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
+        await page.get_by_role("button", name="Start / reset candidate preview", exact=True).click()
+        remote = page.get_by_role("region", name="Remote candidate application")
+        await remote.get_by_role("button", name="Reset candidate", exact=True).click()
+        await expect(remote.get_by_test_id("remote-quantity")).to_have_text("0", timeout=15000)
+        for label in ("Add to bag", "Increase quantity"):
+            await remote.get_by_role("button", name=label, exact=True).click()
+            await expect(remote.get_by_role("button", name=label, exact=True)).to_be_enabled(
+                timeout=15000
+            )
+        await expect(remote.get_by_test_id("remote-total")).to_have_text("$128.00")
+        original = page.frame_locator('iframe[title="Original application"]')
+        await original.locator("#add-to-cart").click()
+        await original.locator("#increase").click()
+        await expect(original.get_by_test_id("total")).to_have_text("$136.00")
+        await page.locator(".repair-previews").screenshot(
+            path=folder / "final-shipping-comparison.png"
+        )
+        await page.get_by_role("tab", name="Browser evidence", exact=True).click()
+        await page.get_by_role("tab", name="Investigation", exact=True).click()
+        await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
+        await page.set_viewport_size({"width": 390, "height": 844})
+        assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+        await page.screenshot(path=folder / "final-shipping-mobile.png", full_page=True)
+        assert not errors, errors
+        assert not inference, inference
+        await context.close()
         await browser.close()
 
 
