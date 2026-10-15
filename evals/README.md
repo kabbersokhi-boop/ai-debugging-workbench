@@ -7,7 +7,7 @@ Runtime ingestion reads exactly four target files from approved immutable manife
 ## Protocol
 
 1. Validate the development cases and runtime boundaries.
-2. Freeze with `uv run --project backend python scripts/evaluate_repairs.py --freeze` and commit the generated `experiment-v1.json` **before** held-out execution.
+2. Freeze with `uv run --project backend python scripts/evaluate_repairs.py --freeze` and commit the generated `experiment-v2.json` **before** held-out execution.
 3. Run `uv run --project backend python scripts/evaluate_repairs.py --live --split evaluation`.
 
 The harness refuses changed source/configuration/runtime identities. It uses the existing NVIDIA model, temperature zero, disabled thinking and 2,000 output tokens. Conditions are one-shot whole-target, bounded loop whole-target, and bounded loop with the existing hybrid/reranking strategy. All receive the same report and original browser observation; none receives a prior AI diagnosis. Whole-context conditions still have the same bounded MCP source tools. One-shot has one decision/patch and no revision feedback. Each loop has six decisions/two patches. Runtime repair still uses native PostgreSQL checkpoints; benchmark runs use the same graph with an in-memory saver and atomically retain every completed state and rejected raw output on disk.
@@ -19,3 +19,5 @@ Final-candidate scoring requires the scenario's issue check, every feedback regr
 The previous eight-query retrieval smoke measurements remain in the Milestone 2 report; they did not establish a retrieval advantage. They are not twelve independent bugs and are not rerun to favor a method here.
 
 If an implementation correction is needed after held-out execution, retain v1 and create a new versioned experiment. Never overwrite a failed experiment or tune a prompt against its outcomes.
+
+Protocol v1 was frozen but never executed. A pre-execution audit found that resumed processes did not enforce the persisted wall deadline; v2 adds that guard and caps each condition to the remaining shared deadline. V1 remains in Git. No held-out outcome or provider call informed the correction.

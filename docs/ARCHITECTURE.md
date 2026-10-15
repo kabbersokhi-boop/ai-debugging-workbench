@@ -1,4 +1,6 @@
-# Architecture — milestones 1–3
+# Architecture — milestones 1–4
+
+The milestone sections record how the system evolved. The [Milestone 4 release boundary](#release-candidate-milestone-4--current-boundary) supersedes the original local preview/deployment limitations below.
 
 One complete path: select a supported report → launch real Chromium → establish a passing baseline → change cart quantity → capture screenshots and DOM observations → compare a trusted contract → persist the outcome.
 
@@ -112,3 +114,17 @@ After restart, unfinished repairs are reconciled with actual retained candidate/
 Rejected diagnosis/repair model text is bounded and sanitized before schema/citation validation, retained with its rejection reason, and never accepted as a result. Saved investigation reports are immutable inputs; the editable field is explicitly a draft for the next investigation. Evaluation creates output directories before provider calls and atomically saves completed measurements incrementally; offline regression coverage exercises a nonexistent output directory.
 
 SDK references: [official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk/tree/v1.x), [native LangGraph PostgreSQL saver](https://reference.langchain.com/python/langgraph.checkpoint.postgres). Runtime behavior and locked versions are verified in the milestone tests rather than inferred from documentation alone.
+
+## Release candidate (milestone 4 — current boundary)
+
+The original four-file snapshot remains immutable. A versioned registry adds eleven source variants, each with the same narrow corpus and a distinct snapshot identity. Four cases are development/UI scenarios; eight are held out. Canonical source paths retain line-grounded citations; `origin_path` maps variant JavaScript to its committed scenario file. Reproduction chooses a fixed approved procedure/source, diagnosis indexes that snapshot, graph/MCP reads remain bound to it, and candidate creation reconstructs only its bytes. Ordinary developer/hidden verification tests, reports, recordings and evaluation answers are never ingested.
+
+The original-verification cache now includes source, scenario contract, verifier and actual candidate-runtime image. Candidate checks additionally include canonical candidate identity, actual served-file hashes and container/image identity. A change to any binding creates a new evidence artifact identity. Old results remain readable through their recorded IDs and are never promoted into a current pass. Reproduction records its frozen source and actual procedure/browser identity; candidate verification records actual Docker image IDs, not a mutable tag alone.
+
+The old visitor-side generated-script iframe described in milestone 3 is **retired**: its gateway returns 410. Candidate interaction uses a private remote browser with only reset/add/increase/decrease controls, bounded screenshots/text, timeouts, action limits and cleanup. The visitor receives trusted React controls and pixels. The trusted original frozen fixture remains separately interactive. An infinite-loop probe verifies termination/container removal. This improves the browser-tab resource boundary without claiming Docker/Chromium is a complete hostile-code sandbox.
+
+Private staging can enable PostgreSQL-backed guest ownership and atomic admission reservations. Parent run ownership governs investigations, repairs, artifacts and snapshots; historical ownerless evidence remains local-only. Limits survive API restart and include conservative input/output reservations for failed/retried calls. Existing single-coordinator concurrency, cancellation, deadlines, interruption reconciliation and native LangGraph checkpoints remain.
+
+Public release is a **separate recorded-only application**, not this Compose stack exposed through a reverse proxy. Its image contains sanitized immutable records and the built UI, with no live API, DB, provider credentials, Docker socket or execution broker. It rejects mutation methods, limits per-visitor/global traffic and concurrency, expires guest windows, validates release health, and uses nonroot/read-only/resource-capped execution. The recorded explorer labels actual live NVIDIA evidence and offline security probes separately; there is no automatic fallback from a live request. [Release policy and exact remaining activation](RELEASE.md).
+
+The frozen comparison reuses the existing graph/provider and changes only whole/retrieved context and decision/patch budgets. Benchmark state is atomically retained on disk with an in-memory LangGraph saver; product runs retain native PostgreSQL checkpoints. Evaluation-only final checks run after the graph and never feed revision prompts. They rehash actual served bytes and bind candidate, source, final-check code and actual runtime. Failed attempts contribute to request/token accounting. [Protocol](../evals/README.md) and [results](RESULTS.md).

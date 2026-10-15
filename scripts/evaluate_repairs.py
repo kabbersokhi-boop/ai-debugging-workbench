@@ -28,8 +28,8 @@ from workbench.repair.verifier import VERIFIER_VERSION
 
 import docker
 
-CONFIG = ROOT / "evals/experiment-v1.json"
-OUTPUT = ROOT / "artifacts/evaluation-m4-v1"
+CONFIG = ROOT / "evals/experiment-v2.json"
+OUTPUT = ROOT / "artifacts/evaluation-m4-v2"
 CONDITIONS = ("one-shot-whole", "loop-whole", "loop-retrieval")
 FROZEN_FILES = [
     "backend/src/workbench/config.py",
@@ -166,6 +166,8 @@ class BudgetTransport(httpx.AsyncBaseTransport):
     async def handle_async_request(self, request):
         budget = self.ledger
         tokens = json.loads(request.content).get("max_tokens", 0)
+        if datetime.now(UTC) > datetime.fromisoformat(budget["deadline"]):
+            raise ProviderError("experiment_budget", "Frozen experiment wall budget exhausted")
         if budget["http_requests"] >= 256 or budget["reserved_output_tokens"] + tokens > 256000:
             raise ProviderError("experiment_budget", "Frozen experiment budget exhausted")
         budget["http_requests"] += 1
@@ -272,7 +274,15 @@ async def execute_case(case, condition, ledger, broker_url):
         "final_passed": False,
     }
     try:
-        async with asyncio.timeout(300), httpx.AsyncClient(timeout=65) as client:
+        remaining = (
+            min(
+                300,
+                (datetime.fromisoformat(ledger["deadline"]) - datetime.now(UTC)).total_seconds(),
+            )
+            if "deadline" in ledger
+            else 300
+        )
+        async with asyncio.timeout(max(0, remaining)), httpx.AsyncClient(timeout=65) as client:
             original = await client.post(
                 broker_url + "/original/verify",
                 params={"snapshot_id": case["snapshot_id"]},
@@ -455,7 +465,9 @@ async def main(args):
         if case["split"] != args.split:
             continue
         for condition in CONDITIONS:
-            if time.monotonic() - started > 5400:
+            if time.monotonic() - started > 5400 or datetime.now(UTC) > datetime.fromisoformat(
+                ledger["deadline"]
+            ):
                 raise SystemExit("Experiment wall budget exhausted")
             result = await execute_case(case, condition, ledger, broker_url)
             results.append(result)
