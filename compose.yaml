@@ -2,7 +2,10 @@ name: ai-debugging-workbench
 
 services:
   db:
-    image: postgres:17-alpine
+    build:
+      context: .
+      dockerfile: docker/postgres.Dockerfile
+    image: ai-debugging-workbench-postgres:17-vector
     environment:
       POSTGRES_USER: workbench
       POSTGRES_PASSWORD: workbench
@@ -18,7 +21,7 @@ services:
 
   migrate:
     build: .
-    image: ai-debugging-workbench:milestone-01
+    image: ai-debugging-workbench:milestone-02
     command: [".venv/bin/alembic", "upgrade", "head"]
     environment:
       DATABASE_URL: postgresql+asyncpg://workbench:workbench@db:5432/workbench
@@ -29,7 +32,7 @@ services:
     security_opt: ["no-new-privileges:true"]
 
   runner:
-    image: ai-debugging-workbench:milestone-01
+    image: ai-debugging-workbench:milestone-02
     command: [".venv/bin/uvicorn", "workbench.runner:app", "--host", "0.0.0.0", "--port", "8011"]
     environment:
       ARTIFACT_DIR: /app/artifacts
@@ -52,7 +55,10 @@ services:
       retries: 20
 
   api:
-    image: ai-debugging-workbench:milestone-01
+    image: ai-debugging-workbench:milestone-02
+    env_file:
+      - path: backend/.env
+        required: false
     environment:
       DATABASE_URL: postgresql+asyncpg://workbench:workbench@db:5432/workbench
       RUNNER_URL: http://runner:8011

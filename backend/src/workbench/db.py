@@ -2,7 +2,9 @@ from datetime import datetime
 from typing import Any
 from uuid import UUID
 
-from sqlalchemy import JSON, DateTime, ForeignKey, String, UniqueConstraint, func
+from pgvector.sqlalchemy import Vector
+from sqlalchemy import JSON, Computed, DateTime, ForeignKey, String, UniqueConstraint, func
+from sqlalchemy.dialects.postgresql import TSVECTOR
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -36,6 +38,60 @@ class RunEvent(Base):
     detail: Mapped[str]
     data: Mapped[dict[str, Any]] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class SourceSnapshot(Base):
+    __tablename__ = "source_snapshots"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    source_commit: Mapped[str] = mapped_column(String(40))
+    fixture_sha256: Mapped[str] = mapped_column(String(64), index=True)
+    manifest: Mapped[dict[str, Any]] = mapped_column(JSON)
+
+
+class RepositoryIndex(Base):
+    __tablename__ = "repository_indexes"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    snapshot_id: Mapped[str] = mapped_column(ForeignKey("source_snapshots.id"))
+    embedding_model: Mapped[str] = mapped_column(String(200))
+    dimensions: Mapped[int]
+    chunker_version: Mapped[str] = mapped_column(String(80))
+
+
+class SourceChunk(Base):
+    __tablename__ = "source_chunks"
+    __table_args__ = (UniqueConstraint("index_id", "source_id"),)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    index_id: Mapped[str] = mapped_column(ForeignKey("repository_indexes.id"), index=True)
+    source_id: Mapped[str] = mapped_column(String(16))
+    path: Mapped[str]
+    start_line: Mapped[int]
+    end_line: Mapped[int]
+    symbol: Mapped[str]
+    content: Mapped[str]
+    search_text: Mapped[str]
+    search_vector: Mapped[Any] = mapped_column(
+        TSVECTOR, Computed("to_tsvector('english', search_text)", persisted=True)
+    )
+    embedding: Mapped[Any] = mapped_column(Vector())
+
+
+class Investigation(Base):
+    __tablename__ = "investigations"
+    id: Mapped[UUID] = mapped_column(primary_key=True)
+    run_id: Mapped[UUID] = mapped_column(ForeignKey("runs.id"), index=True)
+    status: Mapped[str] = mapped_column(String(40))
+    report: Mapped[str]
+    snapshot_id: Mapped[str] = mapped_column(String(64))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    retrieval: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+    model_input: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+    diagnosis: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+    raw_response: Mapped[str | None]
+    error: Mapped[str | None]
+    error_code: Mapped[str | None] = mapped_column(String(80))
+    provider_calls: Mapped[list[dict[str, Any]]] = mapped_column(JSON, default=list)
+    events: Mapped[list[dict[str, Any]]] = mapped_column(JSON, default=list)
 
 
 engine = create_async_engine(settings.database_url, pool_pre_ping=True)

@@ -11,7 +11,9 @@ from sqlalchemy import select, text
 
 from workbench.config import settings
 from workbench.contracts import BUG, Bug, CreateRun, RunSummary, RunView
-from workbench.db import Run, engine, sessions
+from workbench.db import Run, SourceSnapshot, engine, sessions
+from workbench.rag.contracts import InvestigationRequest
+from workbench.rag.service import InvestigationManager
 from workbench.service import RunManager, get_run
 
 
@@ -28,9 +30,13 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
                 manager = RunManager(client)
                 app.state.manager = manager
                 await manager.recover()
+                investigations = InvestigationManager()
+                app.state.investigations = investigations
+                await investigations.recover()
                 try:
                     yield
                 finally:
+                    await investigations.close()
                     await manager.close()
         finally:
             await coordinator.execute(text("SELECT pg_advisory_unlock(71402501)"))
@@ -120,6 +126,35 @@ async def artifact(run_id: UUID, name: str) -> FileResponse:
 @app.get("/api/storefront")
 async def storefront() -> RedirectResponse:
     return RedirectResponse("/retail/")
+
+
+@app.post("/api/runs/{run_id}/investigations", status_code=202)
+async def investigate(run_id: UUID, payload: InvestigationRequest, request: Request):
+    return await request.app.state.investigations.create(run_id, payload.report)
+
+
+@app.get("/api/runs/{run_id}/investigations")
+async def investigation_history(run_id: UUID, request: Request):
+    return await request.app.state.investigations.history(run_id)
+
+
+@app.get("/api/investigations/{investigation_id}")
+async def investigation_detail(investigation_id: UUID, request: Request):
+    return await request.app.state.investigations.get(investigation_id)
+
+
+@app.post("/api/investigations/{investigation_id}/cancel")
+async def cancel_investigation(investigation_id: UUID, request: Request):
+    return await request.app.state.investigations.cancel(investigation_id)
+
+
+@app.get("/api/snapshots/{snapshot_id}")
+async def snapshot_detail(snapshot_id: str):
+    async with sessions() as session:
+        row = await session.get(SourceSnapshot, snapshot_id)
+        if row is None:
+            raise HTTPException(404, "Saved source snapshot not found")
+        return row.manifest
 
 
 # The same immutable fixture can be explored manually without exposing the runner API.

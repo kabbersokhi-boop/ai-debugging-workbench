@@ -29,6 +29,7 @@ import {
   Play,
   RotateCcw,
   ShieldCheck,
+  Search,
   Square,
   Terminal,
   Workflow,
@@ -44,6 +45,8 @@ import {
   type RunSummary,
 } from "./types";
 import "./styles.css";
+import { InvestigationWorkspace } from "./Investigation";
+import { captureDescription, pricingNote } from "./evidence";
 
 const time = (value: string) =>
   new Date(value).toLocaleTimeString([], {
@@ -277,12 +280,12 @@ function App() {
         <div className="sidebar-bottom">
           <div className="foundation-badge">
             <Box size={14} />
-            Milestone 01<span>FOUNDATION</span>
+            Milestone 02<span>GROUNDING</span>
           </div>
           <p>
             Live reproduction. Real evidence.
             <br />
-            AI investigation arrives in milestone 02.
+            Grounded diagnosis is available in Investigation.
           </p>
           <div className="repo-label">
             <GitBranch size={13} />
@@ -453,6 +456,10 @@ function App() {
                   <Monitor size={15} />
                   Browser evidence
                 </Tabs.Trigger>
+                <Tabs.Trigger value="investigation">
+                  <Search size={15} />
+                  Investigation
+                </Tabs.Trigger>
                 <Tabs.Trigger value="report">
                   <FileJson size={15} />
                   Bug report
@@ -539,7 +546,9 @@ function App() {
                             disabled={!captures.includes("after.png")}
                             onClick={() => setCapture("after.png")}
                           >
-                            Defect
+                            {run?.status === "not_reproduced"
+                              ? "After"
+                              : "Defect"}
                           </button>
                         </div>
                       )}
@@ -564,11 +573,7 @@ function App() {
                       ) : shownCapture && run ? (
                         <img
                           src={artifactUrl(run.id, shownCapture)}
-                          alt={
-                            shownCapture === "before.png"
-                              ? "Actual Playwright baseline: one canvas daypack, subtotal $64, shipping $8, total $72."
-                              : "Actual Playwright defect: three canvas daypacks, line amount $192, incorrect subtotal $64 and total $72."
-                          }
+                          alt={captureDescription(run, shownCapture)}
                         />
                       ) : (
                         <div className="empty-evidence">
@@ -642,15 +647,16 @@ function App() {
                         <span
                           className={running ? "pulse-dot" : "neutral-dot"}
                         />
-                        {shownCapture
-                          ? `Captured by Playwright · ${shownCapture === "before.png" ? "Baseline state" : "Quantity changed to 3"}`
-                          : view === "live"
-                            ? "Interactive fixture · Separate from the automated session"
+                        {view === "live"
+                          ? "Interactive fixture · Separate from the automated session"
+                          : shownCapture
+                            ? `Captured by Playwright · ${shownCapture === "before.png" ? "Baseline state" : "Quantity changed to 3"}`
                             : "Waiting for browser evidence"}
                       </span>
                       <span>
-                        Chromium <span className="footer-divider">/</span> 1200
-                        × 820
+                        {view === "live"
+                          ? "Your browser · Responsive viewport"
+                          : "Chromium / 1200 × 820"}
                       </span>
                     </div>
                   </section>
@@ -718,11 +724,7 @@ function App() {
                     )}
                     <div className="contract-note">
                       <ShieldCheck size={13} />
-                      <span>
-                        {result
-                          ? "Baseline contract passed. These checks establish the defect; they do not verify a repair."
-                          : "Expected values come from a fixed pricing contract, outside the storefront implementation."}
-                      </span>
+                      <span>{pricingNote(run)}</span>
                     </div>
                   </section>
                 </div>
@@ -853,13 +855,16 @@ function App() {
                     <div>
                       <strong>Evidence, before conclusions.</strong>
                       <p>
-                        Only the built-in recipe runs. No model call, patch, or
-                        repair verification is claimed in this milestone.
+                        This trail records the fixed browser recipe. NVIDIA
+                        diagnosis has a separate investigation trail.
                       </p>
                     </div>
                   </div>
                 </aside>
               </div>
+            </Tabs.Content>
+            <Tabs.Content value="investigation">
+              <InvestigationWorkspace run={run} report={bug?.report ?? ""} />
             </Tabs.Content>
             <Tabs.Content value="report">
               <section className="report-panel">
@@ -903,9 +908,9 @@ function App() {
                 </div>
                 <div className="report-scope">
                   <Box size={15} />
-                  This milestone supports one curated defect. Free-form reports,
-                  repository retrieval, and AI diagnosis arrive in later
-                  milestones.
+                  One approved retail snapshot is supported. Diagnosis uses
+                  NVIDIA; generated patches and repair verification remain out
+                  of scope.
                 </div>
               </section>
             </Tabs.Content>
@@ -1006,10 +1011,11 @@ function App() {
             <span>
               <Braces size={13} />
               AI debugging workbench<span className="footer-divider">/</span>
-              Functional foundation
+              Grounded diagnosis
             </span>
             <span>
-              Reproduction is live. AI diagnosis and repair are upcoming.
+              Reproduction is live. NVIDIA diagnosis is live. Patching remains a
+              later milestone.
             </span>
           </footer>
         </main>

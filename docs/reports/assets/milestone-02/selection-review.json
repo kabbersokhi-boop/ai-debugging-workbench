@@ -1,0 +1,5 @@
+{
+  "offline_replay": true,
+  "frozen_query_conditions_checked": 32,
+  "context_selection_changes_after_separator_accounting_fix": []
+}

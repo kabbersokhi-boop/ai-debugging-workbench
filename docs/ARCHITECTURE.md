@@ -1,4 +1,4 @@
-# Architecture — milestone 1
+# Architecture — milestones 1–2
 
 One complete path: select a supported report → launch real Chromium → establish a passing baseline → change cart quantity → capture screenshots and DOM observations → compare a trusted contract → persist the outcome.
 
@@ -36,7 +36,7 @@ Every run has a UUID, supported report ID, timestamps, state, ordered events, op
 | `cancelled` | Cancellation accepted; incomplete execution has no result |
 | `interrupted` | An unfinished run was found after an unclean API restart |
 
-A failing application assertion is a successful **reproduction**, not a verified repair. No AI diagnosis, patch generation, patch application, or independent repair verification exists in this milestone. The UI explicitly distinguishes current reproduction functionality from future phases.
+A failing application assertion is a successful **reproduction**, not a verified repair. NVIDIA diagnosis has its own persisted status and execution trail. A structured diagnosis with valid citations is a proposal, not independently established truth. Patch generation, application and repair verification remain out of scope.
 
 Events and status updates share database transactions and row locks. Terminal states cannot be overwritten by late responses. Duplicate idempotency keys return the original run. The API owns and awaits its execution tasks; shutdown cancels them. A 60-second overall budget and a 55-second runner budget bound execution. Restart recovery marks remaining active rows interrupted and retains their partial evidence. Run/artifact access is validated through persisted run identities and an artifact allowlist.
 
@@ -46,8 +46,32 @@ SQLAlchemy async sessions use PostgreSQL; Alembic owns schema changes. There is 
 
 The shared Playwright runtime image avoids maintaining different browser/library environments. The API does not launch the installed browser. A smaller API image is a deferred optimization; working isolation and one reproducible environment matter more at this stage.
 
-## Extension seams and leakage control
+## Grounded diagnosis (milestone 2)
 
-The runner's versioned Pydantic result and event contracts, separate execution boundary, persisted traces, and report identity form the foundation for later investigation. Milestone 2 should index the retail repository at a specific commit and preserve path/line identities. **Do not index trusted runner expectations, workbench tests, engineering reports, reference patches, hidden tests, or future commits as retrieval context.** No fabricated retrieval inspector or model responses are present now.
+A separate `InvestigationManager` extends the existing coordinator; there is no second orchestration engine or repair agent. It admits two investigations, bounds each to 180 seconds, preserves partial evidence, cancels provider work, and marks unfinished diagnoses interrupted after restart. It never changes reproduction status. Reports are bounded to 4,000 characters. Provider calls have a 45-second timeout, one bounded transient retry, a 12-request investigation limit, a conservative 32,768-token input bound and 1,400 output tokens. Rejected outputs are not silently rewritten or replaced.
 
-Future generated patches must target a disposable copy of the supported fixture only; they must not modify this trusted runner, infrastructure, or regression checks. MCP tool permissions, model adapters, pgvector, and LangGraph belong to their stated milestones, not this foundation.
+`NvidiaProvider` is a replaceable async protocol implementation. LangChain Core composes the rendered chat prompt, async provider runnable and Pydantic output parser. The adapter owns transport, retries, response-envelope checks and measured usage. HTTP error bodies and authorization headers are excluded from traces. Runtime settings do not read secret files; only provider settings load the ignored backend credential configuration. Compose injects it into the API only. The runner image contains no environment file and receives no NVIDIA credentials.
+
+### Immutable approved source
+
+The corpus is exactly `fixtures/retail/{cart.js,index.html,styles.css,README.md}` at commit `b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a`. Formatting makes source ranges readable; developer documentation describes normal product behavior without supplying a reference fix. There are four files, 13,983 UTF-8 bytes and 84 chunks. No workbench reports, trusted checks, evaluation labels, fixes, secrets or future commits are ingested. No target developer tests are approved or indexed in this version.
+
+`scripts/freeze_corpus.py` reads only that allowlist from an explicit Git commit and packages source bytes and hashes. Snapshot identity incorporates the commit and file hashes; the fixture digest matches the reproduction runner's file-digest algorithm. The API refuses to investigate a reproduction from another source digest. Older reproduction history and artifacts remain intact; rerun reproduction to investigate the new snapshot.
+
+PostgreSQL stores the entire immutable manifest, source bytes, model-specific index and chunks. Unchanged indexing returns the existing index without new embedding calls; an advisory transaction lock also serializes concurrent initial indexing. A failed initial embedding operation rolls back the incomplete index. Retrieval rejects a mismatched snapshot or embedding model before querying chunks.
+
+### Actual retrieval and context
+
+JavaScript uses Tree-sitter function/top-level boundaries, documentation uses headings, HTML uses section boundaries, and CSS uses rule boundaries. Larger blocks split at line boundaries. PostgreSQL full-text retrieval uses stemming, code-name normalization and `ts_rank_cd`; pgvector performs exact cosine retrieval. Rank lists fuse with reciprocal rank fusion (k=60), then the native NVIDIA reranker orders at most 12 candidates. No ANN index is needed for 84 chunks. The extension is compiled onto the same PostgreSQL 17 Alpine base, retaining the existing data volume and locale family.
+
+Context selection includes complete chunks in rank order within a 4,000-unit budget, counting UTF-8 bytes as a conservative token bound rather than claiming an exact NVIDIA tokenizer count. Source headers, line numbering and separators count toward that bound. Exact selected snippets, candidates, ranks, scores, selection reasons, query, rendered prompt, report, observations and provider calls are persisted. The Retrieval Inspector distinguishes candidates from supplied context. Citation buttons open the persisted source snippet, never the latest working tree.
+
+The model receives report, browser observations and repository context as distinct inputs. Pydantic validates diagnosis/insufficient-evidence structure. Citation checks require supplied source IDs and inclusive ranges within those supplied chunks; the server binds each accepted citation to its frozen path, snapshot and commit. These checks do not verify the reasoning. Out-of-context citations are an explicit invalid-output outcome.
+
+### Evaluation boundary
+
+The frozen eight-query smoke suite is outside the ingestion allowlist. It covers one defect, supporting behaviors and two no-answer questions; paraphrases are not counted as new defects. Live lexical, dense, hybrid and reranked results are retained. A same-model comparison supplies either retrieved chunks or the whole four-file target. Measured results favor simpler lexical retrieval for recall on this corpus; no general RAG benefit or debugging success rate is claimed. Dollar cost is unavailable; reported token counts come from provider responses. See the milestone 2 report.
+
+## Future execution boundary
+
+Future patches must target disposable copies of the approved application and must not modify trusted tests, infrastructure or secret configuration. Generated-code execution, MCP tools, LangGraph repair and independent regression verification remain milestone 3 work requiring approval.

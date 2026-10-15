@@ -2126,3 +2126,352 @@ h1 {
     transition: none !important;
   }
 }
+
+/* Milestone 2 extends the existing investigation surface. */
+.tabbar [role="tablist"] {
+  min-width: 0;
+  overflow-x: auto;
+}
+.diagnosis-workspace {
+  display: grid;
+  gap: 17px;
+}
+.diagnosis-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 22px;
+}
+.diagnosis-intro h2,
+.diagnosis-result h2 {
+  font-size: 20px;
+  margin: 10px 0;
+  letter-spacing: -0.4px;
+}
+.diagnosis-intro p {
+  color: #738096;
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 650px;
+}
+.investigation-notice {
+  font-size: 12px;
+  color: #8e744d;
+  padding: 12px;
+  background: #fcf7ee;
+  border-radius: 5px;
+}
+.investigation-report {
+  font-size: 11px;
+  color: #6f7b91;
+}
+.investigation-report summary,
+.query-details summary {
+  cursor: pointer;
+  padding: 8px 0;
+}
+.investigation-report label {
+  display: block;
+  margin: 10px 0;
+}
+.investigation-report textarea {
+  width: 100%;
+  min-height: 100px;
+  background: white;
+  border: 1px solid #dfe4ec;
+  border-radius: 5px;
+  padding: 14px;
+  color: #435269;
+  font: inherit;
+  line-height: 1.8;
+}
+.investigation-history {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: #7b869a;
+  flex-wrap: wrap;
+}
+.investigation-history select {
+  background: white;
+  padding: 8px;
+  border: 1px solid #dfe4ec;
+  border-radius: 5px;
+  max-width: 100%;
+  font: inherit;
+  color: #5f6d85;
+}
+.investigation-history .run-status {
+  margin-left: auto;
+  font-size: 11px;
+  text-transform: capitalize;
+}
+.investigation-events {
+  padding: 20px;
+}
+.investigation-events h3,
+.diagnosis-columns h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #52617a;
+}
+.investigation-events ol {
+  list-style: none;
+  margin: 15px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 15px;
+}
+.investigation-events li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #7c9c8b;
+}
+.investigation-events strong {
+  font-size: 11px;
+  font-weight: 550;
+  color: #5e6b80;
+}
+.investigation-events p {
+  font-size: 11px;
+  color: #8290a5;
+  line-height: 1.8;
+  margin-top: 4px;
+}
+.diagnosis-result {
+  padding: 25px;
+}
+.diagnosis-text {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #4f5e76;
+  white-space: pre-wrap;
+}
+.citation-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+.citation-links button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #ddd5ee;
+  background: #f7f4fc;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font:
+    10px Consolas,
+    monospace;
+  color: #7d68ac;
+  overflow-wrap: anywhere;
+}
+.diagnosis-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 17px 0;
+  border-top: 1px solid #e8ecf2;
+}
+.diagnosis-columns ul {
+  padding-left: 17px;
+  font-size: 12px;
+  color: #74839a;
+  line-height: 1.9;
+}
+.next-check {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  background: #f4f6fa;
+  border: 1px solid #e3e8ef;
+  border-radius: 5px;
+  color: #8593ab;
+}
+.next-check strong {
+  font-size: 12px;
+  color: #62748f;
+}
+.next-check p,
+.citation-validity {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #8492a7;
+  margin-top: 8px;
+}
+.next-check svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.citation-validity {
+  margin-top: 15px;
+}
+.retrieval-inspector {
+  scroll-margin-top: 20px;
+}
+.snapshot-identity {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 17px;
+  padding: 10px 15px;
+}
+.snapshot-identity dt {
+  font-size: 10px;
+  color: #8b98ac;
+  margin-bottom: 7px;
+}
+.snapshot-identity dd {
+  margin: 0;
+  font-size: 11px;
+  color: #61708a;
+  overflow-wrap: anywhere;
+  line-height: 1.8;
+}
+.query-details {
+  margin: 10px 15px 20px;
+  font-size: 11px;
+  color: #73819a;
+}
+.query-details pre {
+  font:
+    11px/1.8 Consolas,
+    monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #f5f7fb;
+  padding: 14px;
+  border: 1px solid #e4e8ef;
+  border-radius: 5px;
+}
+.retrieval-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  border-top: 1px solid #e5e9f1;
+}
+.candidate-list {
+  max-height: 650px;
+  overflow: auto;
+  padding: 8px;
+  border-right: 1px solid #e4e8f0;
+}
+.candidate-list button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 13px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #7d89a0;
+}
+.candidate-list button:hover {
+  background: #faf9fd;
+}
+.candidate-list .active-candidate {
+  background: #f5f2fb;
+  border-color: #e3dcef;
+}
+.candidate-list button div {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+.candidate-list strong {
+  font-size: 10px;
+  font-weight: 550;
+  color: #64728b;
+  overflow-wrap: anywhere;
+}
+.candidate-list button > span,
+.candidate-list small {
+  display: block;
+  font:
+    9px/1.8 Consolas,
+    monospace;
+  margin-top: 6px;
+}
+.candidate-list small {
+  font-size: 8px;
+  color: #94a0b4;
+}
+.supplied-badge,
+.candidate-badge {
+  font-size: 7px;
+  padding: 3px 5px;
+  background: #e9f3ee;
+  color: #6e9480;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.candidate-badge {
+  background: #eff1f6;
+  color: #919cb0;
+}
+.source-snippet {
+  min-width: 0;
+  background: #172236;
+  border-radius: 0 0 5px 0;
+}
+.source-snippet > div {
+  padding: 15px;
+  border-bottom: 1px solid #34415a;
+}
+.source-snippet strong {
+  font:
+    11px/1.8 Consolas,
+    monospace;
+  color: #d6d9ed;
+  overflow-wrap: anywhere;
+}
+.source-snippet span,
+.source-snippet small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.8;
+  margin-top: 6px;
+  color: #9dacc5;
+}
+.source-snippet pre {
+  font:
+    11px/1.9 Consolas,
+    monospace;
+  color: #c0cde1;
+  padding: 18px;
+  overflow: auto;
+  max-height: 480px;
+}
+.retrieval-inspector .raw-data {
+  margin-top: 20px;
+}
+@media (max-width: 780px) {
+  .diagnosis-intro {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+  }
+  .diagnosis-columns,
+  .snapshot-identity,
+  .retrieval-columns {
+    grid-template-columns: 1fr;
+  }
+  .diagnosis-result {
+    padding: 18px;
+  }
+  .candidate-list {
+    max-height: 330px;
+    border-right: 0;
+  }
+  .diagnosis-text {
+    font-size: 13px;
+  }
+  .tabbar [role="tablist"] {
+    gap: 13px;
+  }
+  .tabbar [role="tab"] {
+    font-size: 8px;
+  }
+}
