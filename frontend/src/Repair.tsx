@@ -39,6 +39,12 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
   const [busy, setBusy] = useState(false);
   const [previewBusy, setPreviewBusy] = useState(false);
   const previewRequest = useRef(0);
+  // Invalidated synchronously on identity changes, including A → B → A.
+  const identity = useRef({ investigation: investigation.id, epoch: 0 });
+  if (identity.current.investigation !== investigation.id) {
+    identity.current = { investigation: investigation.id, epoch: identity.current.epoch + 1 };
+  }
+  const actionRequest = useRef(0);
   function invalidatePreview() {
     previewRequest.current += 1;
     setPreview("");
@@ -47,7 +53,8 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
   const [error, setError] = useState("");
   useEffect(() => {
     let disposed = false;
-    setCurrent(null); setRows([]); invalidatePreview(); setSelected(0); setError("");
+    actionRequest.current += 1;
+    setBusy(false); setCurrent(null); setRows([]); invalidatePreview(); setSelected(0); setError("");
     api<Repair[]>(`/investigations/${investigation.id}/repairs`).then((next) => {
       if (!disposed) { setRows(next); setCurrent(next[0] ?? null); }
     }).catch((e) => { if (!disposed) setError((e as Error).message); });
@@ -69,17 +76,28 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
   }, [current?.id, current?.status]);
   const attempt = current?.state.attempts.find((a) => a.number === selected) ?? current?.state.attempts.at(-1);
   async function start() {
+    const origin = identity.current;
+    const request = ++actionRequest.current;
+    const valid = () => identity.current === origin && actionRequest.current === request;
     setBusy(true); setError(""); invalidatePreview(); setSelected(0);
     try {
       const row = await api<Repair>(`/investigations/${investigation.id}/repairs`, { method: "POST" });
+      if (!valid()) return;
       setCurrent(row); setRows((prior) => [row, ...prior.filter((x) => x.id !== row.id)]);
-    } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+    } catch (e) { if (valid()) setError((e as Error).message); } finally { if (valid()) setBusy(false); }
   }
   async function cancel() {
     if (!current) return;
+    const origin = identity.current;
+    const request = ++actionRequest.current;
+    const repairId = current.id;
+    const valid = () => identity.current === origin && actionRequest.current === request;
     setBusy(true);
-    try { setCurrent(await api<Repair>(`/repairs/${current.id}/cancel`, { method: "POST" })); }
-    catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+    try {
+      const row = await api<Repair>(`/repairs/${repairId}/cancel`, { method: "POST" });
+      if (valid()) setCurrent(row);
+    }
+    catch (e) { if (valid()) setError((e as Error).message); } finally { if (valid()) setBusy(false); }
   }
   async function openPreview() {
     if (!current || !attempt) return;
@@ -102,7 +120,7 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
     </div>
     {error && <p role="alert" className="error-banner">{error}</p>}
     {rows.length > 0 && <div className="investigation-history"><label htmlFor="saved-repairs">Saved repairs</label>
-      <select id="saved-repairs" value={current?.id ?? ""} onChange={(e) => { setCurrent(rows.find((r) => r.id === e.target.value) ?? null); invalidatePreview(); setSelected(0); }}>
+      <select id="saved-repairs" value={current?.id ?? ""} onChange={(e) => { actionRequest.current += 1; setBusy(false); setCurrent(rows.find((r) => r.id === e.target.value) ?? null); invalidatePreview(); setSelected(0); }}>
         {rows.map((r) => <option key={r.id} value={r.id}>{new Date(r.created_at).toLocaleTimeString()} · {label(r.status)} · {r.id.slice(0,8)}</option>)}
       </select><span className="run-status">{active(current?.status) && <LoaderCircle size={13} className="spin" />}{label(current?.status)}</span></div>}
     {current && <>
