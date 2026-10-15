@@ -28,6 +28,7 @@ class OfflineProvider:
 
     def __init__(self, behavior: str = "insufficient"):
         self.behavior = behavior
+        self.chat_started = asyncio.Event()
         self.calls: list[dict] = []
 
     async def embed(self, texts, input_type):
@@ -38,6 +39,7 @@ class OfflineProvider:
         return [(i, float(len(passages) - i)) for i in range(len(passages))]
 
     async def chat(self, prompt: ChatPromptValue) -> str:
+        self.chat_started.set()
         if self.behavior == "invalid":
             return "not structured JSON"
         if self.behavior == "failure":
@@ -162,11 +164,11 @@ async def test_investigation_cancel_and_restart_keep_reproduction_separate(
     rag_store: async_sessionmaker,
 ) -> None:
     run_id = await seed_run(rag_store)
-    manager = InvestigationManager(lambda: OfflineProvider("wait"), rag_store)
+    provider = OfflineProvider("wait")
+    manager = InvestigationManager(lambda: provider, rag_store)
     created = await manager.create(run_id, None)
     async with asyncio.timeout(10):
-        while (await manager.get(created["id"]))["status"] != "diagnosing":
-            await asyncio.sleep(0.01)
+        await provider.chat_started.wait()
     cancelled = await manager.cancel(created["id"])
     assert cancelled["status"] == "cancelled"
     assert cancelled["retrieval"] is not None

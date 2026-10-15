@@ -14,7 +14,7 @@ tests/test_contracts.py ..........                                       [ 34%]
 tests/test_rag.py .................                                      [ 93%]
 tests/test_runner_lifecycle.py ..                                        [100%]
 
-====================== 29 passed, 19 deselected in 1.31s =======================
+====================== 29 passed, 19 deselected in 1.13s =======================
 
 > ai-debugging-workbench-ui@0.1.0 build
 > tsc -b && vite build
@@ -27,4 +27,4 @@ computing gzip size...
 dist/index.html                   0.67 kB │ gzip:  0.40 kB
 dist/assets/index-S4YRsynz.css   37.32 kB │ gzip:  9.11 kB
 dist/assets/index-BtJnOP8t.js   296.83 kB │ gzip: 90.83 kB
-✓ built in 3.36s
+✓ built in 2.77s
