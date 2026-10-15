@@ -109,7 +109,7 @@ The final retained experiment reported **39,273 tokens across provider requests*
 
 | Executed command / check | Result |
 | --- | --- |
-| `./scripts/check` | Ruff/format passed; Pyright 0 errors; 29 unit tests passed in 1.31 s; TypeScript/Vite build passed |
+| `./scripts/check` | Ruff/format passed; Pyright 0 errors; 29 unit tests passed in 1.13 s; TypeScript/Vite build passed |
 | `LIVE_NVIDIA_E2E=1 ./scripts/e2e` | 19 passed in 20.47 s; actual browser reproduction, live NVIDIA diagnosis, citations, inspector, reload, mobile layout and all PostgreSQL/offline lifecycle cases |
 | `uv run pytest -m integration -k investigation_cancel` from `backend/` | Passed; cancel while model work is active, retain partial retrieval, keep reproduction independent, recover interrupted diagnosis |
 | `./scripts/recovery-smoke` | API SIGKILL → interrupted reproduction; completed history unchanged; fresh run reproduced; no runner cleanup error |
@@ -128,6 +128,7 @@ Logs: [checks](assets/milestone-02/check.txt), [full live acceptance](assets/mil
 - Retired/unavailable provider routes were detected through actual calls. Current successful models/endpoints were selected explicitly; no canned diagnosis or silent fallback was introduced.
 - Runtime settings originally could read a backend secret file in a local runner process. Provider-only secret loading and explicit image copies now keep that file out of the runner and images.
 - An initial evaluation stopped at a citation rejection before saving all measurements. The evaluator now retains rejected conditions and writes intermediate measurement files. It does not retry invalid outputs until they pass.
+- CI caught a polling-only cancellation test; the final test waits for an explicit event emitted after model-call entry. Static checks and the active-cancellation test passed after the correction.
 - Self-review corrected context accounting to include join separators and aligned saved message roles with the provider's actual roles. Offline replay confirmed unchanged selected source IDs across all 32 frozen retrieval conditions. [Replay evidence](assets/milestone-02/selection-review.json).
 
 **Blocking limitations:** none known for the stated local, approved-snapshot diagnosis scope.
@@ -138,7 +139,7 @@ Logs: [checks](assets/milestone-02/check.txt), [full live acceptance](assets/mil
 
 - Repository: https://github.com/kabbersokhi-boop/ai-debugging-workbench (private).
 - Branch: `milestone/02-grounded-diagnosis`.
-- Tested implementation: [`f7bdbc4a32b7e1c22b38fba084b88e342594c068`](https://github.com/kabbersokhi-boop/ai-debugging-workbench/commit/f7bdbc4a32b7e1c22b38fba084b88e342594c068).
+- Tested implementation: [`a94d05e186714fc1f2e606e1b94a8e19acdb8efb`](https://github.com/kabbersokhi-boop/ai-debugging-workbench/commit/a94d05e186714fc1f2e606e1b94a8e19acdb8efb).
 - Review PR: https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/2, stacked against `milestone/01-functional-foundation`; PR #1 remains unmerged at reviewed head `8c9e57f33ef67413fd3c11b2a9af0dde862c5e05`.
 - Report: `docs/reports/MILESTONE-02.md`. A subsequent report-only commit is included in the final PR head.
 - Important code: [provider](../../backend/src/workbench/rag/provider.py), [snapshot/chunking](../../backend/src/workbench/rag/snapshot.py), [retrieval](../../backend/src/workbench/rag/retrieval.py), [diagnosis](../../backend/src/workbench/rag/diagnosis.py), [lifecycle](../../backend/src/workbench/rag/service.py), [inspector](../../frontend/src/Investigation.tsx), [frozen evaluation](../../evals/retrieval-smoke.json).
