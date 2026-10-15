@@ -25,5 +25,8 @@
     "prettier": "^3.9.10",
     "typescript": "~5.7.3",
     "vite": "^6.4.0"
+  },
+  "overrides": {
+    "dompurify": "3.4.17"
   }
 }
