@@ -1,0 +1,12 @@
+{
+  "version": "recordings-v1",
+  "records": [
+    {
+      "id": "m3-live-success",
+      "title": "Cart quantity \u00b7 historical NVIDIA repair",
+      "outcome": "verified",
+      "mode": "recorded_live_nvidia",
+      "file": "m3-live-success.json"
+    }
+  ]
+}

@@ -26,6 +26,11 @@ def validate_snapshot(snapshot: Snapshot) -> Snapshot:
         raise ValueError("Snapshot requires an immutable Git commit")
     digest = hashlib.sha256()
     for source in sorted(snapshot.files, key=lambda source: source.path):
+        if source.origin_path is not None and (
+            source.path != "fixtures/retail/cart.js"
+            or not re.fullmatch(r"fixtures/scenarios/[a-z-]+/cart\.js", source.origin_path)
+        ):
+            raise ValueError("Invalid source provenance path")
         if hashlib.sha256(source.content.encode()).hexdigest() != source.sha256:
             raise ValueError("Snapshot content hash mismatch")
         digest.update(source.path.rsplit("/", 1)[1].encode())
@@ -40,9 +45,42 @@ def validate_snapshot(snapshot: Snapshot) -> Snapshot:
     return snapshot
 
 
-def load_snapshot() -> Snapshot:
-    raw = files("workbench.rag").joinpath("retail-snapshot.json").read_text()
-    return validate_snapshot(Snapshot.model_validate_json(raw))
+def load_snapshot(snapshot_id: str | None = None) -> Snapshot:
+    package = files("workbench.rag")
+    original = validate_snapshot(
+        Snapshot.model_validate_json(package.joinpath("retail-snapshot.json").read_text())
+    )
+    if snapshot_id is None or snapshot_id == original.id:
+        return original
+    if not re.fullmatch(r"[a-f0-9]{64}", snapshot_id):
+        raise ValueError("Invalid snapshot identity")
+    allowed = {c["snapshot_id"] for c in scenario_manifest()["cases"]}
+    if snapshot_id not in allowed:
+        raise ValueError("Snapshot is not an approved scenario")
+    snapshot = validate_snapshot(
+        Snapshot.model_validate_json(package.joinpath(f"scenarios/{snapshot_id}.json").read_text())
+    )
+    if snapshot.id != snapshot_id:
+        raise ValueError("Packaged snapshot identity mismatch")
+    return snapshot
+
+
+def scenario_manifest() -> dict:
+    return json.loads(files("workbench.rag").joinpath("scenarios.json").read_text())
+
+
+def scenario(scenario_id: str) -> dict:
+    for case in scenario_manifest()["cases"]:
+        if case["id"] == scenario_id:
+            return case
+    raise ValueError("Unknown approved scenario")
+
+
+def snapshot_scenario(snapshot_id: str) -> dict:
+    for case in scenario_manifest()["cases"]:
+        if case["snapshot_id"] == snapshot_id:
+            return case
+    raise ValueError("Snapshot has no approved scenario")
 
 
 def chunk_snapshot(snapshot: Snapshot) -> list[ContextChunk]:

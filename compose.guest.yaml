@@ -1,0 +1,11 @@
+# Private staging override only. Keep all ports on loopback behind an authenticated tunnel.
+services:
+  api:
+    environment:
+      GUEST_ACCESS: "true"
+      ALLOWED_ORIGIN: http://127.0.0.1:8010
+      SECURE_COOKIES: "false"
+      GUEST_REQUEST_LIMIT: "2000"
+      GLOBAL_REQUEST_LIMIT: "20000"
+      GUEST_TOKEN_LIMIT: "1000000"
+      GLOBAL_TOKEN_LIMIT: "5000000"

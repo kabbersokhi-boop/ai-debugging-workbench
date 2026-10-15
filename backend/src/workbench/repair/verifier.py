@@ -83,55 +83,75 @@ async def observation(page: Page, name: str, quantity: int) -> dict[str, Any]:
     }
 
 
-async def verify(browser: Browser, candidate_hash: str, screenshot: Path) -> dict[str, Any]:
+async def verify(
+    browser: Browser,
+    candidate_hash: str,
+    screenshot: Path,
+    base_url: str = "http://127.0.0.1:8080/retail/",
+    baseline_capture: Path | None = None,
+    issue_name: str | None = None,
+) -> dict[str, Any]:
     context = await browser.new_context(
         viewport={"width": 1160, "height": 880}, service_workers="block", accept_downloads=False
     )
     page = await context.new_page()
     checks: list[dict[str, Any]] = []
+
+    async def capture(name: str, quantity: int) -> None:
+        checks.append(await observation(page, name, quantity))
+        if name == issue_name:
+            await page.screenshot(path=screenshot)
+
     errors: list[str] = []
     page.on("pageerror", lambda error: errors.append(str(error)[:300]) if len(errors) < 5 else None)
     # Only immutable target resources. Even local CDP and other containers are blocked.
     allowed = {
-        "http://127.0.0.1:8080/retail/",
-        "http://127.0.0.1:8080/retail/cart.js",
-        "http://127.0.0.1:8080/retail/styles.css",
+        base_url,
+        base_url + "cart.js",
+        base_url + "styles.css",
     }
     await context.route(
         "**/*", lambda route: route.continue_() if route.request.url in allowed else route.abort()
     )
     try:
-        await page.goto("http://127.0.0.1:8080/retail/", timeout=10000)
+        await page.goto(base_url, timeout=10000)
         await page.locator("#add-to-cart").wait_for()
-        checks.append(await observation(page, "empty-bag", 0))
+        await capture("empty-bag", 0)
         await page.locator("#add-to-cart").click()
-        checks.append(await observation(page, "add-one-baseline", 1))
+        await capture("add-one-baseline", 1)
+        if baseline_capture is not None:
+            await page.screenshot(path=baseline_capture)
         await page.locator("#increase").click()
-        checks.append(await observation(page, "increment-two", 2))
+        await capture("increment-two", 2)
         await page.locator("#increase").click()
-        checks.append(await observation(page, "increment-three", 3))
-        await page.screenshot(path=screenshot)
+        await capture("increment-three", 3)
+        if issue_name is None:
+            await page.screenshot(path=screenshot)
         await page.locator("#decrease").click()
-        checks.append(await observation(page, "decrement-two", 2))
+        await capture("decrement-two", 2)
         await page.locator("#quantity").fill("1")
         await page.locator("#quantity").dispatch_event("change")
-        checks.append(await observation(page, "lower-limit", 1))
+        await capture("lower-limit", 1)
         await page.locator("#quantity").fill("9")
         await page.locator("#quantity").dispatch_event("change")
-        checks.append(await observation(page, "upper-limit", 9))
+        await capture("upper-limit", 9)
         await page.locator("#decrease").click()
-        checks.append(await observation(page, "decrement-eight", 8))
+        await capture("decrement-eight", 8)
         for name, value, expected in [
             ("clamp-zero", "0", 1),
             ("clamp-large", "99", 9),
             ("invalid-input", "", 1),
         ]:
+            # A broken lower bound may hide the input. Each independent bound probe
+            # starts from a fresh occupied bag so one failure cannot prevent later checks.
+            await page.goto(base_url, timeout=10000)
+            await page.locator("#add-to-cart").click()
             await page.locator("#quantity").fill(value)
             await page.locator("#quantity").dispatch_event("change")
-            checks.append(await observation(page, name, expected))
+            await capture(name, expected)
         for _ in range(12):
             await page.locator("#add-to-cart").click()
-        checks.append(await observation(page, "repeated-add-limit", 9))
+        await capture("repeated-add-limit", 9)
         return {
             "candidate_hash": candidate_hash,
             "verifier_version": VERIFIER_VERSION,

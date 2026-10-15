@@ -10,12 +10,11 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from workbench.config import ProviderSettings, settings
-from workbench.contracts import BUG
 from workbench.db import Investigation, Run, sessions
 from workbench.rag.diagnosis import diagnose, model_input
 from workbench.rag.provider import NvidiaProvider, Provider, ProviderError
 from workbench.rag.retrieval import RepositoryRetriever
-from workbench.rag.snapshot import load_snapshot
+from workbench.rag.snapshot import load_snapshot, scenario
 
 ACTIVE = frozenset({"queued", "indexing", "retrieving", "diagnosing"})
 
@@ -55,11 +54,12 @@ class InvestigationManager:
             return [view(row) for row in rows]
 
     async def create(self, run_id: UUID, report: str | None) -> dict[str, Any]:
-        snapshot = load_snapshot()
         async with self.lock, self.store.begin() as session:
             run = await session.get(Run, run_id)
             if run is None:
                 raise HTTPException(404, "Reproduction not found")
+            case = scenario(run.bug_id)
+            snapshot = load_snapshot(case["snapshot_id"])
             if not run.result or run.status not in ("reproduced", "not_reproduced"):
                 raise HTTPException(409, "Complete browser reproduction before starting diagnosis.")
             if run.result["fixture_sha256"] != snapshot.fixture_sha256:
@@ -84,7 +84,7 @@ class InvestigationManager:
                 id=investigation_id,
                 run_id=run_id,
                 status="queued",
-                report=report or BUG.report,
+                report=report or case["report"],
                 snapshot_id=snapshot.id,
                 events=[],
                 provider_calls=[],
@@ -138,7 +138,7 @@ class InvestigationManager:
                         "checks": run.result["checks"],
                         "fixture_sha256": run.result["fixture_sha256"],
                     }
-                snapshot = load_snapshot()
+                snapshot = load_snapshot(saved["snapshot_id"])
                 if (
                     saved["snapshot_id"] != snapshot.id
                     or evidence["fixture_sha256"] != snapshot.fixture_sha256

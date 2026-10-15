@@ -17,7 +17,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from workbench.config import ProviderSettings, settings
 from workbench.db import Investigation, Repair, Run, sessions
 from workbench.rag.provider import NvidiaProvider, Provider, ProviderError
-from workbench.rag.snapshot import load_snapshot
+from workbench.rag.snapshot import load_snapshot, snapshot_scenario
 from workbench.repair.graph import RepairGraph, RepairState
 from workbench.repair.mcp_client import connect_tools
 
@@ -72,11 +72,11 @@ class RepairManager:
             return [view(row) for row in rows]
 
     async def create(self, investigation_id: UUID) -> dict[str, Any]:
-        snapshot = load_snapshot()
         async with self.lock, self.store.begin() as session:
             investigation = await session.get(Investigation, investigation_id)
             if investigation is None:
                 raise HTTPException(404, "Investigation not found")
+            snapshot = load_snapshot(investigation.snapshot_id)
             run = await session.get(Run, investigation.run_id)
             if (
                 investigation.status != "completed"
@@ -205,10 +205,15 @@ class RepairManager:
                         "defective source."
                     ),
                 )
-                original = await self.broker("/original/verify")
-                if original["status"] != "failed" or not any(
-                    c["name"] == "add-one-baseline" and c["passed"] for c in original["checks"]
-                ):
+                original = await self.broker(f"/original/verify?snapshot_id={row['snapshot_id']}")
+                case = snapshot_scenario(row["snapshot_id"])
+                issue = next(c for c in original["checks"] if c["name"] == case["issue_check"])
+                baseline_ok = any(c["passed"] for c in original["checks"])
+                if case["id"] == "cart-quantity":
+                    baseline_ok = any(
+                        c["name"] == "add-one-baseline" and c["passed"] for c in original["checks"]
+                    )
+                if original["status"] != "failed" or issue["passed"] or not baseline_ok:
                     raise ValueError(
                         "Trusted checks did not establish the expected original defect and"
                         " passing baseline"

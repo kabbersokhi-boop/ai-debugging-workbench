@@ -46,6 +46,8 @@ import {
 } from "./types";
 import "./styles.css";
 import { InvestigationWorkspace } from "./Investigation";
+import RecordedExplorer from "./Recorded";
+import FullWorkflow from "./Workflow";
 import { captureDescription, pricingNote } from "./evidence";
 
 const time = (value: string) =>
@@ -58,12 +60,17 @@ const artifactUrl = (id: string, name: string) =>
   `/api/runs/${id}/artifacts/${name}`;
 
 function App() {
+  const [bugs, setBugs] = useState<Bug[]>([]);
   const [bug, setBug] = useState<Bug | null>(null);
   const [run, setRun] = useState<Run | null>(null);
   const [history, setHistory] = useState<RunSummary[]>([]);
   const [healthy, setHealthy] = useState(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [, setWorkflowStage] = useState("ready");
+  const [stages, setStages] = useState({diagnosis:"Needs reproduction", patch:"Needs diagnosis", verification:"Needs candidate"});
+  const [workflowSelection, setWorkflowSelection] = useState(0);
+  const [workflowRevision, setWorkflowRevision] = useState(0);
   const [tab, setTab] = useState("evidence");
   const [view, setView] = useState("capture");
   const [capture, setCapture] = useState("after.png");
@@ -86,7 +93,7 @@ function App() {
     setError("");
     try {
       const [bugs] = await Promise.all([api<Bug[]>("/bugs"), api("/health")]);
-      setBug(bugs[0]);
+      setBugs(bugs); setBug(bugs[0]);
       setHealthy(true);
       await loadHistory();
     } catch (err) {
@@ -127,6 +134,29 @@ function App() {
   }, [run?.id, run?.status, loadHistory]);
 
   useEffect(() => {
+    let disposed = false; let timer: ReturnType<typeof setTimeout>;
+    setStages({diagnosis:run?.result ? "Ready to investigate" : "Needs reproduction",patch:"Needs diagnosis",verification:"Needs candidate"});
+    if (!run?.result) return;
+    const refresh = async () => {
+      try {
+        const rows = await api<{id:string;status:string}[]>(`/runs/${run.id}/investigations`);
+        const investigation = rows[0];
+        let patch = "Needs diagnosis", verification = "Needs candidate";
+        if (investigation?.status === "completed") {
+          const repairs = await api<{status:string;state:{attempt_count:number}}[]>(`/investigations/${investigation.id}/repairs`);
+          const repair = repairs[0];
+          patch = repair ? repair.state.attempt_count ? "Candidate proposed" : repair.status.replaceAll("_", " ") : "Ready to propose";
+          verification = repair ? repair.status === "verified" ? "Named checks passed" : repair.status.replaceAll("_", " ") : "Needs candidate";
+        }
+        if (!disposed) setStages({diagnosis:investigation ? investigation.status === "completed" ? "Diagnosis proposed" : investigation.status.replaceAll("_", " ") : "Ready to investigate",patch,verification});
+      } catch { /* Detailed errors appear in the selected stage. */ }
+      if (!disposed) timer = setTimeout(refresh, 2000);
+    };
+    void refresh();
+    return () => {disposed = true; clearTimeout(timer);};
+  }, [run?.id, run?.status]);
+
+  useEffect(() => {
     if (!expanded) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setExpanded(false);
@@ -164,11 +194,13 @@ function App() {
   }
 
   async function selectRun(id: string) {
+    setWorkflowSelection(n => n + 1);
     const request = ++selection.current;
     try {
       const next = await api<Run>(`/runs/${id}`);
       if (request !== selection.current) return;
       setRun(next);
+      setBug(bugs.find(b => b.id === next.bug_id) ?? null);
       setError("");
       setView("capture");
       setTab("evidence");
@@ -233,7 +265,12 @@ function App() {
           <Workflow size={17} />
           Investigations<span className="count">1</span>
         </button>
-        <div className="side-label bug-label">SUPPORTED REPORT</div>
+        <div className="side-label bug-label">SUPPORTED SCENARIOS</div>
+        <label className="scenario-label" htmlFor="scenario">Choose a retail defect</label>
+        <select id="scenario" value={bug?.id ?? ""} disabled={running || busy} onChange={e => {
+          selection.current++; setRun(null); setBug(bugs.find(b => b.id === e.target.value) ?? null);
+          idempotency.current = null; setError(""); setTab("evidence");
+        }}>{bugs.map(b => <option key={b.id} value={b.id}>{b.title}</option>)}</select>
         <button
           className="bug-select"
           onClick={() => {
@@ -244,7 +281,7 @@ function App() {
           <span className="bug-marker" />
           <div>
             <span className="mono issue-code">RETAIL-001</span>
-            <strong>Cart quantity mismatch</strong>
+            <strong>{bug?.title ?? "Select a scenario"}</strong>
             <span>Checkout · Pricing</span>
           </div>
           <ChevronRight size={12} />
@@ -280,7 +317,7 @@ function App() {
         <div className="sidebar-bottom">
           <div className="foundation-badge">
             <Box size={14} />
-            Milestone 03<span>REPAIR</span>
+            Release candidate<span>M4</span>
           </div>
           <p>
             Live reproduction. Real evidence.
@@ -289,7 +326,7 @@ function App() {
           </p>
           <div className="repo-label">
             <GitBranch size={13} />
-            <span>milestone/03</span>
+            <span>milestone/04</span>
             <span className="private">Private</span>
           </div>
         </div>
@@ -328,8 +365,9 @@ function App() {
                 happened.
               </p>
             </div>
+            <a className="secondary-button" href="/recorded/">Explore recorded runs</a>
             <a
-              href="/retail/"
+              href={bug && bug.id !== "cart-quantity" ? `/scenarios/${bug.id}/retail/` : "/retail/"}
               target="_blank"
               rel="noreferrer"
               className="secondary-button storefront-link"
@@ -388,7 +426,11 @@ function App() {
               </span>
             </div>
           </section>
-          <div className="pipeline" aria-label="Development workflow">
+          {bug && healthy && <FullWorkflow key={`${bug.id}-${workflowSelection}`} bug={bug} onRun={next => {selection.current++; setRun(next); void loadHistory();}} onStage={stage => {
+            setWorkflowStage(stage); setWorkflowRevision(n => n + 1);
+            if (["diagnosis", "repair", "finished"].includes(stage)) setTab("investigation");
+          }} />}
+          <div className="pipeline" aria-label="Latest saved workflow stages">
             <div className="pipeline-step available">
               <span className={`step-number ${running ? "working" : ""}`}>
                 {result ? <Check size={13} /> : "01"}
@@ -424,11 +466,11 @@ function App() {
               },
             ].map((phase, index) => (
               <div className="future-phase" key={phase.name}>
-                <div className="pipeline-step future">
+                <div className={`pipeline-step ${result ? "available" : "future"}`}>
                   <span className="step-number">0{index + 2}</span>
                   <div>
                     <strong>{phase.name}</strong>
-                    <span>{phase.sub}</span>
+                    <span>{[stages.diagnosis, stages.patch, stages.verification][index]}</span>
                   </div>
                 </div>
                 {index < 2 && <ChevronRight size={15} />}
@@ -567,7 +609,7 @@ function App() {
                         <iframe
                           key={liveKey}
                           title="Interactive synthetic retail storefront"
-                          src="/retail/"
+                          src={run?.bug_id && run.bug_id !== "cart-quantity" ? `/scenarios/${run.bug_id}/retail/` : "/retail/"}
                           sandbox="allow-scripts allow-same-origin"
                         />
                       ) : shownCapture && run ? (
@@ -864,7 +906,7 @@ function App() {
               </div>
             </Tabs.Content>
             <Tabs.Content value="investigation">
-              <InvestigationWorkspace run={run} report={bug?.report ?? ""} />
+              <InvestigationWorkspace key={`${run?.id}-${workflowRevision}`} run={run} report={bug?.report ?? ""} />
             </Tabs.Content>
             <Tabs.Content value="report">
               <section className="report-panel">
@@ -908,9 +950,7 @@ function App() {
                 </div>
                 <div className="report-scope">
                   <Box size={15} />
-                  One approved retail snapshot is supported. Diagnosis uses
-                  NVIDIA; generated patches and repair verification remain out
-                  of scope.
+                  Four versioned development scenarios are supported. NVIDIA proposes bounded patches; trusted browser checks independently verify each candidate.
                 </div>
               </section>
             </Tabs.Content>
@@ -1014,8 +1054,7 @@ function App() {
               Grounded diagnosis
             </span>
             <span>
-              Reproduction is live. NVIDIA diagnosis is live. Patching remains a
-              later milestone.
+              Private live execution · independent finite checks · recorded explorer available.
             </span>
           </footer>
         </main>
@@ -1024,8 +1063,11 @@ function App() {
   );
 }
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+function Entry() {
+  const [mode, setMode] = useState<string | null>(null);
+  useEffect(() => { api<{mode: string}>("/mode").then(x => setMode(x.mode)).catch(() => setMode("unavailable")); }, []);
+  if (!mode) return <p role="status">Opening the workbench…</p>;
+  if (mode === "unavailable") return <main className="workspace"><h1>Workbench unavailable</h1><p role="alert">The application could not confirm its execution mode. No live or recorded run has started.</p><button className="primary-button" onClick={() => location.reload()}>Retry connection</button></main>;
+  return mode === "recorded" || location.pathname.startsWith("/recorded") ? <RecordedExplorer /> : <App />;
+}
+createRoot(document.getElementById("root")!).render(<StrictMode><Entry /></StrictMode>);

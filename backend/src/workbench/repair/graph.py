@@ -60,26 +60,51 @@ Do not include secrets, authorization headers, reasoning transcripts or hidden-t
 
 
 class RepairGraph:
-    def __init__(self, provider: Provider, tools: RepairTools, retain):
+    def __init__(
+        self,
+        provider: Provider,
+        tools: RepairTools,
+        retain,
+        *,
+        max_attempts: int = 2,
+        max_decisions: int = 6,
+        max_requests: int = settings.repair_max_requests,
+    ):
+        if not (1 <= max_attempts <= 2 and 1 <= max_decisions <= 6 and 1 <= max_requests <= 8):
+            raise ValueError("Repair graph limits exceed the supported scope")
+        self.max_attempts = max_attempts
+        self.max_decisions = max_decisions
+        self.max_requests = max_requests
+        self.initial_call_count = len(provider.calls)
         self.provider = provider
         self.tools = tools
         self.retain = retain
         self.prompt = ChatPromptTemplate.from_messages(
-            [("system", SYSTEM), ("human", "REPAIR INPUTS (distinct saved evidence):\n{inputs}")]
+            [
+                (
+                    "system",
+                    SYSTEM.replace(
+                        "At most two candidate patches.",
+                        f"At most {max_attempts} candidate patches and "
+                        f"{max_decisions} model decisions.",
+                    ),
+                ),
+                ("human", "REPAIR INPUTS (distinct saved evidence):\n{inputs}"),
+            ]
         )
 
     async def load(self, state: RepairState) -> dict:
         return {"status": "inspecting", "mcp_events": list(self.tools.events)}
 
     async def decide(self, state: RepairState) -> dict:
-        if state["decision_count"] >= 6:
+        if state["decision_count"] >= self.max_decisions:
             return {
                 "status": "error",
                 "error": "Source/decision budget exhausted",
                 "error_code": "decision_budget",
                 "decision": None,
             }
-        snapshot = load_snapshot()
+        snapshot = load_snapshot(state["snapshot_id"])
         inputs = {
             "report": state["evidence"]["report"],
             "browser_observations": state["evidence"]["browser"],
@@ -100,7 +125,7 @@ class RepairGraph:
                 }
                 for a in state["attempts"]
             ],
-            "candidate_attempts_remaining": 2 - state["attempt_count"],
+            "candidate_attempts_remaining": self.max_attempts - state["attempt_count"],
         }
         values = {
             "schema": json.dumps(ToolDecision.model_json_schema()),
@@ -209,7 +234,7 @@ class RepairGraph:
             candidate = await self.tools.call(
                 "apply_candidate", {"patch": decision.patch.model_dump()}
             )
-            validated = apply_patch(load_snapshot(), decision.patch)
+            validated = apply_patch(load_snapshot(state["snapshot_id"]), decision.patch)
             if candidate["candidate_hash"] != validated["candidate_hash"]:
                 raise RuntimeError("Candidate hash mismatch")
             attempt.update(status="candidate_created", candidate=candidate)
@@ -266,7 +291,7 @@ class RepairGraph:
     def after_apply(self, state: RepairState) -> Literal["verify", "decide", "finalize"]:
         if state["status"] == "candidate_created":
             return "verify"
-        return "decide" if state["attempt_count"] < 2 else "finalize"
+        return "decide" if state["attempt_count"] < self.max_attempts else "finalize"
 
     async def finalize(self, state: RepairState) -> dict:
         decision = state.get("decision")
@@ -288,7 +313,9 @@ class RepairGraph:
                     return {
                         **result,
                         "request_remaining": max(
-                            0, settings.repair_max_requests - len(self.provider.calls)
+                            0,
+                            self.max_requests
+                            - (len(self.provider.calls) - self.initial_call_count),
                         ),
                         "output_budget_remaining": getattr(
                             self.provider,
@@ -312,7 +339,7 @@ class RepairGraph:
             "verify",
             lambda s: (
                 "decide"
-                if s["status"] == "verification_failed" and s["attempt_count"] < 2
+                if s["status"] == "verification_failed" and s["attempt_count"] < self.max_attempts
                 else "finalize"
             ),
         )

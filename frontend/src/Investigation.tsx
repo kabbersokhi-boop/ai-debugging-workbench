@@ -300,6 +300,7 @@ export function InvestigationWorkspace({
           </span>
         </div>
       )}
+      {current?.status === "completed" && <RepairWorkspace investigation={current} scenarioId={run?.bug_id ?? "cart-quantity"} />}
       {current && (
         <section className="report-panel saved-report" aria-label="Saved investigation report">
           <h3>Saved report · immutable input</h3>
@@ -389,7 +390,7 @@ export function InvestigationWorkspace({
           </p>
         </section>
       )}
-      {current?.status === "completed" && <RepairWorkspace investigation={current} />}
+
       {trace && (
         <section
           id="retrieval-inspector"

@@ -17,6 +17,13 @@ class Settings(BaseSettings):
     frontend_dir: Path = ROOT / "frontend/dist"
     run_timeout_seconds: int = 60
     max_active_runs: int = 2
+    guest_access: bool = False
+    secure_cookies: bool = False
+    allowed_origin: str = "http://127.0.0.1:8010"
+    guest_request_limit: int = 2000
+    global_request_limit: int = 20000
+    guest_token_limit: int = 1000000
+    global_token_limit: int = 5000000
     repair_broker_url: str = "http://127.0.0.1:8012"
     repair_preview_origin: str = "http://127.0.0.1:8013"
     repair_timeout_seconds: int = Field(default=300, ge=20, le=600)

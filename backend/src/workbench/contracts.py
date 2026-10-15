@@ -54,7 +54,7 @@ BUG = Bug(
 
 class CreateRun(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    bug_id: Literal["cart-quantity"]
+    bug_id: Literal["cart-quantity", "shipping-threshold", "decrement-skip", "clamp-zero"]
 
 
 class Event(BaseModel):
@@ -98,6 +98,9 @@ class ReproductionResult(BaseModel):
     fixture_sha256: str
     browser_version: str
     duration_ms: int
+    source_snapshot: str | None = None
+    behavioral_checks: list[dict[str, Any]] | None = None
+    runtime_identity: dict[str, str] | None = None
 
 
 class RunnerEvent(BaseModel):
