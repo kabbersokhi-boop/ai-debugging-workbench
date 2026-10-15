@@ -1,0 +1,29 @@
+All checks passed!
+13 files already formatted
+0 errors, 0 warnings, 0 informations
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 24 items / 12 deselected / 12 selected
+
+tests/test_contracts.py ..........                                       [ 83%]
+tests/test_runner_lifecycle.py ..                                        [100%]
+
+====================== 12 passed, 12 deselected in 1.04s =======================
+
+> ai-debugging-workbench-ui@0.1.0 build
+> tsc -b && vite build
+
+vite v6.4.4 building for production...
+transforming...
+✓ 1597 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.67 kB │ gzip:  0.41 kB
+dist/assets/index-Df9Gp5AH.css   32.34 kB │ gzip:  8.08 kB
+dist/assets/index-Cq4NxREU.js   286.39 kB │ gzip: 88.22 kB
+✓ built in 2.62s

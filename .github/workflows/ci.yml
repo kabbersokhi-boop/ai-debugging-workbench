@@ -1,0 +1,43 @@
+name: Milestone checks
+on:
+  push:
+    branches: [main, 'milestone/**']
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  foundation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.11.16'
+          python-version: '3.12'
+          enable-cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: uv sync --project backend --frozen
+      - run: npm ci --prefix frontend
+      - run: ./scripts/check
+      - run: uv run --project backend playwright install --with-deps chromium
+      - run: docker compose up --build -d --wait api
+      - run: ./scripts/e2e
+      - run: ./scripts/recovery-smoke
+      - name: Collect service logs
+        if: always()
+        run: docker compose logs --no-color > compose.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: milestone-01-evidence
+          path: |
+            artifacts/acceptance/
+            compose.log
+      - if: always()
+        run: docker compose down

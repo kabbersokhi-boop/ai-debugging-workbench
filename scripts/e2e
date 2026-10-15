@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/../backend"
+uv run pytest -m 'e2e or integration' -v "$@"

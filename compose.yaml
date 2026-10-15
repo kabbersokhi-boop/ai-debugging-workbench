@@ -1,0 +1,87 @@
+name: ai-debugging-workbench
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: workbench
+      POSTGRES_PASSWORD: workbench
+      POSTGRES_DB: workbench
+    ports: ["127.0.0.1:54329:5432"]
+    volumes: ["postgres:/var/lib/postgresql/data"]
+    networks: [persistence]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U workbench -d workbench"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  migrate:
+    build: .
+    image: ai-debugging-workbench:milestone-01
+    command: [".venv/bin/alembic", "upgrade", "head"]
+    environment:
+      DATABASE_URL: postgresql+asyncpg://workbench:workbench@db:5432/workbench
+    networks: [persistence]
+    depends_on:
+      db: {condition: service_healthy}
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+
+  runner:
+    image: ai-debugging-workbench:milestone-01
+    command: [".venv/bin/uvicorn", "workbench.runner:app", "--host", "0.0.0.0", "--port", "8011"]
+    environment:
+      ARTIFACT_DIR: /app/artifacts
+      FIXTURE_DIR: /app/fixtures/retail
+    volumes: ["evidence:/app/artifacts"]
+    networks: [execution]
+    read_only: true
+    tmpfs: ["/tmp:size=512M,mode=1777"]
+    shm_size: 512mb
+    mem_limit: 2g
+    pids_limit: 256
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: ["CMD", ".venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8011/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    image: ai-debugging-workbench:milestone-01
+    environment:
+      DATABASE_URL: postgresql+asyncpg://workbench:workbench@db:5432/workbench
+      RUNNER_URL: http://runner:8011
+      ARTIFACT_DIR: /app/artifacts
+      FIXTURE_DIR: /app/fixtures/retail
+      FRONTEND_DIR: /app/frontend/dist
+    ports: ["127.0.0.1:8010:8010"]
+    volumes: ["evidence:/app/artifacts:ro"]
+    networks: [execution, persistence]
+    read_only: true
+    tmpfs: ["/tmp:size=64M,mode=1777"]
+    mem_limit: 512m
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    depends_on:
+      runner: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", ".venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/api/health', timeout=4)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres:
+  evidence:
+
+networks:
+  persistence:
+    driver: bridge
+  execution:
+    internal: true
