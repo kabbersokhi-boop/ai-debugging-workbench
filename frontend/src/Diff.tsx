@@ -16,7 +16,7 @@ export default function CandidateDiff({ original, modified }: { original: string
       theme: "vs-dark", readOnly: true, originalEditable: false,
       minimap: { enabled: false }, scrollBeyondLastLine: false, fontSize: 12,
       renderSideBySide: true, renderSideBySideInlineBreakpoint: 700,
-      useInlineViewWhenSpaceIsLimited: true, automaticLayout: true, accessibilitySupport: "on",
+      useInlineViewWhenSpaceIsLimited: true, automaticLayout: true, accessibilitySupport: "auto",
     });
     editor.setModel({ original: before, modified: after });
     return () => {

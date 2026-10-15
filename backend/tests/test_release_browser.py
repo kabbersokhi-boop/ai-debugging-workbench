@@ -190,6 +190,9 @@ async def test_recorded_explorer_first_visit_mobile_and_no_live_requests():
             page.get_by_role("heading", name="Verified for the recorded checks")
         ).to_be_visible()
         await page.set_viewport_size({"width": 390, "height": 844})
+        await page.wait_for_function(
+            "document.querySelector('.monaco-diff-editor .editor.original')?.clientWidth === 0"
+        )
         await page.get_by_role(
             "heading", name="Verified for the recorded checks"
         ).scroll_into_view_if_needed()
