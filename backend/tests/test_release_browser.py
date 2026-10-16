@@ -173,6 +173,14 @@ async def test_recorded_explorer_first_visit_mobile_and_no_live_requests():
         ).to_be_visible()
         await page.get_by_role("link", name="Original / candidate", exact=True).click()
         await expect(page.locator(".recorded-comparison")).to_be_visible()
+        diff = page.locator(".monaco-diff-editor")
+        await expect(diff).to_be_visible(timeout=20000)
+        await expect(diff.locator(".editor.original .view-lines")).to_contain_text(
+            "FREE_SHIPPING_THRESHOLD_CENTS = 20000"
+        )
+        await expect(diff.locator(".editor.modified .view-lines")).to_contain_text(
+            "FREE_SHIPPING_THRESHOLD_CENTS = 10000"
+        )
         await page.screenshot(path=folder / "recorded-desktop.png", full_page=True)
         await page.locator("#recording").select_option("remote-timeout")
         await expect(

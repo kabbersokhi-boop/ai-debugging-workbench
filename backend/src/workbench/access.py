@@ -4,7 +4,6 @@ Opaque 128-bit cookies, persisted ownership and conservative nonrefundable token
 Existing ownerless history is available only in trusted local mode.
 """
 
-import re
 from datetime import UTC, datetime, timedelta
 from uuid import UUID, uuid4
 
@@ -75,8 +74,8 @@ async def guest(request: Request) -> tuple[UUID, bool]:
 
 
 async def authorize(path: str, owner: UUID) -> None:
-    match = re.match(r"/api/(runs|investigations|repairs)/([a-f0-9-]{36})(?:/|$)", path)
-    if not match:
+    parts = path.split("/")
+    if len(parts) < 4 or parts[1] != "api" or parts[2] not in {"runs", "investigations", "repairs"}:
         if path.startswith("/api/snapshots/"):
             snapshot_id = path.rsplit("/", 1)[-1]
             async with sessions() as session:
@@ -88,12 +87,20 @@ async def authorize(path: str, owner: UUID) -> None:
                 if found is None:
                     raise HTTPException(404, "Evidence not found in this session")
         return
-    kind, value = match.groups()
+    kind, value = parts[2:4]
+    # Match the protected namespace before validating its identity. A UUID spelling
+    # rejected here must never fall through to FastAPI's more permissive parser.
+    try:
+        resource_id = UUID(value)
+    except ValueError:
+        raise HTTPException(404, "Run or evidence not found in this session") from None
+    if str(resource_id) != value:
+        raise HTTPException(404, "Run or evidence not found in this session")
     async with sessions() as session:
-        run = await session.get(Run, UUID(value)) if kind == "runs" else None
+        run = await session.get(Run, resource_id) if kind == "runs" else None
         if kind in ("investigations", "repairs"):
             row = await session.get(
-                Investigation if kind == "investigations" else Repair, UUID(value)
+                Investigation if kind == "investigations" else Repair, resource_id
             )
             if row:
                 run = await session.get(Run, row.run_id)
