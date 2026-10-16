@@ -1,0 +1,203 @@
+{
+  "body": {
+    "id": "m02-v2-development",
+    "frozen_at": "2026-10-16T22:50:46.153415+00:00",
+    "parent_v1_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+    "harness": "json-source-tools-v3",
+    "prompt_hash": "f959143f5593fb21701e3112743ce3b62ece02e8ad8862e2fa613d2d0b64ec42",
+    "budget": {
+      "requests": 12,
+      "output_tokens_per_request": 4096,
+      "token_upper_bound": 360000,
+      "wall_seconds": 720,
+      "provider_timeout_seconds": 90,
+      "revisions": 4,
+      "ordinary_runs": 4,
+      "read_search_actions": 16,
+      "actions_per_response": 1,
+      "automatic_retries": 1,
+      "source_read_chars": 12000,
+      "input_bytes_per_request": 48000
+    },
+    "configurations": {
+      "nemotron3": {
+        "id": "nemotron3",
+        "model": "nvidia/nemotron-3-super-120b-a12b",
+        "label": "Nemotron 3 Super / JSON source tools v3",
+        "provider": "NVIDIA hosted API",
+        "product": "model/harness configuration; no named coding-agent product",
+        "temperature": 0,
+        "harness": "json-source-tools-v3",
+        "harness_hash": "98a896e605b7692e4a7186106a8c07c05228f32e8da550b77a8f36c195568fbb",
+        "prompt_hash": "f959143f5593fb21701e3112743ce3b62ece02e8ad8862e2fa613d2d0b64ec42",
+        "tools": [
+          "read approved file (120 lines, 12000 chars)",
+          "literal search approved files (20 hits)",
+          "exact unique production edits",
+          "fixed ordinary tests in fresh restricted container",
+          "submit"
+        ],
+        "source_access": "Identical full pinned source and existing ordinary tests via a virtual allowlisted namespace. Same relevant initial excerpts. No host working directory, shell, network, repository history, reference or independent material.",
+        "ordinary_access": "Fixed per-task command; same approved Python 3.12.14 / pytest 8.3.5 image; up to four runs and four edit revisions.",
+        "budget": {
+          "requests": 12,
+          "output_tokens_per_request": 4096,
+          "token_upper_bound": 360000,
+          "wall_seconds": 720,
+          "provider_timeout_seconds": 90,
+          "revisions": 4,
+          "ordinary_runs": 4,
+          "read_search_actions": 16,
+          "actions_per_response": 1,
+          "automatic_retries": 1,
+          "source_read_chars": 12000,
+          "input_bytes_per_request": 48000
+        },
+        "credentials": "Existing authorized NVIDIA key; coordinator only.",
+        "availability_response_model": "nvidia/nemotron-3-super-120b-a12b",
+        "unavailable_metadata": [
+          "Immutable model-weight revision",
+          "Training exposure",
+          "Provider hardware/load",
+          "Monetary cost/price",
+          "Provider RNG seed"
+        ],
+        "automatic_retries": 1,
+        "parameters": {
+          "temperature": 1,
+          "top_p": 0.95,
+          "max_tokens": 4096,
+          "response_format": {
+            "type": "json_object"
+          },
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "reasoning_policy": "Explicit supported reasoning-off; no partial/truncated actions",
+        "context_policy": "Current source excerpts; all edits/errors/test feedback; last two reads; logs head/tail 6000 bytes each",
+        "retry_policy": "At most one transient HTTP/timeout retry per trial, identical payload, charged before sending; no tool side effects on errors"
+      },
+      "nemotron35": {
+        "id": "nemotron35",
+        "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+        "label": "Nemotron 3.5 Super / JSON source tools v3",
+        "provider": "NVIDIA hosted API",
+        "product": "model/harness configuration; no named coding-agent product",
+        "temperature": 0,
+        "harness": "json-source-tools-v3",
+        "harness_hash": "98a896e605b7692e4a7186106a8c07c05228f32e8da550b77a8f36c195568fbb",
+        "prompt_hash": "f959143f5593fb21701e3112743ce3b62ece02e8ad8862e2fa613d2d0b64ec42",
+        "tools": [
+          "read approved file (120 lines, 12000 chars)",
+          "literal search approved files (20 hits)",
+          "exact unique production edits",
+          "fixed ordinary tests in fresh restricted container",
+          "submit"
+        ],
+        "source_access": "Identical full pinned source and existing ordinary tests via a virtual allowlisted namespace. Same relevant initial excerpts. No host working directory, shell, network, repository history, reference or independent material.",
+        "ordinary_access": "Fixed per-task command; same approved Python 3.12.14 / pytest 8.3.5 image; up to four runs and four edit revisions.",
+        "budget": {
+          "requests": 12,
+          "output_tokens_per_request": 4096,
+          "token_upper_bound": 360000,
+          "wall_seconds": 720,
+          "provider_timeout_seconds": 90,
+          "revisions": 4,
+          "ordinary_runs": 4,
+          "read_search_actions": 16,
+          "actions_per_response": 1,
+          "automatic_retries": 1,
+          "source_read_chars": 12000,
+          "input_bytes_per_request": 48000
+        },
+        "credentials": "Existing authorized NVIDIA key; coordinator only.",
+        "availability_response_model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+        "unavailable_metadata": [
+          "Immutable model-weight revision",
+          "Training exposure",
+          "Provider hardware/load",
+          "Monetary cost/price",
+          "Provider RNG seed"
+        ],
+        "automatic_retries": 1,
+        "parameters": {
+          "temperature": 1,
+          "top_p": 0.95,
+          "max_tokens": 4096,
+          "response_format": {
+            "type": "json_object"
+          },
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "reasoning_policy": "Explicit supported reasoning-off; no partial/truncated actions",
+        "context_policy": "Current source excerpts; all edits/errors/test feedback; last two reads; logs head/tail 6000 bytes each",
+        "retry_policy": "At most one transient HTTP/timeout retry per trial, identical payload, charged before sending; no tool side effects on errors"
+      }
+    },
+    "order": [
+      {
+        "id": "m02-v2-development-more-bucket-nemotron3-r01",
+        "task_id": "more-bucket",
+        "configuration_id": "nemotron3",
+        "trial": 1,
+        "order": 0
+      },
+      {
+        "id": "m02-v2-development-more-bucket-nemotron35-r01",
+        "task_id": "more-bucket",
+        "configuration_id": "nemotron35",
+        "trial": 1,
+        "order": 1
+      },
+      {
+        "id": "m02-v2-development-boltons-addlist-nemotron35-r02",
+        "task_id": "boltons-addlist",
+        "configuration_id": "nemotron35",
+        "trial": 2,
+        "order": 2
+      },
+      {
+        "id": "m02-v2-development-boltons-addlist-nemotron3-r02",
+        "task_id": "boltons-addlist",
+        "configuration_id": "nemotron3",
+        "trial": 2,
+        "order": 3
+      }
+    ],
+    "order_seed": 20261017,
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "implementation_files": {
+      "reliability.py": "ec9168dee1f5f5cb2f51d8de07ea2af50750ea112b13813ac5a40e923ac5aa70",
+      "reliability_producer.py": "98a896e605b7692e4a7186106a8c07c05228f32e8da550b77a8f36c195568fbb",
+      "reliability_store.py": "f5ecb5e592b07c3d0d98700486ddf5755c7a7c2590ead8479e97e85cb21005a8"
+    },
+    "tasks": {
+      "more-bucket": {
+        "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+        "verifier_hash": "dae4ebfdb4dea8143c7079e9e9713907971f9fd634d0a897ed455e7bba066ea9"
+      },
+      "boltons-addlist": {
+        "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+        "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968"
+      }
+    },
+    "campaign_ceiling_including_development": {
+      "runs": 12,
+      "requests": 144,
+      "reserved_tokens": 4320000,
+      "wall_seconds": 8640
+    },
+    "scoring_rule": "All generation terminates before fresh ordinary and independent scoring. Never feed scoring back.",
+    "admission": "Explicit model submit after inspected source, valid edit and feedback from ordinary test of final source; ordinary pass not required.",
+    "limitations": [
+      "Small historical tasks; training contamination unknown.",
+      "Procedures differ from v1; no pooled or causal reliability ranking.",
+      "Reported usage excludes unknown failed-request usage; cost unknown.",
+      "In-process Python observations are not a complete malicious-candidate boundary."
+    ]
+  },
+  "hash": "238fa0652ef6b690f9f9353feecc12833347ae09d46785d4254d04d6fecf690f"
+}
