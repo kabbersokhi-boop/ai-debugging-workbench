@@ -1,0 +1,31 @@
+{
+  "fresh_containers": [
+    "b0162c4f8f391374270537faa318e2fd32fa7020fd234b294fc413e5f6cf98a1",
+    "39bc87126e2521b9b2904dd41471db20665f06ae4ae2f59b079bfd9ec8560b17",
+    "8f61c3842ef2c1858b4532da299ba208181f2766f6166b6ea3b6497554d1cdd7",
+    "02549b472462a5a23b75da42090e8e2dfa08d1e3b03dc3271a65640baa644024"
+  ],
+  "all_distinct": true,
+  "same_candidate_source_verifier_runtime_binding": {
+    "task_id": "boltons-addlist",
+    "base_commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+    "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+    "candidate_hash": "5cab12b5c1b25239d4418e84aae45f166041390a6895d24f2a6ae1d1d85d6246",
+    "patch_hash": "d9c374700a7793e67f61ca6743eb78c4b80f05c55cf58ba318b9fc6eecb6285d",
+    "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968",
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+    "executed_file_hashes": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "429110eb732aff717b77ba422a9bcdd394a2ffe22051869053b505b96af2c223",
+      "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    }
+  },
+  "same_observations": true,
+  "same_trial_binding": true,
+  "original_status": "failed",
+  "reproduction_status": "failed"
+}

@@ -2,6 +2,17 @@
 
 An AI engineering workbench that reproduces software bugs, retrieves repository evidence, generates bounded patches, and independently checks their behavior.
 
+## M2 producer reliability correction
+
+**Readiness failed; no new formal comparison was run.** Four bounded calibration journeys yielded
+one explicit submission (Nemotron 3: 1/2; Nemotron 3.5: 0/2). That genuine development patch passed
+155 ordinary tests but failed the existing standalone-urlutils independent checks. This is a separate
+**1/1 development observation**, not a result on the two newer tasks or a replacement for the original
+experiment below. Three request-budget failures are retained. **Milestone 3 remains on hold.**
+
+[Focused correction report](docs/reports/AGENT-EVALUATOR-M02-RELIABILITY.md) ·
+[All new development evidence and limits](evaluation/experiments/m02-v2/README.md).
+
 ## Controlled producer comparison · Agent Evaluator Milestone 2
 
 The local Agent Evaluation workspace now includes a retained comparison of **four approved tasks ×
