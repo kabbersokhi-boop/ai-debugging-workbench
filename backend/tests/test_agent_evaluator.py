@@ -57,6 +57,7 @@ def test_result_binding_rejects_other_candidates_and_missing_pass_evidence():
     c = candidate("more-bucket-reference")
     evidence = {"task": spec, "candidate": c}
     binding = {
+        "image_id": "sha256:" + "b" * 64,
         "task_id": spec["id"],
         "spec_hash": spec["spec_hash"],
         "base_commit": spec["base_commit"],
@@ -71,8 +72,20 @@ def test_result_binding_rejects_other_candidates_and_missing_pass_evidence():
         "candidate_hash": c["candidate_hash"],
         "binding": binding,
         "binding_hash": identity(binding),
-        "ordinary": {"outcome": "passed", "exit_code": 0, "status": "finished"},
+        "ordinary": {
+            "outcome": "passed",
+            "exit_code": 0,
+            "status": "finished",
+            "image_id": binding["image_id"],
+            "container_id": "ordinary-container",
+            "executed_file_hashes": c["source_hashes"],
+        },
         "independent": {
+            "image_id": binding["image_id"],
+            "container_id": "behavior-container",
+            "executed_file_hashes": {
+                k: v for k, v in c["source_hashes"].items() if not k.startswith("tests/")
+            },
             "checks": behavior.compare("more-bucket", json.dumps(behavior.expected("more-bucket"))),
             "stdout": json.dumps(behavior.expected("more-bucket")),
             "exit_code": 0,
@@ -87,4 +100,18 @@ def test_result_binding_rejects_other_candidates_and_missing_pass_evidence():
         validate_binding(evidence, wrong, c["candidate_hash"])
     wrong = {**result, "independent": None}
     with pytest.raises(ValueError):
+        validate_binding(evidence, wrong, c["candidate_hash"])
+
+    wrong = copy.deepcopy(result)
+    wrong["binding"].pop("image_id")
+    wrong["binding_hash"] = identity(wrong["binding"])
+    with pytest.raises(ValueError, match="environment identity"):
+        validate_binding(evidence, wrong, c["candidate_hash"])
+    wrong = copy.deepcopy(result)
+    wrong["independent"]["image_id"] = "sha256:" + "c" * 64
+    with pytest.raises(ValueError, match="different environment"):
+        validate_binding(evidence, wrong, c["candidate_hash"])
+    wrong = copy.deepcopy(result)
+    wrong["independent"].pop("executed_file_hashes")
+    with pytest.raises(ValueError, match="Missing executed source"):
         validate_binding(evidence, wrong, c["candidate_hash"])

@@ -1,6 +1,7 @@
 """Persist task, producer, patch and execution evidence without rerunning generation."""
 
 import asyncio
+import re
 from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
@@ -149,9 +150,29 @@ def validate_binding(evidence, result, candidate_hash):
     }
     if any(binding.get(k) != v for k, v in required.items()):
         raise ValueError("Result belongs to a different evaluation input")
+    image_id = binding.get("image_id", "")
+    if not isinstance(image_id, str) or not re.fullmatch(r"sha256:[a-f0-9]{64}", image_id):
+        raise ValueError("Missing execution environment identity")
+    for phase in ("ordinary", "independent"):
+        execution = result.get(phase)
+        if execution and execution.get("image_id") != image_id:
+            raise ValueError("Phase executed in a different environment")
+        if execution and execution.get("executed_file_hashes"):
+            expected_files = evidence["candidate"]["source_hashes"]
+            if phase == "independent":
+                expected_files = {
+                    k: v for k, v in expected_files.items() if not k.startswith("tests/")
+                }
+            if execution["executed_file_hashes"] != expected_files:
+                raise ValueError("Phase source identity mismatch")
     if result["status"] == "passed":
         if not result.get("ordinary") or not result.get("independent"):
             raise ValueError("Missing check evidence")
+        if any(
+            not result[phase].get("executed_file_hashes") or not result[phase].get("container_id")
+            for phase in ("ordinary", "independent")
+        ):
+            raise ValueError("Missing executed source or container evidence")
         if result["ordinary"].get("outcome") != "passed":
             raise ValueError("Ordinary result did not pass")
         checks = result["independent"].get("checks", [])

@@ -104,7 +104,7 @@ def test_evaluator_docker_negative_processes():
 
 
 def test_evaluator_freeze():
-    freeze = ROOT / "evaluation/freeze-v2.json"
+    freeze = ROOT / "evaluation/freeze-v3.json"
     if not freeze.exists():
         pytest.skip("Initial task validation precedes freeze")
     value = json.loads(freeze.read_text())

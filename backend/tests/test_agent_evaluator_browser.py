@@ -57,6 +57,9 @@ async def test_evaluator_real_ui_candidates_failure_evidence_and_reopen():
                     ).to_be_visible()
                     assert await page.locator(".evaluation-checks details[open]").count() > 0
                 await page.screenshot(path=folder / f"{task_id}-{label}.png", full_page=True)
+                await page.get_by_role("region", name="Evaluation result").screenshot(
+                    path=folder / f"{task_id}-{label}-result.png"
+                )
                 async with page.expect_download() as download:
                     await page.get_by_role(
                         "link", name="Download complete evaluation evidence"
