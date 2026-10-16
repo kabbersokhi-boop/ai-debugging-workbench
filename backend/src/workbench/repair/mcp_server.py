@@ -14,7 +14,7 @@ from workbench.repair.contracts import PatchProposal, apply_patch
 
 mcp = FastMCP("approved-retail-repair", log_level="ERROR")
 REPAIR_ID = str(UUID(os.environ["REPAIR_ID"]))
-SNAPSHOT = load_snapshot()
+SNAPSHOT = load_snapshot(os.environ["SNAPSHOT_ID"])
 if os.environ["SNAPSHOT_ID"] != SNAPSHOT.id:
     raise ValueError("MCP context does not match frozen snapshot")
 BROKER = os.environ["REPAIR_BROKER_URL"]

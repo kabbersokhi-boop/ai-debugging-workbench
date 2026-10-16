@@ -1,6 +1,7 @@
 """Trusted Docker boundary. No model, DB or provider credentials; never accepts commands."""
 
 import asyncio
+import base64
 import json
 import os
 import socket
@@ -21,8 +22,8 @@ from playwright.async_api import async_playwright
 from pydantic import Field
 
 from workbench.rag.contracts import StrictModel
-from workbench.rag.snapshot import load_snapshot
-from workbench.repair.contracts import PatchProposal, apply_patch, sha256
+from workbench.rag.snapshot import load_snapshot, snapshot_scenario
+from workbench.repair.contracts import PatchProposal, RemoteAction, apply_patch, sha256
 from workbench.repair.verifier import VERIFIER_VERSION, verify
 
 ROOT = Path(os.environ.get("REPAIR_ARTIFACT_DIR", "/tmp/workbench-repairs"))
@@ -166,7 +167,7 @@ async def ensure(repair_id: UUID, attempt: int) -> dict[str, Any]:
             oldest = min(idle, key=lambda k: LIVE[k]["created_monotonic"])
             await cleanup(oldest)
         candidate = saved(repair_id, attempt)
-        snapshot = load_snapshot()
+        snapshot = load_snapshot(candidate["proposal"]["snapshot_id"])
         # Revalidate retained proposal/hash before reconstruction; never use latest working files.
         validated = apply_patch(snapshot, PatchProposal.model_validate(candidate["proposal"]))
         if validated["candidate_hash"] != candidate["candidate_hash"]:
@@ -202,7 +203,7 @@ async def inspect_executed_files(
     instance: dict[str, Any], candidate: dict[str, Any]
 ) -> dict[str, str]:
     """Hash bytes served from the actual immutable candidate volume, outside its browser."""
-    snapshot = load_snapshot()
+    snapshot = load_snapshot(candidate["proposal"]["snapshot_id"])
     hashes = {}
     async with httpx.AsyncClient(timeout=3, trust_env=False) as client:
         for source in snapshot.files:
@@ -260,15 +261,53 @@ async def health():
     return {"status": "ok", "active_candidates": len(LIVE), "verifier_version": VERIFIER_VERSION}
 
 
+def runtime_image() -> str:
+    client = docker.from_env()
+    try:
+        image_id = client.images.get(IMAGE).id
+        if image_id is None:
+            raise ValueError("Runtime image has no identity")
+        return image_id
+    finally:
+        client.close()
+
+
+def verification_binding(snapshot_id: str, candidate_hash: str, image_id: str) -> dict[str, str]:
+    case = snapshot_scenario(snapshot_id)
+    expectations = sha256(
+        json.dumps(
+            {
+                "contract": "retail-contract-v1",
+                "scenario": case["id"],
+                "issue_check": case["issue_check"],
+            },
+            sort_keys=True,
+        )
+    )
+    identity = {
+        "source_snapshot": snapshot_id,
+        "candidate_hash": candidate_hash,
+        "verifier_version": VERIFIER_VERSION,
+        "container_image_id": image_id,
+        "scenario_expectations": expectations,
+    }
+    return {**identity, "artifact_id": sha256(json.dumps(identity, sort_keys=True))}
+
+
 @app.post("/original/verify")
-async def verify_original():
-    folder = ROOT / "original" / VERIFIER_VERSION
+async def verify_original(snapshot_id: str | None = None):
+    snapshot = load_snapshot(snapshot_id)
+    binding = verification_binding(
+        snapshot.id, snapshot.fixture_sha256, await asyncio.to_thread(runtime_image)
+    )
+    folder = ROOT / "original" / binding["artifact_id"]
     folder.mkdir(parents=True, exist_ok=True)
     retained = folder / "verification.json"
-    if await asyncio.to_thread(retained.exists):
-        return json.loads(retained.read_text())
-    snapshot = load_snapshot()
-    key = "original-baseline"
+    if retained.is_file():
+        result = json.loads(retained.read_text())
+        if all(result.get(k) == v for k, v in binding.items()):
+            return result
+    key = "original-" + binding["artifact_id"][:16]
     files = {
         Path(f.path).name: f.content
         for f in snapshot.files
@@ -276,14 +315,16 @@ async def verify_original():
     }
     instance = await asyncio.to_thread(create_sync, key, files)
     try:
+        if instance["image_id"] != binding["container_image_id"]:
+            raise ValueError("Runtime image changed during admission")
         async with asyncio.timeout(55), async_playwright() as p:
-            # Startup readiness is bounded by Playwright's connection retry.
             await asyncio.sleep(1)
             browser = await p.chromium.connect_over_cdp(
                 f"http://{instance['ip']}:9223", timeout=15000
             )
             result = await verify(browser, snapshot.fixture_sha256, folder / "after.png")
-        result["source_snapshot"] = snapshot.id
+        result.update(binding)
+        result["container_id"] = instance["container_id"]
         retained.write_text(json.dumps(result))
         return result
     finally:
@@ -292,7 +333,7 @@ async def verify_original():
 
 @app.post("/candidates")
 async def create(payload: CreateCandidate):
-    candidate = apply_patch(load_snapshot(), payload.patch)
+    candidate = apply_patch(load_snapshot(payload.patch.snapshot_id), payload.patch)
     folder = directory(payload.repair_id, payload.attempt)
     folder.mkdir(parents=True, exist_ok=True)
     manifest = folder / "candidate.json"
@@ -311,13 +352,15 @@ async def trusted_verify(repair_id: UUID, attempt: int):
     key = f"{repair_id}-{attempt}"
     candidate = saved(repair_id, attempt)
     folder = directory(repair_id, attempt)
-    result_path = folder / f"verification-{VERIFIER_VERSION}.json"
+    binding = verification_binding(
+        candidate["proposal"]["snapshot_id"],
+        candidate["candidate_hash"],
+        await asyncio.to_thread(runtime_image),
+    )
+    result_path = folder / f"verification-{binding['artifact_id']}.json"
     if result_path.is_file():
         retained = json.loads(result_path.read_text())
-        if (
-            retained["candidate_hash"] == candidate["candidate_hash"]
-            and retained["verifier_version"] == VERIFIER_VERSION
-        ):
+        if all(retained.get(k) == v for k, v in binding.items()):
             return retained
     if key in TASKS:
         raise HTTPException(409, "Verification already active")
@@ -327,15 +370,20 @@ async def trusted_verify(repair_id: UUID, attempt: int):
     try:
         async with asyncio.timeout(55):
             instance = await ensure(repair_id, attempt)
+            if instance["image_id"] != binding["container_image_id"]:
+                raise ValueError("Actual candidate runtime differs from verification admission")
             executed = await inspect_executed_files(instance, candidate)
             async with async_playwright() as p:
                 browser = await p.chromium.connect_over_cdp(f"http://{instance['ip']}:9223")
                 result = await verify(
-                    browser, candidate["candidate_hash"], folder / f"after-{VERIFIER_VERSION}.png"
+                    browser,
+                    candidate["candidate_hash"],
+                    folder / f"after-{binding['artifact_id']}.png",
                 )
                 # Disconnect transport on leaving Playwright; no target process may assert success.
             if executed != await inspect_executed_files(instance, candidate):
                 raise ValueError("Candidate changed during verification")
+            result.update(binding)
             result["executed_file_hashes"] = executed
             result["container_id"] = instance["container_id"]
             result["container_image_id"] = instance["image_id"]
@@ -364,7 +412,12 @@ async def stop(repair_id: UUID):
 async def reconcile(repair_id: UUID, attempt: int):
     key = f"{repair_id}-{attempt}"
     candidate = saved(repair_id, attempt)
-    verification = directory(repair_id, attempt) / f"verification-{VERIFIER_VERSION}.json"
+    binding = verification_binding(
+        candidate["proposal"]["snapshot_id"],
+        candidate["candidate_hash"],
+        await asyncio.to_thread(runtime_image),
+    )
+    verification = directory(repair_id, attempt) / f"verification-{binding['artifact_id']}.json"
     return {
         "candidate_hash": candidate["candidate_hash"],
         "live": key in LIVE,
@@ -390,7 +443,13 @@ async def artifact(repair_id: UUID, attempt: int, name: str):
     folder = directory(repair_id, attempt)
     if name in ("after.png", "verification.json"):
         stem, extension = name.rsplit(".", 1)
-        path = folder / f"{stem}-{VERIFIER_VERSION}.{extension}"
+        candidate = saved(repair_id, attempt)
+        binding = verification_binding(
+            candidate["proposal"]["snapshot_id"],
+            candidate["candidate_hash"],
+            await asyncio.to_thread(runtime_image),
+        )
+        path = folder / f"{stem}-{binding['artifact_id']}.{extension}"
         if not path.is_file():
             path = folder / name  # Historical initial-version evidence; never rewritten.
     elif name == "candidate.json" or re.fullmatch(
@@ -409,33 +468,89 @@ async def artifact(repair_id: UUID, attempt: int, name: str):
     return FileResponse(path)
 
 
-@preview.get("/preview/{repair_id}/{attempt}/retail/{name:path}")
-async def preview_file(repair_id: UUID, attempt: int, name: str):
+@app.post("/candidates/{repair_id}/{attempt}/remote")
+async def remote_action(repair_id: UUID, attempt: int, payload: RemoteAction):
     key = f"{repair_id}-{attempt}"
-    if name not in ("", "index.html", "cart.js", "styles.css") or key not in LIVE:
-        return Response(
-            "Preview expired. Use Start / reset candidate preview in the workbench.",
-            status_code=410,
-        )
-    candidate = saved(repair_id, attempt)
-    source = next(f for f in load_snapshot().files if Path(f.path).name == (name or "index.html"))
-    body = candidate["content"] if name == "cart.js" else source.content
-    if name in ("", "index.html"):
-        body = body.replace('"/retail/', f'"/preview/{repair_id}/{attempt}/retail/')
+    if key in TASKS:
+        raise HTTPException(409, "Verification owns this candidate browser")
+    task = asyncio.current_task()
+    assert task is not None
+    TASKS[key] = task
+    try:
+        async with asyncio.timeout(12):
+            instance = await ensure(repair_id, attempt)
+            instance["preview_actions"] = instance.get("preview_actions", 0) + 1
+            if instance["preview_actions"] > 100:
+                raise HTTPException(429, "Remote preview action limit reached; wait for expiry")
+            candidate = saved(repair_id, attempt)
+            await inspect_executed_files(instance, candidate)
+            async with async_playwright() as p:
+                browser = await p.chromium.connect_over_cdp(
+                    f"http://{instance['ip']}:9223", timeout=4000
+                )
+                context = browser.contexts[0]
+                page = context.pages[0] if context.pages else await context.new_page()
+                page.set_default_timeout(2500)
+                await page.set_viewport_size({"width": 800, "height": 760})
+                # This context is for remote interaction only. CSP in the candidate server also
+                # denies connections; routing adds a second fixed resource boundary.
+                allowed = {
+                    "http://127.0.0.1:8080/retail/" + name for name in ("", "cart.js", "styles.css")
+                }
+                await context.route(
+                    "**/*",
+                    lambda route: (
+                        route.continue_() if route.request.url in allowed else route.abort()
+                    ),
+                )
+                if payload.action == "reset" or page.url != "http://127.0.0.1:8080/retail/":
+                    await page.goto("http://127.0.0.1:8080/retail/", timeout=4000)
+                if payload.action != "reset":
+                    selector = {
+                        "add": "#add-to-cart",
+                        "increase": "#increase",
+                        "decrease": "#decrease",
+                    }[payload.action]
+                    control = page.locator(selector)
+                    if await control.is_enabled():
+                        await control.click()
+                observed = {
+                    k: (await page.get_by_test_id(k).inner_text())[:200]
+                    for k in ("bag-count", "subtotal", "shipping", "total")
+                }
+                image = await page.screenshot(timeout=3000)
+                if len(image) > 2000000:
+                    raise ValueError("Remote frame exceeds pixel budget")
+                return {
+                    "mode": "remote_browser",
+                    "candidate_hash": candidate["candidate_hash"],
+                    "source_snapshot": candidate["proposal"]["snapshot_id"],
+                    "container_image_id": instance["image_id"],
+                    "image": base64.b64encode(image).decode(),
+                    "observed": observed,
+                }
+    except (TimeoutError, ValueError):
+        await cleanup(key)
+        raise HTTPException(
+            504, "Remote preview stopped; no candidate code was sent to your browser"
+        ) from None
+    except asyncio.CancelledError:
+        await cleanup(key)
+        raise
+    except Exception:
+        await cleanup(key)
+        raise HTTPException(
+            503, "Remote browser stopped; no verification result inferred"
+        ) from None
+    finally:
+        TASKS.pop(key, None)
+
+
+@preview.get("/preview/{path:path}")
+async def retired_script_preview(path: str):
     return Response(
-        body,
-        media_type={"cart.js": "text/javascript", "styles.css": "text/css"}.get(name, "text/html"),
-        headers={
-            ("Content-Security-Policy"): (
-                "sandbox allow-scripts; default-src 'none'; script-src 'self'; "
-                "style-src 'self'; connect-src 'none'; img-src 'none'; object-src "
-                "'none'; base-uri 'none'; form-action 'none'; frame-ancestors "
-                "http://localhost:8010 http://127.0.0.1:8010"
-            ),
-            "Cache-Control": "no-store",
-            "X-Content-Type-Options": "nosniff",
-            "Referrer-Policy": "no-referrer",
-        },
+        "Script delivery is disabled. Use the remote pixel preview in the workbench.",
+        status_code=410,
     )
 
 

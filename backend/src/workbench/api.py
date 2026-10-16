@@ -5,16 +5,21 @@ from uuid import UUID
 
 import httpx
 from fastapi import FastAPI, Header, HTTPException, Request
-from fastapi.responses import FileResponse, RedirectResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import select, text
 
+from workbench import release as recordings_api
+from workbench.access import authorize, check_origin, guest
 from workbench.config import settings
 from workbench.contracts import BUG, Bug, CreateRun, RunSummary, RunView
 from workbench.db import Run, SourceSnapshot, engine, sessions
 from workbench.rag.contracts import InvestigationRequest
 from workbench.rag.service import InvestigationManager
+from workbench.rag.snapshot import scenario_manifest
+from workbench.repair.contracts import RemoteAction
 from workbench.repair.service import RepairManager
+from workbench.runner import scenario_resource
 from workbench.service import RunManager, get_run
 
 
@@ -54,7 +59,27 @@ app = FastAPI(title="AI debugging workbench", version="0.1.0", lifespan=lifespan
 
 @app.middleware("http")
 async def response_headers(request: Request, call_next):
-    response = await call_next(request)
+    owner = None
+    try:
+        if settings.guest_access and request.url.path.startswith("/api/"):
+            check_origin(request)
+            owner, created = await guest(request)
+            request.state.owner_id = owner
+            await authorize(request.url.path, owner)
+        else:
+            created = False
+        response = await call_next(request)
+        if created and owner is not None:
+            response.set_cookie(
+                "workbench_guest",
+                str(owner),
+                max_age=86400,
+                httponly=True,
+                secure=settings.secure_cookies,
+                samesite="strict",
+            )
+    except HTTPException as error:
+        response = JSONResponse({"detail": error.detail}, status_code=error.status_code)
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["Referrer-Policy"] = "same-origin"
     response.headers["X-Frame-Options"] = "SAMEORIGIN"
@@ -78,13 +103,37 @@ async def health(request: Request) -> dict[str, str]:
 
 @app.get("/api/bugs")
 async def bugs() -> list[Bug]:
-    return [BUG]
+    return [
+        BUG
+        if c["id"] == BUG.id
+        else Bug(
+            id=c["id"],
+            title=c["title"],
+            summary=c["report"],
+            report=c["report"],
+            severity="High",
+            steps=[
+                "Open the approved scenario with a fresh cart.",
+                "Follow the report; compare visible quantities and prices.",
+            ],
+            expected=(
+                "Quantity stays between 1 and 9; prices include every unit; "
+                "shipping is $8 below $100 and free otherwise."
+            ),
+            repository="fixtures/retail",
+        )
+        for c in scenario_manifest()["cases"]
+        if c["split"] == "development"
+    ]
 
 
 @app.get("/api/runs")
-async def history() -> list[RunSummary]:
+async def history(request: Request) -> list[RunSummary]:
     async with sessions() as session:
-        runs = (await session.scalars(select(Run).order_by(Run.created_at.desc()).limit(30))).all()
+        query = select(Run).order_by(Run.created_at.desc()).limit(30)
+        if settings.guest_access:
+            query = query.where(Run.owner_id == request.state.owner_id)
+        runs = (await session.scalars(query)).all()
         return [RunSummary.model_validate(run) for run in runs]
 
 
@@ -95,7 +144,29 @@ async def create_run(
     idempotency_key: Annotated[str | None, Header(min_length=8, max_length=100)] = None,
 ) -> RunView:
     manager: RunManager = request.app.state.manager
-    return await manager.create(payload.bug_id, idempotency_key)
+    from workbench.rag.snapshot import scenario
+
+    try:
+        case = scenario(payload.bug_id)
+    except ValueError:
+        raise HTTPException(422, "Unknown supported scenario") from None
+    if case["split"] != "development":
+        raise HTTPException(422, "Only demonstration scenarios can be run through the product")
+    if settings.guest_access and idempotency_key:
+        import hashlib
+
+        idempotency_key = hashlib.sha256(
+            f"{request.state.owner_id}:{idempotency_key}".encode()
+        ).hexdigest()
+    result = await manager.create(payload.bug_id, idempotency_key)
+    if settings.guest_access:
+        async with sessions.begin() as session:
+            row = await session.get(Run, result.id)
+            assert row is not None
+            if row.owner_id not in (None, request.state.owner_id):
+                raise HTTPException(409, "Idempotency ownership mismatch")
+            row.owner_id = request.state.owner_id
+    return result
 
 
 @app.get("/api/runs/{run_id}")
@@ -226,7 +297,25 @@ async def candidate_preview(repair_id: UUID, attempt: int, request: Request):
         ) from None
     if result["candidate_hash"] != candidate["candidate"]["candidate_hash"]:
         raise HTTPException(409, "Preview identity does not match the saved candidate")
-    return {**result, "url": settings.repair_preview_origin + result["path"]}
+    return {**result, "url": f"/repairs/{repair_id}/attempts/{attempt}/remote"}
+
+
+@app.post("/api/repairs/{repair_id}/attempts/{attempt}/remote")
+async def remote_preview(repair_id: UUID, attempt: int, action: RemoteAction, request: Request):
+    candidate = await saved_attempt(repair_id, attempt, request)
+    async with httpx.AsyncClient(timeout=16) as client:
+        response = await client.post(
+            f"{settings.repair_broker_url}/candidates/{repair_id}/{attempt}/remote",
+            json=action.model_dump(),
+        )
+    if response.status_code != 200:
+        raise HTTPException(
+            503, "Remote browser is unavailable or reached its limits. Retry or reset after expiry."
+        )
+    result = response.json()
+    if result["candidate_hash"] != candidate["candidate"]["candidate_hash"]:
+        raise HTTPException(409, "Remote frame identity mismatch")
+    return result
 
 
 @app.get("/api/repairs/{repair_id}/attempts/{attempt}/screenshot")
@@ -235,7 +324,7 @@ async def candidate_screenshot(repair_id: UUID, attempt: int, request: Request):
     verification = candidate.get("verification")
     if not verification:
         raise HTTPException(404, "No trusted candidate capture exists")
-    version = verification["verifier_version"]
+    version = verification.get("artifact_id", verification["verifier_version"])
     async with httpx.AsyncClient(timeout=10) as client:
         response = await client.get(
             f"{settings.repair_broker_url}/candidates/{repair_id}/{attempt}/artifacts/after-{version}.png"
@@ -243,6 +332,22 @@ async def candidate_screenshot(repair_id: UUID, attempt: int, request: Request):
         if response.status_code != 200 or len(response.content) > 2000000:
             raise HTTPException(404, "Candidate screenshot unavailable")
     return Response(response.content, media_type="image/png")
+
+
+@app.get("/scenarios/{scenario_id}/retail/{name:path}")
+async def scenario_file(scenario_id: str, name: str):
+    return scenario_resource(scenario_id, name)
+
+
+app.add_api_route("/api/recordings", recordings_api.recordings)
+app.add_api_route("/api/recordings/{recording_id}", recordings_api.recording)
+app.add_api_route("/api/recorded-assets/{name}", recordings_api.asset)
+app.add_api_route("/recorded/", recordings_api.explorer)
+
+
+@app.get("/api/mode")
+async def mode():
+    return {"mode": "private_live", "live_available": True, "recorded_url": "/recorded/"}
 
 
 # The same immutable fixture can be explored manually without exposing the runner API.

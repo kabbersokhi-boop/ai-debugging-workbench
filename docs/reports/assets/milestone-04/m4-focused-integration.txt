@@ -1,0 +1,15 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 97 items / 94 deselected / 3 selected
+
+tests/test_access_integration.py::test_guest_ownership_artifacts_idempotency_and_expiry PASSED [ 33%]
+tests/test_access_integration.py::test_reservations_are_atomic_persisted_and_server_wide PASSED [ 66%]
+tests/test_rag_integration.py::test_real_pgvector_fts_index_dedup_and_snapshot_isolation PASSED [100%]
+
+======================= 3 passed, 94 deselected in 2.09s =======================

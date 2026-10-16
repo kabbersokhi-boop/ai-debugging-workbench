@@ -15,6 +15,7 @@ COPY backend/migrations/ ./migrations/
 COPY backend/alembic.ini ./alembic.ini
 RUN uv sync --frozen --no-dev --python 3.12
 COPY fixtures/ /app/fixtures/
+COPY recordings/ /app/recordings/
 COPY --from=web /web/dist /app/frontend/dist
 RUN mkdir -p /app/artifacts && chown pwuser:pwuser /app/artifacts
 USER pwuser

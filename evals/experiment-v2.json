@@ -1,0 +1,197 @@
+{
+  "experiment": "retail-repair-comparison-experiment-v2",
+  "scenario_version": "retail-scenarios-v1",
+  "cases": [
+    {
+      "id": "cart-quantity",
+      "split": "development",
+      "behavior": "pricing",
+      "title": "Cart total ignores item quantity",
+      "report": "Changing quantity to three leaves checkout at the one-item price.",
+      "issue_check": "increment-three",
+      "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11"
+    },
+    {
+      "id": "shipping-threshold",
+      "split": "development",
+      "behavior": "shipping",
+      "title": "Free shipping starts too late",
+      "report": "At quantity two the $128 subtotal still has shipping charged; orders at least $100 should ship free.",
+      "issue_check": "increment-two",
+      "snapshot_id": "083d33d35448009de68a9e8c6d153746669c0916ece1f29ad2097cf7c772c68b"
+    },
+    {
+      "id": "decrement-skip",
+      "split": "development",
+      "behavior": "transitions",
+      "title": "Decrease skips an item",
+      "report": "After increasing to three, one decrease jumps to one instead of two.",
+      "issue_check": "decrement-two",
+      "snapshot_id": "c6bb557b783f21da7d46384e3584599b5e21066325367235e0807b86d272585d"
+    },
+    {
+      "id": "clamp-zero",
+      "split": "development",
+      "behavior": "bounds",
+      "title": "Zero quantity breaks the lower bound",
+      "report": "Entering zero should clamp the occupied cart to one item, but it empties the bag.",
+      "issue_check": "clamp-zero",
+      "snapshot_id": "d4643cfb9c7fae61c42c012cd28027d6e4a411f9576f6ddfbfa4331c6234ec46"
+    },
+    {
+      "id": "line-amount",
+      "split": "evaluation",
+      "behavior": "pricing",
+      "title": "Line amount ignores quantity",
+      "report": "At three items checkout is correct but the line amount still shows $64 rather than $192.",
+      "issue_check": "increment-three",
+      "snapshot_id": "36d323f2960d7f67e3e8b4cadcbcccadeafb510545191715ab0efa2a19480ae0"
+    },
+    {
+      "id": "total-sign",
+      "split": "evaluation",
+      "behavior": "pricing",
+      "title": "Order total subtracts delivery",
+      "report": "A one-item order shows an order total smaller than the $64 subtotal; delivery should add $8.",
+      "issue_check": "add-one-baseline",
+      "snapshot_id": "0ce2f106856389bcbf607c9d90d16a50f9dd863549b7eee18ce20978d5fa86e1"
+    },
+    {
+      "id": "empty-shipping",
+      "split": "evaluation",
+      "behavior": "shipping",
+      "title": "Empty bag incurs delivery",
+      "report": "A fresh empty bag shows an $8 delivery charge instead of zero.",
+      "issue_check": "empty-bag",
+      "snapshot_id": "f7da3946480c7490cdf2aedb46fe20cfc2ff0d57250c375c4dc8a645dcd83b60"
+    },
+    {
+      "id": "single-free",
+      "split": "evaluation",
+      "behavior": "shipping",
+      "title": "Small orders receive free delivery",
+      "report": "A single $64 daypack receives free delivery even though free shipping requires at least $100.",
+      "issue_check": "add-one-baseline",
+      "snapshot_id": "8048acf37de4ecfd306580147c44be540837f8e21a2c344379cc1c4ffe48d6f2"
+    },
+    {
+      "id": "increment-skip",
+      "split": "evaluation",
+      "behavior": "transitions",
+      "title": "Increase skips a quantity",
+      "report": "After adding one item, one increase jumps to three rather than two.",
+      "issue_check": "increment-two",
+      "snapshot_id": "215759e51339d364574bc317c6d58ea890f97b2f00a86ee1ca66932077e16d41"
+    },
+    {
+      "id": "add-reset",
+      "split": "evaluation",
+      "behavior": "transitions",
+      "title": "Repeated add resets the cart",
+      "report": "Clicking Add to bag again resets the count to one instead of incrementing to the nine-item limit.",
+      "issue_check": "repeated-add-limit",
+      "snapshot_id": "b68a22f022724f211b33286fe6faea6fb6e712bc6ae0846602acbbbd1bfdac81"
+    },
+    {
+      "id": "clamp-upper",
+      "split": "evaluation",
+      "behavior": "bounds",
+      "title": "Large input exceeds the cart limit",
+      "report": "Entering 99 results in ten items; the documented maximum is nine.",
+      "issue_check": "clamp-large",
+      "snapshot_id": "61d60bfd66229b6b15f098bc124d4679e61680e1db921feaf7dabe2d3b48b5a5"
+    },
+    {
+      "id": "invalid-default",
+      "split": "evaluation",
+      "behavior": "bounds",
+      "title": "Blank quantity selects nine items",
+      "report": "Clearing quantity should fall back to one item, but it selects nine.",
+      "issue_check": "invalid-input",
+      "snapshot_id": "aea6746f63baf2adb988ce1edc0315dcaffda12e786db84550ed179ea9ea654c"
+    }
+  ],
+  "conditions": [
+    "one-shot-whole",
+    "loop-whole",
+    "loop-retrieval"
+  ],
+  "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "embedding_model": "nvidia/nemotron-3-embed-1b",
+  "rerank_model": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+  "temperature": 0,
+  "thinking": false,
+  "max_tokens_per_chat": 2000,
+  "input_bound": 32768,
+  "context_budget_utf8": 4000,
+  "per_condition": {
+    "one-shot-whole": {
+      "decisions": 1,
+      "patches": 1,
+      "requests": 2,
+      "feedback": "none before final scoring"
+    },
+    "loop-whole": {
+      "decisions": 6,
+      "patches": 2,
+      "requests": 8,
+      "feedback": "named retail-pricing-browser-v1 checks and patch validation only"
+    },
+    "loop-retrieval": {
+      "decisions": 6,
+      "patches": 2,
+      "requests": 8,
+      "feedback": "same as loop-whole"
+    }
+  },
+  "shared_budget": {
+    "http_requests_including_retries": 256,
+    "reserved_output_tokens": 256000,
+    "wall_seconds": 5400
+  },
+  "case_timeout_seconds": 300,
+  "provider_timeout_seconds": 45.0,
+  "retry_limit": 1,
+  "candidate_runtime_image_id": "sha256:edaa4ae5534a7d6ed8ec84fc3808b90fbb305fab28763022650c06f83b94251a",
+  "broker_image_id": "sha256:0abfd845a03d191fdee177cea24fd8ccd8087ab2af723b781a9001f6cb9b17d6",
+  "verifier_version": "c39b63186c6c3d9d7d3d9196729044db38efa1f76484afd87d205423b8e9b11a",
+  "final_checks_version": "retail-final-v1",
+  "scoring": "final candidate only; issue-specific feedback check AND all feedback regression checks AND all evaluation-only final checks; infrastructure/invalid/timeouts count as unresolved",
+  "diagnosis_input": "No prior AI diagnosis in any condition; same report and observed failing check. This isolates repair loop and context effects.",
+  "checkpoint_mode": "in-memory LangGraph for benchmark; atomically retained node states and raw responses on disk; product uses native PostgreSQL checkpoints",
+  "cost": "unavailable; measured provider token usage only",
+  "files": {
+    "backend/src/workbench/config.py": "18d829896048eefc5446037682b969fd812e35d3b05420f74888b01fa1e1fe55",
+    "backend/src/workbench/contracts.py": "48a20f10cef87bb2ecfa8464dc546a5a40c9aefd3bf58db611b903ebd4234547",
+    "backend/src/workbench/rag/contracts.py": "ebf17031f00beb3d54b490e3ce7414bc15850719908bbbfbab5f3ecd973e71b3",
+    "backend/src/workbench/rag/provider.py": "9a48bdd8a1b925be9f19f2fbe679cf5519dbb745b64631fe14529932ccffa877",
+    "backend/src/workbench/rag/retail-snapshot.json": "2c1c1d8bfaf5a5569b1a39929191c80fc22d3c190738553a7dca33dc8b5aa099",
+    "backend/src/workbench/rag/retrieval.py": "288b618b1efa8b5b0cc26d2392d904ab722568346a6de0daf848bf95918ca9b1",
+    "backend/src/workbench/rag/scenarios.json": "540db4dce9c5437eaa6185ba6341cc9954c867161ce12517c7a46941fa656f95",
+    "backend/src/workbench/rag/scenarios/083d33d35448009de68a9e8c6d153746669c0916ece1f29ad2097cf7c772c68b.json": "4f61eed45f8822a25f80f59ddf6e8e3fb84f2ed5ec87ebe31659f646ecfd3eed",
+    "backend/src/workbench/rag/scenarios/0ce2f106856389bcbf607c9d90d16a50f9dd863549b7eee18ce20978d5fa86e1.json": "014c42ab531b80737dbccd74f17ca1dd06a012045a10a4eca711d351e3702f2b",
+    "backend/src/workbench/rag/scenarios/215759e51339d364574bc317c6d58ea890f97b2f00a86ee1ca66932077e16d41.json": "568661471b9410f82f67f5338409605d756735887d031cd6a432e4a813e25637",
+    "backend/src/workbench/rag/scenarios/36d323f2960d7f67e3e8b4cadcbcccadeafb510545191715ab0efa2a19480ae0.json": "765265ea998e261d860f0a028ccc16b13565fe15c7dfc62b3ccba32b616ffa13",
+    "backend/src/workbench/rag/scenarios/61d60bfd66229b6b15f098bc124d4679e61680e1db921feaf7dabe2d3b48b5a5.json": "d5f6c6f70072c265ec2f65c72bc259fb883a419831868d2cf038d223a4d2a0d3",
+    "backend/src/workbench/rag/scenarios/8048acf37de4ecfd306580147c44be540837f8e21a2c344379cc1c4ffe48d6f2.json": "bdbb98ec9cf39267cce10bdaa47ddcfc38c8ab9bcc5909a7b8dd86ffb6d3b98d",
+    "backend/src/workbench/rag/scenarios/aea6746f63baf2adb988ce1edc0315dcaffda12e786db84550ed179ea9ea654c.json": "02c75018b60e009cdd28304dd49b54203ce41cafece079cd328bbc6e2a9d7b1c",
+    "backend/src/workbench/rag/scenarios/b68a22f022724f211b33286fe6faea6fb6e712bc6ae0846602acbbbd1bfdac81.json": "dc809493dd828e4295967176bd9d96b07479d6a18071aeb174faf15b518e7307",
+    "backend/src/workbench/rag/scenarios/c6bb557b783f21da7d46384e3584599b5e21066325367235e0807b86d272585d.json": "3a73205c2f1574d0c10495cc1301877bd305108de08aa4fd582d8e68e55b5ec6",
+    "backend/src/workbench/rag/scenarios/d4643cfb9c7fae61c42c012cd28027d6e4a411f9576f6ddfbfa4331c6234ec46.json": "51d14caeaa5f25f5fc7a9cc61cbbdb62b151771fb17dea2df5d2d5e170da3e6d",
+    "backend/src/workbench/rag/scenarios/f7da3946480c7490cdf2aedb46fe20cfc2ff0d57250c375c4dc8a645dcd83b60.json": "4d2204df94ecbdeb30c1456945ff736b56841982bda17e39123a917e9881cc64",
+    "backend/src/workbench/rag/snapshot.py": "768a6dbfe9c45ad8142f6287115ed296d56ec1df04b3fec1715f493cd820d40f",
+    "backend/src/workbench/repair/broker.py": "02b580fb0168f7491b150b21ef0c120680d8c2454fbc38f7b4d649e16abf4871",
+    "backend/src/workbench/repair/contracts.py": "ba292d7a9393f16ed2dd825f9760bc37815bd8c29b7d5c5f848711e6708a91b3",
+    "backend/src/workbench/repair/graph.py": "081d4d3802c6effcc77684df50d7fdd302f5df2771ae74cf35b250e62bfb588f",
+    "backend/src/workbench/repair/mcp_client.py": "9f3c9b15d7065d608dc4dc5105f491de6df2b4693689e3f0bd33dc7e6e783f40",
+    "backend/src/workbench/repair/mcp_server.py": "6886a0731126668d142165ba5b4cc21aaaba0941186ce52939e2c38cd6464ca1",
+    "backend/src/workbench/repair/verifier.py": "fa6b8149e83bfbb332ba9ac347a302b35714550589cb74582efcc68ce5cff6f1",
+    "backend/src/workbench/runner.py": "4b42677f42c4c713496853f180ab6bdce9dcb47942aeaed2c65ae0439c7720a1",
+    "backend/uv.lock": "0e2b9257ddd24d5b1165c10c316ad317280ed287a3104ad36b7d8ecd05cbb73e",
+    "docker/candidate.Dockerfile": "c910d3b272ab786e57cb3dedb158ccf520debb969ace67d9875fd0131bfdbbc7",
+    "docker/candidate_entry.py": "518eb2e214d729c2b217ebd6bfd7fa689b9c40aaaa8a6e11ed084ff1c793b7d0",
+    "evals/final_checks.py": "0f48291d5ecede994ce56749cb64c84639bdfcb69995967d2b94e95cf4017607",
+    "evals/scenarios-v1.json": "f0afadd534605e1b8b06288627d9564c760d070860f3001187747a014b871726",
+    "scripts/evaluate_repairs.py": "c266317aad149a1ed80b62d33f847724e9b5ab4f4f64b006ea16e04cd42bb381"
+  }
+}

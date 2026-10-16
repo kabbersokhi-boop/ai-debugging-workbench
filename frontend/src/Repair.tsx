@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { ArrowRight, Download, LoaderCircle, ShieldCheck, Square, Wrench } from "lucide-react";
 import { api } from "./types";
+import RemotePreview from "./RemotePreview";
 import type { Investigation } from "./Investigation";
 
 const CandidateDiff = lazy(() => import("./Diff"));
@@ -16,7 +17,7 @@ type Attempt = {
   verification: Verification | null;
 };
 type Repair = {
-  id: string; status: string; created_at: string; error: string | null; error_code: string | null;
+  id: string; investigation_id: string; status: string; created_at: string; error: string | null; error_code: string | null;
   state: { attempt_count: number; request_remaining: number; output_budget_remaining: number;
     snapshot_id: string; deadline: string; candidate_hash: string | null;
     attempts: Attempt[]; original_verification: Verification | null;
@@ -30,15 +31,23 @@ const label = (s?: string) => ({ verified: "Verified for the supported checks", 
   insufficient_evidence: "Insufficient evidence", provider_error: "Provider error", error: "Execution error",
   cancelled: "Cancelled", interrupted: "Interrupted", verifying: "Verification running", proposing: "Patch proposal requested" })[s ?? ""] ?? s ?? "Ready";
 
-export function RepairWorkspace({ investigation }: { investigation: Investigation }) {
-  const [rows, setRows] = useState<Repair[]>([]);
-  const [current, setCurrent] = useState<Repair | null>(null);
+export function RepairWorkspace({ investigation, scenarioId = "cart-quantity" }: { investigation: Investigation; scenarioId?: string }) {
+  const [savedRows, setRows] = useState<Repair[]>([]);
+  const rows = savedRows.filter(row => row.investigation_id === investigation.id);
+  const [savedCurrent, setCurrent] = useState<Repair | null>(null);
+  const current = savedCurrent?.investigation_id === investigation.id ? savedCurrent : null;
   const [selected, setSelected] = useState(0);
   const [preview, setPreview] = useState("");
   const [reset, setReset] = useState(0);
   const [busy, setBusy] = useState(false);
   const [previewBusy, setPreviewBusy] = useState(false);
   const previewRequest = useRef(0);
+  // Invalidated synchronously on identity changes, including A → B → A.
+  const identity = useRef({ investigation: investigation.id, epoch: 0 });
+  if (identity.current.investigation !== investigation.id) {
+    identity.current = { investigation: investigation.id, epoch: identity.current.epoch + 1 };
+  }
+  const actionRequest = useRef(0);
   function invalidatePreview() {
     previewRequest.current += 1;
     setPreview("");
@@ -47,7 +56,8 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
   const [error, setError] = useState("");
   useEffect(() => {
     let disposed = false;
-    setCurrent(null); setRows([]); invalidatePreview(); setSelected(0); setError("");
+    actionRequest.current += 1;
+    setBusy(false); setCurrent(null); setRows([]); invalidatePreview(); setSelected(0); setError("");
     api<Repair[]>(`/investigations/${investigation.id}/repairs`).then((next) => {
       if (!disposed) { setRows(next); setCurrent(next[0] ?? null); }
     }).catch((e) => { if (!disposed) setError((e as Error).message); });
@@ -69,20 +79,34 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
   }, [current?.id, current?.status]);
   const attempt = current?.state.attempts.find((a) => a.number === selected) ?? current?.state.attempts.at(-1);
   async function start() {
+    const origin = identity.current;
+    const request = ++actionRequest.current;
+    const valid = () => identity.current === origin && actionRequest.current === request;
     setBusy(true); setError(""); invalidatePreview(); setSelected(0);
     try {
       const row = await api<Repair>(`/investigations/${investigation.id}/repairs`, { method: "POST" });
+      if (!valid()) return;
       setCurrent(row); setRows((prior) => [row, ...prior.filter((x) => x.id !== row.id)]);
-    } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+    } catch (e) { if (valid()) setError((e as Error).message); } finally { if (valid()) setBusy(false); }
   }
   async function cancel() {
     if (!current) return;
+    const origin = identity.current;
+    const request = ++actionRequest.current;
+    const repairId = current.id;
+    const valid = () => identity.current === origin && actionRequest.current === request;
     setBusy(true);
-    try { setCurrent(await api<Repair>(`/repairs/${current.id}/cancel`, { method: "POST" })); }
-    catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+    try {
+      const row = await api<Repair>(`/repairs/${repairId}/cancel`, { method: "POST" });
+      if (valid()) setCurrent(row);
+    }
+    catch (e) { if (valid()) setError((e as Error).message); } finally { if (valid()) setBusy(false); }
   }
   async function openPreview() {
     if (!current || !attempt) return;
+    // Retire the previous controls immediately. A delayed startup response must
+    // not let a reset land on a viewer that is about to be replaced.
+    invalidatePreview();
     const requestId = ++previewRequest.current;
     setPreviewBusy(true); setError("");
     try {
@@ -92,7 +116,7 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
     } catch (e) { if (requestId === previewRequest.current) setError((e as Error).message); }
     finally { if (requestId === previewRequest.current) setPreviewBusy(false); }
   }
-  return <section className="report-panel repair-workspace" aria-label="Repair workspace">
+  return <section id="repair-result" className="report-panel repair-workspace" aria-label="Repair workspace">
     <div className="repair-heading"><div><span className="eyebrow">BOUNDED MODEL REPAIR · ORIGINAL PRESERVED</span>
       <h2><Wrench size={19} /> Build a candidate. Check its behavior.</h2>
       <p>NVIDIA can fetch missing source through MCP and propose up to two patches. Trusted browser checks decide the result.</p></div>
@@ -102,7 +126,7 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
     </div>
     {error && <p role="alert" className="error-banner">{error}</p>}
     {rows.length > 0 && <div className="investigation-history"><label htmlFor="saved-repairs">Saved repairs</label>
-      <select id="saved-repairs" value={current?.id ?? ""} onChange={(e) => { setCurrent(rows.find((r) => r.id === e.target.value) ?? null); invalidatePreview(); setSelected(0); }}>
+      <select id="saved-repairs" value={current?.id ?? ""} onChange={(e) => { actionRequest.current += 1; setBusy(false); setCurrent(rows.find((r) => r.id === e.target.value) ?? null); invalidatePreview(); setSelected(0); }}>
         {rows.map((r) => <option key={r.id} value={r.id}>{new Date(r.created_at).toLocaleTimeString()} · {label(r.status)} · {r.id.slice(0,8)}</option>)}
       </select><span className="run-status">{active(current?.status) && <LoaderCircle size={13} className="spin" />}{label(current?.status)}</span></div>}
     {current && <>
@@ -113,17 +137,18 @@ export function RepairWorkspace({ investigation }: { investigation: Investigatio
       <div className="repair-attempts" aria-label="Candidate attempts">{current.state.attempts.map((a) => <button key={a.number} className={a.number === attempt?.number ? "selected" : ""} onClick={() => { setSelected(a.number); invalidatePreview(); }}>Attempt {a.number} · {label(a.status)}</button>)}</div>
       {attempt && <><p>{attempt.proposal.explanation}</p>{attempt.rejection && <p role="alert">Rejected: {attempt.rejection}</p>}
         {attempt.candidate && <>
-          <dl className="snapshot-identity"><div><dt>Candidate SHA-256</dt><dd className="mono">{attempt.candidate.candidate_hash}</dd></div><div><dt>Source snapshot</dt><dd className="mono">{current.state.snapshot_id}</dd></div></dl>
+          <div className="section-heading"><h3>Try the behavior yourself</h3><button className="secondary-button" onClick={openPreview} disabled={busy || previewBusy || active(current.status)}>{previewBusy ? <><LoaderCircle size={13} className="spin" />Starting candidate preview…</> : "Start / reset candidate preview"}</button></div>
+          <p className="citation-validity">Original code runs in a separate storefront session. Candidate code runs remotely in a constrained container; only captured pixels reach this page. Environments expire after ten minutes.</p>
+          <div className="repair-previews"><div><strong>Original · defective frozen storefront</strong><iframe title="Original application" src={scenarioId === "cart-quantity" ? "/retail/" : `/scenarios/${scenarioId}/retail/`} sandbox="allow-scripts" key={`original-${investigation.id}`} /></div><div><strong>Candidate · {attempt.candidate.candidate_hash.slice(0,12)}</strong>{preview ? <RemotePreview endpoint={preview} candidateHash={attempt.candidate.candidate_hash} key={`${preview}-${reset}`} /> : <div className="preview-empty">Start the candidate preview to interact with the proposed change.</div>}</div></div>
+          <details><summary>Source and candidate identity</summary><dl className="snapshot-identity"><div><dt>Candidate SHA-256</dt><dd className="mono">{attempt.candidate.candidate_hash}</dd></div><div><dt>Source snapshot</dt><dd className="mono">{current.state.snapshot_id}</dd></div></dl></details>
           <div className="section-heading"><h3>Exact candidate diff · cart.js</h3><a href={`/api/repairs/${current.id}/attempts/${attempt.number}/patch`}><Download size={13} />Download patch</a></div>
           <Suspense fallback={<p>Loading diff…</p>}><CandidateDiff original={attempt.candidate.original} modified={attempt.candidate.content} /></Suspense>
           <details className="raw-data"><summary>Plain diff and PR preview</summary><p>Proposed change to fixtures/retail/cart.js. No application branch or pull request is published. Any future publication requires owner approval of this exact candidate and destination.</p><pre>{attempt.candidate.diff}</pre></details>
           <div className="section-heading"><div><ShieldCheck size={16} /><h3>Independent behavioral verification</h3></div><span className="small-tag">{attempt.verification?.status ?? "NOT EXECUTED"}</span></div>
-          {attempt.verification && <><p>{attempt.verification.scope}</p><p className="mono verification-identity">Verifier {attempt.verification.verifier_version}<br/>Candidate {attempt.verification.candidate_hash}</p>
+          {attempt.verification && <><p>{attempt.verification.scope}</p><details><summary>Verifier identity</summary><p className="mono verification-identity">Verifier {attempt.verification.verifier_version}<br/>Candidate {attempt.verification.candidate_hash}</p></details>
             <div className="verification-table"><table><thead><tr><th>Trusted check</th><th>Original</th><th>Candidate</th></tr></thead><tbody>{attempt.verification.checks.map((c) => <tr key={c.name}><th>{c.name}</th><td>{current.state.original_verification?.checks.find((x) => x.name === c.name)?.passed ? "Passed" : "Failed"}</td><td><details><summary>{c.passed ? "Passed" : "Failed"}</summary><pre>{JSON.stringify({expected: c.expected, observed: c.observed}, null, 2)}</pre></details></td></tr>)}</tbody></table></div>
             <a href={`/api/repairs/${current.id}/attempts/${attempt.number}/screenshot`} target="_blank" rel="noreferrer">Captured candidate browser evidence ↗</a></>}
-          <div className="section-heading"><h3>Try the behavior yourself</h3><button className="secondary-button" onClick={openPreview} disabled={busy || previewBusy || active(current.status)}>{previewBusy ? <><LoaderCircle size={13} className="spin" />Starting candidate preview…</> : "Start / reset candidate preview"}</button></div>
-          <p className="citation-validity">Separate browser sessions. The candidate uses an opaque sandbox origin with network requests blocked by CSP. Preview environments expire after ten minutes; reset starts a fresh session.</p>
-          <div className="repair-previews"><div><strong>Original · defective frozen storefront</strong><iframe title="Original application" src="/retail/" sandbox="allow-scripts" key={`original-${investigation.id}`} /></div><div><strong>Candidate · {attempt.candidate.candidate_hash.slice(0,12)}</strong>{preview ? <iframe title="Candidate application" src={preview} sandbox="allow-scripts" referrerPolicy="no-referrer" key={`${preview}-${reset}`} /> : <div className="preview-empty">Start the candidate preview to interact with the proposed change.</div>}</div></div>
+
         </>}
       </>}
       <details className="raw-data"><summary>Exact MCP discovery, calls, model inputs and rejected outputs</summary><pre>{JSON.stringify({ source_reads: current.state.source_reads, mcp_events: current.state.mcp_events, model_records: current.state.model_records, provider_calls: current.state.provider_calls }, null, 2)}</pre></details>

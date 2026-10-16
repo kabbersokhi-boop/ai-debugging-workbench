@@ -211,10 +211,14 @@ async def test_candidate_isolation_cleanup_and_preview_headers(broker_url):
                 assert probe.exit_code != 0
             async with httpx.AsyncClient(timeout=10) as http:
                 response = await http.get(f"http://127.0.0.1:8013/preview/{repair_id}/1/retail/")
-                assert response.status_code == 200
-                assert "sandbox allow-scripts" in response.headers["content-security-policy"]
-                assert "connect-src 'none'" in response.headers["content-security-policy"]
-                assert str(repair_id) in response.text
+                assert response.status_code == 410
+                assert "Script delivery is disabled" in response.text
+                remote = await http.post(
+                    f"{broker_url}/candidates/{repair_id}/1/remote", json={"action": "reset"}
+                )
+                assert remote.status_code == 200
+                assert remote.json()["candidate_hash"] == candidate["candidate_hash"]
+                assert remote.json()["observed"]["bag-count"] == "0"
                 await http.post(f"{broker_url}/repairs/{repair_id}/cleanup")
             assert candidate["candidate_hash"]
         assert not client.containers.list(

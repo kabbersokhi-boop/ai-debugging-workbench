@@ -1,0 +1,113 @@
+{
+  "version": "retail-scenarios-v1",
+  "cases": [
+    {
+      "id": "cart-quantity",
+      "split": "development",
+      "behavior": "pricing",
+      "title": "Cart total ignores item quantity",
+      "report": "Changing quantity to three leaves checkout at the one-item price.",
+      "issue_check": "increment-three",
+      "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11"
+    },
+    {
+      "id": "shipping-threshold",
+      "split": "development",
+      "behavior": "shipping",
+      "title": "Free shipping starts too late",
+      "report": "At quantity two the $128 subtotal still has shipping charged; orders at least $100 should ship free.",
+      "issue_check": "increment-two",
+      "snapshot_id": "083d33d35448009de68a9e8c6d153746669c0916ece1f29ad2097cf7c772c68b"
+    },
+    {
+      "id": "decrement-skip",
+      "split": "development",
+      "behavior": "transitions",
+      "title": "Decrease skips an item",
+      "report": "After increasing to three, one decrease jumps to one instead of two.",
+      "issue_check": "decrement-two",
+      "snapshot_id": "c6bb557b783f21da7d46384e3584599b5e21066325367235e0807b86d272585d"
+    },
+    {
+      "id": "clamp-zero",
+      "split": "development",
+      "behavior": "bounds",
+      "title": "Zero quantity breaks the lower bound",
+      "report": "Entering zero should clamp the occupied cart to one item, but it empties the bag.",
+      "issue_check": "clamp-zero",
+      "snapshot_id": "d4643cfb9c7fae61c42c012cd28027d6e4a411f9576f6ddfbfa4331c6234ec46"
+    },
+    {
+      "id": "line-amount",
+      "split": "evaluation",
+      "behavior": "pricing",
+      "title": "Line amount ignores quantity",
+      "report": "At three items checkout is correct but the line amount still shows $64 rather than $192.",
+      "issue_check": "increment-three",
+      "snapshot_id": "36d323f2960d7f67e3e8b4cadcbcccadeafb510545191715ab0efa2a19480ae0"
+    },
+    {
+      "id": "total-sign",
+      "split": "evaluation",
+      "behavior": "pricing",
+      "title": "Order total subtracts delivery",
+      "report": "A one-item order shows an order total smaller than the $64 subtotal; delivery should add $8.",
+      "issue_check": "add-one-baseline",
+      "snapshot_id": "0ce2f106856389bcbf607c9d90d16a50f9dd863549b7eee18ce20978d5fa86e1"
+    },
+    {
+      "id": "empty-shipping",
+      "split": "evaluation",
+      "behavior": "shipping",
+      "title": "Empty bag incurs delivery",
+      "report": "A fresh empty bag shows an $8 delivery charge instead of zero.",
+      "issue_check": "empty-bag",
+      "snapshot_id": "f7da3946480c7490cdf2aedb46fe20cfc2ff0d57250c375c4dc8a645dcd83b60"
+    },
+    {
+      "id": "single-free",
+      "split": "evaluation",
+      "behavior": "shipping",
+      "title": "Small orders receive free delivery",
+      "report": "A single $64 daypack receives free delivery even though free shipping requires at least $100.",
+      "issue_check": "add-one-baseline",
+      "snapshot_id": "8048acf37de4ecfd306580147c44be540837f8e21a2c344379cc1c4ffe48d6f2"
+    },
+    {
+      "id": "increment-skip",
+      "split": "evaluation",
+      "behavior": "transitions",
+      "title": "Increase skips a quantity",
+      "report": "After adding one item, one increase jumps to three rather than two.",
+      "issue_check": "increment-two",
+      "snapshot_id": "215759e51339d364574bc317c6d58ea890f97b2f00a86ee1ca66932077e16d41"
+    },
+    {
+      "id": "add-reset",
+      "split": "evaluation",
+      "behavior": "transitions",
+      "title": "Repeated add resets the cart",
+      "report": "Clicking Add to bag again resets the count to one instead of incrementing to the nine-item limit.",
+      "issue_check": "repeated-add-limit",
+      "snapshot_id": "b68a22f022724f211b33286fe6faea6fb6e712bc6ae0846602acbbbd1bfdac81"
+    },
+    {
+      "id": "clamp-upper",
+      "split": "evaluation",
+      "behavior": "bounds",
+      "title": "Large input exceeds the cart limit",
+      "report": "Entering 99 results in ten items; the documented maximum is nine.",
+      "issue_check": "clamp-large",
+      "snapshot_id": "61d60bfd66229b6b15f098bc124d4679e61680e1db921feaf7dabe2d3b48b5a5"
+    },
+    {
+      "id": "invalid-default",
+      "split": "evaluation",
+      "behavior": "bounds",
+      "title": "Blank quantity selects nine items",
+      "report": "Clearing quantity should fall back to one item, but it selects nine.",
+      "issue_check": "invalid-input",
+      "snapshot_id": "aea6746f63baf2adb988ce1edc0315dcaffda12e786db84550ed179ea9ea654c"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+1
+00:00:00,000 --> 00:00:03,000
+Reopen an actual NVIDIA shipping repair.
+This walkthrough performs no new inference.
+
+2
+00:00:03,000 --> 00:00:06,000
+Inspect the exact model patch
+and twelve independent browser checks.
+
+3
+00:00:06,000 --> 00:00:11,000
+Named controls drive an isolated remote browser.
+Only pixels reach this page; candidate scripts stay remote.
+
+4
+00:00:11,000 --> 00:00:14,000
+Compare quantity two:
+original $136; verified candidate $128.
+
+5
+00:00:14,000 --> 00:00:16,240
+Saved evidence and a responsive workspace.
+Finite checks establish this recorded outcome only.

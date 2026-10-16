@@ -1,0 +1,28 @@
+{
+  "implementation_commit": "d60344756baf75ae43152c7f1547b8db69d78522",
+  "services": {
+    "api": {
+      "image_id": "sha256:d38c7c19cc22dd36c1a1ae1fd863edf1f3877b0eca4079d76b7ff637f4ef90d2",
+      "source_files_matching": 24,
+      "nvidia_environment": true,
+      "environment_files_in_image": false,
+      "docker_socket": false
+    },
+    "runner": {
+      "image_id": "sha256:d38c7c19cc22dd36c1a1ae1fd863edf1f3877b0eca4079d76b7ff637f4ef90d2",
+      "source_files_matching": 24,
+      "nvidia_environment": false,
+      "environment_files_in_image": false,
+      "docker_socket": false
+    },
+    "repair-broker": {
+      "image_id": "sha256:d38c7c19cc22dd36c1a1ae1fd863edf1f3877b0eca4079d76b7ff637f4ef90d2",
+      "source_files_matching": 24,
+      "nvidia_environment": false,
+      "environment_files_in_image": false,
+      "docker_socket": true
+    }
+  },
+  "frontend_index_sha256": "5b964ccd5117e33bb9df122f01dc2dd40fd133cab8afebfc6f6947f3ad4b16ed",
+  "private_and_public_frontend_match_production_build": true
+}

@@ -16,14 +16,17 @@ from uuid import UUID
 
 import anyio
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import StreamingResponse
+from fastapi.responses import Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from playwright.async_api import Browser, Page, async_playwright
 
 from workbench.config import settings
 from workbench.contracts import Artifact, Check, Observation, ReproductionResult, RunnerEvent
+from workbench.rag.snapshot import load_snapshot, scenario
+from workbench.repair.verifier import verify
 
 logger = logging.getLogger(__name__)
+PROCEDURE_SHA256 = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
 slots = asyncio.Semaphore(settings.max_active_runs)
 active_ids: set[UUID] = set()
 
@@ -196,6 +199,11 @@ async def reproduce(run_id: UUID) -> AsyncIterator[bytes]:
                 ),
             ],
             fixture_sha256=fixture_digest(settings.fixture_dir),
+            source_snapshot=load_snapshot().id,
+            runtime_identity={
+                "procedure_sha256": PROCEDURE_SHA256,
+                "chromium": browser.version,
+            },
             browser_version=browser.version,
             duration_ms=round((time.monotonic() - started) * 1000),
         )
@@ -207,6 +215,121 @@ async def reproduce(run_id: UUID) -> AsyncIterator[bytes]:
             "This is reproduction evidence; no patch has been generated or verified.",
             result=result.model_dump(),
         )
+
+
+async def reproduce_scenario(run_id: UUID, scenario_id: str) -> AsyncIterator[bytes]:
+    case = scenario(scenario_id)
+    snapshot = load_snapshot(case["snapshot_id"])
+    started = time.monotonic()
+    folder = settings.artifact_dir / str(run_id)
+    folder.mkdir(parents=True, exist_ok=False)
+    yield event(
+        "step",
+        "Scenario source bound",
+        f"Approved scenario {scenario_id}; frozen source {snapshot.id}.",
+    )
+    async with slots, browser_session() as browser:
+        result = await verify(
+            browser,
+            snapshot.fixture_sha256,
+            folder / "after.png",
+            f"http://127.0.0.1:8011/scenarios/{scenario_id}/retail/",
+            folder / "before.png",
+            issue_name=case["issue_check"],
+        )
+    issue = next(c for c in result["checks"] if c["name"] == case["issue_check"])
+    status = "not_reproduced" if issue["passed"] else "reproduced"
+
+    def cents(value):
+        return round(float(value.replace("$", "").replace(",", "")) * 100)
+
+    def observed(check):
+        values = check["observed"]
+        return Observation(
+            quantity=int(check["controls"]["quantity"]),
+            unit_price_cents=6400,
+            line_total_cents=cents(values["line-total"]),
+            subtotal_cents=cents(values["subtotal"]),
+            shipping_cents=cents(values["shipping"]),
+            total_cents=cents(values["total"]),
+        )
+
+    baseline = next(c for c in result["checks"] if c["name"] == "add-one-baseline")
+    checks = [
+        Check(
+            name=k,
+            expected_cents=cents(issue["expected"][k]),
+            observed_cents=cents(issue["observed"][k]),
+            passed=issue["expected"][k] == issue["observed"][k],
+        )
+        for k in ("line-total", "subtotal", "shipping", "total")
+    ]
+    for name, label in [
+        ("before.png", "One-item control capture"),
+        ("after.png", "Reported scenario action capture"),
+    ]:
+        yield event(
+            "screenshot",
+            label,
+            "Captured during the versioned trusted browser procedure.",
+            artifact=name,
+        )
+    (folder / "console.json").write_text(json.dumps(result["page_errors"]))
+    reproduction = ReproductionResult(
+        status=status,
+        checks=checks,
+        baseline=observed(baseline),
+        observed=observed(issue),
+        source_snapshot=snapshot.id,
+        runtime_identity={
+            "procedure_sha256": PROCEDURE_SHA256,
+            "chromium": result["browser_version"],
+        },
+        behavioral_checks=result["checks"],
+        fixture_sha256=snapshot.fixture_sha256,
+        browser_version=result["browser_version"],
+        duration_ms=round((time.monotonic() - started) * 1000),
+        artifacts=[
+            Artifact(
+                name=n,
+                label=n,
+                media_type="image/png" if n.endswith(".png") else "application/json",
+            )
+            for n in ("before.png", "after.png", "result.json", "console.json")
+        ],
+    )
+    (folder / "result.json").write_text(reproduction.model_dump_json(indent=2))
+    yield event(
+        "result",
+        "Defect reproduced" if status == "reproduced" else "Defect not reproduced",
+        f"Issue check {case['issue_check']}: {'passed' if issue['passed'] else 'failed'}. "
+        "No repair is inferred.",
+        result=reproduction.model_dump(),
+    )
+
+
+def scenario_resource(scenario_id: str, name: str) -> Response:
+    try:
+        case = scenario(scenario_id)
+    except ValueError:
+        raise HTTPException(404, "Unknown approved scenario") from None
+    if name not in ("", "index.html", "cart.js", "styles.css"):
+        raise HTTPException(404, "Unknown scenario resource")
+    snapshot = load_snapshot(case["snapshot_id"])
+    source = next(f for f in snapshot.files if Path(f.path).name == (name or "index.html"))
+    body = source.content
+    if name in ("", "index.html"):
+        body = body.replace('"/retail/', f'"/scenarios/{scenario_id}/retail/')
+    return Response(
+        body,
+        media_type={"cart.js": "text/javascript", "styles.css": "text/css"}.get(name, "text/html"),
+        headers={
+            "Content-Security-Policy": (
+                "default-src 'none'; script-src 'self'; style-src 'self'; "
+                "connect-src 'none'; base-uri 'none'; form-action 'none'"
+            )
+        },
+    )
 
 
 @asynccontextmanager
@@ -247,7 +370,8 @@ async def health() -> dict[str, str]:
 
 
 @app.post("/reproduce/{run_id}")
-async def start(run_id: UUID) -> StreamingResponse:
+async def start(run_id: UUID, scenario_id: str = "cart-quantity") -> StreamingResponse:
+    scenario(scenario_id)
     if run_id in active_ids or (settings.artifact_dir / str(run_id)).exists():
         raise HTTPException(409, "Run identifier already used")
     if len(active_ids) >= settings.max_active_runs:
@@ -257,7 +381,12 @@ async def start(run_id: UUID) -> StreamingResponse:
     async def stream() -> AsyncIterator[bytes]:
         try:
             async with asyncio.timeout(settings.run_timeout_seconds - 5):
-                async for line in reproduce(run_id):
+                recipe = (
+                    reproduce(run_id)
+                    if scenario_id == "cart-quantity"
+                    else reproduce_scenario(run_id, scenario_id)
+                )
+                async for line in recipe:
                     yield line
         except TimeoutError:
             yield event(
@@ -275,3 +404,8 @@ async def start(run_id: UUID) -> StreamingResponse:
             active_ids.discard(run_id)
 
     return StreamingResponse(stream(), media_type="application/x-ndjson")
+
+
+@app.get("/scenarios/{scenario_id}/retail/{name:path}")
+async def scenario_file(scenario_id: str, name: str):
+    return scenario_resource(scenario_id, name)

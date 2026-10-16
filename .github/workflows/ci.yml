@@ -29,6 +29,9 @@ jobs:
       - run: docker compose up --build -d --wait api
       - run: ./scripts/e2e
       - run: ./scripts/recovery-smoke
+      - run: docker compose -f compose.release.yaml up --build -d --wait
+      - run: uv run --project backend python scripts/check_release.py
+      - run: E2E_BASE_URL=http://127.0.0.1:8020 ./scripts/e2e -k recorded_explorer_first
       - name: Collect service logs
         if: always()
         run: docker compose logs --no-color > compose.log
@@ -39,6 +42,9 @@ jobs:
           path: |
             artifacts/acceptance/
             artifacts/milestone-03/
+            artifacts/milestone-04/
             compose.log
       - if: always()
         run: docker compose down
+      - if: always()
+        run: docker compose -f compose.release.yaml down

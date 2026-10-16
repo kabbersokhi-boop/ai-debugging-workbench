@@ -11,6 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from workbench.config import settings
 from workbench.contracts import TERMINAL, Event, ReproductionResult, RunnerEvent, RunStatus, RunView
 from workbench.db import Run, RunEvent, sessions
+from workbench.rag.snapshot import scenario
 
 logger = logging.getLogger(__name__)
 
@@ -79,6 +80,9 @@ class RunManager:
                 await append_event(session, run.id, "error", "Run interrupted", reason)
 
     async def create(self, bug_id: str, key: str | None) -> RunView:
+        case = scenario(bug_id)
+        if case["split"] != "development":
+            raise HTTPException(422, "Only supported demonstration scenarios are available")
         async with self.lock, sessions.begin() as session:
             if key:
                 previous = await session.scalar(select(Run).where(Run.idempotency_key == key))
@@ -119,9 +123,16 @@ class RunManager:
                     .where(Run.id == run_id)
                     .values(status=RunStatus.RUNNING, updated_at=datetime.now(UTC))
                 )
+            async with sessions() as session:
+                run = await session.get(Run, run_id)
+                if run is None:
+                    raise ValueError("Reproduction identity missing")
+                scenario_id = run.bug_id
             got_result = False
             async with asyncio.timeout(settings.run_timeout_seconds):
-                async with self.client.stream("POST", f"/reproduce/{run_id}") as response:
+                async with self.client.stream(
+                    "POST", f"/reproduce/{run_id}?scenario_id={scenario_id}"
+                ) as response:
                     response.raise_for_status()
                     async for line in response.aiter_lines():
                         if not line:

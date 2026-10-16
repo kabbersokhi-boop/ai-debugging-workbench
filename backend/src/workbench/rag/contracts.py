@@ -9,6 +9,7 @@ class StrictModel(BaseModel):
 
 class SourceFile(StrictModel):
     path: str
+    origin_path: str | None = None
     sha256: str
     content: str
 

@@ -1,0 +1,15 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 106 items / 103 deselected / 3 selected
+
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[start] PASSED [ 33%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[cancel] PASSED [ 66%]
+tests/test_release_browser.py::test_m4_saved_shipping_reopen_without_inference_after_ui_correction PASSED [100%]
+
+====================== 3 passed, 103 deselected in 21.50s ======================

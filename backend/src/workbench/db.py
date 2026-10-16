@@ -21,6 +21,7 @@ class Run(Base):
     bug_id: Mapped[str] = mapped_column(String(80))
     status: Mapped[str] = mapped_column(String(32))
     idempotency_key: Mapped[str | None] = mapped_column(String(100), unique=True)
+    owner_id: Mapped[UUID | None] = mapped_column(index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     error: Mapped[str | None]
@@ -111,3 +112,16 @@ class Repair(Base):
     events: Mapped[list[dict[str, Any]]] = mapped_column(JSON, default=list)
     error: Mapped[str | None]
     error_code: Mapped[str | None] = mapped_column(String(80))
+
+
+class GuestSession(Base):
+    __tablename__ = "guest_sessions"
+    id: Mapped[UUID] = mapped_column(primary_key=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+
+class UsageBucket(Base):
+    __tablename__ = "usage_buckets"
+    scope: Mapped[str] = mapped_column(String(100), primary_key=True)
+    requests: Mapped[int] = mapped_column(default=0)
+    reserved_tokens: Mapped[int] = mapped_column(default=0)

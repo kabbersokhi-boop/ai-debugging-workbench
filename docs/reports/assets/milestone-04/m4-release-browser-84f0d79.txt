@@ -1,0 +1,100 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 108 items / 107 deselected / 1 selected
+
+tests/test_release_browser.py::test_recorded_explorer_first_visit_mobile_and_no_live_requests FAILED [100%]
+
+=================================== FAILURES ===================================
+________ test_recorded_explorer_first_visit_mobile_and_no_live_requests ________
+
+    async def test_recorded_explorer_first_visit_mobile_and_no_live_requests():
+        folder = ROOT / "artifacts/milestone-04"
+        folder.mkdir(parents=True, exist_ok=True)
+        async with async_playwright() as p:
+            browser = await p.chromium.launch()
+            page = await browser.new_page(
+                viewport={"width": 1440, "height": 1000}, reduced_motion="reduce"
+            )
+            mutations = []
+            errors = []
+            page.on(
+                "request",
+                lambda request: mutations.append(request.url) if request.method == "POST" else None,
+            )
+            page.on("pageerror", lambda error: errors.append(str(error)))
+            await page.goto(BASE + "/recorded/")
+            await expect(
+                page.get_by_role("heading", name="Verified for the recorded checks")
+            ).to_be_visible()
+            await page.get_by_role("link", name="Original / candidate", exact=True).click()
+            await expect(page.locator(".recorded-comparison")).to_be_visible()
+            await page.screenshot(path=folder / "recorded-desktop.png", full_page=True)
+            await page.locator("#recording").select_option("remote-timeout")
+            await expect(
+                page.get_by_role("heading", name="remote preview stopped", exact=True)
+            ).to_be_visible()
+            await expect(
+                page.get_by_text(
+                    "No completed candidate verification. This outcome is not a verified fix."
+                )
+            ).to_be_visible()
+            await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
+            await expect(page.locator("iframe")).to_have_count(0)
+            await page.locator("#recording").select_option("m4-shipping-success")
+            await expect(
+                page.get_by_role("heading", name="Verified for the recorded checks")
+            ).to_be_visible()
+            await page.set_viewport_size({"width": 390, "height": 844})
+>           await page.wait_for_function(
+                "document.querySelector('.monaco-diff-editor .editor.original')?.clientWidth === 0"
+            )
+
+tests/test_release_browser.py:193:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:11537: in wait_for_function
+    await self._impl_obj.wait_for_function(
+.venv/lib/python3.12/site-packages/playwright/_impl/_page.py:1110: in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:878: in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x7fa64c84d220>
+cb = <function Channel.send.<locals>.<lambda> at 0x7fa64bc83600>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.Error: Page.wait_for_function: EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self'".
+E
+E               at eval (<anonymous>)
+E               at predicate (eval at evaluate (:290:30), <anonymous>:4:56)
+E               at next (eval at evaluate (:290:30), <anonymous>:29:29)
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:559: Error
+=========================== short test summary info ============================
+FAILED tests/test_release_browser.py::test_recorded_explorer_first_visit_mobile_and_no_live_requests
+====================== 1 failed, 107 deselected in 4.18s =======================

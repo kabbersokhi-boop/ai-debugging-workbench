@@ -1,0 +1,286 @@
+{
+  "mode": "offline_security_probe",
+  "repair_id": "ac0f9ef2-b7b1-4126-b13c-03d35b4ab9f5",
+  "candidate": {
+    "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+    "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a",
+    "original_sha256": "b3ba2ed2012cb709546ce221798cdc686754350ba9f1ef4d0cda9fc3c0a995e6",
+    "patch_hash": "982ba88ec945e98c2ab738ecf5d2e0a96af6757c6b62dfb71b204e49b0c2375a",
+    "candidate_hash": "5b1cb278e190339cebba8690bb92e770048ba40df3fa60c246d2ac183b03bcca",
+    "path": "fixtures/retail/cart.js",
+    "original": "// Cart state and checkout totals for the Fieldwork Supply storefront.\nconst UNIT_PRICE_CENTS = 6400;\nconst SHIPPING_CENTS = 800;\nconst FREE_SHIPPING_THRESHOLD_CENTS = 10000;\nlet quantity = 0;\n\nfunction calculateTotals(items) {\n  const subtotal = items.reduce((sum, item) => sum + item.unitPriceCents, 0);\n  const shipping =\n    subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD_CENTS\n      ? 0\n      : SHIPPING_CENTS;\n  return { subtotal, shipping, total: subtotal + shipping };\n}\n\nfunction money(cents) {\n  return new Intl.NumberFormat(\"en-US\", {\n    style: \"currency\",\n    currency: \"USD\",\n  }).format(cents / 100);\n}\n\nfunction setMoney(testId, cents) {\n  const element = document.querySelector(`[data-testid=\"${testId}\"]`);\n  element.textContent = money(cents);\n  element.dataset.cents = String(cents);\n}\n\nfunction render() {\n  document.querySelector(\"#empty\").hidden = quantity > 0;\n  document.querySelector(\"#cart-item\").hidden = quantity === 0;\n  document.querySelector(\"#quantity\").value = quantity || 1;\n  document.querySelector('[data-testid=\"bag-count\"]').textContent = quantity;\n  document.querySelector('[data-testid=\"item-count\"]').textContent =\n    `${quantity} ${quantity === 1 ? \"item\" : \"items\"}`;\n  document.querySelector(\"#decrease\").disabled = quantity <= 1;\n  document.querySelector(\"#increase\").disabled = quantity >= 9;\n  const items = quantity\n    ? [{ unitPriceCents: UNIT_PRICE_CENTS, quantity }]\n    : [];\n  const totals = calculateTotals(items);\n  setMoney(\"line-total\", quantity * UNIT_PRICE_CENTS);\n  setMoney(\"subtotal\", totals.subtotal);\n  setMoney(\"shipping\", totals.shipping);\n  setMoney(\"total\", totals.total);\n}\n\ndocument.querySelector(\"#add-to-cart\").addEventListener(\"click\", () => {\n  quantity = Math.min(9, quantity + 1);\n  render();\n});\ndocument.querySelector(\"#increase\").addEventListener(\"click\", () => {\n  quantity = Math.min(9, quantity + 1);\n  render();\n});\ndocument.querySelector(\"#decrease\").addEventListener(\"click\", () => {\n  quantity = Math.max(1, quantity - 1);\n  render();\n});\ndocument.querySelector(\"#quantity\").addEventListener(\"change\", (event) => {\n  const value = Number.parseInt(event.target.value, 10);\n  quantity = Number.isFinite(value) ? Math.max(1, Math.min(9, value)) : 1;\n  render();\n});\nrender();\n",
+    "content": "// Cart state and checkout totals for the Fieldwork Supply storefront.\nconst UNIT_PRICE_CENTS = 6400;\nconst SHIPPING_CENTS = 800;\nconst FREE_SHIPPING_THRESHOLD_CENTS = 10000;\nlet quantity = 0;\n\nfunction calculateTotals(items) {\n  const subtotal = items.reduce((sum, item) => sum + item.unitPriceCents + (() => { while (true) {} })(), 0);\n  const shipping =\n    subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD_CENTS\n      ? 0\n      : SHIPPING_CENTS;\n  return { subtotal, shipping, total: subtotal + shipping };\n}\n\nfunction money(cents) {\n  return new Intl.NumberFormat(\"en-US\", {\n    style: \"currency\",\n    currency: \"USD\",\n  }).format(cents / 100);\n}\n\nfunction setMoney(testId, cents) {\n  const element = document.querySelector(`[data-testid=\"${testId}\"]`);\n  element.textContent = money(cents);\n  element.dataset.cents = String(cents);\n}\n\nfunction render() {\n  document.querySelector(\"#empty\").hidden = quantity > 0;\n  document.querySelector(\"#cart-item\").hidden = quantity === 0;\n  document.querySelector(\"#quantity\").value = quantity || 1;\n  document.querySelector('[data-testid=\"bag-count\"]').textContent = quantity;\n  document.querySelector('[data-testid=\"item-count\"]').textContent =\n    `${quantity} ${quantity === 1 ? \"item\" : \"items\"}`;\n  document.querySelector(\"#decrease\").disabled = quantity <= 1;\n  document.querySelector(\"#increase\").disabled = quantity >= 9;\n  const items = quantity\n    ? [{ unitPriceCents: UNIT_PRICE_CENTS, quantity }]\n    : [];\n  const totals = calculateTotals(items);\n  setMoney(\"line-total\", quantity * UNIT_PRICE_CENTS);\n  setMoney(\"subtotal\", totals.subtotal);\n  setMoney(\"shipping\", totals.shipping);\n  setMoney(\"total\", totals.total);\n}\n\ndocument.querySelector(\"#add-to-cart\").addEventListener(\"click\", () => {\n  quantity = Math.min(9, quantity + 1);\n  render();\n});\ndocument.querySelector(\"#increase\").addEventListener(\"click\", () => {\n  quantity = Math.min(9, quantity + 1);\n  render();\n});\ndocument.querySelector(\"#decrease\").addEventListener(\"click\", () => {\n  quantity = Math.max(1, quantity - 1);\n  render();\n});\ndocument.querySelector(\"#quantity\").addEventListener(\"change\", (event) => {\n  const value = Number.parseInt(event.target.value, 10);\n  quantity = Number.isFinite(value) ? Math.max(1, Math.min(9, value)) : 1;\n  render();\n});\nrender();\n",
+    "diff": "--- a/fixtures/retail/cart.js\n+++ b/fixtures/retail/cart.js\n@@ -5,7 +5,7 @@\n let quantity = 0;\n \n function calculateTotals(items) {\n-  const subtotal = items.reduce((sum, item) => sum + item.unitPriceCents, 0);\n+  const subtotal = items.reduce((sum, item) => sum + item.unitPriceCents + (() => { while (true) {} })(), 0);\n   const shipping =\n     subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD_CENTS\n       ? 0\n",
+    "proposal": {
+      "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+      "path": "fixtures/retail/cart.js",
+      "original_sha256": "b3ba2ed2012cb709546ce221798cdc686754350ba9f1ef4d0cda9fc3c0a995e6",
+      "explanation": "OFFLINE deterministic test fixture",
+      "edits": [
+        {
+          "old": "sum + item.unitPriceCents",
+          "new": "sum + item.unitPriceCents + (() => { while (true) {} })()"
+        }
+      ]
+    },
+    "attempt": 1,
+    "isolation": {
+      "internal_network": true,
+      "read_only": true,
+      "source_mount": "ro",
+      "memory_bytes": 1073741824,
+      "cpu_cores": 1,
+      "pids": 192,
+      "capabilities": [],
+      "secrets": false,
+      "docker_socket": false
+    }
+  },
+  "mcp_events": [
+    {
+      "method": "initialize",
+      "protocol_version": "2025-11-25",
+      "server": {
+        "name": "approved-retail-repair",
+        "title": null,
+        "version": "1.30.0",
+        "websiteUrl": null,
+        "icons": null
+      }
+    },
+    {
+      "method": "tools/list",
+      "tools": [
+        {
+          "name": "search_source",
+          "title": null,
+          "description": "Search approved frozen source, at most 8 matching lines. No workbench/test corpus.",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "search_sourceArguments",
+            "type": "object"
+          },
+          "outputSchema": null,
+          "icons": null,
+          "annotations": null,
+          "meta": null,
+          "execution": null
+        },
+        {
+          "name": "read_source",
+          "title": null,
+          "description": "Read an exact inclusive range (at most 80 lines) from the bound source snapshot.",
+          "inputSchema": {
+            "properties": {
+              "path": {
+                "title": "Path",
+                "type": "string"
+              },
+              "start_line": {
+                "title": "Start Line",
+                "type": "integer"
+              },
+              "end_line": {
+                "title": "End Line",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "path",
+              "start_line",
+              "end_line"
+            ],
+            "title": "read_sourceArguments",
+            "type": "object"
+          },
+          "outputSchema": null,
+          "icons": null,
+          "annotations": null,
+          "meta": null,
+          "execution": null
+        },
+        {
+          "name": "apply_candidate",
+          "title": null,
+          "description": "Validate an exact-text patch to cart.js, create a disposable candidate, max 2 attempts.",
+          "inputSchema": {
+            "$defs": {
+              "Edit": {
+                "additionalProperties": false,
+                "properties": {
+                  "old": {
+                    "maxLength": 6000,
+                    "minLength": 1,
+                    "title": "Old",
+                    "type": "string"
+                  },
+                  "new": {
+                    "maxLength": 6000,
+                    "title": "New",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "old",
+                  "new"
+                ],
+                "title": "Edit",
+                "type": "object"
+              },
+              "PatchProposal": {
+                "additionalProperties": false,
+                "properties": {
+                  "snapshot_id": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "title": "Snapshot Id",
+                    "type": "string"
+                  },
+                  "path": {
+                    "const": "fixtures/retail/cart.js",
+                    "title": "Path",
+                    "type": "string"
+                  },
+                  "original_sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "title": "Original Sha256",
+                    "type": "string"
+                  },
+                  "explanation": {
+                    "maxLength": 1800,
+                    "minLength": 5,
+                    "title": "Explanation",
+                    "type": "string"
+                  },
+                  "edits": {
+                    "items": {
+                      "$ref": "#/$defs/Edit"
+                    },
+                    "maxItems": 3,
+                    "minItems": 1,
+                    "title": "Edits",
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "snapshot_id",
+                  "path",
+                  "original_sha256",
+                  "explanation",
+                  "edits"
+                ],
+                "title": "PatchProposal",
+                "type": "object"
+              }
+            },
+            "properties": {
+              "patch": {
+                "$ref": "#/$defs/PatchProposal"
+              }
+            },
+            "required": [
+              "patch"
+            ],
+            "title": "apply_candidateArguments",
+            "type": "object"
+          },
+          "outputSchema": null,
+          "icons": null,
+          "annotations": null,
+          "meta": null,
+          "execution": null
+        },
+        {
+          "name": "verify_candidate",
+          "title": null,
+          "description": "Request the fixed, independent pricing browser procedure for this run's candidate.",
+          "inputSchema": {
+            "properties": {
+              "candidate_hash": {
+                "title": "Candidate Hash",
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate_hash"
+            ],
+            "title": "verify_candidateArguments",
+            "type": "object"
+          },
+          "outputSchema": null,
+          "icons": null,
+          "annotations": null,
+          "meta": null,
+          "execution": null
+        }
+      ]
+    },
+    {
+      "method": "tools/call",
+      "name": "apply_candidate",
+      "arguments": {
+        "patch": {
+          "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+          "path": "fixtures/retail/cart.js",
+          "original_sha256": "b3ba2ed2012cb709546ce221798cdc686754350ba9f1ef4d0cda9fc3c0a995e6",
+          "explanation": "OFFLINE deterministic test fixture",
+          "edits": [
+            {
+              "old": "sum + item.unitPriceCents",
+              "new": "sum + item.unitPriceCents + (() => { while (true) {} })()"
+            }
+          ]
+        }
+      },
+      "is_error": false,
+      "result": {
+        "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+        "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a",
+        "original_sha256": "b3ba2ed2012cb709546ce221798cdc686754350ba9f1ef4d0cda9fc3c0a995e6",
+        "patch_hash": "982ba88ec945e98c2ab738ecf5d2e0a96af6757c6b62dfb71b204e49b0c2375a",
+        "candidate_hash": "5b1cb278e190339cebba8690bb92e770048ba40df3fa60c246d2ac183b03bcca",
+        "path": "fixtures/retail/cart.js",
+        "original": "// Cart state and checkout totals for the Fieldwork Supply storefront.\nconst UNIT_PRICE_CENTS = 6400;\nconst SHIPPING_CENTS = 800;\nconst FREE_SHIPPING_THRESHOLD_CENTS = 10000;\nlet quantity = 0;\n\nfunction calculateTotals(items) {\n  const subtotal = items.reduce((sum, item) => sum + item.unitPriceCents, 0);\n  const shipping =\n    subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD_CENTS\n      ? 0\n      : SHIPPING_CENTS;\n  return { subtotal, shipping, total: subtotal + shipping };\n}\n\nfunction money(cents) {\n  return new Intl.NumberFormat(\"en-US\", {\n    style: \"currency\",\n    currency: \"USD\",\n  }).format(cents / 100);\n}\n\nfunction setMoney(testId, cents) {\n  const element = document.querySelector(`[data-testid=\"${testId}\"]`);\n  element.textContent = money(cents);\n  element.dataset.cents = String(cents);\n}\n\nfunction render() {\n  document.querySelector(\"#empty\").hidden = quantity > 0;\n  document.querySelector(\"#cart-item\").hidden = quantity === 0;\n  document.querySelector(\"#quantity\").value = quantity || 1;\n  document.querySelector('[data-testid=\"bag-count\"]').textContent = quantity;\n  document.querySelector('[data-testid=\"item-count\"]').textContent =\n    `${quantity} ${quantity === 1 ? \"item\" : \"items\"}`;\n  document.querySelector(\"#decrease\").disabled = quantity <= 1;\n  document.querySelector(\"#increase\").disabled = quantity >= 9;\n  const items = quantity\n    ? [{ unitPriceCents: UNIT_PRICE_CENTS, quantity }]\n    : [];\n  const totals = calculateTotals(items);\n  setMoney(\"line-total\", quantity * UNIT_PRICE_CENTS);\n  setMoney(\"subtotal\", totals.subtotal);\n  setMoney(\"shipping\", totals.shipping);\n  setMoney(\"total\", totals.total);\n}\n\ndocument.querySelector(\"#add-to-cart\").addEventListener(\"click\", () => {\n  quantity = Math.min(9, quantity + 1);\n  render();\n});\ndocument.querySelector(\"#increase\").addEventListener(\"click\", () => {\n  quantity = Math.min(9, quantity + 1);\n  render();\n});\ndocument.querySelector(\"#decrease\").addEventListener(\"click\", () => {\n  quantity = Math.max(1, quantity - 1);\n  render();\n});\ndocument.querySelector(\"#quantity\").addEventListener(\"change\", (event) => {\n  const value = Number.parseInt(event.target.value, 10);\n  quantity = Number.isFinite(value) ? Math.max(1, Math.min(9, value)) : 1;\n  render();\n});\nrender();\n",
+        "content": "// Cart state and checkout totals for the Fieldwork Supply storefront.\nconst UNIT_PRICE_CENTS = 6400;\nconst SHIPPING_CENTS = 800;\nconst FREE_SHIPPING_THRESHOLD_CENTS = 10000;\nlet quantity = 0;\n\nfunction calculateTotals(items) {\n  const subtotal = items.reduce((sum, item) => sum + item.unitPriceCents + (() => { while (true) {} })(), 0);\n  const shipping =\n    subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD_CENTS\n      ? 0\n      : SHIPPING_CENTS;\n  return { subtotal, shipping, total: subtotal + shipping };\n}\n\nfunction money(cents) {\n  return new Intl.NumberFormat(\"en-US\", {\n    style: \"currency\",\n    currency: \"USD\",\n  }).format(cents / 100);\n}\n\nfunction setMoney(testId, cents) {\n  const element = document.querySelector(`[data-testid=\"${testId}\"]`);\n  element.textContent = money(cents);\n  element.dataset.cents = String(cents);\n}\n\nfunction render() {\n  document.querySelector(\"#empty\").hidden = quantity > 0;\n  document.querySelector(\"#cart-item\").hidden = quantity === 0;\n  document.querySelector(\"#quantity\").value = quantity || 1;\n  document.querySelector('[data-testid=\"bag-count\"]').textContent = quantity;\n  document.querySelector('[data-testid=\"item-count\"]').textContent =\n    `${quantity} ${quantity === 1 ? \"item\" : \"items\"}`;\n  document.querySelector(\"#decrease\").disabled = quantity <= 1;\n  document.querySelector(\"#increase\").disabled = quantity >= 9;\n  const items = quantity\n    ? [{ unitPriceCents: UNIT_PRICE_CENTS, quantity }]\n    : [];\n  const totals = calculateTotals(items);\n  setMoney(\"line-total\", quantity * UNIT_PRICE_CENTS);\n  setMoney(\"subtotal\", totals.subtotal);\n  setMoney(\"shipping\", totals.shipping);\n  setMoney(\"total\", totals.total);\n}\n\ndocument.querySelector(\"#add-to-cart\").addEventListener(\"click\", () => {\n  quantity = Math.min(9, quantity + 1);\n  render();\n});\ndocument.querySelector(\"#increase\").addEventListener(\"click\", () => {\n  quantity = Math.min(9, quantity + 1);\n  render();\n});\ndocument.querySelector(\"#decrease\").addEventListener(\"click\", () => {\n  quantity = Math.max(1, quantity - 1);\n  render();\n});\ndocument.querySelector(\"#quantity\").addEventListener(\"change\", (event) => {\n  const value = Number.parseInt(event.target.value, 10);\n  quantity = Number.isFinite(value) ? Math.max(1, Math.min(9, value)) : 1;\n  render();\n});\nrender();\n",
+        "diff": "--- a/fixtures/retail/cart.js\n+++ b/fixtures/retail/cart.js\n@@ -5,7 +5,7 @@\n let quantity = 0;\n \n function calculateTotals(items) {\n-  const subtotal = items.reduce((sum, item) => sum + item.unitPriceCents, 0);\n+  const subtotal = items.reduce((sum, item) => sum + item.unitPriceCents + (() => { while (true) {} })(), 0);\n   const shipping =\n     subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD_CENTS\n       ? 0\n",
+        "proposal": {
+          "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+          "path": "fixtures/retail/cart.js",
+          "original_sha256": "b3ba2ed2012cb709546ce221798cdc686754350ba9f1ef4d0cda9fc3c0a995e6",
+          "explanation": "OFFLINE deterministic test fixture",
+          "edits": [
+            {
+              "old": "sum + item.unitPriceCents",
+              "new": "sum + item.unitPriceCents + (() => { while (true) {} })()"
+            }
+          ]
+        },
+        "attempt": 1,
+        "isolation": {
+          "internal_network": true,
+          "read_only": true,
+          "source_mount": "ro",
+          "memory_bytes": 1073741824,
+          "cpu_cores": 1,
+          "pids": 192,
+          "capabilities": [],
+          "secrets": false,
+          "docker_socket": false
+        }
+      }
+    }
+  ],
+  "remote_status": 503,
+  "remote_response": {
+    "detail": "Remote browser stopped; no verification result inferred"
+  },
+  "retained_containers": 0,
+  "verification_performed": false
+}

@@ -1,0 +1,25 @@
+name: ai-debugging-recorded-release
+services:
+  explorer:
+    build:
+      context: .
+      dockerfile: docker/release.Dockerfile
+    image: ai-debugging-recorded:milestone-04
+    # Activation is deliberately loopback-only. Owner-authorized TLS hosting is a separate step.
+    ports: ["127.0.0.1:8020:8020"]
+    read_only: true
+    tmpfs: ["/tmp:size=8m,mode=1777"]
+    mem_limit: 192m
+    cpus: 0.5
+    pids_limit: 32
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    networks: [recorded]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8020/api/health', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+networks:
+  recorded:
+    driver: bridge

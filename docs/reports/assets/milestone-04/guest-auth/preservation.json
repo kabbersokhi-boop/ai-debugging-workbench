@@ -1,0 +1,19 @@
+{
+  "reviewed_head": "f1865c07d32f3e4b113870a95e5f73e96c7461b3",
+  "tested_correction": "e860ed65a5fed2aaadc0fcffaa823f8a32420fc0",
+  "historical_paths_unchanged": [
+    "evals",
+    "docs/RESULTS.md",
+    "recordings",
+    "docs/reports/assets/milestone-04/evaluation-results.json",
+    "docs/reports/assets/milestone-04/evaluation-summary.json",
+    "docs/reports/assets/milestone-04/budget.json",
+    "docs/reports/assets/milestone-04/evaluation",
+    "fixtures/retail",
+    "backend/src/workbench/rag/retail-snapshot.json"
+  ],
+  "frozen_file_count": 32,
+  "frozen_file_hashes_unchanged": true,
+  "live_nvidia_calls_for_correction": 0,
+  "database_scope": "disposable PostgreSQL schemas; no migration or volume reset"
+}

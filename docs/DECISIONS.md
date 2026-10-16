@@ -54,3 +54,14 @@ On this four-file target, lexical retrieval had better recall than dense/hybrid 
 - Keep the candidate preview on a separate loopback origin, with an opaque iframe sandbox and restrictive CSP. This preserves interactive before/after behavior without serving generated code on the privileged workbench origin. Browser-tab resource limits differ from container verification limits and are documented.
 - Reconcile and interrupt after restart instead of automatically replaying externally visible candidate/verification operations. Checkpoints provide inspectable intermediate state; safe resumption remains unproven.
 - Preserve rejected model text and immutable saved reports; initialize evaluation outputs before inference. These are carry-forward review corrections, not new formal milestones. No retrieval tuning, large benchmark or GitHub publication agent was added.
+
+## Milestone 4 — bounded evaluation and safe release
+
+- Add explicit versioned retail scenarios instead of arbitrary repository ingestion. Preserve the original defective snapshot and all historical evidence; use additive revision 005 for optional guest ownership/reservations.
+- Bind cached verification to actual source/candidate bytes, scenario contract, verifier and actual runtime image. Artifact identity is separate from verifier identity so different images cannot inherit an old pass.
+- Replace generated-script delivery to browser tabs with remote named controls and pixels. The old iframe/CSP boundary did not impose container resource limits on a visitor's tab. Keep trusted Docker management private.
+- Ship a separate read-only recorded explorer for public activation. Current Docker/Chromium assumptions do not justify public live execution. Recordings never silently answer a live request.
+- Use one frozen eight-case held-out comparison of one-shot whole context, loop whole context and loop retrieval. Keep the existing model/settings, count failures and retries, retain sealed final checks outside model feedback, and report raw denominators without general accuracy or RAG-superiority claims.
+- Own Monaco models and detach the widget before disposing them. The initial live browser run exposed an async teardown error; the actual repair/check success was retained and the UI was corrected/retested by reopening it without new inference.
+
+- Keep Monaco and override its pinned DOMPurify dependency to patched 3.4.17: the initial npm advisory check found two low-severity findings, while the patched dependency passes the same audit and browser checks. Detected accessibility mode permits Monaco's compact inline diff on mobile; the test asserts geometry without weakening CSP.

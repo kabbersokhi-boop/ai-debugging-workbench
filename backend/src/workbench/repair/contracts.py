@@ -13,6 +13,10 @@ from workbench.rag.snapshot import validate_snapshot
 CART_PATH = "fixtures/retail/cart.js"
 
 
+class RemoteAction(StrictModel):
+    action: Literal["reset", "add", "increase", "decrease"]
+
+
 class Edit(StrictModel):
     old: str = Field(min_length=1, max_length=6000)
     new: str = Field(max_length=6000)

@@ -1,0 +1,40 @@
+All checks passed!
+45 files already formatted
+0 errors, 0 warnings, 0 informations
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 108 items / 51 deselected / 57 selected
+
+tests/test_contracts.py ..........                                       [ 17%]
+tests/test_rag.py .................                                      [ 47%]
+tests/test_release.py .......                                            [ 59%]
+tests/test_repair.py .....................                               [ 96%]
+tests/test_runner_lifecycle.py ..                                        [100%]
+
+====================== 57 passed, 51 deselected in 4.06s =======================
+
+> ai-debugging-workbench-ui@0.1.0 build
+> tsc -b && vite build
+
+vite v6.4.4 building for production...
+transforming...
+✓ 2310 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                            0.67 kB │ gzip:   0.41 kB
+dist/assets/editor.worker-BytiCuzy.js    277.04 kB
+dist/assets/index-DDUrPZYM.css            40.54 kB │ gzip:   9.78 kB
+dist/assets/Diff-CNgQWNDj.css             99.25 kB │ gzip:  14.36 kB
+dist/assets/index-Bljv1otN.js            324.72 kB │ gzip:  98.09 kB
+dist/assets/Diff-Dv59peYJ.js           2,753.29 kB │ gzip: 715.63 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 12.73s
