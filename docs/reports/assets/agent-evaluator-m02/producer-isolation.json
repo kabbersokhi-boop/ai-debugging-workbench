@@ -1,0 +1,43 @@
+{
+  "command": [
+    "python",
+    "-I",
+    "-c",
+    "\nimport os, pathlib, socket\nroot = pathlib.Path('/source')\nassert sorted(p.name for p in root.iterdir()) == ['approved.txt']\nfor name in ['/app/evaluation', '/home/libertarian/ai-debugging-workbench',\n             '/var/run/docker.sock', '/app/backend/.env', '/evaluation', '/source/.git']:\n    assert not pathlib.Path(name).exists(), name\nassert not any(k in os.environ for k in ['NVIDIA_API_KEY', 'OPENAI_API_KEY',\n    'ANTHROPIC_API_KEY', 'GITHUB_TOKEN', 'DATABASE_URL'])\nassert os.getuid() == 1000\ns = socket.socket(); s.settimeout(1)\nassert s.connect_ex(('1.1.1.1',443)) != 0\nprint('approved source only; no evaluator, references, history, credentials, socket or network')\n"
+  ],
+  "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+  "policy": {
+    "version": "python312-v1",
+    "network": "none",
+    "rootfs": "read-only",
+    "source": "read-only named volume",
+    "uid": 1000,
+    "cpu": 1,
+    "memory_bytes": 268435456,
+    "pids": 32,
+    "tmp_bytes": 33554432,
+    "log_bytes": 131072,
+    "timeout_seconds": 25,
+    "capabilities": [],
+    "host_mounts": [],
+    "credentials": false,
+    "docker_socket": false
+  },
+  "started_at": "2026-10-16T18:59:57.197207+00:00",
+  "resource_usage": {
+    "cpu_ns": 60788000,
+    "peak_memory_bytes_observed": 8265728,
+    "note": "Fast processes may exit before a Docker stats sample is available"
+  },
+  "executed_file_hashes": {
+    "approved.txt": "fbb98a16bd529a7442231a79bbbc9bc89bc6cbf3d080e5164e6ad4d37d34506c"
+  },
+  "container_id": "40a10f61f63a9c5a341b6d94d20458d3a70ba390c5819b77c57545c3f889ff3f",
+  "exit_code": 0,
+  "oom_killed": false,
+  "stdout": "approved source only; no evaluator, references, history, credentials, socket or network\n",
+  "stderr": "",
+  "status": "finished",
+  "ended_at": "2026-10-16T18:59:57.862044+00:00",
+  "duration_ms": 665
+}

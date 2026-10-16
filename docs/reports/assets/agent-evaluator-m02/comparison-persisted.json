@@ -1,0 +1,1129 @@
+{
+  "experiment_id": "m02-v1",
+  "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+  "complete": true,
+  "attempted": 24,
+  "scheduled": 24,
+  "groups": [
+    {
+      "id": "nemotron3",
+      "configuration": {
+        "id": "nemotron3",
+        "model": "nvidia/nemotron-3-super-120b-a12b",
+        "label": "Nemotron 3 Super / JSON source tools v2",
+        "provider": "NVIDIA hosted API",
+        "product": "model/harness configuration; no named coding-agent product",
+        "temperature": 0,
+        "harness": "json-source-tools-v2",
+        "harness_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+        "prompt_hash": "b123a523c93b720063e928e77fd94e2a6fcdc940c3878f634465fdbd36e78f87",
+        "tools": [
+          "read approved file (120 lines, 12000 chars)",
+          "literal search approved files (20 hits)",
+          "exact unique production edits",
+          "fixed ordinary tests in fresh restricted container",
+          "submit"
+        ],
+        "source_access": "Identical full pinned source and existing ordinary tests via a virtual allowlisted namespace. Same relevant initial excerpts. No host working directory, shell, network, repository history, reference or independent material.",
+        "ordinary_access": "Fixed per-task command; same approved Python 3.12.14 / pytest 8.3.5 image; up to four runs and four edit revisions.",
+        "budget": {
+          "requests": 12,
+          "output_tokens_per_request": 3000,
+          "token_upper_bound": 180000,
+          "wall_seconds": 420,
+          "provider_timeout_seconds": 60,
+          "revisions": 4,
+          "ordinary_runs": 4,
+          "read_search_actions": 16,
+          "actions_per_response": 4,
+          "automatic_retries": 0,
+          "source_read_chars": 12000
+        },
+        "credentials": "Existing authorized NVIDIA key; coordinator only.",
+        "availability_response_model": "nvidia/nemotron-3-super-120b-a12b",
+        "unavailable_metadata": [
+          "Immutable model-weight revision",
+          "Training exposure",
+          "Provider hardware/load",
+          "Monetary cost/price",
+          "Provider RNG seed"
+        ],
+        "automatic_retries": 0
+      },
+      "attempted": 12,
+      "scheduled": 12,
+      "completed": 3,
+      "outcomes": {
+        "no_usable_candidate": 1,
+        "ordinary_failed": 0,
+        "additional_independent_failure": 0,
+        "both_passed": 3,
+        "infrastructure_or_provider_failure": 8
+      },
+      "awaiting_evaluation": 0,
+      "incremental_numerator": 0,
+      "incremental_denominator": 3,
+      "requests": 60,
+      "reported_total_tokens": 212905,
+      "usage_missing_requests": 8,
+      "monetary_cost": null,
+      "generation_wall_ms": 1022770,
+      "ordinary_tool_ms": 4370,
+      "evaluation_ms": 7313
+    },
+    {
+      "id": "nemotron35",
+      "configuration": {
+        "id": "nemotron35",
+        "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+        "label": "Nemotron 3.5 Super / JSON source tools v2",
+        "provider": "NVIDIA hosted API",
+        "product": "model/harness configuration; no named coding-agent product",
+        "temperature": 0,
+        "harness": "json-source-tools-v2",
+        "harness_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+        "prompt_hash": "b123a523c93b720063e928e77fd94e2a6fcdc940c3878f634465fdbd36e78f87",
+        "tools": [
+          "read approved file (120 lines, 12000 chars)",
+          "literal search approved files (20 hits)",
+          "exact unique production edits",
+          "fixed ordinary tests in fresh restricted container",
+          "submit"
+        ],
+        "source_access": "Identical full pinned source and existing ordinary tests via a virtual allowlisted namespace. Same relevant initial excerpts. No host working directory, shell, network, repository history, reference or independent material.",
+        "ordinary_access": "Fixed per-task command; same approved Python 3.12.14 / pytest 8.3.5 image; up to four runs and four edit revisions.",
+        "budget": {
+          "requests": 12,
+          "output_tokens_per_request": 3000,
+          "token_upper_bound": 180000,
+          "wall_seconds": 420,
+          "provider_timeout_seconds": 60,
+          "revisions": 4,
+          "ordinary_runs": 4,
+          "read_search_actions": 16,
+          "actions_per_response": 4,
+          "automatic_retries": 0,
+          "source_read_chars": 12000
+        },
+        "credentials": "Existing authorized NVIDIA key; coordinator only.",
+        "availability_response_model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+        "unavailable_metadata": [
+          "Immutable model-weight revision",
+          "Training exposure",
+          "Provider hardware/load",
+          "Monetary cost/price",
+          "Provider RNG seed"
+        ],
+        "automatic_retries": 0
+      },
+      "attempted": 12,
+      "scheduled": 12,
+      "completed": 3,
+      "outcomes": {
+        "no_usable_candidate": 7,
+        "ordinary_failed": 0,
+        "additional_independent_failure": 0,
+        "both_passed": 3,
+        "infrastructure_or_provider_failure": 2
+      },
+      "awaiting_evaluation": 0,
+      "incremental_numerator": 0,
+      "incremental_denominator": 3,
+      "requests": 47,
+      "reported_total_tokens": 380519,
+      "usage_missing_requests": 2,
+      "monetary_cost": null,
+      "generation_wall_ms": 543585,
+      "ordinary_tool_ms": 12582,
+      "evaluation_ms": 4913
+    }
+  ],
+  "trials": [
+    {
+      "id": "m02-v1-more-bucket-nemotron3-r01",
+      "coordinate": {
+        "id": "m02-v1-more-bucket-nemotron3-r01",
+        "task_id": "more-bucket",
+        "configuration_id": "nemotron3",
+        "trial": 1,
+        "order": 1
+      },
+      "outcome": "both_passed",
+      "generation_status": "submitted",
+      "candidate_hash": "4357b68c317cccc05769bc284d9af3af15bedaecf4c94f2f94223fa0724f103b",
+      "evaluation_id": "e08308a1-ac90-5ffb-a293-af7b0bcd39cc"
+    },
+    {
+      "id": "m02-v1-more-bucket-nemotron35-r01",
+      "coordinate": {
+        "id": "m02-v1-more-bucket-nemotron35-r01",
+        "task_id": "more-bucket",
+        "configuration_id": "nemotron35",
+        "trial": 1,
+        "order": 2
+      },
+      "outcome": "both_passed",
+      "generation_status": "submitted",
+      "candidate_hash": "4357b68c317cccc05769bc284d9af3af15bedaecf4c94f2f94223fa0724f103b",
+      "evaluation_id": "63199733-0b1d-561b-a5af-d63d235781d8"
+    },
+    {
+      "id": "m02-v1-boltons-indexedset-nemotron3-r01",
+      "coordinate": {
+        "id": "m02-v1-boltons-indexedset-nemotron3-r01",
+        "task_id": "boltons-indexedset",
+        "configuration_id": "nemotron3",
+        "trial": 1,
+        "order": 3
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-boltons-indexedset-nemotron35-r01",
+      "coordinate": {
+        "id": "m02-v1-boltons-indexedset-nemotron35-r01",
+        "task_id": "boltons-indexedset",
+        "configuration_id": "nemotron35",
+        "trial": 1,
+        "order": 4
+      },
+      "outcome": "no_usable_candidate",
+      "generation_status": "token_budget_exhausted",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-more-seekable-nemotron35-r01",
+      "coordinate": {
+        "id": "m02-v1-more-seekable-nemotron35-r01",
+        "task_id": "more-seekable",
+        "configuration_id": "nemotron35",
+        "trial": 1,
+        "order": 5
+      },
+      "outcome": "no_usable_candidate",
+      "generation_status": "invalid_output",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-more-seekable-nemotron3-r01",
+      "coordinate": {
+        "id": "m02-v1-more-seekable-nemotron3-r01",
+        "task_id": "more-seekable",
+        "configuration_id": "nemotron3",
+        "trial": 1,
+        "order": 6
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-boltons-addlist-nemotron35-r01",
+      "coordinate": {
+        "id": "m02-v1-boltons-addlist-nemotron35-r01",
+        "task_id": "boltons-addlist",
+        "configuration_id": "nemotron35",
+        "trial": 1,
+        "order": 7
+      },
+      "outcome": "no_usable_candidate",
+      "generation_status": "token_budget_exhausted",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-boltons-addlist-nemotron3-r01",
+      "coordinate": {
+        "id": "m02-v1-boltons-addlist-nemotron3-r01",
+        "task_id": "boltons-addlist",
+        "configuration_id": "nemotron3",
+        "trial": 1,
+        "order": 8
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-more-bucket-nemotron35-r02",
+      "coordinate": {
+        "id": "m02-v1-more-bucket-nemotron35-r02",
+        "task_id": "more-bucket",
+        "configuration_id": "nemotron35",
+        "trial": 2,
+        "order": 9
+      },
+      "outcome": "both_passed",
+      "generation_status": "submitted",
+      "candidate_hash": "4357b68c317cccc05769bc284d9af3af15bedaecf4c94f2f94223fa0724f103b",
+      "evaluation_id": "8f7c45b6-0fb3-59ff-835f-096bc1c8b874"
+    },
+    {
+      "id": "m02-v1-more-bucket-nemotron3-r02",
+      "coordinate": {
+        "id": "m02-v1-more-bucket-nemotron3-r02",
+        "task_id": "more-bucket",
+        "configuration_id": "nemotron3",
+        "trial": 2,
+        "order": 10
+      },
+      "outcome": "both_passed",
+      "generation_status": "submitted",
+      "candidate_hash": "4357b68c317cccc05769bc284d9af3af15bedaecf4c94f2f94223fa0724f103b",
+      "evaluation_id": "b615048e-5d4b-5692-8598-11b9c55a3275"
+    },
+    {
+      "id": "m02-v1-boltons-indexedset-nemotron3-r02",
+      "coordinate": {
+        "id": "m02-v1-boltons-indexedset-nemotron3-r02",
+        "task_id": "boltons-indexedset",
+        "configuration_id": "nemotron3",
+        "trial": 2,
+        "order": 11
+      },
+      "outcome": "no_usable_candidate",
+      "generation_status": "request_budget_exhausted",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-boltons-indexedset-nemotron35-r02",
+      "coordinate": {
+        "id": "m02-v1-boltons-indexedset-nemotron35-r02",
+        "task_id": "boltons-indexedset",
+        "configuration_id": "nemotron35",
+        "trial": 2,
+        "order": 12
+      },
+      "outcome": "no_usable_candidate",
+      "generation_status": "invalid_output",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-more-seekable-nemotron35-r02",
+      "coordinate": {
+        "id": "m02-v1-more-seekable-nemotron35-r02",
+        "task_id": "more-seekable",
+        "configuration_id": "nemotron35",
+        "trial": 2,
+        "order": 13
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-more-seekable-nemotron3-r02",
+      "coordinate": {
+        "id": "m02-v1-more-seekable-nemotron3-r02",
+        "task_id": "more-seekable",
+        "configuration_id": "nemotron3",
+        "trial": 2,
+        "order": 14
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-boltons-addlist-nemotron35-r02",
+      "coordinate": {
+        "id": "m02-v1-boltons-addlist-nemotron35-r02",
+        "task_id": "boltons-addlist",
+        "configuration_id": "nemotron35",
+        "trial": 2,
+        "order": 15
+      },
+      "outcome": "both_passed",
+      "generation_status": "submitted",
+      "candidate_hash": "ad55f9039233a94d71447bbf043e94537de73ca0aa7d2b5174b9753abcb90f29",
+      "evaluation_id": "7c33d566-9deb-533f-8e00-4b44821dfc7c"
+    },
+    {
+      "id": "m02-v1-boltons-addlist-nemotron3-r02",
+      "coordinate": {
+        "id": "m02-v1-boltons-addlist-nemotron3-r02",
+        "task_id": "boltons-addlist",
+        "configuration_id": "nemotron3",
+        "trial": 2,
+        "order": 16
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-more-bucket-nemotron35-r03",
+      "coordinate": {
+        "id": "m02-v1-more-bucket-nemotron35-r03",
+        "task_id": "more-bucket",
+        "configuration_id": "nemotron35",
+        "trial": 3,
+        "order": 17
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-more-bucket-nemotron3-r03",
+      "coordinate": {
+        "id": "m02-v1-more-bucket-nemotron3-r03",
+        "task_id": "more-bucket",
+        "configuration_id": "nemotron3",
+        "trial": 3,
+        "order": 18
+      },
+      "outcome": "both_passed",
+      "generation_status": "submitted",
+      "candidate_hash": "4357b68c317cccc05769bc284d9af3af15bedaecf4c94f2f94223fa0724f103b",
+      "evaluation_id": "b6f8e722-6c18-5955-8ef1-eecf2dc0e708"
+    },
+    {
+      "id": "m02-v1-boltons-indexedset-nemotron35-r03",
+      "coordinate": {
+        "id": "m02-v1-boltons-indexedset-nemotron35-r03",
+        "task_id": "boltons-indexedset",
+        "configuration_id": "nemotron35",
+        "trial": 3,
+        "order": 19
+      },
+      "outcome": "no_usable_candidate",
+      "generation_status": "invalid_output",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-boltons-indexedset-nemotron3-r03",
+      "coordinate": {
+        "id": "m02-v1-boltons-indexedset-nemotron3-r03",
+        "task_id": "boltons-indexedset",
+        "configuration_id": "nemotron3",
+        "trial": 3,
+        "order": 20
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-more-seekable-nemotron3-r03",
+      "coordinate": {
+        "id": "m02-v1-more-seekable-nemotron3-r03",
+        "task_id": "more-seekable",
+        "configuration_id": "nemotron3",
+        "trial": 3,
+        "order": 21
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-more-seekable-nemotron35-r03",
+      "coordinate": {
+        "id": "m02-v1-more-seekable-nemotron35-r03",
+        "task_id": "more-seekable",
+        "configuration_id": "nemotron35",
+        "trial": 3,
+        "order": 22
+      },
+      "outcome": "no_usable_candidate",
+      "generation_status": "invalid_output",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-boltons-addlist-nemotron3-r03",
+      "coordinate": {
+        "id": "m02-v1-boltons-addlist-nemotron3-r03",
+        "task_id": "boltons-addlist",
+        "configuration_id": "nemotron3",
+        "trial": 3,
+        "order": 23
+      },
+      "outcome": "infrastructure_or_provider_failure",
+      "generation_status": "provider_failure",
+      "candidate_hash": null,
+      "evaluation_id": null
+    },
+    {
+      "id": "m02-v1-boltons-addlist-nemotron35-r03",
+      "coordinate": {
+        "id": "m02-v1-boltons-addlist-nemotron35-r03",
+        "task_id": "boltons-addlist",
+        "configuration_id": "nemotron35",
+        "trial": 3,
+        "order": 24
+      },
+      "outcome": "no_usable_candidate",
+      "generation_status": "token_budget_exhausted",
+      "candidate_hash": null,
+      "evaluation_id": null
+    }
+  ],
+  "controls_in_denominator": false,
+  "generation_mode": "controlled generation plus common verification",
+  "historical_m1": "M1 single-turn evidence is separate. M1 found no genuine ordinary-pass/independent-fail patch.",
+  "limitations": [
+    "Small descriptive case study: four public historical tasks, two related model families, three trials per cell; no population/vendor ranking.",
+    "Training contamination and immutable weight revisions unknown. M1 is historical single-turn evidence and excluded from this controlled matrix.",
+    "Structured JSON tool loop, no arbitrary shell or external retrieval; source/test access identical across configurations.",
+    "In-process Python observations are not a complete anti-tampering boundary against malicious candidates. Docker shares the host kernel; local approved execution only.",
+    "Ordinary tests are relevant pre-existing upstream subsets. Independent coverage is finite; passing is not proof of general correctness.",
+    "Sequential local measurements include provider load and container overhead. Monetary cost is unknown; request and returned token accounting retained.",
+    "Zero additional discoveries or ties are valid outcomes and do not justify broad release or execution hosting."
+  ],
+  "procedure": {
+    "body": {
+      "id": "m02-v1",
+      "frozen_at": "2026-10-16T17:45:50.108339+00:00",
+      "accepted_m1_head": "1d49caec6accbb7d640d4e3a90a5978983a42076",
+      "harness": "json-source-tools-v2",
+      "prompt_hash": "b123a523c93b720063e928e77fd94e2a6fcdc940c3878f634465fdbd36e78f87",
+      "budget": {
+        "requests": 12,
+        "output_tokens_per_request": 3000,
+        "token_upper_bound": 180000,
+        "wall_seconds": 420,
+        "provider_timeout_seconds": 60,
+        "revisions": 4,
+        "ordinary_runs": 4,
+        "read_search_actions": 16,
+        "actions_per_response": 4,
+        "automatic_retries": 0,
+        "source_read_chars": 12000
+      },
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "implementation_files": {
+        "producer.py": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+        "experiment_catalog.py": "ab1ccd5726a6d84e44b5a84765eb88595890da358b52062616cb75d16220ea1a",
+        "experiment_behavior.py": "3915e0564bae932b3ba48092b2b50525abd6d5762a72fff83286cdda8e528613",
+        "experiment_runner.py": "b31c9b0d4c7d4c193aeb12999e7ab6794b38666c14e5331f70ca744e588fe791",
+        "experiment.py": "7ee7df6ae20e38f2cbfa23cbecd6c571e3083b27308dcb151b4201c83388b409",
+        "experiment_cli.py": "654b926b98d67aeda00eba43209802853911fab6ea0692617bd060b3d52a0448",
+        "experiment_store.py": "1133e4d3983a66b1cba5a287706dceaba021629a2cd259ddf221d31157804989"
+      },
+      "tasks": {
+        "more-bucket": {
+          "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+          "verifier_hash": "dae4ebfdb4dea8143c7079e9e9713907971f9fd634d0a897ed455e7bba066ea9",
+          "context_hash": "2b5d803d43ebe862c678cbdc4198eac084b94328a63275d417f898198f15e6bf"
+        },
+        "boltons-addlist": {
+          "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+          "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968",
+          "context_hash": "df57cadc84726be48e31807121586d5fb97bb5e6a58ed183f35cf4e163c38fe6"
+        },
+        "more-seekable": {
+          "spec_hash": "85d7f1e32b53c05674cfdf486357c28b9a3227941051a3841c558a9afeea7c3d",
+          "verifier_hash": "7b1ff9dd78ea50abbc34fc9797fa3edde1ca8a00efe4c5a89b1a3ce763660a8e",
+          "context_hash": "0346a7a3901e940a650434ae8ecc885ec9cff066eb51d1ae3f0a23b18acfd431"
+        },
+        "boltons-indexedset": {
+          "spec_hash": "64476f640db4c9281246b817bb658a0888de0476041c55f2d59cbb6c6b51fa9a",
+          "verifier_hash": "020a1f2000688f74b8671f2e5f36b0e38c862b717fc91108149186574f26d40f",
+          "context_hash": "bc9470d50bf2597918fa8164a0564ec3d8d40cbcb77df0ec0b354971fe569e2a"
+        }
+      },
+      "configurations": {
+        "nemotron3": {
+          "id": "nemotron3",
+          "model": "nvidia/nemotron-3-super-120b-a12b",
+          "label": "Nemotron 3 Super / JSON source tools v2",
+          "provider": "NVIDIA hosted API",
+          "product": "model/harness configuration; no named coding-agent product",
+          "temperature": 0,
+          "harness": "json-source-tools-v2",
+          "harness_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+          "prompt_hash": "b123a523c93b720063e928e77fd94e2a6fcdc940c3878f634465fdbd36e78f87",
+          "tools": [
+            "read approved file (120 lines, 12000 chars)",
+            "literal search approved files (20 hits)",
+            "exact unique production edits",
+            "fixed ordinary tests in fresh restricted container",
+            "submit"
+          ],
+          "source_access": "Identical full pinned source and existing ordinary tests via a virtual allowlisted namespace. Same relevant initial excerpts. No host working directory, shell, network, repository history, reference or independent material.",
+          "ordinary_access": "Fixed per-task command; same approved Python 3.12.14 / pytest 8.3.5 image; up to four runs and four edit revisions.",
+          "budget": {
+            "requests": 12,
+            "output_tokens_per_request": 3000,
+            "token_upper_bound": 180000,
+            "wall_seconds": 420,
+            "provider_timeout_seconds": 60,
+            "revisions": 4,
+            "ordinary_runs": 4,
+            "read_search_actions": 16,
+            "actions_per_response": 4,
+            "automatic_retries": 0,
+            "source_read_chars": 12000
+          },
+          "credentials": "Existing authorized NVIDIA key; coordinator only.",
+          "availability_response_model": "nvidia/nemotron-3-super-120b-a12b",
+          "unavailable_metadata": [
+            "Immutable model-weight revision",
+            "Training exposure",
+            "Provider hardware/load",
+            "Monetary cost/price",
+            "Provider RNG seed"
+          ],
+          "automatic_retries": 0
+        },
+        "nemotron35": {
+          "id": "nemotron35",
+          "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+          "label": "Nemotron 3.5 Super / JSON source tools v2",
+          "provider": "NVIDIA hosted API",
+          "product": "model/harness configuration; no named coding-agent product",
+          "temperature": 0,
+          "harness": "json-source-tools-v2",
+          "harness_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+          "prompt_hash": "b123a523c93b720063e928e77fd94e2a6fcdc940c3878f634465fdbd36e78f87",
+          "tools": [
+            "read approved file (120 lines, 12000 chars)",
+            "literal search approved files (20 hits)",
+            "exact unique production edits",
+            "fixed ordinary tests in fresh restricted container",
+            "submit"
+          ],
+          "source_access": "Identical full pinned source and existing ordinary tests via a virtual allowlisted namespace. Same relevant initial excerpts. No host working directory, shell, network, repository history, reference or independent material.",
+          "ordinary_access": "Fixed per-task command; same approved Python 3.12.14 / pytest 8.3.5 image; up to four runs and four edit revisions.",
+          "budget": {
+            "requests": 12,
+            "output_tokens_per_request": 3000,
+            "token_upper_bound": 180000,
+            "wall_seconds": 420,
+            "provider_timeout_seconds": 60,
+            "revisions": 4,
+            "ordinary_runs": 4,
+            "read_search_actions": 16,
+            "actions_per_response": 4,
+            "automatic_retries": 0,
+            "source_read_chars": 12000
+          },
+          "credentials": "Existing authorized NVIDIA key; coordinator only.",
+          "availability_response_model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+          "unavailable_metadata": [
+            "Immutable model-weight revision",
+            "Training exposure",
+            "Provider hardware/load",
+            "Monetary cost/price",
+            "Provider RNG seed"
+          ],
+          "automatic_retries": 0
+        }
+      },
+      "order": [
+        {
+          "id": "m02-v1-more-bucket-nemotron3-r01",
+          "task_id": "more-bucket",
+          "configuration_id": "nemotron3",
+          "trial": 1,
+          "order": 1
+        },
+        {
+          "id": "m02-v1-more-bucket-nemotron35-r01",
+          "task_id": "more-bucket",
+          "configuration_id": "nemotron35",
+          "trial": 1,
+          "order": 2
+        },
+        {
+          "id": "m02-v1-boltons-indexedset-nemotron3-r01",
+          "task_id": "boltons-indexedset",
+          "configuration_id": "nemotron3",
+          "trial": 1,
+          "order": 3
+        },
+        {
+          "id": "m02-v1-boltons-indexedset-nemotron35-r01",
+          "task_id": "boltons-indexedset",
+          "configuration_id": "nemotron35",
+          "trial": 1,
+          "order": 4
+        },
+        {
+          "id": "m02-v1-more-seekable-nemotron35-r01",
+          "task_id": "more-seekable",
+          "configuration_id": "nemotron35",
+          "trial": 1,
+          "order": 5
+        },
+        {
+          "id": "m02-v1-more-seekable-nemotron3-r01",
+          "task_id": "more-seekable",
+          "configuration_id": "nemotron3",
+          "trial": 1,
+          "order": 6
+        },
+        {
+          "id": "m02-v1-boltons-addlist-nemotron35-r01",
+          "task_id": "boltons-addlist",
+          "configuration_id": "nemotron35",
+          "trial": 1,
+          "order": 7
+        },
+        {
+          "id": "m02-v1-boltons-addlist-nemotron3-r01",
+          "task_id": "boltons-addlist",
+          "configuration_id": "nemotron3",
+          "trial": 1,
+          "order": 8
+        },
+        {
+          "id": "m02-v1-more-bucket-nemotron35-r02",
+          "task_id": "more-bucket",
+          "configuration_id": "nemotron35",
+          "trial": 2,
+          "order": 9
+        },
+        {
+          "id": "m02-v1-more-bucket-nemotron3-r02",
+          "task_id": "more-bucket",
+          "configuration_id": "nemotron3",
+          "trial": 2,
+          "order": 10
+        },
+        {
+          "id": "m02-v1-boltons-indexedset-nemotron3-r02",
+          "task_id": "boltons-indexedset",
+          "configuration_id": "nemotron3",
+          "trial": 2,
+          "order": 11
+        },
+        {
+          "id": "m02-v1-boltons-indexedset-nemotron35-r02",
+          "task_id": "boltons-indexedset",
+          "configuration_id": "nemotron35",
+          "trial": 2,
+          "order": 12
+        },
+        {
+          "id": "m02-v1-more-seekable-nemotron35-r02",
+          "task_id": "more-seekable",
+          "configuration_id": "nemotron35",
+          "trial": 2,
+          "order": 13
+        },
+        {
+          "id": "m02-v1-more-seekable-nemotron3-r02",
+          "task_id": "more-seekable",
+          "configuration_id": "nemotron3",
+          "trial": 2,
+          "order": 14
+        },
+        {
+          "id": "m02-v1-boltons-addlist-nemotron35-r02",
+          "task_id": "boltons-addlist",
+          "configuration_id": "nemotron35",
+          "trial": 2,
+          "order": 15
+        },
+        {
+          "id": "m02-v1-boltons-addlist-nemotron3-r02",
+          "task_id": "boltons-addlist",
+          "configuration_id": "nemotron3",
+          "trial": 2,
+          "order": 16
+        },
+        {
+          "id": "m02-v1-more-bucket-nemotron35-r03",
+          "task_id": "more-bucket",
+          "configuration_id": "nemotron35",
+          "trial": 3,
+          "order": 17
+        },
+        {
+          "id": "m02-v1-more-bucket-nemotron3-r03",
+          "task_id": "more-bucket",
+          "configuration_id": "nemotron3",
+          "trial": 3,
+          "order": 18
+        },
+        {
+          "id": "m02-v1-boltons-indexedset-nemotron35-r03",
+          "task_id": "boltons-indexedset",
+          "configuration_id": "nemotron35",
+          "trial": 3,
+          "order": 19
+        },
+        {
+          "id": "m02-v1-boltons-indexedset-nemotron3-r03",
+          "task_id": "boltons-indexedset",
+          "configuration_id": "nemotron3",
+          "trial": 3,
+          "order": 20
+        },
+        {
+          "id": "m02-v1-more-seekable-nemotron3-r03",
+          "task_id": "more-seekable",
+          "configuration_id": "nemotron3",
+          "trial": 3,
+          "order": 21
+        },
+        {
+          "id": "m02-v1-more-seekable-nemotron35-r03",
+          "task_id": "more-seekable",
+          "configuration_id": "nemotron35",
+          "trial": 3,
+          "order": 22
+        },
+        {
+          "id": "m02-v1-boltons-addlist-nemotron3-r03",
+          "task_id": "boltons-addlist",
+          "configuration_id": "nemotron3",
+          "trial": 3,
+          "order": 23
+        },
+        {
+          "id": "m02-v1-boltons-addlist-nemotron35-r03",
+          "task_id": "boltons-addlist",
+          "configuration_id": "nemotron35",
+          "trial": 3,
+          "order": 24
+        }
+      ],
+      "order_seed": 20261016,
+      "execution_order": "Sequential, pre-randomized paired configurations by task and repeat. Scoring starts only after all generation trials terminate.",
+      "trials_per_task_configuration": 3,
+      "controlled_trials": 24,
+      "global_ceiling": {
+        "requests": 288,
+        "conservative_token_reservations": 4320000,
+        "wall_seconds": 10080
+      },
+      "control_evidence": {
+        "validation-final-v2/more-bucket-baseline.json": "45a01151a0a2048fe84a799216fdd1606296f547eeefdd0db6543d528aeda854",
+        "validation-final-v2/more-bucket-negative.json": "2a076b2693f45f7a53b4caffc36de513950e014ed8c73b484da85e14bc792fc1",
+        "validation-final-v2/more-bucket-reference.json": "8e37de153c134b3c716d4c1b9bc5a028399fcc2f64a0dfc5fa687b18472c4d2b",
+        "validation-final-v2/more-bucket-alternate.json": "8f5278dd58e070487098ddf343f132466737f4f75136e7690a26f842bc2c699e",
+        "validation-final-v2/boltons-addlist-baseline.json": "f239204f4862e094d5756123143fe6b8035d238d28b4426bdb80e1994bb81565",
+        "validation-final-v2/boltons-addlist-negative.json": "b6ce442cdb980addebc3f0a5a496d585e8d70414e49897b69b3c4634bbc6dd2d",
+        "validation-final-v2/boltons-addlist-reference.json": "0fb0107edfd5349af7f32cd7065d013741518dbe35bbd1467329a35a560bed28",
+        "validation-final-v2/boltons-addlist-alternate.json": "8515dcb76745632cfa625adef1734a141590c1ae12c2973d8682df206e1d3541",
+        "validation-final-v2/more-seekable-baseline.json": "fa09e0157c5538e3d4d8b0aa61c577706777c2817b3064c21b6c6a93b26bc7a2",
+        "validation-final-v2/more-seekable-negative.json": "f57d1f4ce8630fc97bbec3fd95389ee71c062f0a1874a1aabaccfff5fc04f672",
+        "validation-final-v2/more-seekable-reference.json": "c5519b6a96313d3569bc8717bf80070cb6dfb780406eb750ebbdcb41fffe4567",
+        "validation-final-v2/more-seekable-alternate.json": "be86eea3aa63ae2158b8f34d5696a8e128ecb431f5afef0ad6086bf3eaed29fb",
+        "validation-final-v2/boltons-indexedset-baseline.json": "d2647fcbea90fbf76e557561c654f2325309f33f136f4e0edfd56be72d15f1ee",
+        "validation-final-v2/boltons-indexedset-negative.json": "719d31e8384924c754b5b823898396d2a5a7c9b8a89158a9d0f6a760b816c48e",
+        "validation-final-v2/boltons-indexedset-reference.json": "0f5e236181ceae87cce38dadda85333eb83439ca35e42918c2ac24a83a4a7ac8",
+        "validation-final-v2/boltons-indexedset-alternate.json": "1b3669eac6d922e91e268e92c1d1968fb675706ea3a7bd3e8f4b250e92463bf6"
+      },
+      "interruption_policy": "Exclusive trial IDs are never restarted. Completed generations may be read and validated; an interrupted generation keeps its raw prefix and is reported as incomplete, never silently rerun. A campaign cannot produce a final comparative claim without every scheduled coordinate. Completed scores are reused after validation; a scoring claim without a terminal result is classified as interrupted infrastructure, never rerun.",
+      "generation_rule": "One exclusive trial claim; no automatic provider retries, reruns, budget replenishment or discarded attempts. Explicit final submission only; incomplete working trees retained in events but never auto-promoted. Test failure in a response requires another turn to inspect feedback before submission.",
+      "scoring_rule": "Every submitted final candidate scored once in fresh ordinary and independent environments using identical per-task procedures. No independent feedback during any generation. Authored controls excluded. Frozen M1 calibration adapters remain unchanged.",
+      "outcome_rules": {
+        "no_usable_candidate": "No final submission; invalid outputs or exhausted budgets retained.",
+        "ordinary_failed": "Completed final evaluation with ordinary exit 1, regardless of independent outcome.",
+        "additional_independent_failure": "Ordinary passed; completed independent checks failed or candidate observations malformed.",
+        "both_passed": "Both completed and passed.",
+        "infrastructure_or_provider_failure": "Provider or execution infrastructure failure/timeout; never interpreted as demonstrated code defect."
+      },
+      "incremental_detection": "Numerator = genuine ordinary-passing candidates rejected independently; denominator = genuine ordinary-passing candidates with completed independent evaluation. Also show attempted and completed trial denominators separately.",
+      "accounting": "Reserve UTF-8 message bytes + max output tokens before every request, including failures. Usage is provider-reported; missing usage and price unknown. Generation wall includes ordinary tools; ordinary-tool time separately itemized, evaluation time separate. No CPU/memory or latency vendor ranking.",
+      "limitations": [
+        "Small descriptive case study: four public historical tasks, two related model families, three trials per cell; no population/vendor ranking.",
+        "Training contamination and immutable weight revisions unknown. M1 is historical single-turn evidence and excluded from this controlled matrix.",
+        "Structured JSON tool loop, no arbitrary shell or external retrieval; source/test access identical across configurations.",
+        "In-process Python observations are not a complete anti-tampering boundary against malicious candidates. Docker shares the host kernel; local approved execution only.",
+        "Ordinary tests are relevant pre-existing upstream subsets. Independent coverage is finite; passing is not proof of general correctness.",
+        "Sequential local measurements include provider load and container overhead. Monetary cost is unknown; request and returned token accounting retained.",
+        "Zero additional discoveries or ties are valid outcomes and do not justify broad release or execution hosting."
+      ]
+    },
+    "hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4"
+  },
+  "tasks": [
+    {
+      "id": "more-bucket",
+      "project": "more-itertools",
+      "upstream": "https://github.com/more-itertools/more-itertools",
+      "issue": "https://github.com/more-itertools/more-itertools/issues/1308",
+      "base_commit": "1ea82a711c69f590054987b5cb194157f8ce8ac4",
+      "reference_commit": "67fcf640477c78605580f5ee703a54c73c1e7a8a",
+      "license": "MIT",
+      "title": "Honor false-valued bucket validators",
+      "problem": "A supplied callable validator can have a false truth value. bucket silently replaces it with an accept-all default, admitting rejected keys and consuming input on rejected lookups.",
+      "expected": "Use the supplied validator regardless of its truth value. Only None selects the accept-all default. Rejected selection and membership must not consume the source; key iteration must honor validation. Ordinary truthy validators and the default must retain their documented behavior.",
+      "allowed_paths": [
+        "more_itertools/more.py"
+      ],
+      "ordinary": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_more.py::BucketTests"
+      ],
+      "schema_version": 1,
+      "source_files": {
+        "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+        "more_itertools/more.py": "bc51d6f1c05613084fb566a8310771ab946864f0bb4815d26d4c6bb8d44bf9ff",
+        "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+        "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+        "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+      },
+      "environment": "python312-v1",
+      "verifier": "behavior-v1",
+      "timeout_seconds": 25,
+      "artifact_policy": "Public specifications, checks, controls and sanitized generation records. Expected answers withheld from provider requests; public historical tasks are not uncontaminated benchmarks.",
+      "ordinary_scope": "Existing applicable upstream tests, byte-for-byte at the pinned base. Not the entire upstream suite.",
+      "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175"
+    },
+    {
+      "id": "boltons-addlist",
+      "project": "Boltons",
+      "upstream": "https://github.com/mahmoud/boltons",
+      "issue": "https://github.com/mahmoud/boltons/pull/458",
+      "base_commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+      "reference_commit": "a1ea1030ed85137e999c0bd9b11d16368d3ab241",
+      "license": "BSD-3-Clause",
+      "title": "Preserve one-shot addlist inputs",
+      "problem": "OrderedMultiDict.addlist traverses an iterable twice. Iterators and generators leave its linked keys and stored values inconsistent, including empty inputs. The vendored copy in urlutils has the same defect.",
+      "expected": "Both dictutils.OrderedMultiDict and urlutils.OrderedMultiDict (including the documented standalone import fallback) must accept finite iterable values, preserve order, append on repeated calls, leave no key for an empty iterable, and keep getlist, keys, len and iteritems(multi=True) consistent. Existing list/tuple inputs remain supported.",
+      "allowed_paths": [
+        "boltons/dictutils.py",
+        "boltons/urlutils.py"
+      ],
+      "ordinary": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_dictutils.py",
+        "tests/test_urlutils.py"
+      ],
+      "schema_version": 1,
+      "source_files": {
+        "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+        "boltons/dictutils.py": "2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500",
+        "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+        "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+        "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+        "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+      },
+      "environment": "python312-v1",
+      "verifier": "behavior-v1",
+      "timeout_seconds": 25,
+      "artifact_policy": "Public specifications, checks, controls and sanitized generation records. Expected answers withheld from provider requests; public historical tasks are not uncontaminated benchmarks.",
+      "ordinary_scope": "Existing applicable upstream tests, byte-for-byte at the pinned base. Not the entire upstream suite.",
+      "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76"
+    },
+    {
+      "id": "more-seekable",
+      "project": "more-itertools",
+      "upstream": "https://github.com/more-itertools/more-itertools",
+      "base_commit": "ca711220a6657a22655f6fa497524d006a735c5f",
+      "reference_commit": "6b1907de293a655fb77881bf81948f95fd15bd7c",
+      "issue": "https://github.com/more-itertools/more-itertools/issues/1268",
+      "license": "MIT",
+      "title": "Preserve iterator state during zero-cache observations",
+      "problem": "seekable(iterable, maxlen=0) loses source items when peek() or bool() observes it. Observation followed by iteration must preserve the unconsumed sequence, including false-valued items.",
+      "expected": "Repeated peek and truth testing must not advance the logical iterator. next() must return the peeked item. maxlen=0 must keep elements() empty. Empty and exhausted sources retain StopIteration/default/false behavior. Existing positive/default-cache seeking behavior must remain intact.",
+      "allowed_paths": [
+        "more_itertools/more.py"
+      ],
+      "producer_symbols": [
+        "seekable"
+      ],
+      "ordinary": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_more.py::SeekableTest"
+      ],
+      "schema_version": 1,
+      "environment": "python312-v1",
+      "verifier": "m02-behavior-v1",
+      "timeout_seconds": 25,
+      "ordinary_scope": "Existing applicable upstream tests, byte-for-byte at the defective base. Not the entire suite. No later regression tests.",
+      "source_files": {
+        "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+        "more_itertools/more.py": "b2aab5df2633cef2df950aacb0e26da9ab0b3d4ea1da9d7079362afa7cd383de",
+        "more_itertools/recipes.py": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db",
+        "tests/test_more.py": "e88a96a28e3c42fd1aeacd55850fe080659735cce2a36157adf487d08146cf17",
+        "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+      },
+      "spec_hash": "85d7f1e32b53c05674cfdf486357c28b9a3227941051a3841c558a9afeea7c3d"
+    },
+    {
+      "id": "boltons-indexedset",
+      "project": "Boltons",
+      "upstream": "https://github.com/mahmoud/boltons",
+      "base_commit": "979fa9b613fa8c0a455ae16ea6f2ec91c11ecafe",
+      "reference_commit": "609cabe932a1ea1423b24568644945abb1b8bb84",
+      "issue": "https://github.com/mahmoud/boltons/pull/423",
+      "license": "BSD-3-Clause",
+      "title": "Slice IndexedSet correctly after removals",
+      "problem": "Removing values leaves internal dead slots. IndexedSet slicing then mixes physical storage offsets with visible item positions and returns incorrect contents. Slicing must depend on the visible ordered contents rather than mutation history.",
+      "expected": "Positive-step slices must match slicing the visible list, including negative bounds and out-of-range bounds. Preserve the established Boltons negative-step convention: normalize negative bounds against visible length, reverse the stream, then apply forward bounds and absolute step (not Python list negative-step semantics). Preserve IndexedSet return type, scalar indexing, item order, length, and nonmutation by slicing.",
+      "allowed_paths": [
+        "boltons/setutils.py"
+      ],
+      "producer_symbols": [
+        "IndexedSet.iter_slice",
+        "IndexedSet.__getitem__",
+        "IndexedSet.remove",
+        "IndexedSet._get_real_index"
+      ],
+      "ordinary": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_setutils.py"
+      ],
+      "schema_version": 1,
+      "environment": "python312-v1",
+      "verifier": "m02-behavior-v1",
+      "timeout_seconds": 25,
+      "ordinary_scope": "Existing applicable upstream tests, byte-for-byte at the defective base. Not the entire suite. No later regression tests.",
+      "source_files": {
+        "boltons/__init__.py": "bc65b003e91e1580b6deb48f9c11fc5702756f7acaeeed894dabcb02873bc452",
+        "boltons/setutils.py": "6dc3c91b2c3bc30d319d62803a5ba1ac326022fce7b24e3402d455c897f3c478",
+        "tests/test_setutils.py": "fcc144f552fd19e91949d8b0b5bc0d46e6e74971f22081a0b6e317bee077abfe",
+        "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+      },
+      "spec_hash": "64476f640db4c9281246b817bb658a0888de0476041c55f2d59cbb6c6b51fa9a"
+    }
+  ],
+  "controls": [
+    {
+      "id": "more-bucket-baseline",
+      "task_id": "more-bucket",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "failed"
+    },
+    {
+      "id": "more-bucket-negative",
+      "task_id": "more-bucket",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "failed"
+    },
+    {
+      "id": "more-bucket-reference",
+      "task_id": "more-bucket",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "passed"
+    },
+    {
+      "id": "more-bucket-alternate",
+      "task_id": "more-bucket",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "passed"
+    },
+    {
+      "id": "boltons-addlist-baseline",
+      "task_id": "boltons-addlist",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "failed"
+    },
+    {
+      "id": "boltons-addlist-negative",
+      "task_id": "boltons-addlist",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "failed"
+    },
+    {
+      "id": "boltons-addlist-reference",
+      "task_id": "boltons-addlist",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "passed"
+    },
+    {
+      "id": "boltons-addlist-alternate",
+      "task_id": "boltons-addlist",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "passed"
+    },
+    {
+      "id": "more-seekable-baseline",
+      "task_id": "more-seekable",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "failed"
+    },
+    {
+      "id": "more-seekable-negative",
+      "task_id": "more-seekable",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "failed"
+    },
+    {
+      "id": "more-seekable-reference",
+      "task_id": "more-seekable",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "passed"
+    },
+    {
+      "id": "more-seekable-alternate",
+      "task_id": "more-seekable",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "passed"
+    },
+    {
+      "id": "boltons-indexedset-baseline",
+      "task_id": "boltons-indexedset",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "failed"
+    },
+    {
+      "id": "boltons-indexedset-negative",
+      "task_id": "boltons-indexedset",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "failed"
+    },
+    {
+      "id": "boltons-indexedset-reference",
+      "task_id": "boltons-indexedset",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "passed"
+    },
+    {
+      "id": "boltons-indexedset-alternate",
+      "task_id": "boltons-indexedset",
+      "kind": "control",
+      "ordinary": "passed",
+      "independent": "passed"
+    }
+  ]
+}

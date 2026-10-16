@@ -1,0 +1,25 @@
+{
+  "more-seekable": {
+    "base_commit": "ca711220a6657a22655f6fa497524d006a735c5f",
+    "reference_commit": "6b1907de293a655fb77881bf81948f95fd15bd7c",
+    "source_bytes_match_upstream_git_show": {
+      "more_itertools/__init__.py": true,
+      "more_itertools/more.py": true,
+      "more_itertools/recipes.py": true,
+      "tests/test_more.py": true,
+      "LICENSE": true
+    },
+    "spec_hash": "85d7f1e32b53c05674cfdf486357c28b9a3227941051a3841c558a9afeea7c3d"
+  },
+  "boltons-indexedset": {
+    "base_commit": "979fa9b613fa8c0a455ae16ea6f2ec91c11ecafe",
+    "reference_commit": "609cabe932a1ea1423b24568644945abb1b8bb84",
+    "source_bytes_match_upstream_git_show": {
+      "boltons/__init__.py": true,
+      "boltons/setutils.py": true,
+      "tests/test_setutils.py": true,
+      "LICENSE": true
+    },
+    "spec_hash": "64476f640db4c9281246b817bb658a0888de0476041c55f2d59cbb6c6b51fa9a"
+  }
+}

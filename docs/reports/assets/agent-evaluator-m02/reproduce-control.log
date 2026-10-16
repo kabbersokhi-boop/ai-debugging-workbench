@@ -1,0 +1,1083 @@
+{
+  "candidate_hash": "b551e562bcb7907b54f7c2527937f29cd34f501fb17eb8d6b126db1acbeeebc9",
+  "binding": {
+    "task_id": "boltons-indexedset",
+    "base_commit": "979fa9b613fa8c0a455ae16ea6f2ec91c11ecafe",
+    "spec_hash": "64476f640db4c9281246b817bb658a0888de0476041c55f2d59cbb6c6b51fa9a",
+    "candidate_hash": "b551e562bcb7907b54f7c2527937f29cd34f501fb17eb8d6b126db1acbeeebc9",
+    "patch_hash": "b7d70b509a5c5a12c5cb3e8f8c0fd59adde58c0028924913c72d2e07e8f4245a",
+    "verifier_hash": "020a1f2000688f74b8671f2e5f36b0e38c862b717fc91108149186574f26d40f",
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+    "executed_file_hashes": {
+      "boltons/__init__.py": "bc65b003e91e1580b6deb48f9c11fc5702756f7acaeeed894dabcb02873bc452",
+      "boltons/setutils.py": "956ecbdc5449daa7f93668e8bfa00f329afaacc3685a7f71399de07a519a6639",
+      "tests/test_setutils.py": "fcc144f552fd19e91949d8b0b5bc0d46e6e74971f22081a0b6e317bee077abfe",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    }
+  },
+  "binding_hash": "a0490950036901d9752fb35c1a20fbe45d15e3ed01d0e5dad126bfc4aa1db915",
+  "ordinary": {
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_setutils.py"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T18:38:57.542302+00:00",
+    "resource_usage": {
+      "cpu_ns": 661002000,
+      "peak_memory_bytes_observed": 29560832,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3",
+      "boltons/__init__.py": "bc65b003e91e1580b6deb48f9c11fc5702756f7acaeeed894dabcb02873bc452",
+      "boltons/setutils.py": "956ecbdc5449daa7f93668e8bfa00f329afaacc3685a7f71399de07a519a6639",
+      "tests/test_setutils.py": "fcc144f552fd19e91949d8b0b5bc0d46e6e74971f22081a0b6e317bee077abfe"
+    },
+    "container_id": "a82a97f3c5329b714b863cb52b78173e5dbe2cf1c59cd8c9bf24bf294b2a8544",
+    "exit_code": 0,
+    "oom_killed": false,
+    "stdout": ".....                                                                    [100%]\n5 passed in 0.16s\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T18:39:00.490737+00:00",
+    "duration_ms": 2948,
+    "outcome": "passed"
+  },
+  "independent": {
+    "command": [
+      "python",
+      "-I",
+      "-B",
+      "-c",
+      "\nimport json, sys\nsys.path.insert(0, '/source')\nfrom boltons.setutils import IndexedSet\nresult = {}\nbounds = [(1,4,None),(-3,None,None),(2,-1,None),(0,20,2),(-30,4,None),\n          (3,3,None),(None,None,None),(2,5,-1),(-4,-1,-2),(None,None,-1)]\nfor removed in [[2],[1,4],[0,8],[3,7,9]]:\n    s = IndexedSet(range(12))\n    for value in removed: s.remove(value)\n    before = list(s)\n    observations = []\n    for start, stop, step in bounds:\n        try:\n            sliced = s[slice(start,stop,step)]\n            observations.append({'values': list(sliced), 'type_ok': isinstance(sliced, IndexedSet)})\n        except Exception as error:\n            observations.append({'error': type(error).__name__})\n    result[','.join(map(str,removed))] = {'before': before, 'slices': observations,\n        'after': list(s), 'length': len(s), 'scalar': [s[0],s[2],s[-1]]}\nprint(json.dumps(result))\n"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T18:39:08.732364+00:00",
+    "resource_usage": {
+      "cpu_ns": 44790000,
+      "peak_memory_bytes_observed": 3952640,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3",
+      "boltons/__init__.py": "bc65b003e91e1580b6deb48f9c11fc5702756f7acaeeed894dabcb02873bc452",
+      "boltons/setutils.py": "956ecbdc5449daa7f93668e8bfa00f329afaacc3685a7f71399de07a519a6639"
+    },
+    "container_id": "c380b521f8267950d2ab44112d47a6baca1527fd42ed74b52aa10fc78bcf1b4a",
+    "exit_code": 0,
+    "oom_killed": false,
+    "stdout": "{\"2\": {\"before\": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11], \"slices\": [{\"values\": [1, 3, 4], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"error\": \"ValueError\"}, {\"values\": [0, 3, 5, 7, 9, 11], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"values\": [], \"type_ok\": true}, {\"values\": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11], \"type_ok\": true}, {\"values\": [9, 8, 7], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"values\": [11, 10, 9, 8, 7, 6, 5, 4, 3, 1, 0], \"type_ok\": true}], \"after\": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11], \"length\": 11, \"scalar\": [0, 3, 11]}, \"1,4\": {\"before\": [0, 2, 3, 5, 6, 7, 8, 9, 10, 11], \"slices\": [{\"values\": [2, 3, 5], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"error\": \"ValueError\"}, {\"values\": [0, 3, 6, 8, 10], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"values\": [], \"type_ok\": true}, {\"values\": [0, 2, 3, 5, 6, 7, 8, 9, 10, 11], \"type_ok\": true}, {\"values\": [9, 8, 7], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"values\": [11, 10, 9, 8, 7, 6, 5, 3, 2, 0], \"type_ok\": true}], \"after\": [0, 2, 3, 5, 6, 7, 8, 9, 10, 11], \"length\": 10, \"scalar\": [0, 3, 11]}, \"0,8\": {\"before\": [1, 2, 3, 4, 5, 6, 7, 9, 10, 11], \"slices\": [{\"values\": [2, 3, 4], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"error\": \"ValueError\"}, {\"values\": [1, 3, 5, 7, 10], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"values\": [], \"type_ok\": true}, {\"values\": [1, 2, 3, 4, 5, 6, 7, 9, 10, 11], \"type_ok\": true}, {\"values\": [9, 7, 6], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"values\": [11, 10, 9, 7, 6, 5, 4, 3, 2, 1], \"type_ok\": true}], \"after\": [1, 2, 3, 4, 5, 6, 7, 9, 10, 11], \"length\": 10, \"scalar\": [1, 3, 11]}, \"3,7,9\": {\"before\": [0, 1, 2, 4, 5, 6, 8, 10, 11], \"slices\": [{\"values\": [1, 2, 4], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"error\": \"ValueError\"}, {\"values\": [0, 2, 5, 8, 11], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"values\": [], \"type_ok\": true}, {\"values\": [0, 1, 2, 4, 5, 6, 8, 10, 11], \"type_ok\": true}, {\"values\": [8, 6, 5], \"type_ok\": true}, {\"error\": \"ValueError\"}, {\"values\": [11, 10, 8, 6, 5, 4, 2, 1, 0], \"type_ok\": true}], \"after\": [0, 1, 2, 4, 5, 6, 8, 10, 11], \"length\": 9, \"scalar\": [0, 2, 11]}}\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T18:39:10.362618+00:00",
+    "duration_ms": 1630,
+    "checks": [
+      {
+        "name": "2",
+        "expected": {
+          "before": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "slices": [
+            {
+              "values": [
+                1,
+                3,
+                4
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                9,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                3,
+                5,
+                7,
+                9,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                1,
+                3,
+                4
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                1,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                9,
+                8,
+                7
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                4,
+                1
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                1,
+                0
+              ],
+              "type_ok": true
+            }
+          ],
+          "after": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "length": 11,
+          "scalar": [
+            0,
+            3,
+            11
+          ]
+        },
+        "observed": {
+          "before": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "slices": [
+            {
+              "values": [
+                1,
+                3,
+                4
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [
+                0,
+                3,
+                5,
+                7,
+                9,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                1,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                9,
+                8,
+                7
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                1,
+                0
+              ],
+              "type_ok": true
+            }
+          ],
+          "after": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "length": 11,
+          "scalar": [
+            0,
+            3,
+            11
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "1,4",
+        "expected": {
+          "before": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "slices": [
+            {
+              "values": [
+                2,
+                3,
+                5
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                9,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                3,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                3,
+                6,
+                8,
+                10
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                2,
+                3,
+                5
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                2,
+                3,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                9,
+                8,
+                7
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                5,
+                2
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                3,
+                2,
+                0
+              ],
+              "type_ok": true
+            }
+          ],
+          "after": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "length": 10,
+          "scalar": [
+            0,
+            3,
+            11
+          ]
+        },
+        "observed": {
+          "before": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "slices": [
+            {
+              "values": [
+                2,
+                3,
+                5
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [
+                0,
+                3,
+                6,
+                8,
+                10
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                2,
+                3,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                9,
+                8,
+                7
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                3,
+                2,
+                0
+              ],
+              "type_ok": true
+            }
+          ],
+          "after": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "length": 10,
+          "scalar": [
+            0,
+            3,
+            11
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "0,8",
+        "expected": {
+          "before": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11
+          ],
+          "slices": [
+            {
+              "values": [
+                2,
+                3,
+                4
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                9,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                9,
+                10
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                1,
+                3,
+                5,
+                7,
+                10
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [],
+              "type_ok": true
+            },
+            {
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                9,
+                7,
+                6
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                4,
+                2
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                11,
+                10,
+                9,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1
+              ],
+              "type_ok": true
+            }
+          ],
+          "after": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11
+          ],
+          "length": 10,
+          "scalar": [
+            1,
+            3,
+            11
+          ]
+        },
+        "observed": {
+          "before": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11
+          ],
+          "slices": [
+            {
+              "values": [
+                2,
+                3,
+                4
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [
+                1,
+                3,
+                5,
+                7,
+                10
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [],
+              "type_ok": true
+            },
+            {
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                9,
+                7,
+                6
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [
+                11,
+                10,
+                9,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1
+              ],
+              "type_ok": true
+            }
+          ],
+          "after": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11
+          ],
+          "length": 10,
+          "scalar": [
+            1,
+            3,
+            11
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "3,7,9",
+        "expected": {
+          "before": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            10,
+            11
+          ],
+          "slices": [
+            {
+              "values": [
+                1,
+                2,
+                4
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                8,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                10
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                2,
+                5,
+                8,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                1,
+                2,
+                4
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                1,
+                2,
+                4,
+                5,
+                6,
+                8,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                8,
+                6,
+                5
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                4,
+                1
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                11,
+                10,
+                8,
+                6,
+                5,
+                4,
+                2,
+                1,
+                0
+              ],
+              "type_ok": true
+            }
+          ],
+          "after": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            10,
+            11
+          ],
+          "length": 9,
+          "scalar": [
+            0,
+            2,
+            11
+          ]
+        },
+        "observed": {
+          "before": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            10,
+            11
+          ],
+          "slices": [
+            {
+              "values": [
+                1,
+                2,
+                4
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [
+                0,
+                2,
+                5,
+                8,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [],
+              "type_ok": true
+            },
+            {
+              "values": [
+                0,
+                1,
+                2,
+                4,
+                5,
+                6,
+                8,
+                10,
+                11
+              ],
+              "type_ok": true
+            },
+            {
+              "values": [
+                8,
+                6,
+                5
+              ],
+              "type_ok": true
+            },
+            {
+              "error": "ValueError"
+            },
+            {
+              "values": [
+                11,
+                10,
+                8,
+                6,
+                5,
+                4,
+                2,
+                1,
+                0
+              ],
+              "type_ok": true
+            }
+          ],
+          "after": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            10,
+            11
+          ],
+          "length": 9,
+          "scalar": [
+            0,
+            2,
+            11
+          ]
+        },
+        "status": "failed"
+      }
+    ],
+    "outcome": "failed"
+  },
+  "status": "failed",
+  "reason": "Frozen behavioral observations compared outside the candidate container"
+}
