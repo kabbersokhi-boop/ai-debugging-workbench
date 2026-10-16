@@ -1,5 +1,7 @@
 # Milestone 4 — evaluation, usability and release candidate
 
+**Final-review correction:** guest UUID authorization was corrected after reviewed head `f1865c0`. Section 9 contains the correction and current sign-off references. The frozen benchmark records and original evidence below are unchanged.
+
 ## 1. Executive summary
 
 The existing repair engine now supports four selectable development scenarios, backed by twelve immutable implementation defects spanning pricing, shipping, transitions and input bounds. Actual NVIDIA workflows reproduced, diagnosed and repaired all four development cases. The frozen eight-case held-out comparison completed all 24 condition runs. **One-shot whole-target, loop whole-target and loop retrieval each resolved 8/8 cases; this experiment demonstrates no resolution improvement from the loop or retrieval.** This is a small related-source synthetic suite, not a production accuracy estimate.
@@ -145,3 +147,29 @@ Dependency checks cover the built frontend and pinned minimal public Python imag
 - Source tour: [critical code map](../CODE_TOUR.md), [architecture](../ARCHITECTURE.md), [decisions](../DECISIONS.md), [results](../RESULTS.md), [walkthrough provenance](../demo/README.md).
 
 Ready for final owner review. No PR was merged, no code/repository was published, and no additional milestone was started.
+
+## 9. Final-review correction — guest resource authorization
+
+**Root cause:** authorization recognized resource IDs with a narrow lowercase UUID regex. Alternate spellings accepted by the installed FastAPI/Pydantic validator skipped ownership checks. The new actual-application/PostgreSQL test reproduced HTTP 200 for a synthetic foreign uppercase run ID before the fix; [original failing regression](assets/milestone-04/guest-auth/m4-auth-before-fix.txt).
+
+**Fix:** identify the protected resource namespace first, parse its UUID, and require its canonical lowercase/hyphenated spelling. Malformed and noncanonical guest paths now return the same 404 before handlers. Canonical IDs undergo the existing ownership check using the parsed UUID. Collection history filtering, snapshot/artifact ownership, expiry, quota reservations and trusted local mode retain their behavior. No schema change, volume reset, inference or frozen NVIDIA evaluation rerun was performed.
+
+**Coverage:** two actual guest sessions and disposable PostgreSQL schemas; sixteen spellings across all sixteen current protected routes (512 guest resource requests). The matrix includes canonical, uppercase, mixed-case, hyphenless, uppercase hex, braces, URNs and malformed variants. Trusted-local requests probe the actual installed route validator: nine forms remain accepted there, seven rejected. Guest requests deny all 256 foreign accesses and all 240 noncanonical owner accesses; sixteen canonical owner paths succeed. Instrumented real handler entry and deterministic effect boundaries assert no unauthorized request reaches provider admission, cancellation/start, broker preview/remote controls or artifact handlers. Real database get/history and response serialization remain in use; only effectful coordinator operations and broker I/O use explicit offline fixtures. Root/nested history, evidence/patch downloads, screenshots, source ownership, expiry and atomic reservations are covered.
+
+| Exact command | Actual result |
+| --- | --- |
+| `./scripts/e2e -k guest_uuid_spellings` before correction | 1 failed in 1.95 s: uppercase foreign UUID returned 200 |
+| `./scripts/e2e -k 'guest_uuid_spellings or guest_ownership or reservations_are_atomic'` | 3 passed in 4.72 s |
+| `./scripts/check` | Ruff/format passed; Pyright zero errors; 57 unit tests passed in 3.57 s; TypeScript/Vite build passed |
+| `./scripts/e2e` | 48 passed, four explicit opt-in skips, 57 deselected in 223.15 s |
+| `E2E_BASE_URL=http://127.0.0.1:8020 ./scripts/e2e -k recorded_explorer_first` | 1 passed in 3.18 s; actual recorded container desktop/mobile, no live requests or page errors |
+| `uv run --project backend python scripts/check_release.py` | Actual recorded container boundary checks passed; it still has no protected guest resource routes or execution authority |
+
+The refreshed [desktop screenshot](assets/milestone-04/recorded-desktop.png) waits for both original `20000` and candidate `10000` shipping-threshold source lines to render in Monaco. No UI redesign was made. [Correction logs and preservation evidence](assets/milestone-04/guest-auth/) retain the before/after outcome, full checks and confirmation that all 32 frozen engine/scoring/source hashes and historical benchmark files remain unchanged.
+
+- Reviewed original head: `f1865c07d32f3e4b113870a95e5f73e96c7461b3`; original `review/milestone-04` tag is retained.
+- Tested correction implementation: [`e860ed65a5fed2aaadc0fcffaa823f8a32420fc0`](https://github.com/kabbersokhi-boop/ai-debugging-workbench/commit/e860ed65a5fed2aaadc0fcffaa823f8a32420fc0).
+- Final correction review head: [`review/milestone-04-guest-auth`](https://github.com/kabbersokhi-boop/ai-debugging-workbench/tree/review/milestone-04-guest-auth), an immutable tag for the correction report/evidence commit. Its exact SHA and final-head CI run/outcome are recorded in the PR delivery summary.
+- Existing [PR #4](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/4), same `milestone/04-release-readiness` branch and base. [Final correction CI checks](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/4/checks) exercise the committed correction, full offline suite, crash recovery and recorded release checks; delivery waits for their outcome.
+
+This correction supersedes the original submission's guest-authorization claim. Public hosting remains inactive, all PRs remain unmerged, and no additional milestone was started.
