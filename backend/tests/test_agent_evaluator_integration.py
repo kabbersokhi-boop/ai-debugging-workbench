@@ -125,3 +125,25 @@ def test_evaluator_docker_genuine_candidates():
         assert result["status"] in ("passed", "failed"), result
         assert result["ordinary"]["outcome"] in ("passed", "failed")
         assert result["independent"]["outcome"] in ("passed", "failed")
+
+
+async def test_evaluator_missing_image_is_infrastructure_error(monkeypatch, tmp_path):
+    import httpx
+
+    from workbench.evaluator import broker, runner
+
+    monkeypatch.setattr(runner, "IMAGE", "evaluator-deliberately-missing-image:m01")
+    monkeypatch.setattr(broker, "ROOT", tmp_path)
+    value = candidate("more-bucket-reference")
+    from uuid import uuid4
+
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=broker.app), base_url="http://broker"
+    ) as client:
+        response = await client.post(
+            f"/evaluations/{uuid4()}",
+            json={"candidate_id": value["id"], "candidate_hash": value["candidate_hash"]},
+        )
+    assert response.status_code == 200
+    assert response.json()["status"] == "infrastructure_error"
+    assert response.json()["reason"] == "ImageNotFound"
