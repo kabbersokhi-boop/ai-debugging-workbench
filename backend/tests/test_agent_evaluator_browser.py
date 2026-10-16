@@ -39,7 +39,9 @@ async def test_evaluator_real_ui_candidates_failure_evidence_and_reopen():
                 ) as response:
                     await page.get_by_role("button", name="Run evaluation", exact=True).click()
                 run_id = (await (await response.value).json())["id"]
-                await expect(page.get_by_role("status")).to_have_text(
+                await expect(
+                    page.get_by_role("region", name="Evaluation result").get_by_role("status")
+                ).to_have_text(
                     "failed" if label == "negative" else re.compile("^(passed|failed)$"),
                     timeout=90000,
                 )
@@ -71,9 +73,9 @@ async def test_evaluator_real_ui_candidates_failure_evidence_and_reopen():
                     json.dumps(evidence, indent=2) + "\n",
                 )
                 await page.reload()
-                await expect(page.get_by_role("status")).to_have_text(
-                    evidence["status"], timeout=15000
-                )
+                await expect(
+                    page.get_by_role("region", name="Evaluation result").get_by_role("status")
+                ).to_have_text(evidence["status"], timeout=15000)
                 # Reopening the exact saved link reads persisted evidence without creating a run.
                 async with httpx.AsyncClient(base_url=BASE_URL) as client:
                     stored = (await client.get(f"/api/evaluator/runs/{run_id}")).json()
