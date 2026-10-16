@@ -42,6 +42,8 @@ try:
         assert "frame-ancestors 'none'" in response.headers["content-security-policy"]
         for path in (
             "/api/runs",
+            "/api/evaluator/runs",
+            "/api/evaluator/comparisons/m02-v1",
             "/api/repairs/unknown",
             "/retail/cart.js",
             "/candidates",

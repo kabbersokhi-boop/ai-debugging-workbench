@@ -1,0 +1,20 @@
+{
+  "trial_id": "m02-v1-boltons-indexedset-nemotron3-r02",
+  "sequence": 12,
+  "previous_hash": "196d4ef05cd6ea2295be977fa7c9e7d590230f7246e3df41fd04059094326a1a",
+  "at": "2026-10-16T17:56:21.162492+00:00",
+  "kind": "tools",
+  "payload": {
+    "message": {
+      "role": "user",
+      "content": "{\"tool_results\": [{\"error\": \"Invalid JSON action protocol; return one object with actions\"}], \"requests_remaining\": 8, \"budget_used\": {\"revisions\": 0, \"ordinary_runs\": 0, \"read_search_actions\": 1}, \"instruction\": \"Use remaining tools to correct ordinary failures, then submit. Last request must submit.\"}"
+    },
+    "source_hashes": {
+      "boltons/__init__.py": "bc65b003e91e1580b6deb48f9c11fc5702756f7acaeeed894dabcb02873bc452",
+      "boltons/setutils.py": "6dc3c91b2c3bc30d319d62803a5ba1ac326022fce7b24e3402d455c897f3c478",
+      "tests/test_setutils.py": "fcc144f552fd19e91949d8b0b5bc0d46e6e74971f22081a0b6e317bee077abfe",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    }
+  },
+  "hash": "025cdbbeb08929f9e27d39453ce7c107e77eb163a58e7d83f5f5173bea4a2958"
+}

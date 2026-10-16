@@ -1,0 +1,23 @@
+{
+  "trial_id": "m02-v1-boltons-addlist-nemotron35-r03",
+  "sequence": 13,
+  "previous_hash": "60f49325a635bbcaff4d8348cdae11b65e82652ca8651f5c45bc0baadbdf9bac",
+  "at": "2026-10-16T18:12:23.251914+00:00",
+  "kind": "request",
+  "payload": {
+    "request_hash": "7fa65208616e36522c418bfde43065889c26156adf6d526e05bf4b5209ee03f8",
+    "messages_hash": "85d965a449ef6c61be183f3bc500391b3f38223a10ca39127cde18d82dcae2d0",
+    "parameters": {
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "temperature": 0,
+      "max_tokens": 3000,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "input_bytes_upper_bound": 32658,
+    "reserved_tokens": 35658,
+    "request_index": 5
+  },
+  "hash": "66558014cffcbfa4b3a1e0fbb373f997eecc5e4281004c72ff6d5604f3649755"
+}

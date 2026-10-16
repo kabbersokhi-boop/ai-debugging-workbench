@@ -1,0 +1,38 @@
+{
+  "id": "m02-v1-more-seekable-nemotron35-r02",
+  "coordinate": {
+    "id": "m02-v1-more-seekable-nemotron35-r02",
+    "task_id": "more-seekable",
+    "configuration_id": "nemotron35",
+    "trial": 2,
+    "order": 13
+  },
+  "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+  "configuration_hash": "fad0bd0a1790b5d2466b4c0915e6faaeafe9da3b6747840f90c07a76d83fb8b2",
+  "context_hash": "0346a7a3901e940a650434ae8ecc885ec9cff066eb51d1ae3f0a23b18acfd431",
+  "generation_status": "provider_failure",
+  "error": {
+    "type": "TimeoutError",
+    "code": null
+  },
+  "requests": 1,
+  "token_reservation_upper_bound": 11219,
+  "provider_calls": [
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "latency_ms": 60056
+    }
+  ],
+  "counts": {
+    "revisions": 0,
+    "ordinary_runs": 0,
+    "read_search_actions": 0
+  },
+  "generation_wall_ms": 60094,
+  "ordinary_tool_ms": 0,
+  "events_count": 4,
+  "events_head": "5d718d214b01325a772265073aa10889f99e237e221fbb5b4504780b823529ff",
+  "candidate_id": null
+}

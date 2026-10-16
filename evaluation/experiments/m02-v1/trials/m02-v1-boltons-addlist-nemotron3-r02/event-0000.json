@@ -1,0 +1,81 @@
+{
+  "trial_id": "m02-v1-boltons-addlist-nemotron3-r02",
+  "sequence": 0,
+  "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "at": "2026-10-16T18:00:49.792874+00:00",
+  "kind": "context",
+  "payload": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are repairing an upstream Python library. You have the SAME source-inspection,\nedit, and ordinary-test tools as every compared configuration. No shell or external retrieval.\nReturn one JSON object: {\"decision\":\"brief explanation\", \"actions\":[...]}.\nTools (use exact fields; the file path belongs INSIDE each edit):\n{\"tool\":\"read\",\"path\":\"allowed file\",\"start\":1,\"end\":100} (1-based, <=120 lines)\n{\"tool\":\"search\",\"query\":\"literal text\"} (all approved files; <=20 hits)\n{\"tool\":\"edit\",\"edits\":[{\"path\":\"allowed production path\",\"old\":\"exact text\",\"new\":\"replacement\"}]}\n{\"tool\":\"test\"} (fixed ordinary upstream command; current source, fresh isolated container)\n{\"tool\":\"submit\"} (submit current source as final; must have edited and run tests after last edit).\nAt most four actions per response. Read/search/test results arrive as a user tool-results message.\nOnly production paths may be edited; tests are available for reading and execution, never editing.\nUse source inspection as needed, implement a legitimate correction, run ordinary tests, and revise\nif they fail within the stated budgets. Passing ordinary tests does not prove correctness.\nYou are not given reference fixes or independent checks. Preserve documented behavior and consider\nedge cases in the public problem. Submit when ready. No markdown fences around the JSON.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"project\": \"Boltons\", \"base_commit\": \"d45cc414e33aa4e08a73e0993574df4397e2e9db\", \"problem\": \"OrderedMultiDict.addlist traverses an iterable twice. Iterators and generators leave its linked keys and stored values inconsistent, including empty inputs. The vendored copy in urlutils has the same defect.\", \"expected_behavior\": \"Both dictutils.OrderedMultiDict and urlutils.OrderedMultiDict (including the documented standalone import fallback) must accept finite iterable values, preserve order, append on repeated calls, leave no key for an empty iterable, and keep getlist, keys, len and iteritems(multi=True) consistent. Existing list/tuple inputs remain supported.\", \"allowed_paths\": [\"boltons/dictutils.py\", \"boltons/urlutils.py\"], \"files\": {\"boltons/__init__.py\": {\"lines\": 1, \"sha256\": \"57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160\"}, \"boltons/dictutils.py\": {\"lines\": 1129, \"sha256\": \"2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500\"}, \"boltons/urlutils.py\": {\"lines\": 1607, \"sha256\": \"2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31\"}, \"tests/test_dictutils.py\": {\"lines\": 581, \"sha256\": \"2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174\"}, \"tests/test_urlutils.py\": {\"lines\": 495, \"sha256\": \"369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa\"}, \"LICENSE\": {\"lines\": 29, \"sha256\": \"c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3\"}}, \"ordinary_command\": [\"python\", \"-m\", \"pytest\", \"-q\", \"-p\", \"no:cacheprovider\", \"tests/test_dictutils.py\", \"tests/test_urlutils.py\"], \"environment\": \"Python 3.12.14, pytest 8.3.5; no network; read-only source; fixed installed dependencies\", \"source_excerpts\": [{\"path\": \"boltons/dictutils.py\", \"symbol\": \"OrderedMultiDict.addlist\", \"start\": 216, \"end\": 234, \"content\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\\n\"}, {\"path\": \"boltons/urlutils.py\", \"symbol\": \"OrderedMultiDict.addlist\", \"start\": 1114, \"end\": 1132, \"content\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\\n\"}], \"budget\": {\"requests\": 12, \"output_tokens_per_request\": 3000, \"token_upper_bound\": 180000, \"wall_seconds\": 420, \"provider_timeout_seconds\": 60, \"revisions\": 4, \"ordinary_runs\": 4, \"read_search_actions\": 16, \"actions_per_response\": 4, \"automatic_retries\": 0, \"source_read_chars\": 12000}}"
+      }
+    ],
+    "context_hash": "df57cadc84726be48e31807121586d5fb97bb5e6a58ed183f35cf4e163c38fe6",
+    "coordinate": {
+      "id": "m02-v1-boltons-addlist-nemotron3-r02",
+      "task_id": "boltons-addlist",
+      "configuration_id": "nemotron3",
+      "trial": 2,
+      "order": 16
+    },
+    "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+    "configuration": {
+      "id": "nemotron3",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "label": "Nemotron 3 Super / JSON source tools v2",
+      "provider": "NVIDIA hosted API",
+      "product": "model/harness configuration; no named coding-agent product",
+      "temperature": 0,
+      "harness": "json-source-tools-v2",
+      "harness_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+      "prompt_hash": "b123a523c93b720063e928e77fd94e2a6fcdc940c3878f634465fdbd36e78f87",
+      "tools": [
+        "read approved file (120 lines, 12000 chars)",
+        "literal search approved files (20 hits)",
+        "exact unique production edits",
+        "fixed ordinary tests in fresh restricted container",
+        "submit"
+      ],
+      "source_access": "Identical full pinned source and existing ordinary tests via a virtual allowlisted namespace. Same relevant initial excerpts. No host working directory, shell, network, repository history, reference or independent material.",
+      "ordinary_access": "Fixed per-task command; same approved Python 3.12.14 / pytest 8.3.5 image; up to four runs and four edit revisions.",
+      "budget": {
+        "requests": 12,
+        "output_tokens_per_request": 3000,
+        "token_upper_bound": 180000,
+        "wall_seconds": 420,
+        "provider_timeout_seconds": 60,
+        "revisions": 4,
+        "ordinary_runs": 4,
+        "read_search_actions": 16,
+        "actions_per_response": 4,
+        "automatic_retries": 0,
+        "source_read_chars": 12000
+      },
+      "credentials": "Existing authorized NVIDIA key; coordinator only.",
+      "availability_response_model": "nvidia/nemotron-3-super-120b-a12b",
+      "unavailable_metadata": [
+        "Immutable model-weight revision",
+        "Training exposure",
+        "Provider hardware/load",
+        "Monetary cost/price",
+        "Provider RNG seed"
+      ],
+      "automatic_retries": 0
+    },
+    "harness_source_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+    "source_hashes": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500",
+      "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    }
+  },
+  "hash": "6a829ceb6f924bd5f51d6e79621e095663e9db4f681ccae8f753788bd0e26e09"
+}

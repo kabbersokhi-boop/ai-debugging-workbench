@@ -1,5 +1,10 @@
 # M2 controlled comparison v1
 
+**Executed result:** 24 attempted, 6 submitted and scored; all six passed both procedures.
+Incremental detection: **0/6** ordinary-passing finals. Eight trials had no submitted candidate;
+ten ended in provider failure. Neither new task had a submitted final. The comparison is inconclusive
+about coding quality; it does not yet support release polish. See the M2 engineering report.
+
 Frozen before comparison generation. The immutable procedure is `freeze.json`.
 The accepted M1 engine and original evidence are unchanged. Both model configurations use
 identical structured source inspection, exact production edits, and fixed ordinary-test tools.
@@ -28,7 +33,10 @@ uv run --project backend python -m workbench.evaluator.experiment_cli summary
 uv run --project backend python -m workbench.evaluator.experiment_cli reproduce <approved-candidate-id>
 ```
 
-`generate` makes genuine NVIDIA requests using existing coordinator credentials. All other commands
+`generate` documents the original genuine invocation and refuses to overwrite this retained campaign.
+Do not restart its trial IDs or replenish budgets. Approved candidate reproduction needs no inference.
+For a fresh experiment, define a separately reviewed version rather than reusing these IDs.
+`generate` uses existing coordinator credentials. All other commands
 need no provider credentials. Reproduction runs current approved source in a fresh local container
 and records the actual runtime identity. The original evaluation wrapper binds source identity
 separately from trial/configuration/transcript identity, so identical patches remain traceable.

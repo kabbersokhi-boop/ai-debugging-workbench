@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v1-boltons-addlist-nemotron3-r01",
+  "sequence": 14,
+  "previous_hash": "1b5ed3bc37bfd1070a0606c9ec9f2506b915033c91fe90e9dd5a5c96ee5eedd4",
+  "at": "2026-10-16T17:53:25.682991+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-4860fc49-a0dc-43cd-b245-b0dc6ff3ed31",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"tool\": \"read\", \"path\": \"boltons/urlutils.py\", \"start\": 1110, \"end\": 1135}",
+          "role": "assistant",
+          "reasoning_content": "We need to read the addlist method in urlutils.py. Let's request that."
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792173204,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 3312,
+      "completion_tokens": 55,
+      "total_tokens": 3367,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 18,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "6ee600863a2e3fd1b64fbaf2333cc57ced5ca818d9a9c60964e84d8a283627c7"
+}

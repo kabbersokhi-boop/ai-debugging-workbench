@@ -1,0 +1,80 @@
+{
+  "trial_id": "m02-v1-more-bucket-nemotron35-r02",
+  "sequence": 0,
+  "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "at": "2026-10-16T17:54:32.195496+00:00",
+  "kind": "context",
+  "payload": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are repairing an upstream Python library. You have the SAME source-inspection,\nedit, and ordinary-test tools as every compared configuration. No shell or external retrieval.\nReturn one JSON object: {\"decision\":\"brief explanation\", \"actions\":[...]}.\nTools (use exact fields; the file path belongs INSIDE each edit):\n{\"tool\":\"read\",\"path\":\"allowed file\",\"start\":1,\"end\":100} (1-based, <=120 lines)\n{\"tool\":\"search\",\"query\":\"literal text\"} (all approved files; <=20 hits)\n{\"tool\":\"edit\",\"edits\":[{\"path\":\"allowed production path\",\"old\":\"exact text\",\"new\":\"replacement\"}]}\n{\"tool\":\"test\"} (fixed ordinary upstream command; current source, fresh isolated container)\n{\"tool\":\"submit\"} (submit current source as final; must have edited and run tests after last edit).\nAt most four actions per response. Read/search/test results arrive as a user tool-results message.\nOnly production paths may be edited; tests are available for reading and execution, never editing.\nUse source inspection as needed, implement a legitimate correction, run ordinary tests, and revise\nif they fail within the stated budgets. Passing ordinary tests does not prove correctness.\nYou are not given reference fixes or independent checks. Preserve documented behavior and consider\nedge cases in the public problem. Submit when ready. No markdown fences around the JSON.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"project\": \"more-itertools\", \"base_commit\": \"1ea82a711c69f590054987b5cb194157f8ce8ac4\", \"problem\": \"A supplied callable validator can have a false truth value. bucket silently replaces it with an accept-all default, admitting rejected keys and consuming input on rejected lookups.\", \"expected_behavior\": \"Use the supplied validator regardless of its truth value. Only None selects the accept-all default. Rejected selection and membership must not consume the source; key iteration must honor validation. Ordinary truthy validators and the default must retain their documented behavior.\", \"allowed_paths\": [\"more_itertools/more.py\"], \"files\": {\"more_itertools/__init__.py\": {\"lines\": 6, \"sha256\": \"19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b\"}, \"more_itertools/more.py\": {\"lines\": 5641, \"sha256\": \"bc51d6f1c05613084fb566a8310771ab946864f0bb4815d26d4c6bb8d44bf9ff\"}, \"more_itertools/recipes.py\": {\"lines\": 1627, \"sha256\": \"ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c\"}, \"tests/test_more.py\": {\"lines\": 7428, \"sha256\": \"0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf\"}, \"LICENSE\": {\"lines\": 19, \"sha256\": \"09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46\"}}, \"ordinary_command\": [\"python\", \"-m\", \"pytest\", \"-q\", \"-p\", \"no:cacheprovider\", \"tests/test_more.py::BucketTests\"], \"environment\": \"Python 3.12.14, pytest 8.3.5; no network; read-only source; fixed installed dependencies\", \"source_excerpts\": [{\"path\": \"more_itertools/more.py\", \"symbol\": \"bucket\", \"start\": 1138, \"end\": 1240, \"content\": \"class bucket:\\n    \\\"\\\"\\\"Wrap *iterable* and return an object that buckets the iterable into\\n    child iterables based on a *key* function.\\n\\n        >>> iterable = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'b3']\\n        >>> s = bucket(iterable, key=lambda x: x[0])  # Bucket by 1st character\\n        >>> sorted(list(s))  # Get the keys\\n        ['a', 'b', 'c']\\n        >>> a_iterable = s['a']\\n        >>> next(a_iterable)\\n        'a1'\\n        >>> next(a_iterable)\\n        'a2'\\n        >>> list(s['b'])\\n        ['b1', 'b2', 'b3']\\n\\n    The original iterable will be advanced and its items will be cached until\\n    they are used by the child iterables. This may require significant storage.\\n\\n    By default, attempting to select a bucket to which no items belong  will\\n    exhaust the iterable and cache all values.\\n    If you specify a *validator* function, selected buckets will instead be\\n    checked against it.\\n\\n        >>> from itertools import count\\n        >>> it = count(1, 2)  # Infinite sequence of odd numbers\\n        >>> key = lambda x: x % 10  # Bucket by last digit\\n        >>> validator = lambda x: x in {1, 3, 5, 7, 9}  # Odd digits only\\n        >>> s = bucket(it, key=key, validator=validator)\\n        >>> 2 in s\\n        False\\n        >>> list(s[2])\\n        []\\n\\n    .. seealso:: :func:`map_reduce`, :func:`groupby_transform`\\n\\n    If storage is not a concern, :func:`map_reduce` returns a Python\\n    dictionary, which is generally easier to work with. If the elements\\n    with the same key are already adjacent, :func:`groupby_transform`\\n    or :func:`itertools.groupby` can be used without any caching overhead.\\n\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, iterable, key, validator=None):\\n        self._it = iter(iterable)\\n        self._key = key\\n        self._cache = defaultdict(deque)\\n        self._validator = validator or (lambda x: True)\\n\\n    def __contains__(self, value):\\n        if not self._validator(value):\\n            return False\\n\\n        try:\\n            item = next(self[value])\\n        except StopIteration:\\n            return False\\n        else:\\n            self._cache[value].appendleft(item)\\n\\n        return True\\n\\n    def _get_values(self, value):\\n        \\\"\\\"\\\"\\n        Helper to yield items from the parent iterator that match *value*.\\n        Items that don't match are stored in the local cache as they\\n        are encountered.\\n        \\\"\\\"\\\"\\n        while True:\\n            # If we've cached some items that match the target value, emit\\n            # the first one and evict it from the cache.\\n            if self._cache.get(value):\\n                yield self._cache[value].popleft()\\n            # Otherwise we need to advance the parent iterator to search for\\n            # a matching item, caching the rest.\\n            else:\\n                while True:\\n                    try:\\n                        item = next(self._it)\\n                    except StopIteration:\\n                        return\\n                    item_value = self._key(item)\\n                    if item_value == value:\\n                        if value not in self._cache:\\n                            self._cache[value] = deque()\\n                        yield item\\n                        break\\n                    elif self._validator(item_value):\\n                        self._cache[item_value].append(item)\\n\\n    def __iter__(self):\\n        for item in self._it:\\n            item_value = self._key(item)\\n            if self._validator(item_value):\\n                self._cache[item_value].append(item)\\n\\n        return iter(self._cache)\\n\\n    def __getitem__(self, value):\\n        if not self._validator(value):\\n            return iter(())\\n\\n        return self._get_values(value)\\n\"}], \"budget\": {\"requests\": 12, \"output_tokens_per_request\": 3000, \"token_upper_bound\": 180000, \"wall_seconds\": 420, \"provider_timeout_seconds\": 60, \"revisions\": 4, \"ordinary_runs\": 4, \"read_search_actions\": 16, \"actions_per_response\": 4, \"automatic_retries\": 0, \"source_read_chars\": 12000}}"
+      }
+    ],
+    "context_hash": "2b5d803d43ebe862c678cbdc4198eac084b94328a63275d417f898198f15e6bf",
+    "coordinate": {
+      "id": "m02-v1-more-bucket-nemotron35-r02",
+      "task_id": "more-bucket",
+      "configuration_id": "nemotron35",
+      "trial": 2,
+      "order": 9
+    },
+    "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+    "configuration": {
+      "id": "nemotron35",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "label": "Nemotron 3.5 Super / JSON source tools v2",
+      "provider": "NVIDIA hosted API",
+      "product": "model/harness configuration; no named coding-agent product",
+      "temperature": 0,
+      "harness": "json-source-tools-v2",
+      "harness_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+      "prompt_hash": "b123a523c93b720063e928e77fd94e2a6fcdc940c3878f634465fdbd36e78f87",
+      "tools": [
+        "read approved file (120 lines, 12000 chars)",
+        "literal search approved files (20 hits)",
+        "exact unique production edits",
+        "fixed ordinary tests in fresh restricted container",
+        "submit"
+      ],
+      "source_access": "Identical full pinned source and existing ordinary tests via a virtual allowlisted namespace. Same relevant initial excerpts. No host working directory, shell, network, repository history, reference or independent material.",
+      "ordinary_access": "Fixed per-task command; same approved Python 3.12.14 / pytest 8.3.5 image; up to four runs and four edit revisions.",
+      "budget": {
+        "requests": 12,
+        "output_tokens_per_request": 3000,
+        "token_upper_bound": 180000,
+        "wall_seconds": 420,
+        "provider_timeout_seconds": 60,
+        "revisions": 4,
+        "ordinary_runs": 4,
+        "read_search_actions": 16,
+        "actions_per_response": 4,
+        "automatic_retries": 0,
+        "source_read_chars": 12000
+      },
+      "credentials": "Existing authorized NVIDIA key; coordinator only.",
+      "availability_response_model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+      "unavailable_metadata": [
+        "Immutable model-weight revision",
+        "Training exposure",
+        "Provider hardware/load",
+        "Monetary cost/price",
+        "Provider RNG seed"
+      ],
+      "automatic_retries": 0
+    },
+    "harness_source_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+    "source_hashes": {
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "bc51d6f1c05613084fb566a8310771ab946864f0bb4815d26d4c6bb8d44bf9ff",
+      "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+      "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    }
+  },
+  "hash": "3bddd0a0b09929958a7f1cb21bc604abff59569c041b1d89c91b185d6ec41265"
+}

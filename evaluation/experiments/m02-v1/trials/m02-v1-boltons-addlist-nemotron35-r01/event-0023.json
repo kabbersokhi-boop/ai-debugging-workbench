@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v1-boltons-addlist-nemotron35-r01",
+  "sequence": 23,
+  "previous_hash": "4257cc5e7bbcc06a971a954319db2694918e5432fb7c131c289f6ebe775b758f",
+  "at": "2026-10-16T17:51:59.462298+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-f7022b7b-fc73-4b99-9c75-fd800e4e7d75",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"decision\": \"Continue reading OrderedMultiDict implementation around addlist and _insert to understand the linked-list structure before editing.\", \"actions\": [{\"tool\": \"read\", \"path\": \"boltons/dictutils.py\", \"start\": 121, \"end\": 240}]}",
+          "role": "assistant",
+          "reasoning_content": "The read tool max is 120 lines per call. I read 1-120. Now I need 121-240 which is 120 lines exactly. Let me try 121-240."
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792173118,
+    "model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 7031,
+      "completion_tokens": 120,
+      "total_tokens": 7151,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 4336
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 54,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "42947c2e00cd0fba557e0ee46c6d439ab16ac46d133352e364239d19cd7a54db"
+}

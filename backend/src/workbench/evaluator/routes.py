@@ -8,6 +8,8 @@ from sqlalchemy import select
 from workbench.config import settings
 from workbench.db import Evaluation, sessions
 from workbench.evaluator.catalog import CATALOG, TASK_IDS, candidate, public_candidate, task
+from workbench.evaluator.comparison_routes import router as comparison_router
+from workbench.evaluator.experiment_catalog import candidate as comparison_candidate
 from workbench.evaluator.service import view
 
 
@@ -46,8 +48,11 @@ async def candidates():
 async def detail(candidate_id: str):
     try:
         return public_candidate(candidate(candidate_id))
-    except ValueError as error:
-        raise HTTPException(404, str(error)) from None
+    except ValueError:
+        try:
+            return public_candidate(comparison_candidate(candidate_id))
+        except ValueError as error:
+            raise HTTPException(404, str(error)) from None
 
 
 @router.get("/runs")
@@ -94,3 +99,6 @@ async def cancel(evaluation_id: UUID, request: Request):
         return value
     await request.app.state.evaluations.stop(evaluation_id)
     return {"status": "cancellation_requested"}
+
+
+router.include_router(comparison_router)

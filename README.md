@@ -2,6 +2,31 @@
 
 An AI engineering workbench that reproduces software bugs, retrieves repository evidence, generates bounded patches, and independently checks their behavior.
 
+## Controlled producer comparison · Agent Evaluator Milestone 2
+
+The local Agent Evaluation workspace now includes a retained comparison of **four approved tasks ×
+two genuine NVIDIA model/harness configurations × three trials**. Both configurations had the same
+source inspection, exact-edit and ordinary-test tools under a frozen budget.
+
+**Actual result: 6/24 trials submitted candidates; all six passed both check sets. Independent
+incremental detection was 0/6.** Eight trials produced no final submission; ten ended in provider
+failure. Neither new task produced a submitted final candidate. These completion limits make the
+comparison inconclusive about coding quality and do not yet support release polish or broader
+product investment. M1's zero genuine additional discoveries remain historical evidence.
+
+After the standard local setup, import the immutable retained trials without inference:
+
+```sh
+docker compose up --build -d --wait api
+uv run --project backend python -m workbench.evaluator.experiment_cli import
+```
+
+Open **http://127.0.0.1:8010/?workspace=evaluation&comparison=m02-v1**. Inspect every attempt,
+provider/budget failures, exact final patches, tool transcripts, fresh ordinary/independent evidence,
+and separately labeled authored controls. Reopen saved PostgreSQL evaluations and download evidence.
+[Experiment and reproduction](evaluation/experiments/m02-v1/README.md) ·
+[Complete results and engineering report](docs/reports/AGENT-EVALUATOR-M02.md).
+
 ## Independent agent evaluation · Milestone 1
 
 The new local **Agent Evaluation** workspace evaluates retained coding-agent patches against two

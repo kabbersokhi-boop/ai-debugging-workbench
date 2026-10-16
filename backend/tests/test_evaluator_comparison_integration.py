@@ -86,3 +86,34 @@ def test_frozen_comparison_and_actual_evidence_are_valid():
             if e["kind"] == "response"
         )
         assert json.loads(json.dumps(record)) == record
+
+
+def test_fresh_final_environments_and_generation_scoring_separation():
+    from datetime import datetime
+
+    from workbench.evaluator.experiment import read_trial
+    from workbench.evaluator.experiment_catalog import freeze
+
+    frozen = freeze()
+    rows = [read_trial(c["id"]) for c in frozen["body"]["order"]]
+    assert all(rows), "Actual frozen campaign evidence must be committed before delivery"
+    ended = max(datetime.fromisoformat(r["events"][-1]["at"]) for r in rows if r)
+    tool_containers, final_containers = [], []
+    for record in rows:
+        assert record
+        for event in record["events"]:
+            if event["kind"] != "tools":
+                continue
+            for output in json.loads(event["payload"]["message"]["content"])["tool_results"]:
+                result = output.get("result", {})
+                if output.get("action", {}).get("tool") == "test" and result.get("container_id"):
+                    tool_containers.append(result["container_id"])
+        if record.get("result"):
+            for name in ("ordinary", "independent"):
+                phase = record["result"].get(name)
+                if phase:
+                    assert datetime.fromisoformat(phase["started_at"]) > ended
+                    final_containers.append(phase["container_id"])
+    assert len(tool_containers) == len(set(tool_containers))
+    assert len(final_containers) == len(set(final_containers))
+    assert not set(tool_containers) & set(final_containers)

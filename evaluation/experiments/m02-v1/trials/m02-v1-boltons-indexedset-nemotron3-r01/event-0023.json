@@ -1,0 +1,12 @@
+{
+  "trial_id": "m02-v1-boltons-indexedset-nemotron3-r01",
+  "sequence": 23,
+  "previous_hash": "2015631513912de0285409d38d91ae49357dc9c529e81ff142fd8cab93816b99",
+  "at": "2026-10-16T17:47:58.178021+00:00",
+  "kind": "error",
+  "payload": {
+    "type": "ProviderError",
+    "code": "provider_http"
+  },
+  "hash": "07b6bc03f603b2a848ed65f28272c18db8fe5114e26c0d04c700802a9784595f"
+}

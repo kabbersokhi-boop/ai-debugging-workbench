@@ -1,0 +1,28 @@
+{
+  "id": "m02-v1-boltons-addlist-nemotron35-r02",
+  "task_id": "boltons-addlist",
+  "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+  "kind": "agent",
+  "label": "Nemotron 3.5 Super / JSON source tools v2 \u00b7 trial 2",
+  "producer": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "experiment_id": "m02-v1",
+  "trial_id": "m02-v1-boltons-addlist-nemotron35-r02",
+  "provenance": "Genuine interactive model/harness trial. Same approved source and ordinary tools; no independent or reference feedback. Public historical task; contamination unknown.",
+  "edits": [
+    {
+      "path": "boltons/dictutils.py",
+      "old": "        if not v:\n            return\n        self_insert = self._insert\n        values = super().setdefault(k, [])\n        for subv in v:\n            self_insert(k, subv)\n        values.extend(v)",
+      "new": "        self_insert = self._insert\n        new_values = list(v)\n        if not new_values:\n            return\n        values = super().setdefault(k, [])\n        for subv in new_values:\n            self_insert(k, subv)\n        values.extend(new_values)"
+    },
+    {
+      "path": "boltons/urlutils.py",
+      "old": "        if not v:\n            return\n        self_insert = self._insert\n        values = super().setdefault(k, [])\n        for subv in v:\n            self_insert(k, subv)\n        values.extend(v)",
+      "new": "        self_insert = self._insert\n        new_values = list(v)\n        if not new_values:\n            return\n        values = super().setdefault(k, [])\n        for subv in new_values:\n            self_insert(k, subv)\n        values.extend(new_values)"
+    }
+  ],
+  "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+  "generation": "trials/m02-v1-boltons-addlist-nemotron35-r02",
+  "configuration_hash": "fad0bd0a1790b5d2466b4c0915e6faaeafe9da3b6747840f90c07a76d83fb8b2",
+  "events_head": "593c0a818889f3d5770bd8052e594fd423d51536944f6405eb735fb004bb0f7e",
+  "candidate_hash": "ad55f9039233a94d71447bbf043e94537de73ca0aa7d2b5174b9753abcb90f29"
+}

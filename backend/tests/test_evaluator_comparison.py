@@ -312,3 +312,76 @@ async def test_failed_test_batch_defers_correction_to_next_decision(tmp_path, mo
         json.loads((tmp_path / "event-0003.json").read_text())["payload"]["message"]["content"]
     )
     assert "next turn" in tools["tool_results"][-1]["error"]
+
+
+async def test_identical_patch_scores_cannot_be_swapped_between_trials(tmp_path, monkeypatch):
+    from workbench.evaluator.experiment import trial_binding
+    from workbench.evaluator.experiment_catalog import build_candidate
+    from workbench.evaluator.experiment_runner import verifier_id
+
+    monkeypatch.setattr(producer, "execute", phase)
+    frozen, config, first = fixture_freeze()
+    second = {**first, "id": "fixture-second", "trial": 2, "order": 1}
+    frozen["body"]["order"].append(second)
+    frozen["hash"] = identity(frozen["body"])
+    records = []
+    for coordinate in [first, second]:
+        folder = tmp_path / coordinate["id"]
+        edits = candidate("more-bucket-reference")["edits"]
+        provider = FixtureProvider(
+            [[{"tool": "edit", "edits": edits}, {"tool": "test"}, {"tool": "submit"}]]
+        )
+        gen = await generate(task("more-bucket"), config, coordinate, frozen, folder, provider)
+        c = json.loads((folder / "candidate.json").read_text())
+        full = build_candidate(task("more-bucket"), c)
+        sources = {p: v for p, v in full["files"].items() if not p.startswith("tests/")}
+        ordinary = phase(full["files"], task("more-bucket")["ordinary"], IMAGE, None)
+        independent = phase(
+            sources, ["python", "-I", "-B", "-c", behavior.probe("more-bucket")], IMAGE, None
+        )
+        independent["stdout"] = json.dumps(behavior.expected("more-bucket"))
+        independent["checks"] = behavior.compare("more-bucket", independent["stdout"])
+        for name, p in [("ordinary", ordinary), ("independent", independent)]:
+            p["container_id"] = coordinate["id"] + "-" + name
+            p["outcome"] = "passed"
+        binding = {
+            "image_id": IMAGE,
+            "task_id": "more-bucket",
+            "base_commit": task("more-bucket")["base_commit"],
+            "spec_hash": full["spec_hash"],
+            "candidate_hash": full["candidate_hash"],
+            "patch_hash": full["patch_hash"],
+            "verifier_hash": verifier_id("more-bucket"),
+            "policy_hash": identity(runner.POLICY),
+            "executed_file_hashes": full["source_hashes"],
+        }
+        r = {
+            "generation": gen,
+            "candidate": c,
+            "events": [json.loads(p.read_text()) for p in sorted(folder.glob("event-*.json"))],
+        }
+        provenance = trial_binding(r, frozen)
+        result = {
+            "binding": binding,
+            "binding_hash": identity(binding),
+            "candidate_hash": full["candidate_hash"],
+            "status": "passed",
+            "ordinary": ordinary,
+            "independent": independent,
+            "trial_binding_hash": identity(provenance),
+        }
+        r["result"] = result
+        r["scoring"] = {
+            "trial_binding": provenance,
+            "trial_binding_hash": identity(provenance),
+            "result_hash": identity(result),
+            "result": result,
+        }
+        validate_trial(r, frozen)
+        records.append(r)
+    assert records[0]["candidate"]["candidate_hash"] == records[1]["candidate"]["candidate_hash"]
+    assert comparison(records, frozen, require_complete=True)["complete"]
+    records[0]["result"] = records[1]["result"]
+    records[0]["scoring"] = records[1]["scoring"]
+    with pytest.raises(ValueError, match="different trial"):
+        comparison(records, frozen, require_complete=True)

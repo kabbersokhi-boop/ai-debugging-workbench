@@ -1,0 +1,23 @@
+{
+  "trial_id": "m02-v1-more-bucket-nemotron3-r02",
+  "sequence": 4,
+  "previous_hash": "aa924f8f8ce624b9e5034df60b6c69226adffcea3fcbc448ddd7134eedf39a17",
+  "at": "2026-10-16T17:55:12.159181+00:00",
+  "kind": "request",
+  "payload": {
+    "request_hash": "08a7de957d841bba5b977258e3e2b2d402a22931fa6056dad7f5067f97f6a387",
+    "messages_hash": "0a34d57817455df5e73e32b34b6fd2ba017784dbcc4daea72075fffe5dddcfce",
+    "parameters": {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "temperature": 0,
+      "max_tokens": 3000,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "input_bytes_upper_bound": 8464,
+    "reserved_tokens": 11464,
+    "request_index": 2
+  },
+  "hash": "fda1cd36062f5a65f86682b11c4ddc3b9cf043380066cc398a02f6fb2e612dab"
+}

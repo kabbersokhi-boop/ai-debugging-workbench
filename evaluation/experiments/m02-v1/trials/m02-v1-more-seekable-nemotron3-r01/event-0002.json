@@ -1,0 +1,12 @@
+{
+  "trial_id": "m02-v1-more-seekable-nemotron3-r01",
+  "sequence": 2,
+  "previous_hash": "cec8725ffa76f345f61db9fc06bd5624727252c72fd5513a6a5674a14e3f0646",
+  "at": "2026-10-16T17:51:10.058083+00:00",
+  "kind": "error",
+  "payload": {
+    "type": "TimeoutError",
+    "code": null
+  },
+  "hash": "323d76f5a651299d98787f422d9a453116899fe411d32dadc3499719fea57c29"
+}

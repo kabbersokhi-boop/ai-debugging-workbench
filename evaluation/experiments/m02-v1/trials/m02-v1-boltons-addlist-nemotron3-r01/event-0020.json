@@ -1,0 +1,12 @@
+{
+  "trial_id": "m02-v1-boltons-addlist-nemotron3-r01",
+  "sequence": 20,
+  "previous_hash": "253ba2a1f83ef872105ed27539432d15c034a1fe7ab96b57c046fb8afb724922",
+  "at": "2026-10-16T17:54:32.162115+00:00",
+  "kind": "error",
+  "payload": {
+    "type": "TimeoutError",
+    "code": null
+  },
+  "hash": "6256b5c8fdfd17eb3b5701a9adda1142185a06b7b8f482900ec1a4ddda9ac863"
+}

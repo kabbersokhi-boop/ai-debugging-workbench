@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v1-boltons-indexedset-nemotron3-r02",
+  "sequence": 26,
+  "previous_hash": "a08b531404d1a0b1591830b98795b36acd08a7e2bac3165bb43ece2c2a8576a5",
+  "at": "2026-10-16T17:57:22.843891+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-5303e2f9-6a00-4022-80d1-c16af7515dfe",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"tool\": \"read\", \"path\": \"boltons/setutils.py\", \"start\": 420, \"end\": 500}",
+          "role": "assistant",
+          "reasoning_content": "We need to read within 120 lines. Let's read from 420 to 540 but that's >120 lines? Actually 540-420=120 exactly? 540-420=120, but start 420, end 540 inclusive? The spec says start and end are 1-based inclusive? Probably end exclusive? In earlier they used start:1, end:100 meaning lines 1-100. So we need to keep within 120 lines. Let's do start 420, end 500 (80 lines). Let's do that."
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792173439,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 4900,
+      "completion_tokens": 183,
+      "total_tokens": 5083,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 149,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "5e77dd613b989042546346eeda8e872a9c963802b9de1e28a1f3c29197b310f6"
+}

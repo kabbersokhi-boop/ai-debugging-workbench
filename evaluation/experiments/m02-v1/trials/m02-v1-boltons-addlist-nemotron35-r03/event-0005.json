@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v1-boltons-addlist-nemotron35-r03",
+  "sequence": 5,
+  "previous_hash": "0278e7768e301ff5559db97a8974a31383c12214ca738d14ebf90652e6e7d372",
+  "at": "2026-10-16T18:12:18.082030+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-8e43a035-0ca6-4338-842b-faf88be08123",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"decision\": \"The defect is clear: `addlist` consumes `v` once in the `for` loop and again in `values.extend(v)`. For iterators/generators the second traversal yields nothing, so the linked list and stored values diverge. Also `if not v:` consumes the first element of an iterator. Fix: materialize `v` into a list once, then use that single list for both the emptiness check and the insertion/extension.\", \"actions\": [{\"tool\": \"edit\", \"path\": \"boltons/dictutils.py\", \"old\": \"        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\"}, {\"tool\": \"edit\", \"path\": \"boltons/urlutils.py\", \"old\": \"        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\"}, {\"tool\": \"edit\", \"path\": \"boltons/dictutils.py\", \"new\": \"        values = list(v)\\n        if not values:\\n            return\\n        self_insert = self._insert\\n        stored = super().setdefault(k, [])\\n        for subv in values:\\n            self_insert(k, subv)\\n        stored.extend(values)\"}, {\"tool\": \"edit\", \"path\": \"boltons/urlutils.py\", \"new\": \"        values = list(v)\\n        if not values:\\n            return\\n        self_insert = self._insert\\n        stored = super().setdefault(k, [])\\n        for subv in values:\\n            self_insert(k, subv)\\n        stored.extend(values)\"}]}",
+          "role": "assistant",
+          "reasoning_content": "The bug: `addlist` iterates `v` twice. For iterators/generators, the second `values.extend(v)` gets nothing (already consumed), leaving linked list and stored values inconsistent. Also `if not v:` consumes an iterator's first element to test truthiness, and for empty iterable returns without creating key (good), but for a non-empty iterator it consumes first element then the for loop misses it.\n\nFix: materialize `v` into a list once, then check if empty, then iterate once for insert and extend from the same list.\n\nLet me edit both files."
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792174330,
+    "model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 7509,
+      "completion_tokens": 535,
+      "total_tokens": 8044,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 123,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "0355a5c47d1c185ceb439d146e00134d7e4eb9a7e60f8dfcf954c9fa9acd3f4b"
+}

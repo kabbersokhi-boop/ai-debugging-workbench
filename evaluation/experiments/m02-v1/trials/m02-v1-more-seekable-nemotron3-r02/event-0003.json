@@ -1,0 +1,30 @@
+{
+  "trial_id": "m02-v1-more-seekable-nemotron3-r02",
+  "sequence": 3,
+  "previous_hash": "11f5461bda91ec3b98f5ecc7a1ebfd237bfb1c83c2b1c9cde9c43f157ad9281a",
+  "at": "2026-10-16T18:00:09.737048+00:00",
+  "kind": "terminal",
+  "payload": {
+    "status": "provider_failure",
+    "error": {
+      "type": "TimeoutError",
+      "code": null
+    },
+    "requests": 1,
+    "reserved_tokens": 11219,
+    "source_hashes": {
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "b2aab5df2633cef2df950aacb0e26da9ab0b3d4ea1da9d7079362afa7cd383de",
+      "more_itertools/recipes.py": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db",
+      "tests/test_more.py": "e88a96a28e3c42fd1aeacd55850fe080659735cce2a36157adf487d08146cf17",
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    },
+    "counts": {
+      "revisions": 0,
+      "ordinary_runs": 0,
+      "read_search_actions": 0
+    },
+    "elapsed_ms": 60091
+  },
+  "hash": "f078c008d4acf5291083298c9dc7d20362239c3aeebb6caabe9cc7b52f48667d"
+}

@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v1-boltons-indexedset-nemotron3-r01",
+  "sequence": 20,
+  "previous_hash": "f262acd2bb70519becfe2e2904eb5d188ee004cfc8a3f45a45ac2609b0e95d82",
+  "at": "2026-10-16T17:47:58.109158+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-c75d58fb-a72f-4225-9dd6-c096429579bd",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"tool\": \"read\", \"path\": \"boltons/setutils.py\", \"start\": 120, \"end\": 240}",
+          "role": "assistant",
+          "reasoning_content": "We need to read the file in chunks of <=120 lines. We already read lines 1-120. Next we need lines 120-240. Let's request that."
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792172875,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 5319,
+      "completion_tokens": 78,
+      "total_tokens": 5397,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 4576
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 44,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "dca5d6e2633f53a8e5ba68f2079ad8537fc9dd2549dd293ba9aec7264ca6ad36"
+}

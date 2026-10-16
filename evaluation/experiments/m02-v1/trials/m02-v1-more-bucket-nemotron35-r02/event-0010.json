@@ -1,0 +1,27 @@
+{
+  "trial_id": "m02-v1-more-bucket-nemotron35-r02",
+  "sequence": 10,
+  "previous_hash": "b54536e16268745ed0c3130628095b88a0a0602c27236a70acf6e15038cb1b70",
+  "at": "2026-10-16T17:54:49.996521+00:00",
+  "kind": "terminal",
+  "payload": {
+    "status": "submitted",
+    "error": null,
+    "requests": 3,
+    "reserved_tokens": 51980,
+    "source_hashes": {
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "10ad9c744f8ac3745dbd99ca63f5972d3845cec903b4bd8033096368f81d6c14",
+      "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+      "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    },
+    "counts": {
+      "revisions": 1,
+      "ordinary_runs": 1,
+      "read_search_actions": 2
+    },
+    "elapsed_ms": 17830
+  },
+  "hash": "5053d786bda15d34b78263fca854ea435ccb73730024fd4d4b7c00ec8c354128"
+}

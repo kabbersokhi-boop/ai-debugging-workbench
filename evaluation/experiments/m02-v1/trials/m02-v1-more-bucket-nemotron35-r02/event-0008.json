@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v1-more-bucket-nemotron35-r02",
+  "sequence": 8,
+  "previous_hash": "25a532b7fdd63c6ce2d7aed0cdb015d6048cc5ea1d2cf5ad6508b6b4a0ac3757",
+  "at": "2026-10-16T17:54:49.984276+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-cee48208-6928-4ea3-b86f-01b45e9f2af7",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"decision\": \"Fixed bucket's validator defaulting: only None now selects the accept-all default, so falsy validators are honored. All 9 BucketTests pass.\", \"actions\": [{\"tool\": \"submit\"}]}",
+          "role": "assistant",
+          "reasoning_content": "The fix is applied and all 9 BucketTests pass. Now I need to submit."
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792173284,
+    "model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 8415,
+      "completion_tokens": 68,
+      "total_tokens": 8483,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 4336
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 19,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "78aad2a20225adcf2375b4ce216d81c09ab7cbb42dc5e20d49e7aceda2f95f16"
+}

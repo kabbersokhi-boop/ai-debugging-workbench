@@ -1,0 +1,80 @@
+{
+  "trial_id": "m02-v1-more-seekable-nemotron3-r01",
+  "sequence": 0,
+  "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "at": "2026-10-16T17:50:09.988848+00:00",
+  "kind": "context",
+  "payload": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are repairing an upstream Python library. You have the SAME source-inspection,\nedit, and ordinary-test tools as every compared configuration. No shell or external retrieval.\nReturn one JSON object: {\"decision\":\"brief explanation\", \"actions\":[...]}.\nTools (use exact fields; the file path belongs INSIDE each edit):\n{\"tool\":\"read\",\"path\":\"allowed file\",\"start\":1,\"end\":100} (1-based, <=120 lines)\n{\"tool\":\"search\",\"query\":\"literal text\"} (all approved files; <=20 hits)\n{\"tool\":\"edit\",\"edits\":[{\"path\":\"allowed production path\",\"old\":\"exact text\",\"new\":\"replacement\"}]}\n{\"tool\":\"test\"} (fixed ordinary upstream command; current source, fresh isolated container)\n{\"tool\":\"submit\"} (submit current source as final; must have edited and run tests after last edit).\nAt most four actions per response. Read/search/test results arrive as a user tool-results message.\nOnly production paths may be edited; tests are available for reading and execution, never editing.\nUse source inspection as needed, implement a legitimate correction, run ordinary tests, and revise\nif they fail within the stated budgets. Passing ordinary tests does not prove correctness.\nYou are not given reference fixes or independent checks. Preserve documented behavior and consider\nedge cases in the public problem. Submit when ready. No markdown fences around the JSON.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"project\": \"more-itertools\", \"base_commit\": \"ca711220a6657a22655f6fa497524d006a735c5f\", \"problem\": \"seekable(iterable, maxlen=0) loses source items when peek() or bool() observes it. Observation followed by iteration must preserve the unconsumed sequence, including false-valued items.\", \"expected_behavior\": \"Repeated peek and truth testing must not advance the logical iterator. next() must return the peeked item. maxlen=0 must keep elements() empty. Empty and exhausted sources retain StopIteration/default/false behavior. Existing positive/default-cache seeking behavior must remain intact.\", \"allowed_paths\": [\"more_itertools/more.py\"], \"files\": {\"more_itertools/__init__.py\": {\"lines\": 6, \"sha256\": \"19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b\"}, \"more_itertools/more.py\": {\"lines\": 5628, \"sha256\": \"b2aab5df2633cef2df950aacb0e26da9ab0b3d4ea1da9d7079362afa7cd383de\"}, \"more_itertools/recipes.py\": {\"lines\": 1621, \"sha256\": \"e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db\"}, \"tests/test_more.py\": {\"lines\": 7240, \"sha256\": \"e88a96a28e3c42fd1aeacd55850fe080659735cce2a36157adf487d08146cf17\"}, \"LICENSE\": {\"lines\": 19, \"sha256\": \"09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46\"}}, \"ordinary_command\": [\"python\", \"-m\", \"pytest\", \"-q\", \"-p\", \"no:cacheprovider\", \"tests/test_more.py::SeekableTest\"], \"environment\": \"Python 3.12.14, pytest 8.3.5; no network; read-only source; fixed installed dependencies\", \"source_excerpts\": [{\"path\": \"more_itertools/more.py\", \"symbol\": \"seekable\", \"start\": 2984, \"end\": 3155, \"content\": \"class seekable:\\n    \\\"\\\"\\\"Wrap an iterator to allow for seeking backward and forward. This\\n    progressively caches the items in the source iterable so they can be\\n    re-visited.\\n\\n    Call :meth:`seek` with an index to seek to that position in the source\\n    iterable.\\n\\n    To \\\"reset\\\" an iterator, seek to ``0``:\\n\\n        >>> from itertools import count\\n        >>> it = seekable((str(n) for n in count()))\\n        >>> next(it), next(it), next(it)\\n        ('0', '1', '2')\\n        >>> it.seek(0)\\n        >>> next(it), next(it), next(it)\\n        ('0', '1', '2')\\n\\n    You can also seek forward:\\n\\n        >>> it = seekable((str(n) for n in range(20)))\\n        >>> it.seek(10)\\n        >>> next(it)\\n        '10'\\n        >>> it.seek(20)  # Seeking past the end of the source isn't a problem\\n        >>> list(it)\\n        []\\n        >>> it.seek(0)  # Resetting works even after hitting the end\\n        >>> next(it)\\n        '0'\\n\\n    Call :meth:`relative_seek` to seek relative to the source iterator's\\n    current position.\\n\\n        >>> it = seekable((str(n) for n in range(20)))\\n        >>> next(it), next(it), next(it)\\n        ('0', '1', '2')\\n        >>> it.relative_seek(2)\\n        >>> next(it)\\n        '5'\\n        >>> it.relative_seek(-3)  # Source is at '6', we move back to '3'\\n        >>> next(it)\\n        '3'\\n        >>> it.relative_seek(-3)  # Source is at '4', we move back to '1'\\n        >>> next(it)\\n        '1'\\n\\n\\n    Call :meth:`peek` to look ahead one item without advancing the iterator:\\n\\n        >>> it = seekable('1234')\\n        >>> it.peek()\\n        '1'\\n        >>> list(it)\\n        ['1', '2', '3', '4']\\n        >>> it.peek(default='empty')\\n        'empty'\\n\\n    Before the iterator is at its end, calling :func:`bool` on it will return\\n    ``True``. After it will return ``False``:\\n\\n        >>> it = seekable('5678')\\n        >>> bool(it)\\n        True\\n        >>> list(it)\\n        ['5', '6', '7', '8']\\n        >>> bool(it)\\n        False\\n\\n    You may view the contents of the cache with the :meth:`elements` method.\\n    That returns a :class:`SequenceView`, a view that updates automatically:\\n\\n        >>> it = seekable((str(n) for n in range(10)))\\n        >>> next(it), next(it), next(it)\\n        ('0', '1', '2')\\n        >>> elements = it.elements()\\n        >>> elements\\n        SequenceView(['0', '1', '2'])\\n        >>> next(it)\\n        '3'\\n        >>> elements\\n        SequenceView(['0', '1', '2', '3'])\\n\\n    Indexing the :class:`seekable` directly returns items from the cache:\\n\\n        >>> it = seekable((str(n) for n in range(10)))\\n        >>> next(it), next(it), next(it)\\n        ('0', '1', '2')\\n        >>> it[-1]\\n        '2'\\n        >>> it[0]\\n        '0'\\n\\n    By default, the cache grows as the source iterable progresses, so beware of\\n    wrapping very large or infinite iterables. Supply *maxlen* to limit the\\n    size of the cache (this of course limits how far back you can seek).\\n\\n        >>> from itertools import count\\n        >>> it = seekable((str(n) for n in count()), maxlen=2)\\n        >>> next(it), next(it), next(it), next(it)\\n        ('0', '1', '2', '3')\\n        >>> list(it.elements())\\n        ['2', '3']\\n        >>> it.seek(0)\\n        >>> next(it), next(it), next(it), next(it)\\n        ('2', '3', '4', '5')\\n        >>> next(it)\\n        '6'\\n\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, iterable, maxlen=None):\\n        self._source = iter(iterable)\\n        if maxlen is None:\\n            self._cache = []\\n        else:\\n            self._cache = deque([], maxlen)\\n        self._index = None\\n\\n    def __iter__(self):\\n        return self\\n\\n    def __next__(self):\\n        if self._index is not None:\\n            try:\\n                item = self._cache[self._index]\\n            except IndexError:\\n                self._index = None\\n            else:\\n                self._index += 1\\n                return item\\n\\n        item = next(self._source)\\n        self._cache.append(item)\\n        return item\\n\\n    def __bool__(self):\\n        try:\\n            self.peek()\\n        except StopIteration:\\n            return False\\n        return True\\n\\n    def peek(self, default=_marker):\\n        try:\\n            peeked = next(self)\\n        except StopIteration:\\n            if default is _marker:\\n                raise\\n            return default\\n        if self._index is None:\\n            self._index = len(self._cache)\\n        self._index -= 1\\n        return peeked\\n\\n    def elements(self):\\n        return SequenceView(self._cache)\\n\\n    def seek(self, index):\\n        self._index = index\\n        remainder = index - len(self._cache)\\n        if remainder > 0:\\n            consume(self, remainder)\\n\\n    def relative_seek(self, count):\\n        if self._index is None:\\n            self._index = len(self._cache)\\n\\n        self.seek(max(self._index + count, 0))\\n\\n    def __getitem__(self, index):\\n        return self._cache[index]\\n\"}], \"budget\": {\"requests\": 12, \"output_tokens_per_request\": 3000, \"token_upper_bound\": 180000, \"wall_seconds\": 420, \"provider_timeout_seconds\": 60, \"revisions\": 4, \"ordinary_runs\": 4, \"read_search_actions\": 16, \"actions_per_response\": 4, \"automatic_retries\": 0, \"source_read_chars\": 12000}}"
+      }
+    ],
+    "context_hash": "0346a7a3901e940a650434ae8ecc885ec9cff066eb51d1ae3f0a23b18acfd431",
+    "coordinate": {
+      "id": "m02-v1-more-seekable-nemotron3-r01",
+      "task_id": "more-seekable",
+      "configuration_id": "nemotron3",
+      "trial": 1,
+      "order": 6
+    },
+    "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+    "configuration": {
+      "id": "nemotron3",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "label": "Nemotron 3 Super / JSON source tools v2",
+      "provider": "NVIDIA hosted API",
+      "product": "model/harness configuration; no named coding-agent product",
+      "temperature": 0,
+      "harness": "json-source-tools-v2",
+      "harness_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+      "prompt_hash": "b123a523c93b720063e928e77fd94e2a6fcdc940c3878f634465fdbd36e78f87",
+      "tools": [
+        "read approved file (120 lines, 12000 chars)",
+        "literal search approved files (20 hits)",
+        "exact unique production edits",
+        "fixed ordinary tests in fresh restricted container",
+        "submit"
+      ],
+      "source_access": "Identical full pinned source and existing ordinary tests via a virtual allowlisted namespace. Same relevant initial excerpts. No host working directory, shell, network, repository history, reference or independent material.",
+      "ordinary_access": "Fixed per-task command; same approved Python 3.12.14 / pytest 8.3.5 image; up to four runs and four edit revisions.",
+      "budget": {
+        "requests": 12,
+        "output_tokens_per_request": 3000,
+        "token_upper_bound": 180000,
+        "wall_seconds": 420,
+        "provider_timeout_seconds": 60,
+        "revisions": 4,
+        "ordinary_runs": 4,
+        "read_search_actions": 16,
+        "actions_per_response": 4,
+        "automatic_retries": 0,
+        "source_read_chars": 12000
+      },
+      "credentials": "Existing authorized NVIDIA key; coordinator only.",
+      "availability_response_model": "nvidia/nemotron-3-super-120b-a12b",
+      "unavailable_metadata": [
+        "Immutable model-weight revision",
+        "Training exposure",
+        "Provider hardware/load",
+        "Monetary cost/price",
+        "Provider RNG seed"
+      ],
+      "automatic_retries": 0
+    },
+    "harness_source_hash": "e2f602b074b4da013d03433b9bbce6d1d5198391748a8f2b2a8609af9267a086",
+    "source_hashes": {
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "b2aab5df2633cef2df950aacb0e26da9ab0b3d4ea1da9d7079362afa7cd383de",
+      "more_itertools/recipes.py": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db",
+      "tests/test_more.py": "e88a96a28e3c42fd1aeacd55850fe080659735cce2a36157adf487d08146cf17",
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    }
+  },
+  "hash": "b03693b8f197f2b9bce33488f19f6ed1f595fafb4455d49363963498759c4cda"
+}
