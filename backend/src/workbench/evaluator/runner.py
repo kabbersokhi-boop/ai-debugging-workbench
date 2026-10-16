@@ -175,7 +175,7 @@ def execute(
                 record["status"] = "timeout"
                 container.kill()
                 break
-            stats = container.stats(stream=False, one_shot=True)
+            stats: Any = container.stats(stream=False, one_shot=True)
             cpu = stats.get("cpu_stats", {}).get("cpu_usage", {}).get("total_usage")
             memory = stats.get("memory_stats", {}).get("usage")
             if cpu:

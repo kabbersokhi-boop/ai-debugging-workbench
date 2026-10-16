@@ -89,6 +89,8 @@ async def evidence(evaluation_id: UUID):
 
 @router.post("/runs/{evaluation_id}/cancel")
 async def cancel(evaluation_id: UUID, request: Request):
-    await saved(evaluation_id)
+    value = await saved(evaluation_id)
+    if value["status"] != "running":
+        return value
     await request.app.state.evaluations.stop(evaluation_id)
     return {"status": "cancellation_requested"}

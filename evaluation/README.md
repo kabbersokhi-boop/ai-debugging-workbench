@@ -51,7 +51,7 @@ an exact reproduction. There is no provider request in evaluation or reproductio
 Specifications, checks, source, reference controls and negative controls are public-review artifacts.
 They are **not confidential**. No hidden-test or training-contamination claim is made.
 
-Before generation, controls validate the task and `freeze-v1.json` binds specification and verifier
+Before generation, controls validate the task and `freeze-v2.json` binds specification and verifier
 hashes, runtime identity and control results. The freeze is committed before provider requests.
 `generations/` retains exact approved prompt context, request settings, sanitized responses,
 provider model metadata, token usage and all attempted calls. Model output is applied by exact

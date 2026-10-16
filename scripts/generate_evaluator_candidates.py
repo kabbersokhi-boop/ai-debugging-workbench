@@ -40,7 +40,7 @@ async def main():
     parser.add_argument('--live', action='store_true', required=True)
     args=parser.parse_args()
     assert args.live
-    freeze=json.loads((CATALOG/'freeze-v1.json').read_text())
+    freeze=json.loads((CATALOG/'freeze-v2.json').read_text())
     assert freeze['hash']==identity(freeze['body'])
     config=ProviderSettings(provider_retries=0,provider_max_requests=2,model_output_token_limit=3000)
     provider=NvidiaProvider(config)

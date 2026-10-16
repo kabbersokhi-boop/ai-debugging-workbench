@@ -16,6 +16,7 @@ from workbench.evaluator.runner import cleanup_all, evaluate
 
 ROOT = Path(os.environ.get("EVALUATOR_ARTIFACT_DIR", "/tmp/workbench-evaluations"))
 ACTIVE: dict[UUID, threading.Event] = {}
+PENDING_CANCEL: set[UUID] = set()
 LOCK = asyncio.Lock()
 IDLE = asyncio.Event()
 IDLE.set()
@@ -60,6 +61,9 @@ async def run(evaluation_id: UUID, payload: Request):
         if path.exists():
             raise HTTPException(409, "Evaluation evidence already exists")
         event = ACTIVE[evaluation_id] = threading.Event()
+        if evaluation_id in PENDING_CANCEL:
+            event.set()
+            PENDING_CANCEL.discard(evaluation_id)
         IDLE.clear()
     try:
         try:
@@ -82,6 +86,8 @@ async def run(evaluation_id: UUID, payload: Request):
 async def cancel(evaluation_id: UUID):
     if event := ACTIVE.get(evaluation_id):
         event.set()
+    elif len(PENDING_CANCEL) < 128:
+        PENDING_CANCEL.add(evaluation_id)
     return {"status": "cancellation_requested"}
 
 
