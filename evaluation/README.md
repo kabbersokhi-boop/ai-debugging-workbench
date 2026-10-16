@@ -69,6 +69,10 @@ full interactive coding-agent product comparison. Live generation is opt-in:
 uv run --project backend python scripts/generate_evaluator_candidates.py --live
 ```
 
+The retained generation experiment used pre-generation freeze v2. The final evaluator adds
+versioned evidence-admission guard v3, with unchanged behavioral cases and expected values; both
+freeze records and the original v2 scores are retained. The one-time generation recipe is retained
+with its original v2 admission and cannot be reused against a different verifier or existing IDs.
 Existing attempt IDs cannot be overwritten. Every attempted response, failure or invalid patch is
 retained. Further experiments require explicit versioned attempt IDs rather than silently retrying
 until a passing patch appears. Offline tests and product evaluation need no provider key.

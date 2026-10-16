@@ -1,0 +1,1464 @@
+{
+  "binding": {
+    "task_id": "boltons-addlist",
+    "base_commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+    "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+    "candidate_hash": "4f11d4966a29241f3ffd067a25686a2e72153f2422c1a2dd1342cd96b9b30811",
+    "patch_hash": "541ca4b2817741cc1df4e592787dbc602d7bc4e33d9d41c21739e6a9466da5ca",
+    "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968",
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+    "executed_file_hashes": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "a9e83f1df931b43f51187da6e7dc7e9a2d23b73a68ac9b06eec79b609aa3d0df",
+      "boltons/urlutils.py": "c81562579ca8686b0ad9fe03f7647952ccd5c561d56412530fefd78a8acbfd29",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    }
+  },
+  "binding_hash": "8c8871630a16085fb8f72f14da125b89e4a4036e84eca20ddfa4ff3030e54ca6",
+  "ordinary": {
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_dictutils.py",
+      "tests/test_urlutils.py"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T16:13:53.713989+00:00",
+    "resource_usage": {
+      "cpu_ns": 553926000,
+      "peak_memory_bytes_observed": 47472640,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3",
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "a9e83f1df931b43f51187da6e7dc7e9a2d23b73a68ac9b06eec79b609aa3d0df",
+      "boltons/urlutils.py": "c81562579ca8686b0ad9fe03f7647952ccd5c561d56412530fefd78a8acbfd29",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa"
+    },
+    "container_id": "01e0941802d8fde5e40738c65e46f056bbb989b737530e14bb19a01189557895",
+    "exit_code": 1,
+    "oom_killed": false,
+    "stdout": "....................F................................................... [ 46%]\n........................................................................ [ 92%]\n...........                                                              [100%]\n=================================== FAILURES ===================================\n_______________________________ test_setdefault ________________________________\n\n    def test_setdefault():\n        omd = OMD()\n        empty_list = []\n        x = omd.setdefault('1', empty_list)\n        assert x is empty_list\n        y = omd.setdefault('2')\n        assert y is None\n        assert omd.setdefault('1', None) is empty_list\n    \n        e_omd = OMD()\n        e_omd.addlist(1, [])\n>       assert e_omd.popall(1, None) is None\n\ntests/test_dictutils.py:330: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nboltons/dictutils.py:400: in popall\n    self._remove_all(k)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = OrderedMultiDict([]), k = 1\n\n    def _remove_all(self, k):\n>       values = self._map[k]\nE       KeyError: 1\n\nboltons/dictutils.py:439: KeyError\n=========================== short test summary info ============================\nFAILED tests/test_dictutils.py::test_setdefault - KeyError: 1\n1 failed, 154 passed in 0.31s\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T16:13:59.677993+00:00",
+    "duration_ms": 5964,
+    "outcome": "failed"
+  },
+  "independent": {
+    "command": [
+      "python",
+      "-I",
+      "-B",
+      "-c",
+      "\nimport json, sys\nsys.path.insert(0, '/source')\nfrom boltons.dictutils import OrderedMultiDict as D\nfrom boltons.urlutils import OrderedMultiDict as U\nimport importlib.util\nspec = importlib.util.spec_from_file_location('standalone_urlutils', '/source/boltons/urlutils.py')\nmodule = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(module)\nresult = {}\nfor name, cls in [('dictutils', D), ('urlutils', U),\n                  ('standalone_urlutils', module.OrderedMultiDict)]:\n    for kind in ['list', 'tuple', 'iterator', 'generator']:\n        values = [0, False, None, 2, 2]\n        inp = {'list': lambda: list(values), 'tuple': lambda: tuple(values),\n               'iterator': lambda: iter(values), 'generator': lambda: (x for x in values)}[kind]()\n        d = cls()\n        d.addlist('a', inp)\n        d.addlist('b', iter([8, 9]))\n        d.addlist('a', iter([3]))\n        d.addlist('empty', iter([]))\n        result[name + ':' + kind] = {'values': d.getlist('a'), 'keys': d.keys(),\n            'length': len(d), 'items': list(d.iteritems(multi=True)),\n            'last': d.getlist('a')[-1:]}\n    d = cls()\n    d.addlist('empty', (x for x in []))\n    result[name + ':empty'] = {'keys': d.keys(), 'length': len(d),\n                              'items': list(d.iteritems(multi=True))}\nprint(json.dumps(result))\n"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T16:13:59.829476+00:00",
+    "resource_usage": {
+      "cpu_ns": 34392000,
+      "peak_memory_bytes_observed": 4014080,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3",
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "a9e83f1df931b43f51187da6e7dc7e9a2d23b73a68ac9b06eec79b609aa3d0df",
+      "boltons/urlutils.py": "c81562579ca8686b0ad9fe03f7647952ccd5c561d56412530fefd78a8acbfd29"
+    },
+    "container_id": "cabd6951a93786d61bef1339810ef5fded5e36e1ab204029a4bb312028739fef",
+    "exit_code": 0,
+    "oom_killed": false,
+    "stdout": "{\"dictutils:list\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"dictutils:tuple\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"dictutils:iterator\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"dictutils:generator\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"dictutils:empty\": {\"keys\": [], \"length\": 1, \"items\": []}, \"urlutils:list\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"urlutils:tuple\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"urlutils:iterator\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"urlutils:generator\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"urlutils:empty\": {\"keys\": [], \"length\": 1, \"items\": []}, \"standalone_urlutils:list\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"standalone_urlutils:tuple\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"standalone_urlutils:iterator\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"standalone_urlutils:generator\": {\"values\": [0, false, null, 2, 2, 3], \"keys\": [\"a\", \"b\"], \"length\": 3, \"items\": [[\"a\", 0], [\"a\", false], [\"a\", null], [\"a\", 2], [\"a\", 2], [\"b\", 8], [\"b\", 9], [\"a\", 3]], \"last\": [3]}, \"standalone_urlutils:empty\": {\"keys\": [], \"length\": 1, \"items\": []}}\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T16:14:00.767370+00:00",
+    "duration_ms": 938,
+    "checks": [
+      {
+        "name": "dictutils:list",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "dictutils:tuple",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "dictutils:iterator",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "dictutils:generator",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "dictutils:empty",
+        "expected": {
+          "keys": [],
+          "length": 0,
+          "items": []
+        },
+        "observed": {
+          "keys": [],
+          "length": 1,
+          "items": []
+        },
+        "status": "failed"
+      },
+      {
+        "name": "urlutils:list",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "urlutils:tuple",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "urlutils:iterator",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "urlutils:generator",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "urlutils:empty",
+        "expected": {
+          "keys": [],
+          "length": 0,
+          "items": []
+        },
+        "observed": {
+          "keys": [],
+          "length": 1,
+          "items": []
+        },
+        "status": "failed"
+      },
+      {
+        "name": "standalone_urlutils:list",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "standalone_urlutils:tuple",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "standalone_urlutils:iterator",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "standalone_urlutils:generator",
+        "expected": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 2,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "observed": {
+          "values": [
+            0,
+            false,
+            null,
+            2,
+            2,
+            3
+          ],
+          "keys": [
+            "a",
+            "b"
+          ],
+          "length": 3,
+          "items": [
+            [
+              "a",
+              0
+            ],
+            [
+              "a",
+              false
+            ],
+            [
+              "a",
+              null
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              8
+            ],
+            [
+              "b",
+              9
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "last": [
+            3
+          ]
+        },
+        "status": "failed"
+      },
+      {
+        "name": "standalone_urlutils:empty",
+        "expected": {
+          "keys": [],
+          "length": 0,
+          "items": []
+        },
+        "observed": {
+          "keys": [],
+          "length": 1,
+          "items": []
+        },
+        "status": "failed"
+      }
+    ],
+    "outcome": "failed"
+  },
+  "status": "failed",
+  "reason": "Behavioral observations compared outside the candidate container"
+}

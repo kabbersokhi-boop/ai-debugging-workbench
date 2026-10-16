@@ -85,7 +85,7 @@ no reference fix, probe, expected matrix, evaluation-only tests, or post-evaluat
 
 ## 5. Evaluation validity and freeze
 
-The [final pre-generation freeze](../../evaluation/freeze-v2.json) was committed at
+The [pre-generation freeze](../../evaluation/freeze-v2.json) was committed at
 `c669c0e` before either NVIDIA request. It binds task specifications, verifier code identities,
 execution image identity and eight validated control-result hashes. The exact matching control
 records are retained in [freeze-v2 evidence](assets/agent-evaluator-m01/freeze-v2/).
@@ -111,6 +111,16 @@ recorded request and has no local filesystem, tools, retrieval, mounts, referenc
 feedback. The coordinator that developed the evaluator is not used as a blind candidate producer.
 Because tasks, historical fixes and scoring are reviewable artifacts, this is **not** a claim of
 secret evaluation answers, novel tasks, training independence or uncontaminated blind performance.
+
+Focused post-generation review found that the API's evidence admission could accept a constructed
+pass without a container-image identity, although every actual execution supplied it. The guard
+now rejects missing image/container/source metadata and phase mismatches. This changes the engine
+identity, so [freeze v3](../../evaluation/freeze-v3.json) records the new revision before rescoring.
+It explicitly links the original v2 freeze. Behavioral probes and expected values are byte-for-byte
+unchanged from commit `c669c0e`; the v3 freeze records that behavioral hash. Original genuine results
+under v2 are retained in [generation-verifier-v2](assets/agent-evaluator-m01/generation-verifier-v2/).
+No candidate was regenerated, corrected, excluded or given scoring feedback. Final application and
+container validation uses v3, rather than silently assigning new identities to old records.
 
 The frozen direct-build evaluator image was `sha256:974d7bcd00c21491eb12164ef3caace3e6606b3c4f01f93d7b26b1924c139cb6`.
 Compose adds an image-builder label, producing a different image ID from the same Dockerfile and
@@ -212,7 +222,7 @@ Initial verification:
 - `./scripts/e2e -k 'evaluator_docker_genuine or evaluator_freeze'`: 2 passed; genuine results above.
 - `./scripts/e2e -k evaluator_real_ui`: 1 passed, including all four UI evaluations and reopening.
 
-Final acceptance results, CI reference and preservation evidence are appended after execution below.
+Final acceptance results, CI reference and preservation evidence are in the addendum below.
 The build retains the inherited Monaco chunk-size warning; it is not a test failure.
 
 Reproduce deterministic failures without inference:
@@ -231,6 +241,15 @@ candidates and both `-alternate` candidates exit 0 for their tested behavior. Us
 to retain JSON. There are no nondeterministic behavior claims in this task set.
 
 ## 10. Screenshots
+
+![A deliberate control passes ordinary checks and fails independent behavior](assets/agent-evaluator-m01/ui/more-bucket-negative-result.png)
+
+![The genuine Boltons patch fails both ordinary and independent checks](assets/agent-evaluator-m01/ui/boltons-addlist-nvidia-01-result.png)
+
+[Passing genuine patch](assets/agent-evaluator-m01/ui/more-bucket-nvidia-01-result.png) ·
+[Task, provenance and complete journey](assets/agent-evaluator-m01/ui/more-bucket-negative.png) ·
+[Monaco comparison](assets/agent-evaluator-m01/ui/candidate-diff.png) ·
+[Mobile failure evidence](assets/agent-evaluator-m01/ui/failure-mobile.png)
 
 Final screenshots are real Playwright captures from the application and include task selection,
 controls, genuine outcomes, mismatch evidence, diff and mobile view. They show public upstream
@@ -260,6 +279,46 @@ additional engineering before arbitrary hostile candidates are supported. Milest
 - Base: `main` at `84e1e6c`, integrating accepted milestones and release v1.0.0.
 - Development branch: `feature/agent-evaluator-m01`.
 - Final freeze committed before generation: `c669c0e`.
-- Review PR, tested implementation commit, final review head and CI: recorded in the final acceptance
-  addendum below. The final review head is also the PR's `headRefOid`; it includes this report and
-  evidence. The implementation SHA is recorded separately to avoid a self-referencing report hash.
+- Review PR: [#6](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/6), against `main`; not merged.
+- Tested implementation: [`40ea1f96f1446c000a7f5892e49c49267ff5ec7a`](https://github.com/kabbersokhi-boop/ai-debugging-workbench/commit/40ea1f96f1446c000a7f5892e49c49267ff5ec7a).
+- Completed implementation CI: [run 38928653917](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/38928653917).
+- Final review head: `refs/pull/6/head` on the [PR commit list](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/6/commits).
+  Its exact SHA is recorded in the PR description and final handoff after the report/evidence commit.
+  The implementation SHA is separate because a file cannot contain the hash of its own commit.
+
+
+## Final acceptance addendum
+
+The final implementation is `40ea1f96f1446c000a7f5892e49c49267ff5ec7a`. Subsequent changes contain
+reporting, provenance documentation, screenshots and evidence only.
+
+| Gate | Observed result | Evidence |
+| --- | --- | --- |
+| `./scripts/check` | 66 passed; Ruff, formatting, Pyright and frontend build passed | [local check log](assets/agent-evaluator-m01/check.log) |
+| `./scripts/e2e` | 56 passed, 4 opt-in scenarios skipped; no failures | [local full regression log](assets/agent-evaluator-m01/e2e.log) |
+| GitHub foundation job on implementation | Success, including 66 offline tests, 56 integration/browser tests, recovery smoke, release boundary probe and recorded-release browser | [CI metadata](assets/agent-evaluator-m01/ci-implementation.json), [selected CI output](assets/agent-evaluator-m01/ci-summary.log) |
+| Evaluator restart reconciliation | Exact terminal broker evidence restored into PostgreSQL after simulated lost terminal update | [recovery record](assets/agent-evaluator-m01/recovery.json) |
+| Ten final candidate scores | Baselines/negative controls rejected, references/alternates accepted; genuine outcomes unchanged | [matrix with immutable identities](assets/agent-evaluator-m01/final-matrix.json) |
+| Deterministic genuine failure via CLI | Exit 1; empty-input length inconsistency and ordinary failure reproduced without inference | [CLI evidence](assets/agent-evaluator-m01/reproduced-genuine-failure.json) |
+| Prior debugger data | All captured prior rows unchanged: 119 runs, 21 investigations, 19 repairs, 12 source snapshots | [row-fingerprint audit](assets/agent-evaluator-m01/preservation.json) |
+
+The data audit compares every prior row in those four tables, including complete serialized row
+fingerprints. It does not claim a bit-for-bit audit of all database tables or arbitrary artifact
+files. Migration 006 is additive; accepted reports, recordings and frozen experiments are unchanged.
+
+The first PR CI run failed only on the ambiguous loading/result locator described above; the
+[corrected CI run](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/38927779963)
+passed. An intermediate local full run also observed `execution_error` where the existing debugger's
+one-second timeout test expected `timeout`; its underlying exception was not retained, so no precise
+cause is claimed. The [intermediate failures](assets/agent-evaluator-m01/intermediate-regression-failures.log)
+are retained. No legacy runtime change or weakened timeout assertion was made. The final sequential
+full local run and both corrected CI runs passed that unchanged test.
+
+Final audit checked all ten actual v3 scores against their candidate/source/specification identities,
+matched the original eight v2 raw control records to the committed freeze hashes, verified original
+v2 genuine records, and compared generated edits byte-for-byte with the provider response. Approved
+prompt excerpts match pinned source lines; provider requests contain no tool configuration or
+scoring artifacts. Four persisted UI evaluations passed the final evidence-admission checks.
+
+The final PR head includes this acceptance evidence. Its CI can be inspected on the PR; no merge,
+visibility change, public hosting or Milestone 2 implementation is authorized or performed here.

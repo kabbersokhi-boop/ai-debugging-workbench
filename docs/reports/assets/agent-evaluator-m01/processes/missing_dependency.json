@@ -1,0 +1,42 @@
+{
+  "command": [
+    "python",
+    "-c",
+    "import absent_evaluator_dependency"
+  ],
+  "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+  "policy": {
+    "version": "python312-v1",
+    "network": "none",
+    "rootfs": "read-only",
+    "source": "read-only named volume",
+    "uid": 1000,
+    "cpu": 1,
+    "memory_bytes": 268435456,
+    "pids": 32,
+    "tmp_bytes": 33554432,
+    "log_bytes": 131072,
+    "timeout_seconds": 25,
+    "capabilities": [],
+    "host_mounts": [],
+    "credentials": false,
+    "docker_socket": false
+  },
+  "started_at": "2026-10-16T16:05:46.975204+00:00",
+  "resource_usage": {
+    "cpu_ns": 56721000,
+    "peak_memory_bytes_observed": 2125824,
+    "note": "Fast processes may exit before a Docker stats sample is available"
+  },
+  "executed_file_hashes": {
+    "immutable.txt": "0682c5f2076f099c34cfdd15a9e063849ed437a49677e6fcc5b4198c76575be5"
+  },
+  "container_id": "5b7f0f27dccb60e041692f974d499ede01096da5ea8808cdf91db57754eb3c1e",
+  "exit_code": 1,
+  "oom_killed": false,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'absent_evaluator_dependency'\n",
+  "status": "finished",
+  "ended_at": "2026-10-16T16:05:48.673006+00:00",
+  "duration_ms": 1698
+}
