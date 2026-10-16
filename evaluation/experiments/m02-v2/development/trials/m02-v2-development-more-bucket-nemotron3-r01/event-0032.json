@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v2-development-more-bucket-nemotron3-r01",
+  "sequence": 32,
+  "previous_hash": "82e00b273f021a93ec5200574b53b3c6244d3633fee8b6a0ca5a5477dc987ed1",
+  "at": "2026-10-16T22:52:29.476384+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-d54800da-5cc7-480f-b1dd-2e21ee8738f8",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"tool\": \"edit\", \"edits\": [{\"path\": \"more_itertools/more.py\", \"old\": \"    def __init__(self, iterable, key, validator=None):\\n        self._it = iter(iterable)\\n        self._key = key\\n        self._cache = defaultdict(deque)\\n        self._validator = validator or (lambda x: True)\", \"new\": \"    def __init__(self, iterable, key, validator=None):\\n        self._it = iter(iterable)\\n        self._key = key\\n        self._cache = defaultdict(deque)\\n        self._validator = validator if validator is not None else (lambda x: True)\"}]}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792191147,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 4794,
+      "completion_tokens": 154,
+      "total_tokens": 4948,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "f56b807bb5541419a5ee4878dd9dd7e1ed845af77899e04208fb88558db3e009"
+}

@@ -1,0 +1,37 @@
+{
+  "trial_id": "m02-v2-development-boltons-addlist-nemotron35-r02",
+  "sequence": 24,
+  "previous_hash": "c95f7d38ec0faf1445fa848dac05d3ca13f510b435bb196ceae5214a50c89e8a",
+  "at": "2026-10-16T22:54:35.259241+00:00",
+  "kind": "tools",
+  "payload": {
+    "action": {
+      "tool": "read",
+      "path": "boltons/urlutils.py",
+      "start": 1100,
+      "end": 1140
+    },
+    "result": {
+      "path": "boltons/urlutils.py",
+      "text": "1100:         cells = self._map.setdefault(k, [])\n1101:         last = root[PREV]\n1102:         cell = [last, root, k, v]\n1103:         last[NEXT] = root[PREV] = cell\n1104:         cells.append(cell)\n1105: \n1106:     def add(self, k, v):\n1107:         \"\"\"Add a single value *v* under a key *k*. Existing values under *k*\n1108:         are preserved.\n1109:         \"\"\"\n1110:         values = super().setdefault(k, [])\n1111:         self._insert(k, v)\n1112:         values.append(v)\n1113: \n1114:     def addlist(self, k, v):\n1115:         \"\"\"Add an iterable of values underneath a specific key, preserving\n1116:         any values already under that key.\n1117: \n1118:         >>> omd = OrderedMultiDict([('a', -1)])\n1119:         >>> omd.addlist('a', range(3))\n1120:         >>> omd\n1121:         OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\n1122: \n1123:         Called ``addlist`` for consistency with :meth:`getlist`, but\n1124:         tuples and other sequences and iterables work.\n1125:         \"\"\"\n1126:         if not v:\n1127:             return\n1128:         self_insert = self._insert\n1129:         values = super().setdefault(k, [])\n1130:         for subv in v:\n1131:             self_insert(k, subv)\n1132:         values.extend(v)\n1133: \n1134:     def get(self, k, default=None):\n1135:         \"\"\"Return the value for key *k* if present in the dictionary, else\n1136:         *default*. If *default* is not given, ``None`` is returned.\n1137:         This method never raises a :exc:`KeyError`.\n1138: \n1139:         To get all values under a key, use :meth:`OrderedMultiDict.getlist`.\n1140:         \"\"\"\n",
+      "truncated": false
+    },
+    "before": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500",
+      "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    },
+    "after": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500",
+      "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    }
+  },
+  "hash": "fa1dc71cd3aeae194a22caba89387aaa8af1d15e643393003609f7310f2b4b1a"
+}

@@ -1,0 +1,37 @@
+{
+  "trial_id": "m02-v2-development-boltons-addlist-nemotron35-r02",
+  "sequence": 6,
+  "previous_hash": "e969a9847f88ba2b8c8d229b915a5b0df3b9abd974dc4facce84f0dd3eed21a1",
+  "at": "2026-10-16T22:54:30.525051+00:00",
+  "kind": "tools",
+  "payload": {
+    "action": {
+      "tool": "read",
+      "path": "boltons/dictutils.py",
+      "start": 1,
+      "end": 120
+    },
+    "result": {
+      "path": "boltons/dictutils.py",
+      "text": "1: # Copyright (c) 2013, Mahmoud Hashemi\n2: #\n3: # Redistribution and use in source and binary forms, with or without\n4: # modification, are permitted provided that the following conditions are\n5: # met:\n6: #\n7: #    * Redistributions of source code must retain the above copyright\n8: #      notice, this list of conditions and the following disclaimer.\n9: #\n10: #    * Redistributions in binary form must reproduce the above\n11: #      copyright notice, this list of conditions and the following\n12: #      disclaimer in the documentation and/or other materials provided\n13: #      with the distribution.\n14: #\n15: #    * The names of the contributors may not be used to endorse or\n16: #      promote products derived from this software without specific\n17: #      prior written permission.\n18: #\n19: # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n20: # \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n21: # LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n22: # A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\n23: # OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n24: # SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n25: # LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\n26: # DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\n27: # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n28: # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\n29: # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n30: \n31: \"\"\"Python has a very powerful mapping type at its core: the :class:`dict`\n32: type. While versatile and featureful, the :class:`dict` prioritizes\n33: simplicity and performance. As a result, it does not retain the order\n34: of item insertion [1]_, nor does it store multiple values per key. It\n35: is a fast, unordered 1:1 mapping.\n36: \n37: The :class:`OrderedMultiDict` contrasts to the built-in :class:`dict`,\n38: as a relatively maximalist, ordered 1:n subtype of\n39: :class:`dict`. Virtually every feature of :class:`dict` has been\n40: retooled to be intuitive in the face of this added\n41: complexity. Additional methods have been added, such as\n42: :class:`collections.Counter`-like functionality.\n43: \n44: A prime advantage of the :class:`OrderedMultiDict` (OMD) is its\n45: non-destructive nature. Data can be added to an :class:`OMD` without being\n46: rearranged or overwritten. The property can allow the developer to\n47: work more freely with the data, as well as make more assumptions about\n48: where input data will end up in the output, all without any extra\n49: work.\n50: \n51: One great example of this is the :meth:`OMD.inverted()` method, which\n52: returns a new OMD with the values as keys and the keys as values. All\n53: the data and the respective order is still represented in the inverted\n54: form, all from an operation which would be outright wrong and reckless\n55: with a built-in :class:`dict` or :class:`collections.OrderedDict`.\n56: \n57: The OMD has been performance tuned to be suitable for a wide range of\n58: usages, including as a basic unordered MultiDict. Special\n59: thanks to `Mark Williams`_ for all his help.\n60: \n61: .. [1] As of 2015, `basic dicts on PyPy are ordered\n62:    <http://morepypy.blogspot.com/2015/01/faster-more-memory-efficient-and-more.html>`_,\n63:    and as of December 2017, `basic dicts in CPython 3 are now ordered\n64:    <https://mail.python.org/pipermail/python-dev/2017-December/151283.html>`_, as\n65:    well.\n66: .. _Mark Williams: https://github.com/markrwilliams\n67: \n68: \"\"\"\n69: \n70: from collections.abc import KeysView, ValuesView, ItemsView\n71: from itertools import zip_longest\n72: \n73: try:\n74:     from .typeutils import make_sentinel\n75:     _MISSING = make_sentinel(var_name='_MISSING')\n76: except ImportError:\n77:     _MISSING = object()\n78: \n79: \n80: PREV, NEXT, KEY, VALUE, SPREV, SNEXT = range(6)\n81: \n82: \n83: __all__ = ['MultiDict', 'OMD', 'OrderedMultiDict', 'OneToOne', 'ManyToMany', 'subdict', 'FrozenDict']\n84: \n85: \n86: class OrderedMultiDict(dict):\n87:     \"\"\"A MultiDict is a dictionary that can have multiple values per key\n88:     and the OrderedMultiDict (OMD) is a MultiDict that retains\n89:     original insertion order. Common use cases include:\n90: \n91:       * handling query strings parsed from URLs\n92:       * inverting a dictionary to create a reverse index (values to keys)\n93:       * stacking data from multiple dictionaries in a non-destructive way\n94: \n95:     The OrderedMultiDict constructor is identical to the built-in\n96:     :class:`dict`, and overall the API constitutes an intuitive\n97:     superset of the built-in type:\n98: \n99:     >>> omd = OrderedMultiDict()\n100:     >>> omd['a'] = 1\n101:     >>> omd['b'] = 2\n102:     >>> omd.add('a', 3)\n103:     >>> omd.get('a')\n104:     3\n105:     >>> omd.getlist('a')\n106:     [1, 3]\n107: \n108:     Some non-:class:`dict`-like behaviors also make an appearance,\n109:     such as support for :func:`reversed`:\n110: \n111:     >>> list(reversed(omd))\n112:     ['b', 'a']\n113: \n114:     Note that unlike some other MultiDicts, this OMD gives precedence\n115:     to the most recent value added. ``omd['a']`` refers to ``3``, not\n116:     ``1``.\n117: \n118:     >>> omd\n119:     OrderedMultiDict([('a', 1), ('b', 2), ('a', 3)])\n120:     >>> omd.poplast('a')\n",
+      "truncated": false
+    },
+    "before": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500",
+      "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    },
+    "after": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500",
+      "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    }
+  },
+  "hash": "30ced72f7a346c9aa5aefefc8a944f4f959933d9ae778e846e956df1a9b0e9ee"
+}

@@ -1,0 +1,187 @@
+{
+  "kind": "actual development evidence; excluded from agent experiment denominators",
+  "preflight_freeze_hash": "fb064c086e74ff10c8396a6c5ca3235add8f53e09a794a0b672dcc5b0ae3a2df",
+  "readiness_gate_passed": false,
+  "formal_experiment_started": false,
+  "formal_attempts": 0,
+  "reason": "Nemotron35 submitted 0/2 calibration candidates; both configurations must demonstrate the lifecycle.",
+  "gate_command_exit_code": 1,
+  "gate_command_stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/libertarian/ai-debugging-workbench/backend/src/workbench/evaluator/reliability.py\", line 578, in <module>\n    asyncio.run(main())\n  File \"/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py\", line 195, in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\n  File \"/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py\", line 118, in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py\", line 691, in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/home/libertarian/ai-debugging-workbench/backend/src/workbench/evaluator/reliability.py\", line 465, in main\n    raise ValueError(\"Preflight readiness gate failed; no formal comparison authorized\")\nValueError: Preflight readiness gate failed; no formal comparison authorized\n",
+  "rows": [
+    {
+      "id": "m02-v2-development-more-bucket-nemotron3-r01",
+      "configuration_id": "nemotron3",
+      "task_id": "more-bucket",
+      "status": "request_budget_exhausted",
+      "candidate_hash": null,
+      "requests": 12,
+      "responses": 12,
+      "retry_plans": 0,
+      "actual_retry_attempts": 0,
+      "reported_tokens": 50974,
+      "unknown_usage_requests": 0,
+      "reported_reasoning_tokens": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "returned_models": [
+        "nvidia/nemotron-3-super-120b-a12b"
+      ],
+      "reserved_tokens": 180843,
+      "generation_ms": 17561,
+      "ordinary_ms": 5800,
+      "counts": {
+        "revisions": 1,
+        "ordinary_runs": 1,
+        "read_search_actions": 10
+      },
+      "tool_errors": {},
+      "ordinary_exit_codes": [
+        0
+      ],
+      "max_request_content_bytes": 14718
+    },
+    {
+      "id": "m02-v2-development-more-bucket-nemotron35-r01",
+      "configuration_id": "nemotron35",
+      "task_id": "more-bucket",
+      "status": "request_budget_exhausted",
+      "candidate_hash": null,
+      "requests": 12,
+      "responses": 12,
+      "retry_plans": 0,
+      "actual_retry_attempts": 0,
+      "reported_tokens": 96253,
+      "unknown_usage_requests": 0,
+      "reported_reasoning_tokens": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "returned_models": [
+        "private/nvidia/nemotron-3.5-super-120b-a12b"
+      ],
+      "reserved_tokens": 275931,
+      "generation_ms": 105139,
+      "ordinary_ms": 0,
+      "counts": {
+        "revisions": 1,
+        "ordinary_runs": 0,
+        "read_search_actions": 6
+      },
+      "tool_errors": {
+        "Inspect approved source with read/search before editing": 1,
+        "Unsupported tool contract. Edit example: {\"tool\":\"edit\",\"edits\":[{\"path\":\"file.py\",\"old\":\"exact source\",\"new\":\"replacement\"}]}": 2,
+        "Patch does not apply uniquely to the pinned source": 2,
+        "Read bounds invalid; maximum 120 lines": 1
+      },
+      "ordinary_exit_codes": [],
+      "max_request_content_bytes": 23737
+    },
+    {
+      "id": "m02-v2-development-boltons-addlist-nemotron35-r02",
+      "configuration_id": "nemotron35",
+      "task_id": "boltons-addlist",
+      "status": "request_budget_exhausted",
+      "candidate_hash": null,
+      "requests": 12,
+      "responses": 12,
+      "retry_plans": 0,
+      "actual_retry_attempts": 0,
+      "reported_tokens": 64978,
+      "unknown_usage_requests": 0,
+      "reported_reasoning_tokens": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "returned_models": [
+        "private/nvidia/nemotron-3.5-super-120b-a12b"
+      ],
+      "reserved_tokens": 200772,
+      "generation_ms": 41703,
+      "ordinary_ms": 0,
+      "counts": {
+        "revisions": 0,
+        "ordinary_runs": 0,
+        "read_search_actions": 10
+      },
+      "tool_errors": {
+        "Invalid edit contract": 2
+      },
+      "ordinary_exit_codes": [],
+      "max_request_content_bytes": 15666
+    },
+    {
+      "id": "m02-v2-development-boltons-addlist-nemotron3-r02",
+      "configuration_id": "nemotron3",
+      "task_id": "boltons-addlist",
+      "status": "submitted",
+      "candidate_hash": "5cab12b5c1b25239d4418e84aae45f166041390a6895d24f2a6ae1d1d85d6246",
+      "requests": 7,
+      "responses": 7,
+      "retry_plans": 0,
+      "actual_retry_attempts": 0,
+      "reported_tokens": 33131,
+      "unknown_usage_requests": 0,
+      "reported_reasoning_tokens": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "returned_models": [
+        "nvidia/nemotron-3-super-120b-a12b"
+      ],
+      "reserved_tokens": 102808,
+      "generation_ms": 15292,
+      "ordinary_ms": 1016,
+      "counts": {
+        "revisions": 1,
+        "ordinary_runs": 1,
+        "read_search_actions": 4
+      },
+      "tool_errors": {},
+      "ordinary_exit_codes": [
+        0
+      ],
+      "max_request_content_bytes": 14746
+    }
+  ],
+  "requests": 43,
+  "reported_total_tokens": 245336,
+  "unknown_usage_requests": 0,
+  "reserved_tokens": 760354,
+  "monetary_cost": null
+}

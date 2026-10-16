@@ -339,3 +339,72 @@ def test_failed_inspection_does_not_admit_an_edit():
         w.action({"tool": "read", "path": "../reference.json", "start": 1, "end": 10})
     with pytest.raises(ValueError, match="Inspect"):
         w.action(actions()[1])
+
+
+def test_retained_actual_preflight_and_readiness_gate():
+    # Retained real evidence validation; no calls or credentials are used by this test.
+    f = v2.load_freeze(True)
+    v2.assert_frozen(f)
+    records = v2.records(True)
+    assert len(records) == 4 and not v2.ready(records)
+    assert [r["generation"]["generation_status"] for r in records] == [
+        "request_budget_exhausted",
+        "request_budget_exhausted",
+        "request_budget_exhausted",
+        "submitted",
+    ]
+    assert sum(r["generation"]["requests"] for r in records) == 43
+    assert sum(bool(r["candidate"]) for r in records) == 1
+    assert not (v2.ROOT / "freeze.json").exists()
+    assert not (v2.ROOT / "generation-claim.json").exists()
+    charges = [json.loads(path.read_text()) for path in v2.CAMPAIGN.glob("charge-*.json")]
+    assert len(charges) == 43
+    assert sum(c["reserved_tokens"] for c in charges) == sum(
+        r["generation"]["token_reservation_upper_bound"] for r in records
+    )
+    assert sum(r["generation"]["retries"] for r in records) == 0
+    for r in records:
+        assert r["result"] is None  # Development is not an independent-scoring experiment.
+        for e in r["events"]:
+            if e["kind"] == "response":
+                assert e["payload"]["choices"][0]["finish_reason"] == "stop"
+                assert e["payload"]["usage"]["completion_tokens_details"]["reasoning_tokens"] == 0
+    assert sorted(p.name for p in v2.CAMPAIGN.glob("run-*.json")) == [
+        "run-0000.json",
+        "run-0001.json",
+        "run-0002.json",
+        "run-0003.json",
+    ]
+
+
+def test_development_independent_observation_is_separate_and_source_bound():
+    from workbench.evaluator.experiment import trial_binding
+    from workbench.evaluator.experiment_catalog import build_candidate
+    from workbench.evaluator.experiment_runner import validate_result
+
+    f = v2.load_freeze(True)
+    records = v2.records(True)
+    submitted = [r for r in records if r["candidate"]]
+    assert len(submitted) == 1
+    r = submitted[0]
+    c = r["candidate"]
+    wrapper = json.loads((v2.DEV / "independent" / (c["id"] + ".json")).read_text())
+    assert wrapper["trial_binding"] == trial_binding(r, f)
+    assert wrapper["trial_binding_hash"] == identity(wrapper["trial_binding"])
+    assert wrapper["result_hash"] == identity(wrapper["result"])
+    result = wrapper["result"]
+    spec = v2.task(c["task_id"])
+    validate_result(spec, build_candidate(spec, c), result, f["body"]["image_id"])
+    assert result["ordinary"]["outcome"] == "passed"
+    assert result["independent"]["outcome"] == "failed"
+    assert {x["name"] for x in result["independent"]["checks"] if x["status"] == "failed"} == {
+        "standalone_urlutils:list",
+        "standalone_urlutils:tuple",
+        "standalone_urlutils:iterator",
+        "standalone_urlutils:generator",
+        "standalone_urlutils:empty",
+    }
+    assert result["ordinary"]["container_id"] != result["independent"]["container_id"]
+    # Scoring occurred after every development terminal and no generation followed it.
+    assert max(e["at"] for r in records for e in r["events"]) < result["ordinary"]["started_at"]
+    assert not (v2.ROOT / "freeze.json").exists()

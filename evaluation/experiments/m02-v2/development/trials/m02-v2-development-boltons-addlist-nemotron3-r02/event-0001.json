@@ -1,0 +1,40 @@
+{
+  "trial_id": "m02-v2-development-boltons-addlist-nemotron3-r02",
+  "sequence": 1,
+  "previous_hash": "797772ea2d94251f3cc21e3ec6f6d90bb08a318322635bb19b66126b901b6acf",
+  "at": "2026-10-16T22:55:04.095690+00:00",
+  "kind": "request",
+  "payload": {
+    "payload": {
+      "temperature": 1,
+      "top_p": 0.95,
+      "max_tokens": 4096,
+      "response_format": {
+        "type": "json_object"
+      },
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Repair the approved upstream Python source using the tools below. No shell or retrieval.\nReturn ONE JSON tool object per response, with a brief optional \"decision\" explanation.\n{\"tool\":\"read\",\"path\":\"approved path\",\"start\":1,\"end\":100} (inclusive, at most 120 lines)\n{\"tool\":\"search\",\"query\":\"literal text\"} (approved source/tests only, 20 hits)\n{\"tool\":\"edit\",\"edits\":[{\"path\":\"production path\",\"old\":\"exact unique source\",\"new\":\"replacement\"}]}\n{\"tool\":\"test\"} (fixed upstream ordinary tests in a fresh restricted container)\n{\"tool\":\"submit\"} (explicit final submission, after an edit and ordinary test of the latest source).\nA legacy {\"actions\":[ONE tool object]} wrapper is also accepted. No markdown fences.\nInspect source before editing. Tests may be read and executed, never edited. Source excerpts and\nhashes reflect the CURRENT working tree. Previous exact actions and full logs are retained\nexternally;\nyour bounded state contains recent reads, test feedback, edit/error history and current identities.\nRead again if you need omitted source. Correct ordinary failures when justified and within budget.\nYou must receive the test feedback on a later turn before submitting. You may explicitly submit a\ncandidate whose ordinary tests fail; never claim that it passed. Passing tests is not proof of\ncorrectness.\nNo reference fix, independent checks or evaluation feedback is available. Preserve documented\nbehavior.\nUse the last two requests for testing/submission, not further exploration. No automatic submission.\n"
+        },
+        {
+          "role": "user",
+          "content": "{\"project\": \"Boltons\", \"base_commit\": \"d45cc414e33aa4e08a73e0993574df4397e2e9db\", \"problem\": \"OrderedMultiDict.addlist traverses an iterable twice. Iterators and generators leave its linked keys and stored values inconsistent, including empty inputs. The vendored copy in urlutils has the same defect.\", \"expected_behavior\": \"Both dictutils.OrderedMultiDict and urlutils.OrderedMultiDict (including the documented standalone import fallback) must accept finite iterable values, preserve order, append on repeated calls, leave no key for an empty iterable, and keep getlist, keys, len and iteritems(multi=True) consistent. Existing list/tuple inputs remain supported.\", \"allowed_paths\": [\"boltons/dictutils.py\", \"boltons/urlutils.py\"], \"files\": {\"boltons/__init__.py\": {\"lines\": 1, \"sha256\": \"57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160\"}, \"boltons/dictutils.py\": {\"lines\": 1129, \"sha256\": \"2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500\"}, \"boltons/urlutils.py\": {\"lines\": 1607, \"sha256\": \"2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31\"}, \"tests/test_dictutils.py\": {\"lines\": 581, \"sha256\": \"2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174\"}, \"tests/test_urlutils.py\": {\"lines\": 495, \"sha256\": \"369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa\"}, \"LICENSE\": {\"lines\": 29, \"sha256\": \"c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3\"}}, \"ordinary_command\": [\"python\", \"-m\", \"pytest\", \"-q\", \"-p\", \"no:cacheprovider\", \"tests/test_dictutils.py\", \"tests/test_urlutils.py\"], \"environment\": \"Python 3.12.14, pytest 8.3.5; no network; read-only source; fixed installed dependencies\", \"source_excerpts\": [{\"path\": \"boltons/dictutils.py\", \"symbol\": \"OrderedMultiDict.addlist\", \"start\": 216, \"end\": 234, \"content\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\\n\"}, {\"path\": \"boltons/urlutils.py\", \"symbol\": \"OrderedMultiDict.addlist\", \"start\": 1114, \"end\": 1132, \"content\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\\n\"}], \"budget\": {\"requests\": 12, \"output_tokens_per_request\": 4096, \"token_upper_bound\": 360000, \"wall_seconds\": 720, \"provider_timeout_seconds\": 90, \"revisions\": 4, \"ordinary_runs\": 4, \"read_search_actions\": 16, \"actions_per_response\": 1, \"automatic_retries\": 1, \"source_read_chars\": 12000, \"input_bytes_per_request\": 48000}}"
+        },
+        {
+          "role": "user",
+          "content": "{\"source_hashes\": {\"boltons/__init__.py\": \"57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160\", \"boltons/dictutils.py\": \"2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500\", \"boltons/urlutils.py\": \"2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31\", \"tests/test_dictutils.py\": \"2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174\", \"tests/test_urlutils.py\": \"369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa\", \"LICENSE\": \"c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3\"}, \"counts\": {\"revisions\": 0, \"ordinary_runs\": 0, \"read_search_actions\": 0}, \"tested_source_hash\": null, \"feedback\": [], \"requests_remaining\": 12, \"reservation_remaining\": 360000, \"instruction\": \"Inspect/edit, run ordinary tests, receive feedback, then explicitly submit.\"}"
+        }
+      ]
+    },
+    "request_hash": "8bf8858b21207d1678ab5817fdba22294cb479b63044b67f4ab0a3c690780f10",
+    "request_index": 1,
+    "retry_of": null,
+    "reserved_tokens": 10055
+  },
+  "hash": "eb548340cd998904aed5e1894644bbdab193c0b1b944c64689f9718c3a491328"
+}

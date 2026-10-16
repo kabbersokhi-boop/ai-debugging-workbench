@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v2-development-boltons-addlist-nemotron35-r02",
+  "sequence": 32,
+  "previous_hash": "51bca5607a45f96ea257a3c6180161125650141f5498ee8fe78a31f1a9c0ed44",
+  "at": "2026-10-16T22:54:54.036678+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-02c3e087-bc2f-42f2-8f0b-6438cc749438",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"tool\": \"read\", \"path\": \"boltons/dictutils.py\", \"start\": 190, \"end\": 240}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792191293,
+    "model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 6480,
+      "completion_tokens": 34,
+      "total_tokens": 6514,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "e4ffe2f4afbd7fd1356185793dc7a34bcfaac8088981f9257cd90e2edaf25f38"
+}

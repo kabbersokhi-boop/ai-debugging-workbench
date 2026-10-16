@@ -1,0 +1,63 @@
+{
+  "trial_id": "m02-v2-development-more-bucket-nemotron3-r01",
+  "sequence": 21,
+  "previous_hash": "db7ce53239049312b3c5da8d2da5eb2c6a2f3989ab5942bb8462059af7ecff9f",
+  "at": "2026-10-16T22:52:24.411739+00:00",
+  "kind": "tools",
+  "payload": {
+    "action": {
+      "tool": "search",
+      "query": "__contains__"
+    },
+    "result": {
+      "hits": [
+        {
+          "path": "more_itertools/more.py",
+          "line": 1024,
+          "text": "    return [list(filter(uniques.__contains__, it)) for it in pool]"
+        },
+        {
+          "path": "more_itertools/more.py",
+          "line": 1187,
+          "text": "    def __contains__(self, value):"
+        },
+        {
+          "path": "more_itertools/more.py",
+          "line": 2349,
+          "text": "    def __contains__(self, elem):"
+        },
+        {
+          "path": "more_itertools/recipes.py",
+          "line": 496,
+          "text": "        for element in filterfalse(seen.__contains__, iterable):"
+        },
+        {
+          "path": "tests/test_more.py",
+          "line": 3894,
+          "text": "        # __contains__"
+        },
+        {
+          "path": "tests/test_more.py",
+          "line": 4285,
+          "text": "    def __contains__(self, y):"
+        }
+      ],
+      "truncated": false
+    },
+    "before": {
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "bc51d6f1c05613084fb566a8310771ab946864f0bb4815d26d4c6bb8d44bf9ff",
+      "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+      "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    },
+    "after": {
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "bc51d6f1c05613084fb566a8310771ab946864f0bb4815d26d4c6bb8d44bf9ff",
+      "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+      "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    }
+  },
+  "hash": "f37eb7ed20cfc8d3c7976b17d1771ca1ba9920bc3dcb8b936c8628df34a2a442"
+}

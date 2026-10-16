@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v2-development-more-bucket-nemotron3-r01",
+  "sequence": 35,
+  "previous_hash": "0d5d1b72e0ef01093c9994c8559fdc7c5b346720891fb4d97735c48cf706c071",
+  "at": "2026-10-16T22:52:30.490312+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-f3817a48-8a15-4246-95b7-3972c2410cfa",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"tool\": \"test\"}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792191149,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 5969,
+      "completion_tokens": 7,
+      "total_tokens": 5976,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "23cff8407f374c3a7bf5ec6f566f86057bee99513dd255bc5198d9ec809ec4e3"
+}

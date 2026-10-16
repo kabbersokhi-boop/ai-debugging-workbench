@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v2-development-more-bucket-nemotron35-r01",
+  "sequence": 11,
+  "previous_hash": "f4dec1124169a7afdd84539359d00d1aa34fda055590d951226f468ba6cbd07c",
+  "at": "2026-10-16T22:52:41.749793+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-95be3d29-51eb-42ee-bf41-b561a9ee1970",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"tool\": \"edit\", \"edits\": [{\"path\": \"more_itertools/more.py\", \"old\": \"        self._validator = validator or (lambda x: True)\", \"new\": \"        self._validator = validator if validator is not None else (lambda x: True)\"}]}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792191159,
+    "model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 7003,
+      "completion_tokens": 64,
+      "total_tokens": 7067,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "d4efd075b389c95a71d99ee8b5b04ec8a1bad0dcb526ff7171799447c2354255"
+}

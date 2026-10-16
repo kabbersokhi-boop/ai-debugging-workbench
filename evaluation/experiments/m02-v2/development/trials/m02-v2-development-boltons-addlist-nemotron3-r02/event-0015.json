@@ -1,0 +1,47 @@
+{
+  "trial_id": "m02-v2-development-boltons-addlist-nemotron3-r02",
+  "sequence": 15,
+  "previous_hash": "9119ee7a513f17800fdcfde574874ca2bccb48ce5e43eb36f156b71328205e58",
+  "at": "2026-10-16T22:55:13.183788+00:00",
+  "kind": "tools",
+  "payload": {
+    "action": {
+      "tool": "edit",
+      "edits": [
+        {
+          "path": "boltons/dictutils.py",
+          "old": "    def addlist(self, k, v):\n        \"\"\"Add an iterable of values underneath a specific key, preserving\n        any values already under that key.\n\n        >>> omd = OrderedMultiDict([('a', -1)])\n        >>> omd.addlist('a', range(3))\n        >>> omd\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\n\n        Called ``addlist`` for consistency with :meth:`getlist`, but\n        tuples and other sequences and iterables work.\n        \"\"\"\n        if not v:\n            return\n        self_insert = self._insert\n        values = super().setdefault(k, [])\n        for subv in v:\n            self_insert(k, subv)\n        values.extend(v)",
+          "new": "    def addlist(self, k, v):\n        \"\"\"Add an iterable of values underneath a specific key, preserving\n        any values already under that key.\n\n        >>> omd = OrderedMultiDict([('a', -1)])\n        >>> omd.addlist('a', range(3))\n        >>> omd\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\n\n        Called ``addlist`` for consistency with :meth:`getlist`, but\n        tuples and other sequences and iterables work.\n        \"\"\"\n        try:\n            # Consume iterator once, collect values\n            collected = list(v)\n        except TypeError:\n            # Fallback for non-iterable v (should not happen per spec)\n            collected = []\n        if not collected:\n            return\n        self_insert = self._insert\n        values = super().setdefault(k, [])\n        for subv in collected:\n            self_insert(k, subv)\n        values.extend(collected)"
+        }
+      ]
+    },
+    "result": {
+      "status": "applied",
+      "source_hashes": {
+        "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+        "boltons/dictutils.py": "429110eb732aff717b77ba422a9bcdd394a2ffe22051869053b505b96af2c223",
+        "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+        "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+        "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+        "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+      }
+    },
+    "before": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500",
+      "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    },
+    "after": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "429110eb732aff717b77ba422a9bcdd394a2ffe22051869053b505b96af2c223",
+      "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    }
+  },
+  "hash": "0c30ac5e10ff8e4cd0f42187cc0422bf1c5fff011934c497b2ca7ed7e12fa76b"
+}
