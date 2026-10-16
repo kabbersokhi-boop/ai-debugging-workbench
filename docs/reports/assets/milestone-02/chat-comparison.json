@@ -1,0 +1,99 @@
+[
+  {
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "latency_ms": 9375,
+    "structured_output": {
+      "outcome": "diagnosis",
+      "diagnosis": "The cart quantity update correctly recalculates the line total to $192 (19200 cents) for 3 units, but the subtotal remains stuck at $64 (6400 cents) because calculateTotals uses only the first item's unitPriceCents instead of summing all items' unit prices. Shipping remains $8 because the subtotal check compares against the stale 6400-cent value instead of the actual 19200-cent total, failing to trigger the free shipping threshold of 10000 cents. The order total also stays at $72 because it adds shipping to the stale subtotal.",
+      "citations": [
+        {
+          "source_id": "e564b17a8b2a0a41",
+          "start_line": 7,
+          "end_line": 14,
+          "path": "fixtures/retail/cart.js",
+          "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+          "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+        }
+      ],
+      "observations": [
+        "Line amount correctly updates to 19200 cents when quantity changes to 3",
+        "Subtotal remains at 6400 cents instead of updating to 19200 cents",
+        "Shipping remains 800 cents instead of switching to 0",
+        "Order total remains 7200 cents instead of 19200 cents",
+        "Free shipping threshold is 10000 cents (SOURCE 7b61bd59a0209beb)",
+        "Subtotal calculation at line 8 only accumulates unitPriceCents from a single item"
+      ],
+      "uncertainty": [
+        "Unclear whether items array passed to calculateTotals contains multiple line items or a single item object, and how the function iterates over them",
+        "No evidence found for how the bag aggregates multiple line items before passing to calculateTotals"
+      ],
+      "next_check": "Inspect the code that builds the items array passed to calculateTotals to verify whether it aggregates all line items' unit prices or only uses the first item.",
+      "citation_validity": "All cited identifiers and ranges exist in supplied context; correctness is not established by this check."
+    },
+    "calls": [
+      {
+        "workload": "chat",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "attempt": 1,
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 2473,
+          "completion_tokens": 449,
+          "total_tokens": 2922
+        },
+        "latency_ms": 9373
+      }
+    ]
+  },
+  {
+    "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+    "latency_ms": 1599,
+    "structured_output": {
+      "outcome": "diagnosis",
+      "diagnosis": "The calculateTotals function sums only item.unitPriceCents for each line item and ignores item.quantity, so changing quantity updates the displayed line total but not the cart subtotal. Because the subtotal remains at one unit price (6400 cents), it stays below the 10000-cent free-shipping threshold, so shipping remains 800 cents and the order total stays at 7200 cents.",
+      "citations": [
+        {
+          "source_id": "e564b17a8b2a0a41",
+          "start_line": 7,
+          "end_line": 14,
+          "path": "fixtures/retail/cart.js",
+          "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+          "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+        },
+        {
+          "source_id": "7b61bd59a0209beb",
+          "start_line": 4,
+          "end_line": 4,
+          "path": "fixtures/retail/cart.js",
+          "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+          "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+        }
+      ],
+      "observations": [
+        "Line total correctly updated to 19200 cents for quantity 3.",
+        "Subtotal remained 6400 cents, equal to one unit price.",
+        "Shipping remained 800 cents because subtotal stayed below the 10000-cent threshold.",
+        "Order total remained 7200 cents instead of 19200 cents."
+      ],
+      "uncertainty": [
+        "The supplied context does not show how line items are constructed or whether item.quantity exists and is populated correctly, so the exact item shape cannot be confirmed from the provided snippets alone."
+      ],
+      "next_check": "Inspect the code that builds cart items and calls calculateTotals to confirm each item carries a quantity field and that calculateTotals should multiply unitPriceCents by quantity before summing.",
+      "citation_validity": "All cited identifiers and ranges exist in supplied context; correctness is not established by this check."
+    },
+    "calls": [
+      {
+        "workload": "chat",
+        "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+        "attempt": 1,
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 2473,
+          "completion_tokens": 351,
+          "total_tokens": 2824
+        },
+        "latency_ms": 1597
+      }
+    ]
+  }
+]

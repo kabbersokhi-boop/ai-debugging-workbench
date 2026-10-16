@@ -10,7 +10,9 @@ RUN pip install --no-cache-dir uv==0.11.16
 WORKDIR /app/backend
 COPY backend/pyproject.toml backend/uv.lock ./
 RUN uv sync --frozen --no-dev --python 3.12 --no-install-project
-COPY backend/ ./
+COPY backend/src/ ./src/
+COPY backend/migrations/ ./migrations/
+COPY backend/alembic.ini ./alembic.ini
 RUN uv sync --frozen --no-dev --python 3.12
 COPY fixtures/ /app/fixtures/
 COPY --from=web /web/dist /app/frontend/dist

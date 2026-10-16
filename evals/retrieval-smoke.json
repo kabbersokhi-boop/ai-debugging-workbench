@@ -1,0 +1,15 @@
+{
+  "version": "retail-retrieval-smoke-v1",
+  "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+  "note": "Eight queries over one curated defect and supporting behaviors. Paraphrases are not independent defects. Labels and evaluation outputs are excluded from the source corpus.",
+  "queries": [
+    {"id":"cart-quantity","group":"single-cart-defect","query":"Changing cart quantity updates the line amount but checkout subtotal stays at one unit price.","relevant":["e564b17a8b2a0a41","fb04b34c31291835"]},
+    {"id":"cart-paraphrase","group":"single-cart-defect","query":"Three daypacks cost 192 dollars on the line but order subtotal is 64 dollars and shipping is still charged.","relevant":["e564b17a8b2a0a41","fb04b34c31291835"]},
+    {"id":"shipping-policy","group":"supporting-behavior","query":"When is shipping complimentary and what merchandise threshold is compared in calculateTotals?","relevant":["cc151a1b45ab3ba4","e564b17a8b2a0a41","7b61bd59a0209beb"]},
+    {"id":"quantity-validation","group":"supporting-behavior","query":"How does the quantity input change handler sanitize nonnumeric entries and enforce minimum and maximum values?","relevant":["23d7bfe1fffcaeb8","cc151a1b45ab3ba4"]},
+    {"id":"currency-format","group":"supporting-behavior","query":"Which functions format integer cents as US dollar amounts and write data-cents attributes to DOM elements?","relevant":["a5546c2b02ccce37","5c2e6e0b7145cb2b"]},
+    {"id":"cart-lifetime","group":"supporting-behavior","query":"Does the bag persist after page reload or use an API database or service worker?","relevant":["52c90a6091f05efa","cc151a1b45ab3ba4"]},
+    {"id":"no-payment-backend","group":"no-answer","query":"Which payment gateway authorizes a credit card and how does the server handle payment webhooks?","relevant":[]},
+    {"id":"no-inventory-backend","group":"no-answer","query":"Which database transaction locks inventory reservations during concurrent order placement?","relevant":[]}
+  ]
+}

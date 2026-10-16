@@ -1,0 +1,127 @@
+[
+  {
+    "label": "embedding-primary",
+    "endpoint": "https://integrate.api.nvidia.com/v1/embeddings",
+    "model": "nvidia/nv-embedqa-e5-v5",
+    "status": 410,
+    "latency_ms": 142
+  },
+  {
+    "label": "embedding-alternative",
+    "endpoint": "https://integrate.api.nvidia.com/v1/embeddings",
+    "model": "nvidia/llama-3.2-nv-embedqa-1b-v1",
+    "status": 404,
+    "latency_ms": 274
+  },
+  {
+    "label": "rerank",
+    "endpoint": "https://ai.api.nvidia.com/v1/retrieval/nvidia/reranking",
+    "model": "nvidia/nv-rerankqa-mistral-4b-v3",
+    "status": 404,
+    "latency_ms": 276
+  },
+  {
+    "label": "embed-current",
+    "endpoint": "https://integrate.api.nvidia.com/v1/embeddings",
+    "model": "nvidia/nemotron-3-embed-1b",
+    "status": 200,
+    "latency_ms": 378,
+    "usage": {
+      "prompt_tokens": 9,
+      "total_tokens": 9
+    },
+    "dimensions": 2048
+  },
+  {
+    "label": "rerank-current",
+    "endpoint": "https://ai.api.nvidia.com/v1/retrieval/nvidia/llama-3_2-nv-rerankqa-1b-v2/reranking",
+    "model": "nvidia/llama-3.2-nv-rerankqa-1b-v2",
+    "status": 410,
+    "latency_ms": 72,
+    "error_type": null
+  },
+  {
+    "label": "chat-comparison",
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "model": "mistralai/mistral-large-2-instruct",
+    "status": 404,
+    "latency_ms": 102,
+    "error_type": null
+  },
+  {
+    "label": "chat-comparison",
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "status": 200,
+    "latency_ms": 7615,
+    "usage": {
+      "prompt_tokens": 664,
+      "completion_tokens": 600,
+      "total_tokens": 1264,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 600,
+        "rejected_prediction_tokens": null
+      }
+    },
+    "response": null,
+    "finish_reason": "length"
+  },
+  {
+    "label": "chat-comparison",
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "status": 200,
+    "latency_ms": 1776,
+    "thinking_requested": false,
+    "usage": {
+      "prompt_tokens": 661,
+      "completion_tokens": 117,
+      "total_tokens": 778,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      }
+    },
+    "rankings": null,
+    "response": "{\n  \"diagnosis\": \"The cart logic contains a critical bug in the quantity input handler that can cause an infinite loop or crash when non-numeric input is entered, combined with a shipping calculation that silently rounds down to zero for items priced exactly at the $100 threshold.\",\n  \"relevant_function\": \"render and quantity change handler\",\n  \"uncertainty\": \"It is unclear whether the UI should enforce quantity limits (1-9) or allow any positive integer, and whether the shipping threshold should be inclusive or exclusive of the exact boundary.\"\n}",
+    "finish_reason": "stop"
+  },
+  {
+    "model": "deepseek-ai/deepseek-v4.1-flash",
+    "error": "ReadTimeout"
+  },
+  {
+    "label": "rerank-current",
+    "endpoint": "https://ai.api.nvidia.com/v1/retrieval/nvidia/llama-3_2-nemoretriever-500m-rerank-v2/reranking",
+    "model": "nvidia/llama-3.2-nemoretriever-500m-rerank-v2",
+    "status": 410,
+    "latency_ms": 72,
+    "thinking_requested": false
+  },
+  {
+    "label": "rerank-current",
+    "model": "nvidia/llama-nemotron-rerank-1b-v2",
+    "endpoint": "https://ai.api.nvidia.com/v1/retrieval/nvidia/llama-nemotron-rerank-1b-v2/reranking",
+    "status": 410,
+    "latency_ms": 98
+  },
+  {
+    "label": "rerank-current",
+    "model": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+    "endpoint": "https://ai.api.nvidia.com/v1/retrieval/nvidia/llama-nemotron-rerank-vl-1b-v2/reranking",
+    "status": 200,
+    "latency_ms": 724
+  }
+]

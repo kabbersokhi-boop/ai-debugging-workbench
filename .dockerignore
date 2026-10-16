@@ -7,4 +7,5 @@
 frontend/dist
 artifacts
 .env*
+**/.env*
 docs/reports/assets

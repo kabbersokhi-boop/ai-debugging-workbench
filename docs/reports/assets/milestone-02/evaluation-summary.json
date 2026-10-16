@@ -1,0 +1,300 @@
+{
+  "mode": "live_nvidia",
+  "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+  "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a",
+  "corpus_files": 4,
+  "corpus_utf8_bytes": 13983,
+  "query_count": 8,
+  "independent_defect_count": 1,
+  "summary": {
+    "lexical": {
+      "answerable_queries": 6,
+      "no_answer_queries": 2,
+      "mean_recall_at_5": 1.0,
+      "mean_precision_at_5": 0.43333333333333335,
+      "mean_reciprocal_rank": 0.6944444444444445,
+      "mean_selected_recall": 0.8333333333333334,
+      "mean_latency_ms": 10.625
+    },
+    "dense": {
+      "answerable_queries": 6,
+      "no_answer_queries": 2,
+      "mean_recall_at_5": 0.6666666666666666,
+      "mean_precision_at_5": 0.3,
+      "mean_reciprocal_rank": 0.7555555555555555,
+      "mean_selected_recall": 0.6666666666666666,
+      "mean_latency_ms": 375.25
+    },
+    "hybrid": {
+      "answerable_queries": 6,
+      "no_answer_queries": 2,
+      "mean_recall_at_5": 0.8333333333333334,
+      "mean_precision_at_5": 0.3666666666666667,
+      "mean_reciprocal_rank": 0.8333333333333334,
+      "mean_selected_recall": 0.75,
+      "mean_latency_ms": 371.125
+    },
+    "hybrid_rerank": {
+      "answerable_queries": 6,
+      "no_answer_queries": 2,
+      "mean_recall_at_5": 0.8333333333333334,
+      "mean_precision_at_5": 0.3666666666666667,
+      "mean_reciprocal_rank": 0.8888888888888888,
+      "mean_selected_recall": 0.75,
+      "mean_latency_ms": 664.0
+    }
+  },
+  "cost": {
+    "verified_dollar_cost": null,
+    "reason": "Provider pricing/billing unavailable; token usage is measured, not a dollar estimate."
+  },
+  "limits": "One sample per condition; no general debugging accuracy claim. No-answer retrieval still returns candidates; model abstention is checked separately.",
+  "diagnosis_comparisons": [
+    {
+      "task": "single-cart-defect",
+      "mode": "retrieved",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "context_count": 5,
+      "context_utf8_bytes": 3989,
+      "latency_ms": 1875,
+      "output": {
+        "outcome": "diagnosis",
+        "diagnosis": "The calculateTotals function sums only item.unitPriceCents for each line item and ignores item.quantity, so changing quantity updates the displayed line total but not the cart subtotal. Because the subtotal remains at one unit price (6400 cents), it stays below the 10000-cent free shipping threshold, leaving shipping at 800 cents and the order total unchanged.",
+        "citations": [
+          {
+            "source_id": "e564b17a8b2a0a41",
+            "start_line": 7,
+            "end_line": 14,
+            "path": "fixtures/retail/cart.js",
+            "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+            "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+          },
+          {
+            "source_id": "7b61bd59a0209beb",
+            "start_line": 4,
+            "end_line": 4,
+            "path": "fixtures/retail/cart.js",
+            "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+            "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+          }
+        ],
+        "observations": [
+          "Line total correctly updated to 19200 cents for quantity 3, but subtotal remained 6400 cents, shipping remained 800 cents, and order total remained 7200 cents."
+        ],
+        "uncertainty": [
+          "The supplied context does not include the code that updates the line total or the code that calls calculateTotals, so it cannot be confirmed whether quantity is stored on the item object or whether calculateTotals is invoked after quantity changes."
+        ],
+        "next_check": "Inspect the cart item model and the quantity change handler to confirm that item.quantity is updated and passed to calculateTotals, then verify that calculateTotals multiplies unitPriceCents by quantity for each item.",
+        "citation_validity": "All cited identifiers and ranges exist in supplied context; correctness is not established by this check."
+      },
+      "error": null,
+      "citation_ranges_valid": true,
+      "provider_calls": [
+        {
+          "workload": "embedding",
+          "model": "nvidia/nemotron-3-embed-1b",
+          "attempt": 1,
+          "status": 200,
+          "usage": {
+            "prompt_tokens": 71,
+            "total_tokens": 71
+          },
+          "latency_ms": 373
+        },
+        {
+          "workload": "rerank",
+          "model": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+          "attempt": 1,
+          "status": 200,
+          "usage": {
+            "prompt_tokens": 2327,
+            "total_tokens": 2327
+          },
+          "latency_ms": 292
+        },
+        {
+          "workload": "chat",
+          "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+          "attempt": 1,
+          "status": 200,
+          "usage": {
+            "prompt_tokens": 2542,
+            "completion_tokens": 328,
+            "total_tokens": 2870
+          },
+          "latency_ms": 1166
+        }
+      ]
+    },
+    {
+      "task": "single-cart-defect",
+      "mode": "whole_target",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "context_count": 4,
+      "context_utf8_bytes": 17116,
+      "latency_ms": 1471,
+      "output": {
+        "outcome": "diagnosis",
+        "diagnosis": "The line total is computed correctly as quantity * unit price (19200 cents), but calculateTotals builds the subtotal by summing only item.unitPriceCents for each item without multiplying by item.quantity. With one item object representing three units, subtotal remains 6400 cents. Because subtotal is below the 10000-cent free-shipping threshold, shipping stays 800 cents and the order total remains 7200 cents.",
+        "citations": [
+          {
+            "source_id": "aeedf5d42d5ce348",
+            "start_line": 7,
+            "end_line": 14,
+            "path": "fixtures/retail/cart.js",
+            "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+            "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+          },
+          {
+            "source_id": "aeedf5d42d5ce348",
+            "start_line": 38,
+            "end_line": 45,
+            "path": "fixtures/retail/cart.js",
+            "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+            "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+          }
+        ],
+        "observations": [
+          "Browser evidence confirms line_total_cents is 19200 while subtotal_cents remains 6400 after changing quantity to 3.",
+          "Shipping remains 800 cents and order total remains 7200 cents, matching the report."
+        ],
+        "uncertainty": [
+          "No uncertainty remains about the root cause; the supplied source directly explains the mismatch between line total and subtotal."
+        ],
+        "next_check": "Modify calculateTotals to multiply each item's unitPriceCents by its quantity before summing, then verify subtotal becomes 19200 cents, shipping becomes 0, and total becomes 19200 cents for quantity 3.",
+        "citation_validity": "All cited identifiers and ranges exist in supplied context; correctness is not established by this check."
+      },
+      "error": null,
+      "citation_ranges_valid": true,
+      "provider_calls": [
+        {
+          "workload": "chat",
+          "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+          "attempt": 1,
+          "status": 200,
+          "usage": {
+            "prompt_tokens": 7954,
+            "completion_tokens": 338,
+            "total_tokens": 8292
+          },
+          "latency_ms": 1469
+        }
+      ]
+    },
+    {
+      "task": "no-payment-backend",
+      "mode": "retrieved",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "context_count": 6,
+      "context_utf8_bytes": 3971,
+      "latency_ms": 5950,
+      "output": null,
+      "error": {
+        "code": "invalid_citation",
+        "message": "The model cited a source or line range outside its supplied context. No diagnosis was accepted."
+      },
+      "citation_ranges_valid": false,
+      "provider_calls": [
+        {
+          "workload": "embedding",
+          "model": "nvidia/nemotron-3-embed-1b",
+          "attempt": 1,
+          "status": 200,
+          "usage": {
+            "prompt_tokens": 20,
+            "total_tokens": 20
+          },
+          "latency_ms": 336
+        },
+        {
+          "workload": "rerank",
+          "model": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+          "attempt": 1,
+          "status": 200,
+          "usage": {
+            "prompt_tokens": 1504,
+            "total_tokens": 1504
+          },
+          "latency_ms": 287
+        },
+        {
+          "workload": "chat",
+          "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+          "attempt": 1,
+          "status": 200,
+          "usage": {
+            "prompt_tokens": 2660,
+            "completion_tokens": 519,
+            "total_tokens": 3179
+          },
+          "latency_ms": 5303
+        }
+      ]
+    },
+    {
+      "task": "no-payment-backend",
+      "mode": "whole_target",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "context_count": 4,
+      "context_utf8_bytes": 17116,
+      "latency_ms": 1746,
+      "output": {
+        "outcome": "insufficient_evidence",
+        "diagnosis": "The supplied repository context is a synthetic retail storefront with no payment gateway, credit card authorization, or payment webhook handling. The README states the application has no payments, customer accounts, or external dependencies, and checkout is deliberately disabled. cart.js only computes line totals, subtotal, shipping, and order totals in memory. index.html shows a disabled checkout button labeled \"Synthetic storefront \u00b7 No payments.\" Therefore the report's questions about which payment gateway authorizes a credit card and how the server handles payment webhooks cannot be answered from this codebase.",
+        "citations": [
+          {
+            "source_id": "700aecd7fa54624a",
+            "start_line": 1,
+            "end_line": 21,
+            "path": "fixtures/retail/README.md",
+            "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+            "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+          },
+          {
+            "source_id": "aeedf5d42d5ce348",
+            "start_line": 1,
+            "end_line": 65,
+            "path": "fixtures/retail/cart.js",
+            "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+            "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+          },
+          {
+            "source_id": "aa35a4d57c9ea104",
+            "start_line": 1,
+            "end_line": 122,
+            "path": "fixtures/retail/index.html",
+            "snapshot_id": "3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11",
+            "source_commit": "b44dfbb5c6804638e42d2dcc76565aa8d12aeb2a"
+          }
+        ],
+        "observations": [
+          "The README explicitly states the synthetic retail application has no payments, customer accounts, or external dependencies, and checkout is deliberately disabled.",
+          "cart.js contains only in-memory cart state and total calculations; there is no credit card authorization or webhook handling code.",
+          "index.html renders a disabled checkout button with text \"Synthetic storefront \u00b7 No payments.\"",
+          "The browser reproduction evidence concerns cart quantity and totals mismatches, not payment authorization or webhooks."
+        ],
+        "uncertainty": [
+          "No payment gateway or webhook implementation exists in the supplied repository context, so there is no basis to identify a gateway or describe server-side webhook handling."
+        ],
+        "next_check": "Inspect the broader repository outside fixtures/retail for any payment service, webhook controller, or gateway integration that may handle credit card authorization and payment webhooks.",
+        "citation_validity": "All cited identifiers and ranges exist in supplied context; correctness is not established by this check."
+      },
+      "error": null,
+      "citation_ranges_valid": true,
+      "provider_calls": [
+        {
+          "workload": "chat",
+          "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+          "attempt": 1,
+          "status": 200,
+          "usage": {
+            "prompt_tokens": 7903,
+            "completion_tokens": 415,
+            "total_tokens": 8318
+          },
+          "latency_ms": 1744
+        }
+      ]
+    }
+  ]
+}
