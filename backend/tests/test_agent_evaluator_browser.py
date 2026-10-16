@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import re
 from pathlib import Path
 
 import httpx
@@ -39,9 +40,7 @@ async def test_evaluator_real_ui_candidates_failure_evidence_and_reopen():
                     await page.get_by_role("button", name="Run evaluation", exact=True).click()
                 run_id = (await (await response.value).json())["id"]
                 await expect(page.get_by_role("status")).to_have_text(
-                    "failed"
-                    if label == "negative"
-                    else __import__("re").compile("^(passed|failed)$"),
+                    "failed" if label == "negative" else re.compile("^(passed|failed)$"),
                     timeout=90000,
                 )
                 await expect(

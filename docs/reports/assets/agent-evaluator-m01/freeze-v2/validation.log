@@ -1,0 +1,14 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 121 items / 119 deselected / 2 selected
+
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_controls PASSED [ 50%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_negative_processes PASSED [100%]
+
+====================== 2 passed, 119 deselected in 22.23s ======================
