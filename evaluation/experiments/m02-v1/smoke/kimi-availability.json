@@ -1,0 +1,34 @@
+{
+  "started_at": "2026-10-16T17:25:51.582930+00:00",
+  "request": {
+    "model": "moonshotai/kimi-k2.6",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Use a JSON action tool protocol. Return only {\"actions\":[{\"tool\":\"read\",\"path\":\"calc.py\",\"start\":1,\"end\":20}]}. This is a capability smoke test on development material, not benchmark evaluation."
+      },
+      {
+        "role": "user",
+        "content": "Development task: inspect calc.py before repairing a sum function. Choose the read action."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1000,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "request_hash": "b3abbe17f61de10ac662f0e1de04b6100958b22a2716eba2b38b4fb9b3fc09d5",
+  "purpose": "Development-only availability; no task material",
+  "error": "ProviderError: NVIDIA chat returned HTTP 404. No substitute output was used.",
+  "calls": [
+    {
+      "workload": "chat",
+      "model": "moonshotai/kimi-k2.6",
+      "attempt": 1,
+      "status": 404,
+      "latency_ms": 105
+    }
+  ],
+  "ended_at": "2026-10-16T17:25:51.699988+00:00"
+}

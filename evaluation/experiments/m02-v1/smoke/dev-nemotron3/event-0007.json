@@ -1,0 +1,23 @@
+{
+  "trial_id": "dev-nemotron3",
+  "sequence": 7,
+  "previous_hash": "b35e0ae561a65a0b5585768ea7a1bc0be9bae6fa17f4423629e9dd696a90f0e8",
+  "at": "2026-10-16T17:32:10.436676+00:00",
+  "kind": "request",
+  "payload": {
+    "request_hash": "5211d79d3b3bbb517e331e2e28a1f324e653aefeaafc494fdaca9abf9a8cd187",
+    "messages_hash": "9ba25692e1764a128487625bb0731c7a246e12a6d44f08353f1e2c1c3aebbeec",
+    "parameters": {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "temperature": 0,
+      "max_tokens": 3000,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "input_bytes_upper_bound": 10316,
+    "reserved_tokens": 13316,
+    "request_index": 3
+  },
+  "hash": "e35955c3c5801ce3a3cb724c11c9f8dda4fcba0764455da0f291948ff580b11f"
+}

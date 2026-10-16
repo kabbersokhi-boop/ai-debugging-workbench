@@ -1,0 +1,17 @@
+{
+  "id": "boltons-indexedset-negative",
+  "task_id": "boltons-indexedset",
+  "spec_hash": "64476f640db4c9281246b817bb658a0888de0476041c55f2d59cbb6c6b51fa9a",
+  "label": "negative authored control",
+  "kind": "control",
+  "producer": "authored control",
+  "provenance": "Validation control; excluded from producer outcomes. Reference uses exact upstream production hunk; alternatives/negative are deliberately authored.",
+  "edits": [
+    {
+      "path": "boltons/setutils.py",
+      "old": "    def iter_slice(self, start, stop, step=None):\n        \"iterate over a slice of the set\"\n        iterable = self\n        if start is not None:\n            start = self._get_real_index(start)\n        if stop is not None:\n            stop = self._get_real_index(stop)\n        if step is not None and step < 0:\n            step = -step\n            iterable = reversed(self)\n        return islice(iterable, start, stop, step)\n",
+      "new": "    def iter_slice(self, start, stop, step=None):\n        \"iterate over a slice of the set\"\n        iterable = self\n        if step is not None and step < 0:\n            step = -step\n            iterable = reversed(self)\n        return islice(iterable, start, stop, step)\n"
+    }
+  ],
+  "candidate_hash": "b551e562bcb7907b54f7c2527937f29cd34f501fb17eb8d6b126db1acbeeebc9"
+}

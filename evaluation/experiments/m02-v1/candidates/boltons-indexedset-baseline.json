@@ -1,0 +1,11 @@
+{
+  "id": "boltons-indexedset-baseline",
+  "task_id": "boltons-indexedset",
+  "spec_hash": "64476f640db4c9281246b817bb658a0888de0476041c55f2d59cbb6c6b51fa9a",
+  "label": "baseline authored control",
+  "kind": "control",
+  "producer": "authored control",
+  "provenance": "Validation control; excluded from producer outcomes. Reference uses exact upstream production hunk; alternatives/negative are deliberately authored.",
+  "edits": [],
+  "candidate_hash": "60fdad68856fff87b63b11310190a906b7575f2a4fcb1112b72c4deb3a27f004"
+}

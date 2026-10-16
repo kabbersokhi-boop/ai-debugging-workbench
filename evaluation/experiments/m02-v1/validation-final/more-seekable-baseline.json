@@ -1,0 +1,768 @@
+{
+  "candidate_hash": "a2acc1d8be7277424da13d123e68089eac8aff3fac27b9bdfad55205e1449c05",
+  "binding": {
+    "task_id": "more-seekable",
+    "base_commit": "ca711220a6657a22655f6fa497524d006a735c5f",
+    "spec_hash": "85d7f1e32b53c05674cfdf486357c28b9a3227941051a3841c558a9afeea7c3d",
+    "candidate_hash": "a2acc1d8be7277424da13d123e68089eac8aff3fac27b9bdfad55205e1449c05",
+    "patch_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "verifier_hash": "0e86afc6a33e455c354849e4923cc67e7a9b25025c0d0f9ebf9cfe2894cd46b8",
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+    "executed_file_hashes": {
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "b2aab5df2633cef2df950aacb0e26da9ab0b3d4ea1da9d7079362afa7cd383de",
+      "more_itertools/recipes.py": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db",
+      "tests/test_more.py": "e88a96a28e3c42fd1aeacd55850fe080659735cce2a36157adf487d08146cf17",
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    }
+  },
+  "binding_hash": "d731f47138d740e5be8456ec8ca9de9768ea47b8c7b7381b7081341b5516e021",
+  "ordinary": {
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_more.py::SeekableTest"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T17:38:04.556425+00:00",
+    "resource_usage": {
+      "cpu_ns": 663846000,
+      "peak_memory_bytes_observed": 41594880,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "b2aab5df2633cef2df950aacb0e26da9ab0b3d4ea1da9d7079362afa7cd383de",
+      "more_itertools/recipes.py": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db",
+      "tests/test_more.py": "e88a96a28e3c42fd1aeacd55850fe080659735cce2a36157adf487d08146cf17"
+    },
+    "container_id": "f747e254566d20606ecb87ea6fa45898bdc06e1dc5670316ae8c63e218ea034f",
+    "exit_code": 0,
+    "oom_killed": false,
+    "stdout": "..............                                                           [100%]\n14 passed in 0.41s\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T17:38:05.897266+00:00",
+    "duration_ms": 1341,
+    "outcome": "passed"
+  },
+  "independent": {
+    "command": [
+      "python",
+      "-I",
+      "-B",
+      "-c",
+      "\nimport json, sys\nsys.path.insert(0, '/source')\nfrom more_itertools import seekable\nresult = {}\nfor name, values in [('mixed', [0, False, None, 2]), ('single', [7]), ('empty', [])]:\n    count = [0]\n    def source():\n        for value in values:\n            count[0] += 1\n            yield value\n    s = seekable(source(), maxlen=0)\n    events = []\n    for op in ['peek','peek','bool','bool','next','peek','next','bool',\n               'next','next','bool','peek_default','next']:\n        try:\n            if op == 'peek': value = s.peek()\n            elif op == 'peek_default': value = s.peek('end')\n            elif op == 'bool': value = bool(s)\n            else: value = next(s)\n        except Exception as error:\n            value = {'error': type(error).__name__}\n        events.append({'op': op, 'value': value, 'pulled': count[0], 'cache': list(s.elements())})\n    result[name] = events\nfor name, limit in [('default', None), ('positive', 2)]:\n    s = seekable([1,2,3], maxlen=limit)\n    truth, first, n1, n2 = bool(s), s.peek(), next(s), next(s)\n    s.seek(0)\n    replay = list(s)\n    result[name] = {'truth': truth, 'peek': first, 'next': [n1,n2], 'replay': replay,\n                    'cache': list(s.elements()), 'exhausted': bool(s)}\nprint(json.dumps(result))\n"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T17:38:06.111289+00:00",
+    "resource_usage": {
+      "cpu_ns": 29272000,
+      "peak_memory_bytes_observed": 3997696,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "b2aab5df2633cef2df950aacb0e26da9ab0b3d4ea1da9d7079362afa7cd383de",
+      "more_itertools/recipes.py": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db"
+    },
+    "container_id": "7c69ab12995477406a39f1a36f63b3cc754627c8abe682515e8bc478bf1917d2",
+    "exit_code": 0,
+    "oom_killed": false,
+    "stdout": "{\"mixed\": [{\"op\": \"peek\", \"value\": 0, \"pulled\": 1, \"cache\": []}, {\"op\": \"peek\", \"value\": false, \"pulled\": 2, \"cache\": []}, {\"op\": \"bool\", \"value\": true, \"pulled\": 3, \"cache\": []}, {\"op\": \"bool\", \"value\": true, \"pulled\": 4, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 4, \"cache\": []}, {\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 4, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 4, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 4, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 4, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 4, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 4, \"cache\": []}, {\"op\": \"peek_default\", \"value\": \"end\", \"pulled\": 4, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 4, \"cache\": []}], \"single\": [{\"op\": \"peek\", \"value\": 7, \"pulled\": 1, \"cache\": []}, {\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 1, \"cache\": []}, {\"op\": \"peek_default\", \"value\": \"end\", \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}], \"empty\": [{\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 0, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 0, \"cache\": []}, {\"op\": \"peek_default\", \"value\": \"end\", \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}], \"default\": {\"truth\": true, \"peek\": 1, \"next\": [1, 2], \"replay\": [1, 2, 3], \"cache\": [1, 2, 3], \"exhausted\": false}, \"positive\": {\"truth\": true, \"peek\": 1, \"next\": [1, 2], \"replay\": [1, 2, 3], \"cache\": [2, 3], \"exhausted\": false}}\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T17:38:06.677840+00:00",
+    "duration_ms": 567,
+    "checks": [
+      {
+        "name": "mixed",
+        "expected": [
+          {
+            "op": "peek",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": false,
+            "pulled": 2,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": false,
+            "pulled": 2,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 3,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": null,
+            "pulled": 3,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": 2,
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 4,
+            "cache": []
+          }
+        ],
+        "observed": [
+          {
+            "op": "peek",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": false,
+            "pulled": 2,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 3,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 4,
+            "cache": []
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "name": "single",
+        "expected": [
+          {
+            "op": "peek",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          }
+        ],
+        "observed": [
+          {
+            "op": "peek",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "name": "empty",
+        "expected": [
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          }
+        ],
+        "observed": [
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "name": "default",
+        "expected": {
+          "truth": true,
+          "peek": 1,
+          "next": [
+            1,
+            2
+          ],
+          "replay": [
+            1,
+            2,
+            3
+          ],
+          "cache": [
+            1,
+            2,
+            3
+          ],
+          "exhausted": false
+        },
+        "observed": {
+          "truth": true,
+          "peek": 1,
+          "next": [
+            1,
+            2
+          ],
+          "replay": [
+            1,
+            2,
+            3
+          ],
+          "cache": [
+            1,
+            2,
+            3
+          ],
+          "exhausted": false
+        },
+        "status": "passed"
+      },
+      {
+        "name": "positive",
+        "expected": {
+          "truth": true,
+          "peek": 1,
+          "next": [
+            1,
+            2
+          ],
+          "replay": [
+            1,
+            2,
+            3
+          ],
+          "cache": [
+            2,
+            3
+          ],
+          "exhausted": false
+        },
+        "observed": {
+          "truth": true,
+          "peek": 1,
+          "next": [
+            1,
+            2
+          ],
+          "replay": [
+            1,
+            2,
+            3
+          ],
+          "cache": [
+            2,
+            3
+          ],
+          "exhausted": false
+        },
+        "status": "passed"
+      }
+    ],
+    "outcome": "failed"
+  },
+  "status": "failed",
+  "reason": "Frozen behavioral observations compared outside the candidate container"
+}

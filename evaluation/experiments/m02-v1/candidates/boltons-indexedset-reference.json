@@ -1,0 +1,17 @@
+{
+  "id": "boltons-indexedset-reference",
+  "task_id": "boltons-indexedset",
+  "spec_hash": "64476f640db4c9281246b817bb658a0888de0476041c55f2d59cbb6c6b51fa9a",
+  "label": "reference authored control",
+  "kind": "control",
+  "producer": "authored control (upstream reference)",
+  "provenance": "Validation control; excluded from producer outcomes. Reference uses exact upstream production hunk; alternatives/negative are deliberately authored.",
+  "edits": [
+    {
+      "path": "boltons/setutils.py",
+      "old": "    def iter_slice(self, start, stop, step=None):\n        \"iterate over a slice of the set\"\n        iterable = self\n        if start is not None:\n            start = self._get_real_index(start)\n        if stop is not None:\n            stop = self._get_real_index(stop)\n        if step is not None and step < 0:\n            step = -step\n            iterable = reversed(self)\n        return islice(iterable, start, stop, step)\n",
+      "new": "    def iter_slice(self, start, stop, step=None):\n        \"iterate over a slice of the set\"\n        iterable = self\n        # start/stop are apparent (dead-slot-free) indices, the same space\n        # islice consumes; mapping them through _get_real_index() (item_list\n        # space) over-counted by the dead slots before each bound. Only\n        # negatives need normalizing, as islice rejects them.\n        # NB: a negative step slices the reversed stream with forward bounds\n        # (x[2:4:-1] == reversed(x)[2:4]), behavior since 2013.\n        if start is not None and start < 0:\n            start = max(len(self) + start, 0)\n        if stop is not None and stop < 0:\n            stop = max(len(self) + stop, 0)\n        if step is not None and step < 0:\n            step = -step\n            iterable = reversed(self)\n        return islice(iterable, start, stop, step)\n"
+    }
+  ],
+  "candidate_hash": "c08b5a17e75d1e00fe9fa78725bddc8d1d19ee92f427fc9e1c58d4cef107b693"
+}

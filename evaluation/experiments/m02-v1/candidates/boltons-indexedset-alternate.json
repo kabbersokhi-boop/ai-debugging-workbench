@@ -1,0 +1,17 @@
+{
+  "id": "boltons-indexedset-alternate",
+  "task_id": "boltons-indexedset",
+  "spec_hash": "64476f640db4c9281246b817bb658a0888de0476041c55f2d59cbb6c6b51fa9a",
+  "label": "alternate authored control",
+  "kind": "control",
+  "producer": "authored control",
+  "provenance": "Validation control; excluded from producer outcomes. Reference uses exact upstream production hunk; alternatives/negative are deliberately authored.",
+  "edits": [
+    {
+      "path": "boltons/setutils.py",
+      "old": "    def iter_slice(self, start, stop, step=None):\n        \"iterate over a slice of the set\"\n        iterable = self\n        if start is not None:\n            start = self._get_real_index(start)\n        if stop is not None:\n            stop = self._get_real_index(stop)\n        if step is not None and step < 0:\n            step = -step\n            iterable = reversed(self)\n        return islice(iterable, start, stop, step)\n",
+      "new": "    def iter_slice(self, start, stop, step=None):\n        values = list(self)\n        if start is not None and start < 0:\n            start = max(len(values) + start, 0)\n        if stop is not None and stop < 0:\n            stop = max(len(values) + stop, 0)\n        if step is not None and step < 0:\n            values.reverse()\n            step = -step\n        return iter(values[slice(start, stop, step)])\n"
+    }
+  ],
+  "candidate_hash": "d055b114664381fa13cf5bd00e88fcebdb4299a3417f3311cea1b88b224e5009"
+}
