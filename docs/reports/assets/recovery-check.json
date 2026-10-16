@@ -1,0 +1,44 @@
+{
+  "checkpoint_before_crash": "running",
+  "recovered_run": {
+    "id": "ba8340eb-23b3-425c-bb37-04143a4b2d16",
+    "bug_id": "cart-quantity",
+    "status": "interrupted",
+    "created_at": "2026-10-15T17:05:18.832868Z",
+    "updated_at": "2026-10-15T17:05:21.638075Z",
+    "error": "The API restarted before this reproduction completed. Start a new run.",
+    "result": null,
+    "events": [
+      {
+        "sequence": 1,
+        "kind": "step",
+        "title": "Investigation queued",
+        "detail": "Accepted the built-in cart reproduction. No AI inference is used in this milestone.",
+        "created_at": "2026-10-15T17:05:18.832868Z",
+        "data": {}
+      },
+      {
+        "sequence": 2,
+        "kind": "step",
+        "title": "Fresh browser ready",
+        "detail": "Chromium started with an empty, isolated browser context.",
+        "created_at": "2026-10-15T17:05:19.313414Z",
+        "data": {
+          "browser_version": "145.0.7632.6"
+        }
+      },
+      {
+        "sequence": 3,
+        "kind": "error",
+        "title": "Run interrupted",
+        "detail": "The API restarted before this reproduction completed. Start a new run.",
+        "created_at": "2026-10-15T17:05:21.635204Z",
+        "data": {}
+      }
+    ]
+  },
+  "completed_history_unchanged": true,
+  "fresh_run_after_recovery": "a91cec59-357a-4331-88cc-da45a5f0ba0f",
+  "fresh_run_status": "reproduced",
+  "runner_cleanup_errors": false
+}

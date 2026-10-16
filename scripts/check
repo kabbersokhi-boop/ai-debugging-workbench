@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+uv run --project backend ruff check backend/src backend/tests backend/migrations
+uv run --project backend ruff format --check backend/src backend/tests backend/migrations
+(cd backend && uv run pyright && uv run pytest -m 'not e2e and not integration')
+(cd frontend && npm run build)

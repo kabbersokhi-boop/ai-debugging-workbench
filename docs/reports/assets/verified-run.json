@@ -1,0 +1,231 @@
+{
+  "id": "97dcd896-c71d-44fb-b7f7-cd4aacab2245",
+  "bug_id": "cart-quantity",
+  "status": "reproduced",
+  "created_at": "2026-10-15T17:05:15.346622Z",
+  "updated_at": "2026-10-15T17:05:16.706229Z",
+  "error": null,
+  "result": {
+    "status": "reproduced",
+    "checks": [
+      {
+        "name": "Line amount",
+        "expected_cents": 19200,
+        "observed_cents": 19200,
+        "passed": true
+      },
+      {
+        "name": "Subtotal",
+        "expected_cents": 19200,
+        "observed_cents": 6400,
+        "passed": false
+      },
+      {
+        "name": "Shipping",
+        "expected_cents": 0,
+        "observed_cents": 800,
+        "passed": false
+      },
+      {
+        "name": "Order total",
+        "expected_cents": 19200,
+        "observed_cents": 7200,
+        "passed": false
+      }
+    ],
+    "baseline": {
+      "quantity": 1,
+      "unit_price_cents": 6400,
+      "line_total_cents": 6400,
+      "subtotal_cents": 6400,
+      "shipping_cents": 800,
+      "total_cents": 7200
+    },
+    "observed": {
+      "quantity": 3,
+      "unit_price_cents": 6400,
+      "line_total_cents": 19200,
+      "subtotal_cents": 6400,
+      "shipping_cents": 800,
+      "total_cents": 7200
+    },
+    "artifacts": [
+      {
+        "name": "before.png",
+        "label": "Baseline screenshot",
+        "media_type": "image/png"
+      },
+      {
+        "name": "after.png",
+        "label": "Defect screenshot",
+        "media_type": "image/png"
+      },
+      {
+        "name": "trace.zip",
+        "label": "Playwright trace",
+        "media_type": "application/zip"
+      },
+      {
+        "name": "console.json",
+        "label": "Browser console",
+        "media_type": "application/json"
+      },
+      {
+        "name": "result.json",
+        "label": "Reproduction result",
+        "media_type": "application/json"
+      }
+    ],
+    "fixture_sha256": "552616ff217f248cdf9b3692c5b3e3b141a80e0ee0b610ff88122484b44a93fe",
+    "browser_version": "145.0.7632.6",
+    "duration_ms": 1346
+  },
+  "events": [
+    {
+      "sequence": 1,
+      "kind": "step",
+      "title": "Investigation queued",
+      "detail": "Accepted the built-in cart reproduction. No AI inference is used in this milestone.",
+      "created_at": "2026-10-15T17:05:15.346622Z",
+      "data": {}
+    },
+    {
+      "sequence": 2,
+      "kind": "step",
+      "title": "Fresh browser ready",
+      "detail": "Chromium started with an empty, isolated browser context.",
+      "created_at": "2026-10-15T17:05:15.838890Z",
+      "data": {
+        "browser_version": "145.0.7632.6"
+      }
+    },
+    {
+      "sequence": 3,
+      "kind": "step",
+      "title": "Storefront opened",
+      "detail": "Loaded the local Fieldwork Supply fixture. External browser requests are blocked.",
+      "created_at": "2026-10-15T17:05:16.383780Z",
+      "data": {}
+    },
+    {
+      "sequence": 4,
+      "kind": "screenshot",
+      "title": "Baseline confirmed",
+      "detail": "One daypack: $64 subtotal + $8 shipping = $72. Baseline pricing contract passed.",
+      "created_at": "2026-10-15T17:05:16.527433Z",
+      "data": {
+        "artifact": "before.png",
+        "observation": {
+          "quantity": 1,
+          "unit_price_cents": 6400,
+          "line_total_cents": 6400,
+          "subtotal_cents": 6400,
+          "shipping_cents": 800,
+          "total_cents": 7200
+        }
+      }
+    },
+    {
+      "sequence": 5,
+      "kind": "screenshot",
+      "title": "Quantity changed to three",
+      "detail": "Captured the browser after two clicks on Increase quantity.",
+      "created_at": "2026-10-15T17:05:16.659614Z",
+      "data": {
+        "artifact": "after.png",
+        "observation": {
+          "quantity": 3,
+          "unit_price_cents": 6400,
+          "line_total_cents": 19200,
+          "subtotal_cents": 6400,
+          "shipping_cents": 800,
+          "total_cents": 7200
+        }
+      }
+    },
+    {
+      "sequence": 6,
+      "kind": "result",
+      "title": "Defect reproduced",
+      "detail": "3 of 4 pricing assertions failed. This is reproduction evidence; no patch has been generated or verified.",
+      "created_at": "2026-10-15T17:05:16.704176Z",
+      "data": {
+        "result": {
+          "status": "reproduced",
+          "checks": [
+            {
+              "name": "Line amount",
+              "expected_cents": 19200,
+              "observed_cents": 19200,
+              "passed": true
+            },
+            {
+              "name": "Subtotal",
+              "expected_cents": 19200,
+              "observed_cents": 6400,
+              "passed": false
+            },
+            {
+              "name": "Shipping",
+              "expected_cents": 0,
+              "observed_cents": 800,
+              "passed": false
+            },
+            {
+              "name": "Order total",
+              "expected_cents": 19200,
+              "observed_cents": 7200,
+              "passed": false
+            }
+          ],
+          "baseline": {
+            "quantity": 1,
+            "unit_price_cents": 6400,
+            "line_total_cents": 6400,
+            "subtotal_cents": 6400,
+            "shipping_cents": 800,
+            "total_cents": 7200
+          },
+          "observed": {
+            "quantity": 3,
+            "unit_price_cents": 6400,
+            "line_total_cents": 19200,
+            "subtotal_cents": 6400,
+            "shipping_cents": 800,
+            "total_cents": 7200
+          },
+          "artifacts": [
+            {
+              "name": "before.png",
+              "label": "Baseline screenshot",
+              "media_type": "image/png"
+            },
+            {
+              "name": "after.png",
+              "label": "Defect screenshot",
+              "media_type": "image/png"
+            },
+            {
+              "name": "trace.zip",
+              "label": "Playwright trace",
+              "media_type": "application/zip"
+            },
+            {
+              "name": "console.json",
+              "label": "Browser console",
+              "media_type": "application/json"
+            },
+            {
+              "name": "result.json",
+              "label": "Reproduction result",
+              "media_type": "application/json"
+            }
+          ],
+          "fixture_sha256": "552616ff217f248cdf9b3692c5b3e3b141a80e0ee0b610ff88122484b44a93fe",
+          "browser_version": "145.0.7632.6",
+          "duration_ms": 1346
+        }
+      }
+    }
+  ]
+}
