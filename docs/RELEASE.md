@@ -1,4 +1,4 @@
-# Release candidate boundary
+# Release boundary
 
 ## Two explicit modes
 
@@ -23,8 +23,8 @@ The fixed runner receives no NVIDIA credentials and runs only approved frozen sc
 
 Candidate interaction is remote: the broker permits only reset/add/increase/decrease, captures bounded PNGs and small text fields, and sends no candidate JavaScript to a visitor tab. A nonresponsive script is stopped and its environment removed; controls cannot submit scripts or shell commands. The obsolete script-delivery gateway returns 410. Container/browser/OS/Docker exploits remain outside this demonstrated private boundary. Playwright itself warns against treating its Docker image as a complete untrusted-web sandbox: [official Docker guidance](https://playwright.dev/python/docs/docker).
 
-## Activation remains blocked on owner authorization
+## Application hosting remains inactive
 
-The tested deployment is **localhost only**. No authorized private hosted staging destination was provided, no public URL exists, and no service was purchased or repository visibility changed.
+The tested application configuration is **localhost only**. Repository publication is separately authorized for v1.0.0; it does not activate hosting. No authorized hosted staging destination was provided, no public application URL exists, and no service was purchased.
 
 To activate the recorded release, the owner must authorize a hosting account/destination and public TLS origin. Deploy **only** `docker/release.Dockerfile` / the recorded explorer service behind that platform's TLS ingress; set `RELEASE_SECURE_COOKIES=true`, retain one worker and the tested resource/concurrency limits, and verify `/api/health` plus recorded desktop/mobile acceptance at that origin. Do not route the private API, broker control, Docker socket or candidate CDP ports into that deployment. Public live repair would require a separate isolation review and explicit authorization; this release does not claim it.

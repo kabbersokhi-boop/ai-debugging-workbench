@@ -1,24 +1,32 @@
 # AI debugging workbench
 
-**Choose a real retail defect → watch NVIDIA investigate → inspect a candidate → check its behavior independently.**
+An AI engineering workbench that reproduces software bugs, retrieves repository evidence, generates bounded patches, and independently checks their behavior.
 
-The workbench reproduces browser bugs, retrieves immutable repository evidence, generates bounded code changes through a LangGraph/MCP workflow, and verifies candidates outside the model's control. Original source and every failed attempt remain inspectable.
+Choose a supported retail defect → observe browser reproduction → inspect NVIDIA diagnosis and source citations → review the exact patch → compare original and candidate behavior. Original source and failed attempts remain inspectable.
 
 Four development scenarios are selectable: quantity aggregation, shipping eligibility, decrement transitions, and lower input bounds. Eight additional implementation defects form the frozen held-out evaluation. This is a small synthetic retail application, not an arbitrary repository repair service.
 
 ![Actual shipping comparison: original $136, candidate $128](recordings/live-shipping-comparison.png)
 
-[Captioned walkthrough of the actual saved NVIDIA run](docs/demo/walkthrough.mp4) · [Transcript and provenance](docs/demo/README.md)
+**[Watch the captioned walkthrough](docs/demo/walkthrough.mp4)** · [Transcript and provenance](docs/demo/README.md)
+
+[Measured results](docs/RESULTS.md) · [Architecture](docs/ARCHITECTURE.md) · [Code tour](docs/CODE_TOUR.md)
+
+**Two explicit modes:** the recorded explorer replays saved evidence without inference or candidate execution. The private live workbench makes real NVIDIA calls and executes bounded candidates in local containers. This public source repository is **not a hosted live service**.
 
 ## Explore without a provider key
 
+Requires Docker with Compose. Clone this repository first:
+
 ```bash
+git clone https://github.com/kabbersokhi-boop/ai-debugging-workbench.git
+cd ai-debugging-workbench
 docker compose -f compose.release.yaml up --build -d --wait
 ```
 
 Open **http://127.0.0.1:8020**. The **recorded explorer** shows actual sanitized NVIDIA runs, exact diffs, source snapshots, named checks and a stopped offline security probe. It makes **no inference calls and executes no candidate JavaScript**. Historical evidence is labeled; it is never substituted for a live request.
 
-This is tested loopback deployment preparation, **not a publicly deployed demo**. The repository remains private. Owner authorization and an approved TLS hosting destination are required for public activation. [Release boundary and activation](docs/RELEASE.md).
+The recorded explorer is tested on loopback, **not deployed publicly**. Public hosting requires a separately authorized TLS destination. [Release boundary and activation](docs/RELEASE.md).
 
 ## Run the live product locally
 
@@ -39,6 +47,27 @@ docker compose down                 # retains data; do not add -v
 
 The broker has Docker authority and the candidate browser has its OS sandbox disabled. **Keep the live stack private.** Public deployment uses the separate recorded image, which has no broker, Docker socket, provider key or live execution API.
 
+## What the engineering demonstrates
+
+| Capability | Implementation |
+| --- | --- |
+| Typed Python/FastAPI, durable lifecycle and cancellation | [API](backend/src/workbench/api.py), [coordinator](backend/src/workbench/service.py), SQLAlchemy/Alembic |
+| Immutable source citations, PostgreSQL full-text + pgvector hybrid retrieval, NVIDIA reranking | [Repository retrieval](backend/src/workbench/rag/retrieval.py), [source snapshots](backend/src/workbench/rag/snapshot.py) |
+| NVIDIA adapters and LangChain structured grounded diagnosis | [Provider](backend/src/workbench/rag/provider.py), [diagnosis](backend/src/workbench/rag/diagnosis.py) |
+| Bounded LangGraph repair with persistent checkpoints and actual MCP communication | [Repair graph](backend/src/workbench/repair/graph.py), [MCP client](backend/src/workbench/repair/mcp_client.py) |
+| Candidate/source/runtime identity and independent Playwright checks | [Private broker](backend/src/workbench/repair/broker.py), [trusted verifier](backend/src/workbench/repair/verifier.py) |
+| React/TypeScript investigation, source inspector and Monaco diff | [Investigation](frontend/src/Investigation.tsx), [repair workspace](frontend/src/Repair.tsx) |
+
+### Measured outcome
+
+| Frozen condition | Resolved held-out cases |
+| --- | --- |
+| One-shot, whole-target context | 8/8 |
+| Repair loop, whole-target context | 8/8 |
+| Repair loop, retrieval | 8/8 |
+
+These are eight related-source synthetic defects under three conditions, not a general debugging accuracy estimate. **The experiment showed no resolution advantage from retrieval or iteration.** [Raw denominators, usage, latency and limitations](docs/RESULTS.md) are retained, including the provider retry. Dollar cost is unavailable.
+
 ## Verify and reproduce measurements
 
 Requires Python 3.12, uv, Node 22.12+ and Docker. Lockfiles are committed.
@@ -50,6 +79,8 @@ uv run --project backend playwright install --with-deps chromium
 ./scripts/check
 ./scripts/e2e                       # offline fixtures + real PostgreSQL/MCP/Docker/browser
 ./scripts/recovery-smoke            # after e2e; local stack only
+uv run --project backend python scripts/check_release.py  # recorded container running
+E2E_BASE_URL=http://127.0.0.1:8020 ./scripts/e2e -k recorded_explorer_first
 
 # Recompute the committed measured-results summary; no provider call:
 uv run --project backend python scripts/summarize_repairs.py
@@ -82,3 +113,9 @@ flowchart LR
 ### Deliberate exclusions
 
 No arbitrary repositories, uploads, generated shell commands, dependency installation, modified trusted tests, automatic publication, universal correctness claim, model leaderboard or public live sandbox. The portfolio demonstrates one bounded product with reproducible evidence. Optional extensions stay in the backlog.
+
+## Release and licensing
+
+The four accepted milestones are integrated into `main`; historical reports retain their original review-time status. See the [publication audit](docs/PUBLICATION_AUDIT.md) and [maintenance policy](AGENTS.md). Hosting has not been activated.
+
+No project license has been granted in this repository. Public visibility does not supply an open-source license. Existing dependency licenses and attribution remain with their respective authors.
