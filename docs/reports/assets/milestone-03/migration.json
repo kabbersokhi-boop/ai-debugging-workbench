@@ -1,0 +1,21 @@
+{
+  "mode": "disposable_postgresql_migration_verification",
+  "commands": [
+    {
+      "command": "uv run alembic upgrade head",
+      "revision": "004",
+      "runs": 30
+    },
+    {
+      "command": "uv run alembic downgrade 003",
+      "revision": "003",
+      "runs": 30
+    },
+    {
+      "command": "uv run alembic upgrade head",
+      "revision": "004",
+      "runs": 30
+    }
+  ],
+  "production_volume_reset": false
+}

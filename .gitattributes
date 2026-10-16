@@ -1,3 +1,5 @@
 fixtures/retail/* text eol=lf
 backend/src/workbench/rag/retail-snapshot.json text eol=lf
 docs/reports/assets/milestone-02/* linguist-generated=true
+
+docs/reports/assets/milestone-03/* linguist-generated=true

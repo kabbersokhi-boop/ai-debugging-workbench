@@ -1,0 +1,52 @@
+{
+  "mode": "real_postgresql_backup_comparison",
+  "backup": "pre-milestone-03.dump",
+  "tables": {
+    "runs": {
+      "prior_rows": 30,
+      "current_rows": 32,
+      "all_prior_rows_unchanged": true,
+      "prior_sha256": "6d1374fa4f3430eb13150d696a47e1d9e4fc97ef60ddf9129c29dfc5bb470f49"
+    },
+    "run_events": {
+      "prior_rows": 131,
+      "current_rows": 143,
+      "all_prior_rows_unchanged": true,
+      "prior_sha256": "77f87fc4fb0cdac4c54ad49a54782ca79c080649d80317b672305c722400cdbc"
+    },
+    "investigations": {
+      "prior_rows": 2,
+      "current_rows": 4,
+      "all_prior_rows_unchanged": true,
+      "prior_sha256": "a7f8ab0bfb731e133e6b11c2730ec65e711126f0f2db0f0d5583f4c025857ede"
+    },
+    "source_snapshots": {
+      "prior_rows": 1,
+      "current_rows": 1,
+      "all_prior_rows_unchanged": true,
+      "prior_sha256": "878e24d32e69f5aae8fe19e3243b787a59339a2f5d68f83f6f2ea4ffe4d75214"
+    },
+    "repository_indexes": {
+      "prior_rows": 1,
+      "current_rows": 1,
+      "all_prior_rows_unchanged": true,
+      "prior_sha256": "528311607188a07d8b70f095fda17dc05562cfbb70dee16cf61007ac31c6add4"
+    },
+    "source_chunks": {
+      "prior_rows": 84,
+      "current_rows": 84,
+      "all_prior_rows_unchanged": true,
+      "prior_sha256": "b15ac549180bd061de083237b726ee0cb381794d22eed95bcc781300e634d65e"
+    }
+  },
+  "reviewed_milestone_01_artifacts": {
+    "before.png": {
+      "unchanged": true,
+      "sha256": "addefe4e77d7b26f6ddf09af6f034c7939bd7f3e8f7f4c4fe421a78764a2a3a5"
+    },
+    "after.png": {
+      "unchanged": true,
+      "sha256": "69d81a27523e61bb668e17d451e822b8903973459e06a9058f913437d3797b2a"
+    }
+  }
+}

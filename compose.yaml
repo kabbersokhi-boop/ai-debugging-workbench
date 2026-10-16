@@ -21,7 +21,7 @@ services:
 
   migrate:
     build: .
-    image: ai-debugging-workbench:milestone-02
+    image: ai-debugging-workbench:milestone-03
     command: [".venv/bin/alembic", "upgrade", "head"]
     environment:
       DATABASE_URL: postgresql+asyncpg://workbench:workbench@db:5432/workbench
@@ -32,7 +32,7 @@ services:
     security_opt: ["no-new-privileges:true"]
 
   runner:
-    image: ai-debugging-workbench:milestone-02
+    image: ai-debugging-workbench:milestone-03
     command: [".venv/bin/uvicorn", "workbench.runner:app", "--host", "0.0.0.0", "--port", "8011"]
     environment:
       ARTIFACT_DIR: /app/artifacts
@@ -55,7 +55,7 @@ services:
       retries: 20
 
   api:
-    image: ai-debugging-workbench:milestone-02
+    image: ai-debugging-workbench:milestone-03
     env_file:
       - path: backend/.env
         required: false
@@ -65,9 +65,11 @@ services:
       ARTIFACT_DIR: /app/artifacts
       FIXTURE_DIR: /app/fixtures/retail
       FRONTEND_DIR: /app/frontend/dist
+      REPAIR_BROKER_URL: http://repair-broker:8012
+      REPAIR_PREVIEW_ORIGIN: http://127.0.0.1:8013
     ports: ["127.0.0.1:8010:8010"]
     volumes: ["evidence:/app/artifacts:ro"]
-    networks: [execution, persistence]
+    networks: [execution, persistence, repair-control]
     read_only: true
     tmpfs: ["/tmp:size=64M,mode=1777"]
     mem_limit: 512m
@@ -76,17 +78,63 @@ services:
     security_opt: ["no-new-privileges:true"]
     depends_on:
       runner: {condition: service_healthy}
+      repair-broker: {condition: service_healthy}
     healthcheck:
       test: ["CMD", ".venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/api/health', timeout=4)"]
       interval: 10s
       timeout: 5s
       retries: 10
 
+  candidate-image:
+    build:
+      context: .
+      dockerfile: docker/candidate.Dockerfile
+    image: ai-debugging-candidate:milestone-03
+    command: ["image-check"]
+    network_mode: none
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+
+  repair-broker:
+    image: ai-debugging-workbench:milestone-03
+    command: [".venv/bin/python", "-m", "workbench.repair.broker"]
+    environment:
+      REPAIR_ARTIFACT_DIR: /app/repair-artifacts
+      REPAIR_CONTROL_HOST: repair-control-broker
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock", "repair-evidence:/app/repair-artifacts"]
+    # Only this trusted, non-model service has Docker authority. Candidate containers never do.
+    user: "0:0"
+    networks:
+      repair-control:
+        aliases: [repair-control-broker]
+      repair-preview: {}
+    ports: ["127.0.0.1:8013:8013"]
+    read_only: true
+    tmpfs: ["/tmp:size=64m,mode=1777"]
+    mem_limit: 512m
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    depends_on:
+      candidate-image: {condition: service_completed_successfully}
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: ["CMD", ".venv/bin/python", "-c", "import os,socket,urllib.request; urllib.request.urlopen('http://'+socket.gethostbyname(os.environ['REPAIR_CONTROL_HOST'])+':8012/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
 volumes:
   postgres:
   evidence:
+  repair-evidence:
 
 networks:
+  repair-preview:
+    driver: bridge
+  repair-control:
+    internal: true
   persistence:
     driver: bridge
   execution:

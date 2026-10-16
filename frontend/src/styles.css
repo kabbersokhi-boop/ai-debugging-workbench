@@ -2475,3 +2475,31 @@ h1 {
     font-size: 8px;
   }
 }
+
+/* Candidate repair extends the existing investigation workspace. */
+.saved-report p { white-space: pre-wrap; line-height: 1.6; }
+.repair-workspace { min-width: 0; }
+.repair-heading { display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.repair-heading h2 { display:flex; align-items:center; gap:9px; }
+.repair-heading p { max-width:680px; color:var(--muted); line-height:1.6; }
+.repair-heading button { flex-shrink:0; }
+.repair-budget { display:flex; flex-wrap:wrap; gap:12px; font:11px var(--mono); color:var(--muted); margin:18px 0; }
+.repair-events { margin:18px 0; }
+.repair-events li { margin:10px 0; font-size:12px; }
+.repair-events p { color:var(--muted); margin:4px 0; }
+.repair-attempts { display:flex; gap:8px; flex-wrap:wrap; margin:16px 0; }
+.repair-attempts button { background:#111820; border:1px solid #2e3a47; color:#b5c0cd; border-radius:5px; padding:9px 12px; font-size:12px; cursor:pointer; }
+.repair-attempts button.selected { border-color:#80c9a5; color:#abdfc1; }
+.repair-workspace .section-heading { margin-top:24px; gap:12px; flex-wrap:wrap; }
+.repair-workspace a { color:#9eddbb; display:inline-flex; gap:6px; align-items:center; font-size:12px; margin:12px 0; }
+.verification-identity { overflow-wrap:anywhere; font-size:11px; line-height:1.7; color:var(--muted); }
+.verification-table { overflow:auto; margin:16px 0; }
+.verification-table table { width:100%; border-collapse:collapse; text-align:left; font-size:12px; }
+.verification-table th, .verification-table td { padding:10px; border-bottom:1px solid #28323d; vertical-align:top; }
+.verification-table pre { font-size:11px; white-space:pre-wrap; }
+.repair-previews { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+.repair-previews > div { min-width:0; }
+.repair-previews strong { display:block; font:11px var(--mono); margin-bottom:9px; }
+.repair-previews iframe, .preview-empty { width:100%; height:640px; background:#f5f3eb; border:1px solid #39434d; border-radius:6px; }
+.preview-empty { display:flex; align-items:center; padding:25px; box-sizing:border-box; color:#59615e; font-size:13px; }
+@media(max-width:1100px) { .repair-heading { align-items:flex-start; flex-direction:column; } .repair-previews { grid-template-columns:1fr; } }

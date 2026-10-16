@@ -38,6 +38,7 @@ jobs:
           name: milestone-evidence
           path: |
             artifacts/acceptance/
+            artifacts/milestone-03/
             compose.log
       - if: always()
         run: docker compose down

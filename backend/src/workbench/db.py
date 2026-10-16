@@ -96,3 +96,18 @@ class Investigation(Base):
 
 engine = create_async_engine(settings.database_url, pool_pre_ping=True)
 sessions = async_sessionmaker(engine, expire_on_commit=False)
+
+
+class Repair(Base):
+    __tablename__ = "repairs"
+    id: Mapped[UUID] = mapped_column(primary_key=True)
+    run_id: Mapped[UUID] = mapped_column(ForeignKey("runs.id"), index=True)
+    investigation_id: Mapped[UUID] = mapped_column(ForeignKey("investigations.id"), index=True)
+    snapshot_id: Mapped[str] = mapped_column(String(64))
+    status: Mapped[str] = mapped_column(String(40))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    state: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
+    events: Mapped[list[dict[str, Any]]] = mapped_column(JSON, default=list)
+    error: Mapped[str | None]
+    error_code: Mapped[str | None] = mapped_column(String(80))

@@ -1,0 +1,38 @@
+{
+  "all_live_nvidia_repairs_retained": true,
+  "records": [
+    {
+      "repair_id": "1d3a5f3e-09da-44b0-a4ab-781bbb364658",
+      "implementation_commit": null,
+      "mode": "live_nvidia",
+      "status": "verified",
+      "candidate_attempts": 1,
+      "candidate_hash": "083e33d3e4b7f600a8c7625ae3c1fc608c4cf2ed554c0b8fda7690d5c5f150bb",
+      "verifier_version": "dfed51082dcdf738aafdbfe610eb8caf750bd044203996455963f5d85d06aba4",
+      "failed_candidate_attempts": 0,
+      "independent_defect": "same single curated retail defect"
+    },
+    {
+      "repair_id": "fe3e2aa3-ab69-43ff-876a-12605dd98440",
+      "implementation_commit": "ff2fe46b4061c8315bd7871a8c9516085752673d",
+      "mode": "live_nvidia",
+      "status": "verified",
+      "candidate_attempts": 1,
+      "candidate_hash": "083e33d3e4b7f600a8c7625ae3c1fc608c4cf2ed554c0b8fda7690d5c5f150bb",
+      "verifier_version": "3a4756d086eb291b2041a797b56a403a3596b05f776191597bde79b2fa2795e2",
+      "failed_candidate_attempts": 0,
+      "independent_defect": "same single curated retail defect"
+    },
+    {
+      "repair_id": "eb3cd0d8-273d-40f9-b639-50feb1bbd9f3",
+      "implementation_commit": "c6f8739b84509eeb84df836fd5a480fea7977889",
+      "mode": "live_nvidia",
+      "status": "verified",
+      "candidate_attempts": 1,
+      "candidate_hash": "083e33d3e4b7f600a8c7625ae3c1fc608c4cf2ed554c0b8fda7690d5c5f150bb",
+      "verifier_version": "01a1bc15166fff02c0c5bed1dc82c64e0fb3c551a916c64c64e88d665d2c6a6c",
+      "failed_candidate_attempts": 0,
+      "independent_defect": "same single curated retail defect"
+    }
+  ]
+}

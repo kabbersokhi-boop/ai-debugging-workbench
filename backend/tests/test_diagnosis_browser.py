@@ -124,3 +124,50 @@ async def test_live_nvidia_investigation_citations_inspector_and_reopened_histor
         )
         print(f"Live NVIDIA investigation saved: {saved['id']}; reproduction {run['id']}")
         await browser.close()
+
+
+async def test_saved_investigation_reports_are_immutable_and_separate_from_draft():
+    fixture = json.loads(
+        await asyncio.to_thread(Path("../docs/reports/assets/verified-run.json").read_text)
+    )
+    saved = [
+        {
+            "id": str(__import__("uuid").uuid4()),
+            "status": "insufficient_evidence",
+            "created_at": f"2026-10-16T00:0{i}:00Z",
+            "report": report,
+            "error": None,
+            "error_code": None,
+            "snapshot_id": "offline-snapshot",
+            "model_input": None,
+            "retrieval": None,
+            "diagnosis": None,
+            "events": [],
+            "provider_calls": [],
+            "raw_response": None,
+        }
+        for i, report in enumerate(
+            ["First saved report about the cart.", "Second saved report about shipping."]
+        )
+    ]
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.route("**/api/runs", lambda route: route.fulfill(json=[fixture]))
+        await page.route(f"**/api/runs/{fixture['id']}", lambda route: route.fulfill(json=fixture))
+        await page.route("**/investigations", lambda route: route.fulfill(json=saved))
+        await page.goto(BASE_URL)
+        await page.get_by_role("button", name="Defect reproduced", exact=False).first.click()
+        await page.get_by_role("tab", name="Investigation", exact=True).click()
+        report = page.get_by_label("Saved investigation report", exact=True)
+        await expect(report).to_contain_text(saved[0]["report"])
+        await page.get_by_text("Draft for the next investigation", exact=True).click()
+        draft = page.locator("#investigation-report")
+        await draft.fill("Future draft is different from both saved reports.")
+        await page.locator("#saved-investigations").select_option(saved[1]["id"])
+        await expect(report).to_contain_text(saved[1]["report"])
+        await expect(report).not_to_contain_text(saved[0]["report"])
+        await expect(draft).to_have_value("Future draft is different from both saved reports.")
+        await page.locator("#saved-investigations").select_option(saved[0]["id"])
+        await expect(report).to_contain_text(saved[0]["report"])
+        await browser.close()

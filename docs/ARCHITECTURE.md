@@ -1,4 +1,4 @@
-# Architecture — milestones 1–2
+# Architecture — milestones 1–3
 
 One complete path: select a supported report → launch real Chromium → establish a passing baseline → change cart quantity → capture screenshots and DOM observations → compare a trusted contract → persist the outcome.
 
@@ -36,7 +36,7 @@ Every run has a UUID, supported report ID, timestamps, state, ordered events, op
 | `cancelled` | Cancellation accepted; incomplete execution has no result |
 | `interrupted` | An unfinished run was found after an unclean API restart |
 
-A failing application assertion is a successful **reproduction**, not a verified repair. NVIDIA diagnosis has its own persisted status and execution trail. A structured diagnosis with valid citations is a proposal, not independently established truth. Patch generation, application and repair verification remain out of scope.
+A failing application assertion is a successful **reproduction**, not a verified repair. NVIDIA diagnosis has its own persisted status and execution trail. A structured diagnosis with valid citations is a proposal, not independently established truth. Reproduction and diagnosis do not represent repair verification; milestone 3 stores repair states separately.
 
 Events and status updates share database transactions and row locks. Terminal states cannot be overwritten by late responses. Duplicate idempotency keys return the original run. The API owns and awaits its execution tasks; shutdown cancels them. A 60-second overall budget and a 55-second runner budget bound execution. Restart recovery marks remaining active rows interrupted and retains their partial evidence. Run/artifact access is validated through persisted run identities and an artifact allowlist.
 
@@ -72,6 +72,43 @@ The model receives report, browser observations and repository context as distin
 
 The frozen eight-query smoke suite is outside the ingestion allowlist. It covers one defect, supporting behaviors and two no-answer questions; paraphrases are not counted as new defects. Live lexical, dense, hybrid and reranked results are retained. A same-model comparison supplies either retrieved chunks or the whole four-file target. Measured results favor simpler lexical retrieval for recall on this corpus; no general RAG benefit or debugging success rate is claimed. Dollar cost is unavailable; reported token counts come from provider responses. See the milestone 2 report.
 
-## Future execution boundary
+## Bounded repair (milestone 3)
 
-Future patches must target disposable copies of the approved application and must not modify trusted tests, infrastructure or secret configuration. Generated-code execution, MCP tools, LangGraph repair and independent regression verification remain milestone 3 work requiring approval.
+```mermaid
+flowchart LR
+  UI[Existing investigation + Monaco diff] --> API
+  API --> Graph[Typed LangGraph + NVIDIA decisions]
+  Graph --> Checkpoints[(PostgreSQL native checkpoints)]
+  Graph -->|Official SDK / JSON-RPC stdio| MCP[Run-bound source and candidate tools]
+  MCP --> Broker[Trusted Docker broker / external verifier]
+  Broker --> Candidate[Disposable static target + Chromium]
+  UI -->|Separate origin / opaque sandbox iframe| Preview[Preview gateway :8013]
+```
+
+The repair graph loads immutable reproduction/diagnosis inputs, lets the model choose bounded source reads/searches, validates a model-produced exact-text patch, creates a candidate through MCP, requests trusted verification, and permits one revision after a rejected patch or failed behavioral checks. The only allowed changed path is `fixtures/retail/cart.js`. There is no reference fix or generated test in runtime prompts. The original fixture and source snapshot are untouched.
+
+`RepairState` records identities, source evidence, exact prompts and sanitized model responses, candidate attempts/hashes, verifier evidence, errors, deadline and remaining request/output budgets. The native LangGraph `AsyncPostgresSaver` saves intermediate node state, blobs and pending writes in the `repair_graph` schema. Alembic revision 004 adds those SDK tables and repair history without resetting existing volumes. Reproduction, diagnosis and repair have independent statuses.
+
+One API repair is admitted at a time. The shared budget is eight provider HTTP requests including transient retries, at most six model decisions, two proposed patches, 2,000 output tokens per request and 16,000 reserved output tokens across the run. Maximum output is charged even for failed requests/retries. The 300-second deadline starts at admission and includes source reads, inference, candidate startup and verification. Individual provider requests retain their 45-second timeout. MCP source reads are at most 80 lines, with at most six read/search calls. No node replenishes resources.
+
+MCP uses the official Python SDK (locked 1.30.0), real discovery and stdio client/server communication. Each server subprocess is launched with a trusted repair UUID, frozen snapshot identity and broker address; it receives no NVIDIA/database environment. Model arguments cannot choose a run, broker URL, command, repository root or verifier suite. The four tools are `search_source`, `read_source`, `apply_candidate` and `verify_candidate`. A Pydantic decision loop drives source tools and patch proposals. Actual discovery, arguments, results and rejected calls are retained. Infrastructure failures remain execution errors, distinct from invalid patches.
+
+### Candidate and verifier isolation
+
+The fixed reproduction runner is unchanged. Only the dedicated trusted broker has the Docker socket; neither the API, MCP child, candidate nor reproduction runner mounts it. The broker contains no provider/database credentials. **The broker itself has Docker/host authority and is trusted infrastructure**, not a sandboxed agent tool executor. Its control listener binds only to its management network address; the candidate-side interface has no control listener. A separate GET-only preview listener is published to loopback port 8013.
+
+Each attempt has its own internal Docker network, initialized source volume and disposable container. The candidate image contains a static HTTP server and Chromium, not the workbench, trusted verifier, secret configuration or tests. Source is mounted read-only; the root filesystem is read-only. Limits are 1 CPU, 1 GiB memory, 192 processes, 256 MiB temporary storage, 256 MiB shared memory, no added capabilities, and no new privileges. Containers have no database, provider, Docker socket, host-file mounts or external network route. Logs are disabled. Verifier text fields are capped at 200 characters, quantity capture at 50, and browser errors at five 300-character entries; oversized observations fail. Idle environments expire after ten minutes; verification and cancellation clean up containers, networks and source volumes. Immutable patch/evidence files remain in a separate broker volume.
+
+Trusted Playwright control and pricing expectations run **outside** the candidate container, through a private CDP connection. Browser routing permits exactly the three target URLs; CSP also blocks connections and external resources. The verifier checks rendered monetary text, counts, quantity controls, empty/one-item behavior, increments/decrements, upper/lower limits, invalid input and repeated additions. The same 12 checks detect the original defect before candidate verification. Expected values are independent integer-cent arithmetic, not target `data-cents` attributes or candidate success messages. Candidate HTTP bytes are hashed before and after execution. Results include candidate, file, container/image and verifier identities. Verifier identity covers the trusted check code and executor policy; versioned screenshots/results are retained without rewriting older evidence.
+
+The interactive preview serves the exact retained candidate script on a separate origin, inside an iframe with `sandbox="allow-scripts"` and no same-origin permission. CSP denies network connections, forms, external resources and embedding by unrelated origins. The gateway rewrites only frozen HTML asset URL prefixes for routing; JavaScript bytes remain identical. Reset replaces the candidate session while preserving the original session. It does not apply a patch to the original fixture. Monaco and its worker load from local assets, without a CDN.
+
+This is a local, approved-JavaScript candidate scope. Chromium runs with its internal OS sandbox disabled inside the constrained container; browser/OS/Docker exploits are outside the demonstrated guarantees. The interactive iframe runs in the visitor's browser: opaque-origin/CSP restrictions protect application data, but do not impose Docker CPU/memory limits or an OS network namespace on that browser tab. Passing finite checks does not establish correctness for every input or immunity to hostile code. There is no authentication, arbitrary repository access, dependency installation, arbitrary shell tool, external publication or production deployment.
+
+### Restart and evidence semantics
+
+After restart, unfinished repairs are reconciled with actual retained candidate/artifact state, cleanup is requested, and the run is classified **interrupted**. Safe automatic resumption is not established; no verification success is inferred from a checkpoint or container existence. Completed evidence reopens without provider work. Patch/candidate identities are immutable per attempt. Changes require another attempt and cannot inherit an earlier result. Historical captures and structured responses remain tied to their recorded source/verifier versions.
+
+Rejected diagnosis/repair model text is bounded and sanitized before schema/citation validation, retained with its rejection reason, and never accepted as a result. Saved investigation reports are immutable inputs; the editable field is explicitly a draft for the next investigation. Evaluation creates output directories before provider calls and atomically saves completed measurements incrementally; offline regression coverage exercises a nonexistent output directory.
+
+SDK references: [official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk/tree/v1.x), [native LangGraph PostgreSQL saver](https://reference.langchain.com/python/langgraph.checkpoint.postgres). Runtime behavior and locked versions are verified in the milestone tests rather than inferred from documentation alone.

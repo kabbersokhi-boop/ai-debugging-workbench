@@ -17,6 +17,11 @@ dependencies = [
   "pgvector>=0.4,<1",
   "tree-sitter>=0.25,<1",
   "tree-sitter-javascript>=0.25,<1",
+  "langgraph>=1,<2",
+  "langgraph-checkpoint-postgres>=3,<4",
+  "psycopg[binary,pool]>=3.2,<4",
+  "mcp>=1.20,<2",
+  "docker>=7,<8",
 ]
 
 [dependency-groups]
