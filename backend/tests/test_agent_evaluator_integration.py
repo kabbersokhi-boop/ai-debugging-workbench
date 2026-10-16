@@ -112,3 +112,16 @@ def test_evaluator_freeze():
     for task_id in TASK_IDS:
         assert value["body"]["tasks"][task_id]["spec_hash"] == task(task_id)["spec_hash"]
         assert value["body"]["tasks"][task_id]["verifier_hash"] == verifier_id(task_id)
+
+
+def test_evaluator_docker_genuine_candidates():
+    folder = ROOT / "artifacts/evaluator/genuine"
+    folder.mkdir(parents=True, exist_ok=True)
+    for task_id in TASK_IDS:
+        value = candidate(task_id + "-nvidia-01")
+        assert value["kind"] == "agent"
+        result = evaluate(task(task_id), value, threading.Event())
+        (folder / (value["id"] + ".json")).write_text(json.dumps(result, indent=2) + "\n")
+        assert result["status"] in ("passed", "failed"), result
+        assert result["ordinary"]["outcome"] in ("passed", "failed")
+        assert result["independent"]["outcome"] in ("passed", "failed")
