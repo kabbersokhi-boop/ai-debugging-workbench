@@ -1,11 +1,11 @@
 # Roadmap
 
-1. **Functional product foundation** — retail fixture, real Playwright reproduction, PostgreSQL history, browser evidence and interactive workspace. Accepted for its local, trusted-fixture scope. PR #1 remains unmerged.
-2. **NVIDIA AI + advanced RAG** — live inference, commit-aware code indexing, hybrid retrieval, reranking, citations, retrieval inspector and baseline evaluation. Accepted for its local, approved-snapshot diagnosis scope. PR #2 remains unmerged.
-3. **MCP + autonomous repair + verification** — stateful LangGraph execution, real MCP tools, bounded isolated patches, diff, trusted verification, budgets and cancellation. Accepted for the bounded local scope at `0c2dc0348d1b0b3f961466f214884e53c21bc14d`; PR #3 remains unmerged.
-4. **Evaluation + UX + release readiness** — held-out evaluation, ablations, latency/cost, accessibility, security, recorded fallback, deployment preparation and video. Release candidate on `milestone/04-release-readiness`: twelve frozen scenarios, limited evaluation, remote pixel previews, recorded release and tested activation preparation.
+1. **Functional product foundation** — retail fixture, real Playwright reproduction, PostgreSQL history, browser evidence and interactive workspace. Accepted for its local, trusted-fixture scope. Integrated through PR #1.
+2. **NVIDIA AI + advanced RAG** — live inference, commit-aware code indexing, hybrid retrieval, reranking, citations, retrieval inspector and baseline evaluation. Accepted for its local, approved-snapshot diagnosis scope. Integrated through PR #2.
+3. **MCP + autonomous repair + verification** — stateful LangGraph execution, real MCP tools, bounded isolated patches, diff, trusted verification, budgets and cancellation. Accepted for the bounded local scope at `0c2dc0348d1b0b3f961466f214884e53c21bc14d`; integrated through PR #3.
+4. **Evaluation + UX + release readiness** — held-out evaluation, ablations, latency/cost, accessibility, security, recorded fallback, deployment preparation and video. Accepted and integrated through PR #4, including the guest-authorization correction at `d43d816`: twelve frozen scenarios, limited evaluation, remote pixel previews, recorded release and tested activation preparation.
 
-No milestone PR is merged automatically. Public release requires explicit approval.
+All four milestones are accepted and integrated into `main` using history-preserving merge commits. The owner authorized v1.0.0 repository publication; application hosting remains inactive and requires separate authorization. Historical reports retain their review-time status.
 
 ## Backlog
 
