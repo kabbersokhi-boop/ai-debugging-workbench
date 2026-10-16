@@ -1,0 +1,22 @@
+{
+  "id": "boltons-addlist-alternate",
+  "task_id": "boltons-addlist",
+  "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+  "candidate_hash": "ab848dd361540af9d6086f51d49906721f7b291f227fcf8d1e8c74de84a0aecd",
+  "label": "Alternate",
+  "kind": "control",
+  "producer": "Deliberately authored evaluator control",
+  "provenance": "Legitimate alternative implementation used to test implementation-neutral scoring.",
+  "edits": [
+    {
+      "path": "boltons/dictutils.py",
+      "old": "        tuples and other sequences and iterables work.\n        \"\"\"\n        if not v:\n            return\n",
+      "new": "        tuples and other sequences and iterables work.\n        \"\"\"\n        # materialize first: the values are traversed twice below, and a\n        # one-shot iterator would be empty by the second pass\n        v = tuple(v)\n        if not v:\n            return\n"
+    },
+    {
+      "path": "boltons/urlutils.py",
+      "old": "        tuples and other sequences and iterables work.\n        \"\"\"\n        if not v:\n            return\n",
+      "new": "        tuples and other sequences and iterables work.\n        \"\"\"\n        # materialize first: the values are traversed twice below, and a\n        # one-shot iterator would be empty by the second pass\n        v = tuple(v)\n        if not v:\n            return\n"
+    }
+  ]
+}

@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(extra="ignore")
 
     database_url: str = "postgresql+asyncpg://workbench:workbench@127.0.0.1:54329/workbench"
+    evaluator_url: str = "http://127.0.0.1:8014"
     runner_url: str = "http://127.0.0.1:8011"
     artifact_dir: Path = ROOT / "artifacts"
     fixture_dir: Path = ROOT / "fixtures/retail"

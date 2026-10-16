@@ -6,12 +6,12 @@ import EditorWorker from "monaco-editor/editor/editor.worker.js?worker";
   getWorker: () => new EditorWorker(),
 };
 
-export default function CandidateDiff({ original, modified }: { original: string; modified: string }) {
+export default function CandidateDiff({ original, modified, language = "javascript" }: { original: string; modified: string; language?: string }) {
   const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!container.current) return;
-    const before = monaco.editor.createModel(original, "javascript");
-    const after = monaco.editor.createModel(modified, "javascript");
+    const before = monaco.editor.createModel(original, language);
+    const after = monaco.editor.createModel(modified, language);
     const editor = monaco.editor.createDiffEditor(container.current, {
       theme: "vs-dark", readOnly: true, originalEditable: false,
       minimap: { enabled: false }, scrollBeyondLastLine: false, fontSize: 12,
@@ -25,6 +25,6 @@ export default function CandidateDiff({ original, modified }: { original: string
       editor.dispose();
       before.dispose(); after.dispose();
     };
-  }, [original, modified]);
+  }, [original, modified, language]);
   return <div ref={container} style={{height: 340, width: "100%"}} aria-label="Read-only candidate diff" />;
 }

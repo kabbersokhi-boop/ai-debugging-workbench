@@ -125,3 +125,15 @@ class UsageBucket(Base):
     scope: Mapped[str] = mapped_column(String(100), primary_key=True)
     requests: Mapped[int] = mapped_column(default=0)
     reserved_tokens: Mapped[int] = mapped_column(default=0)
+
+
+class Evaluation(Base):
+    __tablename__ = "agent_evaluations"
+    id: Mapped[UUID] = mapped_column(primary_key=True)
+    task_id: Mapped[str] = mapped_column(String(80), index=True)
+    candidate_id: Mapped[str] = mapped_column(String(100))
+    candidate_hash: Mapped[str] = mapped_column(String(64))
+    status: Mapped[str] = mapped_column(String(32))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    evidence: Mapped[dict[str, Any]] = mapped_column(JSON)

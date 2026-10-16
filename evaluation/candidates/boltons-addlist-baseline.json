@@ -1,0 +1,11 @@
+{
+  "id": "boltons-addlist-baseline",
+  "task_id": "boltons-addlist",
+  "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+  "candidate_hash": "9e4e865842eee4724e58c7bf9497f3335ff82193ca9db47550198157543659f4",
+  "label": "Baseline",
+  "kind": "control",
+  "producer": "Deliberately authored evaluator control",
+  "provenance": "Unmodified upstream defective base; not an agent output.",
+  "edits": []
+}

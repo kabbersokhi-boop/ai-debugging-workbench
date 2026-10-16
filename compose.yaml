@@ -61,6 +61,7 @@ services:
         required: false
     environment:
       DATABASE_URL: postgresql+asyncpg://workbench:workbench@db:5432/workbench
+      EVALUATOR_URL: http://evaluator:8014
       RUNNER_URL: http://runner:8011
       ARTIFACT_DIR: /app/artifacts
       FIXTURE_DIR: /app/fixtures/retail
@@ -79,11 +80,44 @@ services:
     depends_on:
       runner: {condition: service_healthy}
       repair-broker: {condition: service_healthy}
+      evaluator: {condition: service_healthy}
     healthcheck:
       test: ["CMD", ".venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/api/health', timeout=4)"]
       interval: 10s
       timeout: 5s
       retries: 10
+
+  evaluator-image:
+    build:
+      context: .
+      dockerfile: docker/evaluator.Dockerfile
+    image: ai-agent-evaluator:python312-v1
+    command: ["python", "--version"]
+    network_mode: none
+    read_only: true
+    cap_drop: [ALL]
+
+  evaluator:
+    image: ai-debugging-workbench:milestone-04
+    command: [".venv/bin/uvicorn", "workbench.evaluator.broker:app", "--host", "0.0.0.0", "--port", "8014", "--workers", "1"]
+    environment:
+      EVALUATOR_ARTIFACT_DIR: /app/evaluator-artifacts
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock", "evaluator-evidence:/app/evaluator-artifacts"]
+    user: "0:0"
+    networks: [repair-control]
+    read_only: true
+    tmpfs: ["/tmp:size=32m,mode=1777"]
+    mem_limit: 512m
+    pids_limit: 64
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    depends_on:
+      evaluator-image: {condition: service_completed_successfully}
+    healthcheck:
+      test: ["CMD", ".venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8014/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
   candidate-image:
     build:
@@ -129,6 +163,7 @@ volumes:
   postgres:
   evidence:
   repair-evidence:
+  evaluator-evidence:
 
 networks:
   repair-preview:

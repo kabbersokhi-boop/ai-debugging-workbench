@@ -1,0 +1,17 @@
+{
+  "id": "more-bucket-alternate",
+  "task_id": "more-bucket",
+  "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+  "candidate_hash": "7d514eec718a27839c72ebb6d1c2dd78a50962a5caaa838e105ada1eddf0ac27",
+  "label": "Alternate",
+  "kind": "control",
+  "producer": "Deliberately authored evaluator control",
+  "provenance": "Legitimate alternative implementation used to test implementation-neutral scoring.",
+  "edits": [
+    {
+      "path": "more_itertools/more.py",
+      "old": "        self._validator = validator or (lambda x: True)",
+      "new": "        if validator is None:\n            validator = lambda x: True\n        self._validator = validator"
+    }
+  ]
+}

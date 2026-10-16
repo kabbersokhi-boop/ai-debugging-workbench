@@ -1,0 +1,11 @@
+{
+  "id": "more-bucket-baseline",
+  "task_id": "more-bucket",
+  "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+  "candidate_hash": "08f27b7e394ec9ec868b831e7f3dca562a8021372f41efc9d585a07bffbb3c3c",
+  "label": "Baseline",
+  "kind": "control",
+  "producer": "Deliberately authored evaluator control",
+  "provenance": "Unmodified upstream defective base; not an agent output.",
+  "edits": []
+}
