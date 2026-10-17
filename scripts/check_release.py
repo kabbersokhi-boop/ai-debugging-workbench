@@ -43,6 +43,9 @@ try:
         for path in (
             "/api/runs",
             "/api/evaluator/runs",
+            "/api/patch-audits/tasks",
+            "/api/patch-audits/candidates",
+            "/api/patch-audits/runs",
             "/api/evaluator/comparisons/m02-v1",
             "/api/repairs/unknown",
             "/retail/cart.js",
@@ -50,6 +53,16 @@ try:
         ):
             assert http.get(path).status_code == 404
             assert http.post(path, json={}).status_code == 405
+        audits = http.get("/api/recorded-audits").json()["records"]
+        assert len(audits) == 2
+        for item in audits:
+            saved = http.get("/api/recorded-audits/" + item["id"])
+            saved.raise_for_status()
+            value = saved.json()
+            assert value["execution_mode"] == "recorded"
+            assert value["evidence"]["candidate"]["provenance"]["category"] == "retained_model"
+            assert value["evidence"]["envelope"]["result"]["ordinary"]["outcome"] == "passed"
+        assert {item["status"] for item in audits} == {"passed", "failed"}
         manifest = http.get("/api/recordings").json()
         assert len(manifest["records"]) >= 3
         for row in manifest["records"]:
@@ -70,6 +83,8 @@ try:
         "database_credentials": False,
         "mutation_routes": "405",
         "private_history": "404",
+        "recorded_patch_audits": 2,
+        "patch_import_and_execution_routes": "absent",
         "health": health,
     }
     output = Path("artifacts/milestone-04/release-boundary.json")
