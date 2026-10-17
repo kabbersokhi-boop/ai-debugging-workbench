@@ -43,6 +43,7 @@ jobs:
         with:
           name: milestone-evidence
           path: |
+            artifacts/patch-audit/
             artifacts/evaluator/
             artifacts/evaluator-m02/
             artifacts/acceptance/

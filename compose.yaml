@@ -99,7 +99,7 @@ services:
 
   evaluator:
     image: ai-debugging-workbench:milestone-04
-    command: [".venv/bin/uvicorn", "workbench.evaluator.broker:app", "--host", "0.0.0.0", "--port", "8014", "--workers", "1"]
+    command: [".venv/bin/uvicorn", "workbench.patch_audit.broker:app", "--host", "0.0.0.0", "--port", "8014", "--workers", "1"]
     environment:
       EVALUATOR_ARTIFACT_DIR: /app/evaluator-artifacts
     volumes: ["/var/run/docker.sock:/var/run/docker.sock", "evaluator-evidence:/app/evaluator-artifacts"]

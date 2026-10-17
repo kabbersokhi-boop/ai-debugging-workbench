@@ -61,7 +61,7 @@ async def test_repair_action_response_cannot_cross_investigation_selection(actio
                 await route.continue_()
 
         await page.route("**/api/**", route_api)
-        await page.goto(BASE)
+        await page.goto(BASE + "/?workspace=debugger")
         await page.locator(".history-item").first.click()
         await page.get_by_role("tab", name="Investigation", exact=True).click()
         await expect(page.locator("#saved-investigations")).to_have_value(a["id"])
@@ -119,7 +119,7 @@ async def test_m4_saved_shipping_reopen_without_inference_after_ui_correction():
                 else None
             ),
         )
-        await page.goto(BASE)
+        await page.goto(BASE + "/?workspace=debugger")
         await page.locator(".history-item").filter(has_text=saved["reproduction"]["id"][:6]).click()
         await page.get_by_role("tab", name="Investigation", exact=True).click()
         await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
@@ -167,7 +167,7 @@ async def test_recorded_explorer_first_visit_mobile_and_no_live_requests():
             lambda request: mutations.append(request.url) if request.method == "POST" else None,
         )
         page.on("pageerror", lambda error: errors.append(str(error)))
-        await page.goto(BASE + "/recorded/")
+        await page.goto(BASE + "/recorded/?workspace=debugger")
         await expect(
             page.get_by_role("heading", name="Verified for the recorded checks")
         ).to_be_visible()
@@ -216,7 +216,7 @@ async def test_selected_scenario_manual_view_is_bound_before_any_reproduction():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
-        await page.goto(BASE)
+        await page.goto(BASE + "/?workspace=debugger")
         await page.locator("#scenario").select_option("shipping-threshold")
         await page.get_by_role("button", name="Interactive storefront", exact=True).click()
         frame = page.frame_locator('iframe[title="Interactive synthetic retail storefront"]')
@@ -247,7 +247,7 @@ async def test_m4_live_workflow_shipping_scenario_video():
         page.on("pageerror", lambda error: errors.append(str(error)))
         run_id = None
         try:
-            await page.goto(BASE)
+            await page.goto(BASE + "/?workspace=debugger")
             await page.locator("#scenario").select_option("shipping-threshold")
             async with page.expect_response(
                 lambda r: r.request.method == "POST" and r.url.endswith("/api/runs")

@@ -6,6 +6,7 @@ COPY frontend/ ./
 RUN npm run build
 
 FROM mcr.microsoft.com/playwright/python:v1.58.0-noble AS runtime
+RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir uv==0.11.16
 WORKDIR /app/backend
 COPY backend/pyproject.toml backend/uv.lock ./

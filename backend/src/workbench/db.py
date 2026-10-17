@@ -153,3 +153,23 @@ class ComparisonTrial(Base):
     evidence: Mapped[dict[str, Any]] = mapped_column(JSON)
     evaluation_id: Mapped[UUID | None] = mapped_column(ForeignKey("agent_evaluations.id"))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class PatchCandidate(Base):
+    __tablename__ = "patch_audit_candidates"
+    id: Mapped[str] = mapped_column(String(70), primary_key=True)
+    task_id: Mapped[str] = mapped_column(String(80), index=True)
+    candidate_hash: Mapped[str] = mapped_column(String(64), index=True)
+    record: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class PatchAudit(Base):
+    __tablename__ = "patch_audit_runs"
+    id: Mapped[UUID] = mapped_column(primary_key=True)
+    candidate_id: Mapped[str] = mapped_column(ForeignKey("patch_audit_candidates.id"), index=True)
+    candidate_hash: Mapped[str] = mapped_column(String(64))
+    status: Mapped[str] = mapped_column(String(32))
+    evidence: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

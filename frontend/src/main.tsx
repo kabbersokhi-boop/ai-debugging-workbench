@@ -47,6 +47,7 @@ import {
 import "./styles.css";
 import { InvestigationWorkspace } from "./Investigation";
 import AgentEvaluation from "./Evaluation";
+import PatchAudit from "./PatchAudit";
 import RecordedExplorer from "./Recorded";
 import FullWorkflow from "./Workflow";
 import { captureDescription, pricingNote } from "./evidence";
@@ -1073,6 +1074,8 @@ function Entry() {
   if (!mode) return <p role="status">Opening the workbench…</p>;
   if (mode === "unavailable") return <main className="workspace"><h1>Workbench unavailable</h1><p role="alert">The application could not confirm its execution mode. No live or recorded run has started.</p><button className="primary-button" onClick={() => location.reload()}>Retry connection</button></main>;
   if (mode === "private_live" && new URLSearchParams(location.search).get("workspace") === "evaluation") return <AgentEvaluation />;
-  return mode === "recorded" || location.pathname.startsWith("/recorded") ? <RecordedExplorer /> : <App />;
+  const recorded = mode === "recorded" || location.pathname.startsWith("/recorded");
+  if (new URLSearchParams(location.search).get("workspace") === "debugger") return recorded ? <RecordedExplorer /> : <App />;
+  return <PatchAudit recorded={recorded} />;
 }
 createRoot(document.getElementById("root")!).render(<StrictMode><Entry /></StrictMode>);

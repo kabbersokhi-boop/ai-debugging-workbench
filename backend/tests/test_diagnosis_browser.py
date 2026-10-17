@@ -27,7 +27,7 @@ async def test_presentation_regression_for_passed_checks_and_interactive_footer(
         page = await browser.new_page()
         await page.route("**/api/runs", lambda route: route.fulfill(json=[fixture]))
         await page.route(f"**/api/runs/{fixture['id']}", lambda route: route.fulfill(json=fixture))
-        await page.goto(BASE_URL)
+        await page.goto(BASE_URL + "/?workspace=debugger")
         await page.get_by_role("button", name="Not reproduced", exact=False).first.click()
         await expect(
             page.get_by_role("img", name="Actual Playwright after state", exact=False)
@@ -62,7 +62,7 @@ async def test_live_nvidia_investigation_citations_inspector_and_reopened_histor
             viewport={"width": 1512, "height": 1100}, reduced_motion="reduce"
         )
         page.on("pageerror", lambda error: errors.append(str(error)))
-        await page.goto(BASE_URL)
+        await page.goto(BASE_URL + "/?workspace=debugger")
         async with page.expect_response(
             lambda response: (
                 response.request.method == "POST" and response.url.endswith("/api/runs")
@@ -156,7 +156,7 @@ async def test_saved_investigation_reports_are_immutable_and_separate_from_draft
         await page.route("**/api/runs", lambda route: route.fulfill(json=[fixture]))
         await page.route(f"**/api/runs/{fixture['id']}", lambda route: route.fulfill(json=fixture))
         await page.route("**/investigations", lambda route: route.fulfill(json=saved))
-        await page.goto(BASE_URL)
+        await page.goto(BASE_URL + "/?workspace=debugger")
         await page.get_by_role("button", name="Defect reproduced", exact=False).first.click()
         await page.get_by_role("tab", name="Investigation", exact=True).click()
         report = page.get_by_label("Saved investigation report", exact=True)

@@ -9,7 +9,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 
 ROOT = (
@@ -107,6 +107,8 @@ async def health():
         manifest = catalog()
         if not manifest["records"] or not (WEB / "index.html").is_file():
             raise ValueError("Missing release bundle")
+        for item in audit_catalog()["records"]:
+            saved_audit(item["id"])
         for record in manifest["records"]:
             if not (RECORDINGS / record["file"]).is_file():
                 raise ValueError("Missing recording")
@@ -123,6 +125,46 @@ async def health():
         "live_execution_slots": 0,
         "provider_token_budget": 0,
     }
+
+
+def audit_catalog():
+    return json.loads((RECORDINGS / "patch-audit-manifest.json").read_text())
+
+
+def saved_audit(audit_id: str):
+    item = next((r for r in audit_catalog()["records"] if r["id"] == audit_id), None)
+    if item is None:
+        raise HTTPException(404, "Recorded audit not found")
+    data = (RECORDINGS / item["file"]).read_bytes()
+    if hashlib.sha256(data).hexdigest() != item["sha256"]:
+        raise HTTPException(503, "Recorded audit integrity failure; no live fallback")
+    return json.loads(data)
+
+
+@app.get("/api/recorded-audits")
+async def recorded_audits():
+    return audit_catalog()
+
+
+@app.get("/api/recorded-audits/{audit_id}")
+async def recorded_audit(audit_id: str):
+    return saved_audit(audit_id)
+
+
+@app.get("/api/recorded-audits/{audit_id}/evidence")
+async def recorded_audit_evidence(audit_id: str):
+    return JSONResponse(
+        saved_audit(audit_id),
+        headers={"Content-Disposition": 'attachment; filename="recorded-patch-audit.json"'},
+    )
+
+
+@app.get("/api/recorded-audits/{audit_id}/patch")
+async def recorded_audit_patch(audit_id: str):
+    return PlainTextResponse(
+        saved_audit(audit_id)["evidence"]["candidate"]["patch"],
+        headers={"Content-Disposition": 'attachment; filename="recorded-candidate.patch"'},
+    )
 
 
 @app.get("/api/recordings")
