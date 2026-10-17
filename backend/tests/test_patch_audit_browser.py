@@ -11,9 +11,10 @@ import pytest
 from playwright.async_api import async_playwright, expect
 from sqlalchemy import update
 from sqlalchemy.exc import DBAPIError
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from workbench.config import ROOT
-from workbench.db import PatchAudit, PatchCandidate, sessions
+from workbench.config import ROOT, settings
+from workbench.db import PatchAudit, PatchCandidate
 from workbench.patch_audit.curated import FAIL, PASS, examples
 from workbench.patch_audit.execution import verifier_id
 
@@ -137,7 +138,16 @@ async def test_patch_audit_real_ui_import_failing_passing_download_and_reopen(tm
         await browser.close()
 
 
-async def test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart():
+@pytest.fixture
+async def audit_db():
+    local_engine = create_async_engine(settings.database_url)
+    try:
+        yield async_sessionmaker(local_engine, expire_on_commit=False)
+    finally:
+        await local_engine.dispose()
+
+
+async def test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart(audit_db):
     async with httpx.AsyncClient(base_url=BASE, timeout=15) as client:
         for bad in (
             "not a diff",
@@ -168,7 +178,7 @@ async def test_patch_audit_rejections_identity_cancel_additional_tasks_and_resta
         assert first == duplicate and first["id"] != other["id"]
         assert first["candidate_hash"] == other["candidate_hash"] == c["candidate_hash"]
         with pytest.raises(DBAPIError, match="immutable"):
-            async with sessions.begin() as session:
+            async with audit_db.begin() as session:
                 await session.execute(
                     update(PatchCandidate).where(PatchCandidate.id == first["id"]).values(record={})
                 )
@@ -220,7 +230,7 @@ async def test_patch_audit_rejections_identity_cancel_additional_tasks_and_resta
         completed_id = saved["id"]
         expected = saved["evidence"]
         interrupted_id = uuid4()
-        async with sessions.begin() as session:
+        async with audit_db.begin() as session:
             row = await session.get(PatchAudit, UUID(completed_id))
             assert row
             row.status = "running"
