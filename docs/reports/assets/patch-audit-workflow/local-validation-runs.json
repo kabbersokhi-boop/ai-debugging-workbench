@@ -1,0 +1,222 @@
+[
+  {
+    "id": "13e8675e-d737-4166-b9c2-3aaac93ed611",
+    "candidate_id": "patch-cb775cb13fef302609a7602e324848ec5db115f2f213190ead1b5decd27e05c8",
+    "candidate_hash": "5cab12b5c1b25239d4418e84aae45f166041390a6895d24f2a6ae1d1d85d6246",
+    "status": "failed",
+    "created_at": "2026-10-17T16:41:18.380840+00:00",
+    "updated_at": "2026-10-17T16:41:20.296083+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "user_declared",
+    "candidate_label": "Reviewer import of retained incomplete patch"
+  },
+  {
+    "id": "25f1e0f7-c486-4d72-9010-92059a0ae042",
+    "candidate_id": "patch-0bcd9a632cb6dd6efcfa6b9dba05f2654e3b5aba8948a7d4fdea46736864362e",
+    "candidate_hash": "c08b5a17e75d1e00fe9fa78725bddc8d1d19ee92f427fc9e1c58d4cef107b693",
+    "status": "interrupted",
+    "created_at": "2026-10-17T16:37:19.769007+00:00",
+    "updated_at": "2026-10-17T16:37:33.273325+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "control",
+    "candidate_label": "reference authored control"
+  },
+  {
+    "id": "e009707e-6611-4799-981b-2cd68d11c17a",
+    "candidate_id": "patch-0bcd9a632cb6dd6efcfa6b9dba05f2654e3b5aba8948a7d4fdea46736864362e",
+    "candidate_hash": "c08b5a17e75d1e00fe9fa78725bddc8d1d19ee92f427fc9e1c58d4cef107b693",
+    "status": "passed",
+    "created_at": "2026-10-17T16:37:17.825812+00:00",
+    "updated_at": "2026-10-17T16:37:25.229502+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "control",
+    "candidate_label": "reference authored control"
+  },
+  {
+    "id": "9facef8f-1c08-4c15-a40d-445a2ff9b49d",
+    "candidate_id": "patch-78ece5365c0a3ba518324c0f591d2c53a6c6ff0d943c2ef96682b68b12ce3893",
+    "candidate_hash": "58693caa2215b1131e14108b6f2fea850e3b39a77d47e1ff6ce4c245fd03174d",
+    "status": "passed",
+    "created_at": "2026-10-17T16:37:15.645564+00:00",
+    "updated_at": "2026-10-17T16:37:17.649120+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "control",
+    "candidate_label": "reference authored control"
+  },
+  {
+    "id": "7e220d31-37cf-4b18-ab96-9dcd8e27ae20",
+    "candidate_id": "patch-5dc273bfee7a551c4ab2ecc577611a92574cb1576a1e9c7c768fd530851dd7d1",
+    "candidate_hash": "ad55f9039233a94d71447bbf043e94537de73ca0aa7d2b5174b9753abcb90f29",
+    "status": "cancelled",
+    "created_at": "2026-10-17T16:37:14.356482+00:00",
+    "updated_at": "2026-10-17T16:37:15.121334+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "retained_model",
+    "candidate_label": "Both implementations repaired \u00b7 genuine retained patch"
+  },
+  {
+    "id": "43e1210b-a715-461d-8636-ddb1934e62ca",
+    "candidate_id": "patch-aec78b7ec028c52c49da22e9a0d7f4c4fe0d3e8205a9bde13e7de03a1c0f39b4",
+    "candidate_hash": "ad55f9039233a94d71447bbf043e94537de73ca0aa7d2b5174b9753abcb90f29",
+    "status": "passed",
+    "created_at": "2026-10-17T16:37:10.446328+00:00",
+    "updated_at": "2026-10-17T16:37:12.470174+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "user_declared",
+    "candidate_label": "Reviewer import of retained complete patch"
+  },
+  {
+    "id": "ebb04e0c-e202-47b0-81a2-e868b3fc0b12",
+    "candidate_id": "patch-cb775cb13fef302609a7602e324848ec5db115f2f213190ead1b5decd27e05c8",
+    "candidate_hash": "5cab12b5c1b25239d4418e84aae45f166041390a6895d24f2a6ae1d1d85d6246",
+    "status": "failed",
+    "created_at": "2026-10-17T16:37:03.725921+00:00",
+    "updated_at": "2026-10-17T16:37:05.979554+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "user_declared",
+    "candidate_label": "Reviewer import of retained incomplete patch"
+  },
+  {
+    "id": "5b6bcb75-f296-47db-b579-0cc037369343",
+    "candidate_id": "patch-aec78b7ec028c52c49da22e9a0d7f4c4fe0d3e8205a9bde13e7de03a1c0f39b4",
+    "candidate_hash": "ad55f9039233a94d71447bbf043e94537de73ca0aa7d2b5174b9753abcb90f29",
+    "status": "passed",
+    "created_at": "2026-10-17T16:29:00.058497+00:00",
+    "updated_at": "2026-10-17T16:29:12.916829+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "user_declared",
+    "candidate_label": "Reviewer import of retained complete patch"
+  },
+  {
+    "id": "131fe0ca-4290-45db-b9d0-b253d3b39537",
+    "candidate_id": "patch-cb775cb13fef302609a7602e324848ec5db115f2f213190ead1b5decd27e05c8",
+    "candidate_hash": "5cab12b5c1b25239d4418e84aae45f166041390a6895d24f2a6ae1d1d85d6246",
+    "status": "failed",
+    "created_at": "2026-10-17T16:28:53.943758+00:00",
+    "updated_at": "2026-10-17T16:28:57.151553+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "user_declared",
+    "candidate_label": "Reviewer import of retained incomplete patch"
+  },
+  {
+    "id": "be04cca3-4612-4552-957e-e4764c46f394",
+    "candidate_id": "patch-aec78b7ec028c52c49da22e9a0d7f4c4fe0d3e8205a9bde13e7de03a1c0f39b4",
+    "candidate_hash": "ad55f9039233a94d71447bbf043e94537de73ca0aa7d2b5174b9753abcb90f29",
+    "status": "passed",
+    "created_at": "2026-10-17T16:18:07.637649+00:00",
+    "updated_at": "2026-10-17T16:18:09.728541+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "user_declared",
+    "candidate_label": "Reviewer import of retained complete patch"
+  },
+  {
+    "id": "fe7162e6-e0be-444f-8a83-d7b67efa19dc",
+    "candidate_id": "patch-cb775cb13fef302609a7602e324848ec5db115f2f213190ead1b5decd27e05c8",
+    "candidate_hash": "5cab12b5c1b25239d4418e84aae45f166041390a6895d24f2a6ae1d1d85d6246",
+    "status": "failed",
+    "created_at": "2026-10-17T16:18:02.280494+00:00",
+    "updated_at": "2026-10-17T16:18:04.678923+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "user_declared",
+    "candidate_label": "Reviewer import of retained incomplete patch"
+  },
+  {
+    "id": "c7d9030b-6bc1-4179-a541-1c41b407297a",
+    "candidate_id": "patch-0bcd9a632cb6dd6efcfa6b9dba05f2654e3b5aba8948a7d4fdea46736864362e",
+    "candidate_hash": "c08b5a17e75d1e00fe9fa78725bddc8d1d19ee92f427fc9e1c58d4cef107b693",
+    "status": "interrupted",
+    "created_at": "2026-10-17T16:15:51.757243+00:00",
+    "updated_at": "2026-10-17T16:16:05.749911+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "control",
+    "candidate_label": "reference authored control"
+  },
+  {
+    "id": "82a3a3c7-a309-4bac-b16a-7da77bdbdd63",
+    "candidate_id": "patch-0bcd9a632cb6dd6efcfa6b9dba05f2654e3b5aba8948a7d4fdea46736864362e",
+    "candidate_hash": "c08b5a17e75d1e00fe9fa78725bddc8d1d19ee92f427fc9e1c58d4cef107b693",
+    "status": "invalid_evidence",
+    "created_at": "2026-10-17T16:15:49.791253+00:00",
+    "updated_at": "2026-10-17T16:15:57.714855+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "control",
+    "candidate_label": "reference authored control"
+  },
+  {
+    "id": "b5e0fb00-daca-4044-9017-a4a3026e0783",
+    "candidate_id": "patch-78ece5365c0a3ba518324c0f591d2c53a6c6ff0d943c2ef96682b68b12ce3893",
+    "candidate_hash": "58693caa2215b1131e14108b6f2fea850e3b39a77d47e1ff6ce4c245fd03174d",
+    "status": "invalid_evidence",
+    "created_at": "2026-10-17T16:15:47.199337+00:00",
+    "updated_at": "2026-10-17T16:15:49.396416+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "control",
+    "candidate_label": "reference authored control"
+  },
+  {
+    "id": "36a42af2-fdaf-4f3c-8b6a-e9a50ba0a242",
+    "candidate_id": "patch-5dc273bfee7a551c4ab2ecc577611a92574cb1576a1e9c7c768fd530851dd7d1",
+    "candidate_hash": "ad55f9039233a94d71447bbf043e94537de73ca0aa7d2b5174b9753abcb90f29",
+    "status": "cancelled",
+    "created_at": "2026-10-17T16:15:46.051612+00:00",
+    "updated_at": "2026-10-17T16:15:46.861032+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "retained_model",
+    "candidate_label": "Both implementations repaired \u00b7 genuine retained patch"
+  },
+  {
+    "id": "92d3418b-d437-4b83-8e39-7208b95eda77",
+    "candidate_id": "patch-cb775cb13fef302609a7602e324848ec5db115f2f213190ead1b5decd27e05c8",
+    "candidate_hash": "5cab12b5c1b25239d4418e84aae45f166041390a6895d24f2a6ae1d1d85d6246",
+    "status": "failed",
+    "created_at": "2026-10-17T16:15:40.738521+00:00",
+    "updated_at": "2026-10-17T16:15:43.434665+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "user_declared",
+    "candidate_label": "Reviewer import of retained incomplete patch"
+  },
+  {
+    "id": "d90c626c-7d5f-4557-969b-e3a075355ebc",
+    "candidate_id": "patch-0bcd9a632cb6dd6efcfa6b9dba05f2654e3b5aba8948a7d4fdea46736864362e",
+    "candidate_hash": "c08b5a17e75d1e00fe9fa78725bddc8d1d19ee92f427fc9e1c58d4cef107b693",
+    "status": "interrupted",
+    "created_at": "2026-10-17T16:10:52.756793+00:00",
+    "updated_at": "2026-10-17T16:11:05.786949+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "control",
+    "candidate_label": "reference authored control"
+  },
+  {
+    "id": "7cb959f6-15fb-4994-8b33-c5225f4ae480",
+    "candidate_id": "patch-0bcd9a632cb6dd6efcfa6b9dba05f2654e3b5aba8948a7d4fdea46736864362e",
+    "candidate_hash": "c08b5a17e75d1e00fe9fa78725bddc8d1d19ee92f427fc9e1c58d4cef107b693",
+    "status": "invalid_evidence",
+    "created_at": "2026-10-17T16:10:50.774794+00:00",
+    "updated_at": "2026-10-17T16:10:57.753067+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "control",
+    "candidate_label": "reference authored control"
+  },
+  {
+    "id": "d6d22f12-4cf3-45cd-aa7a-8a52da0bd958",
+    "candidate_id": "patch-78ece5365c0a3ba518324c0f591d2c53a6c6ff0d943c2ef96682b68b12ce3893",
+    "candidate_hash": "58693caa2215b1131e14108b6f2fea850e3b39a77d47e1ff6ce4c245fd03174d",
+    "status": "invalid_evidence",
+    "created_at": "2026-10-17T16:10:48.166930+00:00",
+    "updated_at": "2026-10-17T16:10:50.681467+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "control",
+    "candidate_label": "reference authored control"
+  },
+  {
+    "id": "b38dfc2f-5130-4d50-94c5-2fe5aa27b086",
+    "candidate_id": "patch-5dc273bfee7a551c4ab2ecc577611a92574cb1576a1e9c7c768fd530851dd7d1",
+    "candidate_hash": "ad55f9039233a94d71447bbf043e94537de73ca0aa7d2b5174b9753abcb90f29",
+    "status": "cancelled",
+    "created_at": "2026-10-17T16:10:47.290893+00:00",
+    "updated_at": "2026-10-17T16:10:47.984916+00:00",
+    "execution_mode": "fresh_local",
+    "provenance_category": "retained_model",
+    "candidate_label": "Both implementations repaired \u00b7 genuine retained patch"
+  }
+]

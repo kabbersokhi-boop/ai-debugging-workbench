@@ -1,6 +1,31 @@
 # AI debugging workbench
 
-An AI engineering workbench that reproduces software bugs, retrieves repository evidence, generates bounded patches, and independently checks their behavior.
+A local workbench for auditing completed patches against ordinary repository tests and evaluator-owned behavioral checks. The original browser debugger and historical agent experiments remain available.
+
+## Patch Audit · completed patches, inspectable evidence
+
+Open **http://127.0.0.1:8010/** after `docker compose up --build -d --wait api`.
+Choose one of four pinned Python tasks, load a retained candidate or import a UTF-8 `.patch`/`.diff`,
+inspect the exact diff and declared provenance, and explicitly confirm local execution. Imports do
+not execute code. Fresh restricted containers run the selected ordinary suite and independent checks;
+saved audits retain logs, observations, exact source/environment identities and downloadable evidence.
+No model call or provider key is required for this workflow.
+
+**Inspect saved examples immediately:** open **http://127.0.0.1:8010/recorded/**, or build the
+restricted recorded server locally with `docker compose -f compose.release.yaml up --build -d --wait`
+and visit **http://127.0.0.1:8020/**. It serves only two explicitly selected historical Boltons audits:
+one genuine incomplete repair passed the selected 155 ordinary tests but missed the standalone copy;
+a retained genuine complete repair passed both named check sets. Different generation procedures
+are not a fair vendor ranking. Recorded browsing starts no fresh audit and needs no credentials,
+database or Docker execution authority at runtime. Hosting is not activated.
+
+Imports are trusted-owner/local-only, limited to exact changes in approved production files.
+Containers and in-process Python observations are not a complete anti-tampering system for malicious
+programs. Imported authorship is user-declared, and passing named checks does not prove universal
+correctness or security. See [the workflow report](docs/reports/PATCH-AUDIT-WORKFLOW.md).
+
+Original [debugger](http://127.0.0.1:8010/?workspace=debugger),
+[Agent Evaluation](http://127.0.0.1:8010/?workspace=evaluation) and comparisons are preserved.
 
 ## M2 producer reliability correction
 

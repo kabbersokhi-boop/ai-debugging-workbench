@@ -1,0 +1,15 @@
+{
+  "original_audit": "ebb04e0c-e202-47b0-81a2-e868b3fc0b12",
+  "reproduction_audit": "13e8675e-d737-4166-b9c2-3aaac93ed611",
+  "same_binding": true,
+  "distinct_containers": [
+    "409e265f3ff32cb9f72e2a623755607edd9263fbef9e9e44ec6ef9aec5ced62a",
+    "70491877a306691ad4be8804f620926653666f6e84e1fe5ad0f3b14ea721728c",
+    "7c134828197474f7d915e17d96fc2368eb2bf1af8c037e81262eee0d93c8c2df",
+    "eb8e373902ae15e8642cdd3ca0e82f58616086f124c619994fce962f26cb7f38"
+  ],
+  "candidate_hash": "5cab12b5c1b25239d4418e84aae45f166041390a6895d24f2a6ae1d1d85d6246",
+  "ordinary": "passed",
+  "independent": "failed",
+  "new_model_calls": 0
+}
