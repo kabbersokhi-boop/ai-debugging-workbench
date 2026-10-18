@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+import os
 from uuid import uuid4
 
 import docker
@@ -29,10 +30,9 @@ pytestmark = pytest.mark.integration
 def broker_url():
     client = docker.from_env()
     try:
-        broker = client.containers.get("ai-debugging-workbench-repair-broker-1")
-        network = broker.attrs["NetworkSettings"]["Networks"][
-            "ai-debugging-workbench_repair-control"
-        ]
+        project = os.environ.get("COMPOSE_PROJECT_NAME", "ai-debugging-workbench")
+        broker = client.containers.get(f"{project}-repair-broker-1")
+        network = broker.attrs["NetworkSettings"]["Networks"][f"{project}_repair-control"]
         return f"http://{network['IPAddress']}:8012"
     finally:
         client.close()
@@ -210,7 +210,8 @@ async def test_candidate_isolation_cleanup_and_preview_headers(broker_url):
                 )
                 assert probe.exit_code != 0
             async with httpx.AsyncClient(timeout=10) as http:
-                response = await http.get(f"http://127.0.0.1:8013/preview/{repair_id}/1/retail/")
+                preview = os.environ.get("E2E_PREVIEW_URL", "http://127.0.0.1:8013")
+                response = await http.get(f"{preview}/preview/{repair_id}/1/retail/")
                 assert response.status_code == 410
                 assert "Script delivery is disabled" in response.text
                 remote = await http.post(

@@ -5,12 +5,15 @@ a shared or hosted environment. No volumes or application records are deleted.
 """
 
 import json
+import os
 import subprocess
 import time
 from datetime import UTC, datetime
 from pathlib import Path
 
 import httpx
+
+import docker
 
 
 def compose(*args: str, capture: bool = False) -> str:
@@ -25,9 +28,17 @@ def compose(*args: str, capture: bool = False) -> str:
 
 def main() -> None:
     started = datetime.now(UTC).isoformat()
-    evidence = Path("artifacts/acceptance")
+    # Resolve before starting the run: Compose startup can outlast a fast reproduction.
+    api_id = compose("ps", "-q", "api", capture=True).strip()
+    if not api_id or "\n" in api_id:
+        raise RuntimeError(
+            "Recovery smoke requires exactly one API in this Compose project"
+        )
+    evidence = Path(os.environ.get("RECOVERY_EVIDENCE_DIR", "artifacts/acceptance"))
     reference = json.loads((evidence / "verified-run.json").read_text())
-    with httpx.Client(base_url="http://127.0.0.1:8010", timeout=8) as client:
+    with httpx.Client(
+        base_url=os.environ.get("E2E_BASE_URL", "http://127.0.0.1:8010"), timeout=8
+    ) as client:
         previous = client.get(f"/api/runs/{reference['id']}").json()
         run = client.post("/api/runs", json={"bug_id": "cart-quantity"}).json()
         deadline = time.monotonic() + 20
@@ -39,7 +50,11 @@ def main() -> None:
             time.sleep(0.03)
         else:
             raise RuntimeError("Browser never reached the interruption checkpoint")
-        compose("kill", "-s", "SIGKILL", "api")
+        docker_client = docker.from_env()
+        try:
+            docker_client.containers.get(api_id).kill(signal="SIGKILL")
+        finally:
+            docker_client.close()
         compose("up", "-d", "--no-deps", "api")
         deadline = time.monotonic() + 30
         while time.monotonic() < deadline:

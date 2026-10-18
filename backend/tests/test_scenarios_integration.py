@@ -1,6 +1,7 @@
 """Development scenarios only. Held-out behavioral outcomes are measured after freezing."""
 
 import asyncio
+import os
 from uuid import uuid4
 
 import httpx
@@ -82,7 +83,9 @@ async def test_development_source_mcp_candidate_and_verification_identity(broker
 
 
 async def test_development_scenarios_reproduce_through_existing_api():
-    async with httpx.AsyncClient(base_url="http://127.0.0.1:8010", timeout=10) as client:
+    async with httpx.AsyncClient(
+        base_url=os.environ.get("E2E_BASE_URL", "http://127.0.0.1:8010"), timeout=10
+    ) as client:
         for case in scenario_manifest()["cases"]:
             if case["split"] != "development" or case["id"] == "cart-quantity":
                 continue

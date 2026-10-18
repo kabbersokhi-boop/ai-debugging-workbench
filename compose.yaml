@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: workbench
       POSTGRES_PASSWORD: workbench
       POSTGRES_DB: workbench
-    ports: ["127.0.0.1:54329:5432"]
+    ports: ["127.0.0.1:${WORKBENCH_DB_PORT:-54329}:5432"]
     volumes: ["postgres:/var/lib/postgresql/data"]
     networks: [persistence]
     healthcheck:
@@ -67,8 +67,9 @@ services:
       FIXTURE_DIR: /app/fixtures/retail
       FRONTEND_DIR: /app/frontend/dist
       REPAIR_BROKER_URL: http://repair-broker:8012
-      REPAIR_PREVIEW_ORIGIN: http://127.0.0.1:8013
-    ports: ["127.0.0.1:8010:8010"]
+      ALLOWED_ORIGIN: http://127.0.0.1:${WORKBENCH_API_PORT:-8010}
+      REPAIR_PREVIEW_ORIGIN: http://127.0.0.1:${WORKBENCH_PREVIEW_PORT:-8013}
+    ports: ["127.0.0.1:${WORKBENCH_API_PORT:-8010}:8010"]
     volumes: ["evidence:/app/artifacts:ro"]
     networks: [execution, persistence, repair-control]
     read_only: true
@@ -143,7 +144,7 @@ services:
       repair-control:
         aliases: [repair-control-broker]
       repair-preview: {}
-    ports: ["127.0.0.1:8013:8013"]
+    ports: ["127.0.0.1:${WORKBENCH_PREVIEW_PORT:-8013}:8013"]
     read_only: true
     tmpfs: ["/tmp:size=64m,mode=1777"]
     mem_limit: 512m

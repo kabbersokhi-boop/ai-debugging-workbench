@@ -1,6 +1,22 @@
 # AI debugging workbench
 
-A local workbench for auditing completed patches against ordinary repository tests and evaluator-owned behavioral checks. The original browser debugger and historical agent experiments remain available.
+**Independent checks for completed code patches.**
+
+A retained AI-generated repair passed **155 selected repository tests** but left a required
+standalone implementation broken. Patch Audit shows the missing behavior, exact change and
+reproducible evidence. The related failures describe **one incomplete repair**.
+
+![Fresh local audit of the retained incomplete repair](docs/reports/assets/patch-audit-workflow/fresh-missed.png)
+
+- **Incomplete repair:** [recorded evidence](recordings/patch-audit-missed.json) · [exact patch](evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.patch) · [original observations](evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.json).
+- **Passing example:** [recorded evidence and exact patch](recordings/patch-audit-complete.json). Its generation procedure differs; these examples are not a fair vendor comparison.
+- **[Run Patch Audit locally](#patch-audit--completed-patches-inspectable-evidence)** · **[browse recordings without execution](#explore-without-a-provider-key)**.
+- **Methodology:** [implementation and acceptance](docs/reports/PATCH-AUDIT-WORKFLOW.md) · [four-task provenance](evaluation/experiments/m02-v1/README.md).
+
+**Scope:** four approved historical Python tasks from Boltons and more-itertools. Patches require
+the exact supported source base and approved production files. Ordinary checks are selected
+upstream tests; independent checks are evaluator-owned behavioral requirements. New execution
+is local-owner-only. The public showcase serves recorded evidence only.
 
 ## Patch Audit · completed patches, inspectable evidence
 
@@ -17,7 +33,8 @@ and visit **http://127.0.0.1:8020/**. It serves only two explicitly selected his
 one genuine incomplete repair passed the selected 155 ordinary tests but missed the standalone copy;
 a retained genuine complete repair passed both named check sets. Different generation procedures
 are not a fair vendor ranking. Recorded browsing starts no fresh audit and needs no credentials,
-database or Docker execution authority at runtime. Hosting is not activated.
+database or Docker execution authority at runtime. Vercel activation is separately authorized;
+the real URL is added only after external verification.
 
 Imports are trusted-owner/local-only, limited to exact changes in approved production files.
 Containers and in-process Python observations are not a complete anti-tampering system for malicious
@@ -26,6 +43,21 @@ correctness or security. See [the workflow report](docs/reports/PATCH-AUDIT-WORK
 
 Original [debugger](http://127.0.0.1:8010/?workspace=debugger),
 [Agent Evaluation](http://127.0.0.1:8010/?workspace=evaluation) and comparisons are preserved.
+
+### Patch Audit code map
+
+| Responsibility | Source |
+| --- | --- |
+| Exact-base patch admission | [admission.py](backend/src/workbench/patch_audit/admission.py) |
+| Candidate identity, provenance and persistent history | [service.py](backend/src/workbench/patch_audit/service.py), [models](backend/src/workbench/db.py) |
+| Restricted local execution | [broker.py](backend/src/workbench/patch_audit/broker.py), [execution.py](backend/src/workbench/patch_audit/execution.py) |
+| Independent evidence validation | [execution.py](backend/src/workbench/patch_audit/execution.py), [experiment_runner.py](backend/src/workbench/evaluator/experiment_runner.py) |
+| Curated recorded export | [export_patch_audits.py](scripts/export_patch_audits.py), [curated.py](backend/src/workbench/patch_audit/curated.py) |
+| Public recorded boundary | [release.py](backend/src/workbench/release.py), [recorded image](docker/release.Dockerfile) |
+
+The broader debugger includes NVIDIA, RAG, LangGraph and MCP integrations. Patch Audit verification
+runs named deterministic procedures without new model inference. Historical experiments below
+remain separate; broader agent-comparison work is on hold.
 
 ## M2 producer reliability correction
 
@@ -104,11 +136,11 @@ cd ai-debugging-workbench
 docker compose -f compose.release.yaml up --build -d --wait
 ```
 
-Open **http://127.0.0.1:8020**. The **recorded explorer** shows actual sanitized NVIDIA runs, exact diffs, source snapshots, named checks and a stopped offline security probe. It makes **no inference calls and executes no candidate JavaScript**. Historical evidence is labeled; it is never substituted for a live request.
+Open **http://127.0.0.1:8020/** for both curated Patch Audit examples, exact patches and evidence downloads. The original sanitized NVIDIA debugger recordings and stopped offline security probe remain at **http://127.0.0.1:8020/?workspace=debugger**. Recorded browsing starts no inference or candidate execution; every result is historical.
 
-The recorded explorer is tested on loopback, **not deployed publicly**. Public hosting requires a separately authorized TLS destination. [Release boundary and activation](docs/RELEASE.md).
+The recorded image is verified on loopback. The owner approved the existing Vercel account for recorded-only deployment. [Release boundary and activation](docs/RELEASE.md).
 
-## Run the live product locally
+## Run the original NVIDIA debugger locally
 
 Requires Docker with Compose. Put `NVIDIA_API_KEY=...` in ignored `backend/.env` with file mode `0600`; only the API receives it. Never paste credentials into the UI.
 
@@ -116,7 +148,7 @@ Requires Docker with Compose. Put `NVIDIA_API_KEY=...` in ignored `backend/.env`
 docker compose up --build -d --wait api
 ```
 
-Open **http://127.0.0.1:8010**. Choose a scenario and click **Start full workflow**. Reproduction, diagnosis and repair have separate saved statuses. Inspect the prominent result, exact Monaco diff and named verification checks. The candidate's interactive view sends named controls to a remote browser and displays captured pixels; generated scripts stay inside its constrained container. The original storefront has a separate session.
+Open **http://127.0.0.1:8010/?workspace=debugger**. Choose a scenario and click **Start full workflow**. Reproduction, diagnosis and repair have separate saved statuses. Inspect the prominent result, exact Monaco diff and named verification checks. The candidate's interactive view sends named controls to a remote browser and displays captured pixels; generated scripts stay inside its constrained container. The original storefront has a separate session.
 
 Individual reproduction, investigation, cancellation, saved history, citations and evidence downloads remain available. Provider failures and rejected proposals are retained. Passing finite checks does not prove universal correctness. The original defective snapshot is never overwritten.
 
@@ -192,10 +224,10 @@ flowchart LR
 
 ### Deliberate exclusions
 
-No arbitrary repositories, uploads, generated shell commands, dependency installation, modified trusted tests, automatic publication, universal correctness claim, model leaderboard or public live sandbox. The portfolio demonstrates one bounded product with reproducible evidence. Optional extensions stay in the backlog.
+No arbitrary repositories, public uploads, generated shell requests, dependency installation, modified trusted tests, automatic PR publication, universal correctness claim, model leaderboard or public live sandbox. Local plaintext patch imports require approved tasks and exact bases. Optional extensions stay in the backlog.
 
 ## Release and licensing
 
-The four accepted milestones are integrated into `main`; historical reports retain their original review-time status. See the [publication audit](docs/PUBLICATION_AUDIT.md) and [maintenance policy](AGENTS.md). Hosting has not been activated.
+Accepted development and Patch Audit work are integrated into `main`; historical reports retain their original review-time status. See the [publication audit](docs/PUBLICATION_AUDIT.md) and [maintenance policy](AGENTS.md). Recorded-only Vercel activation is separately authorized; public live execution remains excluded.
 
 No project license has been granted in this repository. Public visibility does not supply an open-source license. Existing dependency licenses and attribution remain with their respective authors.

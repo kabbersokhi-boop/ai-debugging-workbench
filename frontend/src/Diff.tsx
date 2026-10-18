@@ -26,5 +26,5 @@ export default function CandidateDiff({ original, modified, language = "javascri
       before.dispose(); after.dispose();
     };
   }, [original, modified, language]);
-  return <div ref={container} style={{height: 340, width: "100%"}} aria-label="Read-only candidate diff" />;
+  return <div ref={container} style={{height: 340, width: "100%", maxWidth: "100%", minWidth: 0, overflow: "hidden"}} aria-label="Read-only candidate diff" />;
 }

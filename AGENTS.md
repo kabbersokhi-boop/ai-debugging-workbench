@@ -15,3 +15,8 @@ Prefer complete user journeys to additional infrastructure. Keep architecture an
 Milestone 4 evaluation configuration is frozen in `evals/experiment-v2.json`. Do not tune against held-out outcomes or overwrite its results. A required engine/runtime/scoring change needs a new versioned experiment while retaining v1. Keep `evals/final_checks.py`, offline controls, reports and recordings outside runtime retrieval/MCP inputs.
 
 Public release uses only `compose.release.yaml` / the recorded server. Do not expose the privileged live stack, send generated candidate scripts to visitor tabs, or enable public inference by changing a UI flag. Public activation still requires owner authorization.
+
+The owner separately authorized the one-time accepted Patch Audit integration and v1.1.0
+repository release, plus recorded-only deployment in the existing Vercel account. Preserve
+M1/M2 freezes and failed readiness; M3 remains on hold. This grants no blanket permission
+for future merges, releases, paid services, deployments or public candidate execution.
