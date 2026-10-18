@@ -1,6 +1,7 @@
 """Verify the actual recorded container boundary. No provider credential is needed."""
 
 import json
+import os
 from pathlib import Path
 
 import httpx
@@ -9,7 +10,10 @@ import docker
 
 client = docker.from_env()
 try:
-    container = client.containers.get("ai-debugging-recorded-release-explorer-1")
+    project = os.environ.get(
+        "RELEASE_COMPOSE_PROJECT_NAME", "ai-debugging-recorded-release"
+    )
+    container = client.containers.get(f"{project}-explorer-1")
     config, host = container.attrs["Config"], container.attrs["HostConfig"]
     names = [value.split("=", 1)[0] for value in config["Env"]]
     assert not any("NVIDIA" in name or "DATABASE" in name for name in names)
@@ -21,10 +25,12 @@ try:
         [
             "python",
             "-c",
-            "import importlib.util,pathlib,json; "
-            "print(json.dumps({name:importlib.util.find_spec(name) is not None "
-            "for name in ('workbench','docker','langgraph')} | "
-            "{'socket':pathlib.Path('/var/run/docker.sock').exists()}))",
+            (
+                "import importlib.util,pathlib,json; "
+                "print(json.dumps({name:importlib.util.find_spec(name) is not None "
+                "for name in ('workbench','docker','langgraph')} | "
+                "{'socket':pathlib.Path('/var/run/docker.sock').exists()}))"
+            ),
         ]
     )
     assert probe.exit_code == 0
@@ -34,7 +40,9 @@ try:
         ["python", "-c", "open('/release/unapproved-write','w').write('x')"]
     )
     assert write.exit_code != 0
-    with httpx.Client(base_url="http://127.0.0.1:8020", timeout=10) as http:
+    with httpx.Client(
+        base_url=os.environ.get("RELEASE_BASE_URL", "http://127.0.0.1:8020"), timeout=10
+    ) as http:
         response = http.get("/api/health")
         response.raise_for_status()
         health = response.json()
@@ -60,8 +68,14 @@ try:
             saved.raise_for_status()
             value = saved.json()
             assert value["execution_mode"] == "recorded"
-            assert value["evidence"]["candidate"]["provenance"]["category"] == "retained_model"
-            assert value["evidence"]["envelope"]["result"]["ordinary"]["outcome"] == "passed"
+            assert (
+                value["evidence"]["candidate"]["provenance"]["category"]
+                == "retained_model"
+            )
+            assert (
+                value["evidence"]["envelope"]["result"]["ordinary"]["outcome"]
+                == "passed"
+            )
         assert {item["status"] for item in audits} == {"passed", "failed"}
         manifest = http.get("/api/recordings").json()
         assert len(manifest["records"]) >= 3

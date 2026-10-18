@@ -345,6 +345,10 @@ async def test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_ex
         await page.get_by_text("Open code comparison · boltons/urlutils.py", exact=True).click()
         await expect(page.locator(".monaco-diff-editor:visible")).to_be_visible(timeout=20000)
         await page.set_viewport_size({"width": 390, "height": 844})
+        # Monaco's ResizeObserver lays out asynchronously after the viewport changes.
+        await page.wait_for_function(
+            "document.documentElement.scrollWidth <= innerWidth", timeout=5000
+        )
         assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth")
         await region.scroll_into_view_if_needed()
         await region.screenshot(path=FOLDER / "recorded-mobile.png")

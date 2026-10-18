@@ -162,10 +162,9 @@ async def test_offline_repair_browser_diff_preview_download_and_saved_history():
     investigation_id = uuid4()
     client = docker.from_env()
     try:
-        broker = client.containers.get("ai-debugging-workbench-repair-broker-1")
-        ip = broker.attrs["NetworkSettings"]["Networks"]["ai-debugging-workbench_repair-control"][
-            "IPAddress"
-        ]
+        project = os.environ.get("COMPOSE_PROJECT_NAME", "ai-debugging-workbench")
+        broker = client.containers.get(f"{project}-repair-broker-1")
+        ip = broker.attrs["NetworkSettings"]["Networks"][f"{project}_repair-control"]["IPAddress"]
     finally:
         client.close()
     try:
