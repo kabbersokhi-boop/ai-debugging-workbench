@@ -1,0 +1,63 @@
+WEBVTT
+
+00:00:00.350 --> 00:00:05.530
+An AI-generated patch passed 155
+selected upstream tests.
+
+00:00:05.963 --> 00:00:08.710
+Independent checks still caught an
+incomplete repair.
+
+00:00:10.417 --> 00:00:14.237
+The patch fixed the main Boltons
+dictionary implementation, but
+
+00:00:14.247 --> 00:00:16.437
+missed its required standalone copy.
+
+00:00:17.983 --> 00:00:21.923
+With empty input, that object reports
+length one, while its keys
+
+00:00:21.933 --> 00:00:23.003
+and items are empty.
+
+00:00:23.663 --> 00:00:27.463
+This is one genuine incomplete repair,
+not a model accuracy
+
+00:00:27.473 --> 00:00:28.163
+statistic.
+
+00:00:29.883 --> 00:00:33.623
+A different retained patch fixes both
+implementations and passes
+
+00:00:33.633 --> 00:00:34.563
+both check sets.
+
+00:00:35.113 --> 00:00:38.843
+Different generation procedures mean
+this is not a fair vendor
+
+00:00:38.853 --> 00:00:39.323
+comparison.
+
+00:00:41.150 --> 00:00:45.450
+Patch Audit keeps the exact change,
+source identity, logs, and
+
+00:00:45.460 --> 00:00:47.150
+expected-versus-observed evidence.
+
+00:00:48.917 --> 00:00:52.777
+Explore the public recorded showcase
+without credentials. It
+
+00:00:52.787 --> 00:00:56.417
+displays historical evidence; fresh
+auditing stays local.
+
+00:00:57.017 --> 00:00:59.257
+AI can write the patch. Check the
+evidence.

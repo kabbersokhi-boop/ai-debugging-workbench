@@ -1,0 +1,68 @@
+[
+  {
+    "id": "short_hook",
+    "source": "hook",
+    "origin": "local",
+    "source_start": 210.7580313310027,
+    "duration": 10.066666666666666,
+    "playback_speed": 1.0,
+    "source_duration": 10.066666666666666,
+    "at": 0.0,
+    "title": "155 selected tests passed. Still incomplete."
+  },
+  {
+    "id": "short_missed",
+    "source": "review",
+    "origin": "closeups",
+    "source_start": 12.851836209010798,
+    "duration": 7.566666666666666,
+    "playback_speed": 1.0,
+    "source_duration": 7.566666666666666,
+    "at": 10.066666666666666,
+    "title": "One implementation fixed. One copy missed."
+  },
+  {
+    "id": "short_empty",
+    "source": "empty",
+    "origin": "local",
+    "source_start": 290.73179638397414,
+    "duration": 11.9,
+    "playback_speed": 1.0,
+    "source_duration": 11.9,
+    "at": 17.633333333333333,
+    "title": "Expected length: 0. Observed: 1."
+  },
+  {
+    "id": "short_pass",
+    "source": "pass",
+    "origin": "local",
+    "source_start": 380.4214952659677,
+    "duration": 11.266666666666667,
+    "playback_speed": 1.0,
+    "source_duration": 11.266666666666667,
+    "at": 29.53333333333333,
+    "title": "Both copies fixed. Both check sets pass."
+  },
+  {
+    "id": "short_evidence",
+    "source": "identity",
+    "origin": "local",
+    "source_start": 401.5064157489687,
+    "duration": 7.766666666666667,
+    "playback_speed": 1.0,
+    "source_duration": 7.766666666666667,
+    "at": 40.8,
+    "title": "Exact patch. Source identity. Execution evidence."
+  },
+  {
+    "id": "short_close",
+    "source": "public",
+    "origin": "public-closeup",
+    "source_start": 6.301483010989614,
+    "duration": 12.166666666666666,
+    "playback_speed": 1.0,
+    "source_duration": 12.166666666666666,
+    "at": 48.56666666666666,
+    "title": "AI can write the patch. Check the evidence."
+  }
+]

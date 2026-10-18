@@ -2,6 +2,15 @@
 
 **Independent checks for completed code patches.**
 
+**[WATCH THE 60-SECOND DEMO](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/download/v1.1.0/patch-audit-60s-captioned.mp4)** ·
+**[WATCH THE FULL END-TO-END DEMO](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/download/v1.1.0/patch-audit-full-captioned.mp4)** ·
+**[EXPLORE PATCH AUDIT](https://ai-debugging-workbench-recorded.vercel.app/)**
+
+[![155 selected tests passed; one genuine repair remained incomplete. Watch Patch Audit.](docs/demo/patch-audit/thumbnail.png)](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/download/v1.1.0/patch-audit-60s-captioned.mp4)
+
+Real local audits, exact patches, independent observations, and the public recorded experience.
+Narrated films include burned captions; [clean versions, SRT/VTT subtitles, transcripts and reproduction](docs/demo/patch-audit/README.md) are also available.
+
 A retained AI-generated repair passed **155 selected repository tests** but left a required
 standalone implementation broken. Patch Audit shows the missing behavior, exact change and
 reproducible evidence. The related failures describe **one incomplete repair**.
@@ -10,8 +19,6 @@ reproducible evidence. The related failures describe **one incomplete repair**.
 [Incomplete repair](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02) ·
 [Passing example](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v1-boltons-addlist-nemotron35-r02) ·
 [Original recorded debugger](https://ai-debugging-workbench-recorded.vercel.app/?workspace=debugger)
-
-![Fresh local audit of the retained incomplete repair](docs/reports/assets/patch-audit-workflow/fresh-missed.png)
 
 - **Incomplete repair:** [recorded evidence](recordings/patch-audit-missed.json) · [exact patch](evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.patch) · [original observations](evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.json).
 - **Passing example:** [recorded evidence and exact patch](recordings/patch-audit-complete.json). Its generation procedure differs; these examples are not a fair vendor comparison.

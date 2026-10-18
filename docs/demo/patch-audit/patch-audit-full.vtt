@@ -1,0 +1,346 @@
+WEBVTT
+
+00:00:00.350 --> 00:00:05.370
+An AI-generated patch passed 155
+selected upstream tests.
+
+00:00:05.963 --> 00:00:09.690
+But the repair was incomplete.
+Independent behavioral checks
+
+00:00:09.700 --> 00:00:11.130
+caught what those tests missed.
+
+00:00:12.850 --> 00:00:16.090
+The task comes from Boltons, a Python
+utility library.
+
+00:00:16.790 --> 00:00:20.750
+Its ordered multi-dictionary must accept
+one-shot inputs without
+
+00:00:20.760 --> 00:00:24.270
+inconsistent state. Empty input must add
+nothing.
+
+00:00:25.883 --> 00:00:29.883
+We begin with a genuine retained model
+output, backed by its
+
+00:00:29.893 --> 00:00:31.163
+captured generation evidence.
+
+00:00:31.859 --> 00:00:35.623
+It changes the main dictionary
+implementation. The requirement
+
+00:00:35.633 --> 00:00:39.963
+also covers a standalone copy in the URL
+utility module.
+
+00:00:41.717 --> 00:00:45.157
+Here, I import the exact retained patch
+bytes through the
+
+00:00:45.167 --> 00:00:46.337
+supported local workflow.
+
+00:00:46.882 --> 00:00:50.597
+Importing checks the patch against the
+approved task source. It
+
+00:00:50.607 --> 00:00:51.837
+does not execute the candidate.
+
+00:00:53.650 --> 00:00:57.130
+The imported copy is labeled user-
+declared and unverified.
+
+00:00:58.130 --> 00:01:02.330
+Matching code does not recreate captured
+authorship evidence. Its
+
+00:01:02.340 --> 00:01:06.370
+software candidate identity stays the
+same; its provenance record
+
+00:01:06.380 --> 00:01:06.950
+is separate.
+
+00:01:08.650 --> 00:01:12.430
+The patch materializes the input once,
+returns early when it is
+
+00:01:12.440 --> 00:01:14.630
+empty, then reuses those values.
+
+00:01:15.266 --> 00:01:19.190
+That is a sensible correction, but this
+change touches only the
+
+00:01:19.200 --> 00:01:19.910
+main implementation.
+
+00:01:21.817 --> 00:01:25.597
+Before execution, the owner reviews this
+exact patch and
+
+00:01:25.607 --> 00:01:27.677
+explicitly authorizes the pinned task.
+
+00:01:28.241 --> 00:01:32.877
+The application supports four approved
+historical Python tasks. It
+
+00:01:32.887 --> 00:01:36.277
+does not accept arbitrary repositories
+or shell commands.
+
+00:01:38.050 --> 00:01:42.470
+Now the real audit starts. Ordinary
+tests run first, then
+
+00:01:42.480 --> 00:01:46.030
+independent behavioral checks, in
+separate restricted containers.
+
+00:01:46.650 --> 00:01:50.550
+The interface shows one running state
+until completed evidence is
+
+00:01:50.560 --> 00:01:50.960
+published.
+
+00:01:52.583 --> 00:01:56.363
+The ordinary log confirms 155 tests
+passed.
+
+00:01:56.981 --> 00:02:00.683
+That is the selected upstream suite for
+this task, not a claim
+
+00:02:00.693 --> 00:02:02.363
+that every possible test passed.
+
+00:02:04.083 --> 00:02:07.843
+Independent checks nevertheless fail.
+The audit retains both
+
+00:02:07.853 --> 00:02:11.863
+outcomes rather than reducing them to a
+single reassuring badge.
+
+00:02:12.470 --> 00:02:16.163
+The additional information is specific:
+the required standalone
+
+00:02:16.173 --> 00:02:17.703
+behavior is still broken.
+
+00:02:19.417 --> 00:02:22.897
+The main dictionary file was repaired.
+The standalone
+
+00:02:22.907 --> 00:02:26.977
+implementation in the URL utility file
+was left unchanged.
+
+00:02:27.957 --> 00:02:31.817
+Normal package imports use the repaired
+class; standalone mode
+
+00:02:31.827 --> 00:02:33.337
+still uses the missed copy.
+
+00:02:35.050 --> 00:02:38.590
+Here is the clearest observation: empty
+input should leave length
+
+00:02:38.600 --> 00:02:39.000
+zero.
+
+00:02:39.590 --> 00:02:43.310
+Instead, the standalone object reports
+length one, while its
+
+00:02:43.320 --> 00:02:47.530
+returned keys and items are empty. Its
+views of the same state
+
+00:02:47.540 --> 00:02:47.940
+disagree.
+
+00:02:49.683 --> 00:02:53.303
+An iterator is consumed by the first
+loop, so the second update
+
+00:02:53.313 --> 00:02:53.943
+sees nothing.
+
+00:02:54.523 --> 00:02:58.443
+An empty generator is truthy, creating a
+key before the method
+
+00:02:58.453 --> 00:03:00.003
+discovers there are no values.
+
+00:03:01.650 --> 00:03:05.770
+The detailed checks exercise several
+related cases. They describe
+
+00:03:05.780 --> 00:03:09.690
+one incomplete repair, not five distinct
+AI defects.
+
+00:03:10.399 --> 00:03:14.490
+This example is development evidence,
+not a general model accuracy
+
+00:03:14.500 --> 00:03:15.250
+statistic.
+
+00:03:17.117 --> 00:03:19.697
+Next, we load a different genuine
+retained patch.
+
+00:03:20.337 --> 00:03:24.077
+Its captured generation procedure
+differs, so these two examples
+
+00:03:24.087 --> 00:03:28.017
+are not a controlled vendor comparison.
+We are comparing their
+
+00:03:28.027 --> 00:03:29.497
+behavior on this named task.
+
+00:03:31.250 --> 00:03:34.250
+This correction updates both the main
+and standalone
+
+00:03:34.260 --> 00:03:35.010
+implementations.
+
+00:03:35.810 --> 00:03:40.390
+Each materializes the input once,
+rejects an empty addition, and
+
+00:03:40.400 --> 00:03:43.110
+reuses the same values for both internal
+updates.
+
+00:03:44.883 --> 00:03:49.203
+After review and explicit confirmation,
+we run a fresh local audit
+
+00:03:49.213 --> 00:03:50.563
+of that retained candidate.
+
+00:03:51.265 --> 00:03:55.023
+This is another execution of existing
+code, not a new model
+
+00:03:55.033 --> 00:03:55.983
+generation trial.
+
+00:03:57.617 --> 00:04:01.617
+The complete patch passes the selected
+ordinary suite and all
+
+00:04:01.627 --> 00:04:03.657
+fifteen independent observation groups.
+
+00:04:04.211 --> 00:04:08.357
+That supports this task-specific
+conclusion. It does not establish
+
+00:04:08.367 --> 00:04:10.277
+universal correctness or security.
+
+00:04:12.050 --> 00:04:15.490
+Behind each result are the exact
+candidate and source identities,
+
+00:04:16.170 --> 00:04:20.170
+verifier identity, runtime image, and
+execution details.
+
+00:04:20.842 --> 00:04:24.410
+The separate containers restrict
+execution; they are not a
+
+00:04:24.420 --> 00:04:27.410
+complete anti-tampering boundary for
+malicious code.
+
+00:04:29.050 --> 00:04:32.110
+Download the exact patch and the
+complete audit evidence,
+
+00:04:32.290 --> 00:04:35.630
+including logs and expected-versus-
+observed behavior.
+
+00:04:36.270 --> 00:04:40.270
+The reproduction instructions use the
+supported local stack and
+
+00:04:40.280 --> 00:04:42.750
+require a new explicit execution
+confirmation.
+
+00:04:44.650 --> 00:04:49.230
+The audit also persists in history.
+Reopen its saved link and the
+
+00:04:49.240 --> 00:04:50.910
+same evidence is available again.
+
+00:04:51.430 --> 00:04:55.610
+A new execution gets a new audit
+identifier; it does not become
+
+00:04:55.620 --> 00:04:57.730
+another independent defect discovery.
+
+00:04:59.483 --> 00:05:01.643
+Now we switch to the actual public
+showcase.
+
+00:05:02.543 --> 00:05:06.423
+Anyone can inspect the two selected
+historical audits without an
+
+00:05:06.433 --> 00:05:11.003
+AI API key, Docker access, or privileged
+code execution.
+
+00:05:12.717 --> 00:05:16.417
+The recorded banner matters. These are
+saved historical results,
+
+00:05:16.777 --> 00:05:18.997
+not fresh audits or animated execution.
+
+00:05:19.777 --> 00:05:24.397
+Both examples expose their exact patches
+and evidence. New patch
+
+00:05:24.407 --> 00:05:27.657
+import and execution remain in the local
+application.
+
+00:05:29.450 --> 00:05:32.590
+AI can write the patch. Patch Audit
+checks the evidence.
+
+00:05:33.186 --> 00:05:37.610
+Explore the public recorded showcase, or
+open the repository to
+
+00:05:37.620 --> 00:05:41.690
+reproduce the local workflow. The exact
+code and the limits are
+
+00:05:41.700 --> 00:05:42.510
+there to inspect.

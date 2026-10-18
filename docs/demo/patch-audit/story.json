@@ -1,0 +1,312 @@
+{
+  "voice": "af_heart",
+  "speed": 0.97,
+  "full": [
+    {
+      "id": "hook",
+      "chapter": "01 / THE GAP",
+      "title": "155 tests passed. The repair was incomplete.",
+      "mode": "LOCAL · FRESH EXECUTION EVIDENCE",
+      "lines": [
+        "An AI-generated patch passed one hundred and fifty-five selected upstream tests.",
+        "But the repair was incomplete. Independent behavioral checks caught what those tests missed."
+      ]
+    },
+    {
+      "id": "task",
+      "chapter": "02 / THE REQUIREMENT",
+      "title": "A real task, on an exact upstream base",
+      "mode": "LOCAL · TASK REQUIREMENT",
+      "lines": [
+        "The task comes from Boltons, a Python utility library.",
+        "Its ordered multi-dictionary must accept one-shot inputs without inconsistent state. Empty input must add nothing."
+      ]
+    },
+    {
+      "id": "retained",
+      "chapter": "03 / PATCH REVIEW",
+      "title": "A completed, genuine model patch",
+      "mode": "LOCAL · CAPTURED PROVENANCE",
+      "lines": [
+        "We begin with a genuine retained model output, backed by its captured generation evidence.",
+        "It changes the main dictionary implementation. The requirement also covers a standalone copy in the URL utility module."
+      ]
+    },
+    {
+      "id": "import",
+      "chapter": "03 / PATCH REVIEW",
+      "title": "Import for review. Execution comes later.",
+      "mode": "LOCAL · PATCH IMPORT",
+      "lines": [
+        "Here, I import the exact retained patch bytes through the supported local workflow.",
+        "Importing checks the patch against the approved task source. It does not execute the candidate."
+      ]
+    },
+    {
+      "id": "declaration",
+      "chapter": "03 / PATCH REVIEW",
+      "title": "Same code. A different provenance record.",
+      "mode": "LOCAL · DECLARED IMPORT",
+      "lines": [
+        "The imported copy is labeled user-declared and unverified.",
+        "Matching code does not recreate captured authorship evidence. Its software candidate identity stays the same; its provenance record is separate."
+      ]
+    },
+    {
+      "id": "review",
+      "chapter": "03 / PATCH REVIEW",
+      "title": "Review the exact change",
+      "mode": "LOCAL · READ-ONLY DIFF",
+      "lines": [
+        "The patch materializes the input once, returns early when it is empty, then reuses those values.",
+        "That is a sensible correction, but this change touches only the main implementation."
+      ]
+    },
+    {
+      "id": "confirmation",
+      "chapter": "04 / LOCAL EXECUTION",
+      "title": "An explicit execution decision",
+      "mode": "LOCAL · OWNER CONFIRMATION",
+      "lines": [
+        "Before execution, the owner reviews this exact patch and explicitly authorizes the pinned task.",
+        "The application supports four approved historical Python tasks. It does not accept arbitrary repositories or shell commands."
+      ]
+    },
+    {
+      "id": "start",
+      "chapter": "04 / LOCAL EXECUTION",
+      "title": "A real audit, in restricted containers",
+      "mode": "LOCAL · FRESH AUDIT",
+      "lines": [
+        "Now the real audit starts. Ordinary tests run first, then independent behavioral checks, in separate restricted containers.",
+        "The interface shows one running state until completed evidence is published."
+      ]
+    },
+    {
+      "id": "ordinary",
+      "chapter": "04 / LOCAL EXECUTION",
+      "title": "The selected ordinary suite passes",
+      "mode": "LOCAL · ACTUAL EXECUTION LOG",
+      "lines": [
+        "The ordinary log confirms one hundred and fifty-five tests passed.",
+        "That is the selected upstream suite for this task, not a claim that every possible test passed."
+      ]
+    },
+    {
+      "id": "contrast",
+      "chapter": "04 / LOCAL EXECUTION",
+      "title": "Ordinary: passed. Independent: failed.",
+      "mode": "LOCAL · COMPLETED RESULT",
+      "lines": [
+        "Independent checks nevertheless fail. The audit retains both outcomes rather than reducing them to a single reassuring badge.",
+        "The additional information is specific: the required standalone behavior is still broken."
+      ]
+    },
+    {
+      "id": "missed",
+      "chapter": "05 / THE MISSED COPY",
+      "title": "The repair stopped one file too soon",
+      "mode": "LOCAL · FAILURE EXPLANATION",
+      "lines": [
+        "The main dictionary file was repaired. The standalone implementation in the URL utility file was left unchanged.",
+        "Normal package imports use the repaired class; standalone mode still uses the missed copy."
+      ]
+    },
+    {
+      "id": "empty",
+      "chapter": "05 / THE MISSED COPY",
+      "title": "Length: 1. Keys: empty. Items: empty.",
+      "mode": "LOCAL · EXPECTED VS OBSERVED",
+      "lines": [
+        "Here is the clearest observation: empty input should leave length zero.",
+        "Instead, the standalone object reports length one, while its returned keys and items are empty. Its views of the same state disagree."
+      ]
+    },
+    {
+      "id": "cause",
+      "chapter": "05 / THE MISSED COPY",
+      "title": "An iterator can only be consumed once",
+      "mode": "LOCAL · UNCHANGED SOURCE",
+      "lines": [
+        "An iterator is consumed by the first loop, so the second update sees nothing.",
+        "An empty generator is truthy, creating a key before the method discovers there are no values."
+      ]
+    },
+    {
+      "id": "scope",
+      "chapter": "05 / THE MISSED COPY",
+      "title": "One incomplete repair, inspectable evidence",
+      "mode": "LOCAL · BOUNDED CONCLUSION",
+      "lines": [
+        "The detailed checks exercise several related cases. They describe one incomplete repair, not five distinct AI defects.",
+        "This example is development evidence, not a general model accuracy statistic."
+      ]
+    },
+    {
+      "id": "complete",
+      "chapter": "06 / COMPLETE CORRECTION",
+      "title": "Now inspect a genuine complete patch",
+      "mode": "LOCAL · RETAINED MODEL OUTPUT",
+      "lines": [
+        "Next, we load a different genuine retained patch.",
+        "Its captured generation procedure differs, so these two examples are not a controlled vendor comparison. We are comparing their behavior on this named task."
+      ]
+    },
+    {
+      "id": "complete_diff",
+      "chapter": "06 / COMPLETE CORRECTION",
+      "title": "Both implementations receive the correction",
+      "mode": "LOCAL · TWO-FILE DIFF",
+      "lines": [
+        "This correction updates both the main and standalone implementations.",
+        "Each materializes the input once, rejects an empty addition, and reuses the same values for both internal updates."
+      ]
+    },
+    {
+      "id": "pass_run",
+      "chapter": "06 / COMPLETE CORRECTION",
+      "title": "Fresh execution of the complete patch",
+      "mode": "LOCAL · FRESH AUDIT",
+      "lines": [
+        "After review and explicit confirmation, we run a fresh local audit of that retained candidate.",
+        "This is another execution of existing code, not a new model generation trial."
+      ]
+    },
+    {
+      "id": "pass",
+      "chapter": "06 / COMPLETE CORRECTION",
+      "title": "Both named check sets pass",
+      "mode": "LOCAL · COMPLETED RESULT",
+      "lines": [
+        "The complete patch passes the selected ordinary suite and all fifteen independent observation groups.",
+        "That supports this task-specific conclusion. It does not establish universal correctness or security."
+      ]
+    },
+    {
+      "id": "identity",
+      "chapter": "07 / REPRODUCIBLE EVIDENCE",
+      "title": "Bind the outcome to the exact inputs",
+      "mode": "LOCAL · EXECUTION IDENTITIES",
+      "lines": [
+        "Behind each result are the exact candidate and source identities, verifier identity, runtime image, and execution details.",
+        "The separate containers restrict execution; they are not a complete anti-tampering boundary for malicious code."
+      ]
+    },
+    {
+      "id": "download",
+      "chapter": "07 / REPRODUCIBLE EVIDENCE",
+      "title": "Download the patch and the evidence",
+      "mode": "LOCAL · ACTUAL DOWNLOADS",
+      "lines": [
+        "Download the exact patch and the complete audit evidence, including logs and expected-versus-observed behavior.",
+        "The reproduction instructions use the supported local stack and require a new explicit execution confirmation."
+      ]
+    },
+    {
+      "id": "history",
+      "chapter": "07 / REPRODUCIBLE EVIDENCE",
+      "title": "Saved history. The same saved result.",
+      "mode": "LOCAL · PERSISTENT HISTORY",
+      "lines": [
+        "The audit also persists in history. Reopen its saved link and the same evidence is available again.",
+        "A new execution gets a new audit identifier; it does not become another independent defect discovery."
+      ]
+    },
+    {
+      "id": "public",
+      "chapter": "08 / EXPLORE THE EVIDENCE",
+      "title": "Public browsing, without public execution",
+      "mode": "PUBLIC · RECORDED EVIDENCE ONLY",
+      "lines": [
+        "Now we switch to the actual public showcase.",
+        "Anyone can inspect the two selected historical audits without an AI API key, Docker access, or privileged code execution."
+      ]
+    },
+    {
+      "id": "public_switch",
+      "chapter": "08 / EXPLORE THE EVIDENCE",
+      "title": "Historical failure and passing example",
+      "mode": "PUBLIC · RECORDED EVIDENCE ONLY",
+      "lines": [
+        "The recorded banner matters. These are saved historical results, not fresh audits or animated execution.",
+        "Both examples expose their exact patches and evidence. New patch import and execution remain in the local application."
+      ]
+    },
+    {
+      "id": "close",
+      "chapter": "PATCH AUDIT",
+      "title": "AI can write the patch. Check the evidence.",
+      "mode": "EXPLORE · LINKS IN THE DESCRIPTION",
+      "lines": [
+        "AI can write the patch. Patch Audit checks the evidence.",
+        "Explore the public recorded showcase, or open the repository to reproduce the local workflow. The exact code and the limits are there to inspect."
+      ]
+    }
+  ],
+  "short": [
+    {
+      "id": "short_hook",
+      "source": "hook",
+      "chapter": "PATCH AUDIT / 60 SECONDS",
+      "title": "155 selected tests passed. Still incomplete.",
+      "mode": "LOCAL · FRESH EXECUTION EVIDENCE",
+      "lines": [
+        "An AI-generated patch passed one hundred and fifty-five selected upstream tests.",
+        "Independent checks still caught an incomplete repair."
+      ]
+    },
+    {
+      "id": "short_missed",
+      "source": "review",
+      "chapter": "THE MISSED IMPLEMENTATION",
+      "title": "One implementation fixed. One copy missed.",
+      "mode": "LOCAL · DECLARED COPY OF RETAINED PATCH BYTES",
+      "lines": [
+        "The patch fixed the main Boltons dictionary implementation, but missed its required standalone copy."
+      ]
+    },
+    {
+      "id": "short_empty",
+      "source": "empty",
+      "chapter": "THE ADDITIONAL EVIDENCE",
+      "title": "Expected length: 0. Observed: 1.",
+      "mode": "LOCAL · ACTUAL OBSERVATION",
+      "lines": [
+        "With empty input, that object reports length one, while its keys and items are empty.",
+        "This is one genuine incomplete repair, not a model accuracy statistic."
+      ]
+    },
+    {
+      "id": "short_pass",
+      "source": "pass",
+      "chapter": "A COMPLETE CORRECTION",
+      "title": "Both copies fixed. Both check sets pass.",
+      "mode": "LOCAL · FRESH EXECUTION EVIDENCE",
+      "lines": [
+        "A different retained patch fixes both implementations and passes both check sets.",
+        "Different generation procedures mean this is not a fair vendor comparison."
+      ]
+    },
+    {
+      "id": "short_evidence",
+      "source": "identity",
+      "chapter": "INSPECT AND REPRODUCE",
+      "title": "Exact patch. Source identity. Execution evidence.",
+      "mode": "LOCAL · RETAINED EVIDENCE",
+      "lines": [
+        "Patch Audit keeps the exact change, source identity, logs, and expected-versus-observed evidence."
+      ]
+    },
+    {
+      "id": "short_close",
+      "source": "public",
+      "chapter": "EXPLORE PATCH AUDIT",
+      "title": "AI can write the patch. Check the evidence.",
+      "mode": "PUBLIC · RECORDED EVIDENCE ONLY",
+      "lines": [
+        "Explore the public recorded showcase without credentials. It displays historical evidence; fresh auditing stays local.",
+        "AI can write the patch. Check the evidence."
+      ]
+    }
+  ]
+}

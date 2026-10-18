@@ -1,4 +1,15 @@
-# Captioned walkthrough
+# Product demonstrations
+
+## Patch Audit
+
+[Watch the 60-second highlight](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/download/v1.1.0/patch-audit-60s-captioned.mp4) ·
+[Watch the full end-to-end demonstration](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/download/v1.1.0/patch-audit-full-captioned.mp4) ·
+[Films, captions, transcripts and production scripts](patch-audit/README.md) ·
+[Production verification](PATCH-AUDIT-DEMO-PRODUCTION.md).
+
+## Original debugger demonstration
+
+### Captioned walkthrough
 
 `walkthrough.mp4` shows reopening and interacting with the actual successful NVIDIA shipping repair recorded in `recordings/m4-shipping-success.json`. This walkthrough makes no new inference or repair call. Original and candidate are compared at quantity two, then saved evidence and mobile layout are inspected. Captions are burned in; `walkthrough.srt` supplies the text transcript.
 
