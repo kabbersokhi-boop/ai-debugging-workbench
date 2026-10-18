@@ -6,6 +6,11 @@ A retained AI-generated repair passed **155 selected repository tests** but left
 standalone implementation broken. Patch Audit shows the missing behavior, exact change and
 reproducible evidence. The related failures describe **one incomplete repair**.
 
+**[Open the recorded showcase](https://ai-debugging-workbench-recorded.vercel.app/)** ·
+[Incomplete repair](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02) ·
+[Passing example](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v1-boltons-addlist-nemotron35-r02) ·
+[Original recorded debugger](https://ai-debugging-workbench-recorded.vercel.app/?workspace=debugger)
+
 ![Fresh local audit of the retained incomplete repair](docs/reports/assets/patch-audit-workflow/fresh-missed.png)
 
 - **Incomplete repair:** [recorded evidence](recordings/patch-audit-missed.json) · [exact patch](evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.patch) · [original observations](evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.json).
@@ -33,8 +38,8 @@ and visit **http://127.0.0.1:8020/**. It serves only two explicitly selected his
 one genuine incomplete repair passed the selected 155 ordinary tests but missed the standalone copy;
 a retained genuine complete repair passed both named check sets. Different generation procedures
 are not a fair vendor ranking. Recorded browsing starts no fresh audit and needs no credentials,
-database or Docker execution authority at runtime. Vercel activation is separately authorized;
-the real URL is added only after external verification.
+database or Docker execution authority at runtime. The public recorded showcase is live at
+**https://ai-debugging-workbench-recorded.vercel.app/**; its HTTPS, downloads and browser journeys were verified without authentication.
 
 Imports are trusted-owner/local-only, limited to exact changes in approved production files.
 Containers and in-process Python observations are not a complete anti-tampering system for malicious
@@ -138,7 +143,7 @@ docker compose -f compose.release.yaml up --build -d --wait
 
 Open **http://127.0.0.1:8020/** for both curated Patch Audit examples, exact patches and evidence downloads. The original sanitized NVIDIA debugger recordings and stopped offline security probe remain at **http://127.0.0.1:8020/?workspace=debugger**. Recorded browsing starts no inference or candidate execution; every result is historical.
 
-The recorded image is verified on loopback. The owner approved the existing Vercel account for recorded-only deployment. [Release boundary and activation](docs/RELEASE.md).
+The recorded image is verified on loopback; the hosted showcase runs the same recorded server on the owner-approved Vercel Hobby account. [Release boundary and activation](docs/RELEASE.md).
 
 ## Run the original NVIDIA debugger locally
 
@@ -228,6 +233,6 @@ No arbitrary repositories, public uploads, generated shell requests, dependency 
 
 ## Release and licensing
 
-Accepted development and Patch Audit work are integrated into `main`; historical reports retain their original review-time status. See the [publication audit](docs/PUBLICATION_AUDIT.md) and [maintenance policy](AGENTS.md). Recorded-only Vercel activation is separately authorized; public live execution remains excluded.
+Accepted development and Patch Audit work are integrated into `main`; historical reports retain their original review-time status. See the [publication audit](docs/PUBLICATION_AUDIT.md) and [maintenance policy](AGENTS.md). The recorded-only showcase is deployed; new execution remains local-owner-only.
 
 No project license has been granted in this repository. Public visibility does not supply an open-source license. Existing dependency licenses and attribution remain with their respective authors.

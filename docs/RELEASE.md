@@ -11,7 +11,7 @@ The release image contains only a small FastAPI server, built frontend and allow
 
 In the single-container Compose deployment, per-visitor admission is 120 requests/minute with opaque HttpOnly SameSite=Strict cookies expiring after 15 minutes. At most 1,024 resident sessions and 600 requests/minute globally are admitted. Uvicorn has 32 concurrency slots and a five-second idle connection timeout. Container policy is nonroot, read-only root, no capabilities/new privileges, 192 MiB memory, 0.5 CPU, 32 PIDs and 8 MiB tmp. Immutable recording assets are retained with their release version; there are no uploaded/generated release artifacts or preview environments to expire. Session windows are reaped on requests and reset on restart; this cannot replenish a provider budget because the public process has none.
 
-CSP permits only local application scripts/assets, locally loaded Monaco workers and pixel images; no remote candidate scripts, frames, forms or arbitrary connections. Model/source text is rendered as text or a read-only editor. `nosniff`, no-referrer and frame denial apply. The public surface supports no cross-origin action. Health checks validate the frontend and recording bundle; missing evidence is unavailable, with no live fallback. Access logging is disabled and no secret is supplied to the image.
+CSP permits only local application scripts/assets, locally loaded Monaco workers and pixel images; no remote candidate scripts, frames, forms or arbitrary connections. Model/source text is rendered as text or a read-only editor. `nosniff`, no-referrer and frame denial apply. The public surface supports no cross-origin action. Health checks validate the frontend and recording bundle; missing evidence is unavailable, with no live fallback. Local Uvicorn access logging is disabled and no secret is supplied to the image. Hosted platform request logging is controlled by Vercel.
 
 ## Private execution and guests
 
@@ -26,13 +26,15 @@ Candidate interaction is remote: the broker permits only reset/add/increase/decr
 ## Recorded-only Vercel deployment
 
 The owner authorized the existing Vercel account for this release. Its team uses the Hobby plan.
-No upgrade, purchase, custom DNS or privileged live service is authorized. The final externally
-verified URL belongs in the README and release notes.
+No upgrade, purchase, custom DNS or privileged live service is authorized. The externally verified production URL is
+**https://ai-debugging-workbench-recorded.vercel.app/**. Deployment `dpl_AmPBLGxg632KVXBjywFQMxskLESX` uses the tested
+`v1.1.0` source; no live execution service is exposed.
 
 Vercel's native FastAPI runtime exports the existing recorded server through the small
 `app.py`; root `requirements.txt` mirrors the pinned `docker/release-requirements.txt`
 (byte equality is checked in CI; Vercel rejected a requirements include directive).
-`vercel.json` runs the existing frontend build and includes only its output and curated recordings.
+`vercel.json` runs the existing frontend build and explicitly includes its output and curated
+recordings. Native tracing also packages required frontend source and build metadata.
 No new framework/service is added. This avoids the Container Runtime registry storage charge.
 Set only the nonsecret `RELEASE_SECURE_COOKIES=true`; supply no provider/database credentials.
 Never deploy the privileged root `Dockerfile` or attach its normal Compose services.
@@ -41,7 +43,7 @@ After committing and verifying the release head, prepare an allowlisted bundle f
 
 ```sh
 release_bundle=$(mktemp -d)
-git archive HEAD app.py requirements.txt vercel.json .vercelignore .python-version docker/release-requirements.txt \
+git archive v1.1.0 app.py requirements.txt vercel.json .vercelignore .python-version docker/release-requirements.txt \
   backend/src/workbench/release.py frontend recordings .dockerignore |
   tar -x -C "$release_bundle"
 vercel link --project ai-debugging-workbench-recorded --scope mogging20202020 --cwd "$release_bundle"
@@ -85,3 +87,6 @@ This uses separate named volumes. The owner stack must be idle: broker cleanup l
 disposable candidate environments across projects. Recovery subprocesses inherit
 `COMPOSE_PROJECT_NAME`; never omit it for isolated testing. Do not remove owner volumes or reset
 its database. Four live-provider opt-in tests remain skipped unless separately requested.
+
+If overriding evidence output, set `E2E_EVIDENCE_DIR` and `RECOVERY_EVIDENCE_DIR` to the same
+absolute directory; the browser tests otherwise resolve relative paths from `backend/`.

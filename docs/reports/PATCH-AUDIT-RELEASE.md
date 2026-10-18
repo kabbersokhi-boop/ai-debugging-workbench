@@ -81,3 +81,20 @@ completed history and reproduced a fresh run afterward. Fingerprints of all rows
 database tables remained unchanged. The native Vercel build completed, with environment/private
 backend files absent from its function map after exclusions. Final CI/external verification links
 and the exact tested main commit are in the release notes.
+
+## Published release verification
+
+Tested release source: `c3bb3df5d6727ec36b837c3510f70ff60b1d41ae` ([main CI passed](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39146832645)).
+The annotated `v1.1.0` tag preserves that source. The existing repository is public; an anonymous
+clean clone and unauthenticated README, screenshot, source and evidence downloads succeeded.
+Final prepublication coverage was 55 reachable commits, 1,279 files, 54 CI artifact/log archives
+each and 36 PR-text documents. Only the same nine public-hash findings remained.
+
+[Recorded showcase](https://ai-debugging-workbench-recorded.vercel.app/) passed both unauthenticated external browser journeys
+(`E2E_BASE_URL=https://ai-debugging-workbench-recorded.vercel.app ./scripts/e2e -k recorded_explorer_first`),
+including exact patches, evidence downloads, mobile layout and the original recorded debugger.
+HTTPS/security headers and secure cookies passed; private GETs returned 404 and POST/PUT/PATCH/DELETE
+returned 405. The hosted bundle contains no environment files or private backend execution modules.
+The verified URL and documentation clarifications are a separate documentation-only followup to
+the tested tag; the final main identity belongs in GitHub release notes. No paid upgrade, DNS
+change, provider call, public import or live execution was enabled.
