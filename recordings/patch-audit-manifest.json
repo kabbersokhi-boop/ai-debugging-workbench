@@ -1,0 +1,21 @@
+{
+  "version": "recorded-patch-audits-v1",
+  "records": [
+    {
+      "id": "m02-v2-development-boltons-addlist-nemotron3-r02",
+      "title": "Missed standalone copy \u00b7 genuine development patch",
+      "task_id": "boltons-addlist",
+      "file": "patch-audit-missed.json",
+      "sha256": "ffe9e861ba916c51058a7c031b7c27232d203353483483aa3754fad67ff2b2c7",
+      "status": "failed"
+    },
+    {
+      "id": "m02-v1-boltons-addlist-nemotron35-r02",
+      "title": "Both implementations repaired \u00b7 genuine retained patch",
+      "task_id": "boltons-addlist",
+      "file": "patch-audit-complete.json",
+      "sha256": "1b92f842fd4e97b537525c5f12d10e15c75a5b11509f605a95f2b01fd1ba534e",
+      "status": "passed"
+    }
+  ]
+}

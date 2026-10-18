@@ -89,7 +89,7 @@ async def test_live_nvidia_repair_diff_verification_preview_and_reopen():
         )
         page.on("pageerror", lambda error: errors.append(str(error)))
         try:
-            await page.goto(BASE_URL)
+            await page.goto(BASE_URL + "/?workspace=debugger")
             async with page.expect_response(
                 lambda r: r.request.method == "POST" and r.url.endswith("/api/runs")
             ) as response:
@@ -196,7 +196,7 @@ async def test_offline_repair_browser_diff_preview_download_and_saved_history():
             )
             errors = []
             page.on("pageerror", lambda error: errors.append(str(error)))
-            await page.goto(BASE_URL)
+            await page.goto(BASE_URL + "/?workspace=debugger")
             await page.locator(".history-item").filter(has_text=run_id[:6]).click()
             await page.get_by_role("tab", name="Investigation", exact=True).click()
             await inspect_candidate(page, run_id, folder, "offline-repair")

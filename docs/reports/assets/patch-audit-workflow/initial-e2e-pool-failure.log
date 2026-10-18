@@ -1,0 +1,271 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 195 items / 124 deselected / 71 selected
+
+tests/test_access_integration.py::test_guest_ownership_artifacts_idempotency_and_expiry PASSED [  1%]
+tests/test_access_integration.py::test_reservations_are_atomic_persisted_and_server_wide PASSED [  2%]
+tests/test_agent_evaluator_browser.py::test_evaluator_real_ui_candidates_failure_evidence_and_reopen PASSED [  4%]
+tests/test_agent_evaluator_browser.py::test_evaluator_api_rejects_arbitrary_inputs_and_cancels PASSED [  5%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_controls PASSED [  7%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_negative_processes PASSED [  8%]
+tests/test_agent_evaluator_integration.py::test_evaluator_freeze PASSED  [  9%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_genuine_candidates PASSED [ 11%]
+tests/test_agent_evaluator_integration.py::test_evaluator_missing_image_is_infrastructure_error PASSED [ 12%]
+tests/test_agent_evaluator_recovery.py::test_evaluator_recovery_reconciles_terminal_broker_evidence PASSED [ 14%]
+tests/test_comparison_browser.py::test_comparison_actual_evidence_navigation_download_and_controls PASSED [ 15%]
+tests/test_comparison_browser.py::test_comparison_deterministic_rendering_fixtures_ties_zero_and_pending PASSED [ 16%]
+tests/test_diagnosis_browser.py::test_presentation_regression_for_passed_checks_and_interactive_footer PASSED [ 18%]
+tests/test_diagnosis_browser.py::test_live_nvidia_investigation_citations_inspector_and_reopened_history SKIPPED [ 19%]
+tests/test_diagnosis_browser.py::test_saved_investigation_reports_are_immutable_and_separate_from_draft PASSED [ 21%]
+tests/test_e2e.py::test_first_visitor_can_reproduce_inspect_and_reopen_history PASSED [ 22%]
+tests/test_e2e.py::test_actual_api_evidence_and_idempotency PASSED       [ 23%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload0] PASSED [ 25%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload1] PASSED [ 26%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload2] PASSED [ 28%]
+tests/test_e2e.py::test_capacity_cancellation_and_no_late_success PASSED [ 29%]
+tests/test_evaluation_harness.py::test_offline_one_shot_harness_executes_sealed_final_checks PASSED [ 30%]
+tests/test_evaluator_comparison_integration.py::test_producer_docker_access_boundary PASSED [ 32%]
+tests/test_evaluator_comparison_integration.py::test_comparison_new_task_controls PASSED [ 33%]
+tests/test_evaluator_comparison_integration.py::test_frozen_comparison_and_actual_evidence_are_valid PASSED [ 35%]
+tests/test_evaluator_comparison_integration.py::test_fresh_final_environments_and_generation_scoring_separation PASSED [ 36%]
+tests/test_guest_uuid_integration.py::test_guest_uuid_spellings_cannot_bypass_any_resource_handler PASSED [ 38%]
+tests/test_patch_audit_browser.py::test_patch_audit_real_ui_import_failing_passing_download_and_reopen PASSED [ 39%]
+tests/test_patch_audit_browser.py::test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart FAILED [ 40%]
+tests/test_patch_audit_browser.py::test_patch_audit_delayed_candidate_cannot_replace_selected_task PASSED [ 42%]
+tests/test_patch_audit_browser.py::test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_execution PASSED [ 43%]
+tests/test_patch_audit_browser.py::test_patch_audit_polling_fixture_serializes_requests_and_keeps_terminal_result PASSED [ 45%]
+tests/test_rag_integration.py::test_real_pgvector_fts_index_dedup_and_snapshot_isolation PASSED [ 46%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[insufficient-insufficient_evidence] PASSED [ 47%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[invalid-invalid_output] PASSED [ 49%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[failure-provider_error] PASSED [ 50%]
+tests/test_rag_integration.py::test_investigation_cancel_and_restart_keep_reproduction_separate PASSED [ 52%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[start] PASSED [ 53%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[cancel] PASSED [ 54%]
+tests/test_release_browser.py::test_m4_saved_shipping_reopen_without_inference_after_ui_correction SKIPPED [ 56%]
+tests/test_release_browser.py::test_recorded_explorer_first_visit_mobile_and_no_live_requests PASSED [ 57%]
+tests/test_release_browser.py::test_selected_scenario_manual_view_is_bound_before_any_reproduction PASSED [ 59%]
+tests/test_release_browser.py::test_m4_live_workflow_shipping_scenario_video SKIPPED [ 60%]
+tests/test_repair_browser.py::test_live_nvidia_repair_diff_verification_preview_and_reopen SKIPPED [ 61%]
+tests/test_repair_browser.py::test_offline_repair_browser_diff_preview_download_and_saved_history PASSED [ 63%]
+tests/test_repair_integration.py::test_real_mcp_discovery_permission_and_stale_base PASSED [ 64%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity-passed] PASSED [ 66%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * 3-failed] PASSED [ 67%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents + 0-failed] PASSED [ 69%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (document.querySelector('[data-testid=total]').hidden = true, 0)-failed] PASSED [ 70%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (setTimeout(() => document.querySelector('[data-testid=total]').textContent = 'x'.repeat(10000), 0), 0)-failed] PASSED [ 71%]
+tests/test_repair_integration.py::test_candidate_isolation_cleanup_and_preview_headers PASSED [ 73%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[valid-verified] PASSED [ 74%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[fail-verification_failed] PASSED [ 76%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[invalid-invalid_output] PASSED [ 77%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[failure-provider_error] PASSED [ 78%]
+tests/test_repair_integration.py::test_repair_cancellation_and_interruption_preserve_prior_statuses PASSED [ 80%]
+tests/test_repair_integration.py::test_shared_wall_clock_timeout_keeps_no_verification_claim PASSED [ 81%]
+tests/test_repair_integration.py::test_real_mcp_executor_outage_is_an_execution_error PASSED [ 83%]
+tests/test_scenarios_integration.py::test_two_real_indexes_reject_cross_snapshot_context PASSED [ 84%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[shipping-threshold] PASSED [ 85%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[decrement-skip] PASSED [ 87%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[clamp-zero] PASSED [ 88%]
+tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 90%]
+tests/test_scenarios_integration.py::test_remote_preview_rejects_commands_and_kills_nonresponsive_script PASSED [ 91%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[unavailable] PASSED [ 92%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[empty] PASSED [ 94%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[invalid] PASSED [ 95%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[timeout] PASSED [ 97%]
+tests/test_service.py::test_restart_recovers_unfinished_runs_and_preserves_terminal_outcomes PASSED [ 98%]
+tests/test_service.py::test_concurrent_duplicate_requests_produce_one_run PASSED [100%]
+
+=================================== FAILURES ===================================
+___ test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart ___
+
+    async def test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart():
+        async with httpx.AsyncClient(base_url=BASE, timeout=15) as client:
+            for bad in (
+                "not a diff",
+                examples()[FAIL]["candidate"]["patch"].replace("Called ``addlist``", "stale source", 1),
+            ):
+                r = await client.post(
+                    "/api/patch-audits/candidates", json={"task_id": "boltons-addlist", "patch": bad}
+                )
+                assert r.status_code == 422
+            oversized = await client.post(
+                "/api/patch-audits/candidates",
+                content=b" " * 450001,
+                headers={"Content-Type": "application/json"},
+            )
+            assert oversized.status_code == 413
+            c = (await client.get("/api/patch-audits/examples/" + PASS)).json()
+            assert (await client.get("/api/patch-audits/candidates/" + c["id"])).json() == c
+            imported_payload = {"task_id": "boltons-addlist", "patch": c["patch"]}
+            first = (await client.post("/api/patch-audits/candidates", json=imported_payload)).json()
+            duplicate = (
+                await client.post("/api/patch-audits/candidates", json=imported_payload)
+            ).json()
+            other = (
+                await client.post(
+                    "/api/patch-audits/candidates", json=imported_payload | {"producer": "user label"}
+                )
+            ).json()
+            assert first == duplicate and first["id"] != other["id"]
+            assert first["candidate_hash"] == other["candidate_hash"] == c["candidate_hash"]
+            with pytest.raises(DBAPIError, match="immutable"):
+                async with sessions.begin() as session:
+>                   await session.execute(
+                        update(PatchCandidate).where(PatchCandidate.id == first["id"]).values(record={})
+                    )
+
+tests/test_patch_audit_browser.py:172:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv/lib/python3.12/site-packages/sqlalchemy/ext/asyncio/session.py:651: in execute
+    result = await greenlet_spawn(
+.venv/lib/python3.12/site-packages/sqlalchemy/util/concurrency.py:210: in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py:2473: in execute
+    return self._execute_internal(
+.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py:2350: in _execute_internal
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py:2173: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction._connection_for_bind>:2: in _connection_for_bind
+    return target(fn, self, bind, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py:1203: in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py:3263: in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py:149: in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py:3287: in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py:445: in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py:1402: in _checkout
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py:1340: in _checkout
+    result = pool._dialect._do_ping_w_event(
+.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py:968: in _do_ping_w_event
+    return self.do_ping(dbapi_connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:1208: in do_ping
+    dbapi_connection.ping()
+.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:864: in ping
+    self._handle_exception(error)
+.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:841: in _handle_exception_no_connection
+    super()._handle_exception_no_connection(dbapi, error)
+.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py:409: in _handle_exception_no_connection
+    raise error.with_traceback(exc_info[2])
+.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:862: in ping
+    _ = await_(self._async_ping())
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/util/concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/util/concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:871: in _async_ping
+    await tr.start()
+.venv/lib/python3.12/site-packages/asyncpg/transaction.py:146: in start
+    await self._connection.execute(query)
+.venv/lib/python3.12/site-packages/asyncpg/connection.py:377: in execute
+    result = await self._protocol.query(query, timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   ???
+E   RuntimeError: Task <Task pending name='Task-2012' coro=<test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart() running at /home/libertarian/ai-debugging-workbench/backend/tests/test_patch_audit_browser.py:172> cb=[_run_until_complete_cb() at /home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:181]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+
+asyncpg/protocol/protocol.pyx:341: RuntimeError
+------------------------------ Captured log call -------------------------------
+ERROR    sqlalchemy.pool.impl.AsyncAdaptedQueuePool:base.py:374 Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f74a64ce550>>
+Traceback (most recent call last):
+  File "asyncpg/protocol/protocol.pyx", line 585, in asyncpg.protocol.protocol.BaseProtocol.close
+  File "asyncpg/protocol/protocol.pyx", line 677, in _drain_cancels
+  File "asyncpg/protocol/protocol.pyx", line 624, in asyncpg.protocol.protocol.BaseProtocol._request_cancel
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/asyncpg/connection.py", line 1712, in _cancel_current_command
+    self._cancellations.add(self._loop.create_task(
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 455, in create_task
+    self._check_closed()
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/asyncpg/connection.py", line 1536, in close
+    await self._protocol.close(timeout)
+  File "asyncpg/protocol/protocol.pyx", line 610, in close
+  File "asyncpg/protocol/protocol.pyx", line 697, in asyncpg.protocol.protocol.BaseProtocol._handle_waiter_on_connection_lost
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 370, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1175, in do_terminate
+    dbapi_connection.terminate()
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py", line 440, in terminate
+    await_(asyncio.shield(self._terminate_graceful_close()))
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/sqlalchemy/util/concurrency.py", line 167, in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/sqlalchemy/util/concurrency.py", line 205, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 940, in _terminate_graceful_close
+    await self._connection.close(timeout=2)
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/asyncpg/connection.py", line 1539, in close
+    self._abort()
+  File "/home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/asyncpg/connection.py", line 1600, in _abort
+    self._protocol.abort()
+  File "asyncpg/protocol/protocol.pyx", line 567, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/selector_events.py", line 836, in abort
+    self._force_close(None)
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/selector_events.py", line 906, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 799, in call_soon
+    self._check_closed()
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 545, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+=============================== warnings summary ===============================
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[invalid-invalid_output]
+  /home/libertarian/ai-debugging-workbench/backend/.venv/lib/python3.12/site-packages/sqlalchemy/sql/crud.py:162: RuntimeWarning: coroutine 'Connection._cancel' was never awaited
+    visiting_cte = kw.get("visiting_cte", None)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_patch_audit_browser.py::test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart
+= 1 failed, 66 passed, 4 skipped, 124 deselected, 1 warning in 374.85s (0:06:14) =

@@ -1,0 +1,128 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 194 items / 189 deselected / 5 selected
+
+tests/test_patch_audit_browser.py::test_patch_audit_real_ui_import_failing_passing_download_and_reopen FAILED [ 20%]
+tests/test_patch_audit_browser.py::test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart PASSED [ 40%]
+tests/test_patch_audit_browser.py::test_patch_audit_delayed_candidate_cannot_replace_selected_task PASSED [ 60%]
+tests/test_patch_audit_browser.py::test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_execution FAILED [ 80%]
+tests/test_patch_audit_browser.py::test_patch_audit_polling_fixture_serializes_requests_and_keeps_terminal_result PASSED [100%]
+
+=================================== FAILURES ===================================
+_____ test_patch_audit_real_ui_import_failing_passing_download_and_reopen ______
+
+tmp_path = PosixPath('/tmp/pytest-of-libertarian/pytest-88/test_patch_audit_real_ui_impor0')
+
+    async def test_patch_audit_real_ui_import_failing_passing_download_and_reopen(tmp_path):
+        FOLDER.mkdir(parents=True, exist_ok=True)
+        async with async_playwright() as p, httpx.AsyncClient(base_url=BASE, timeout=15) as client:
+            browser = await p.chromium.launch()
+            page = await browser.new_page(viewport={"width": 1440, "height": 1050})
+            errors = []
+            page.on("pageerror", lambda e: errors.append(str(e)))
+            for key, outcome in ((FAIL, "failed"), (PASS, "passed")):
+                await page.goto(BASE)
+                await expect(
+                    page.get_by_role("heading", name="Patch Audit", exact=True)
+                ).to_be_visible()
+                await expect(page.get_by_role("region", name="Candidate review")).to_be_visible()
+                before = (await client.get("/api/patch-audits/runs")).json()
+                await page.get_by_text(
+                    "Import a completed patch · review before execution", exact=True
+                ).click()
+                patch = examples()[key]["candidate"]["patch"]
+                if key == FAIL:
+                    path = tmp_path / "genuine-missed.patch"
+                    path.write_text(patch)
+                    await page.get_by_label("Plain-text patch file", exact=True).set_input_files(path)
+                    await expect(page.get_by_label("Unified diff", exact=True)).to_have_value(patch)
+                else:
+                    await page.get_by_label("Unified diff", exact=True).fill(patch)
+                await page.get_by_label("Declared authorship").select_option("user_declared")
+                await page.get_by_label("Optional producer label", exact=True).fill(
+                    "Reviewer import of retained "
+                    + ("incomplete" if key == FAIL else "complete")
+                    + " patch"
+                )
+                await page.get_by_label("Optional model or tool", exact=True).fill(
+                    "NVIDIA model / declared import"
+                )
+                async with page.expect_response(
+                    lambda r: (
+                        r.request.method == "POST" and r.url.endswith("/api/patch-audits/candidates")
+                    )
+                ) as response:
+                    await page.get_by_role("button", name="Import for review", exact=True).click()
+                imported = await (await response.value).json()
+                assert imported["candidate_hash"] == examples()[key]["candidate"]["candidate_hash"]
+                await expect(page.get_by_role("region", name="Candidate review")).to_contain_text(
+                    "user-declared provenance (unverified)"
+                )
+                assert len((await client.get("/api/patch-audits/runs")).json()) == len(before)
+                button = page.get_by_role("button", name="Run fresh audit", exact=True)
+                await expect(button).to_be_disabled()
+                await page.get_by_text(
+                    "Open code comparison · boltons/dictutils.py", exact=True
+                ).click()
+>               await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
+E               AssertionError: Locator expected to be visible
+E               Actual value: None
+E               Error: strict mode violation: locator(".monaco-diff-editor") resolved to 2 elements:
+E                   1) <div class="monaco-diff-editor side-by-side has-diff-overview">…</div> aka locator("div").nth(4)
+E                   2) <div class="monaco-diff-editor side-by-side has-diff-overview">…</div> aka locator("details:nth-child(8) > div > .monaco-diff-editor")
+E
+E               Call log:
+E                 - Expect "to_be_visible" with timeout 20000ms
+E                 - waiting for locator(".monaco-diff-editor")
+
+tests/test_patch_audit_browser.py:87: AssertionError
+_ test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_execution _
+
+    async def test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_execution():
+        FOLDER.mkdir(parents=True, exist_ok=True)
+        async with async_playwright() as p:
+            browser = await p.chromium.launch()
+            page = await browser.new_page(viewport={"width": 1440, "height": 1050})
+            mutations = []
+            errors = []
+            page.on(
+                "request",
+                lambda r: mutations.append(r.url) if r.method not in ("GET", "HEAD") else None,
+            )
+            page.on("pageerror", lambda e: errors.append(str(e)))
+            await page.goto(BASE + "/recorded/")
+            region = page.get_by_role("region", name="Patch audit result")
+            await expect(region.get_by_role("status")).to_have_text("failed")
+            await expect(
+                page.get_by_text("RECORDED EVIDENCE · NO EXECUTION", exact=True)
+            ).to_be_visible()
+            await expect(region).to_contain_text("length one while its keys and items are empty")
+            await expect(page.get_by_role("button", name="Run fresh audit")).to_have_count(0)
+            await expect(page.get_by_label("Unified diff", exact=True)).to_have_count(0)
+            await region.screenshot(path=FOLDER / "recorded-missed.png")
+            await page.get_by_label("Saved patch audit", exact=True).select_option(PASS)
+            await expect(region.get_by_role("status")).to_have_text("passed")
+            await expect(region).to_contain_text("Passed these checks for this task and environment.")
+            await page.get_by_text("Open code comparison · boltons/urlutils.py", exact=True).click()
+>           await expect(page.locator(".monaco-diff-editor")).to_be_visible(timeout=20000)
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: strict mode violation: locator(".monaco-diff-editor") resolved to 2 elements:
+E               1) <div class="monaco-diff-editor side-by-side has-diff-overview">…</div> aka locator("div").filter(has_text="# Copyright (c) 2013, Mahmoud Hashemi## Redistribution and use in source and").nth(2)
+E               2) <div class="monaco-diff-editor side-by-side has-diff-overview">…</div> aka locator("details:nth-child(8) > div > .monaco-diff-editor")
+E
+E           Call log:
+E             - Expect "to_be_visible" with timeout 20000ms
+E             - waiting for locator(".monaco-diff-editor")
+
+tests/test_patch_audit_browser.py:336: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_patch_audit_browser.py::test_patch_audit_real_ui_import_failing_passing_download_and_reopen
+FAILED tests/test_patch_audit_browser.py::test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_execution
+================= 2 failed, 3 passed, 189 deselected in 43.21s =================

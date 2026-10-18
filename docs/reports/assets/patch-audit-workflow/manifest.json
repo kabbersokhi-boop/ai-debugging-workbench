@@ -1,0 +1,27 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "audit-recovery.json": "96a13f8fb6631befdd84da30071b632d6aaeda430754612aa3c27b6d8db47912",
+    "check.log": "7a67c798d328f99049692acf6595a0f8549e945e82f03277e2a0c10512cb37e1",
+    "ci-implementation.json": "bb0c26857539c146d2ad990ed7cb6ba032a384ebf56b3fc4546fd98959d9b570",
+    "ci-implementation.log": "d9f0d18d4146a64602b935ed31fcd825d75dc7fef57807b443fe582e9137de27",
+    "cli-reproduction.json": "09e29397a661fc3a4a6c8d0ab9e24425c876bbfc5983f74d53cd47113c01bd69",
+    "cli.log": "9253d9b40239fe867eb4e68c0a20fa6287469aa29c219ca81b487a28368cc0a6",
+    "e2e.log": "5d17bfdf92ed51744606a6457d1c8a0e2a1c255d44bf9001898bceed2ca6cbbc",
+    "focused.log": "4413e1128bb70c7618b2c2ae6a7c49d86d66ed2f4fa612af1c821ca0f933696d",
+    "fresh-complete.json": "e73715ee69bbabb0a25f8104f65d8f53b2ce864d257b15d7988f5b034e595064",
+    "fresh-complete.png": "6ee81084394f17cd488a056a342b5f2e4152b3c2065098ae365f7a97a0af96ea",
+    "fresh-missed.json": "a98f02ded0ad22a59b4695c1af2c4547b561b1ace2681c45213faa2009a3e2d9",
+    "fresh-missed.png": "929a8c7927ff5b20b999359531e4e726ea70069ad7eb76d9fd8c23caf207f7f4",
+    "initial-e2e-pool-failure.log": "b90377bc7fced6ab7cc7ee807c18b26e897bea905f6dcd15855e18c1e1d2caf2",
+    "initial-editor-locator-failure.log": "c490860f0f185635aebdd9584e2249e9330421ad7d2d68b775f70b6bd9221191",
+    "initial-form-label-failure.log": "10e09bb20491a5217bedc36834b7e9f334aac59e69379978129bd5d961fd8ad7",
+    "local-validation-runs.json": "1ea5e18a2dae90a66194974ed76a7d196ceba6c7a3c3fbec02c76a4f43715815",
+    "preservation.json": "e36aa2ba95028283ecf5dddfb99846495ae243e831d15198f3adb402d3ffefee",
+    "recorded-boundary.json": "7a46c8a4838b206b7f81773cbec2662a410a5bdc6730fef418b3e51f3d7000bf",
+    "recorded-browser.log": "6adab0371ba050dd93ddcc4f92981659e98a2a61db1e4e28c16488a533e242da",
+    "recorded-mobile.png": "43fd6cdfa6a457bbc34601e326e0729f688383c84fed2a09b1e84094fd74d0d5",
+    "recovery.log": "81f434f6835b58c0f28d0ee30dc175fc050ea986963fc8a9aca4561cf9551752",
+    "reproduction-proof.json": "13a6fd9de9177ab4ead3e40ec62ccef2fe859c27bd74a41f7e311925b0abc16b"
+  }
+}

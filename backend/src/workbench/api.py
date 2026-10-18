@@ -1,3 +1,4 @@
+import asyncio
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from typing import Annotated
@@ -16,6 +17,8 @@ from workbench.contracts import BUG, Bug, CreateRun, RunSummary, RunView
 from workbench.db import Run, SourceSnapshot, engine, sessions
 from workbench.evaluator.routes import router as evaluator_router
 from workbench.evaluator.service import EvaluationManager
+from workbench.patch_audit.routes import router as patch_audit_router
+from workbench.patch_audit.service import AuditManager
 from workbench.rag.contracts import InvestigationRequest
 from workbench.rag.service import InvestigationManager
 from workbench.rag.snapshot import scenario_manifest
@@ -47,9 +50,13 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
                 evaluations = EvaluationManager()
                 app.state.evaluations = evaluations
                 await evaluations.recover()
+                audits = AuditManager()
+                app.state.patch_audits = audits
+                await audits.recover()
                 try:
                     yield
                 finally:
+                    await audits.close()
                     await evaluations.close()
                     await repairs.close()
                     await investigations.close()
@@ -61,10 +68,32 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(title="AI debugging workbench", version="0.1.0", lifespan=lifespan)
+app.state.evaluation_admission = asyncio.Lock()
+
+
+async def coordinated_call(request, call_next):
+    if request.method == "POST" and request.url.path in (
+        "/api/evaluator/runs",
+        "/api/patch-audits/runs",
+    ):
+        async with request.app.state.evaluation_admission:
+            for name in ("evaluations", "patch_audits"):
+                manager = getattr(request.app.state, name, None)
+                if manager is not None and manager.jobs:
+                    return JSONResponse({"detail": "The local evaluator is occupied"}, 429)
+            return await call_next(request)
+    return await call_next(request)
 
 
 @app.middleware("http")
 async def response_headers(request: Request, call_next):
+    if request.url.path.startswith("/api/patch-audits") and request.method == "POST":
+        body = bytearray()
+        async for chunk in request.stream():
+            body.extend(chunk)
+            if len(body) > 450000:
+                return JSONResponse({"detail": "Patch Audit request exceeds size limit"}, 413)
+        request._body = bytes(body)
     owner = None
     try:
         if settings.guest_access and request.url.path.startswith("/api/"):
@@ -74,7 +103,7 @@ async def response_headers(request: Request, call_next):
             await authorize(request.url.path, owner)
         else:
             created = False
-        response = await call_next(request)
+        response = await coordinated_call(request, call_next)
         if created and owner is not None:
             response.set_cookie(
                 "workbench_guest",
@@ -345,6 +374,12 @@ async def scenario_file(scenario_id: str, name: str):
     return scenario_resource(scenario_id, name)
 
 
+app.add_api_route("/api/recorded-audits", recordings_api.recorded_audits)
+app.add_api_route("/api/recorded-audits/{audit_id}", recordings_api.recorded_audit)
+app.add_api_route(
+    "/api/recorded-audits/{audit_id}/evidence", recordings_api.recorded_audit_evidence
+)
+app.add_api_route("/api/recorded-audits/{audit_id}/patch", recordings_api.recorded_audit_patch)
 app.add_api_route("/api/recordings", recordings_api.recordings)
 app.add_api_route("/api/recordings/{recording_id}", recordings_api.recording)
 app.add_api_route("/api/recorded-assets/{name}", recordings_api.asset)
@@ -357,6 +392,7 @@ async def mode():
 
 
 app.include_router(evaluator_router)
+app.include_router(patch_audit_router)
 
 
 # The same immutable fixture can be explored manually without exposing the runner API.

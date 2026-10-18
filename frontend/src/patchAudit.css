@@ -1,0 +1,13 @@
+.patch-audit-workspace { max-width: 100%; }
+.patch-audit-workspace button:not(.primary-button):not(.secondary-button) { color: #b8c8ff; }
+.audit-import label { display: grid; gap: 8px; margin: 16px 0; }
+.audit-import input, .audit-import textarea, .audit-import select { width: 100%; padding: 12px; border: 1px solid #46536b; border-radius: 6px; background: #0c1420; color: #e7ecf4; }
+.audit-import textarea { font-family: monospace; resize: vertical; }
+.audit-import-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.audit-confirm { border-top: 1px solid #46536b; margin-top: 22px; padding-top: 8px; }
+.audit-confirm label { display: flex; gap: 12px; align-items: flex-start; line-height: 1.6; margin: 18px 0; }
+.audit-confirm input { margin-top: 6px; }
+.audit-confirm button { margin-right: 12px; }
+.audit-summary { font-size: 19px; }
+.audit-case { border-left: 3px solid #e4a16d; padding: 4px 20px; margin: 20px 0; }
+@media(max-width:720px) { .evaluation-nav { flex-direction: column; align-items: flex-start; } .audit-import-fields { grid-template-columns: 1fr; gap: 0; } .evaluation-selection label { min-width: 0; width: 100%; } }

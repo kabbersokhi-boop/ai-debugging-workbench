@@ -33,7 +33,7 @@ async def test_first_visitor_can_reproduce_inspect_and_reopen_history() -> None:
             viewport={"width": 1512, "height": 1100}, reduced_motion="reduce"
         )
         page.on("pageerror", lambda error: errors.append(str(error)))
-        await page.goto(BASE_URL)
+        await page.goto(BASE_URL + "/?workspace=debugger")
         await expect(
             page.get_by_role("heading", name="From bug report to browser proof.")
         ).to_be_visible()
