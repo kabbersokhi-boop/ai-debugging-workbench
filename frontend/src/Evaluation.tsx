@@ -1,7 +1,9 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 const CandidateDiff = lazy(() => import("./Diff"));
+const Comparison = lazy(() => import("./Comparison"));
 import { api } from "./types";
 import "./evaluation.css";
+import { evidenceSummary } from "./evaluationSummary";
 
 type Task = {
   id: string;
@@ -30,6 +32,8 @@ type Candidate = {
   actual_response_model?: string;
   token_usage?: unknown;
   generation_record?: unknown;
+  experiment_id?: string;
+  trial_id?: string;
 };
 type Check = {
   name: string;
@@ -94,6 +98,16 @@ function mismatches(check: Check) {
 }
 
 export default function AgentEvaluation() {
+  if (new URLSearchParams(location.search).get("comparison") === "m02-v1")
+    return (
+      <Suspense fallback={<p>Opening controlled comparison…</p>}>
+        <Comparison />
+      </Suspense>
+    );
+  return <SingleEvaluation />;
+}
+
+function SingleEvaluation() {
   const [tasks, setTasks] = useState<Task[]>([]),
     [candidates, setCandidates] = useState<Candidate[]>([]);
   const [taskId, setTaskId] = useState(""),
@@ -225,6 +239,9 @@ export default function AgentEvaluation() {
     <main className="evaluation-workspace">
       <nav className="evaluation-nav">
         <a href="/">← Debugging workbench</a>
+        <a href="/?workspace=evaluation&comparison=m02-v1">
+          Controlled producer comparison →
+        </a>
         <span className="local-tag">LOCAL EVALUATOR</span>
       </nav>
       <header className="evaluation-intro">
@@ -292,7 +309,7 @@ export default function AgentEvaluation() {
         </label>
         <button
           className="primary-button"
-          disabled={!shown || running || busy}
+          disabled={!shown || running || busy || Boolean(shown.experiment_id)}
           onClick={start}
         >
           {busy ? "Starting…" : "Run evaluation"}
@@ -307,6 +324,17 @@ export default function AgentEvaluation() {
           </button>
         )}
       </section>
+      {shown?.experiment_id && (
+        <p>
+          This is a saved controlled trial.{" "}
+          <a
+            href={`/?workspace=evaluation&comparison=m02-v1&trial=${shown.trial_id}`}
+          >
+            Open its comparison and generation conditions
+          </a>
+          .
+        </p>
+      )}
       {task && (
         <section className="evaluation-panel">
           <div className="evaluation-heading">
@@ -343,7 +371,7 @@ export default function AgentEvaluation() {
           </p>
           <p>{shown.provenance}</p>
           <code>Candidate: {shown.candidate_hash}</code>
-          {shown.kind === "agent" && (
+          {shown.kind === "agent" && !shown.experiment_id && (
             <details>
               <summary>Generation provenance and settings</summary>
               <p>
@@ -368,9 +396,9 @@ export default function AgentEvaluation() {
           <p>
             {running
               ? "Executing isolated checks. Results will be retained when execution ends."
-              : (result?.reason ??
-                run.evidence.reason ??
-                "No completed checks are available.")}
+              : result
+                ? evidenceSummary(task?.id ?? "", result)
+                : (run.evidence.reason ?? "No completed checks are available.")}
           </p>
           <div className="evaluation-phases">
             <PhaseCard
@@ -402,21 +430,27 @@ export default function AgentEvaluation() {
               </p>
             )}
           {result?.independent?.checks && (
-            <div className="evaluation-checks">
-              {result.independent.checks.map((c) => (
-                <details key={c.name} open={c.status === "failed"}>
-                  <summary>
-                    <span className={`evaluation-status ${c.status}`}>
-                      {c.status}
-                    </span>{" "}
-                    {friendly(c.name)}
-                  </summary>
-                  <p>
-                    <code>{mismatches(c)}</code>
-                  </p>
-                </details>
-              ))}
-            </div>
+            <details className="evaluation-observations">
+              <summary>
+                Detailed behavioral observations ·{" "}
+                {result.independent.checks.length}
+              </summary>
+              <div className="evaluation-checks">
+                {result.independent.checks.map((c) => (
+                  <details key={c.name}>
+                    <summary>
+                      <span className={`evaluation-status ${c.status}`}>
+                        {c.status}
+                      </span>{" "}
+                      {friendly(c.name)}
+                    </summary>
+                    <p>
+                      <code>{mismatches(c)}</code>
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </details>
           )}
           {!running && (
             <>
@@ -426,7 +460,8 @@ export default function AgentEvaluation() {
                 image:
               </p>
               <pre>
-                uv run --project backend python -m workbench.evaluator.cli{" "}
+                uv run --project backend python -m workbench.evaluator.
+                {shown?.experiment_id ? "experiment_cli reproduce" : "cli"}{" "}
                 {run.candidate_id}
               </pre>
               <p>
@@ -516,7 +551,7 @@ export default function AgentEvaluation() {
         )}
       </section>
       <footer>
-        Finite checks on two public historical tasks. These results do not
+        Finite checks on approved public historical tasks. These results do not
         establish broad agent quality or uncontaminated benchmark performance.
       </footer>
     </main>

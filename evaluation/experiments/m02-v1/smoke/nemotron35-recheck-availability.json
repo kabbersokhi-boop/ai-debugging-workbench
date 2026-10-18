@@ -1,0 +1,74 @@
+{
+  "started_at": "2026-10-16T17:26:50.479553+00:00",
+  "request": {
+    "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Use a JSON action tool protocol. Return only {\"actions\":[{\"tool\":\"read\",\"path\":\"calc.py\",\"start\":1,\"end\":20}]}. This is a capability smoke test on development material, not benchmark evaluation."
+      },
+      {
+        "role": "user",
+        "content": "Development task: inspect calc.py before repairing a sum function. Choose the read action."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1000,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "request_hash": "533ee5e3f5ad347b41eddadd6151a58b00c4b77572c711293cdea5aa725d2528",
+  "purpose": "Development-only availability; no task material",
+  "response": {
+    "id": "chatcmpl-76796ad4-d7e2-4b51-9aa7-b1b785a72f14",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"actions\": [{\"tool\": \"read\", \"path\": \"calc.py\", \"start\": 1, \"end\": 20}]}",
+          "role": "assistant",
+          "reasoning_content": "The user wants me to use a JSON action tool protocol to read calc.py. They specified to return only {\"actions\":[{\"tool\":\"read\",\"path\":\"calc.py\",\"start\":1,\"end\":20}]}. This is a capability smoke test. I should return exactly that JSON."
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792171610,
+    "model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 79,
+      "completion_tokens": 91,
+      "total_tokens": 170,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 58,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "valid_action": true,
+  "calls": [
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 79,
+        "completion_tokens": 91,
+        "total_tokens": 170
+      },
+      "latency_ms": 1071
+    }
+  ],
+  "ended_at": "2026-10-16T17:26:51.578767+00:00"
+}

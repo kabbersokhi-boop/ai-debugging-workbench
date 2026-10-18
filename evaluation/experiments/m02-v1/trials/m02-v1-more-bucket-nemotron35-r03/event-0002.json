@@ -1,0 +1,12 @@
+{
+  "trial_id": "m02-v1-more-bucket-nemotron35-r03",
+  "sequence": 2,
+  "previous_hash": "6c34174d5504d7ffe4a5d759a1c7084c8899bed8e304069f402d3c0e15840782",
+  "at": "2026-10-16T18:03:16.595807+00:00",
+  "kind": "error",
+  "payload": {
+    "type": "TimeoutError",
+    "code": null
+  },
+  "hash": "c716febf948f184079903339696962b8188b6ceafc00e5e3298f8268c0edae6f"
+}

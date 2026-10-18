@@ -1,0 +1,74 @@
+{
+  "started_at": "2026-10-16T17:25:47.999926+00:00",
+  "request": {
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Use a JSON action tool protocol. Return only {\"actions\":[{\"tool\":\"read\",\"path\":\"calc.py\",\"start\":1,\"end\":20}]}. This is a capability smoke test on development material, not benchmark evaluation."
+      },
+      {
+        "role": "user",
+        "content": "Development task: inspect calc.py before repairing a sum function. Choose the read action."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1000,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "request_hash": "151e03b8db2f35cf8156feec9d418bc5c1114550dbaff097188f8985902a7a41",
+  "purpose": "Development-only availability; no task material",
+  "response": {
+    "id": "chatcmpl-b030a3fc-ffbe-4791-927a-f7264b631de4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"actions\": [{\"tool\": \"read\", \"path\": \"calc.py\", \"start\": 1, \"end\": 20}]}",
+          "role": "assistant",
+          "reasoning_content": "We need to output JSON with actions list containing a read tool for calc.py, start 1 end 20. Ensure format exactly: {\"actions\":[{\"tool\":\"read\",\"path\":\"calc.py\",\"start\":1,\"end\":20}]}. No extra text."
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792171548,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 79,
+      "completion_tokens": 88,
+      "total_tokens": 167,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 55,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "valid_action": true,
+  "calls": [
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 79,
+        "completion_tokens": 88,
+        "total_tokens": 167
+      },
+      "latency_ms": 3559
+    }
+  ],
+  "ended_at": "2026-10-16T17:25:51.581884+00:00"
+}

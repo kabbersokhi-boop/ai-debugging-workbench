@@ -55,7 +55,12 @@ async def test_evaluator_real_ui_candidates_failure_evidence_and_reopen():
                     await expect(
                         page.get_by_text("Ordinary checks passed.", exact=False)
                     ).to_be_visible()
-                    assert await page.locator(".evaluation-checks details[open]").count() > 0
+                    observations = page.locator("details.evaluation-observations")
+                    await expect(observations).to_be_visible()
+                    await expect(observations).not_to_have_attribute("open", "")
+                    await observations.locator("summary").first.click()
+                    await expect(page.locator(".evaluation-checks details").first).to_be_visible()
+                    await observations.locator("summary").first.click()
                 await page.screenshot(path=folder / f"{task_id}-{label}.png", full_page=True)
                 await page.get_by_role("region", name="Evaluation result").screenshot(
                     path=folder / f"{task_id}-{label}-result.png"

@@ -1,0 +1,77 @@
+{
+  "id": "m02-v1-boltons-indexedset-nemotron35-r02",
+  "coordinate": {
+    "id": "m02-v1-boltons-indexedset-nemotron35-r02",
+    "task_id": "boltons-indexedset",
+    "configuration_id": "nemotron35",
+    "trial": 2,
+    "order": 12
+  },
+  "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+  "configuration_hash": "fad0bd0a1790b5d2466b4c0915e6faaeafe9da3b6747840f90c07a76d83fb8b2",
+  "context_hash": "bc9470d50bf2597918fa8164a0564ec3d8d40cbcb77df0ec0b354971fe569e2a",
+  "generation_status": "invalid_output",
+  "error": null,
+  "requests": 4,
+  "token_reservation_upper_bound": 106731,
+  "provider_calls": [
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1597,
+        "completion_tokens": 1039,
+        "total_tokens": 2636
+      },
+      "latency_ms": 7059
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 6973,
+        "completion_tokens": 206,
+        "total_tokens": 7179
+      },
+      "latency_ms": 1591
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 12573,
+        "completion_tokens": 218,
+        "total_tokens": 12791
+      },
+      "latency_ms": 2059
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 17673,
+        "completion_tokens": 3000,
+        "total_tokens": 20673
+      },
+      "latency_ms": 20786
+    }
+  ],
+  "counts": {
+    "revisions": 0,
+    "ordinary_runs": 0,
+    "read_search_actions": 11
+  },
+  "generation_wall_ms": 31525,
+  "ordinary_tool_ms": 0,
+  "events_count": 13,
+  "events_head": "7f37bd34e7d739492c1774dfcae717915bb9a622c9b429edc6fbf1e6cf536903",
+  "candidate_id": null
+}

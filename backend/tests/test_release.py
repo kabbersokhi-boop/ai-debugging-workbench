@@ -92,6 +92,7 @@ async def test_public_recorded_surface_has_no_execution_or_private_history(monke
         for path in (
             "/api/evaluator/tasks",
             "/api/evaluator/runs",
+            "/api/evaluator/comparisons/m02-v1",
             "/api/runs",
             "/api/investigations/x",
             "/api/repairs/x",

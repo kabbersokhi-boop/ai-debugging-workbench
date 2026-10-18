@@ -1,0 +1,8 @@
+{
+  "migration": "006 -> 007, additive",
+  "revision": "007",
+  "trial_updates_rejected": true,
+  "trial_deletes_rejected": true,
+  "fixture_experiment": "development",
+  "production_matrix_affected": false
+}

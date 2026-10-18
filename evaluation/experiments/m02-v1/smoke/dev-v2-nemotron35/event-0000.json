@@ -1,0 +1,40 @@
+{
+  "trial_id": "dev-v2-nemotron35",
+  "sequence": 0,
+  "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "at": "2026-10-16T17:34:22.358509+00:00",
+  "kind": "context",
+  "payload": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are repairing an upstream Python library. You have the SAME source-inspection,\nedit, and ordinary-test tools as every compared configuration. No shell or external retrieval.\nReturn one JSON object: {\"decision\":\"brief explanation\", \"actions\":[...]}.\nTools (use exact fields; the file path belongs INSIDE each edit):\n{\"tool\":\"read\",\"path\":\"allowed file\",\"start\":1,\"end\":100} (1-based, <=120 lines)\n{\"tool\":\"search\",\"query\":\"literal text\"} (all approved files; <=20 hits)\n{\"tool\":\"edit\",\"edits\":[{\"path\":\"allowed production path\",\"old\":\"exact unique text\",\"new\":\"replacement\"}]}\n{\"tool\":\"test\"} (fixed ordinary upstream command; current source, fresh isolated container)\n{\"tool\":\"submit\"} (submit current source as final; must have edited and run tests after last edit).\nAt most four actions per response. Read/search/test results arrive as a user tool-results message.\nOnly production paths may be edited; tests are available for reading and execution, never editing.\nUse source inspection as needed, implement a legitimate correction, run ordinary tests, and revise\nif they fail within the stated budgets. Passing ordinary tests does not prove correctness.\nYou are not given reference fixes or independent checks. Preserve documented behavior and consider\nedge cases in the public problem. Submit when ready. No markdown fences around the JSON.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"project\": \"synthetic-development\", \"base_commit\": \"development-only-v1\", \"problem\": \"add(a, b) subtracts b. Correct integer addition. Inspect the source, edit, run ordinary tests, and submit.\", \"expected_behavior\": \"Return the sum for positive and negative integers.\", \"allowed_paths\": [\"calc.py\"], \"files\": {\"calc.py\": {\"lines\": 2, \"sha256\": \"e1a894022d1a082987b87adecb623438c9e386d86b2b621cff4a5fe7fdf7edc8\"}, \"tests/test_calc.py\": {\"lines\": 5, \"sha256\": \"e27183c3d48fb638df00e25c11c0a52cd73ef381e5f3ed87bc44d156081fa4f6\"}}, \"ordinary_command\": [\"python\", \"-m\", \"pytest\", \"-q\", \"-p\", \"no:cacheprovider\", \"tests/test_calc.py\"], \"environment\": \"Python 3.12.14, pytest 8.3.5; no network; read-only source; fixed installed dependencies\", \"source_excerpts\": [{\"path\": \"calc.py\", \"symbol\": \"add\", \"start\": 1, \"end\": 2, \"content\": \"def add(a, b):\\n    return a - b\\n\"}], \"budget\": {\"requests\": 12, \"output_tokens_per_request\": 3000, \"token_upper_bound\": 180000, \"wall_seconds\": 420, \"provider_timeout_seconds\": 60, \"revisions\": 4, \"ordinary_runs\": 4, \"read_search_actions\": 16, \"actions_per_response\": 4, \"automatic_retries\": 0, \"source_read_chars\": 12000}}"
+      }
+    ],
+    "context_hash": "fd325ef5ec33de27b92673952c00ca0a784e460e0794af327af973ea6c134474",
+    "coordinate": {
+      "id": "dev-v2-nemotron35",
+      "task_id": "development",
+      "configuration_id": "nemotron35",
+      "trial": 1,
+      "order": 0
+    },
+    "freeze_hash": "1fe4db80ea1fc931e6d0525c220447cc21ad5bd6f784f98d67f61367e65eb971",
+    "configuration": {
+      "id": "nemotron35",
+      "label": "Nemotron 3.5 Super / JSON tools v1",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "temperature": 0
+    },
+    "harness_source_hash": "0d1f63fcc21a80eb072188328a247ea65a0616f11dc5b7f57a9d69814dc7ccf4",
+    "source_hashes": {
+      "calc.py": "e1a894022d1a082987b87adecb623438c9e386d86b2b621cff4a5fe7fdf7edc8",
+      "tests/test_calc.py": "e27183c3d48fb638df00e25c11c0a52cd73ef381e5f3ed87bc44d156081fa4f6"
+    }
+  },
+  "hash": "e799036149b3f2f2db1021d56784820a48a306120168009afa095bd94be19005"
+}

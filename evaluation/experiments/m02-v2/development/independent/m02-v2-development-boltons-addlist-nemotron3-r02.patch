@@ -1,0 +1,25 @@
+--- a/boltons/dictutils.py
++++ b/boltons/dictutils.py
+@@ -225,13 +225,19 @@
+         Called ``addlist`` for consistency with :meth:`getlist`, but
+         tuples and other sequences and iterables work.
+         """
+-        if not v:
++        try:
++            # Consume iterator once, collect values
++            collected = list(v)
++        except TypeError:
++            # Fallback for non-iterable v (should not happen per spec)
++            collected = []
++        if not collected:
+             return
+         self_insert = self._insert
+         values = super().setdefault(k, [])
+-        for subv in v:
++        for subv in collected:
+             self_insert(k, subv)
+-        values.extend(v)
++        values.extend(collected)
+ 
+     def get(self, k, default=None):
+         """Return the value for key *k* if present in the dictionary, else

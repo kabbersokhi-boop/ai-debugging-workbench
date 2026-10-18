@@ -1,0 +1,102 @@
+{
+  "id": "m02-v1-more-bucket-nemotron35-r01",
+  "coordinate": {
+    "id": "m02-v1-more-bucket-nemotron35-r01",
+    "task_id": "more-bucket",
+    "configuration_id": "nemotron35",
+    "trial": 1,
+    "order": 2
+  },
+  "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+  "configuration_hash": "fad0bd0a1790b5d2466b4c0915e6faaeafe9da3b6747840f90c07a76d83fb8b2",
+  "context_hash": "2b5d803d43ebe862c678cbdc4198eac084b94328a63275d417f898198f15e6bf",
+  "generation_status": "submitted",
+  "error": null,
+  "requests": 6,
+  "token_reservation_upper_bound": 132720,
+  "provider_calls": [
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 2058,
+        "completion_tokens": 367,
+        "total_tokens": 2425
+      },
+      "latency_ms": 6388
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 5178,
+        "completion_tokens": 127,
+        "total_tokens": 5305
+      },
+      "latency_ms": 1876
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 6800,
+        "completion_tokens": 111,
+        "total_tokens": 6911
+      },
+      "latency_ms": 1231
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 8988,
+        "completion_tokens": 218,
+        "total_tokens": 9206
+      },
+      "latency_ms": 1673
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 10252,
+        "completion_tokens": 60,
+        "total_tokens": 10312
+      },
+      "latency_ms": 866
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 11871,
+        "completion_tokens": 97,
+        "total_tokens": 11968
+      },
+      "latency_ms": 1316
+    }
+  ],
+  "counts": {
+    "revisions": 1,
+    "ordinary_runs": 1,
+    "read_search_actions": 3
+  },
+  "generation_wall_ms": 14676,
+  "ordinary_tool_ms": 1094,
+  "events_count": 20,
+  "events_head": "ef7ac16e6db8a5ff71a751b7db66b6503a223b2481d3654127e1172c12877c69",
+  "candidate_id": "m02-v1-more-bucket-nemotron35-r01",
+  "candidate_hash": "4357b68c317cccc05769bc284d9af3af15bedaecf4c94f2f94223fa0724f103b"
+}

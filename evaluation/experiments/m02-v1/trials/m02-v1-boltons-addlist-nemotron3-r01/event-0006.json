@@ -1,0 +1,22 @@
+{
+  "trial_id": "m02-v1-boltons-addlist-nemotron3-r01",
+  "sequence": 6,
+  "previous_hash": "0c3b08d11564d63e662cf3c8b50b6c54d4d350a2e717917abd0049c936b8bb04",
+  "at": "2026-10-16T17:52:53.607034+00:00",
+  "kind": "tools",
+  "payload": {
+    "message": {
+      "role": "user",
+      "content": "{\"tool_results\": [{\"error\": \"Invalid JSON action protocol; return one object with actions\"}], \"requests_remaining\": 10, \"budget_used\": {\"revisions\": 0, \"ordinary_runs\": 0, \"read_search_actions\": 0}, \"instruction\": \"Use remaining tools to correct ordinary failures, then submit. Last request must submit.\"}"
+    },
+    "source_hashes": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500",
+      "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    }
+  },
+  "hash": "ec6c3d31bcc76937db3b15fa3a051d0c1b78e5140c2bd8fd889100b59aa5e80f"
+}

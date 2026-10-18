@@ -1,0 +1,89 @@
+{
+  "id": "m02-v1-boltons-indexedset-nemotron35-r03",
+  "coordinate": {
+    "id": "m02-v1-boltons-indexedset-nemotron35-r03",
+    "task_id": "boltons-indexedset",
+    "configuration_id": "nemotron35",
+    "trial": 3,
+    "order": 19
+  },
+  "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+  "configuration_hash": "fad0bd0a1790b5d2466b4c0915e6faaeafe9da3b6747840f90c07a76d83fb8b2",
+  "context_hash": "bc9470d50bf2597918fa8164a0564ec3d8d40cbcb77df0ec0b354971fe569e2a",
+  "generation_status": "invalid_output",
+  "error": null,
+  "requests": 5,
+  "token_reservation_upper_bound": 127413,
+  "provider_calls": [
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1597,
+        "completion_tokens": 190,
+        "total_tokens": 1787
+      },
+      "latency_ms": 1734
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 5995,
+        "completion_tokens": 327,
+        "total_tokens": 6322
+      },
+      "latency_ms": 4422
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 7339,
+        "completion_tokens": 197,
+        "total_tokens": 7536
+      },
+      "latency_ms": 1431
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 12788,
+        "completion_tokens": 1553,
+        "total_tokens": 14341
+      },
+      "latency_ms": 11195
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 17203,
+        "completion_tokens": 3000,
+        "total_tokens": 20203
+      },
+      "latency_ms": 24552
+    }
+  ],
+  "counts": {
+    "revisions": 0,
+    "ordinary_runs": 0,
+    "read_search_actions": 10
+  },
+  "generation_wall_ms": 43361,
+  "ordinary_tool_ms": 0,
+  "events_count": 16,
+  "events_head": "e3078578e327be73e03d7593f547ca2f7d6569679f73ccd2ca8d822091a2f0e9",
+  "candidate_id": null
+}

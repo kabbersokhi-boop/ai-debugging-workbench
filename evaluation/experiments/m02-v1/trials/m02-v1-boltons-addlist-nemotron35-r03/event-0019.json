@@ -1,0 +1,28 @@
+{
+  "trial_id": "m02-v1-boltons-addlist-nemotron35-r03",
+  "sequence": 19,
+  "previous_hash": "c26c103440dd9060dc1e77a54d14f361c62372696bed6ce1fbda0197730f7771",
+  "at": "2026-10-16T18:12:26.723514+00:00",
+  "kind": "terminal",
+  "payload": {
+    "status": "token_budget_exhausted",
+    "error": null,
+    "requests": 6,
+    "reserved_tokens": 164571,
+    "source_hashes": {
+      "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+      "boltons/dictutils.py": "e832f682b0c2e791d06b02b0041fcbc4e6f7f76c8b619a79b3556fc785e9f55a",
+      "boltons/urlutils.py": "86c136cfcd27aa9fc2a8762c696333a212e30c92bd7a8f2ea1c66917eb43b4c4",
+      "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+      "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    },
+    "counts": {
+      "revisions": 2,
+      "ordinary_runs": 1,
+      "read_search_actions": 3
+    },
+    "elapsed_ms": 21911
+  },
+  "hash": "1a3ca047ba8f8f5151e0fe0eda6065f1dec47b39ffdfeabbf033c46e056a1b3e"
+}

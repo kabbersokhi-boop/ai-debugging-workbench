@@ -1,0 +1,12 @@
+{
+  "availability": {
+    "requests": 5,
+    "responses": 2,
+    "reported_tokens": 337
+  },
+  "capability": {
+    "requests": 16,
+    "responses": 15,
+    "reported_tokens": 50788
+  }
+}

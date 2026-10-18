@@ -1,0 +1,23 @@
+{
+  "id": "dev-v2-nemotron3",
+  "task_id": "development",
+  "spec_hash": "d699c5e92bccf9ad1e4d3d8f27ada0347adc56c2758cd1f218d6709fb0175de7",
+  "kind": "agent",
+  "label": "Nemotron 3 Super / JSON tools v1 \u00b7 trial 1",
+  "producer": "nvidia/nemotron-3-super-120b-a12b",
+  "experiment_id": "development-only",
+  "trial_id": "dev-v2-nemotron3",
+  "provenance": "Genuine interactive model/harness trial. Same approved source and ordinary tools; no independent or reference feedback. Public historical task; contamination unknown.",
+  "edits": [
+    {
+      "path": "calc.py",
+      "old": "    return a - b\n",
+      "new": "    return a + b\n"
+    }
+  ],
+  "freeze_hash": "1fe4db80ea1fc931e6d0525c220447cc21ad5bd6f784f98d67f61367e65eb971",
+  "generation": "trials/dev-v2-nemotron3",
+  "configuration_hash": "168f597f46d24ca1bf84ffe9875f526c5fa595d05a639ab748056c9b11f8a3ec",
+  "events_head": "072867bba86fbc2f9f947017a5f6f82ad7541183cc173890fa29ed3b4b0e2fbe",
+  "candidate_hash": "69cbe1d6a52c3c93da6ae1aa4a3f26b72d35510a977afb78c74dd0a2533dbfd0"
+}

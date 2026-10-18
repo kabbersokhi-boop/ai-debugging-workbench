@@ -1,0 +1,43 @@
+{
+  "trial_id": "m02-v2-development-boltons-addlist-nemotron3-r02",
+  "sequence": 17,
+  "previous_hash": "19a155e4b084fe15011d2b446f96d576da43922831a4b9ee61d7fd2fd05a5a06",
+  "at": "2026-10-16T22:55:17.495369+00:00",
+  "kind": "response",
+  "payload": {
+    "id": "chatcmpl-1cda7867-8636-40e0-87d2-4ee14b64cde4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\"tool\": \"test\"}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1792191313,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 6111,
+      "completion_tokens": 7,
+      "total_tokens": 6118,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      }
+    }
+  },
+  "hash": "5da2374811bbbb193d34c9427fb4599ab250c444830729972335f140532241a2"
+}

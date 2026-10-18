@@ -1,0 +1,26 @@
+{
+  "trial_id": "m02-v1-boltons-indexedset-nemotron35-r03",
+  "sequence": 15,
+  "previous_hash": "1b930e96bf069cf2945d645c8abe5dd1314d363a565c51f9015530b070b29ab2",
+  "at": "2026-10-16T18:04:47.795193+00:00",
+  "kind": "terminal",
+  "payload": {
+    "status": "invalid_output",
+    "error": null,
+    "requests": 5,
+    "reserved_tokens": 127413,
+    "source_hashes": {
+      "boltons/__init__.py": "bc65b003e91e1580b6deb48f9c11fc5702756f7acaeeed894dabcb02873bc452",
+      "boltons/setutils.py": "6dc3c91b2c3bc30d319d62803a5ba1ac326022fce7b24e3402d455c897f3c478",
+      "tests/test_setutils.py": "fcc144f552fd19e91949d8b0b5bc0d46e6e74971f22081a0b6e317bee077abfe",
+      "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+    },
+    "counts": {
+      "revisions": 0,
+      "ordinary_runs": 0,
+      "read_search_actions": 10
+    },
+    "elapsed_ms": 43361
+  },
+  "hash": "e3078578e327be73e03d7593f547ca2f7d6569679f73ccd2ca8d822091a2f0e9"
+}

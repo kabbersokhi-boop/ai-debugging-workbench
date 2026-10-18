@@ -137,3 +137,19 @@ class Evaluation(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     evidence: Mapped[dict[str, Any]] = mapped_column(JSON)
+
+
+class ComparisonTrial(Base):
+    __tablename__ = "agent_comparison_trials"
+    __table_args__ = (
+        UniqueConstraint("experiment_id", "task_id", "configuration_id", "trial_index"),
+    )
+    id: Mapped[str] = mapped_column(String(100), primary_key=True)
+    experiment_id: Mapped[str] = mapped_column(String(40), index=True)
+    task_id: Mapped[str] = mapped_column(String(80))
+    configuration_id: Mapped[str] = mapped_column(String(80))
+    trial_index: Mapped[int]
+    record_hash: Mapped[str] = mapped_column(String(64))
+    evidence: Mapped[dict[str, Any]] = mapped_column(JSON)
+    evaluation_id: Mapped[UUID | None] = mapped_column(ForeignKey("agent_evaluations.id"))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

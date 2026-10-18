@@ -1,0 +1,11 @@
+{
+  "id": "more-seekable-baseline",
+  "task_id": "more-seekable",
+  "spec_hash": "85d7f1e32b53c05674cfdf486357c28b9a3227941051a3841c558a9afeea7c3d",
+  "label": "baseline authored control",
+  "kind": "control",
+  "producer": "authored control",
+  "provenance": "Validation control; excluded from producer outcomes. Reference uses exact upstream production hunk; alternatives/negative are deliberately authored.",
+  "edits": [],
+  "candidate_hash": "a2acc1d8be7277424da13d123e68089eac8aff3fac27b9bdfad55205e1449c05"
+}

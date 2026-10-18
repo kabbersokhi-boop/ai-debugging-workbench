@@ -1,0 +1,19 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "check.log": "e161571dc5a7586cde609c367dde1d421a5eef8ca69b98c3ab2fccd8b6dca9cf",
+    "ci-implementation.json": "dfdb44feb6831e1a7aa6a3f768d2411d36c8ceda9d2a2d7645097c4c27bf6e11",
+    "ci-implementation.log": "aa4dfa39942e745d1fd505b20945d8934a538a241b2b2e4b79de498f9210c37a",
+    "development-independent.log": "b7b88c3b4dd97c2a1ea9a5160c920752036745e767b72cdda8014fba9620c796",
+    "e2e.log": "a6073595ac93d4ebc655951694a4f23992a572c045479e299585d8eef5f38c79",
+    "focused.log": "0ac6cdafbfa9bebbeb1a3fee4381fdec99d7c8fa6f6c1f95fe3dbb87ad25f0f2",
+    "preflight.log": "b1950207e3a2fdaa92dfeba1a14b757cb539e917e063183ff63c8491cabbc8af",
+    "preservation.json": "f922a4ac1e332e0df58d7a8bd19eaf67e700fbb23a4c4c368d0a4f0a35510771",
+    "recovery.log": "f04173a0a383e16976f40d60097697786eaf241889c3fec3da19a9dfaa7f2112",
+    "release-boundary.log": "1753e8693cf31831170b66947d6537031b96b1e44558275fe7a64aefd38e3bae",
+    "release-browser.log": "74366d17c30374972c6d2a67f42dcab8ac6949e42ce67e2f15f1fb20e8b67956",
+    "reproduction-proof.json": "9b6f90a98b20eff9dc68e172b4e6644fd28cfcf619b8e0cf5c5713f4fb410e60",
+    "reproduction.json": "f638cefc33b7f2e36f8ef49ed6eb509da6a6c7d425b6eced1be187bbfc84933d",
+    "reproduction.log": "b7b88c3b4dd97c2a1ea9a5160c920752036745e767b72cdda8014fba9620c796"
+  }
+}

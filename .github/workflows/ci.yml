@@ -1,9 +1,9 @@
 name: Milestone checks
 on:
   push:
-    branches: [main, 'milestone/**']
+    branches: [main, 'milestone/**', 'feature/agent-evaluator-m01', 'feature/agent-evaluator-m02']
   pull_request:
-    branches: [main, 'milestone/**']
+    branches: [main, 'milestone/**', 'feature/agent-evaluator-m01', 'feature/agent-evaluator-m02']
 permissions:
   contents: read
 jobs:
@@ -29,6 +29,7 @@ jobs:
       - run: ./scripts/check
       - run: uv run --project backend playwright install --with-deps chromium
       - run: docker compose up --build -d --wait api
+      - run: uv run --project backend python -m workbench.evaluator.experiment_cli import
       - run: ./scripts/e2e
       - run: ./scripts/recovery-smoke
       - run: docker compose -f compose.release.yaml up --build -d --wait
@@ -43,6 +44,7 @@ jobs:
           name: milestone-evidence
           path: |
             artifacts/evaluator/
+            artifacts/evaluator-m02/
             artifacts/acceptance/
             artifacts/milestone-03/
             artifacts/milestone-04/

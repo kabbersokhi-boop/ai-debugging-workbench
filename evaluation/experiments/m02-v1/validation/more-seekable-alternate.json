@@ -1,0 +1,754 @@
+{
+  "candidate_hash": "fcd7abbe087c8604c71ec7d8bd62bcd762275d7364617329573a4dc7984e9637",
+  "binding": {
+    "task_id": "more-seekable",
+    "base_commit": "ca711220a6657a22655f6fa497524d006a735c5f",
+    "spec_hash": "85d7f1e32b53c05674cfdf486357c28b9a3227941051a3841c558a9afeea7c3d",
+    "candidate_hash": "fcd7abbe087c8604c71ec7d8bd62bcd762275d7364617329573a4dc7984e9637",
+    "patch_hash": "c43ff6ff7f974e914d3355adf99f7a3c1c5b6543c969a2023ea68a5ca4061059",
+    "verifier_hash": "09befadb6adf5cb5cdbba2fa741e3ed5ceaf5ab86cfa1c3c62a07f892c15261b",
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+    "executed_file_hashes": {
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "96fcc331cebcb912a7c4b85a690274fc0453d779dfcc10a505ac790f6970a356",
+      "more_itertools/recipes.py": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db",
+      "tests/test_more.py": "e88a96a28e3c42fd1aeacd55850fe080659735cce2a36157adf487d08146cf17",
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    }
+  },
+  "binding_hash": "72c7baeec8db58a737ea67ae22a1a7d7ed32ae8531a014e2ebf31cc8c30d8097",
+  "ordinary": {
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_more.py::SeekableTest"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T17:30:28.315740+00:00",
+    "resource_usage": {
+      "cpu_ns": 550334000,
+      "peak_memory_bytes_observed": 38612992,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "96fcc331cebcb912a7c4b85a690274fc0453d779dfcc10a505ac790f6970a356",
+      "more_itertools/recipes.py": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db",
+      "tests/test_more.py": "e88a96a28e3c42fd1aeacd55850fe080659735cce2a36157adf487d08146cf17"
+    },
+    "container_id": "38444cc42f41aab15fa515b2d0e202fd582dfb62c1b224a9f47b5f154db57210",
+    "exit_code": 0,
+    "oom_killed": false,
+    "stdout": "..............                                                           [100%]\n14 passed in 0.34s\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T17:30:29.406523+00:00",
+    "duration_ms": 1091,
+    "outcome": "passed"
+  },
+  "independent": {
+    "command": [
+      "python",
+      "-I",
+      "-B",
+      "-c",
+      "\nimport json, sys\nsys.path.insert(0, '/source')\nfrom more_itertools import seekable\nresult = {}\nfor name, values in [('mixed', [0, False, None, 2]), ('single', [7]), ('empty', [])]:\n    count = [0]\n    def source():\n        for value in values:\n            count[0] += 1\n            yield value\n    s = seekable(source(), maxlen=0)\n    events = []\n    for op in ['peek','peek','bool','bool','next','peek','next','bool','next','next','bool','peek_default','next']:\n        try:\n            if op == 'peek': value = s.peek()\n            elif op == 'peek_default': value = s.peek('end')\n            elif op == 'bool': value = bool(s)\n            else: value = next(s)\n        except Exception as error:\n            value = {'error': type(error).__name__}\n        events.append({'op': op, 'value': value, 'pulled': count[0], 'cache': list(s.elements())})\n    result[name] = events\nfor name, limit in [('default', None), ('positive', 2)]:\n    s = seekable([1,2,3], maxlen=limit)\n    truth, first, n1, n2 = bool(s), s.peek(), next(s), next(s)\n    s.seek(0)\n    replay = list(s)\n    result[name] = {'truth': truth, 'peek': first, 'next': [n1,n2], 'replay': replay,\n                    'cache': list(s.elements()), 'exhausted': bool(s)}\nprint(json.dumps(result))\n"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T17:30:29.543508+00:00",
+    "resource_usage": {
+      "cpu_ns": 35259000,
+      "peak_memory_bytes_observed": 3407872,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "96fcc331cebcb912a7c4b85a690274fc0453d779dfcc10a505ac790f6970a356",
+      "more_itertools/recipes.py": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db"
+    },
+    "container_id": "938c5aae7145146c6e4fda72499f6a7aeb918e20458bf52fdbf503f75f812641",
+    "exit_code": 0,
+    "oom_killed": false,
+    "stdout": "{\"mixed\": [{\"op\": \"peek\", \"value\": 0, \"pulled\": 1, \"cache\": []}, {\"op\": \"peek\", \"value\": 0, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": true, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": true, \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": 0, \"pulled\": 1, \"cache\": []}, {\"op\": \"peek\", \"value\": false, \"pulled\": 2, \"cache\": []}, {\"op\": \"next\", \"value\": false, \"pulled\": 2, \"cache\": []}, {\"op\": \"bool\", \"value\": true, \"pulled\": 3, \"cache\": []}, {\"op\": \"next\", \"value\": null, \"pulled\": 3, \"cache\": []}, {\"op\": \"next\", \"value\": 2, \"pulled\": 4, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 4, \"cache\": []}, {\"op\": \"peek_default\", \"value\": \"end\", \"pulled\": 4, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 4, \"cache\": []}], \"single\": [{\"op\": \"peek\", \"value\": 7, \"pulled\": 1, \"cache\": []}, {\"op\": \"peek\", \"value\": 7, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": true, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": true, \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": 7, \"pulled\": 1, \"cache\": []}, {\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 1, \"cache\": []}, {\"op\": \"peek_default\", \"value\": \"end\", \"pulled\": 1, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 1, \"cache\": []}], \"empty\": [{\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 0, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"peek\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}, {\"op\": \"bool\", \"value\": false, \"pulled\": 0, \"cache\": []}, {\"op\": \"peek_default\", \"value\": \"end\", \"pulled\": 0, \"cache\": []}, {\"op\": \"next\", \"value\": {\"error\": \"StopIteration\"}, \"pulled\": 0, \"cache\": []}], \"default\": {\"truth\": true, \"peek\": 1, \"next\": [1, 2], \"replay\": [1, 2, 3], \"cache\": [1, 2, 3], \"exhausted\": false}, \"positive\": {\"truth\": true, \"peek\": 1, \"next\": [1, 2], \"replay\": [1, 2, 3], \"cache\": [2, 3], \"exhausted\": false}}\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T17:30:30.256191+00:00",
+    "duration_ms": 713,
+    "checks": [
+      {
+        "name": "mixed",
+        "expected": [
+          {
+            "op": "peek",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": false,
+            "pulled": 2,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": false,
+            "pulled": 2,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 3,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": null,
+            "pulled": 3,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": 2,
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 4,
+            "cache": []
+          }
+        ],
+        "observed": [
+          {
+            "op": "peek",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": 0,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": false,
+            "pulled": 2,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": false,
+            "pulled": 2,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 3,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": null,
+            "pulled": 3,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": 2,
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 4,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 4,
+            "cache": []
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "name": "single",
+        "expected": [
+          {
+            "op": "peek",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          }
+        ],
+        "observed": [
+          {
+            "op": "peek",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": true,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": 7,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 1,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 1,
+            "cache": []
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "name": "empty",
+        "expected": [
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          }
+        ],
+        "observed": [
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "bool",
+            "value": false,
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "peek_default",
+            "value": "end",
+            "pulled": 0,
+            "cache": []
+          },
+          {
+            "op": "next",
+            "value": {
+              "error": "StopIteration"
+            },
+            "pulled": 0,
+            "cache": []
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "name": "default",
+        "expected": {
+          "truth": true,
+          "peek": 1,
+          "next": [
+            1,
+            2
+          ],
+          "replay": [
+            1,
+            2,
+            3
+          ],
+          "cache": [
+            1,
+            2,
+            3
+          ],
+          "exhausted": false
+        },
+        "observed": {
+          "truth": true,
+          "peek": 1,
+          "next": [
+            1,
+            2
+          ],
+          "replay": [
+            1,
+            2,
+            3
+          ],
+          "cache": [
+            1,
+            2,
+            3
+          ],
+          "exhausted": false
+        },
+        "status": "passed"
+      },
+      {
+        "name": "positive",
+        "expected": {
+          "truth": true,
+          "peek": 1,
+          "next": [
+            1,
+            2
+          ],
+          "replay": [
+            1,
+            2,
+            3
+          ],
+          "cache": [
+            2,
+            3
+          ],
+          "exhausted": false
+        },
+        "observed": {
+          "truth": true,
+          "peek": 1,
+          "next": [
+            1,
+            2
+          ],
+          "replay": [
+            1,
+            2,
+            3
+          ],
+          "cache": [
+            2,
+            3
+          ],
+          "exhausted": false
+        },
+        "status": "passed"
+      }
+    ],
+    "outcome": "passed"
+  },
+  "status": "passed",
+  "reason": "Frozen behavioral observations compared outside the candidate container"
+}

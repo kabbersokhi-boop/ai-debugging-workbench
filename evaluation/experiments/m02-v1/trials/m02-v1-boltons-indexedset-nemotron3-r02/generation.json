@@ -1,0 +1,173 @@
+{
+  "id": "m02-v1-boltons-indexedset-nemotron3-r02",
+  "coordinate": {
+    "id": "m02-v1-boltons-indexedset-nemotron3-r02",
+    "task_id": "boltons-indexedset",
+    "configuration_id": "nemotron3",
+    "trial": 2,
+    "order": 11
+  },
+  "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+  "configuration_hash": "3a4069d1454ecc9abb5c1ac209204b5ad3f403d76f89fc437a83796f4e3765c3",
+  "context_hash": "bc9470d50bf2597918fa8164a0564ec3d8d40cbcb77df0ec0b354971fe569e2a",
+  "generation_status": "request_budget_exhausted",
+  "error": null,
+  "requests": 12,
+  "token_reservation_upper_bound": 154623,
+  "provider_calls": [
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1597,
+        "completion_tokens": 630,
+        "total_tokens": 2227
+      },
+      "latency_ms": 14823
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1722,
+        "completion_tokens": 216,
+        "total_tokens": 1938
+      },
+      "latency_ms": 5470
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1849,
+        "completion_tokens": 901,
+        "total_tokens": 2750
+      },
+      "latency_ms": 20427
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 2559,
+        "completion_tokens": 365,
+        "total_tokens": 2924
+      },
+      "latency_ms": 5991
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 2685,
+        "completion_tokens": 331,
+        "total_tokens": 3016
+      },
+      "latency_ms": 15375
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 3951,
+        "completion_tokens": 331,
+        "total_tokens": 4282
+      },
+      "latency_ms": 18914
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 4058,
+        "completion_tokens": 242,
+        "total_tokens": 4300
+      },
+      "latency_ms": 6179
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 4184,
+        "completion_tokens": 487,
+        "total_tokens": 4671
+      },
+      "latency_ms": 17372
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 4900,
+        "completion_tokens": 183,
+        "total_tokens": 5083
+      },
+      "latency_ms": 3831
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 5026,
+        "completion_tokens": 248,
+        "total_tokens": 5274
+      },
+      "latency_ms": 4431
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 5152,
+        "completion_tokens": 341,
+        "total_tokens": 5493
+      },
+      "latency_ms": 5969
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 5276,
+        "completion_tokens": 272,
+        "total_tokens": 5548
+      },
+      "latency_ms": 4769
+    }
+  ],
+  "counts": {
+    "revisions": 0,
+    "ordinary_runs": 0,
+    "read_search_actions": 4
+  },
+  "generation_wall_ms": 123586,
+  "ordinary_tool_ms": 0,
+  "events_count": 38,
+  "events_head": "dffa3f3be96914319702d1e60fddea740336b29bcabd98d77daf03ce2171dd5a",
+  "candidate_id": null
+}

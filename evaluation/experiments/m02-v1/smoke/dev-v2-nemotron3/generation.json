@@ -1,0 +1,90 @@
+{
+  "id": "dev-v2-nemotron3",
+  "coordinate": {
+    "id": "dev-v2-nemotron3",
+    "task_id": "development",
+    "configuration_id": "nemotron3",
+    "trial": 1,
+    "order": 0
+  },
+  "freeze_hash": "1fe4db80ea1fc931e6d0525c220447cc21ad5bd6f784f98d67f61367e65eb971",
+  "configuration_hash": "168f597f46d24ca1bf84ffe9875f526c5fa595d05a639ab748056c9b11f8a3ec",
+  "context_hash": "fd325ef5ec33de27b92673952c00ca0a784e460e0794af327af973ea6c134474",
+  "generation_status": "submitted",
+  "error": null,
+  "requests": 5,
+  "token_reservation_upper_bound": 38309,
+  "provider_calls": [
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 772,
+        "completion_tokens": 532,
+        "total_tokens": 1304
+      },
+      "latency_ms": 14142
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1227,
+        "completion_tokens": 83,
+        "total_tokens": 1310
+      },
+      "latency_ms": 2203
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1722,
+        "completion_tokens": 151,
+        "total_tokens": 1873
+      },
+      "latency_ms": 5556
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 2313,
+        "completion_tokens": 53,
+        "total_tokens": 2366
+      },
+      "latency_ms": 1225
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 3308,
+        "completion_tokens": 79,
+        "total_tokens": 3387
+      },
+      "latency_ms": 2951
+    }
+  ],
+  "counts": {
+    "revisions": 1,
+    "ordinary_runs": 1,
+    "read_search_actions": 2
+  },
+  "generation_wall_ms": 32126,
+  "ordinary_tool_ms": 5851,
+  "events_count": 16,
+  "events_head": "072867bba86fbc2f9f947017a5f6f82ad7541183cc173890fa29ed3b4b0e2fbe",
+  "candidate_id": "dev-v2-nemotron3",
+  "candidate_hash": "69cbe1d6a52c3c93da6ae1aa4a3f26b72d35510a977afb78c74dd0a2533dbfd0"
+}

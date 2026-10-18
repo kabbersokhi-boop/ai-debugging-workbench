@@ -1,0 +1,23 @@
+{
+  "id": "m02-v1-more-bucket-nemotron3-r03",
+  "task_id": "more-bucket",
+  "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+  "kind": "agent",
+  "label": "Nemotron 3 Super / JSON source tools v2 \u00b7 trial 3",
+  "producer": "nvidia/nemotron-3-super-120b-a12b",
+  "experiment_id": "m02-v1",
+  "trial_id": "m02-v1-more-bucket-nemotron3-r03",
+  "provenance": "Genuine interactive model/harness trial. Same approved source and ordinary tools; no independent or reference feedback. Public historical task; contamination unknown.",
+  "edits": [
+    {
+      "path": "more_itertools/more.py",
+      "old": "        self._validator = validator or (lambda x: True)",
+      "new": "        self._validator = validator if validator is not None else (lambda x: True)"
+    }
+  ],
+  "freeze_hash": "aaf36a066a50e463e1a28a912353dec2c210ce887a439e54089183ffa547cdf4",
+  "generation": "trials/m02-v1-more-bucket-nemotron3-r03",
+  "configuration_hash": "3a4069d1454ecc9abb5c1ac209204b5ad3f403d76f89fc437a83796f4e3765c3",
+  "events_head": "42dc9c3f868029986bfd85cc1e46c7e011f0f3fc7d3f12cb25b58d4202473bd5",
+  "candidate_hash": "4357b68c317cccc05769bc284d9af3af15bedaecf4c94f2f94223fa0724f103b"
+}

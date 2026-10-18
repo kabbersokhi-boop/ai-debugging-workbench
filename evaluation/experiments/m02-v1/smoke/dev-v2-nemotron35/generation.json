@@ -1,0 +1,78 @@
+{
+  "id": "dev-v2-nemotron35",
+  "coordinate": {
+    "id": "dev-v2-nemotron35",
+    "task_id": "development",
+    "configuration_id": "nemotron35",
+    "trial": 1,
+    "order": 0
+  },
+  "freeze_hash": "1fe4db80ea1fc931e6d0525c220447cc21ad5bd6f784f98d67f61367e65eb971",
+  "configuration_hash": "0a8c1a2c9809e048ca4992b392b8d9b3a7ff4f840c0c6d41cd783f03c695a762",
+  "context_hash": "fd325ef5ec33de27b92673952c00ca0a784e460e0794af327af973ea6c134474",
+  "generation_status": "submitted",
+  "error": null,
+  "requests": 4,
+  "token_reservation_upper_bound": 29441,
+  "provider_calls": [
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 772,
+        "completion_tokens": 133,
+        "total_tokens": 905
+      },
+      "latency_ms": 10467
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1260,
+        "completion_tokens": 102,
+        "total_tokens": 1362
+      },
+      "latency_ms": 1609
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1868,
+        "completion_tokens": 63,
+        "total_tokens": 1931
+      },
+      "latency_ms": 1089
+    },
+    {
+      "workload": "chat",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "attempt": 1,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 2884,
+        "completion_tokens": 85,
+        "total_tokens": 2969
+      },
+      "latency_ms": 1277
+    }
+  ],
+  "counts": {
+    "revisions": 1,
+    "ordinary_runs": 1,
+    "read_search_actions": 1
+  },
+  "generation_wall_ms": 19508,
+  "ordinary_tool_ms": 4609,
+  "events_count": 13,
+  "events_head": "68916fa2a496fe34f9be947da85149ba6b461a6d67abf851f7e6c6d7d18bcad9",
+  "candidate_id": "dev-v2-nemotron35",
+  "candidate_hash": "69cbe1d6a52c3c93da6ae1aa4a3f26b72d35510a977afb78c74dd0a2533dbfd0"
+}

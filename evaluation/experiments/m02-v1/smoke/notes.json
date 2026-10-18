@@ -1,0 +1,6 @@
+{
+  "availability": "Five small availability requests retained. Initial Nemotron35 HTTP500; Qwen HTTP410; Kimi HTTP404. Nemotron3 and final Nemotron35 recheck succeeded. No comparison task material used.",
+  "initial_capability": "dev-nemotron3 ran against harness-initial.py. Repeated unsupported file-level edit spelling exposed poor tool errors. Interrupted deliberately during development; all request intents/responses remain. A last in-flight request may have unknown usage. No comparison trials existed. No candidate promoted.",
+  "final_capability": "dev-v2-nemotron3 and dev-v2-nemotron35 both inspected source, applied an unmodified model edit, ran the same ordinary test successfully, and submitted. Later prefreeze changes add accounting/provenance validation and failed-feedback gates; the accepted JSON tool protocol and runtime remain the same.",
+  "exclusion": "All development and availability requests are excluded from the 24 controlled trial denominator; separately accounted. No benchmark outcomes used for configuration selection."
+}
