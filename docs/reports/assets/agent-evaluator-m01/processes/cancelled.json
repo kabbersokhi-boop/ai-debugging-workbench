@@ -1,0 +1,40 @@
+{
+  "command": [
+    "python",
+    "-c",
+    "while True: pass"
+  ],
+  "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+  "policy": {
+    "version": "python312-v1",
+    "network": "none",
+    "rootfs": "read-only",
+    "source": "read-only named volume",
+    "uid": 1000,
+    "cpu": 1,
+    "memory_bytes": 268435456,
+    "pids": 32,
+    "tmp_bytes": 33554432,
+    "log_bytes": 131072,
+    "timeout_seconds": 25,
+    "capabilities": [],
+    "host_mounts": [],
+    "credentials": false,
+    "docker_socket": false
+  },
+  "started_at": "2026-10-16T16:05:51.389060+00:00",
+  "resource_usage": {
+    "cpu_ns": null,
+    "peak_memory_bytes_observed": null,
+    "note": "Fast processes may exit before a Docker stats sample is available"
+  },
+  "executed_file_hashes": {},
+  "container_id": "488aba548fa6601261cb96489c240c681b8700a460fa60014ac42aa824c851d5",
+  "status": "cancelled",
+  "exit_code": 137,
+  "oom_killed": false,
+  "stdout": "",
+  "stderr": "",
+  "ended_at": "2026-10-16T16:05:52.417211+00:00",
+  "duration_ms": 1028
+}

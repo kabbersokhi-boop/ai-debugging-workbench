@@ -42,6 +42,7 @@ jobs:
         with:
           name: milestone-evidence
           path: |
+            artifacts/evaluator/
             artifacts/acceptance/
             artifacts/milestone-03/
             artifacts/milestone-04/

@@ -2,6 +2,25 @@
 
 An AI engineering workbench that reproduces software bugs, retrieves repository evidence, generates bounded patches, and independently checks their behavior.
 
+## Independent agent evaluation · Milestone 1
+
+The new local **Agent Evaluation** workspace evaluates retained coding-agent patches against two
+pinned upstream tasks from more-itertools and Boltons. Choose a task and candidate, run ordinary
+repository checks alongside independent behavioral checks, inspect exact mismatches and diffs,
+and reopen persistent evidence. Evaluation needs no provider key. The original debugger is preserved.
+
+Run `docker compose up --build -d --wait api`, then open
+**http://127.0.0.1:8010/?workspace=evaluation**.
+[Task provenance and reproduction](evaluation/README.md) ·
+[Engineering report and measured results](docs/reports/AGENT-EVALUATOR-M01.md)
+
+Two fresh NVIDIA outputs are retained unedited: one passes both check sets; one fails both.
+Only the explicitly authored controls demonstrate ordinary checks passing while independent checks
+fail. These public historical tasks do not establish comparative agent quality or uncontaminated
+benchmark performance. The evaluator is available only in the approved local execution mode.
+
+## Existing debugging workflow
+
 Choose a supported retail defect → observe browser reproduction → inspect NVIDIA diagnosis and source citations → review the exact patch → compare original and candidate behavior. Original source and failed attempts remain inspectable.
 
 Four development scenarios are selectable: quantity aggregation, shipping eligibility, decrement transitions, and lower input bounds. Eight additional implementation defects form the frozen held-out evaluation. This is a small synthetic retail application, not an arbitrary repository repair service.
@@ -12,7 +31,7 @@ Four development scenarios are selectable: quantity aggregation, shipping eligib
 
 [Measured results](docs/RESULTS.md) · [Architecture](docs/ARCHITECTURE.md) · [Code tour](docs/CODE_TOUR.md)
 
-**Two explicit modes:** the recorded explorer replays saved evidence without inference or candidate execution. The private live workbench makes real NVIDIA calls and executes bounded candidates in local containers. This public source repository is **not a hosted live service**.
+**Two explicit modes:** the recorded explorer replays saved evidence without inference or candidate execution. The private live workbench makes real NVIDIA calls and executes bounded candidates in local containers. This source repository is **not a hosted live service**.
 
 ## Explore without a provider key
 

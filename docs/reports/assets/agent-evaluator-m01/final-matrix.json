@@ -1,0 +1,267 @@
+[
+  {
+    "candidate": "more-bucket-baseline",
+    "kind": "control",
+    "candidate_hash": "08f27b7e394ec9ec868b831e7f3dca562a8021372f41efc9d585a07bffbb3c3c",
+    "ordinary": "passed",
+    "independent": "failed",
+    "status": "failed",
+    "binding": {
+      "task_id": "more-bucket",
+      "base_commit": "1ea82a711c69f590054987b5cb194157f8ce8ac4",
+      "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+      "candidate_hash": "08f27b7e394ec9ec868b831e7f3dca562a8021372f41efc9d585a07bffbb3c3c",
+      "patch_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verifier_hash": "dae4ebfdb4dea8143c7079e9e9713907971f9fd634d0a897ed455e7bba066ea9",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+        "more_itertools/more.py": "bc51d6f1c05613084fb566a8310771ab946864f0bb4815d26d4c6bb8d44bf9ff",
+        "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+        "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+        "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+      }
+    },
+    "result_hash": "e9c188f0ea828f1184e69a777cea166e18dc8eef4844004f4d076feb3a4c84de"
+  },
+  {
+    "candidate": "more-bucket-negative",
+    "kind": "control",
+    "candidate_hash": "c36b8dfbb2d9d58c85468dc289d6db59dee7f3b2ab3de1746170cc1162c2597b",
+    "ordinary": "passed",
+    "independent": "failed",
+    "status": "failed",
+    "binding": {
+      "task_id": "more-bucket",
+      "base_commit": "1ea82a711c69f590054987b5cb194157f8ce8ac4",
+      "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+      "candidate_hash": "c36b8dfbb2d9d58c85468dc289d6db59dee7f3b2ab3de1746170cc1162c2597b",
+      "patch_hash": "c0d23517295b8b5cdd842d6b6af9f13b9b440a6f21c17f030e4b2ae9d4694dba",
+      "verifier_hash": "dae4ebfdb4dea8143c7079e9e9713907971f9fd634d0a897ed455e7bba066ea9",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+        "more_itertools/more.py": "fe697c7688429f92e70a4b818223448686c2db333e3c1bf8fa036d4b8f8d2786",
+        "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+        "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+        "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+      }
+    },
+    "result_hash": "84f40e56eef6b79539a099f12debbbeb4fab2dfd5bb5d5e25951529ce4919fcd"
+  },
+  {
+    "candidate": "more-bucket-reference",
+    "kind": "control",
+    "candidate_hash": "df340231f5c451183a63c0eae1aebe4ae5605e13a173f246d7dbf21af2cb3da2",
+    "ordinary": "passed",
+    "independent": "passed",
+    "status": "passed",
+    "binding": {
+      "task_id": "more-bucket",
+      "base_commit": "1ea82a711c69f590054987b5cb194157f8ce8ac4",
+      "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+      "candidate_hash": "df340231f5c451183a63c0eae1aebe4ae5605e13a173f246d7dbf21af2cb3da2",
+      "patch_hash": "3fd11f9265a0d86da8f2761060378e55da1518f31cc5486bacd9832d63ed9fae",
+      "verifier_hash": "dae4ebfdb4dea8143c7079e9e9713907971f9fd634d0a897ed455e7bba066ea9",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+        "more_itertools/more.py": "1bdc5f323ea18906436a42268b942d5b4d15ac8b3ff17c1211a59fb192fa068e",
+        "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+        "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+        "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+      }
+    },
+    "result_hash": "7c3290fcfdcefc702beb75041862da5e1f00a8712a4fd9ed2598e93e6905fd3e"
+  },
+  {
+    "candidate": "more-bucket-alternate",
+    "kind": "control",
+    "candidate_hash": "7d514eec718a27839c72ebb6d1c2dd78a50962a5caaa838e105ada1eddf0ac27",
+    "ordinary": "passed",
+    "independent": "passed",
+    "status": "passed",
+    "binding": {
+      "task_id": "more-bucket",
+      "base_commit": "1ea82a711c69f590054987b5cb194157f8ce8ac4",
+      "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+      "candidate_hash": "7d514eec718a27839c72ebb6d1c2dd78a50962a5caaa838e105ada1eddf0ac27",
+      "patch_hash": "867d8947b1cde448355ae3f2013e4a33bae4fa42a0f661e4ea59c069b1b60510",
+      "verifier_hash": "dae4ebfdb4dea8143c7079e9e9713907971f9fd634d0a897ed455e7bba066ea9",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+        "more_itertools/more.py": "945f1e931b677c3bbac0fdf7339006d5c50abe050f8d2a37d3d45ac6a9057141",
+        "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+        "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+        "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+      }
+    },
+    "result_hash": "00848784d5ae30139ee67d01e5f8794698d5121dd6a46d1983290237d778d30f"
+  },
+  {
+    "candidate": "more-bucket-nvidia-01",
+    "kind": "agent",
+    "candidate_hash": "4357b68c317cccc05769bc284d9af3af15bedaecf4c94f2f94223fa0724f103b",
+    "ordinary": "passed",
+    "independent": "passed",
+    "status": "passed",
+    "binding": {
+      "task_id": "more-bucket",
+      "base_commit": "1ea82a711c69f590054987b5cb194157f8ce8ac4",
+      "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+      "candidate_hash": "4357b68c317cccc05769bc284d9af3af15bedaecf4c94f2f94223fa0724f103b",
+      "patch_hash": "02ccc84e60bcf903ed127d7903811840b8d75b29d11c529de2a3b0857d5af0c8",
+      "verifier_hash": "dae4ebfdb4dea8143c7079e9e9713907971f9fd634d0a897ed455e7bba066ea9",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+        "more_itertools/more.py": "10ad9c744f8ac3745dbd99ca63f5972d3845cec903b4bd8033096368f81d6c14",
+        "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+        "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+        "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+      }
+    },
+    "result_hash": "2ab5202a15857fbbe8e1b24a642348bb7a9bc3752b297adbce0094d351af1816"
+  },
+  {
+    "candidate": "boltons-addlist-baseline",
+    "kind": "control",
+    "candidate_hash": "9e4e865842eee4724e58c7bf9497f3335ff82193ca9db47550198157543659f4",
+    "ordinary": "passed",
+    "independent": "failed",
+    "status": "failed",
+    "binding": {
+      "task_id": "boltons-addlist",
+      "base_commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+      "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+      "candidate_hash": "9e4e865842eee4724e58c7bf9497f3335ff82193ca9db47550198157543659f4",
+      "patch_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+        "boltons/dictutils.py": "2c943d9ae5830a858a6aa3ce91a592f1c039ce2ef8512da6bbd1e64d598e0500",
+        "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+        "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+        "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+        "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+      }
+    },
+    "result_hash": "d3c8dec47479360c511d1717c1d2e3f240e32ec034b3be5942f97dff1d1ccc63"
+  },
+  {
+    "candidate": "boltons-addlist-negative",
+    "kind": "control",
+    "candidate_hash": "84a3afe2f22a00bad2303950653aba098e72f5f4134a961b05d1a1f585b8b13b",
+    "ordinary": "passed",
+    "independent": "failed",
+    "status": "failed",
+    "binding": {
+      "task_id": "boltons-addlist",
+      "base_commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+      "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+      "candidate_hash": "84a3afe2f22a00bad2303950653aba098e72f5f4134a961b05d1a1f585b8b13b",
+      "patch_hash": "358d13bb84e5359ffe2f708e93b8302da9630d0332875c409bd59ef19606e491",
+      "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+        "boltons/dictutils.py": "6319c07cb68f18c2bfc01aa4393d0423463cf5d6357f229173d2d1e485e7b656",
+        "boltons/urlutils.py": "2fc5a497bc5ac4fc827bedd08f9be878204f4ad88e6149b158592bd52959ee31",
+        "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+        "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+        "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+      }
+    },
+    "result_hash": "6b73fbacd2e9aabf9fa946b134dc435af6b39093e418617b1d6de4ef5bbfe03c"
+  },
+  {
+    "candidate": "boltons-addlist-reference",
+    "kind": "control",
+    "candidate_hash": "58176bd2aa7f943703e3de65ccf30973c2be56f0d122150d37cfaff9dd045031",
+    "ordinary": "passed",
+    "independent": "passed",
+    "status": "passed",
+    "binding": {
+      "task_id": "boltons-addlist",
+      "base_commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+      "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+      "candidate_hash": "58176bd2aa7f943703e3de65ccf30973c2be56f0d122150d37cfaff9dd045031",
+      "patch_hash": "ff93d7346857d04f438d9c45bfc2569b0edb4e8a90417cff23b33e1c01c65491",
+      "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+        "boltons/dictutils.py": "6319c07cb68f18c2bfc01aa4393d0423463cf5d6357f229173d2d1e485e7b656",
+        "boltons/urlutils.py": "a887ad3d6b4edaf12724d52063f25ec176b202ade6bcfe114964a6ff7a5968c4",
+        "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+        "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+        "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+      }
+    },
+    "result_hash": "71232535a461a5b49582c012b3d921acf5a1d7fe4451aaada77e75ab43fef525"
+  },
+  {
+    "candidate": "boltons-addlist-alternate",
+    "kind": "control",
+    "candidate_hash": "ab848dd361540af9d6086f51d49906721f7b291f227fcf8d1e8c74de84a0aecd",
+    "ordinary": "passed",
+    "independent": "passed",
+    "status": "passed",
+    "binding": {
+      "task_id": "boltons-addlist",
+      "base_commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+      "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+      "candidate_hash": "ab848dd361540af9d6086f51d49906721f7b291f227fcf8d1e8c74de84a0aecd",
+      "patch_hash": "e63642da19fbf6d395d079b09479aed1c2768627a6f1b495e6c4ae8a7820297d",
+      "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+        "boltons/dictutils.py": "f0e5c510aac8ac4ee0fd3215c3dc8f1c2149bac232adf81e79f1df37955250b8",
+        "boltons/urlutils.py": "37840e05d577c3310e6b3010976521c5ef0ee80aacde585a966c0e7ac29b985a",
+        "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+        "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+        "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+      }
+    },
+    "result_hash": "0186fea281860eb814fc0b2cb94ddbe7eb4c880eb35b17b8e675573f3f9cfdb7"
+  },
+  {
+    "candidate": "boltons-addlist-nvidia-01",
+    "kind": "agent",
+    "candidate_hash": "4f11d4966a29241f3ffd067a25686a2e72153f2422c1a2dd1342cd96b9b30811",
+    "ordinary": "failed",
+    "independent": "failed",
+    "status": "failed",
+    "binding": {
+      "task_id": "boltons-addlist",
+      "base_commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+      "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+      "candidate_hash": "4f11d4966a29241f3ffd067a25686a2e72153f2422c1a2dd1342cd96b9b30811",
+      "patch_hash": "541ca4b2817741cc1df4e592787dbc602d7bc4e33d9d41c21739e6a9466da5ca",
+      "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+      "executed_file_hashes": {
+        "boltons/__init__.py": "57d162d009438f94f8bc71c8b527fc963eb951066f890c97730d4adc27f2c160",
+        "boltons/dictutils.py": "a9e83f1df931b43f51187da6e7dc7e9a2d23b73a68ac9b06eec79b609aa3d0df",
+        "boltons/urlutils.py": "c81562579ca8686b0ad9fe03f7647952ccd5c561d56412530fefd78a8acbfd29",
+        "tests/test_dictutils.py": "2d912261b6a61feb4f4c757ceec582b738dbe34305f1f7b7b8ed6c1e9501e174",
+        "tests/test_urlutils.py": "369c4c90ed0801b5cdcc90832dcff55bf7a917f0eae4f442c988a86e97906aaa",
+        "LICENSE": "c301912653a8d8c99eab6212aa3aea8d164ea249d8ad53c941e0558a0a5ac1e3"
+      }
+    },
+    "result_hash": "a90c39fa56fd02fb014edb0b78ec31988c38e388faf4445ca65193771d5feced"
+  }
+]

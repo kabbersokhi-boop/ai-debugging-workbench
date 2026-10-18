@@ -1,0 +1,219 @@
+{
+  "binding": {
+    "task_id": "more-bucket",
+    "base_commit": "1ea82a711c69f590054987b5cb194157f8ce8ac4",
+    "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+    "candidate_hash": "df340231f5c451183a63c0eae1aebe4ae5605e13a173f246d7dbf21af2cb3da2",
+    "patch_hash": "3fd11f9265a0d86da8f2761060378e55da1518f31cc5486bacd9832d63ed9fae",
+    "verifier_hash": "dae4ebfdb4dea8143c7079e9e9713907971f9fd634d0a897ed455e7bba066ea9",
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy_hash": "7d72d7540484af4b4053d50df02da8b7d5b8c18a16bf93c2bbf4c901dd9ef7a3",
+    "executed_file_hashes": {
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "1bdc5f323ea18906436a42268b942d5b4d15ac8b3ff17c1211a59fb192fa068e",
+      "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+      "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf",
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    }
+  },
+  "binding_hash": "1708c3400787b9ad64426b0037c7be7034fa5687be3f74a71056f8c30551ebb9",
+  "ordinary": {
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_more.py::BucketTests"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T16:05:26.934378+00:00",
+    "resource_usage": {
+      "cpu_ns": 648464000,
+      "peak_memory_bytes_observed": 39186432,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "1bdc5f323ea18906436a42268b942d5b4d15ac8b3ff17c1211a59fb192fa068e",
+      "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c",
+      "tests/test_more.py": "0cd2fcebc8b1d801bebeb8bea4a77ef105f5afc4c6cc16ac29fcad24ce0136cf"
+    },
+    "container_id": "b0e4c5f23344c5640bfc4b14a764c9ad81cc8eda1beddad6200eebd588d36fcc",
+    "exit_code": 0,
+    "oom_killed": false,
+    "stdout": ".........                                                                [100%]\n9 passed in 0.34s\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T16:05:28.081194+00:00",
+    "duration_ms": 1147,
+    "outcome": "passed"
+  },
+  "independent": {
+    "command": [
+      "python",
+      "-I",
+      "-B",
+      "-c",
+      "\nimport json, sys\nsys.path.insert(0, '/source')\nfrom more_itertools import bucket\nclass Validator:\n    def __bool__(self): return False\n    def __call__(self, key): return key % 2 == 0\nclass Empty(set):\n    def __call__(self, key): return key in self\nsource = iter([1, 2, 3, 4])\nb = bucket(source, key=lambda x: x, validator=Validator())\nselected = list(b[1])\nremaining = list(source)\nsource = iter([1, 2, 3, 4])\nb = bucket(source, key=lambda x: x, validator=Validator())\nmember = 1 in b\nmembership_remaining = list(source)\nb = bucket([1, 2, 3, 4, 2], key=lambda x: x, validator=Validator())\nkeys = sorted(b)\ne = bucket([1, 2, 3], key=lambda x: x, validator=Empty())\nempty = list(e[1])\ndefault = bucket([1, 2, 1], key=lambda x: x)\ntruthy = bucket([1, 2, 3, 4], key=lambda x: x, validator=lambda x: x % 2 == 0)\nprint(json.dumps({'rejected_selection': selected, 'selection_remaining': remaining,\n'rejected_membership': member, 'membership_remaining': membership_remaining,\n'validated_keys': keys, 'accepted_values': list(b[2]), 'empty_callable': empty,\n'default_values': list(default[1]), 'truthy_values': list(truthy[2])}))\n"
+    ],
+    "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+    "policy": {
+      "version": "python312-v1",
+      "network": "none",
+      "rootfs": "read-only",
+      "source": "read-only named volume",
+      "uid": 1000,
+      "cpu": 1,
+      "memory_bytes": 268435456,
+      "pids": 32,
+      "tmp_bytes": 33554432,
+      "log_bytes": 131072,
+      "timeout_seconds": 25,
+      "capabilities": [],
+      "host_mounts": [],
+      "credentials": false,
+      "docker_socket": false
+    },
+    "started_at": "2026-10-16T16:05:28.431832+00:00",
+    "resource_usage": {
+      "cpu_ns": 30044000,
+      "peak_memory_bytes_observed": 3829760,
+      "note": "Fast processes may exit before a Docker stats sample is available"
+    },
+    "executed_file_hashes": {
+      "LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
+      "more_itertools/__init__.py": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b",
+      "more_itertools/more.py": "1bdc5f323ea18906436a42268b942d5b4d15ac8b3ff17c1211a59fb192fa068e",
+      "more_itertools/recipes.py": "ea9ac19767d3949d72bd0fc24f51aff33f24a693201b5d8e595a0d58ef8f4b1c"
+    },
+    "container_id": "a536df05d77e90d3fc9f6cfd65fb29cefd0471d6f4deeb833209f10fd5a65380",
+    "exit_code": 0,
+    "oom_killed": false,
+    "stdout": "{\"rejected_selection\": [], \"selection_remaining\": [1, 2, 3, 4], \"rejected_membership\": false, \"membership_remaining\": [1, 2, 3, 4], \"validated_keys\": [2, 4], \"accepted_values\": [2, 2], \"empty_callable\": [], \"default_values\": [1, 1], \"truthy_values\": [2]}\n",
+    "stderr": "",
+    "status": "finished",
+    "ended_at": "2026-10-16T16:05:29.856171+00:00",
+    "duration_ms": 1424,
+    "checks": [
+      {
+        "name": "rejected_selection",
+        "expected": [],
+        "observed": [],
+        "status": "passed"
+      },
+      {
+        "name": "selection_remaining",
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "observed": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "status": "passed"
+      },
+      {
+        "name": "rejected_membership",
+        "expected": false,
+        "observed": false,
+        "status": "passed"
+      },
+      {
+        "name": "membership_remaining",
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "observed": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "status": "passed"
+      },
+      {
+        "name": "validated_keys",
+        "expected": [
+          2,
+          4
+        ],
+        "observed": [
+          2,
+          4
+        ],
+        "status": "passed"
+      },
+      {
+        "name": "accepted_values",
+        "expected": [
+          2,
+          2
+        ],
+        "observed": [
+          2,
+          2
+        ],
+        "status": "passed"
+      },
+      {
+        "name": "empty_callable",
+        "expected": [],
+        "observed": [],
+        "status": "passed"
+      },
+      {
+        "name": "default_values",
+        "expected": [
+          1,
+          1
+        ],
+        "observed": [
+          1,
+          1
+        ],
+        "status": "passed"
+      },
+      {
+        "name": "truthy_values",
+        "expected": [
+          2
+        ],
+        "observed": [
+          2
+        ],
+        "status": "passed"
+      }
+    ],
+    "outcome": "passed"
+  },
+  "status": "passed",
+  "reason": "Behavioral observations compared outside the candidate container"
+}

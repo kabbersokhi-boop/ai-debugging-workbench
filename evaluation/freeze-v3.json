@@ -1,0 +1,23 @@
+{
+  "body": {
+    "version": "m01-freeze-v3",
+    "created_at": "2026-10-16T16:00:40.078561+00:00",
+    "previous_freeze_hash": "2383ee9531f9149d26660b20154f1c378389048815be5f7252bb7230f08aca24",
+    "revision_reason": "Post-generation evidence-admission hardening: reject missing container/image/source metadata or cross-phase environment mismatches. No probe, expected behavior or candidate code changes. Preserve original generation and v2 scoring records; rescore unchanged candidates under this explicitly new identity.",
+    "behavior_sha256": "887ecd2f33a858b5a240d9c0c6cf37efe87e3b49943642aeb0e2e7cd8fedfdbf",
+    "behavior_frozen_before_generation_at": "c669c0e",
+    "tasks": {
+      "more-bucket": {
+        "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+        "verifier_hash": "dae4ebfdb4dea8143c7079e9e9713907971f9fd634d0a897ed455e7bba066ea9"
+      },
+      "boltons-addlist": {
+        "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+        "verifier_hash": "ca5aaf53242a80de39bca98ff208769af4e48773b2bf8a57a5012196d3e9f968"
+      }
+    },
+    "prior_behavior_validation_freeze_hash": "2383ee9531f9149d26660b20154f1c378389048815be5f7252bb7230f08aca24",
+    "guard_validation": "9 unit tests passed, including missing image, mismatched phase image and missing executed-source evidence. Full container/application revalidation follows this immutable freeze."
+  },
+  "hash": "db51b294d36f4eb7bc44f2a14a43359d5401d4475c01a8831d4ebe019f6856e1"
+}

@@ -14,6 +14,8 @@ from workbench.access import authorize, check_origin, guest
 from workbench.config import settings
 from workbench.contracts import BUG, Bug, CreateRun, RunSummary, RunView
 from workbench.db import Run, SourceSnapshot, engine, sessions
+from workbench.evaluator.routes import router as evaluator_router
+from workbench.evaluator.service import EvaluationManager
 from workbench.rag.contracts import InvestigationRequest
 from workbench.rag.service import InvestigationManager
 from workbench.rag.snapshot import scenario_manifest
@@ -42,9 +44,13 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
                 repairs = RepairManager()
                 app.state.repairs = repairs
                 await repairs.recover()
+                evaluations = EvaluationManager()
+                app.state.evaluations = evaluations
+                await evaluations.recover()
                 try:
                     yield
                 finally:
+                    await evaluations.close()
                     await repairs.close()
                     await investigations.close()
                     await manager.close()
@@ -348,6 +354,9 @@ app.add_api_route("/recorded/", recordings_api.explorer)
 @app.get("/api/mode")
 async def mode():
     return {"mode": "private_live", "live_available": True, "recorded_url": "/recorded/"}
+
+
+app.include_router(evaluator_router)
 
 
 # The same immutable fixture can be explored manually without exposing the runner API.

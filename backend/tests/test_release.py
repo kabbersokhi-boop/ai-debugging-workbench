@@ -90,6 +90,8 @@ async def test_public_recorded_surface_has_no_execution_or_private_history(monke
         assert len(record["recording_sha256"]) == 64
         assert "frame-ancestors 'none'" in health.headers["content-security-policy"]
         for path in (
+            "/api/evaluator/tasks",
+            "/api/evaluator/runs",
             "/api/runs",
             "/api/investigations/x",
             "/api/repairs/x",

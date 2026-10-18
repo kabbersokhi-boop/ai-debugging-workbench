@@ -1,0 +1,138 @@
+{
+  "id": "boltons-addlist-nvidia-01",
+  "task_id": "boltons-addlist",
+  "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+  "candidate_hash": "4f11d4966a29241f3ffd067a25686a2e72153f2422c1a2dd1342cd96b9b30811",
+  "label": "NVIDIA fresh candidate 01",
+  "kind": "agent",
+  "producer": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "provenance": "Fresh NVIDIA single-turn coding-agent output. No tools, reference correction, independent checks or evaluation feedback supplied. Public historical task; training contamination is possible.",
+  "edits": [
+    {
+      "path": "boltons/dictutils.py",
+      "old": "    def addlist(self, k, v):\n        \"\"\"Add an iterable of values underneath a specific key, preserving\n        any values already under that key.\n\n        >>> omd = OrderedMultiDict([('a', -1)])\n        >>> omd.addlist('a', range(3))\n        >>> omd\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\n\n        Called ``addlist`` for consistency with :meth:`getlist`, but\n        tuples and other sequences and iterables work.\n        \"\"\"\n        if not v:\n            return\n        self_insert = self._insert\n        values = super().setdefault(k, [])\n        for subv in v:\n            self_insert(k, subv)\n        values.extend(v)\n",
+      "new": "    def addlist(self, k, v):\n        \"\"\"Add an iterable of values underneath a specific key, preserving\n        any values already under that key.\n\n        >>> omd = OrderedMultiDict([('a', -1)])\n        >>> omd.addlist('a', range(3))\n        >>> omd\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\n\n        Called ``addlist`` for consistency with :meth:`getlist`, but\n        tuples and other sequences and iterables work.\n        \"\"\"\n        self_insert = self._insert\n        values = super().setdefault(k, [])\n        for subv in v:\n            self_insert(k, subv)\n            values.append(subv)\n"
+    },
+    {
+      "path": "boltons/urlutils.py",
+      "old": "    def addlist(self, k, v):\n        \"\"\"Add an iterable of values underneath a specific key, preserving\n        any values already under that key.\n\n        >>> omd = OrderedMultiDict([('a', -1)])\n        >>> omd.addlist('a', range(3))\n        >>> omd\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\n\n        Called ``addlist`` for consistency with :meth:`getlist`, but\n        tuples and other sequences and iterables work.\n        \"\"\"\n        if not v:\n            return\n        self_insert = self._insert\n        values = super().setdefault(k, [])\n        for subv in v:\n            self_insert(k, subv)\n        values.extend(v)\n",
+      "new": "    def addlist(self, k, v):\n        \"\"\"Add an iterable of values underneath a specific key, preserving\n        any values already under that key.\n\n        >>> omd = OrderedMultiDict([('a', -1)])\n        >>> omd.addlist('a', range(3))\n        >>> omd\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\n\n        Called ``addlist`` for consistency with :meth:`getlist`, but\n        tuples and other sequences and iterables work.\n        \"\"\"\n        self_insert = self._insert\n        values = super().setdefault(k, [])\n        for subv in v:\n            self_insert(k, subv)\n            values.append(subv)\n"
+    }
+  ],
+  "generation": "generations/boltons-addlist-nvidia-01.json",
+  "freeze_hash": "2383ee9531f9149d26660b20154f1c378389048815be5f7252bb7230f08aca24",
+  "generation_request_hash": "d1053a5784635521932b11729aa988f8b51205f865a89134dae7b74d18b33183",
+  "generation_record": {
+    "task_id": "boltons-addlist",
+    "base_commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+    "freeze_hash": "2383ee9531f9149d26660b20154f1c378389048815be5f7252bb7230f08aca24",
+    "started_at": "2026-10-16T15:33:14.775825+00:00",
+    "request": {
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a coding agent repairing an upstream Python library. Return JSON only: {\"edits\":[{\"path\":\"...\",\"old\":\"exact unique source excerpt\",\"new\":\"replacement source\"}]}. Only edit the allowed production paths. Preserve indentation. You have no tools. Do not change tests or invent files. Produce a minimal working correction."
+        },
+        {
+          "role": "user",
+          "content": "{\"project\": \"Boltons\", \"base_commit\": \"d45cc414e33aa4e08a73e0993574df4397e2e9db\", \"problem\": \"OrderedMultiDict.addlist traverses an iterable twice. Iterators and generators leave its linked keys and stored values inconsistent, including empty inputs. The vendored copy in urlutils has the same defect.\", \"expected_behavior\": \"Both dictutils.OrderedMultiDict and urlutils.OrderedMultiDict (including the documented standalone import fallback) must accept finite iterable values, preserve order, append on repeated calls, leave no key for an empty iterable, and keep getlist, keys, len and iteritems(multi=True) consistent. Existing list/tuple inputs remain supported.\", \"allowed_paths\": [\"boltons/dictutils.py\", \"boltons/urlutils.py\"], \"source_excerpts\": [{\"path\": \"boltons/dictutils.py\", \"start_line\": 216, \"end_line\": 234, \"content\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\\n\"}, {\"path\": \"boltons/urlutils.py\", \"start_line\": 1114, \"end_line\": 1132, \"content\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\\n\"}]}"
+        }
+      ],
+      "temperature": 0,
+      "max_tokens": 3000,
+      "response_format": {
+        "type": "json_object"
+      },
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    },
+    "request_hash": "d1053a5784635521932b11729aa988f8b51205f865a89134dae7b74d18b33183",
+    "context_hash": "83d9081c0c409f32ea09cec32374b789a36e0256d6bd37df3271061c011ee801",
+    "tools": [],
+    "retrieval": false,
+    "retries": 0,
+    "producer": "NVIDIA HTTP coding agent (single-turn, no tools)",
+    "response": {
+      "id": "chatcmpl-a2b92dcb-2183-459a-acdb-4ac40b8178ab",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "content": "{\"edits\": [{\"path\": \"boltons/dictutils.py\", \"old\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\\n\", \"new\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n            values.append(subv)\\n\"}, {\"path\": \"boltons/urlutils.py\", \"old\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        if not v:\\n            return\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n        values.extend(v)\\n\", \"new\": \"    def addlist(self, k, v):\\n        \\\"\\\"\\\"Add an iterable of values underneath a specific key, preserving\\n        any values already under that key.\\n\\n        >>> omd = OrderedMultiDict([('a', -1)])\\n        >>> omd.addlist('a', range(3))\\n        >>> omd\\n        OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])\\n\\n        Called ``addlist`` for consistency with :meth:`getlist`, but\\n        tuples and other sequences and iterables work.\\n        \\\"\\\"\\\"\\n        self_insert = self._insert\\n        values = super().setdefault(k, [])\\n        for subv in v:\\n            self_insert(k, subv)\\n            values.append(subv)\\n\"}]}",
+            "role": "assistant",
+            "reasoning_content": null
+          },
+          "finish_reason": "stop",
+          "logprobs": null
+        }
+      ],
+      "created": 1792164794,
+      "model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 742,
+        "completion_tokens": 801,
+        "total_tokens": 1543,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null
+        }
+      }
+    },
+    "status": "candidate_admitted",
+    "candidate_hash": "4f11d4966a29241f3ffd067a25686a2e72153f2422c1a2dd1342cd96b9b30811",
+    "completed_at": "2026-10-16T15:33:23.182765+00:00",
+    "provider_calls": [
+      {
+        "workload": "chat",
+        "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+        "attempt": 1,
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 1247,
+          "completion_tokens": 58,
+          "total_tokens": 1305
+        },
+        "latency_ms": 1010
+      },
+      {
+        "workload": "chat",
+        "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+        "attempt": 1,
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 742,
+          "completion_tokens": 801,
+          "total_tokens": 1543
+        },
+        "latency_ms": 8403
+      }
+    ]
+  },
+  "actual_response_model": "private/nvidia/nemotron-3.5-super-120b-a12b",
+  "token_usage": {
+    "prompt_tokens": 742,
+    "completion_tokens": 801,
+    "total_tokens": 1543,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    }
+  }
+}

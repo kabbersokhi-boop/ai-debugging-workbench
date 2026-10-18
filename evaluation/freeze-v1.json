@@ -1,0 +1,71 @@
+{
+  "body": {
+    "version": "m01-freeze-v1",
+    "created_at": "2026-10-16T15:28:47.066488+00:00",
+    "base_workbench_commit": "84e1e6c3837b64e725c575e68bd959ee59f88659",
+    "tasks": {
+      "more-bucket": {
+        "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+        "verifier_hash": "cbb524e2f2798da56aeaa10258a98f474f228bbe22f5aaaa526565bf27fae8fd"
+      },
+      "boltons-addlist": {
+        "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+        "verifier_hash": "740e934041c9303246db4d1a4b170a42bf3c7e1527a4fd6ec26dae882a6ba4b0"
+      }
+    },
+    "validated_controls": {
+      "boltons-addlist-alternate": {
+        "result_hash": "1a305a598077004d654fac8ee7f5123c08274ee07088cb8756f9e81dc6d12d3c",
+        "status": "passed",
+        "ordinary": "passed",
+        "independent": "passed"
+      },
+      "boltons-addlist-baseline": {
+        "result_hash": "853f6e7dd6cb7a92c7542c91ad24bc13a23798709508a2352d0106291a5e7823",
+        "status": "failed",
+        "ordinary": "passed",
+        "independent": "failed"
+      },
+      "boltons-addlist-negative": {
+        "result_hash": "5eebb38f6c7663bef6c2f0cbd1e0eeb6dbfaf2055d5beca9d1dfa41176ec6532",
+        "status": "failed",
+        "ordinary": "passed",
+        "independent": "failed"
+      },
+      "boltons-addlist-reference": {
+        "result_hash": "52e3a2fec22ca256c4b2bc9d57fd290218daf36f9d07fdb259dd22dfb8fa8f57",
+        "status": "passed",
+        "ordinary": "passed",
+        "independent": "passed"
+      },
+      "more-bucket-alternate": {
+        "result_hash": "5a3e1059e88915cc64ff69536a5fd48cd8b931d6465f05d541a31e077e58c8ae",
+        "status": "passed",
+        "ordinary": "passed",
+        "independent": "passed"
+      },
+      "more-bucket-baseline": {
+        "result_hash": "aa8b4f0918d50530cb83fbcc24e876fda3b50953e96bd5cfd981faedd3c2bee0",
+        "status": "failed",
+        "ordinary": "passed",
+        "independent": "failed"
+      },
+      "more-bucket-negative": {
+        "result_hash": "b7ebfc27228637664e0329366cd0eae24b86a4a6b375478252c0050777bbed24",
+        "status": "failed",
+        "ordinary": "passed",
+        "independent": "failed"
+      },
+      "more-bucket-reference": {
+        "result_hash": "fda0d4955df1fa337fdcd29769c494109d68cd350a20a7fdc60ba5a32d4854ac",
+        "status": "passed",
+        "ordinary": "passed",
+        "independent": "passed"
+      }
+    },
+    "image_id": "sha256:974d7bcd00c21491eb12164ef3caace3e6606b3c4f01f93d7b26b1924c139cb6",
+    "public_artifact_policy": "Public tasks and scoring. No claim of secret tests or uncontaminated training. Provider request receives only approved task/source context.",
+    "pre_freeze_validation_gap": "Boltons negative initially passed because package urlutils imports dictutils; standalone fallback observation added and all eight controls revalidated before generation."
+  },
+  "hash": "7c40c3d0e9200f7ea94e15973ae727b14a08c8ef6f9acaee1e2e3816df82c5a7"
+}

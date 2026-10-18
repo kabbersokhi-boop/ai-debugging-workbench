@@ -46,6 +46,7 @@ import {
 } from "./types";
 import "./styles.css";
 import { InvestigationWorkspace } from "./Investigation";
+import AgentEvaluation from "./Evaluation";
 import RecordedExplorer from "./Recorded";
 import FullWorkflow from "./Workflow";
 import { captureDescription, pricingNote } from "./evidence";
@@ -365,6 +366,7 @@ function App() {
                 happened.
               </p>
             </div>
+            <a className="secondary-button" href="/?workspace=evaluation">Agent Evaluation</a>
             <a className="secondary-button" href="/recorded/">Explore recorded runs</a>
             <a
               href={bug && bug.id !== "cart-quantity" ? `/scenarios/${bug.id}/retail/` : "/retail/"}
@@ -1070,6 +1072,7 @@ function Entry() {
   useEffect(() => { api<{mode: string}>("/mode").then(x => setMode(x.mode)).catch(() => setMode("unavailable")); }, []);
   if (!mode) return <p role="status">Opening the workbench…</p>;
   if (mode === "unavailable") return <main className="workspace"><h1>Workbench unavailable</h1><p role="alert">The application could not confirm its execution mode. No live or recorded run has started.</p><button className="primary-button" onClick={() => location.reload()}>Retry connection</button></main>;
+  if (mode === "private_live" && new URLSearchParams(location.search).get("workspace") === "evaluation") return <AgentEvaluation />;
   return mode === "recorded" || location.pathname.startsWith("/recorded") ? <RecordedExplorer /> : <App />;
 }
 createRoot(document.getElementById("root")!).render(<StrictMode><Entry /></StrictMode>);

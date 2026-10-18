@@ -1,0 +1,173 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 126 items / 66 deselected / 60 selected
+
+tests/test_access_integration.py::test_guest_ownership_artifacts_idempotency_and_expiry PASSED [  1%]
+tests/test_access_integration.py::test_reservations_are_atomic_persisted_and_server_wide PASSED [  3%]
+tests/test_agent_evaluator_browser.py::test_evaluator_real_ui_candidates_failure_evidence_and_reopen FAILED [  5%]
+tests/test_agent_evaluator_browser.py::test_evaluator_api_rejects_arbitrary_inputs_and_cancels PASSED [  6%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_controls PASSED [  8%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_negative_processes PASSED [ 10%]
+tests/test_agent_evaluator_integration.py::test_evaluator_freeze PASSED  [ 11%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_genuine_candidates PASSED [ 13%]
+tests/test_agent_evaluator_integration.py::test_evaluator_missing_image_is_infrastructure_error PASSED [ 15%]
+tests/test_agent_evaluator_recovery.py::test_evaluator_recovery_reconciles_terminal_broker_evidence PASSED [ 16%]
+tests/test_diagnosis_browser.py::test_presentation_regression_for_passed_checks_and_interactive_footer PASSED [ 18%]
+tests/test_diagnosis_browser.py::test_live_nvidia_investigation_citations_inspector_and_reopened_history SKIPPED [ 20%]
+tests/test_diagnosis_browser.py::test_saved_investigation_reports_are_immutable_and_separate_from_draft PASSED [ 21%]
+tests/test_e2e.py::test_first_visitor_can_reproduce_inspect_and_reopen_history PASSED [ 23%]
+tests/test_e2e.py::test_actual_api_evidence_and_idempotency PASSED       [ 25%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload0] PASSED [ 26%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload1] PASSED [ 28%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload2] PASSED [ 30%]
+tests/test_e2e.py::test_capacity_cancellation_and_no_late_success PASSED [ 31%]
+tests/test_evaluation_harness.py::test_offline_one_shot_harness_executes_sealed_final_checks PASSED [ 33%]
+tests/test_guest_uuid_integration.py::test_guest_uuid_spellings_cannot_bypass_any_resource_handler PASSED [ 35%]
+tests/test_rag_integration.py::test_real_pgvector_fts_index_dedup_and_snapshot_isolation PASSED [ 36%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[insufficient-insufficient_evidence] PASSED [ 38%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[invalid-invalid_output] PASSED [ 40%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[failure-provider_error] PASSED [ 41%]
+tests/test_rag_integration.py::test_investigation_cancel_and_restart_keep_reproduction_separate PASSED [ 43%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[start] PASSED [ 45%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[cancel] PASSED [ 46%]
+tests/test_release_browser.py::test_m4_saved_shipping_reopen_without_inference_after_ui_correction SKIPPED [ 48%]
+tests/test_release_browser.py::test_recorded_explorer_first_visit_mobile_and_no_live_requests PASSED [ 50%]
+tests/test_release_browser.py::test_selected_scenario_manual_view_is_bound_before_any_reproduction PASSED [ 51%]
+tests/test_release_browser.py::test_m4_live_workflow_shipping_scenario_video SKIPPED [ 53%]
+tests/test_repair_browser.py::test_live_nvidia_repair_diff_verification_preview_and_reopen SKIPPED [ 55%]
+tests/test_repair_browser.py::test_offline_repair_browser_diff_preview_download_and_saved_history PASSED [ 56%]
+tests/test_repair_integration.py::test_real_mcp_discovery_permission_and_stale_base PASSED [ 58%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity-passed] PASSED [ 60%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * 3-failed] PASSED [ 61%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents + 0-failed] PASSED [ 63%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (document.querySelector('[data-testid=total]').hidden = true, 0)-failed] PASSED [ 65%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (setTimeout(() => document.querySelector('[data-testid=total]').textContent = 'x'.repeat(10000), 0), 0)-failed] PASSED [ 66%]
+tests/test_repair_integration.py::test_candidate_isolation_cleanup_and_preview_headers PASSED [ 68%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[valid-verified] PASSED [ 70%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[fail-verification_failed] PASSED [ 71%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[invalid-invalid_output] PASSED [ 73%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[failure-provider_error] PASSED [ 75%]
+tests/test_repair_integration.py::test_repair_cancellation_and_interruption_preserve_prior_statuses PASSED [ 76%]
+tests/test_repair_integration.py::test_shared_wall_clock_timeout_keeps_no_verification_claim FAILED [ 78%]
+tests/test_repair_integration.py::test_real_mcp_executor_outage_is_an_execution_error PASSED [ 80%]
+tests/test_scenarios_integration.py::test_two_real_indexes_reject_cross_snapshot_context PASSED [ 81%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[shipping-threshold] PASSED [ 83%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[decrement-skip] PASSED [ 85%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[clamp-zero] PASSED [ 86%]
+tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 88%]
+tests/test_scenarios_integration.py::test_remote_preview_rejects_commands_and_kills_nonresponsive_script PASSED [ 90%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[unavailable] PASSED [ 91%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[empty] PASSED [ 93%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[invalid] PASSED [ 95%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[timeout] PASSED [ 96%]
+tests/test_service.py::test_restart_recovers_unfinished_runs_and_preserves_terminal_outcomes PASSED [ 98%]
+tests/test_service.py::test_concurrent_duplicate_requests_produce_one_run PASSED [100%]
+
+=================================== FAILURES ===================================
+________ test_evaluator_real_ui_candidates_failure_evidence_and_reopen _________
+
+    async def test_evaluator_real_ui_candidates_failure_evidence_and_reopen():
+        folder = ROOT / "artifacts/evaluator/ui"
+        await asyncio.to_thread(folder.mkdir, parents=True, exist_ok=True)
+        errors = []
+        async with async_playwright() as p:
+            browser = await p.chromium.launch()
+            page = await browser.new_page(viewport={"width": 1440, "height": 1100})
+            page.on("pageerror", lambda error: errors.append(str(error)))
+            await page.goto(BASE_URL)
+            await page.get_by_role("link", name="Agent Evaluation", exact=True).click()
+            await expect(
+                page.get_by_role("heading", name="Agent Evaluation", exact=True)
+            ).to_be_visible()
+            for task_id in ("more-bucket", "boltons-addlist"):
+                for label in ("negative", "nvidia-01"):
+                    await page.get_by_label("Software task").select_option(task_id)
+                    await page.get_by_label("Candidate patch").select_option(task_id + "-" + label)
+                    await expect(
+                        page.get_by_role("button", name="Run evaluation", exact=True)
+                    ).to_be_enabled()
+                    async with page.expect_response(
+                        lambda r: r.request.method == "POST" and r.url.endswith("/api/evaluator/runs")
+                    ) as response:
+                        await page.get_by_role("button", name="Run evaluation", exact=True).click()
+                    run_id = (await (await response.value).json())["id"]
+                    await expect(
+                        page.get_by_role("region", name="Evaluation result").get_by_role("status")
+                    ).to_have_text(
+                        "failed" if label == "negative" else re.compile("^(passed|failed)$"),
+                        timeout=90000,
+                    )
+                    await expect(
+                        page.get_by_text("Ordinary repository checks", exact=True)
+                    ).to_be_visible()
+                    await expect(
+                        page.get_by_text("Independent behavioral checks", exact=True)
+                    ).to_be_visible()
+                    if label == "negative":
+                        await expect(
+                            page.get_by_text("Ordinary checks passed.", exact=False)
+                        ).to_be_visible()
+                        assert await page.locator(".evaluation-checks details[open]").count() > 0
+                    await page.screenshot(path=folder / f"{task_id}-{label}.png", full_page=True)
+                    async with page.expect_download() as download:
+                        await page.get_by_role(
+                            "link", name="Download complete evaluation evidence"
+                        ).click()
+                    saved = await (await download.value).path()
+                    evidence = json.loads(await asyncio.to_thread(Path(saved).read_text))
+                    assert evidence["id"] == run_id
+                    assert (
+                        evidence["candidate_hash"]
+                        == evidence["evidence"]["result"]["binding"]["candidate_hash"]
+                    )
+                    await asyncio.to_thread(
+                        (folder / f"{task_id}-{label}.json").write_text,
+                        json.dumps(evidence, indent=2) + "\n",
+>                   )
+E                   AssertionError: Locator expected to have text 'failed'
+E                   Actual value: None
+E                   Error: strict mode violation: get_by_role("status") resolved to 2 elements:
+E                       1) <p role="status">Loading approved tasks and saved evidence…</p> aka get_by_text("Loading approved tasks and")
+E                       2) <strong role="status" class="evaluation-status failed">failed</strong> aka get_by_role("region", name="Evaluation result").get_by_role("status")
+E                    
+E                   Call log:
+E                     - Expect "to_have_text" with timeout 15000ms
+E                     - waiting for get_by_role("status")
+E                       2 × locator resolved to <p role="status">Loading approved tasks and saved evidence…</p>
+E                         - unexpected value "Loading approved tasks and saved evidence…"
+
+tests/test_agent_evaluator_browser.py:74: AssertionError
+__________ test_shared_wall_clock_timeout_keeps_no_verification_claim __________
+
+rag_store = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x7f3a32cd6f10>, autoflush=True, expire_on_commit=False)
+broker_url = 'http://172.30.0.3:8012'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f3a32b91a60>
+
+    async def test_shared_wall_clock_timeout_keeps_no_verification_claim(
+        rag_store, broker_url, monkeypatch
+    ):
+        investigation_id = await seed_investigation(rag_store)
+        monkeypatch.setattr(settings, "repair_timeout_seconds", 1)
+        manager = RepairManager(lambda: OfflineRepair("wait"), rag_store, broker_url)
+        created = await manager.create(investigation_id)
+        await asyncio.gather(*list(manager.tasks.values()))
+        saved = await manager.get(created["id"])
+>       assert saved["status"] == "error" and saved["error_code"] == "timeout"
+E       AssertionError: assert ('error' == 'error'
+E         
+E           error and 'execution_error' == 'timeout'
+E         
+E         - timeout
+E         + execution_error)
+
+tests/test_repair_integration.py:361: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_agent_evaluator_browser.py::test_evaluator_real_ui_candidates_failure_evidence_and_reopen
+FAILED tests/test_repair_integration.py::test_shared_wall_clock_timeout_keeps_no_verification_claim
+====== 2 failed, 54 passed, 4 skipped, 66 deselected in 363.56s (0:06:03) ======

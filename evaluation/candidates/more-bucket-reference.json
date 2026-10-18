@@ -1,0 +1,17 @@
+{
+  "id": "more-bucket-reference",
+  "task_id": "more-bucket",
+  "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+  "candidate_hash": "df340231f5c451183a63c0eae1aebe4ae5605e13a173f246d7dbf21af2cb3da2",
+  "label": "Reference",
+  "kind": "control",
+  "producer": "Deliberately authored evaluator control",
+  "provenance": "Production-source changes from upstream correction 67fcf640477c78605580f5ee703a54c73c1e7a8a. Upstream tests are preserved at base.",
+  "edits": [
+    {
+      "path": "more_itertools/more.py",
+      "old": "        self._key = key\n        self._cache = defaultdict(deque)\n        self._validator = validator or (lambda x: True)\n\n    def __contains__(self, value):\n",
+      "new": "        self._key = key\n        self._cache = defaultdict(deque)\n        # Use ``is None`` rather than truthiness: a valid validator may be a\n        # callable object that is falsey (e.g. an empty ``set`` subclass with\n        # ``__call__``), and ``validator or ...`` would silently replace it.\n        self._validator = (lambda x: True) if validator is None else validator\n\n    def __contains__(self, value):\n"
+    }
+  ]
+}

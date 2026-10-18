@@ -1,0 +1,50 @@
+[
+  {
+    "candidate": "more-bucket-baseline",
+    "status": "failed",
+    "ordinary": "passed",
+    "independent": "failed"
+  },
+  {
+    "candidate": "more-bucket-reference",
+    "status": "passed",
+    "ordinary": "passed",
+    "independent": "passed"
+  },
+  {
+    "candidate": "more-bucket-negative",
+    "status": "failed",
+    "ordinary": "passed",
+    "independent": "failed"
+  },
+  {
+    "candidate": "more-bucket-alternate",
+    "status": "passed",
+    "ordinary": "passed",
+    "independent": "passed"
+  },
+  {
+    "candidate": "boltons-addlist-baseline",
+    "status": "failed",
+    "ordinary": "passed",
+    "independent": "failed"
+  },
+  {
+    "candidate": "boltons-addlist-reference",
+    "status": "passed",
+    "ordinary": "passed",
+    "independent": "passed"
+  },
+  {
+    "candidate": "boltons-addlist-negative",
+    "status": "failed",
+    "ordinary": "passed",
+    "independent": "failed"
+  },
+  {
+    "candidate": "boltons-addlist-alternate",
+    "status": "passed",
+    "ordinary": "passed",
+    "independent": "passed"
+  }
+]

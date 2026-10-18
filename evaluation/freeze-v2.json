@@ -1,0 +1,73 @@
+{
+  "body": {
+    "version": "m01-freeze-v2",
+    "created_at": "2026-10-16T15:30:04.282090+00:00",
+    "base_workbench_commit": "84e1e6c3837b64e725c575e68bd959ee59f88659",
+    "tasks": {
+      "more-bucket": {
+        "spec_hash": "b89cfba8cceecaf535693f614f7646bf5bbae40c4850533fa57cefa293a38175",
+        "verifier_hash": "fb790fe42c236dc2630b1949f0037671efa5b9a8872c01cbafc88b55635a5187"
+      },
+      "boltons-addlist": {
+        "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+        "verifier_hash": "61c2be84d7d403a4d0ed21006e98866a34b75347f02e5f126a8ca662d5542933"
+      }
+    },
+    "validated_controls": {
+      "boltons-addlist-alternate": {
+        "result_hash": "d96409a843b8746c4aeaebc04bfb2d2cf2e8db921af6784b8a406c896ba33ffe",
+        "status": "passed",
+        "ordinary": "passed",
+        "independent": "passed"
+      },
+      "boltons-addlist-baseline": {
+        "result_hash": "00db614fa2624e64f72ba3bc5ff8a03d796de1253d5615dcdba477523fa61f36",
+        "status": "failed",
+        "ordinary": "passed",
+        "independent": "failed"
+      },
+      "boltons-addlist-negative": {
+        "result_hash": "039e8126fd154219de6b16b28f6f1eb306b6f84328d25ba0e931f5c6e2139cda",
+        "status": "failed",
+        "ordinary": "passed",
+        "independent": "failed"
+      },
+      "boltons-addlist-reference": {
+        "result_hash": "3b830c707d46a1d562bfa1f1e0c82c7a27e99306551048b3f484d02e6de6bca2",
+        "status": "passed",
+        "ordinary": "passed",
+        "independent": "passed"
+      },
+      "more-bucket-alternate": {
+        "result_hash": "22aa5d1adc93d3ba80c4158b90d2e158329fd19c825f23fb6764c4cd7331830c",
+        "status": "passed",
+        "ordinary": "passed",
+        "independent": "passed"
+      },
+      "more-bucket-baseline": {
+        "result_hash": "1f1f09b40f7700d69507bd10ec5b39f50611662a0ab461a340149ef689d4eb2c",
+        "status": "failed",
+        "ordinary": "passed",
+        "independent": "failed"
+      },
+      "more-bucket-negative": {
+        "result_hash": "a9b736c8c8cff5d0a31fab97e6061c2515235b6e28f3a2146bb30a7bb71610b0",
+        "status": "failed",
+        "ordinary": "passed",
+        "independent": "failed"
+      },
+      "more-bucket-reference": {
+        "result_hash": "7e452966cd40916fa78584bdc89b300d4e2dc57325a3ddddc4f8d0b06fae0456",
+        "status": "passed",
+        "ordinary": "passed",
+        "independent": "passed"
+      }
+    },
+    "image_id": "sha256:974d7bcd00c21491eb12164ef3caace3e6606b3c4f01f93d7b26b1924c139cb6",
+    "public_artifact_policy": "Public tasks and scoring. No claim of secret tests or uncontaminated training. Provider request receives only approved task/source context.",
+    "pre_freeze_validation_gap": "Boltons negative initially passed because package urlutils imports dictutils; standalone fallback observation added and all eight controls revalidated before generation.",
+    "previous_freeze_hash": "7c40c3d0e9200f7ea94e15973ae727b14a08c8ef6f9acaee1e2e3816df82c5a7",
+    "revision_reason": "Type-only annotation for Docker stats return type; no probe, expected result or scoring behavior changed. Controls re-executed before generation."
+  },
+  "hash": "2383ee9531f9149d26660b20154f1c378389048815be5f7252bb7230f08aca24"
+}

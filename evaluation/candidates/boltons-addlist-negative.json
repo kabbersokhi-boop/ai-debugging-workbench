@@ -1,0 +1,17 @@
+{
+  "id": "boltons-addlist-negative",
+  "task_id": "boltons-addlist",
+  "spec_hash": "bcc12ada32489ae00ab7a6e38366c8d3aec3cb36100193133512334bbf34dd76",
+  "candidate_hash": "84a3afe2f22a00bad2303950653aba098e72f5f4134a961b05d1a1f585b8b13b",
+  "label": "Negative",
+  "kind": "control",
+  "producer": "Deliberately authored evaluator control",
+  "provenance": "Intentional partial fix: repairs dictutils but leaves the documented urlutils copy broken.",
+  "edits": [
+    {
+      "path": "boltons/dictutils.py",
+      "old": "        tuples and other sequences and iterables work.\n        \"\"\"\n        if not v:\n            return\n",
+      "new": "        tuples and other sequences and iterables work.\n        \"\"\"\n        # materialize first: the values are traversed twice below, and a\n        # one-shot iterator would be empty by the second pass\n        v = list(v)\n        if not v:\n            return\n"
+    }
+  ]
+}
