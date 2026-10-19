@@ -5,7 +5,7 @@ workspace. Public GitHub source at an immutable commit and a completed patch can
 general intake/approval/execution/history path for Python and Node. Ordinary repository tests
 remain separate from independent verification, which is **not configured** for these audits.
 
-Tested implementation: **`fd043ce9913287fe1b3e97fddedf741c8bf3ed35`**.
+Tested implementation: **`1747a58d5f8ceaef204381efd39d18d4fbd801a0`**.
 Review PR: [#12](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/12).
 Final review head: **`refs/pull/12/head`**; its resolved SHA is recorded in the PR body and final
 handoff, since a commit cannot embed its own identity. The final evidence/report commit changes no implementation. This report does not authorize merging, deploying or starting G2.
@@ -183,25 +183,31 @@ The existing historical test fixtures/results are regression inputs, not new mod
 API example reports were captured at `f59b3b1...`; the subsequent `fd043ce...` change affects only
 UI runtime readiness and its browser regression. Backend execution, source admission, runtime images
 and engine identity are byte identical between them. Fresh real browser runs, the full local suite
-and CI at `fd043ce...` validate the final UI as well. The index records both exact implementation SHAs.
+and CI at `fd043ce...` validate that UI as well. The index records both exact implementation SHAs.
+The final `1747a58...` change preserves an uploaded UTF-8 BOM for rejection instead of silently
+stripping it; no execution/admission/runtime implementation changed. Its dedicated browser
+regression checks the exact decoded text, delayed runtime readiness and successful normal audit.
+The final-source proof includes backend and frontend bytes at that implementation.
 
 | Gate | Actual result and evidence |
 | --- | --- |
-| `./scripts/check` | **206 passed, 77 deselected**; lint, format, Pyright and frontend build passed. Inherited Monaco bundle-size warning. [Log](assets/generalized-patch-audit-g01/final/check.log) |
-| `./scripts/e2e` | **73 passed, 4 skipped, 206 deselected**, 452.63 seconds. The four existing live-model opt-ins remained disabled. All six new G1 Docker/browser/recovery cases passed, including delayed runtime discovery. [Log](assets/generalized-patch-audit-g01/final/e2e.log) |
+| `./scripts/check` | **207 passed, 77 deselected** at `1747a58...`; lint, format, Pyright and frontend build passed. Inherited Monaco bundle-size warning. [Log](assets/generalized-patch-audit-g01/upload-hardening/check.log) |
+| `./scripts/e2e` | **73 passed, 4 skipped, 206 deselected** at `fd043ce...`, 452.63 seconds. The four existing live-model opt-ins remained disabled. All six new G1 Docker/browser/recovery cases passed, including delayed runtime discovery. [Log](assets/generalized-patch-audit-g01/final/e2e.log) |
 | Real GitHub API examples | Python 3 passed; Node 30 passed; declared Node regression 24 passed / 6 failed. All downloaded and reopened. [Log](assets/generalized-patch-audit-g01/final/external.log) |
 | Real GitHub browser examples | All three complete journeys passed through live fetch, diff review, approval, execution, download validation and reopen. [Log](assets/generalized-patch-audit-g01/final/real-browser.log) |
 | `./scripts/recovery-smoke` | Completed debugger history unchanged; interrupted work recovered; fresh reproduction succeeded; no cleanup errors. [Log](assets/generalized-patch-audit-g01/final/recovery.log), [proof](assets/generalized-patch-audit-g01/final/debugger-recovery.json) |
 | G1 cancellation/restart | Cancellation passed; real completed broker result restored without re-execution; missing-terminal run interrupted. [Proof](assets/generalized-patch-audit-g01/final/repository-recovery.json) |
 | `scripts/check_release.py` | Actual non-root/read-only recorded container, no mounts/socket/Docker/workbench authority/credentials, zero execution slots, G1 GET routes 404 and POST routes 405. [Proof](assets/generalized-patch-audit-g01/final/recorded-boundary.json) |
 | Recorded-container browser suite | **2 passed, 281 deselected**; both existing recorded experiences work without mutation requests. [Log](assets/generalized-patch-audit-g01/final/recorded-browser.log) |
-| GitHub implementation CI | **Passed**, credential-free workflow on `fd043ce9913287fe1b3e97fddedf741c8bf3ed35`. [Run 39318587464](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39318587464), [snapshot](assets/generalized-patch-audit-g01/final/ci-implementation.json) |
+| GitHub core/UI-readiness CI | **Passed**, credential-free workflow on `fd043ce9913287fe1b3e97fddedf741c8bf3ed35`. [Run 39318587464](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39318587464), [snapshot](assets/generalized-patch-audit-g01/final/ci-implementation.json) |
+| Exact-upload browser regression | **1 passed** at `1747a58...`; BOM retained for rejection, runtime readiness, approval, actual execution, download and reopen. [Log](assets/generalized-patch-audit-g01/upload-hardening/browser.log) |
+| Latest implementation CI | [Run 39320478263](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39320478263) covers `1747a58d5f8ceaef204381efd39d18d4fbd801a0` with the full offline/integration/recovery/release workflow; terminal status is recorded in that run and the PR handoff. |
 | Final review checks | The report/evidence-only head is covered by [PR #12 checks](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/12/checks); exact final head and run are recorded in the PR handoff. |
 
 Normal CI is network-independent with respect to target GitHub repositories: its source/patch
 fixtures are synthetic offline data. It still builds the locked application/runtime dependencies.
 Real network fetches above were bounded opt-in integration runs and are separate from CI.
-The 82 new offline cases cover identifier/URL/redirect/SHA/size/archive/path/patch/plan/no-import
+The 83 new offline cases cover identifier/URL/redirect/SHA/size/archive/path/patch/plan/no-import
 boundaries, missing setup/output, evidence/identity/policy/cleanup failures and local/recorded access.
 The actual Docker cases check non-root execution, denied external network/source writes, absent
 credentials/socket/bind mounts, resource settings, setup failure, timeout and cancellation.
@@ -237,7 +243,7 @@ The temporary Compose override contains only `services: {api: {env_file: !reset 
 [Preservation and running-source audit](assets/generalized-patch-audit-g01/final/preservation.json)
 checks **1,153** preexisting protected files against the starting main, including all historical
 experiments, fixtures, recordings, reports and evaluator/repair/RAG modules. All are byte unchanged.
-The actual API and broker source hashes match the tested implementation and contain no supplied
+The [final upload/source proof](assets/generalized-patch-audit-g01/upload-hardening/preservation.json) additionally checks actual backend and frontend bytes against `1747a58...`. The API and broker contain no supplied
 provider credentials. `v1.1.0` remains `49e6071938c8a81aa735cb49b7e18e86679bb7b5`.
 The only Patch Audit broker change registers the separate G1 handlers.
 
@@ -245,7 +251,7 @@ Development failures were retained and corrected, not hidden: shell sandbox rest
 async thread wakeups (offline checks passed outside it); a browser helper initially lacked an import;
 a real Docker removal returned an uncertain response and subsequent 409, producing no passing result.
 The cleanup regression now polls the same identity and retains structured infrastructure failures.
-The completion audit also closed missing-result/missing-approval saved-view false positives.
+The completion audit also closed missing-result/missing-approval saved-view false positives and preserved UTF-8 upload markers so unsupported bytes cannot be silently rewritten.
 A local rerun after that guard found a real runtime-discovery UI race: the prepare button could be
 clicked before runtime identities arrived. The final UI waits for an available identity; a deliberately
 delayed-response browser regression asserts that waiting, then still requires successful approval,
@@ -282,10 +288,12 @@ This is no recommendation for public execution or a claim that independent-check
 | G/H — genuine external Python and Node | `hynek/first` 3 ordinary tests and `component/escape-html` 30 ordinary tests, real pinned source |
 | I — same generalized implementation | Shared module path and runtime-only differences; example names occur only in data/docs/tools |
 | J — independent not configured | Every real result and screenshot; no combined verified verdict |
-| K — historical behavior intact | 206 offline + 73 integration passes, recorded browser checks and 1,153-file preservation audit |
+| K — historical behavior intact | 207 offline + 73 integration passes, recorded browser checks and 1,153-file preservation audit |
 | L — recorded server has no G1 authority | Restricted image/module/mount audit, all generalized routes absent, zero execution slots |
 
 No G2 implementation, private GitHub access, public execution, model experiment, PR comment automation,
 release/tag mutation, merge or deployment was performed. The PR remains for engineering review.
 
 [SHA-256 manifest of final selected evidence](assets/generalized-patch-audit-g01/final/manifest.json).
+
+[Exact-upload check asset hashes](assets/generalized-patch-audit-g01/upload-hardening/manifest.json).
