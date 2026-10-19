@@ -1,0 +1,14 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 283 items / 281 deselected / 2 selected
+
+tests/test_patch_audit_browser.py::test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_execution PASSED [ 50%]
+tests/test_release_browser.py::test_recorded_explorer_first_visit_mobile_and_no_live_requests PASSED [100%]
+
+====================== 2 passed, 281 deselected in 6.24s =======================
