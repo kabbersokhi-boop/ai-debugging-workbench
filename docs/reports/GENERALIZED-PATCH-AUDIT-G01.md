@@ -5,16 +5,15 @@ workspace. Public GitHub source at an immutable commit and a completed patch can
 general intake/approval/execution/history path for Python and Node. Ordinary repository tests
 remain separate from independent verification, which is **not configured** for these audits.
 
-Tested implementation: **`771d544490ad8c00e3b74d5c2e579a00cb2dcff6`**.
+Tested implementation: **`fd043ce9913287fe1b3e97fddedf741c8bf3ed35`**.
 Review PR: [#12](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/12).
 Final review head: **`refs/pull/12/head`**; its resolved SHA is recorded in the PR body and final
-handoff, since a commit cannot embed its own identity. The following evidence/report commit
-changes no implementation. This report does not authorize merging, deploying or starting G2.
+handoff, since a commit cannot embed its own identity. The final evidence/report commit changes no implementation. This report does not authorize merging, deploying or starting G2.
 
 ## Investigation, plan and threat model
 
-Remote main was resolved with `git ls-remote` and fetched before creating
-`feature/generalized-patch-audit-g01`, based on `fb2ca281c3ce9c6145b02dc051d1fbd7288e0040`.
+Remote main was resolved with `git ls-remote` and fetched before implementation.
+`feature/generalized-patch-audit-g01` was created from that same main at `fb2ca281c3ce9c6145b02dc051d1fbd7288e0040`.
 The README, AGENTS, architecture, Patch Audit reports, evaluator/catalog/broker/runner,
 admission/service/routes, frontend and existing tests were inspected before implementation.
 
@@ -157,42 +156,46 @@ explicit confirmation, live result, evidence download and saved-result reopening
 transport substitutes for GitHub in these opt-in runs. Normal CI's browser source is explicitly a
 synthetic offline transport fixture; all subsequent DB/broker/container activity is real.
 
-Selected downloads: [Python](assets/generalized-patch-audit-g01/python.json),
-[Node](assets/generalized-patch-audit-g01/node.json),
-[Node failing control](assets/generalized-patch-audit-g01/node-regression.json).
-[Execution index](assets/generalized-patch-audit-g01/external-execution-index.json) lists exact
+Selected downloads: [Python](assets/generalized-patch-audit-g01/final/python.json),
+[Node](assets/generalized-patch-audit-g01/final/node.json),
+[Node failing control](assets/generalized-patch-audit-g01/final/node-regression.json).
+[Execution index](assets/generalized-patch-audit-g01/final/external-execution-index.json) lists exact
 source/candidate/patch/plan/runtime identities and API/browser execution UUIDs.
-[Final evidence audit](assets/generalized-patch-audit-g01/completion-evidence-audit.json) revalidates
+[Final evidence audit](assets/generalized-patch-audit-g01/final/completion-evidence-audit.json) revalidates
 all six real API/browser downloads, reopens them after recovery, and checks actual Docker resources
 are absent. They contain only public upstream source and synthetic local test data.
 
 Actual browser screenshots:
 
-- [Python source/patch/plan review](assets/generalized-patch-audit-g01/python-review.png).
-- [Node source/patch/plan review](assets/generalized-patch-audit-g01/node-review.png).
-- [Python ordinary result](assets/generalized-patch-audit-g01/python-result.png).
-- [Node ordinary result](assets/generalized-patch-audit-g01/node-result.png).
-- [Node failing regression](assets/generalized-patch-audit-g01/node-regression-result.png).
+- [Python source/patch/plan review](assets/generalized-patch-audit-g01/final/python-review.png).
+- [Node source/patch/plan review](assets/generalized-patch-audit-g01/final/node-review.png).
+- [Python ordinary result](assets/generalized-patch-audit-g01/final/python-result.png).
+- [Node ordinary result](assets/generalized-patch-audit-g01/final/node-result.png).
+- [Node failing regression](assets/generalized-patch-audit-g01/final/node-regression-result.png).
 
 Full browser downloads are retained separately as `*-browser.json` in the same evidence folder.
-[Browser transcript](assets/generalized-patch-audit-g01/real-browser.log).
+[Browser transcript](assets/generalized-patch-audit-g01/final/real-browser.log).
 
 ## Verification and preservation
 
-All rows below are actual executions of implementation `771d544...`, not reused historical results.
+All rows below are actual executions of the final execution engine, not reused historical results.
 The existing historical test fixtures/results are regression inputs, not new model trials.
+API example reports were captured at `f59b3b1...`; the subsequent `fd043ce...` change affects only
+UI runtime readiness and its browser regression. Backend execution, source admission, runtime images
+and engine identity are byte identical between them. Fresh real browser runs, the full local suite
+and CI at `fd043ce...` validate the final UI as well. The index records both exact implementation SHAs.
 
 | Gate | Actual result and evidence |
 | --- | --- |
-| `./scripts/check` | **206 passed, 77 deselected**; lint, format, Pyright and frontend build passed. Inherited Monaco bundle-size warning. [Log](assets/generalized-patch-audit-g01/check.log) |
-| `./scripts/e2e` | **73 passed, 4 skipped, 206 deselected**, 449.13 seconds. The four existing live-model opt-ins remained disabled. All six new G1 Docker/browser/recovery cases passed. [Log](assets/generalized-patch-audit-g01/e2e.log) |
-| Real GitHub API examples | Python 3 passed; Node 30 passed; declared Node regression 24 passed / 6 failed. All downloaded and reopened. [Log](assets/generalized-patch-audit-g01/external.log) |
-| Real GitHub browser examples | All three complete journeys passed through live fetch, diff review, approval, execution, download validation and reopen. [Log](assets/generalized-patch-audit-g01/real-browser.log) |
-| `./scripts/recovery-smoke` | Completed debugger history unchanged; interrupted work recovered; fresh reproduction succeeded; no cleanup errors. [Log](assets/generalized-patch-audit-g01/recovery.log), [proof](assets/generalized-patch-audit-g01/debugger-recovery.json) |
-| G1 cancellation/restart | Cancellation passed; real completed broker result restored without re-execution; missing-terminal run interrupted. [Proof](assets/generalized-patch-audit-g01/repository-recovery.json) |
-| `scripts/check_release.py` | Actual non-root/read-only recorded container, no mounts/socket/Docker/workbench authority/credentials, zero execution slots, G1 GET routes 404 and POST routes 405. [Proof](assets/generalized-patch-audit-g01/recorded-boundary.json) |
-| Recorded-container browser suite | **2 passed, 281 deselected**; both existing recorded experiences work without mutation requests. [Log](assets/generalized-patch-audit-g01/recorded-browser.log) |
-| GitHub implementation CI | **Passed**, credential-free workflow on `771d544490ad8c00e3b74d5c2e579a00cb2dcff6`. [Run 39314835460](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39314835460), [snapshot](assets/generalized-patch-audit-g01/ci-implementation.json) |
+| `./scripts/check` | **206 passed, 77 deselected**; lint, format, Pyright and frontend build passed. Inherited Monaco bundle-size warning. [Log](assets/generalized-patch-audit-g01/final/check.log) |
+| `./scripts/e2e` | **73 passed, 4 skipped, 206 deselected**, 452.63 seconds. The four existing live-model opt-ins remained disabled. All six new G1 Docker/browser/recovery cases passed, including delayed runtime discovery. [Log](assets/generalized-patch-audit-g01/final/e2e.log) |
+| Real GitHub API examples | Python 3 passed; Node 30 passed; declared Node regression 24 passed / 6 failed. All downloaded and reopened. [Log](assets/generalized-patch-audit-g01/final/external.log) |
+| Real GitHub browser examples | All three complete journeys passed through live fetch, diff review, approval, execution, download validation and reopen. [Log](assets/generalized-patch-audit-g01/final/real-browser.log) |
+| `./scripts/recovery-smoke` | Completed debugger history unchanged; interrupted work recovered; fresh reproduction succeeded; no cleanup errors. [Log](assets/generalized-patch-audit-g01/final/recovery.log), [proof](assets/generalized-patch-audit-g01/final/debugger-recovery.json) |
+| G1 cancellation/restart | Cancellation passed; real completed broker result restored without re-execution; missing-terminal run interrupted. [Proof](assets/generalized-patch-audit-g01/final/repository-recovery.json) |
+| `scripts/check_release.py` | Actual non-root/read-only recorded container, no mounts/socket/Docker/workbench authority/credentials, zero execution slots, G1 GET routes 404 and POST routes 405. [Proof](assets/generalized-patch-audit-g01/final/recorded-boundary.json) |
+| Recorded-container browser suite | **2 passed, 281 deselected**; both existing recorded experiences work without mutation requests. [Log](assets/generalized-patch-audit-g01/final/recorded-browser.log) |
+| GitHub implementation CI | **Passed**, credential-free workflow on `fd043ce9913287fe1b3e97fddedf741c8bf3ed35`. [Run 39318587464](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39318587464), [snapshot](assets/generalized-patch-audit-g01/final/ci-implementation.json) |
 | Final review checks | The report/evidence-only head is covered by [PR #12 checks](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/12/checks); exact final head and run are recorded in the PR handoff. |
 
 Normal CI is network-independent with respect to target GitHub repositories: its source/patch
@@ -231,7 +234,7 @@ E2E_BASE_URL=http://127.0.0.1:18020 ./scripts/e2e -k recorded_explorer_first
 
 The temporary Compose override contains only `services: {api: {env_file: !reset []}}`.
 `COMPOSE_FILE` included it during recovery commands as well. No override file contains credentials.
-[Preservation and running-source audit](assets/generalized-patch-audit-g01/preservation.json)
+[Preservation and running-source audit](assets/generalized-patch-audit-g01/final/preservation.json)
 checks **1,153** preexisting protected files against the starting main, including all historical
 experiments, fixtures, recordings, reports and evaluator/repair/RAG modules. All are byte unchanged.
 The actual API and broker source hashes match the tested implementation and contain no supplied
@@ -242,6 +245,13 @@ Development failures were retained and corrected, not hidden: shell sandbox rest
 async thread wakeups (offline checks passed outside it); a browser helper initially lacked an import;
 a real Docker removal returned an uncertain response and subsequent 409, producing no passing result.
 The cleanup regression now polls the same identity and retains structured infrastructure failures.
+The completion audit also closed missing-result/missing-approval saved-view false positives.
+A local rerun after that guard found a real runtime-discovery UI race: the prepare button could be
+clicked before runtime identities arrived. The final UI waits for an available identity; a deliberately
+delayed-response browser regression asserts that waiting, then still requires successful approval,
+execution, download and reopen. The failed local run and earlier passing evidence remain retained in
+[validation-guard evidence](assets/generalized-patch-audit-g01/validation-guard/README.md);
+its CI pass is not used to hide the local browser failure.
 A confirmation-checkbox layout issue found in the real screenshot was also corrected. No expected
 upstream test outcomes were changed to accommodate observed failures.
 
@@ -277,3 +287,5 @@ This is no recommendation for public execution or a claim that independent-check
 
 No G2 implementation, private GitHub access, public execution, model experiment, PR comment automation,
 release/tag mutation, merge or deployment was performed. The PR remains for engineering review.
+
+[SHA-256 manifest of final selected evidence](assets/generalized-patch-audit-g01/final/manifest.json).

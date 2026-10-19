@@ -1,0 +1,138 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 283 items / 206 deselected / 77 selected
+
+tests/test_access_integration.py::test_guest_ownership_artifacts_idempotency_and_expiry PASSED [  1%]
+tests/test_access_integration.py::test_reservations_are_atomic_persisted_and_server_wide PASSED [  2%]
+tests/test_agent_evaluator_browser.py::test_evaluator_real_ui_candidates_failure_evidence_and_reopen PASSED [  3%]
+tests/test_agent_evaluator_browser.py::test_evaluator_api_rejects_arbitrary_inputs_and_cancels PASSED [  5%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_controls PASSED [  6%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_negative_processes PASSED [  7%]
+tests/test_agent_evaluator_integration.py::test_evaluator_freeze PASSED  [  9%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_genuine_candidates PASSED [ 10%]
+tests/test_agent_evaluator_integration.py::test_evaluator_missing_image_is_infrastructure_error PASSED [ 11%]
+tests/test_agent_evaluator_recovery.py::test_evaluator_recovery_reconciles_terminal_broker_evidence PASSED [ 12%]
+tests/test_comparison_browser.py::test_comparison_actual_evidence_navigation_download_and_controls PASSED [ 14%]
+tests/test_comparison_browser.py::test_comparison_deterministic_rendering_fixtures_ties_zero_and_pending PASSED [ 15%]
+tests/test_diagnosis_browser.py::test_presentation_regression_for_passed_checks_and_interactive_footer PASSED [ 16%]
+tests/test_diagnosis_browser.py::test_live_nvidia_investigation_citations_inspector_and_reopened_history SKIPPED [ 18%]
+tests/test_diagnosis_browser.py::test_saved_investigation_reports_are_immutable_and_separate_from_draft PASSED [ 19%]
+tests/test_e2e.py::test_first_visitor_can_reproduce_inspect_and_reopen_history PASSED [ 20%]
+tests/test_e2e.py::test_actual_api_evidence_and_idempotency PASSED       [ 22%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload0] PASSED [ 23%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload1] PASSED [ 24%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload2] PASSED [ 25%]
+tests/test_e2e.py::test_capacity_cancellation_and_no_late_success PASSED [ 27%]
+tests/test_evaluation_harness.py::test_offline_one_shot_harness_executes_sealed_final_checks PASSED [ 28%]
+tests/test_evaluator_comparison_integration.py::test_producer_docker_access_boundary PASSED [ 29%]
+tests/test_evaluator_comparison_integration.py::test_comparison_new_task_controls PASSED [ 31%]
+tests/test_evaluator_comparison_integration.py::test_frozen_comparison_and_actual_evidence_are_valid PASSED [ 32%]
+tests/test_evaluator_comparison_integration.py::test_fresh_final_environments_and_generation_scoring_separation PASSED [ 33%]
+tests/test_guest_uuid_integration.py::test_guest_uuid_spellings_cannot_bypass_any_resource_handler PASSED [ 35%]
+tests/test_patch_audit_browser.py::test_patch_audit_real_ui_import_failing_passing_download_and_reopen PASSED [ 36%]
+tests/test_patch_audit_browser.py::test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart PASSED [ 37%]
+tests/test_patch_audit_browser.py::test_patch_audit_delayed_candidate_cannot_replace_selected_task PASSED [ 38%]
+tests/test_patch_audit_browser.py::test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_execution PASSED [ 40%]
+tests/test_patch_audit_browser.py::test_patch_audit_polling_fixture_serializes_requests_and_keeps_terminal_result PASSED [ 41%]
+tests/test_rag_integration.py::test_real_pgvector_fts_index_dedup_and_snapshot_isolation PASSED [ 42%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[insufficient-insufficient_evidence] PASSED [ 44%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[invalid-invalid_output] PASSED [ 45%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[failure-provider_error] PASSED [ 46%]
+tests/test_rag_integration.py::test_investigation_cancel_and_restart_keep_reproduction_separate PASSED [ 48%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[start] PASSED [ 49%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[cancel] PASSED [ 50%]
+tests/test_release_browser.py::test_m4_saved_shipping_reopen_without_inference_after_ui_correction SKIPPED [ 51%]
+tests/test_release_browser.py::test_recorded_explorer_first_visit_mobile_and_no_live_requests PASSED [ 53%]
+tests/test_release_browser.py::test_selected_scenario_manual_view_is_bound_before_any_reproduction PASSED [ 54%]
+tests/test_release_browser.py::test_m4_live_workflow_shipping_scenario_video SKIPPED [ 55%]
+tests/test_repair_browser.py::test_live_nvidia_repair_diff_verification_preview_and_reopen SKIPPED [ 57%]
+tests/test_repair_browser.py::test_offline_repair_browser_diff_preview_download_and_saved_history PASSED [ 58%]
+tests/test_repair_integration.py::test_real_mcp_discovery_permission_and_stale_base PASSED [ 59%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity-passed] PASSED [ 61%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * 3-failed] PASSED [ 62%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents + 0-failed] PASSED [ 63%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (document.querySelector('[data-testid=total]').hidden = true, 0)-failed] PASSED [ 64%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (setTimeout(() => document.querySelector('[data-testid=total]').textContent = 'x'.repeat(10000), 0), 0)-failed] PASSED [ 66%]
+tests/test_repair_integration.py::test_candidate_isolation_cleanup_and_preview_headers PASSED [ 67%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[valid-verified] PASSED [ 68%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[fail-verification_failed] PASSED [ 70%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[invalid-invalid_output] PASSED [ 71%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[failure-provider_error] PASSED [ 72%]
+tests/test_repair_integration.py::test_repair_cancellation_and_interruption_preserve_prior_statuses PASSED [ 74%]
+tests/test_repair_integration.py::test_shared_wall_clock_timeout_keeps_no_verification_claim PASSED [ 75%]
+tests/test_repair_integration.py::test_real_mcp_executor_outage_is_an_execution_error PASSED [ 76%]
+tests/test_repository_audit_integration.py::test_generalized_actual_sandbox_python_node_and_unknown_counts[python312] PASSED [ 77%]
+tests/test_repository_audit_integration.py::test_generalized_actual_sandbox_python_node_and_unknown_counts[node22] PASSED [ 79%]
+tests/test_repository_audit_integration.py::test_actual_sandbox_no_network_credentials_host_or_source_writes PASSED [ 80%]
+tests/test_repository_audit_integration.py::test_actual_setup_failure_timeout_cancel_and_cleanup PASSED [ 81%]
+tests/test_repository_audit_integration.py::test_repository_browser_review_approval_download_reopen_and_stale_selection FAILED [ 83%]
+tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution PASSED [ 84%]
+tests/test_scenarios_integration.py::test_two_real_indexes_reject_cross_snapshot_context PASSED [ 85%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[shipping-threshold] PASSED [ 87%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[decrement-skip] PASSED [ 88%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[clamp-zero] PASSED [ 89%]
+tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 90%]
+tests/test_scenarios_integration.py::test_remote_preview_rejects_commands_and_kills_nonresponsive_script PASSED [ 92%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[unavailable] PASSED [ 93%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[empty] PASSED [ 94%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[invalid] PASSED [ 96%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[timeout] PASSED [ 97%]
+tests/test_service.py::test_restart_recovers_unfinished_runs_and_preserves_terminal_outcomes PASSED [ 98%]
+tests/test_service.py::test_concurrent_duplicate_requests_produce_one_run PASSED [100%]
+
+=================================== FAILURES ===================================
+_ test_repository_browser_review_approval_download_reopen_and_stale_selection __
+
+    async def test_repository_browser_review_approval_download_reopen_and_stale_selection():
+        """Fetch transport is an offline fixture; subsequent API/DB/broker/Docker execution is real."""
+        source = fixture_source()
+        db = create_async_engine(settings.database_url)
+        try:
+            async with async_sessionmaker(db).begin() as session:
+                if await session.get(RepositorySource, source["id"]) is None:
+                    session.add(RepositorySource(id=source["id"], record=source))
+        finally:
+            await db.dispose()
+        await asyncio.to_thread(FOLDER.mkdir, parents=True, exist_ok=True)
+        async with async_playwright() as p, httpx.AsyncClient(base_url=BASE, timeout=15) as client:
+            browser = await p.chromium.launch()
+            page = await browser.new_page(viewport={"width": 1440, "height": 1050})
+            errors = []
+            page.on("pageerror", lambda e: errors.append(str(e)))
+            await page.route(
+                "**/api/repository-audits/sources", lambda route: route.fulfill(json=summary(source))
+            )
+            await page.goto(BASE + "/?source=external")
+            await expect(page.get_by_role("heading", name="Bring your own repository")).to_be_visible()
+            await page.get_by_label("GitHub owner/repository", exact=True).fill(source["repository"])
+            await page.get_by_label("Immutable base commit", exact=True).fill(source["base_commit"])
+            await page.get_by_role("button", name="Fetch source for review", exact=True).click()
+            await page.get_by_label("Approved production file scope", exact=True).select_option(
+                ["library.py"]
+            )
+            await page.get_by_label("External unified diff", exact=True).fill(patch_for(source))
+            await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+            await expect(page.get_by_role("region", name="External candidate review")).to_be_visible()
+            assert await page.get_by_role("region", name="External audit result").count() == 0
+            await page.get_by_text("Compare library.py", exact=True).click()
+            await expect(page.locator(".monaco-diff-editor:visible")).to_be_visible(timeout=20000)
+            await page.get_by_role("button", name="Prepare exact plan for approval", exact=True).click()
+            run = page.get_by_role("button", name="Run approved repository tests", exact=True)
+>           await expect(run).to_be_disabled()
+E           AssertionError: Locator expected to be disabled
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_disabled" with timeout 5000ms
+E             - waiting for get_by_role("button", name="Run approved repository tests", exact=True)
+
+tests/test_repository_audit_integration.py:169: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_repository_audit_integration.py::test_repository_browser_review_approval_download_reopen_and_stale_selection
+===== 1 failed, 72 passed, 4 skipped, 206 deselected in 464.50s (0:07:44) ======
