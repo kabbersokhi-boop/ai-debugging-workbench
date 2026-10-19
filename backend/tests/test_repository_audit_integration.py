@@ -168,7 +168,18 @@ async def test_repository_browser_review_approval_download_reopen_and_stale_sele
         await page.get_by_label("Approved production file scope", exact=True).select_option(
             ["library.py"]
         )
-        await page.get_by_label("External unified diff", exact=True).fill(patch_for(source))
+        exact_patch = patch_for(source)
+        await page.get_by_label("External patch file", exact=True).set_input_files(
+            {
+                "name": "bom.patch",
+                "mimeType": "text/plain",
+                "buffer": b"\xef\xbb\xbf" + exact_patch.encode(),
+            }
+        )
+        await expect(page.get_by_label("External unified diff", exact=True)).to_have_value(
+            "\ufeff" + exact_patch
+        )
+        await page.get_by_label("External unified diff", exact=True).fill(exact_patch)
         await page.get_by_role("button", name="Admit patch for review", exact=True).click()
         await expect(page.get_by_role("region", name="External candidate review")).to_be_visible()
         assert await page.get_by_role("region", name="External audit result").count() == 0

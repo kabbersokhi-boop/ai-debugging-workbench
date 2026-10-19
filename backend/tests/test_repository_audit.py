@@ -366,6 +366,7 @@ def test_exact_patch_and_candidate_identity_separate_from_repository():
         lambda p: p.replace("library.py", "tests/test_library.py"),
         lambda p: "GIT binary patch\n" + p,
         lambda p: p + p,
+        lambda p: "\ufeff" + p,
         lambda p: p.replace("\n", "\r\n"),
         lambda p: p.replace("+++ b/library.py", "+++ /dev/null"),
         lambda p: "new file mode 120000\n" + p,
