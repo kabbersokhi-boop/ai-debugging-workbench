@@ -147,6 +147,16 @@ async def test_repository_browser_review_approval_download_reopen_and_stale_sele
         page = await browser.new_page(viewport={"width": 1440, "height": 1050})
         errors = []
         page.on("pageerror", lambda e: errors.append(str(e)))
+        runtime_requested = asyncio.Event()
+        release_runtime = asyncio.Event()
+
+        async def delayed_runtime(route):
+            response = await route.fetch()
+            runtime_requested.set()
+            await release_runtime.wait()
+            await route.fulfill(response=response)
+
+        await page.route("**/api/repository-audits/runtimes", delayed_runtime)
         await page.route(
             "**/api/repository-audits/sources", lambda route: route.fulfill(json=summary(source))
         )
@@ -164,7 +174,12 @@ async def test_repository_browser_review_approval_download_reopen_and_stale_sele
         assert await page.get_by_role("region", name="External audit result").count() == 0
         await page.get_by_text("Compare library.py", exact=True).click()
         await expect(page.locator(".monaco-diff-editor:visible")).to_be_visible(timeout=20000)
-        await page.get_by_role("button", name="Prepare exact plan for approval", exact=True).click()
+        prepare = page.get_by_role("button", name="Prepare exact plan for approval", exact=True)
+        await asyncio.wait_for(runtime_requested.wait(), 15)
+        await expect(prepare).to_be_disabled()
+        release_runtime.set()
+        await expect(prepare).to_be_enabled()
+        await prepare.click()
         run = page.get_by_role("button", name="Run approved repository tests", exact=True)
         await expect(run).to_be_disabled()
         await page.get_by_role("checkbox").check()

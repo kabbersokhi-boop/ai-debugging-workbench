@@ -23,6 +23,7 @@ export default function RepositoryAudit() {
   const [confirmed,setConfirmed]=useState(false), [busy,setBusy]=useState(false), [error,setError]=useState("");
   const [saved,setSaved]=useState<Saved[]>([]); const epoch=useRef(0);
   const running=audit?.status==="running", result=audit?.evidence.result;
+  const selectedRuntime=runtimes.find(r=>r.runtime===runtime&&r.available&&r.image_id);
   function invalidate(clearCandidate=false) {epoch.current++;setAudit(null);setPlan(null);setConfirmed(false);setError("");setBusy(false);if(clearCandidate)setCandidate(null);}
   async function refresh() { setSaved(await api<Saved[]>("/repository-audits/runs")); }
   async function operation(action:(token:number)=>Promise<void>) {const token=epoch.current;setBusy(true);setError("");try {await action(token);}catch(e){if(token===epoch.current)setError(String(e));}finally{if(token===epoch.current)setBusy(false);}}
@@ -74,7 +75,9 @@ export default function RepositoryAudit() {
       <label>Test command arguments (JSON)<textarea aria-label="Test command arguments" rows={2} value={tests} disabled={running||busy} onChange={e=>{invalidate();setTests(e.target.value);}}/></label>
       <label>Selected test scope<input aria-label="Selected test scope" value={description} disabled={running||busy} onChange={e=>{invalidate();setDescription(e.target.value);}}/></label>
       <label>Total command timeout (seconds)<input aria-label="Total command timeout" type="number" min={1} max={120} value={timeout} disabled={running||busy} onChange={e=>{invalidate();setTimeoutValue(Number(e.target.value));}}/></label>
-      <button className="primary-button" disabled={running||busy} onClick={prepare}>Prepare exact plan for approval</button>
+      {!runtimes.length&&<p role="status">Loading local runtime identities…</p>}
+      {runtimes.length>0&&!selectedRuntime&&<p>The selected runtime is unavailable. Build the local runtime image and reload before preparing a plan.</p>}
+      <button className="primary-button" disabled={running||busy||!selectedRuntime} onClick={prepare}>Prepare exact plan for approval</button>
       {plan&&<div className="audit-confirm"><h3>4. Approve local execution</h3><pre>{JSON.stringify(plan.plan,null,2)}</pre><p>No network, credentials, Docker socket or unrelated host mounts. Non-root execution, read-only inputs, 1 CPU, 512 MiB memory, 64 processes and bounded temporary storage/output. Containers share the host kernel and are not a complete defense against malicious code. Use an isolated disposable VM for adversarial repositories. Keep this service private.</p><label><input type="checkbox" checked={confirmed} disabled={running||busy} onChange={e=>setConfirmed(e.target.checked)}/>I reviewed this exact source, patch and plan, and approve local execution.</label><button className="primary-button" disabled={!confirmed||running||busy} onClick={start}>Run approved repository tests</button></div>}
     </section>}
     <section className="evaluation-panel"><h2>Saved repository audit history</h2><button disabled={busy} onClick={()=>refresh().catch(e=>setError(String(e)))}>Refresh repository history</button><ul className="evaluation-history">{saved.map(h=><li key={h.id}><button disabled={running||busy} onClick={()=>open(h.id)}>{h.repository} · {words(h.status)} · {new Date(h.created_at).toLocaleString()}<br/><code>{h.id}</code></button></li>)}</ul></section>
