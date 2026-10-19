@@ -535,11 +535,22 @@ def test_evidence_bindings_and_missing_logs_counts_setup():
             "candidate": candidate,
             "plan": plan,
             "engine_id": engine_id(),
+            "approval": {
+                "local_owner": True,
+                "candidate_id": candidate["id"],
+                "plan_id": identity(plan),
+                "approved_at": datetime.now(UTC).isoformat(),
+            },
             "result": result,
             "result_hash": identity(result),
         },
     )
     assert view(row)["status"] == "tests_passed"
+    for missing in ("result", "approval"):
+        damaged = copy.deepcopy(row)
+        damaged.evidence.pop(missing)
+        assert view(damaged)["status"] == "invalid_evidence"
+        assert "result" not in view(damaged)["evidence"]
     row.evidence["result"]["status"] = "infrastructure_error"
     assert view(row)["status"] == "invalid_evidence"
     assert "result" not in view(row)["evidence"]

@@ -61,6 +61,14 @@ def validate_saved(evidence, audit_id):
     snapshot, candidate, plan = (evidence[k] for k in ("snapshot", "candidate", "plan"))
     rebuild(snapshot, candidate)
     check_plan(snapshot, candidate, plan)
+    approval = evidence["approval"]
+    if (
+        approval.get("local_owner") is not True
+        or approval.get("candidate_id") != candidate["id"]
+        or approval.get("plan_id") != identity(plan)
+        or not approval.get("approved_at")
+    ):
+        raise ValueError("Missing exact candidate/plan approval evidence")
     if evidence.get("result") is not None:
         if identity(evidence["result"]) != evidence.get("result_hash"):
             raise ValueError("Saved result hash mismatch")
@@ -71,6 +79,12 @@ def view(row):
     evidence, status = row.evidence, row.status
     try:
         validate_saved(evidence, row.id)
+        if status in (
+            "tests_passed",
+            "tests_failed",
+            "environment_preparation_failed",
+        ) and not evidence.get("result"):
+            raise ValueError("Missing terminal execution evidence")
         if row.candidate_id != evidence["candidate"]["id"] or row.plan_id != identity(
             evidence["plan"]
         ):
