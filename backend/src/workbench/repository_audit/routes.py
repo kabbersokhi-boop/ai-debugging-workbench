@@ -13,7 +13,9 @@ from workbench.db import (
     RepositoryAudit,
     RepositoryCandidate,
     RepositoryPlan,
+    RepositoryRequirement,
     RepositorySource,
+    RepositoryVerificationPlan,
     sessions,
 )
 from workbench.evaluator.catalog import identity
@@ -22,6 +24,12 @@ from workbench.repository_audit.admission import admit, check_plan
 from workbench.repository_audit.contracts import Confirm, Import, Intake, Plan
 from workbench.repository_audit.intake import Rejected, fetch, summary
 from workbench.repository_audit.service import load, material, store, view
+from workbench.repository_audit.verification import (
+    Requirement,
+    VerificationPlan,
+    admit_plan,
+    record,
+)
 
 router = APIRouter(prefix="/api/repository-audits", dependencies=[Depends(local_only)])
 FETCH_LOCK = asyncio.Lock()
@@ -104,10 +112,51 @@ async def plan(payload: Plan):
 async def start(payload: Confirm, request: Request):
     try:
         return await request.app.state.repository_audits.create(
-            payload.candidate_id, payload.plan_id
+            payload.candidate_id,
+            payload.plan_id,
+            payload.verification_id,
+            payload.validation_run_id,
+            payload.stage,
+            payload.approve_independent_plan,
         )
     except ValueError as error:
         raise HTTPException(409, str(error)) from None
+
+
+@router.post("/requirements", status_code=201)
+async def requirement_record(payload: Requirement):
+    await load(RepositorySource, payload.snapshot_id)
+    return await store(RepositoryRequirement, record(payload))
+
+
+@router.get("/requirements/{requirement_id}")
+async def requirement_review(requirement_id: str):
+    return await load(RepositoryRequirement, requirement_id)
+
+
+@router.post("/verification-plans", status_code=201)
+async def independent_plan(payload: VerificationPlan):
+    snapshot, candidate, ordinary = await material(payload.candidate_id, payload.ordinary_plan_id)
+    requirements = [
+        await load(RepositoryRequirement, key)
+        for key in sorted({a.requirement_id for a in payload.assertions})
+    ]
+    try:
+        admit_plan(snapshot, candidate, ordinary, payload.model_dump(), requirements)
+    except ValueError as error:
+        raise HTTPException(422, str(error)) from None
+    value = {
+        "id": identity(payload.model_dump()),
+        "plan": payload.model_dump(),
+        "requirements": requirements,
+    }
+    await store(RepositoryVerificationPlan, value)
+    return {**value, "validation": "awaiting_controls", "approval": "not_approved"}
+
+
+@router.get("/verification-plans/{verification_id}")
+async def independent_plan_review(verification_id: str):
+    return await load(RepositoryVerificationPlan, verification_id)
 
 
 @router.get("/runs")

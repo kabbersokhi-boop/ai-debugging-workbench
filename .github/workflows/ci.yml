@@ -1,9 +1,9 @@
 name: Milestone checks
 on:
   push:
-    branches: [main, 'milestone/**', 'feature/agent-evaluator-m01', 'feature/agent-evaluator-m02']
+    branches: [main, 'milestone/**', 'feature/agent-evaluator-m01', 'feature/agent-evaluator-m02', 'feature/generalized-patch-audit-g02']
   pull_request:
-    branches: [main, 'milestone/**', 'feature/agent-evaluator-m01', 'feature/agent-evaluator-m02']
+    branches: [main, 'milestone/**', 'feature/agent-evaluator-m01', 'feature/agent-evaluator-m02', 'feature/generalized-patch-audit-g01']
 permissions:
   contents: read
 jobs:
@@ -46,6 +46,7 @@ jobs:
         with:
           name: milestone-evidence
           path: |
+            artifacts/repository-audit-g2/
             artifacts/repository-audit/
             artifacts/patch-audit/
             artifacts/evaluator/

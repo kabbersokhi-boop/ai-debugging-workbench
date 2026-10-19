@@ -47,7 +47,7 @@ def runtimes():
         client.close()
 
 
-def verify_sandbox(sandbox):
+def verify_sandbox(sandbox, verifier=False):
     config = sandbox["host_config"]
     expected = {
         "NetworkMode": "none",
@@ -73,11 +73,20 @@ def verify_sandbox(sandbox):
         or source[0]["RW"]
         or any(
             m["Type"] not in ("volume", "tmpfs")
-            or m["Destination"] not in ("/source", "/work", "/tmp")
+            or m["Destination"]
+            not in (
+                ("/source", "/work", "/tmp", "/verifier")
+                if verifier
+                else ("/source", "/work", "/tmp")
+            )
             for m in mounts
         )
     ):
         raise ValueError("Unexpected or writable source/host mount")
+    if verifier:
+        mounts_v = [m for m in mounts if m["Destination"] == "/verifier"]
+        if len(mounts_v) != 1 or mounts_v[0]["Type"] != "volume" or mounts_v[0]["RW"]:
+            raise ValueError("Independent verifier volume must be separate and read-only")
     if config.get("Tmpfs") != {
         "/work": "rw,nosuid,nodev,size=128m,mode=1777",
         "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
@@ -170,7 +179,9 @@ def command(client, container, argv, cwd, cancel, deadline):
     return record
 
 
-def evaluate(audit_id, snapshot, candidate, plan_value, cancel: threading.Event):
+def evaluate(
+    audit_id, snapshot, candidate, plan_value, cancel: threading.Event, verifier_files=None
+):
     files = rebuild(snapshot, candidate)
     plan = check_plan(snapshot, candidate, plan_value)
     started = time.monotonic()
@@ -197,7 +208,7 @@ def evaluate(audit_id, snapshot, candidate, plan_value, cancel: threading.Event)
         "started_at": datetime.now(UTC).isoformat(),
     }
     client = None
-    volume = init = container = None
+    volume = verifier_volume = init = container = None
     try:
         client = docker.from_env(timeout=5)
         if cancel.is_set():
@@ -233,11 +244,15 @@ def evaluate(audit_id, snapshot, candidate, plan_value, cancel: threading.Event)
             ],
         )
         volume = client.volumes.create(labels=labels)
+        volumes = {volume.name: {"bind": "/source", "mode": "rw"}}
+        if verifier_files is not None:
+            verifier_volume = client.volumes.create(labels=labels)
+            volumes[verifier_volume.name] = {"bind": "/verifier", "mode": "rw"}
         init = client.containers.create(
             image.id,
             ["sleep", "180"],
             user="0:0",
-            volumes={volume.name: {"bind": "/source", "mode": "rw"}},
+            volumes=volumes,
             **common,
         )
         archive_bytes = io.BytesIO()
@@ -252,6 +267,26 @@ def evaluate(audit_id, snapshot, candidate, plan_value, cancel: threading.Event)
         init.start()
         if not init.put_archive("/source", archive_bytes.getvalue()):
             raise RuntimeError("Source initialization failed")
+        if verifier_files is not None:
+            buf = io.BytesIO()
+            with tarfile.open(fileobj=buf, mode="w") as archive:
+                for name, data in verifier_files.items():
+                    member = tarfile.TarInfo(name)
+                    member.size, member.mode = len(data), 0o444
+                    archive.addfile(member, io.BytesIO(data))
+            if not init.put_archive("/verifier", buf.getvalue()):
+                raise RuntimeError("Verifier initialization failed")
+            actual = {}
+            stream, _ = init.get_archive("/verifier")
+            with tarfile.open(fileobj=io.BytesIO(b"".join(stream))) as archive:
+                for member in archive:
+                    if member.isfile():
+                        reader = archive.extractfile(member)
+                        assert reader is not None
+                        actual[member.name.removeprefix("verifier/")] = digest(reader.read())
+            if actual != {k: digest(v) for k, v in verifier_files.items()}:
+                raise ValueError("Initialized verifier differs from approved material")
+            result["verifier_hashes"] = actual
         observed = {}
         stream, _ = init.get_archive("/source")
         with tarfile.open(fileobj=io.BytesIO(b"".join(stream))) as archive:
@@ -269,6 +304,9 @@ def evaluate(audit_id, snapshot, candidate, plan_value, cancel: threading.Event)
         if cancel.is_set():
             result["status"] = "cancelled"
             return result
+        volumes = {volume.name: {"bind": "/source", "mode": "ro"}}
+        if verifier_volume is not None:
+            volumes[verifier_volume.name] = {"bind": "/verifier", "mode": "ro"}
         container = client.containers.create(
             image.id,
             ["sleep", "180"],
@@ -288,7 +326,7 @@ def evaluate(audit_id, snapshot, candidate, plan_value, cancel: threading.Event)
                 "npm_config_offline": "true",
                 "npm_config_cache": "/tmp/npm",
             },
-            volumes={volume.name: {"bind": "/source", "mode": "ro"}},
+            volumes=volumes,
             tmpfs={
                 "/work": "rw,nosuid,nodev,size=128m,mode=1777",
                 "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
@@ -321,7 +359,7 @@ def evaluate(audit_id, snapshot, candidate, plan_value, cancel: threading.Event)
                 for m in container.attrs["Mounts"]
             ],
         }
-        verify_sandbox(result["sandbox"])
+        verify_sandbox(result["sandbox"], verifier_files is not None)
         deadline = time.monotonic() + plan.timeout_seconds
         cwd = "/source" if plan.working_directory == "." else "/source/" + plan.working_directory
         for phase, argv in [("setup", c) for c in plan.setup] + [("tests", plan.tests)]:
@@ -368,6 +406,7 @@ def evaluate(audit_id, snapshot, candidate, plan_value, cancel: threading.Event)
                 ("containers", container),
                 ("containers", init),
                 ("volumes", volume),
+                ("volumes", verifier_volume),
             ):
                 if resource is not None:
                     try:
@@ -394,7 +433,9 @@ def evaluate(audit_id, snapshot, candidate, plan_value, cancel: threading.Event)
         )
 
 
-def validate(result, audit_id, snapshot, candidate, plan_value, expected_engine=None):
+def validate(
+    result, audit_id, snapshot, candidate, plan_value, expected_engine=None, verifier_files=None
+):
     plan = check_plan(snapshot, candidate, plan_value)
     for key, value in {
         "audit_id": str(audit_id),
@@ -447,7 +488,11 @@ def validate(result, audit_id, snapshot, candidate, plan_value, expected_engine=
         if entry.get("working_directory") != cwd:
             raise ValueError("Executed working directory differs from approved plan")
     if status in ("tests_passed", "tests_failed", "environment_preparation_failed"):
-        verify_sandbox(result.get("sandbox", {}))
+        verify_sandbox(result.get("sandbox", {}), verifier_files is not None)
+        if verifier_files is not None and result.get("verifier_hashes") != {
+            k: digest(v) for k, v in verifier_files.items()
+        }:
+            raise ValueError("Executed verifier material mismatch")
         if result.get("runtime", {}).get("image_id") != plan.image_id or not result.get(
             "container_id"
         ):

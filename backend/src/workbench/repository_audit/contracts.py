@@ -144,3 +144,7 @@ class Confirm(Contract):
     plan_id: HASH
     approve_exact_plan: Literal[True]
     confirm_local_execution: Literal[True]
+    verification_id: HASH | None = None
+    validation_run_id: str | None = Field(default=None, pattern=r"^[a-f0-9-]{36}$")
+    stage: Literal["execution", "validation"] = "execution"
+    approve_independent_plan: bool = False
