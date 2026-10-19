@@ -1,0 +1,311 @@
+{
+  "version": "g2-predeclared-trial-v1",
+  "stage_a_gate": "108 targeted offline tests and 5 real Docker integration tests passed before this declaration. No inference.",
+  "procedure": "Four predeclared candidate/check combinations, two repositories. Independent requirements fixed before scoring. All negatives explicitly authored. Zero genuine additional detections claimed. Full ordinary tests retained.",
+  "examples": [
+    {
+      "repository": "hynek/first",
+      "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+      "runtime": "python312",
+      "module": "first.py",
+      "export": "first",
+      "tests": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_first.py"
+      ],
+      "requirement": {
+        "statement": "With key omitted, return the first truthy iterable element, or None when none exists.",
+        "expected_behavior": "With key omitted, return the first truthy iterable element, or None when none exists.",
+        "input_domain": "Finite JSON lists of booleans, nulls, strings, lists, and small integers; omitted key/default.",
+        "assumptions": [
+          "Python truthiness, not JavaScript truthiness",
+          "Callable keys and non-JSON values outside this plan"
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/hynek/first/blob/106ee3cf389cf2bb76f2816bf22a845c44275f94/README.rst",
+          "excerpt": "This function returns the first element of ``iterable`` that is true if\n``key`` is ``None``.",
+          "excerpt_hash": "67a20e8df18b1b1a08dfe91027fae5e0d100571157a0dfde4a51dea62d988ae4",
+          "justification": "Contract taken from exact-base upstream documentation; expected JSON examples owner-specified independently of candidate. Documentation is evidence only, never executed.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "string_truthy",
+          "args": [
+            [
+              0,
+              false,
+              "ready",
+              42
+            ]
+          ],
+          "expected": "ready"
+        },
+        {
+          "id": "negative_truthy",
+          "args": [
+            [
+              0,
+              -7,
+              2
+            ]
+          ],
+          "expected": -7
+        },
+        {
+          "id": "all_false",
+          "args": [
+            [
+              0,
+              false,
+              null,
+              []
+            ]
+          ],
+          "expected": null
+        },
+        {
+          "id": "empty",
+          "args": [
+            []
+          ],
+          "expected": null
+        }
+      ],
+      "source_doc": "python-upstream-README.rst",
+      "source_doc_sha256": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+      "key": "python-positive",
+      "patch": "python-positive.patch",
+      "patch_provenance": "Exact first.py portion of upstream c91895d9298d32d9302e759b40cff7f0f015bd93, changes argument order; no trusted test changes",
+      "expected_ordinary": "tests_passed",
+      "expected_independent": "checks_passed"
+    },
+    {
+      "repository": "hynek/first",
+      "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+      "runtime": "python312",
+      "module": "first.py",
+      "export": "first",
+      "tests": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_first.py"
+      ],
+      "requirement": {
+        "statement": "With key omitted, return the first truthy iterable element, or None when none exists.",
+        "expected_behavior": "With key omitted, return the first truthy iterable element, or None when none exists.",
+        "input_domain": "Finite JSON lists of booleans, nulls, strings, lists, and small integers; omitted key/default.",
+        "assumptions": [
+          "Python truthiness, not JavaScript truthiness",
+          "Callable keys and non-JSON values outside this plan"
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/hynek/first/blob/106ee3cf389cf2bb76f2816bf22a845c44275f94/README.rst",
+          "excerpt": "This function returns the first element of ``iterable`` that is true if\n``key`` is ``None``.",
+          "excerpt_hash": "67a20e8df18b1b1a08dfe91027fae5e0d100571157a0dfde4a51dea62d988ae4",
+          "justification": "Contract taken from exact-base upstream documentation; expected JSON examples owner-specified independently of candidate. Documentation is evidence only, never executed.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "string_truthy",
+          "args": [
+            [
+              0,
+              false,
+              "ready",
+              42
+            ]
+          ],
+          "expected": "ready"
+        },
+        {
+          "id": "negative_truthy",
+          "args": [
+            [
+              0,
+              -7,
+              2
+            ]
+          ],
+          "expected": -7
+        },
+        {
+          "id": "all_false",
+          "args": [
+            [
+              0,
+              false,
+              null,
+              []
+            ]
+          ],
+          "expected": null
+        },
+        {
+          "id": "empty",
+          "args": [
+            []
+          ],
+          "expected": null
+        }
+      ],
+      "source_doc": "python-upstream-README.rst",
+      "source_doc_sha256": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+      "key": "python-negative",
+      "patch": "python-negative.patch",
+      "patch_provenance": "Explicitly authored negative control: skips truthy strings",
+      "expected_ordinary": "tests_passed",
+      "expected_independent": "assertions_failed"
+    },
+    {
+      "repository": "component/escape-html",
+      "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+      "runtime": "node22",
+      "module": "index.js",
+      "export": "",
+      "tests": [
+        "node",
+        "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+        "test/index.js"
+      ],
+      "requirement": {
+        "statement": "Escape all five documented HTML special characters in string input, including Unicode text.",
+        "expected_behavior": "Escape all five documented HTML special characters in string input, including Unicode text.",
+        "input_domain": "Finite JSON strings containing plain Unicode text and documented HTML special characters.",
+        "assumptions": [
+          "HTML text content or quoted attribute contexts only",
+          "Entity spellings follow upstream documented examples and owner-approved conventional HTML entity spellings; no raw-text element claim"
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/component/escape-html/blob/b42947eefa79efff01b3fe988c4c7e7b051ec8d8/README.md",
+          "excerpt": "This function will escape the following characters: `\"`, `'`, `&`, `<`, and\n`>`.",
+          "excerpt_hash": "71a5655b5f8a8a988b692afce317b357655ce889d53cd2f50fb774d59c56d229",
+          "justification": "Contract taken from exact-base upstream documentation; expected JSON examples owner-specified independently of candidate. Documentation is evidence only, never executed.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "unicode_prefix",
+          "args": [
+            "é<&"
+          ],
+          "expected": "é&lt;&amp;"
+        },
+        {
+          "id": "mixed_symbols",
+          "args": [
+            "\"'&<>"
+          ],
+          "expected": "&quot;&#39;&amp;&lt;&gt;"
+        },
+        {
+          "id": "astral_prefix",
+          "args": [
+            "🚀<go>"
+          ],
+          "expected": "🚀&lt;go&gt;"
+        },
+        {
+          "id": "plain",
+          "args": [
+            "plain"
+          ],
+          "expected": "plain"
+        }
+      ],
+      "source_doc": "node-upstream-README.md",
+      "source_doc_sha256": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+      "key": "node-positive",
+      "patch": "node-positive.patch",
+      "patch_provenance": "Reinstates String(string) from parent a1516acc06e03cea74c4f57f381d7c9e8eb22d05 of upstream performance commit 6af479fd7e7173d7c7c87ad8c850dd4fd9bc3667; one-line historically sourced alternative adapted to current standard-style context. Not claimed as a new bug fix.",
+      "expected_ordinary": "tests_passed",
+      "expected_independent": "checks_passed"
+    },
+    {
+      "repository": "component/escape-html",
+      "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+      "runtime": "node22",
+      "module": "index.js",
+      "export": "",
+      "tests": [
+        "node",
+        "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+        "test/index.js"
+      ],
+      "requirement": {
+        "statement": "Escape all five documented HTML special characters in string input, including Unicode text.",
+        "expected_behavior": "Escape all five documented HTML special characters in string input, including Unicode text.",
+        "input_domain": "Finite JSON strings containing plain Unicode text and documented HTML special characters.",
+        "assumptions": [
+          "HTML text content or quoted attribute contexts only",
+          "Entity spellings follow upstream documented examples and owner-approved conventional HTML entity spellings; no raw-text element claim"
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/component/escape-html/blob/b42947eefa79efff01b3fe988c4c7e7b051ec8d8/README.md",
+          "excerpt": "This function will escape the following characters: `\"`, `'`, `&`, `<`, and\n`>`.",
+          "excerpt_hash": "71a5655b5f8a8a988b692afce317b357655ce889d53cd2f50fb774d59c56d229",
+          "justification": "Contract taken from exact-base upstream documentation; expected JSON examples owner-specified independently of candidate. Documentation is evidence only, never executed.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "unicode_prefix",
+          "args": [
+            "é<&"
+          ],
+          "expected": "é&lt;&amp;"
+        },
+        {
+          "id": "mixed_symbols",
+          "args": [
+            "\"'&<>"
+          ],
+          "expected": "&quot;&#39;&amp;&lt;&gt;"
+        },
+        {
+          "id": "astral_prefix",
+          "args": [
+            "🚀<go>"
+          ],
+          "expected": "🚀&lt;go&gt;"
+        },
+        {
+          "id": "plain",
+          "args": [
+            "plain"
+          ],
+          "expected": "plain"
+        }
+      ],
+      "source_doc": "node-upstream-README.md",
+      "source_doc_sha256": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+      "key": "node-negative",
+      "patch": "node-negative.patch",
+      "patch_provenance": "Explicitly authored negative control: Unicode-prefix fast path skips escaping",
+      "expected_ordinary": "tests_passed",
+      "expected_independent": "assertions_failed"
+    }
+  ]
+}
