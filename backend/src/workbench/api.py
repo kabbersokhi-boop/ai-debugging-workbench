@@ -24,6 +24,8 @@ from workbench.rag.service import InvestigationManager
 from workbench.rag.snapshot import scenario_manifest
 from workbench.repair.contracts import RemoteAction
 from workbench.repair.service import RepairManager
+from workbench.repository_audit.routes import router as repository_audit_router
+from workbench.repository_audit.service import RepositoryAuditManager
 from workbench.runner import scenario_resource
 from workbench.service import RunManager, get_run
 
@@ -53,9 +55,13 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
                 audits = AuditManager()
                 app.state.patch_audits = audits
                 await audits.recover()
+                repository_audits = RepositoryAuditManager()
+                app.state.repository_audits = repository_audits
+                await repository_audits.recover()
                 try:
                     yield
                 finally:
+                    await repository_audits.close()
                     await audits.close()
                     await evaluations.close()
                     await repairs.close()
@@ -75,9 +81,10 @@ async def coordinated_call(request, call_next):
     if request.method == "POST" and request.url.path in (
         "/api/evaluator/runs",
         "/api/patch-audits/runs",
+        "/api/repository-audits/runs",
     ):
         async with request.app.state.evaluation_admission:
-            for name in ("evaluations", "patch_audits"):
+            for name in ("evaluations", "patch_audits", "repository_audits"):
                 manager = getattr(request.app.state, name, None)
                 if manager is not None and manager.jobs:
                     return JSONResponse({"detail": "The local evaluator is occupied"}, 429)
@@ -87,7 +94,10 @@ async def coordinated_call(request, call_next):
 
 @app.middleware("http")
 async def response_headers(request: Request, call_next):
-    if request.url.path.startswith("/api/patch-audits") and request.method == "POST":
+    if (
+        request.url.path.startswith(("/api/patch-audits", "/api/repository-audits"))
+        and request.method == "POST"
+    ):
         body = bytearray()
         async for chunk in request.stream():
             body.extend(chunk)
@@ -393,6 +403,7 @@ async def mode():
 
 app.include_router(evaluator_router)
 app.include_router(patch_audit_router)
+app.include_router(repository_audit_router)
 
 
 # The same immutable fixture can be explored manually without exposing the runner API.

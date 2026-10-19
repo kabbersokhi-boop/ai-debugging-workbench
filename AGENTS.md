@@ -8,7 +8,7 @@ Keep generated patches away from trusted tests, infrastructure, and secrets. Bro
 
 Use Python 3.12, typed async services, Pydantic contracts, SQLAlchemy and Alembic. Use React and TypeScript for the workspace. Keep money in integer cents. Persist run transitions and evidence. Represent infrastructure errors separately from a reproduced defect.
 
-Run `./scripts/check` and `./scripts/e2e` for maintenance verification. Document actual results in `docs/reports/`. Never commit credentials, runtime artifacts, browser traces with secrets, or environment files. Commit only sanitized screenshots from the synthetic fixture.
+Run `./scripts/check` and `./scripts/e2e` for maintenance verification. Document actual results in `docs/reports/`. Never commit credentials, runtime artifacts, browser traces with secrets, or environment files. Commit only sanitized screenshots from the synthetic fixture or explicitly requested public G1 examples.
 
 Prefer complete user journeys to additional infrastructure. Keep architecture and decisions concise. Additional ideas belong in the roadmap backlog.
 
@@ -20,3 +20,10 @@ The owner separately authorized the one-time accepted Patch Audit integration an
 repository release, plus recorded-only deployment in the existing Vercel account. Preserve
 M1/M2 freezes and failed readiness; M3 remains on hold. This grants no blanket permission
 for future merges, releases, paid services, deployments or public candidate execution.
+
+G1 is separately authorized: `repository_audit` may accept validated public GitHub
+owner/repository identifiers, full immutable commits, production-only diffs and typed
+local-owner-approved argv execution plans. This exception applies only to the new
+local workflow. Repository content is untrusted, intake never executes it, all setup
+and tests require restricted broker containers, and the recorded server must have
+no generalized intake or execution authority. Do not change frozen historical inputs.

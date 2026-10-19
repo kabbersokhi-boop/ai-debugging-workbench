@@ -62,6 +62,16 @@ Patch Audit supports **four Python tasks from Boltons and more-itertools**, with
 versions and permitted production files. Evaluating a completed patch requires no model call or
 provider key. [Supported tasks and upstream attribution](evaluation/experiments/m02-v1/README.md).
 
+### Bring an external repository (experimental, local only)
+
+Select **External repository** in the local Patch Audit workspace. Pin a public GitHub
+repository to a full commit SHA, import a production-only patch, review and explicitly approve
+a Python 3.12 or Node 22 test plan, then inspect, download and reopen the result. Repository
+intake does not execute code. Setup and tests run without network in restricted containers;
+unsupported dependencies fail clearly. Independent verification is **not configured** for G1.
+[Requirements, commands and security boundary](docs/GENERALIZED-PATCH-AUDIT.md) ·
+[Executed examples and engineering review](docs/reports/GENERALIZED-PATCH-AUDIT-G01.md).
+
 ### Investigate and repair a reproduced defect
 
 The debugging workspace reproduces supported defects in a retail web application, retrieves
@@ -194,8 +204,9 @@ instructions are in the [verification guide](docs/RELEASE.md#isolated-release-ve
 ## Scope and licensing
 
 Passing the named checks establishes evidence about the tested behavior, not universal correctness
-or security. The project supports specific tasks and source versions; it offers no arbitrary public
-uploads, repository execution, or automatic pull-request publication. Imported patch authorship is
+or security. The historical independent evaluator supports specific tasks and source versions. Experimental
+G1 ordinary-test execution supports bounded public GitHub repositories in trusted local mode.
+The public application offers no repository intake or execution, and no automatic pull-request publication. Imported patch authorship is
 user-declared. Usage is recorded where the provider returns it; monetary cost is unknown.
 
 This repository does not currently grant a project license. Dependency and upstream attribution

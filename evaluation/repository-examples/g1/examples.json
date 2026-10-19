@@ -1,0 +1,61 @@
+{
+  "version": "g1-external-examples-v1",
+  "examples": [
+    {
+      "key": "python",
+      "repository": "hynek/first",
+      "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+      "runtime": "python312",
+      "patch": "hynek-first.patch",
+      "approved_paths": [
+        "first.py"
+      ],
+      "tests": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_first.py"
+      ],
+      "test_description": "All three existing upstream unit tests at the pinned base",
+      "expected_status": "tests_passed",
+      "patch_provenance": "Exact first.py portion of upstream c91895d9298d32d9302e759b40cff7f0f015bd93, changes argument order; no trusted test changes"
+    },
+    {
+      "key": "node",
+      "repository": "component/escape-html",
+      "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+      "runtime": "node22",
+      "patch": "escape-html.patch",
+      "approved_paths": [
+        "index.js"
+      ],
+      "tests": [
+        "node",
+        "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+        "test/index.js"
+      ],
+      "test_description": "All existing upstream test/index.js cases; pinned Mocha 11.7.5 runtime tool",
+      "expected_status": "tests_passed",
+      "patch_provenance": "Reinstates String(string) from parent a1516acc06e03cea74c4f57f381d7c9e8eb22d05 of upstream performance commit 6af479fd7e7173d7c7c87ad8c850dd4fd9bc3667; one-line historically sourced alternative adapted to current standard-style context. Not claimed as a new bug fix."
+    },
+    {
+      "key": "node-regression",
+      "repository": "component/escape-html",
+      "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+      "runtime": "node22",
+      "patch": "escape-html-regression.patch",
+      "approved_paths": [
+        "index.js"
+      ],
+      "tests": [
+        "node",
+        "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+        "test/index.js"
+      ],
+      "test_description": "Unchanged upstream tests against explicitly authored less-than escaping regression",
+      "expected_status": "tests_failed",
+      "patch_provenance": "Deliberately authored negative control: < is incorrectly escaped as &gt;. Not an AI patch or an independent defect discovery."
+    }
+  ]
+}

@@ -70,3 +70,9 @@ async def audit(audit_id: UUID, payload: AuditRequest):
         broker.ACTIVE.pop(audit_id, None)
         if not broker.ACTIVE:
             broker.IDLE.set()
+
+
+# Separate typed, local-owner-only G1 adapter; historical handlers stay unchanged.
+from workbench.repository_audit.broker import install  # noqa: E402
+
+install(app)

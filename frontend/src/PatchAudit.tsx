@@ -3,6 +3,7 @@ import { api } from "./types";
 import { evidenceSummary } from "./evaluationSummary";
 import "./evaluation.css";
 import "./patchAudit.css";
+const RepositoryAudit = lazy(() => import("./RepositoryAudit"));
 const Diff = lazy(() => import("./Diff"));
 
 type Task = { id: string; title: string; problem: string; expected: string; ordinary_scope: string; base_commit: string; spec_hash: string; upstream: string; issue: string; license: string };
@@ -24,7 +25,7 @@ function assertAudit(a: Audit, id?: string, c?: Candidate) {
 }
 function url(values: Record<string,string>) { const u = new URL(location.href); u.search = new URLSearchParams(values).toString(); history.replaceState(null,"",u); }
 
-export default function PatchAudit({ recorded = false }: {recorded?: boolean}) {
+function PreparedPatchAudit({ recorded = false }: {recorded?: boolean}) {
   const [tasks,setTasks] = useState<Task[]>([]), [taskId,setTaskId] = useState("boltons-addlist");
   const [presets,setPresets] = useState<Preset[]>([]), [preset,setPreset] = useState("");
   const [candidate,setCandidate] = useState<Candidate|null>(null), [audit,setAudit] = useState<Audit|null>(null);
@@ -163,3 +164,10 @@ export default function PatchAudit({ recorded = false }: {recorded?: boolean}) {
 }
 
 function PhaseCard({title,phase}:{title:string;phase?:Phase}) { return <article><h3>{title}</h3><strong className={`evaluation-status ${phase?.outcome ?? phase?.status ?? "pending"}`}>{label(phase?.outcome ?? phase?.status ?? "No completed evidence")}</strong>{phase && <><p>Exit {phase.exit_code ?? "unknown"} · {phase.duration_ms === undefined ? "duration unknown" : `${(phase.duration_ms/1000).toFixed(2)} seconds`}</p><details><summary>Execution logs</summary><pre>{phase.stdout || "No stdout retained."}</pre>{phase.stderr && <pre>{phase.stderr}</pre>}</details></>}</article>; }
+
+
+export default function PatchAudit({recorded=false}:{recorded?:boolean}) {
+  const [source,setSource]=useState(new URLSearchParams(location.search).get("source")==="external" || new URLSearchParams(location.search).has("repositoryAudit") ? "external" : "prepared");
+  if(recorded)return <PreparedPatchAudit recorded/>;
+  return <><section className="evaluation-selection audit-source-selection"><label>Audit source<select aria-label="Audit source" value={source} onChange={e=>{setSource(e.target.value);const u=new URL(location.href);u.search=e.target.value==="external"?"source=external":"";history.replaceState(null,"",u);}}><option value="prepared">Existing prepared task</option><option value="external">External repository (experimental)</option></select></label></section>{source==="external"?<Suspense fallback={<p>Opening repository audit…</p>}><RepositoryAudit/></Suspense>:<PreparedPatchAudit/>}</>;
+}
