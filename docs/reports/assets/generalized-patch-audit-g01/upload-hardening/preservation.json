@@ -1,0 +1,65 @@
+{
+  "base": "fb2ca281c3ce9c6145b02dc051d1fbd7288e0040",
+  "implementation": "1747a58d5f8ceaef204381efd39d18d4fbd801a0",
+  "protected_files": 1153,
+  "protected_files_unchanged": true,
+  "release_tag": "49e6071938c8a81aa735cb49b7e18e86679bb7b5",
+  "api": {
+    "frontend_matches_implementation": true,
+    "frontend_sha256": {
+      "assets/Comparison-_9qXmyO2.js": "0c7a5da975fbc169407974e665fbcc22f6aef060dc7c84602432f4ebc50325e6",
+      "assets/Diff-Bmo2APPZ.js": "42e9b68053106428a40d30a485b052cf08ccab64f84c5c4a2862f2b59e83f7e3",
+      "assets/Diff-CNgQWNDj.css": "d0cf59560a867ec8acc0e024c1cc5ab1adbfa237e741a237c22ad6eb9abf572f",
+      "assets/RepositoryAudit-D4rMyRqI.js": "6ab7b4ff17fefcbebdfe8ee874a003eea1961ef7fda6811000a369d11287c4d4",
+      "assets/editor.worker-BytiCuzy.js": "7dd4c36e51af17e43fe30e5692eda7a4b7e5abe862ea4c031d1260666cdb530e",
+      "assets/index-BnCQl7L0.css": "3ab82bf3cf6e2a6c55019934b5974d1c09772c8a5436cd7bfd00297c60d08340",
+      "assets/index-D1ip5B2K.js": "78a8fe542be186154ff6b34e625356a64d179ca5603da2015f9598b9e929e2fa",
+      "index.html": "4681f67912d02d4e961b23d6979b0c9364892a473adaf687db9096066fbc544a"
+    },
+    "image_id": "sha256:b68865df72c0591c01a5a16cb2339791826d7dfbdd200ae0d43f0878f8ef53bd",
+    "source_matches_implementation": true,
+    "provider_credentials_supplied": false,
+    "source_sha256": {
+      "api.py": "1613ad3feb0c873219eccd880bbe5a982b1576510078244d252a6b6b18ed6b89",
+      "db.py": "405dad037d1e1e807541d138b746d45e28dfd395c6799e8cdd08b85d3601e4be",
+      "patch_audit/broker.py": "f8f056c774ad54fe360820876e9bb617202ed67600bbd71bd710a406cc24e73e",
+      "repository_audit/routes.py": "154c08bb30800489254475329e4955a8998fc21e91aed2576e475b23a3710454",
+      "repository_audit/__init__.py": "4cf7618f08deaee0e832b984b8b0bd54440de87127f7d67e809ced1e8bd2ac4f",
+      "repository_audit/service.py": "3d4133e0bcc6811c8bc710624fe6de0e836a86e5b24722e1c1a40b22bacc7139",
+      "repository_audit/execution.py": "431c398ebb5430b495251b4a69710ef165bea680dedad2a68740913814993f0f",
+      "repository_audit/contracts.py": "bcd84d1067b0e6a9b7b689baea510e46bf946304b3b229c92f8bf4a589689b66",
+      "repository_audit/admission.py": "ab70a0d23da2e0808034ca5406a85d0b221f979f799a39bbfbed6cbf052a797e",
+      "repository_audit/intake.py": "1c99e1690d8876b7170706875892e27661621aba3f5a6f852bab6126e579f72d",
+      "repository_audit/broker.py": "72bcf90ffb2687a76f2331c5a25c52395a3ecc7112d00ed7dbd9c07cde4cb032"
+    }
+  },
+  "evaluator": {
+    "frontend_matches_implementation": true,
+    "frontend_sha256": {
+      "assets/Comparison-_9qXmyO2.js": "0c7a5da975fbc169407974e665fbcc22f6aef060dc7c84602432f4ebc50325e6",
+      "assets/Diff-Bmo2APPZ.js": "42e9b68053106428a40d30a485b052cf08ccab64f84c5c4a2862f2b59e83f7e3",
+      "assets/Diff-CNgQWNDj.css": "d0cf59560a867ec8acc0e024c1cc5ab1adbfa237e741a237c22ad6eb9abf572f",
+      "assets/RepositoryAudit-D4rMyRqI.js": "6ab7b4ff17fefcbebdfe8ee874a003eea1961ef7fda6811000a369d11287c4d4",
+      "assets/editor.worker-BytiCuzy.js": "7dd4c36e51af17e43fe30e5692eda7a4b7e5abe862ea4c031d1260666cdb530e",
+      "assets/index-BnCQl7L0.css": "3ab82bf3cf6e2a6c55019934b5974d1c09772c8a5436cd7bfd00297c60d08340",
+      "assets/index-D1ip5B2K.js": "78a8fe542be186154ff6b34e625356a64d179ca5603da2015f9598b9e929e2fa",
+      "index.html": "4681f67912d02d4e961b23d6979b0c9364892a473adaf687db9096066fbc544a"
+    },
+    "image_id": "sha256:b68865df72c0591c01a5a16cb2339791826d7dfbdd200ae0d43f0878f8ef53bd",
+    "source_matches_implementation": true,
+    "provider_credentials_supplied": false,
+    "source_sha256": {
+      "api.py": "1613ad3feb0c873219eccd880bbe5a982b1576510078244d252a6b6b18ed6b89",
+      "db.py": "405dad037d1e1e807541d138b746d45e28dfd395c6799e8cdd08b85d3601e4be",
+      "patch_audit/broker.py": "f8f056c774ad54fe360820876e9bb617202ed67600bbd71bd710a406cc24e73e",
+      "repository_audit/routes.py": "154c08bb30800489254475329e4955a8998fc21e91aed2576e475b23a3710454",
+      "repository_audit/__init__.py": "4cf7618f08deaee0e832b984b8b0bd54440de87127f7d67e809ced1e8bd2ac4f",
+      "repository_audit/service.py": "3d4133e0bcc6811c8bc710624fe6de0e836a86e5b24722e1c1a40b22bacc7139",
+      "repository_audit/execution.py": "431c398ebb5430b495251b4a69710ef165bea680dedad2a68740913814993f0f",
+      "repository_audit/contracts.py": "bcd84d1067b0e6a9b7b689baea510e46bf946304b3b229c92f8bf4a589689b66",
+      "repository_audit/admission.py": "ab70a0d23da2e0808034ca5406a85d0b221f979f799a39bbfbed6cbf052a797e",
+      "repository_audit/intake.py": "1c99e1690d8876b7170706875892e27661621aba3f5a6f852bab6126e579f72d",
+      "repository_audit/broker.py": "72bcf90ffb2687a76f2331c5a25c52395a3ecc7112d00ed7dbd9c07cde4cb032"
+    }
+  }
+}

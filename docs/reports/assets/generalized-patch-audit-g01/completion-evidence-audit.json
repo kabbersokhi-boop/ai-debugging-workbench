@@ -1,0 +1,62 @@
+[
+  {
+    "id": "20779217-91e4-4ac2-bdd3-9f2bb3fbde30",
+    "example": "python",
+    "via": "API",
+    "status": "tests_passed",
+    "source_patch_plan_result_validated": true,
+    "reopened_after_recovery": true,
+    "download_identical_after_recovery": true,
+    "resource_absence_checked": true
+  },
+  {
+    "id": "a3cb8eba-df1b-45fb-8cc4-cde19c09f16c",
+    "example": "python",
+    "via": "browser",
+    "status": "tests_passed",
+    "source_patch_plan_result_validated": true,
+    "reopened_after_recovery": true,
+    "download_identical_after_recovery": true,
+    "resource_absence_checked": true
+  },
+  {
+    "id": "b28d9479-d842-4c2d-84bd-c5b935a88a29",
+    "example": "node",
+    "via": "API",
+    "status": "tests_passed",
+    "source_patch_plan_result_validated": true,
+    "reopened_after_recovery": true,
+    "download_identical_after_recovery": true,
+    "resource_absence_checked": true
+  },
+  {
+    "id": "ff38068e-3b96-4549-b62c-1e90bc26cf8e",
+    "example": "node",
+    "via": "browser",
+    "status": "tests_passed",
+    "source_patch_plan_result_validated": true,
+    "reopened_after_recovery": true,
+    "download_identical_after_recovery": true,
+    "resource_absence_checked": true
+  },
+  {
+    "id": "1b5fa242-08aa-454a-b27f-71ed26ee8b9c",
+    "example": "node-regression",
+    "via": "API",
+    "status": "tests_failed",
+    "source_patch_plan_result_validated": true,
+    "reopened_after_recovery": true,
+    "download_identical_after_recovery": true,
+    "resource_absence_checked": true
+  },
+  {
+    "id": "81f5a41f-4860-4058-b148-77a82cf7021c",
+    "example": "node-regression",
+    "via": "browser",
+    "status": "tests_failed",
+    "source_patch_plan_result_validated": true,
+    "reopened_after_recovery": true,
+    "download_identical_after_recovery": true,
+    "resource_absence_checked": true
+  }
+]

@@ -1,0 +1,49 @@
+All checks passed!
+98 files already formatted
+0 errors, 0 warnings, 0 informations
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 283 items / 77 deselected / 206 selected
+
+tests/test_agent_evaluator.py .........                                  [  4%]
+tests/test_comparison_api.py ..                                          [  5%]
+tests/test_contracts.py ..........                                       [ 10%]
+tests/test_evaluator_comparison.py .........                             [ 14%]
+tests/test_evaluator_reliability.py .....................                [ 24%]
+tests/test_patch_audit.py ..........................                     [ 37%]
+tests/test_rag.py .................                                      [ 45%]
+tests/test_release.py .......                                            [ 49%]
+tests/test_repair.py .....................                               [ 59%]
+tests/test_repository_audit.py ......................................... [ 79%]
+.........................................                                [ 99%]
+tests/test_runner_lifecycle.py ..                                        [100%]
+
+===================== 206 passed, 77 deselected in 21.17s ======================
+
+> ai-debugging-workbench-ui@0.1.0 build
+> tsc -b && vite build
+
+vite v6.4.4 building for production...
+transforming...
+✓ 2317 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.67 kB │ gzip:   0.41 kB
+dist/assets/editor.worker-BytiCuzy.js      277.04 kB
+dist/assets/index-BnCQl7L0.css              48.02 kB │ gzip:  11.45 kB
+dist/assets/Diff-CNgQWNDj.css               99.25 kB │ gzip:  14.36 kB
+dist/assets/RepositoryAudit-BBLc4D15.js     14.86 kB │ gzip:   5.07 kB
+dist/assets/Comparison-BsQmbWi-.js          15.23 kB │ gzip:   4.94 kB
+dist/assets/index-DPU6TCTg.js              358.53 kB │ gzip: 107.07 kB
+dist/assets/Diff-BU3pQeV2.js             2,753.41 kB │ gzip: 715.69 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 12.22s

@@ -86,7 +86,11 @@ export async function api<T>(path: string, init?: RequestInit): Promise<T> {
     throw new Error(
       typeof body?.detail === "string"
         ? body.detail
-        : `Request failed (${response.status}). Please retry.`,
+        : typeof body?.detail?.reason === "string"
+          ? `${body.detail.status ? body.detail.status.replaceAll("_", " ") + ": " : ""}${body.detail.reason}`
+          : Array.isArray(body?.detail)
+            ? body.detail.slice(0, 3).map((e: {loc?: string[]; msg?: string}) => `${e.loc?.slice(1).join(".") ?? "Input"}: ${e.msg ?? "invalid"}`).join("; ")
+            : `Request failed (${response.status}). Please retry.`,
     );
   }
   return response.json() as Promise<T>;

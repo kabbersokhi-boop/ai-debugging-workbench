@@ -173,3 +173,36 @@ class PatchAudit(Base):
     evidence: Mapped[dict[str, Any]] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class RepositorySource(Base):
+    __tablename__ = "repository_audit_sources"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    record: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class RepositoryCandidate(Base):
+    __tablename__ = "repository_audit_candidates"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    snapshot_id: Mapped[str] = mapped_column(ForeignKey("repository_audit_sources.id"))
+    record: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class RepositoryPlan(Base):
+    __tablename__ = "repository_audit_plans"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    record: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class RepositoryAudit(Base):
+    __tablename__ = "repository_audit_runs"
+    id: Mapped[UUID] = mapped_column(primary_key=True)
+    candidate_id: Mapped[str] = mapped_column(ForeignKey("repository_audit_candidates.id"))
+    plan_id: Mapped[str] = mapped_column(ForeignKey("repository_audit_plans.id"))
+    status: Mapped[str] = mapped_column(String(40))
+    evidence: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

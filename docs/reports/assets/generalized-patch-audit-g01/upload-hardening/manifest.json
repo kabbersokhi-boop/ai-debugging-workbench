@@ -1,0 +1,9 @@
+{
+  "version": "g1-evidence-assets-v1",
+  "files": {
+    "README.md": "271a82b33e04140a6bb255e66011136848482178d4d1a11c43921f7d0dfa6864",
+    "browser.log": "a179af036148a1355fd4eab3d1f1307b4fddc9792e745739cd43d51f290eb312",
+    "check.log": "e8c3b8761d35f97f9fdd82e13064c5672e35285a23ab3404aa6b38737f502a42",
+    "preservation.json": "617f708b7008b59f70de7153875bf5f4af5a7dd63114dd88b151497280ed373c"
+  }
+}

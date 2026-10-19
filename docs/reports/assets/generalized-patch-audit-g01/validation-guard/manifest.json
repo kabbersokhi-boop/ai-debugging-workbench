@@ -1,0 +1,24 @@
+{
+  "version": "g1-evidence-assets-v1",
+  "files": {
+    "README.md": "ec220404321efff7c1b531c4ff1608f83d6ba8263e83dc68bf281ae92ec76cda",
+    "check.log": "360b2401a4c3a9ebf85409742c11d40f24bc489ff51ba1bbb2e6dea5f4ee7992",
+    "ci-implementation.json": "2f98b21cd3c3ed39d5e16ec180ff73702de6f32ddfa6ae6fb644f60085d34074",
+    "completion-evidence-audit.json": "bd3e885257c11fec6682b567a9a1b1f54861fe6fd2087564578be06374cea792",
+    "external-execution-index.json": "1ccafffd2797b6a9b880dfaacac84435d8427d0671097c482f7c6b253fda0e1c",
+    "external.log": "9b26bc56028934b860155f56d0bfc64516461e44b96dfb72e12d994d4dea2f6a",
+    "local-runtime-discovery-race.log": "4922f8ab553b5c0408f82520553c9a1eb0c29ae2fd4dcd928cd8c4bec89af811",
+    "node-browser.json": "90ba062fcaa877b33d691ebaf76793f46c18cdb8c52f4bc3277ee27898534a7e",
+    "node-regression-browser.json": "7271e7873c487fb0f2e406b1bdee44a9982f178a6b6fe0881297b9094013514c",
+    "node-regression-result.png": "71917b0be1cb01979a74271be5d402733681b9d7c59f7f26549913dc1883fbb2",
+    "node-regression.json": "6721d64e1b35f7b993483ab920e51d3e6d34d378ad8ebf8d5a25a34a3c2835b5",
+    "node-result.png": "77c47ad66d2f887263941163be6a5d54e224c7a4cb3095d4f2f416b55b6f275e",
+    "node-review.png": "2e084ada37b744f30b3c03c16ff4f3143bec55361e76bd253db2c5651a185b97",
+    "node.json": "cb9cc4825347df56fbcd7414cbb176ff03977e30c0047a078b1c7041d14a5c8a",
+    "python-browser.json": "552ecafbf41963abd6458c2e68a8b14df8d015dd9e4e617ffab1dbf16652f822",
+    "python-result.png": "6254ef056b5fe78185bb8ef0b743972c9d1ec3110f6ec8e12fab388e3e71d127",
+    "python-review.png": "8bb7e500999428e1172627cbe3659d79b4fa3372380235b0d0abb326144ee15f",
+    "python.json": "e45eb7ee7b21442afb85aa49bc275e03bf0b86ce848f4f7b1145678df16261a3",
+    "real-browser.log": "ba23130cfdd119ebb14935e9dc1eb633a572ff0d0eb4e428b6e48cdcb1112ada"
+  }
+}
