@@ -68,6 +68,14 @@ async def test_campaign_candidate_navigation_download_and_saved_reopen():
                 # Reload may reset the selector; choose the next key explicitly in the loop.
                 campaign = page.get_by_role("region", name="G3 real change campaign")
             assert not errors, errors
+            await page.get_by_label("Campaign candidate", exact=True).select_option("flatten-for")
+            await expect(
+                campaign.get_by_text("No admitted execution evidence", exact=False)
+            ).to_be_visible()
+            await expect(
+                campaign.get_by_text("Intake rejects the immutable base tree", exact=False)
+            ).to_be_visible()
+            await campaign.screenshot(path=str(output / "unsupported-source.png"))
             await browser.close()
         after = (await client.get("/api/repository-audits/runs")).json()
         assert before == after, "Campaign replay must not start execution"

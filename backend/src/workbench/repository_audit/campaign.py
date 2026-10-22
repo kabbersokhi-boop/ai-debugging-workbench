@@ -44,6 +44,7 @@ def retained_campaign(root: Path):
             "revision": c["revision"],
             "provenance": c["provenance"],
             "requirement": c["requirement"],
+            "assessment": assessments.get(c["key"]),
         }
         for c in cases
     ]
@@ -224,8 +225,11 @@ def summarize(root, declaration, cases, campaign_hash, entries, audits, adjudica
     # Candidate-level counts require both declared repeats to agree. No cherry-picking a pass.
     outcomes = Counter()
     for key, trials in by_case.items():
+        missing_classification = adjudications.get(key, {}).get("classification")
+        if missing_classification not in ("unsupported_environment", "unsupported_source"):
+            missing_classification = "incomplete"
         outcome = (
-            adjudications.get(key, {}).get("classification", "incomplete")
+            missing_classification
             if len(trials) != 2
             else "repeat_disagreement"
             if key in repeat_disagreements

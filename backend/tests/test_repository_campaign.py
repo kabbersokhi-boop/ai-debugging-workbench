@@ -140,3 +140,13 @@ def test_changed_observations_and_missing_repeats_cannot_be_accepted(monkeypatch
     assert result["counts"]["candidate_outcomes"] == {"repeat_disagreement": 1}
     result = campaign.summarize(tmp_path, d, cases, "hash", entries[:1], audits)
     assert result["counts"]["candidate_outcomes"] == {"incomplete": 1}
+    result = campaign.summarize(
+        tmp_path,
+        d,
+        cases,
+        "hash",
+        [],
+        {},
+        {"a": {"classification": "supported_historical_defect", "explanation": "Unproven claim"}},
+    )
+    assert result["counts"]["candidate_outcomes"] == {"incomplete": 1}
