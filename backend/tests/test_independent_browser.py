@@ -91,6 +91,13 @@ async def test_independent_browser_approval_failure_download_reopen_and_selectio
             "assertions failed", timeout=60000
         )
         await expect(page.get_by_label("Independent assertion observations")).to_contain_text("999")
+        await expect(page.get_by_label("Independent assertion observations")).to_contain_text(
+            "Addition returns the mathematical sum"
+        )
+        await page.get_by_text("Requirement provenance and assumptions", exact=True).click()
+        await expect(page.get_by_label("Independent assertion observations")).to_contain_text(
+            "Synthetic arithmetic specification v1"
+        )
         await expect(page.locator(".audit-result")).to_contain_text("tests passed")
         await page.screenshot(
             path=str(output / "ordinary-pass-independent-fail.png"), full_page=True
