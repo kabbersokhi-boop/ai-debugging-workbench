@@ -43,6 +43,13 @@ async def run(args):
             return response.json()
 
         async def prepare(case, alternative=False):
+            # Intake metadata includes fetched_at. Re-fetching creates a different snapshot;
+            # reuse the exact admitted source/plan whose controls were validated.
+            control_role = "alternative_control" if alternative else "control"
+            journal = output / f"{case['key']}-{control_role}-1-attempt.json"
+            if journal.exists():
+                prepared = json.loads(journal.read_text())["payload"]
+                return {k: v for k, v in prepared.items() if k != "stage"}
             source = await request("POST", "sources", json={
                 "repository": case["repository"], "base_commit": case["base_commit"]})
             patch = case["alternative_patch"] if alternative else case["patch"]
@@ -118,7 +125,12 @@ async def run(args):
             for runtime, image in declaration["runtime_images"].items():
                 if not any(r["runtime"] == runtime and r["image_id"] == image and r["available"] for r in runtimes):
                     raise ValueError("Frozen runtime unavailable")
+            blocked_path = output / "blocked.json"
+            blocked = json.loads(blocked_path.read_text()) if blocked_path.exists() else {}
             for case in cases:
+                if case["key"] in blocked:
+                    print(case["key"], "not executed:", blocked[case["key"]], flush=True)
+                    continue
                 payload = await prepare(case)
                 if args.phase == "preflight":
                     validation = await execute(case, "control", 1, {**payload, "stage": "validation"})
@@ -132,8 +144,8 @@ async def run(args):
                     await execute(case, "alternative", 1, {**alternate, "validation_run_id": validation["id"]})
                 else:
                     validation_entry = next(e for e in entries if e["case"] == case["key"] and e["role"] == "control")
-                    if len([e for e in entries if e["role"] in ("reference", "alternative")]) != 12:
-                        raise ValueError("Complete declared specification validation before formal scoring")
+                    if {e["role"] for e in entries if e["case"] == case["key"]} < {"reference", "alternative", "control", "alternative_control"}:
+                        raise ValueError("Complete declared case specification validation before formal scoring")
                     for trial in (1, 2):
                         await execute(case, "candidate", trial, {**payload, "validation_run_id": validation_entry["run_id"]})
     assessments = json.loads(Path(args.adjudications).read_text()) if args.adjudications else {}

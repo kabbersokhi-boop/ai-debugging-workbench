@@ -1,5 +1,6 @@
 """Bounded campaign accounting over the existing validated audit evidence, never a scorer."""
 
+import gzip
 import json
 from collections import Counter
 from pathlib import Path
@@ -7,6 +8,38 @@ from pathlib import Path
 from workbench.evaluator.catalog import digest, identity
 from workbench.repository_audit.service import validate_saved
 from workbench.repository_audit.verification import Requirement
+
+
+def retained_campaign(root: Path):
+    """Read only the registered, hashed downloads; never trust a manually entered scorecard."""
+    declaration, cases, campaign_hash = load_campaign(root)
+    index = json.loads((root / "results/index.json").read_text())
+    if index["campaign_sha256"] != campaign_hash:
+        raise ValueError("Retained results belong to another campaign")
+    audits = {}
+    for entry in index["entries"]:
+        filename = entry["file"]
+        if Path(filename).name != filename or not filename.endswith(".json.gz"):
+            raise ValueError("Invalid retained evidence path")
+        audits[entry["run_id"]] = json.loads(
+            gzip.decompress((root / "results" / filename).read_bytes())
+        )
+    assessments = json.loads((root / "results/adjudications.json").read_text())
+    summary = summarize(
+        root, declaration, cases, campaign_hash, index["entries"], audits, assessments
+    )
+    summary["cases"] = [
+        {
+            "key": c["key"],
+            "repository": c["repository"],
+            "base_commit": c["base_commit"],
+            "revision": c["revision"],
+            "provenance": c["provenance"],
+            "requirement": c["requirement"],
+        }
+        for c in cases
+    ]
+    return summary, audits
 
 
 def load_campaign(root: Path):
@@ -95,7 +128,12 @@ def classify(result, adjudication=None):
         return "control"
     ordinary = (result.get("ordinary") or {}).get("status", "not_run")
     independent = result.get("independent", {}).get("status", "not_run")
-    if adjudication and adjudication["classification"] in ("invalid_check", "ambiguous"):
+    if adjudication and adjudication["classification"] in (
+        "invalid_check",
+        "ambiguous",
+        "unsupported_environment",
+        "unsupported_source",
+    ):
         return adjudication["classification"]
     if ordinary == "tests_failed":
         return "ordinary_failure"
@@ -174,7 +212,7 @@ def summarize(root, declaration, cases, campaign_hash, entries, audits, adjudica
     outcomes = Counter()
     for key, trials in by_case.items():
         outcome = (
-            "incomplete"
+            adjudications.get(key, {}).get("classification", "incomplete")
             if len(trials) != 2
             else "repeat_disagreement"
             if key in repeat_disagreements
@@ -189,6 +227,9 @@ def summarize(root, declaration, cases, campaign_hash, entries, audits, adjudica
         "counts": {
             "selected_candidates": len(cases),
             "genuine_candidates_executed": sum(bool(v) for v in by_case.values()),
+            "genuine_candidates_admitted": len(
+                {r["case"] for r in rows if r["role"] in ("control", "reference", "candidate")}
+            ),
             "planned_candidate_audits": 2 * len(cases),
             "candidate_audits": len(genuine),
             "control_validations": sum(
