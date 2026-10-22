@@ -1,0 +1,1146 @@
+{
+  "id": "1701508e-9eee-443f-abca-e0797449d29d",
+  "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+  "plan_id": "ad89d0b5a4f109d232077924bde51a28b9955ef48dd5bc9b4f8533e86ffece81",
+  "status": "assertions_failed",
+  "created_at": "2026-10-19T21:22:05.378059+00:00",
+  "updated_at": "2026-10-19T21:22:12.338989+00:00",
+  "execution_mode": "fresh_local",
+  "evidence": {
+    "snapshot": {
+      "id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+      "version": "repository-source-v1",
+      "repository": "component/escape-html",
+      "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+      "git_tree": "4595930fe15bb8034598e2cf2cb580dcfc065631",
+      "source_tree_hash": "60dadf1674058c1cc604051ee3d264f5e30c5cd27915f3eff2aceca682c2f979",
+      "file_hashes": {
+        ".editorconfig": "7bd6d83307b85e0401c9b1b1bd487f1e3f375c9be8ceff9ea32b0315815f992d",
+        ".eslintignore": "a786abe86173ef47e5512b82f125da6b89776d2f39b3f3ce153b1791d54e35bd",
+        ".eslintrc.yml": "472abeea8f591af5cdf1a34622ac9b8019b0b1f33bfac3eeb26811061a83039e",
+        ".gitignore": "ac901be8c1ab2509a839e1e49f3e0a9315d077e7fbdccb280271a3415b136f89",
+        ".travis.yml": "273ca06fc2eb08532b37fee32d851f8c5fe8fda5142593d2772c88c5bbc98466",
+        "HISTORY.md": "47e0e4ca90edcf4f04326ae73c8d197b5e8db0e1c439be12f66ed1eca6c4957d",
+        "LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+        "README.md": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+        "benchmark/index.js": "248016f887ccaa79dc4eb56fd038a5214543fbaf7058de32fa5fe95c7a5fe1ac",
+        "component.json": "00e9870404566bdd5f021601fae9ac2d5f6aca763a8bf28cb5aedd0af13e423f",
+        "index.js": "1c7b645125ab02890931944f5b9c628aeb3f6525c812aa4621bf646ff7f9e55b",
+        "package.json": "e41453856ce09702145bccac19cf593fea9b2f7a2d76ebfc153eeac1338952bf",
+        "test/.eslintrc.yml": "d5191500ede898e4317a74798ecefe46d3db55185bdeadc49bded8d02e1722e5",
+        "test/index.js": "5a75835c8040f91a7b65ab9849195b4223bc8f27484fa6e0a13e29003ad65fc2"
+      },
+      "modes": {
+        ".editorconfig": "100644",
+        ".eslintignore": "100644",
+        ".eslintrc.yml": "100644",
+        ".gitignore": "100644",
+        ".travis.yml": "100644",
+        "HISTORY.md": "100644",
+        "LICENSE": "100644",
+        "README.md": "100644",
+        "benchmark/index.js": "100644",
+        "component.json": "100644",
+        "index.js": "100644",
+        "package.json": "100644",
+        "test/.eslintrc.yml": "100644",
+        "test/index.js": "100644"
+      },
+      "files": {
+        ".editorconfig": "IyBodHRwOi8vZWRpdG9yY29uZmlnLm9yZwpyb290ID0gdHJ1ZQoKWypdCmNoYXJzZXQgPSB1dGYtOAppbnNlcnRfZmluYWxfbmV3bGluZSA9IHRydWUKdHJpbV90cmFpbGluZ193aGl0ZXNwYWNlID0gdHJ1ZQoKW3sqLmpzLCouanNvbiwqLnltbH1dCmluZGVudF9zaXplID0gMgppbmRlbnRfc3R5bGUgPSBzcGFjZQo=",
+        ".eslintignore": "Lm55Y19vdXRwdXQKYnVpbGQKY29tcG9uZW50cwpjb3ZlcmFnZQpub2RlX21vZHVsZXMK",
+        ".eslintrc.yml": "cm9vdDogdHJ1ZQpleHRlbmRzOiBzdGFuZGFyZAo=",
+        ".gitignore": "Lm55Y19vdXRwdXQKYnVpbGQKY29tcG9uZW50cwpjb3ZlcmFnZQpub2RlX21vZHVsZXMKbnBtLWRlYnVnLmxvZwpwYWNrYWdlLWxvY2suanNvbgo=",
+        ".travis.yml": "bGFuZ3VhZ2U6IG5vZGVfanMKbm9kZV9qczoKICAtICIwLjYiCiAgLSAiMC44IgogIC0gIjAuMTAiCiAgLSAiMC4xMiIKICAtICIxLjgiCiAgLSAiMi41IgogIC0gIjMuMyIKICAtICI0LjkiCiAgLSAiNS4xMiIKICAtICI2LjE2IgogIC0gIjcuMTAiCiAgLSAiOC4xNSIKICAtICI5LjExIgogIC0gIjEwLjE1IgogIC0gIjExLjYiCnN1ZG86IGZhbHNlCmRpc3Q6IHByZWNpc2UKY2FjaGU6CiAgZGlyZWN0b3JpZXM6CiAgICAtIG5vZGVfbW9kdWxlcwpiZWZvcmVfaW5zdGFsbDoKICAjIENvbmZpZ3VyZSBucG0KICAtIHwKICAgICMgU2tpcCB1cGRhdGluZyBzaHJpbmt3cmFwIC8gbG9jawogICAgbnBtIGNvbmZpZyBzZXQgc2hyaW5rd3JhcCBmYWxzZQogICMgUmVtb3ZlIGFsbCBub24tdGVzdCBkZXBlbmRlbmNpZXMKICAtIHwKICAgICMgUmVtb3ZlIGJlbmNoIGRlcGVuZGVuY2llcwogICAgbnBtIHJtIC0tc2F2ZS1kZXYgYmVuY2htYXJrCiAgICBucG0gcm0gLS1zYXZlLWRldiBiZWF1dGlmeS1iZW5jaG1hcmsKICAjIFNldHVwIE5vZGUuanMgdmVyc2lvbi1zcGVjaWZpYyBkZXBlbmRlbmNpZXMKICAtIHwKICAgICMgZXNsaW50IGZvciBsaW50aW5nCiAgICAjIC0gcmVtb3ZlIG9uIE5vZGUuanMgPCA2CiAgICBpZiBbWyAiJChjdXQgLWQuIC1mMSA8PDwgIiRUUkFWSVNfTk9ERV9WRVJTSU9OIikiIC1sdCA2IF1dOyB0aGVuCiAgICAgIG5vZGUgLXBlICdPYmplY3Qua2V5cyhyZXF1aXJlKCIuL3BhY2thZ2UiKS5kZXZEZXBlbmRlbmNpZXMpLmpvaW4oIlxuIiknIHwgXAogICAgICAgIGdyZXAgLUUgJ15lc2xpbnQoLXwkKScgfCBcCiAgICAgICAgeGFyZ3MgbnBtIHJtIC0tc2F2ZS1kZXYKICAgIGZpCiAgLSB8CiAgICAjIG1vY2hhIGZvciB0ZXN0aW5nCiAgICAjIC0gdXNlIDEueCBmb3IgTm9kZS5qcyA8IDAuOAogICAgIyAtIHVzZSAyLnggZm9yIE5vZGUuanMgPCAwLjEwCiAgICAjIC0gdXNlIDMueCBmb3IgTm9kZS5qcyA8IDYKICAgIGlmIFtbICIkKGN1dCAtZC4gLWYxIDw8PCAiJFRSQVZJU19OT0RFX1ZFUlNJT04iKSIgLWVxIDAgJiYgIiQoY3V0IC1kLiAtZjIgPDw8ICIkVFJBVklTX05PREVfVkVSU0lPTiIpIiAtbHQgOCBdXTsgdGhlbgogICAgICBucG0gaW5zdGFsbCAtLXNhdmUtZGV2IG1vY2hhQDEuMjEuNQogICAgZWxpZiBbWyAiJChjdXQgLWQuIC1mMSA8PDwgIiRUUkFWSVNfTk9ERV9WRVJTSU9OIikiIC1lcSAwICYmICIkKGN1dCAtZC4gLWYyIDw8PCAiJFRSQVZJU19OT0RFX1ZFUlNJT04iKSIgLWx0IDEwIF1dOyB0aGVuCiAgICAgIG5wbSBpbnN0YWxsIC0tc2F2ZS1kZXYgbW9jaGFAMi41LjMKICAgIGVsaWYgW1sgIiQoY3V0IC1kLiAtZjEgPDw8ICIkVFJBVklTX05PREVfVkVSU0lPTiIpIiAtbHQgNiBdXTsgdGhlbgogICAgICBucG0gaW5zdGFsbCAtLXNhdmUtZGV2IG1vY2hhQDMuNS4zCiAgICBmaQogIC0gfAogICAgIyBueWMgZm9yIGNvdmVyYWdlCiAgICAjIC0gcmVtb3ZlIGZvciBOb2RlLmpzIDwgMC4xMAogICAgIyAtIHVzZSAxMC54IGZvciBOb2RlLmpzIDwgNAogICAgIyAtIHVzZSAxMS54IGZvciBOb2RlLmpzIDwgNgogICAgaWYgW1sgIiQoY3V0IC1kLiAtZjEgPDw8ICIkVFJBVklTX05PREVfVkVSU0lPTiIpIiAtZXEgMCAmJiAiJChjdXQgLWQuIC1mMiA8PDwgIiRUUkFWSVNfTk9ERV9WRVJTSU9OIikiIC1sdCAxMCBdXTsgdGhlbgogICAgICBucG0gcm0gLS1zYXZlLWRldiBueWMKICAgIGVsaWYgW1sgIiQoY3V0IC1kLiAtZjEgPDw8ICIkVFJBVklTX05PREVfVkVSU0lPTiIpIiAtbHQgNCBdXTsgdGhlbgogICAgICBucG0gaW5zdGFsbCAtLXNhdmUtZGV2IG55Y0AxMC4zLjIKICAgIGVsaWYgW1sgIiQoY3V0IC1kLiAtZjEgPDw8ICIkVFJBVklTX05PREVfVkVSU0lPTiIpIiAtbHQgNiBdXTsgdGhlbgogICAgICBucG0gaW5zdGFsbCAtLXNhdmUtZGV2IG55Y0AxMS45LjAKICAgIGZpCiAgIyBVcGRhdGUgTm9kZS5qcyBtb2R1bGVzCiAgLSB8CiAgICAjIFBydW5lICYgcmVidWlsZCBub2RlX21vZHVsZXMKICAgIGlmIFtbIC1kIG5vZGVfbW9kdWxlcyBdXTsgdGhlbgogICAgICBucG0gcHJ1bmUKICAgICAgbnBtIHJlYnVpbGQKICAgIGZpCnNjcmlwdDoKICAtIHwKICAgICMgUnVuIHRlc3Qgc2NyaXB0LCBkZXBlbmRpbmcgb24gbnljIGluc3RhbGwKICAgIGlmIG5wbSAtcHMgbHMgbnljIHwgZ3JlcCAtcSBueWM7IHRoZW4KICAgICAgbnBtIHJ1bi1zY3JpcHQgdGVzdC1jb3YKICAgIGVsc2UKICAgICAgbnBtIHRlc3QKICAgIGZpCiAgLSB8CiAgICAjIFJ1biBsaW50aW5nLCBkZXBlbmRpbmcgb24gZXNsaW50IGluc3RhbGwKICAgIGlmIG5wbSAtcHMgbHMgZXNsaW50IHwgZ3JlcCAtcSBlc2xpbnQ7IHRoZW4KICAgICAgbnBtIHJ1bi1zY3JpcHQgbGludAogICAgZmkKYWZ0ZXJfc2NyaXB0OgogIC0gfAogICAgIyBVcGxvYWQgY292ZXJhZ2UgdG8gY292ZXJhbGxzIGlmIGV4aXN0cwogICAgaWYgW1sgLWQgLm55Y19vdXRwdXQgXV07IHRoZW4KICAgICAgbnBtIGluc3RhbGwgLS1zYXZlLWRldiBjb3ZlcmFsbHNAMgogICAgICBueWMgcmVwb3J0IC0tcmVwb3J0ZXI9dGV4dC1sY292IHwgY292ZXJhbGxzCiAgICBmaQo=",
+        "HISTORY.md": "MS4wLjMgLyAyMDE1LTA5LTAxCj09PT09PT09PT09PT09PT09PQoKICAqIHBlcmY6IGVuYWJsZSBzdHJpY3QgbW9kZQogICogcGVyZjogb3B0aW1pemUgc3RyaW5nIHJlcGxhY2VtZW50CiAgKiBwZXJmOiB1c2UgZmFzdGVyIHN0cmluZyBjb2VyY2lvbgoKMS4wLjIgLyAyMDE1LTA2LTA2Cj09PT09PT09PT09PT09PT09PQoKICAqIGJ1aWxkOiB1cGRhdGUgcGFja2FnZSBtZXRhZGF0YQoKMS4wLjEgLyAyMDEzLTEyLTIwCj09PT09PT09PT09PT09PT09PQoKICAqIGJ1aWxkOiBhZGQgcGFja2FnZSByZXBvc2l0b3J5CgoxLjAuMCAvIDIwMTMtMDUtMzAKPT09PT09PT09PT09PT09PT09CgogICogRXNjYXBlIHNpbmdsZSBxdW90ZXMKCjAuMC4xIC8gMjAxMi0wOC0xNgo9PT09PT09PT09PT09PT09PT0KCiAgKiBJbml0aWFsIHJlbGVhc2UK",
+        "LICENSE": "KFRoZSBNSVQgTGljZW5zZSkKCkNvcHlyaWdodCAoYykgMjAxMi0yMDEzIFRKIEhvbG93YXljaHVrCkNvcHlyaWdodCAoYykgMjAxNSBBbmRyZWFzIEx1YmJlCkNvcHlyaWdodCAoYykgMjAxNSBUaWFuY2hlbmcgIlRpbW90aHkiIEd1CgpQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcKYSBjb3B5IG9mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlCidTb2Z0d2FyZScpLCB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJlc3RyaWN0aW9uLCBpbmNsdWRpbmcKd2l0aG91dCBsaW1pdGF0aW9uIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLApkaXN0cmlidXRlLCBzdWJsaWNlbnNlLCBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8KcGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUgU29mdHdhcmUgaXMgZnVybmlzaGVkIHRvIGRvIHNvLCBzdWJqZWN0IHRvCnRoZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKClRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlCmluY2x1ZGVkIGluIGFsbCBjb3BpZXMgb3Igc3Vic3RhbnRpYWwgcG9ydGlvbnMgb2YgdGhlIFNvZnR3YXJlLgoKVEhFIFNPRlRXQVJFIElTIFBST1ZJREVEICdBUyBJUycsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQsCkVYUFJFU1MgT1IgSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBUTyBUSEUgV0FSUkFOVElFUyBPRgpNRVJDSEFOVEFCSUxJVFksIEZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuCklOIE5PIEVWRU5UIFNIQUxMIFRIRSBBVVRIT1JTIE9SIENPUFlSSUdIVCBIT0xERVJTIEJFIExJQUJMRSBGT1IgQU5ZCkNMQUlNLCBEQU1BR0VTIE9SIE9USEVSIExJQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0YgQ09OVFJBQ1QsClRPUlQgT1IgT1RIRVJXSVNFLCBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEggVEhFClNPRlRXQVJFIE9SIFRIRSBVU0UgT1IgT1RIRVIgREVBTElOR1MgSU4gVEhFIFNPRlRXQVJFLgo=",
+        "README.md": "IyBlc2NhcGUtaHRtbAoKWyFbTlBNIFZlcnNpb25dW25wbS12ZXJzaW9uLWltYWdlXV1bbnBtLXVybF0KWyFbTlBNIERvd25sb2Fkc11bbnBtLWRvd25sb2Fkcy1pbWFnZV1dW25wbS11cmxdClshW0J1aWxkIFN0YXR1c11bdHJhdmlzLWltYWdlXV1bdHJhdmlzLXVybF0KWyFbVGVzdCBDb3ZlcmFnZV1bY292ZXJhbGxzLWltYWdlXV1bY292ZXJhbGxzLXVybF0KCiAgRXNjYXBlIHN0cmluZyBmb3IgdXNlIGluIEhUTUwKClRoaXMgbW9kdWxlIGV4cG9ydHMgYSBzaW5nbGUgZnVuY3Rpb24sIGBlc2NhcGVIdG1sYCwgdGhhdCBpcyB1c2VkIHRvIGVzY2FwZQphIHN0cmluZyBvZiBjb250ZW50IHN1Y2ggdGhhdCBpdCBjYW4gYmUgaW50ZXJwb2xhdGVkIGluIEhUTUwgY29udGVudC4KCiMjIEluc3RhbGxhdGlvbgoKVGhpcyBpcyBhIFtOb2RlLmpzXShodHRwczovL25vZGVqcy5vcmcvZW4vKSBtb2R1bGUgYXZhaWxhYmxlIHRocm91Z2ggdGhlCltucG0gcmVnaXN0cnldKGh0dHBzOi8vd3d3Lm5wbWpzLmNvbS8pLiBJbnN0YWxsYXRpb24gaXMgZG9uZSB1c2luZyB0aGUKW2BucG0gaW5zdGFsbGAgY29tbWFuZF0oaHR0cHM6Ly9kb2NzLm5wbWpzLmNvbS9nZXR0aW5nLXN0YXJ0ZWQvaW5zdGFsbGluZy1ucG0tcGFja2FnZXMtbG9jYWxseSk6CgpgYGBiYXNoCiQgbnBtIGluc3RhbGwgZXNjYXBlLWh0bWwKYGBgCgojIyBBUEkKCiMjIyBlc2NhcGVIdG1sKHN0cmluZykKCkVzY2FwZSBzcGVjaWFsIGNoYXJhY3RlcnMgaW4gdGhlIGdpdmVuIHN0cmluZyBvZiB0ZXh0LCBzdWNoIHRoYXQgaXQgY2FuIGJlCmludGVycG9sYXRlZCBpbiBIVE1MIGNvbnRlbnQuCgpUaGlzIGZ1bmN0aW9uIHdpbGwgZXNjYXBlIHRoZSBmb2xsb3dpbmcgY2hhcmFjdGVyczogYCJgLCBgJ2AsIGAmYCwgYDxgLCBhbmQKYD5gLgoKKipOb3RlKiogdGhhdCB0aGUgZXNjYXBlZCB2YWx1ZSBpcyBvbmx5IHN1aXRhYmxlIGZvciBiZWluZyBpbnRlcnBvbGF0ZWQgaW50bwpIVE1MIGFzIHRoZSB0ZXh0IGNvbnRlbnQgb2YgZWxlbWVudHMgaW4gd2hpY2ggdGhlIHRhZyBkb2VzIG5vdCBoYXZlIGRpZmZlcmVudAplc2NhcGluZyBtZWNoYW5pc21zIChpdCBjYW5ub3QgYmUgcGxhY2VkIGluc2lkZSBgPHN0eWxlPmAgb3IgYDxzY3JpcHQ+YCwgZm9yCmV4YW1wbGUsIGFzIHRob3NlIGNvbnRlbnQgYm9kaWVzIGFyZSBub3QgSFRNTCwgYnV0IENTUyBhbmQgSmF2YVNjcmlwdCwKcmVzcGVjdGl2ZWx5OyB0aGVzZSBhcmUga25vd24gYXMgInJhdyB0ZXh0IGVsZW1lbnRzIiBpbiB0aGUgSFRNTCBzdGFuZGFyZCkuCgoqKk5vdGUqKiB3aGVuIHVzaW5nIHRoZSBlc2NhcGVkIHZhbHVlIHdpdGhpbiBhIHRhZywgaXQgaXMgb25seSBzdWl0YWJsZSBhcwp0aGUgdmFsdWUgb2YgYW4gYXR0cmlidXRlLCB3aGVyZSB0aGUgdmFsdWUgaXMgcXVvdGVkIHdpdGggZWl0aGVyIGEgZG91YmxlCnF1b3RlIGNoYXJhY3RlciAoYCJgKSBvciBhIHNpbmdsZSBxdW90ZSBjaGFyYWN0ZXIgKGAnYCkuCgojIyBFeGFtcGxlCgpUaGUgYGVzY2FwZUh0bWxgIGZ1bmN0aW9uIGlzIGRlc2lnbmVkIHRvIGFjY2VwdCBhIHN0cmluZyBpbnB1dCBvZiB0ZXh0IGFuZApyZXR1cm4gYW4gZXNjYXBlZCB2YWx1ZSB0byBpbnRlcnBvbGF0ZSBpbnRvIEhUTUwuCgpgYGBqcwp2YXIgZXNjYXBlSHRtbCA9IHJlcXVpcmUoJ2VzY2FwZS1odG1sJykKCi8vIGV4YW1wbGUgdmFsdWVzCnZhciBkZXNjID0gJ0kgPGI+dGhpbms8L2I+IHRoaXMgaXMgZ29vZC4nCnZhciBmdWxsTmFtZSA9ICdKb2huICJKb2hubnkiIFNtaXRoJwoKLy8gZXhhbXBsZSBwYXNzaW5nIGluIHRleHQgaW50byBhIGh0bWwgYXR0cmlidXRlCmNvbnNvbGUuZGlyKCc8aW5wdXQgbmFtZT0iZnVsbF9uYW1lIiB2YWx1ZT0iJyArIGVzY2FwZUh0bWwoZnVsbE5hbWUpICsgJyI+JykKLy8gLT4gJzxpbnB1dCBuYW1lPSJmdWxsX25hbWUiIHZhbHVlPSJKb2huICZxdW90O0pvaG5ueSZxdW90OyBTbWl0aCI+JwoKLy8gZXhhbXBsZSBwYXNzaW5nIGluIHRleHQgaW4gaHRtbCBib2R5CmNvbnNvbGUuZGlyKCc8dGV4dGFyZWEgbmFtZT0iZGVzYyI+JyArIGVzY2FwZUh0bWwoZGVzYykgKyAnPC90ZXh0YXJlYT4nKQovLyAtPiAnPHRleHRhcmVhIG5hbWU9ImRlc2MiPkkgJmx0O2ImZ3Q7dGhpbmsmbHQ7L2ImZ3Q7IHRoaXMgaXMgZ29vZC48L3RleHRhcmVhPicKYGBgCgojIyBCZW5jaG1hcmsKCmBgYAokIG5wbSBydW4tc2NyaXB0IGJlbmNoCgo+IGVzY2FwZS1odG1sQDEuMC4zIGJlbmNoIG5vZGVqcy1lc2NhcGUtaHRtbAo+IG5vZGUgYmVuY2htYXJrL2luZGV4LmpzCgoKICBodHRwX3BhcnNlckAxLjAKICBub2RlQDAuMTAuMzMKICB2OEAzLjE0LjUuOQogIGFyZXNAMS45LjAtREVWCiAgdXZAMC4xMC4yOQogIHpsaWJAMS4yLjMKICBtb2R1bGVzQDExCiAgb3BlbnNzbEAxLjAuMWoKCiAgMSB0ZXN0IGNvbXBsZXRlZC4KICAyIHRlc3RzIGNvbXBsZXRlZC4KICAzIHRlc3RzIGNvbXBsZXRlZC4KCiAgbm8gc3BlY2lhbCBjaGFyYWN0ZXJzICAgIHggMTksNDM1LDI3MSBvcHMvc2VjIMKxMC44NSUgKDE4NyBydW5zIHNhbXBsZWQpCiAgc2luZ2xlIHNwZWNpYWwgY2hhcmFjdGVyIHggIDYsMTMyLDQyMSBvcHMvc2VjIMKxMC42NyUgKDE5NCBydW5zIHNhbXBsZWQpCiAgbWFueSBzcGVjaWFsIGNoYXJhY3RlcnMgIHggIDMsMTc1LDgyNiBvcHMvc2VjIMKxMC42NSUgKDE5MyBydW5zIHNhbXBsZWQpCmBgYAoKIyMgTGljZW5zZQoKW01JVF0oTElDRU5TRSkKCltjb3ZlcmFsbHMtaW1hZ2VdOiBodHRwczovL2JhZGdlbi5uZXQvY292ZXJhbGxzL2MvZ2l0aHViL2NvbXBvbmVudC9lc2NhcGUtaHRtbC9tYXN0ZXIKW2NvdmVyYWxscy11cmxdOiBodHRwczovL2NvdmVyYWxscy5pby9yL2NvbXBvbmVudC9lc2NhcGUtaHRtbD9icmFuY2g9bWFzdGVyCltucG0tZG93bmxvYWRzLWltYWdlXTogaHR0cHM6Ly9iYWRnZW4ubmV0L25wbS9kbS9lc2NhcGUtaHRtbApbbnBtLXVybF06IGh0dHBzOi8vbnBtanMub3JnL3BhY2thZ2UvZXNjYXBlLWh0bWwKW25wbS12ZXJzaW9uLWltYWdlXTogaHR0cHM6Ly9iYWRnZW4ubmV0L25wbS92L2VzY2FwZS1odG1sClt0cmF2aXMtaW1hZ2VdOiBodHRwczovL2JhZGdlbi5uZXQvdHJhdmlzL2NvbXBvbmVudC9lc2NhcGUtaHRtbC9tYXN0ZXIKW3RyYXZpcy11cmxdOiBodHRwczovL3RyYXZpcy1jaS5vcmcvY29tcG9uZW50L2VzY2FwZS1odG1sCg==",
+        "benchmark/index.js": "Ci8qKgogKiBHbG9iYWxzIGZvciBiZW5jaG1hcmsuanMKICovCmdsb2JhbC5lc2NhcGVIdG1sID0gcmVxdWlyZSgnLi4nKQoKLyoqCiAqIE1vZHVsZSBkZXBlbmRlbmNpZXMuCiAqLwp2YXIgYmVuY2htYXJrID0gcmVxdWlyZSgnYmVuY2htYXJrJykKdmFyIGJlbmNobWFya3MgPSByZXF1aXJlKCdiZWF1dGlmeS1iZW5jaG1hcmsnKQoKZm9yICh2YXIgZGVwIGluIHByb2Nlc3MudmVyc2lvbnMpIHsKICBjb25zb2xlLmxvZygnICAlc0AlcycsIGRlcCwgcHJvY2Vzcy52ZXJzaW9uc1tkZXBdKQp9Cgpjb25zb2xlLmxvZygnJykKCnZhciBzdWl0ZSA9IG5ldyBiZW5jaG1hcmsuU3VpdGUoKQoKc3VpdGUuYWRkKHsKICAnbmFtZSc6ICdubyBzcGVjaWFsIGNoYXJhY3RlcnMnLAogICdtaW5TYW1wbGVzJzogMTAwLAogICdmbic6ICdlc2NhcGVIdG1sKHN0ciknLAogICdzZXR1cCc6ICdzdHIgPSAiSGVsbG8sIFdvcmxkISInCn0pCgpzdWl0ZS5hZGQoewogICduYW1lJzogJ3NpbmdsZSBzcGVjaWFsIGNoYXJhY3RlcicsCiAgJ21pblNhbXBsZXMnOiAxMDAsCiAgJ2ZuJzogJ2VzY2FwZUh0bWwoc3RyKScsCiAgJ3NldHVwJzogJ3N0ciA9ICJIZWxsbywgV29ybGQmISInCn0pCgpzdWl0ZS5hZGQoewogICduYW1lJzogJ21hbnkgc3BlY2lhbCBjaGFyYWN0ZXJzJywKICAnbWluU2FtcGxlcyc6IDEwMCwKICAnZm4nOiAnZXNjYXBlSHRtbChzdHIpJywKICAnc2V0dXAnOiAnc3RyID0gIlwnPlwnXFwiXFwiJj5oPGU+Jjx5PiInCn0pCgpzdWl0ZS5vbignY3ljbGUnLCBmdW5jdGlvbiBvbkN5Y2xlIChldmVudCkgewogIGJlbmNobWFya3MuYWRkKGV2ZW50LnRhcmdldCkKfSkKCnN1aXRlLm9uKCdjb21wbGV0ZScsIGZ1bmN0aW9uIG9uQ29tcGxldGUgKCkgewogIGJlbmNobWFya3MubG9nKCkKfSkKCnN1aXRlLnJ1bih7ICdhc3luYyc6IGZhbHNlIH0pCg==",
+        "component.json": "ewogICJuYW1lIjogImVzY2FwZS1odG1sIiwKICAiZGVzY3JpcHRpb24iOiAiRXNjYXBlIHN0cmluZyBmb3IgdXNlIGluIEhUTUwiLAogICJ2ZXJzaW9uIjogIjEuMC4zIiwKICAibGljZW5zZSI6ICJNSVQiLAogICJrZXl3b3JkcyI6IFsKICAgICJlc2NhcGUiLAogICAgImh0bWwiLAogICAgInV0aWxpdHkiCiAgXSwKICAicmVwbyI6ICJjb21wb25lbnQvZXNjYXBlLWh0bWwiLAogICJzY3JpcHRzIjogWwogICAgImluZGV4LmpzIgogIF0KfQo=",
+        "index.js": "LyohCiAqIGVzY2FwZS1odG1sCiAqIENvcHlyaWdodChjKSAyMDEyLTIwMTMgVEogSG9sb3dheWNodWsKICogQ29weXJpZ2h0KGMpIDIwMTUgQW5kcmVhcyBMdWJiZQogKiBDb3B5cmlnaHQoYykgMjAxNSBUaWFuY2hlbmcgIlRpbW90aHkiIEd1CiAqIE1JVCBMaWNlbnNlZAogKi8KCid1c2Ugc3RyaWN0JwoKLyoqCiAqIE1vZHVsZSB2YXJpYWJsZXMuCiAqIEBwcml2YXRlCiAqLwoKdmFyIG1hdGNoSHRtbFJlZ0V4cCA9IC9bIicmPD5dLwoKLyoqCiAqIE1vZHVsZSBleHBvcnRzLgogKiBAcHVibGljCiAqLwoKbW9kdWxlLmV4cG9ydHMgPSBlc2NhcGVIdG1sCgovKioKICogRXNjYXBlIHNwZWNpYWwgY2hhcmFjdGVycyBpbiB0aGUgZ2l2ZW4gc3RyaW5nIG9mIHRleHQuCiAqCiAqIEBwYXJhbSAge3N0cmluZ30gc3RyaW5nIFRoZSBzdHJpbmcgdG8gZXNjYXBlIGZvciBpbnNlcnRpbmcgaW50byBIVE1MCiAqIEByZXR1cm4ge3N0cmluZ30KICogQHB1YmxpYwogKi8KCmZ1bmN0aW9uIGVzY2FwZUh0bWwgKHN0cmluZykgewogIHZhciBzdHIgPSAnJyArIHN0cmluZwogIHZhciBtYXRjaCA9IG1hdGNoSHRtbFJlZ0V4cC5leGVjKHN0cikKCiAgaWYgKCFtYXRjaCkgewogICAgcmV0dXJuIHN0cgogIH0KCiAgdmFyIGVzY2FwZQogIHZhciBodG1sID0gJycKICB2YXIgaW5kZXggPSAwCiAgdmFyIGxhc3RJbmRleCA9IDAKCiAgZm9yIChpbmRleCA9IG1hdGNoLmluZGV4OyBpbmRleCA8IHN0ci5sZW5ndGg7IGluZGV4KyspIHsKICAgIHN3aXRjaCAoc3RyLmNoYXJDb2RlQXQoaW5kZXgpKSB7CiAgICAgIGNhc2UgMzQ6IC8vICIKICAgICAgICBlc2NhcGUgPSAnJnF1b3Q7JwogICAgICAgIGJyZWFrCiAgICAgIGNhc2UgMzg6IC8vICYKICAgICAgICBlc2NhcGUgPSAnJmFtcDsnCiAgICAgICAgYnJlYWsKICAgICAgY2FzZSAzOTogLy8gJwogICAgICAgIGVzY2FwZSA9ICcmIzM5OycKICAgICAgICBicmVhawogICAgICBjYXNlIDYwOiAvLyA8CiAgICAgICAgZXNjYXBlID0gJyZsdDsnCiAgICAgICAgYnJlYWsKICAgICAgY2FzZSA2MjogLy8gPgogICAgICAgIGVzY2FwZSA9ICcmZ3Q7JwogICAgICAgIGJyZWFrCiAgICAgIGRlZmF1bHQ6CiAgICAgICAgY29udGludWUKICAgIH0KCiAgICBpZiAobGFzdEluZGV4ICE9PSBpbmRleCkgewogICAgICBodG1sICs9IHN0ci5zdWJzdHJpbmcobGFzdEluZGV4LCBpbmRleCkKICAgIH0KCiAgICBsYXN0SW5kZXggPSBpbmRleCArIDEKICAgIGh0bWwgKz0gZXNjYXBlCiAgfQoKICByZXR1cm4gbGFzdEluZGV4ICE9PSBpbmRleAogICAgPyBodG1sICsgc3RyLnN1YnN0cmluZyhsYXN0SW5kZXgsIGluZGV4KQogICAgOiBodG1sCn0K",
+        "package.json": "ewogICJuYW1lIjogImVzY2FwZS1odG1sIiwKICAiZGVzY3JpcHRpb24iOiAiRXNjYXBlIHN0cmluZyBmb3IgdXNlIGluIEhUTUwiLAogICJ2ZXJzaW9uIjogIjEuMC4zIiwKICAibGljZW5zZSI6ICJNSVQiLAogICJrZXl3b3JkcyI6IFsKICAgICJlc2NhcGUiLAogICAgImh0bWwiLAogICAgInV0aWxpdHkiCiAgXSwKICAicmVwb3NpdG9yeSI6ICJjb21wb25lbnQvZXNjYXBlLWh0bWwiLAogICJkZXZEZXBlbmRlbmNpZXMiOiB7CiAgICAiYmVuY2htYXJrIjogIjIuMS40IiwKICAgICJiZWF1dGlmeS1iZW5jaG1hcmsiOiAiMC4yLjQiLAogICAgImVzbGludCI6ICI1LjEyLjAiLAogICAgImVzbGludC1jb25maWctc3RhbmRhcmQiOiAiMTIuMC4wIiwKICAgICJlc2xpbnQtcGx1Z2luLWltcG9ydCI6ICIyLjE0LjAiLAogICAgImVzbGludC1wbHVnaW4tbWFya2Rvd24iOiAiMS4wLjAiLAogICAgImVzbGludC1wbHVnaW4tbm9kZSI6ICI4LjAuMSIsCiAgICAiZXNsaW50LXBsdWdpbi1wcm9taXNlIjogIjQuMC4xIiwKICAgICJlc2xpbnQtcGx1Z2luLXN0YW5kYXJkIjogIjQuMC4wIiwKICAgICJtb2NoYSI6ICI1LjIuMCIsCiAgICAibnljIjogIjEzLjEuMCIKICB9LAogICJmaWxlcyI6IFsKICAgICJISVNUT1JZLm1kIiwKICAgICJMSUNFTlNFIiwKICAgICJSRUFETUUubWQiLAogICAgImluZGV4LmpzIgogIF0sCiAgInNjcmlwdHMiOiB7CiAgICAiYmVuY2giOiAibm9kZSBiZW5jaG1hcmsvaW5kZXguanMiLAogICAgImxpbnQiOiAiZXNsaW50IC0tcGx1Z2luIG1hcmtkb3duIC0tZXh0IGpzLG1kIC4iLAogICAgInRlc3QiOiAibW9jaGEgdGVzdC8iLAogICAgInRlc3QtY292IjogIm55YyAtLXJlcG9ydGVyPWh0bWwgLS1yZXBvcnRlcj10ZXh0IG5wbSB0ZXN0IgogIH0KfQo=",
+        "test/.eslintrc.yml": "ZW52OgogIG1vY2hhOiB0cnVlCg==",
+        "test/index.js": "dmFyIGFzc2VydCA9IHJlcXVpcmUoJ2Fzc2VydCcpCnZhciBlc2NhcGVIdG1sID0gcmVxdWlyZSgnLi4nKQoKZGVzY3JpYmUoJ2VzY2FwZUh0bWwoc3RyaW5nKScsIGZ1bmN0aW9uICgpIHsKICBkZXNjcmliZSgnd2hlbiBzdHJpbmcgaXMgdW5kZWZpbmVkJywgZnVuY3Rpb24gKCkgewogICAgaXQoJ3Nob3VsZCByZXR1cm4gInVuZGVmaW5lZCInLCBmdW5jdGlvbiAoKSB7CiAgICAgIGFzc2VydC5zdHJpY3RFcXVhbChlc2NhcGVIdG1sKHVuZGVmaW5lZCksICd1bmRlZmluZWQnKQogICAgfSkKICB9KQoKICBkZXNjcmliZSgnd2hlbiBzdHJpbmcgaXMgbnVsbCcsIGZ1bmN0aW9uICgpIHsKICAgIGl0KCdzaG91bGQgcmV0dXJuICJudWxsIicsIGZ1bmN0aW9uICgpIHsKICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwobnVsbCksICdudWxsJykKICAgIH0pCiAgfSkKCiAgZGVzY3JpYmUoJ3doZW4gc3RyaW5nIGlzIGEgbnVtYmVyJywgZnVuY3Rpb24gKCkgewogICAgaXQoJ3Nob3VsZCByZXR1cm4gc3RyaW5naWZpZWQgbnVtYmVyJywgZnVuY3Rpb24gKCkgewogICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCg0MiksICc0MicpCiAgICB9KQogIH0pCgogIGRlc2NyaWJlKCd3aGVuIHN0cmluZyBpcyBhbiBvYmplY3QnLCBmdW5jdGlvbiAoKSB7CiAgICBpdCgnc2hvdWxkIHJldHVybiAiW29iamVjdCBPYmplY3RdIicsIGZ1bmN0aW9uICgpIHsKICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoe30pLCAnW29iamVjdCBPYmplY3RdJykKICAgIH0pCiAgfSkKCiAgZGVzY3JpYmUoJ3doZW4gc3RyaW5nIGNvbnRhaW5zIFwnIlwnJywgZnVuY3Rpb24gKCkgewogICAgZGVzY3JpYmUoJ2FzIG9ubHkgY2hhcmFjdGVyJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2Ugd2l0aCAiJnF1b3Q7IicsIGZ1bmN0aW9uICgpIHsKICAgICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCgnIicpLCAnJnF1b3Q7JykKICAgICAgfSkKICAgIH0pCgogICAgZGVzY3JpYmUoJ2FzIGZpcnN0IGNoYXJhY3RlcicsIGZ1bmN0aW9uICgpIHsKICAgICAgaXQoJ3Nob3VsZCByZXBsYWNlIHdpdGggIiZxdW90OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoJyJiYXInKSwgJyZxdW90O2JhcicpCiAgICAgIH0pCiAgICB9KQoKICAgIGRlc2NyaWJlKCdhcyBsYXN0IGNoYXJhY3RlcicsIGZ1bmN0aW9uICgpIHsKICAgICAgaXQoJ3Nob3VsZCByZXBsYWNlIHdpdGggIiZxdW90OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoJ2ZvbyInKSwgJ2ZvbyZxdW90OycpCiAgICAgIH0pCiAgICB9KQoKICAgIGRlc2NyaWJlKCdhcyBtaWRkbGUgY2hhcmFjdGVyJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2Ugd2l0aCAiJnF1b3Q7IicsIGZ1bmN0aW9uICgpIHsKICAgICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCgnZm9vImJhcicpLCAnZm9vJnF1b3Q7YmFyJykKICAgICAgfSkKICAgIH0pCgogICAgZGVzY3JpYmUoJ211bHRpcGxlIHRpbWVzJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2UgYWxsIG9jY3VycmFuY2VzIHdpdGggIiZxdW90OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoJ2ZvbyIiYmFyJyksICdmb28mcXVvdDsmcXVvdDtiYXInKQogICAgICB9KQogICAgfSkKICB9KQoKICBkZXNjcmliZSgnd2hlbiBzdHJpbmcgY29udGFpbnMgIiYiJywgZnVuY3Rpb24gKCkgewogICAgZGVzY3JpYmUoJ2FzIG9ubHkgY2hhcmFjdGVyJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2Ugd2l0aCAiJmFtcDsiJywgZnVuY3Rpb24gKCkgewogICAgICAgIGFzc2VydC5zdHJpY3RFcXVhbChlc2NhcGVIdG1sKCcmJyksICcmYW1wOycpCiAgICAgIH0pCiAgICB9KQoKICAgIGRlc2NyaWJlKCdhcyBmaXJzdCBjaGFyYWN0ZXInLCBmdW5jdGlvbiAoKSB7CiAgICAgIGl0KCdzaG91bGQgcmVwbGFjZSB3aXRoICImYW1wOyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoJyZiYXInKSwgJyZhbXA7YmFyJykKICAgICAgfSkKICAgIH0pCgogICAgZGVzY3JpYmUoJ2FzIGxhc3QgY2hhcmFjdGVyJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2Ugd2l0aCAiJmFtcDsiJywgZnVuY3Rpb24gKCkgewogICAgICAgIGFzc2VydC5zdHJpY3RFcXVhbChlc2NhcGVIdG1sKCdmb28mJyksICdmb28mYW1wOycpCiAgICAgIH0pCiAgICB9KQoKICAgIGRlc2NyaWJlKCdhcyBtaWRkbGUgY2hhcmFjdGVyJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2Ugd2l0aCAiJmFtcDsiJywgZnVuY3Rpb24gKCkgewogICAgICAgIGFzc2VydC5zdHJpY3RFcXVhbChlc2NhcGVIdG1sKCdmb28mYmFyJyksICdmb28mYW1wO2JhcicpCiAgICAgIH0pCiAgICB9KQoKICAgIGRlc2NyaWJlKCdtdWx0aXBsZSB0aW1lcycsIGZ1bmN0aW9uICgpIHsKICAgICAgaXQoJ3Nob3VsZCByZXBsYWNlIGFsbCBvY2N1cnJhbmNlcyB3aXRoICImYW1wOyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoJ2ZvbyYmYmFyJyksICdmb28mYW1wOyZhbXA7YmFyJykKICAgICAgfSkKICAgIH0pCiAgfSkKCiAgZGVzY3JpYmUoJ3doZW4gc3RyaW5nIGNvbnRhaW5zICJcJyInLCBmdW5jdGlvbiAoKSB7CiAgICBkZXNjcmliZSgnYXMgb25seSBjaGFyYWN0ZXInLCBmdW5jdGlvbiAoKSB7CiAgICAgIGl0KCdzaG91bGQgcmVwbGFjZSB3aXRoICImIzM5OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoIiciKSwgJyYjMzk7JykKICAgICAgfSkKICAgIH0pCgogICAgZGVzY3JpYmUoJ2FzIGZpcnN0IGNoYXJhY3RlcicsIGZ1bmN0aW9uICgpIHsKICAgICAgaXQoJ3Nob3VsZCByZXBsYWNlIHdpdGggIiYjMzk7IicsIGZ1bmN0aW9uICgpIHsKICAgICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCgiJ2JhciIpLCAnJiMzOTtiYXInKQogICAgICB9KQogICAgfSkKCiAgICBkZXNjcmliZSgnYXMgbGFzdCBjaGFyYWN0ZXInLCBmdW5jdGlvbiAoKSB7CiAgICAgIGl0KCdzaG91bGQgcmVwbGFjZSB3aXRoICImIzM5OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoImZvbyciKSwgJ2ZvbyYjMzk7JykKICAgICAgfSkKICAgIH0pCgogICAgZGVzY3JpYmUoJ2FzIG1pZGRsZSBjaGFyYWN0ZXInLCBmdW5jdGlvbiAoKSB7CiAgICAgIGl0KCdzaG91bGQgcmVwbGFjZSB3aXRoICImIzM5OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoImZvbydiYXIiKSwgJ2ZvbyYjMzk7YmFyJykKICAgICAgfSkKICAgIH0pCgogICAgZGVzY3JpYmUoJ211bHRpcGxlIHRpbWVzJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2UgYWxsIG9jY3VycmFuY2VzIHdpdGggIiYjMzk7IicsIGZ1bmN0aW9uICgpIHsKICAgICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCgiZm9vJydiYXIiKSwgJ2ZvbyYjMzk7JiMzOTtiYXInKQogICAgICB9KQogICAgfSkKICB9KQoKICBkZXNjcmliZSgnd2hlbiBzdHJpbmcgY29udGFpbnMgIjwiJywgZnVuY3Rpb24gKCkgewogICAgZGVzY3JpYmUoJ2FzIG9ubHkgY2hhcmFjdGVyJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2Ugd2l0aCAiJmx0OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoJzwnKSwgJyZsdDsnKQogICAgICB9KQogICAgfSkKCiAgICBkZXNjcmliZSgnYXMgZmlyc3QgY2hhcmFjdGVyJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2Ugd2l0aCAiJmx0OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoJzxiYXInKSwgJyZsdDtiYXInKQogICAgICB9KQogICAgfSkKCiAgICBkZXNjcmliZSgnYXMgbGFzdCBjaGFyYWN0ZXInLCBmdW5jdGlvbiAoKSB7CiAgICAgIGl0KCdzaG91bGQgcmVwbGFjZSB3aXRoICImbHQ7IicsIGZ1bmN0aW9uICgpIHsKICAgICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCgnZm9vPCcpLCAnZm9vJmx0OycpCiAgICAgIH0pCiAgICB9KQoKICAgIGRlc2NyaWJlKCdhcyBtaWRkbGUgY2hhcmFjdGVyJywgZnVuY3Rpb24gKCkgewogICAgICBpdCgnc2hvdWxkIHJlcGxhY2Ugd2l0aCAiJmx0OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoJ2ZvbzxiYXInKSwgJ2ZvbyZsdDtiYXInKQogICAgICB9KQogICAgfSkKCiAgICBkZXNjcmliZSgnbXVsdGlwbGUgdGltZXMnLCBmdW5jdGlvbiAoKSB7CiAgICAgIGl0KCdzaG91bGQgcmVwbGFjZSBhbGwgb2NjdXJyYW5jZXMgd2l0aCAiJmx0OyInLCBmdW5jdGlvbiAoKSB7CiAgICAgICAgYXNzZXJ0LnN0cmljdEVxdWFsKGVzY2FwZUh0bWwoJ2Zvbzw8YmFyJyksICdmb28mbHQ7Jmx0O2JhcicpCiAgICAgIH0pCiAgICB9KQogIH0pCgogIGRlc2NyaWJlKCd3aGVuIHN0cmluZyBjb250YWlucyAiPiInLCBmdW5jdGlvbiAoKSB7CiAgICBkZXNjcmliZSgnYXMgb25seSBjaGFyYWN0ZXInLCBmdW5jdGlvbiAoKSB7CiAgICAgIGl0KCdzaG91bGQgcmVwbGFjZSB3aXRoICImZ3Q7IicsIGZ1bmN0aW9uICgpIHsKICAgICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCgnPicpLCAnJmd0OycpCiAgICAgIH0pCiAgICB9KQoKICAgIGRlc2NyaWJlKCdhcyBmaXJzdCBjaGFyYWN0ZXInLCBmdW5jdGlvbiAoKSB7CiAgICAgIGl0KCdzaG91bGQgcmVwbGFjZSB3aXRoICImZ3Q7IicsIGZ1bmN0aW9uICgpIHsKICAgICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCgnPmJhcicpLCAnJmd0O2JhcicpCiAgICAgIH0pCiAgICB9KQoKICAgIGRlc2NyaWJlKCdhcyBsYXN0IGNoYXJhY3RlcicsIGZ1bmN0aW9uICgpIHsKICAgICAgaXQoJ3Nob3VsZCByZXBsYWNlIHdpdGggIiZndDsiJywgZnVuY3Rpb24gKCkgewogICAgICAgIGFzc2VydC5zdHJpY3RFcXVhbChlc2NhcGVIdG1sKCdmb28+JyksICdmb28mZ3Q7JykKICAgICAgfSkKICAgIH0pCgogICAgZGVzY3JpYmUoJ2FzIG1pZGRsZSBjaGFyYWN0ZXInLCBmdW5jdGlvbiAoKSB7CiAgICAgIGl0KCdzaG91bGQgcmVwbGFjZSB3aXRoICImZ3Q7IicsIGZ1bmN0aW9uICgpIHsKICAgICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCgnZm9vPmJhcicpLCAnZm9vJmd0O2JhcicpCiAgICAgIH0pCiAgICB9KQoKICAgIGRlc2NyaWJlKCdtdWx0aXBsZSB0aW1lcycsIGZ1bmN0aW9uICgpIHsKICAgICAgaXQoJ3Nob3VsZCByZXBsYWNlIGFsbCBvY2N1cnJhbmNlcyB3aXRoICImZ3Q7IicsIGZ1bmN0aW9uICgpIHsKICAgICAgICBhc3NlcnQuc3RyaWN0RXF1YWwoZXNjYXBlSHRtbCgnZm9vPj5iYXInKSwgJ2ZvbyZndDsmZ3Q7YmFyJykKICAgICAgfSkKICAgIH0pCiAgfSkKCiAgZGVzY3JpYmUoJ3doZW4gZXNjYXBlZCBjaGFyYWN0ZXIgbWl4ZWQnLCBmdW5jdGlvbiAoKSB7CiAgICBpdCgnc2hvdWxkIGVzY2FwZSBhbGwgb2NjdXJyYW5jZXMnLCBmdW5jdGlvbiAoKSB7CiAgICAgIGFzc2VydC5zdHJpY3RFcXVhbChlc2NhcGVIdG1sKCcmZm9vIDw+IGJhciAiZml6eiIgbFwnYScpLAogICAgICAgICcmYW1wO2ZvbyAmbHQ7Jmd0OyBiYXIgJnF1b3Q7Zml6eiZxdW90OyBsJiMzOTthJykKICAgIH0pCiAgfSkKfSkK"
+      },
+      "metadata": {
+        "fetched_at": "2026-10-19T21:21:52.400457+00:00",
+        "adapter": "github-https-archive-v1",
+        "transport": "HTTPS; no redirects; no credentials; 45 second total budget",
+        "archive_sha256": "615623c15cb33c081c2d77ad45fcd2ce3169e54fa01e40a46ac208a94a4b313c",
+        "normalization": "Regular files only; executable bit retained; candidate source read-only",
+        "upstream_url": "https://github.com/component/escape-html",
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "attribution_files": [
+          "LICENSE"
+        ]
+      }
+    },
+    "candidate": {
+      "id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+      "version": "repository-candidate-v1",
+      "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+      "repository": "component/escape-html",
+      "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+      "source_tree_hash": "60dadf1674058c1cc604051ee3d264f5e30c5cd27915f3eff2aceca682c2f979",
+      "applied_source_hashes": {
+        ".editorconfig": "7bd6d83307b85e0401c9b1b1bd487f1e3f375c9be8ceff9ea32b0315815f992d",
+        ".eslintignore": "a786abe86173ef47e5512b82f125da6b89776d2f39b3f3ce153b1791d54e35bd",
+        ".eslintrc.yml": "472abeea8f591af5cdf1a34622ac9b8019b0b1f33bfac3eeb26811061a83039e",
+        ".gitignore": "ac901be8c1ab2509a839e1e49f3e0a9315d077e7fbdccb280271a3415b136f89",
+        ".travis.yml": "273ca06fc2eb08532b37fee32d851f8c5fe8fda5142593d2772c88c5bbc98466",
+        "HISTORY.md": "47e0e4ca90edcf4f04326ae73c8d197b5e8db0e1c439be12f66ed1eca6c4957d",
+        "LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+        "README.md": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+        "benchmark/index.js": "248016f887ccaa79dc4eb56fd038a5214543fbaf7058de32fa5fe95c7a5fe1ac",
+        "component.json": "00e9870404566bdd5f021601fae9ac2d5f6aca763a8bf28cb5aedd0af13e423f",
+        "index.js": "41951b028697edc240f61a59a515b2cc464cef3e9b93f8061476309f23970569",
+        "package.json": "e41453856ce09702145bccac19cf593fea9b2f7a2d76ebfc153eeac1338952bf",
+        "test/.eslintrc.yml": "d5191500ede898e4317a74798ecefe46d3db55185bdeadc49bded8d02e1722e5",
+        "test/index.js": "5a75835c8040f91a7b65ab9849195b4223bc8f27484fa6e0a13e29003ad65fc2"
+      },
+      "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+      "patch": "--- a/index.js\n+++ b/index.js\n@@ -31,7 +31,8 @@\n  */\n \n function escapeHtml (string) {\n-  var str = '' + string\n+  var str = String(string)\n+  if (str.charCodeAt(0) > 127) return str\n   var match = matchHtmlRegExp.exec(str)\n \n   if (!match) {\n",
+      "submitted_patch_hash": "00bc901f144f336107bf4e929706c806e0b16000c2cb97704e5309c8d60431a1",
+      "approved_paths": [
+        "index.js"
+      ],
+      "affected_files": [
+        "index.js"
+      ],
+      "original": {
+        "index.js": "/*!\n * escape-html\n * Copyright(c) 2012-2013 TJ Holowaychuk\n * Copyright(c) 2015 Andreas Lubbe\n * Copyright(c) 2015 Tiancheng \"Timothy\" Gu\n * MIT Licensed\n */\n\n'use strict'\n\n/**\n * Module variables.\n * @private\n */\n\nvar matchHtmlRegExp = /[\"'&<>]/\n\n/**\n * Module exports.\n * @public\n */\n\nmodule.exports = escapeHtml\n\n/**\n * Escape special characters in the given string of text.\n *\n * @param  {string} string The string to escape for inserting into HTML\n * @return {string}\n * @public\n */\n\nfunction escapeHtml (string) {\n  var str = '' + string\n  var match = matchHtmlRegExp.exec(str)\n\n  if (!match) {\n    return str\n  }\n\n  var escape\n  var html = ''\n  var index = 0\n  var lastIndex = 0\n\n  for (index = match.index; index < str.length; index++) {\n    switch (str.charCodeAt(index)) {\n      case 34: // \"\n        escape = '&quot;'\n        break\n      case 38: // &\n        escape = '&amp;'\n        break\n      case 39: // '\n        escape = '&#39;'\n        break\n      case 60: // <\n        escape = '&lt;'\n        break\n      case 62: // >\n        escape = '&gt;'\n        break\n      default:\n        continue\n    }\n\n    if (lastIndex !== index) {\n      html += str.substring(lastIndex, index)\n    }\n\n    lastIndex = index + 1\n    html += escape\n  }\n\n  return lastIndex !== index\n    ? html + str.substring(lastIndex, index)\n    : html\n}\n"
+      },
+      "modified": {
+        "index.js": "/*!\n * escape-html\n * Copyright(c) 2012-2013 TJ Holowaychuk\n * Copyright(c) 2015 Andreas Lubbe\n * Copyright(c) 2015 Tiancheng \"Timothy\" Gu\n * MIT Licensed\n */\n\n'use strict'\n\n/**\n * Module variables.\n * @private\n */\n\nvar matchHtmlRegExp = /[\"'&<>]/\n\n/**\n * Module exports.\n * @public\n */\n\nmodule.exports = escapeHtml\n\n/**\n * Escape special characters in the given string of text.\n *\n * @param  {string} string The string to escape for inserting into HTML\n * @return {string}\n * @public\n */\n\nfunction escapeHtml (string) {\n  var str = String(string)\n  if (str.charCodeAt(0) > 127) return str\n  var match = matchHtmlRegExp.exec(str)\n\n  if (!match) {\n    return str\n  }\n\n  var escape\n  var html = ''\n  var index = 0\n  var lastIndex = 0\n\n  for (index = match.index; index < str.length; index++) {\n    switch (str.charCodeAt(index)) {\n      case 34: // \"\n        escape = '&quot;'\n        break\n      case 38: // &\n        escape = '&amp;'\n        break\n      case 39: // '\n        escape = '&#39;'\n        break\n      case 60: // <\n        escape = '&lt;'\n        break\n      case 62: // >\n        escape = '&gt;'\n        break\n      default:\n        continue\n    }\n\n    if (lastIndex !== index) {\n      html += str.substring(lastIndex, index)\n    }\n\n    lastIndex = index + 1\n    html += escape\n  }\n\n  return lastIndex !== index\n    ? html + str.substring(lastIndex, index)\n    : html\n}\n"
+      },
+      "provenance": {
+        "category": "user_declared",
+        "author_label": "G2 declared node-negative",
+        "source_reference": "Explicitly authored negative control: Unicode-prefix fast path skips escaping",
+        "limitations": "Imported authorship is user-declared and unverified."
+      }
+    },
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+      "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+      "runtime": "node22",
+      "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "node",
+        "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+        "test/index.js"
+      ],
+      "test_description": "Full unchanged upstream test file, predeclared G2 trial",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "engine_id": "09f934faef99a72cb02aabfd3bb2d345b4a5ab2e733a4cd3dbe0b93db1fca539",
+    "approval": {
+      "local_owner": true,
+      "plan_id": "ad89d0b5a4f109d232077924bde51a28b9955ef48dd5bc9b4f8533e86ffece81",
+      "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+      "approved_at": "2026-10-19T21:22:05.378059+00:00",
+      "verification_id": "e6143a8f87668f6900525419bc2c361746c3703d0a0fa2756cced5f31d51b3ca",
+      "stage": "execution",
+      "approve_independent_plan": true
+    },
+    "verification": {
+      "id": "e6143a8f87668f6900525419bc2c361746c3703d0a0fa2756cced5f31d51b3ca",
+      "plan": {
+        "version": "independent-plan-v1",
+        "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+        "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+        "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+        "ordinary_plan_id": "ad89d0b5a4f109d232077924bde51a28b9955ef48dd5bc9b4f8533e86ffece81",
+        "runtime": "node22",
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "module": "index.js",
+        "export": "",
+        "assertions": [
+          {
+            "id": "unicode_prefix",
+            "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+            "args": [
+              "\u00e9<&"
+            ],
+            "kwargs": {},
+            "expected": "\u00e9&lt;&amp;"
+          },
+          {
+            "id": "mixed_symbols",
+            "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+            "args": [
+              "\"'&<>"
+            ],
+            "kwargs": {},
+            "expected": "&quot;&#39;&amp;&lt;&gt;"
+          },
+          {
+            "id": "astral_prefix",
+            "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+            "args": [
+              "\ud83d\ude80<go>"
+            ],
+            "kwargs": {},
+            "expected": "\ud83d\ude80&lt;go&gt;"
+          },
+          {
+            "id": "plain",
+            "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+            "args": [
+              "plain"
+            ],
+            "kwargs": {},
+            "expected": "plain"
+          }
+        ],
+        "setup": [],
+        "timeout_seconds": 30,
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+        "adapter_hashes": {
+          "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+          "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+        },
+        "interpretation": "all-named-canonical-json-equalities-v1"
+      },
+      "requirements": [
+        {
+          "id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+          "version": "behavioral-requirement-v1",
+          "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+          "statement": "Escape all five documented HTML special characters in string input, including Unicode text.",
+          "expected_behavior": "Escape all five documented HTML special characters in string input, including Unicode text.",
+          "input_domain": "Finite JSON strings containing plain Unicode text and documented HTML special characters.",
+          "assumptions": [
+            "HTML text content or quoted attribute contexts only",
+            "Entity spellings follow upstream documented examples and owner-approved conventional HTML entity spellings; no raw-text element claim"
+          ],
+          "ambiguities": [],
+          "provenance": {
+            "origin": "upstream_documentation",
+            "reference": "https://github.com/component/escape-html/blob/b42947eefa79efff01b3fe988c4c7e7b051ec8d8/README.md",
+            "excerpt": "This function will escape the following characters: `\"`, `'`, `&`, `<`, and\n`>`.",
+            "excerpt_hash": "71a5655b5f8a8a988b692afce317b357655ce889d53cd2f50fb774d59c56d229",
+            "justification": "Contract taken from exact-base upstream documentation; expected JSON examples owner-specified independently of candidate. Documentation is evidence only, never executed.",
+            "independent_of_candidate": true
+          },
+          "approval": "owner_approved"
+        }
+      ]
+    },
+    "stage": "execution",
+    "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+    "validation": {
+      "audit_id": "1254a227-1216-4857-a8ae-9b8209a78aff",
+      "result": {
+        "version": "repository-independent-result-v1",
+        "audit_id": "1254a227-1216-4857-a8ae-9b8209a78aff",
+        "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+        "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+        "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+        "plan_id": "ad89d0b5a4f109d232077924bde51a28b9955ef48dd5bc9b4f8533e86ffece81",
+        "verification_id": "e6143a8f87668f6900525419bc2c361746c3703d0a0fa2756cced5f31d51b3ca",
+        "stage": "validation",
+        "engine_id": "09f934faef99a72cb02aabfd3bb2d345b4a5ab2e733a4cd3dbe0b93db1fca539",
+        "started_at": "2026-10-19T21:22:00.167257+00:00",
+        "ordinary": null,
+        "independent": {
+          "status": "not_run",
+          "checks": []
+        },
+        "controls": [
+          {
+            "kind": "positive",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "1254a227-1216-4857-a8ae-9b8209a78aff",
+              "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+              "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+              "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+              "source_binding": {
+                "repository": "component/escape-html",
+                "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+                "git_tree": "4595930fe15bb8034598e2cf2cb580dcfc065631",
+                "source_tree_hash": "60dadf1674058c1cc604051ee3d264f5e30c5cd27915f3eff2aceca682c2f979",
+                "submitted_patch_hash": "00bc901f144f336107bf4e929706c806e0b16000c2cb97704e5309c8d60431a1"
+              },
+              "plan_id": "a2a460e3bb92bd0a90f7c53969001c8d563439ab66ef2d223da81982625d577a",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "node",
+                  "/verifier/probe.cjs"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-19T21:22:01.546267+00:00",
+                "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"unicode_prefix\",\"kind\":\"value\",\"value\":\"\u00e9&lt;&amp;\"},{\"id\":\"mixed_symbols\",\"kind\":\"value\",\"value\":\"&quot;&#39;&amp;&lt;&gt;\"},{\"id\":\"astral_prefix\",\"kind\":\"value\",\"value\":\"\ud83d\ude80&lt;go&gt;\"},{\"id\":\"plain\",\"kind\":\"value\",\"value\":\"plain\"}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-19T21:22:01.712095+00:00",
+                "duration_ms": 166
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "node",
+                    "/verifier/probe.cjs"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-19T21:22:01.546267+00:00",
+                  "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"unicode_prefix\",\"kind\":\"value\",\"value\":\"\u00e9&lt;&amp;\"},{\"id\":\"mixed_symbols\",\"kind\":\"value\",\"value\":\"&quot;&#39;&amp;&lt;&gt;\"},{\"id\":\"astral_prefix\",\"kind\":\"value\",\"value\":\"\ud83d\ude80&lt;go&gt;\"},{\"id\":\"plain\",\"kind\":\"value\",\"value\":\"plain\"}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-19T21:22:01.712095+00:00",
+                  "duration_ms": 166
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-19T21:22:00.176158+00:00",
+              "runtime": {
+                "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+                "repo_digests": [
+                  "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+                ],
+                "runtime": "node22",
+                "tag": "patch-audit-node:22-v1"
+              },
+              "verifier_hashes": {
+                "control.cjs": "437c3b71e2e6dd5f33d74383f620f8653ccd84448832e9e1356cbc03e5fe7177",
+                "inputs.json": "e9ad81a6ac0d1fd48cf582e8b884641378a826b126133898c917a2dcf9590240",
+                "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+              },
+              "executed_source_hashes": {
+                ".editorconfig": "7bd6d83307b85e0401c9b1b1bd487f1e3f375c9be8ceff9ea32b0315815f992d",
+                ".eslintignore": "a786abe86173ef47e5512b82f125da6b89776d2f39b3f3ce153b1791d54e35bd",
+                ".eslintrc.yml": "472abeea8f591af5cdf1a34622ac9b8019b0b1f33bfac3eeb26811061a83039e",
+                ".gitignore": "ac901be8c1ab2509a839e1e49f3e0a9315d077e7fbdccb280271a3415b136f89",
+                ".travis.yml": "273ca06fc2eb08532b37fee32d851f8c5fe8fda5142593d2772c88c5bbc98466",
+                "HISTORY.md": "47e0e4ca90edcf4f04326ae73c8d197b5e8db0e1c439be12f66ed1eca6c4957d",
+                "LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+                "README.md": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+                "benchmark/index.js": "248016f887ccaa79dc4eb56fd038a5214543fbaf7058de32fa5fe95c7a5fe1ac",
+                "component.json": "00e9870404566bdd5f021601fae9ac2d5f6aca763a8bf28cb5aedd0af13e423f",
+                "index.js": "41951b028697edc240f61a59a515b2cc464cef3e9b93f8061476309f23970569",
+                "package.json": "e41453856ce09702145bccac19cf593fea9b2f7a2d76ebfc153eeac1338952bf",
+                "test/.eslintrc.yml": "d5191500ede898e4317a74798ecefe46d3db55185bdeadc49bded8d02e1722e5",
+                "test/index.js": "5a75835c8040f91a7b65ab9849195b4223bc8f27484fa6e0a13e29003ad65fc2"
+              },
+              "container_id": "150499b20e147698a701d75b1d84e6486d80efc110f0d369aae84f80087067ec",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "08bda38c67a9ae77bcfa4add7fa881aeed4d3a9c2aff33471e8cc4a5df6558bc",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "502c05731b6623a7903449c621f3a18787d9e9d561db1f6b6ef00529fc375495",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "150499b20e147698a701d75b1d84e6486d80efc110f0d369aae84f80087067ec",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "08bda38c67a9ae77bcfa4add7fa881aeed4d3a9c2aff33471e8cc4a5df6558bc",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "502c05731b6623a7903449c621f3a18787d9e9d561db1f6b6ef00529fc375495",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-19T21:22:02.554357+00:00",
+              "duration_ms": 2378
+            },
+            "status": "checks_passed",
+            "checks": [
+              {
+                "id": "unicode_prefix",
+                "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+                "input": {
+                  "args": [
+                    "\u00e9<&"
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "\u00e9&lt;&amp;",
+                "observed": "\u00e9&lt;&amp;",
+                "status": "passed"
+              },
+              {
+                "id": "mixed_symbols",
+                "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+                "input": {
+                  "args": [
+                    "\"'&<>"
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "&quot;&#39;&amp;&lt;&gt;",
+                "observed": "&quot;&#39;&amp;&lt;&gt;",
+                "status": "passed"
+              },
+              {
+                "id": "astral_prefix",
+                "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+                "input": {
+                  "args": [
+                    "\ud83d\ude80<go>"
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "\ud83d\ude80&lt;go&gt;",
+                "observed": "\ud83d\ude80&lt;go&gt;",
+                "status": "passed"
+              },
+              {
+                "id": "plain",
+                "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+                "input": {
+                  "args": [
+                    "plain"
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "plain",
+                "observed": "plain",
+                "status": "passed"
+              }
+            ]
+          },
+          {
+            "kind": "negative",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "1254a227-1216-4857-a8ae-9b8209a78aff",
+              "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+              "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+              "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+              "source_binding": {
+                "repository": "component/escape-html",
+                "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+                "git_tree": "4595930fe15bb8034598e2cf2cb580dcfc065631",
+                "source_tree_hash": "60dadf1674058c1cc604051ee3d264f5e30c5cd27915f3eff2aceca682c2f979",
+                "submitted_patch_hash": "00bc901f144f336107bf4e929706c806e0b16000c2cb97704e5309c8d60431a1"
+              },
+              "plan_id": "a2a460e3bb92bd0a90f7c53969001c8d563439ab66ef2d223da81982625d577a",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "node",
+                  "/verifier/probe.cjs"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-19T21:22:03.937109+00:00",
+                "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"unicode_prefix\",\"kind\":\"value\",\"value\":{\"negative_control\":\"\u00e9&lt;&amp;\"}},{\"id\":\"mixed_symbols\",\"kind\":\"value\",\"value\":{\"negative_control\":\"&quot;&#39;&amp;&lt;&gt;\"}},{\"id\":\"astral_prefix\",\"kind\":\"value\",\"value\":{\"negative_control\":\"\ud83d\ude80&lt;go&gt;\"}},{\"id\":\"plain\",\"kind\":\"value\",\"value\":{\"negative_control\":\"plain\"}}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-19T21:22:04.122689+00:00",
+                "duration_ms": 186
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "node",
+                    "/verifier/probe.cjs"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-19T21:22:03.937109+00:00",
+                  "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"unicode_prefix\",\"kind\":\"value\",\"value\":{\"negative_control\":\"\u00e9&lt;&amp;\"}},{\"id\":\"mixed_symbols\",\"kind\":\"value\",\"value\":{\"negative_control\":\"&quot;&#39;&amp;&lt;&gt;\"}},{\"id\":\"astral_prefix\",\"kind\":\"value\",\"value\":{\"negative_control\":\"\ud83d\ude80&lt;go&gt;\"}},{\"id\":\"plain\",\"kind\":\"value\",\"value\":{\"negative_control\":\"plain\"}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-19T21:22:04.122689+00:00",
+                  "duration_ms": 186
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-19T21:22:02.563046+00:00",
+              "runtime": {
+                "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+                "repo_digests": [
+                  "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+                ],
+                "runtime": "node22",
+                "tag": "patch-audit-node:22-v1"
+              },
+              "verifier_hashes": {
+                "control.cjs": "475a8877e81811709c1a667ce06292c968f02148078aa2864f50f5b50f9242d6",
+                "inputs.json": "e9ad81a6ac0d1fd48cf582e8b884641378a826b126133898c917a2dcf9590240",
+                "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+              },
+              "executed_source_hashes": {
+                ".editorconfig": "7bd6d83307b85e0401c9b1b1bd487f1e3f375c9be8ceff9ea32b0315815f992d",
+                ".eslintignore": "a786abe86173ef47e5512b82f125da6b89776d2f39b3f3ce153b1791d54e35bd",
+                ".eslintrc.yml": "472abeea8f591af5cdf1a34622ac9b8019b0b1f33bfac3eeb26811061a83039e",
+                ".gitignore": "ac901be8c1ab2509a839e1e49f3e0a9315d077e7fbdccb280271a3415b136f89",
+                ".travis.yml": "273ca06fc2eb08532b37fee32d851f8c5fe8fda5142593d2772c88c5bbc98466",
+                "HISTORY.md": "47e0e4ca90edcf4f04326ae73c8d197b5e8db0e1c439be12f66ed1eca6c4957d",
+                "LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+                "README.md": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+                "benchmark/index.js": "248016f887ccaa79dc4eb56fd038a5214543fbaf7058de32fa5fe95c7a5fe1ac",
+                "component.json": "00e9870404566bdd5f021601fae9ac2d5f6aca763a8bf28cb5aedd0af13e423f",
+                "index.js": "41951b028697edc240f61a59a515b2cc464cef3e9b93f8061476309f23970569",
+                "package.json": "e41453856ce09702145bccac19cf593fea9b2f7a2d76ebfc153eeac1338952bf",
+                "test/.eslintrc.yml": "d5191500ede898e4317a74798ecefe46d3db55185bdeadc49bded8d02e1722e5",
+                "test/index.js": "5a75835c8040f91a7b65ab9849195b4223bc8f27484fa6e0a13e29003ad65fc2"
+              },
+              "container_id": "8d7ae3a858ea581c8798984b24cb93aecf60719842e1e22622138791eebddd7f",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "56abeab3fe87bb51d02e24f941a69bd683347c6c4b20b3376ebea99c6f4fbf28",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "08802aad65589bf7891d313ccb9bfaa85a6929c3b58db2632e6fad656d781845",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "8d7ae3a858ea581c8798984b24cb93aecf60719842e1e22622138791eebddd7f",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "56abeab3fe87bb51d02e24f941a69bd683347c6c4b20b3376ebea99c6f4fbf28",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "08802aad65589bf7891d313ccb9bfaa85a6929c3b58db2632e6fad656d781845",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-19T21:22:05.109828+00:00",
+              "duration_ms": 2547
+            },
+            "status": "assertions_failed",
+            "checks": [
+              {
+                "id": "unicode_prefix",
+                "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+                "input": {
+                  "args": [
+                    "\u00e9<&"
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "\u00e9&lt;&amp;",
+                "observed": {
+                  "negative_control": "\u00e9&lt;&amp;"
+                },
+                "status": "failed"
+              },
+              {
+                "id": "mixed_symbols",
+                "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+                "input": {
+                  "args": [
+                    "\"'&<>"
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "&quot;&#39;&amp;&lt;&gt;",
+                "observed": {
+                  "negative_control": "&quot;&#39;&amp;&lt;&gt;"
+                },
+                "status": "failed"
+              },
+              {
+                "id": "astral_prefix",
+                "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+                "input": {
+                  "args": [
+                    "\ud83d\ude80<go>"
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "\ud83d\ude80&lt;go&gt;",
+                "observed": {
+                  "negative_control": "\ud83d\ude80&lt;go&gt;"
+                },
+                "status": "failed"
+              },
+              {
+                "id": "plain",
+                "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+                "input": {
+                  "args": [
+                    "plain"
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "plain",
+                "observed": {
+                  "negative_control": "plain"
+                },
+                "status": "failed"
+              }
+            ]
+          }
+        ],
+        "status": "validation_passed",
+        "ended_at": "2026-10-19T21:22:05.110065+00:00"
+      }
+    },
+    "result": {
+      "version": "repository-independent-result-v1",
+      "audit_id": "1701508e-9eee-443f-abca-e0797449d29d",
+      "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+      "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+      "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+      "plan_id": "ad89d0b5a4f109d232077924bde51a28b9955ef48dd5bc9b4f8533e86ffece81",
+      "verification_id": "e6143a8f87668f6900525419bc2c361746c3703d0a0fa2756cced5f31d51b3ca",
+      "stage": "execution",
+      "engine_id": "09f934faef99a72cb02aabfd3bb2d345b4a5ab2e733a4cd3dbe0b93db1fca539",
+      "started_at": "2026-10-19T21:22:05.448941+00:00",
+      "ordinary": {
+        "version": "repository-result-v1",
+        "audit_id": "1701508e-9eee-443f-abca-e0797449d29d",
+        "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+        "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+        "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+        "source_binding": {
+          "repository": "component/escape-html",
+          "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+          "git_tree": "4595930fe15bb8034598e2cf2cb580dcfc065631",
+          "source_tree_hash": "60dadf1674058c1cc604051ee3d264f5e30c5cd27915f3eff2aceca682c2f979",
+          "submitted_patch_hash": "00bc901f144f336107bf4e929706c806e0b16000c2cb97704e5309c8d60431a1"
+        },
+        "plan_id": "ad89d0b5a4f109d232077924bde51a28b9955ef48dd5bc9b4f8533e86ffece81",
+        "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+        "policy": {
+          "version": "repository-sandbox-v1",
+          "network": "none",
+          "uid": "1000:1000",
+          "rootfs": "read-only",
+          "source": "read-only named volume; separate bounded scratch and offline dependencies",
+          "cpu": 1,
+          "memory_bytes": 536870912,
+          "pids": 64,
+          "scratch_bytes": 134217728,
+          "tmp_bytes": 8388608,
+          "shm_bytes": 8388608,
+          "output_bytes_per_stream": 65536,
+          "log_storage_bytes": 131072,
+          "file_bytes": 16777216,
+          "host_mounts": [],
+          "capabilities": [],
+          "credentials": false,
+          "docker_socket": false,
+          "artifacts": [
+            "stdout",
+            "stderr",
+            "exit status",
+            "runtime identity"
+          ]
+        },
+        "independent": {
+          "status": "not_configured"
+        },
+        "ordinary": {
+          "phase": "tests",
+          "argv": [
+            "node",
+            "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+            "test/index.js"
+          ],
+          "working_directory": "/source",
+          "started_at": "2026-10-19T21:22:06.451521+00:00",
+          "stdout": "\n\n  escapeHtml(string)\n    when string is undefined\n      \u2714 should return \"undefined\"\n    when string is null\n      \u2714 should return \"null\"\n    when string is a number\n      \u2714 should return stringified number\n    when string is an object\n      \u2714 should return \"[object Object]\"\n    when string contains '\"'\n      as only character\n        \u2714 should replace with \"&quot;\"\n      as first character\n        \u2714 should replace with \"&quot;\"\n      as last character\n        \u2714 should replace with \"&quot;\"\n      as middle character\n        \u2714 should replace with \"&quot;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&quot;\"\n    when string contains \"&\"\n      as only character\n        \u2714 should replace with \"&amp;\"\n      as first character\n        \u2714 should replace with \"&amp;\"\n      as last character\n        \u2714 should replace with \"&amp;\"\n      as middle character\n        \u2714 should replace with \"&amp;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&amp;\"\n    when string contains \"'\"\n      as only character\n        \u2714 should replace with \"&#39;\"\n      as first character\n        \u2714 should replace with \"&#39;\"\n      as last character\n        \u2714 should replace with \"&#39;\"\n      as middle character\n        \u2714 should replace with \"&#39;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&#39;\"\n    when string contains \"<\"\n      as only character\n        \u2714 should replace with \"&lt;\"\n      as first character\n        \u2714 should replace with \"&lt;\"\n      as last character\n        \u2714 should replace with \"&lt;\"\n      as middle character\n        \u2714 should replace with \"&lt;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&lt;\"\n    when string contains \">\"\n      as only character\n        \u2714 should replace with \"&gt;\"\n      as first character\n        \u2714 should replace with \"&gt;\"\n      as last character\n        \u2714 should replace with \"&gt;\"\n      as middle character\n        \u2714 should replace with \"&gt;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&gt;\"\n    when escaped character mixed\n      \u2714 should escape all occurrances\n\n\n  30 passing (9ms)\n\n",
+          "stderr": "",
+          "exit_code": 0,
+          "counts": null,
+          "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+          "output_truncated": false,
+          "status": "finished",
+          "ended_at": "2026-10-19T21:22:06.659357+00:00",
+          "duration_ms": 208
+        },
+        "commands": [
+          {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+              "test/index.js"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-19T21:22:06.451521+00:00",
+            "stdout": "\n\n  escapeHtml(string)\n    when string is undefined\n      \u2714 should return \"undefined\"\n    when string is null\n      \u2714 should return \"null\"\n    when string is a number\n      \u2714 should return stringified number\n    when string is an object\n      \u2714 should return \"[object Object]\"\n    when string contains '\"'\n      as only character\n        \u2714 should replace with \"&quot;\"\n      as first character\n        \u2714 should replace with \"&quot;\"\n      as last character\n        \u2714 should replace with \"&quot;\"\n      as middle character\n        \u2714 should replace with \"&quot;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&quot;\"\n    when string contains \"&\"\n      as only character\n        \u2714 should replace with \"&amp;\"\n      as first character\n        \u2714 should replace with \"&amp;\"\n      as last character\n        \u2714 should replace with \"&amp;\"\n      as middle character\n        \u2714 should replace with \"&amp;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&amp;\"\n    when string contains \"'\"\n      as only character\n        \u2714 should replace with \"&#39;\"\n      as first character\n        \u2714 should replace with \"&#39;\"\n      as last character\n        \u2714 should replace with \"&#39;\"\n      as middle character\n        \u2714 should replace with \"&#39;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&#39;\"\n    when string contains \"<\"\n      as only character\n        \u2714 should replace with \"&lt;\"\n      as first character\n        \u2714 should replace with \"&lt;\"\n      as last character\n        \u2714 should replace with \"&lt;\"\n      as middle character\n        \u2714 should replace with \"&lt;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&lt;\"\n    when string contains \">\"\n      as only character\n        \u2714 should replace with \"&gt;\"\n      as first character\n        \u2714 should replace with \"&gt;\"\n      as last character\n        \u2714 should replace with \"&gt;\"\n      as middle character\n        \u2714 should replace with \"&gt;\"\n      multiple times\n        \u2714 should replace all occurrances with \"&gt;\"\n    when escaped character mixed\n      \u2714 should escape all occurrances\n\n\n  30 passing (9ms)\n\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-19T21:22:06.659357+00:00",
+            "duration_ms": 208
+          }
+        ],
+        "status": "tests_passed",
+        "started_at": "2026-10-19T21:22:05.453043+00:00",
+        "runtime": {
+          "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+          "repo_digests": [
+            "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+          ],
+          "runtime": "node22",
+          "tag": "patch-audit-node:22-v1"
+        },
+        "executed_source_hashes": {
+          ".editorconfig": "7bd6d83307b85e0401c9b1b1bd487f1e3f375c9be8ceff9ea32b0315815f992d",
+          ".eslintignore": "a786abe86173ef47e5512b82f125da6b89776d2f39b3f3ce153b1791d54e35bd",
+          ".eslintrc.yml": "472abeea8f591af5cdf1a34622ac9b8019b0b1f33bfac3eeb26811061a83039e",
+          ".gitignore": "ac901be8c1ab2509a839e1e49f3e0a9315d077e7fbdccb280271a3415b136f89",
+          ".travis.yml": "273ca06fc2eb08532b37fee32d851f8c5fe8fda5142593d2772c88c5bbc98466",
+          "HISTORY.md": "47e0e4ca90edcf4f04326ae73c8d197b5e8db0e1c439be12f66ed1eca6c4957d",
+          "LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+          "README.md": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+          "benchmark/index.js": "248016f887ccaa79dc4eb56fd038a5214543fbaf7058de32fa5fe95c7a5fe1ac",
+          "component.json": "00e9870404566bdd5f021601fae9ac2d5f6aca763a8bf28cb5aedd0af13e423f",
+          "index.js": "41951b028697edc240f61a59a515b2cc464cef3e9b93f8061476309f23970569",
+          "package.json": "e41453856ce09702145bccac19cf593fea9b2f7a2d76ebfc153eeac1338952bf",
+          "test/.eslintrc.yml": "d5191500ede898e4317a74798ecefe46d3db55185bdeadc49bded8d02e1722e5",
+          "test/index.js": "5a75835c8040f91a7b65ab9849195b4223bc8f27484fa6e0a13e29003ad65fc2"
+        },
+        "container_id": "ccf1576a20508359624ce1216955c3aee5986320bbf434503a6d6f4f701281ef",
+        "sandbox": {
+          "user": "1000:1000",
+          "host_config": {
+            "NetworkMode": "none",
+            "ReadonlyRootfs": true,
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges:true"
+            ],
+            "Memory": 536870912,
+            "MemorySwap": 536870912,
+            "NanoCpus": 1000000000,
+            "PidsLimit": 64,
+            "Tmpfs": {
+              "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+              "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+            },
+            "ShmSize": 8388608
+          },
+          "mounts": [
+            {
+              "Type": "volume",
+              "Name": "93fc6cf428867f52c67395e6509208c751e8a00a509a6f636147b0b058e6e825",
+              "Destination": "/source",
+              "RW": false
+            }
+          ]
+        },
+        "container_state": {
+          "OOMKilled": false,
+          "Error": ""
+        },
+        "cleanup": [
+          {
+            "kind": "containers",
+            "id": "ccf1576a20508359624ce1216955c3aee5986320bbf434503a6d6f4f701281ef",
+            "confirmed_absent": true
+          },
+          {
+            "kind": "volumes",
+            "id": "93fc6cf428867f52c67395e6509208c751e8a00a509a6f636147b0b058e6e825",
+            "confirmed_absent": true
+          }
+        ],
+        "ended_at": "2026-10-19T21:22:07.877897+00:00",
+        "duration_ms": 2425
+      },
+      "independent": {
+        "status": "assertions_failed",
+        "checks": [
+          {
+            "id": "unicode_prefix",
+            "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+            "input": {
+              "args": [
+                "\u00e9<&"
+              ],
+              "kwargs": {}
+            },
+            "expected": "\u00e9&lt;&amp;",
+            "observed": "\u00e9<&",
+            "status": "failed"
+          },
+          {
+            "id": "mixed_symbols",
+            "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+            "input": {
+              "args": [
+                "\"'&<>"
+              ],
+              "kwargs": {}
+            },
+            "expected": "&quot;&#39;&amp;&lt;&gt;",
+            "observed": "&quot;&#39;&amp;&lt;&gt;",
+            "status": "passed"
+          },
+          {
+            "id": "astral_prefix",
+            "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+            "input": {
+              "args": [
+                "\ud83d\ude80<go>"
+              ],
+              "kwargs": {}
+            },
+            "expected": "\ud83d\ude80&lt;go&gt;",
+            "observed": "\ud83d\ude80<go>",
+            "status": "failed"
+          },
+          {
+            "id": "plain",
+            "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+            "input": {
+              "args": [
+                "plain"
+              ],
+              "kwargs": {}
+            },
+            "expected": "plain",
+            "observed": "plain",
+            "status": "passed"
+          }
+        ],
+        "execution": {
+          "version": "repository-result-v1",
+          "audit_id": "1701508e-9eee-443f-abca-e0797449d29d",
+          "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+          "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+          "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+          "source_binding": {
+            "repository": "component/escape-html",
+            "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+            "git_tree": "4595930fe15bb8034598e2cf2cb580dcfc065631",
+            "source_tree_hash": "60dadf1674058c1cc604051ee3d264f5e30c5cd27915f3eff2aceca682c2f979",
+            "submitted_patch_hash": "00bc901f144f336107bf4e929706c806e0b16000c2cb97704e5309c8d60431a1"
+          },
+          "plan_id": "a2a460e3bb92bd0a90f7c53969001c8d563439ab66ef2d223da81982625d577a",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-19T21:22:11.746921+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"unicode_prefix\",\"kind\":\"value\",\"value\":\"\u00e9<&\"},{\"id\":\"mixed_symbols\",\"kind\":\"value\",\"value\":\"&quot;&#39;&amp;&lt;&gt;\"},{\"id\":\"astral_prefix\",\"kind\":\"value\",\"value\":\"\ud83d\ude80<go>\"},{\"id\":\"plain\",\"kind\":\"value\",\"value\":\"plain\"}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-19T21:22:11.814453+00:00",
+            "duration_ms": 68
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "node",
+                "/verifier/probe.cjs"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-19T21:22:11.746921+00:00",
+              "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"unicode_prefix\",\"kind\":\"value\",\"value\":\"\u00e9<&\"},{\"id\":\"mixed_symbols\",\"kind\":\"value\",\"value\":\"&quot;&#39;&amp;&lt;&gt;\"},{\"id\":\"astral_prefix\",\"kind\":\"value\",\"value\":\"\ud83d\ude80<go>\"},{\"id\":\"plain\",\"kind\":\"value\",\"value\":\"plain\"}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-19T21:22:11.814453+00:00",
+              "duration_ms": 68
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-19T21:22:07.881410+00:00",
+          "runtime": {
+            "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+            "repo_digests": [
+              "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+            ],
+            "runtime": "node22",
+            "tag": "patch-audit-node:22-v1"
+          },
+          "verifier_hashes": {
+            "inputs.json": "5dcdc1893a114d506ae058e96c1303364eb4e14efcac783beae1209824da6002",
+            "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+          },
+          "executed_source_hashes": {
+            ".editorconfig": "7bd6d83307b85e0401c9b1b1bd487f1e3f375c9be8ceff9ea32b0315815f992d",
+            ".eslintignore": "a786abe86173ef47e5512b82f125da6b89776d2f39b3f3ce153b1791d54e35bd",
+            ".eslintrc.yml": "472abeea8f591af5cdf1a34622ac9b8019b0b1f33bfac3eeb26811061a83039e",
+            ".gitignore": "ac901be8c1ab2509a839e1e49f3e0a9315d077e7fbdccb280271a3415b136f89",
+            ".travis.yml": "273ca06fc2eb08532b37fee32d851f8c5fe8fda5142593d2772c88c5bbc98466",
+            "HISTORY.md": "47e0e4ca90edcf4f04326ae73c8d197b5e8db0e1c439be12f66ed1eca6c4957d",
+            "LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+            "README.md": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+            "benchmark/index.js": "248016f887ccaa79dc4eb56fd038a5214543fbaf7058de32fa5fe95c7a5fe1ac",
+            "component.json": "00e9870404566bdd5f021601fae9ac2d5f6aca763a8bf28cb5aedd0af13e423f",
+            "index.js": "41951b028697edc240f61a59a515b2cc464cef3e9b93f8061476309f23970569",
+            "package.json": "e41453856ce09702145bccac19cf593fea9b2f7a2d76ebfc153eeac1338952bf",
+            "test/.eslintrc.yml": "d5191500ede898e4317a74798ecefe46d3db55185bdeadc49bded8d02e1722e5",
+            "test/index.js": "5a75835c8040f91a7b65ab9849195b4223bc8f27484fa6e0a13e29003ad65fc2"
+          },
+          "container_id": "fd7ae0ae3ac20cdb30f017ab08dfa43ed2215039d3bb7a10642bef42794627e2",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "d26fc641a1eba4c83d8ed278832d9fbf0da56fda5b8aaeeb7bfb0991fb67550b",
+                "Destination": "/source",
+                "RW": false
+              },
+              {
+                "Type": "volume",
+                "Name": "1152fe1d5ed3b469ca15dccaf9873d73d876c313968599e179a476537cd49688",
+                "Destination": "/verifier",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "fd7ae0ae3ac20cdb30f017ab08dfa43ed2215039d3bb7a10642bef42794627e2",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "d26fc641a1eba4c83d8ed278832d9fbf0da56fda5b8aaeeb7bfb0991fb67550b",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "1152fe1d5ed3b469ca15dccaf9873d73d876c313968599e179a476537cd49688",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-19T21:22:12.330396+00:00",
+          "duration_ms": 4449
+        }
+      },
+      "controls": [],
+      "status": "assertions_failed",
+      "ended_at": "2026-10-19T21:22:12.330601+00:00"
+    },
+    "result_hash": "87c88e4102e867623e4c15af9e8d14e02b7c602f520b2bf28d4294faa7552d8d"
+  }
+}

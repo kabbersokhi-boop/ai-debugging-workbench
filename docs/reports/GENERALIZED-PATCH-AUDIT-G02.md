@@ -33,7 +33,8 @@ audit table and manager. No second backend or orchestration framework was introd
 
 The candidate source and trusted observation adapter occupy **separate read-only named
 volumes**. Expected values, provenance, approval and comparison code stay outside the
-candidate's container. Actual initialized source and verifier bytes are read back and
+candidate's scored container. Synthetic control templates necessarily encode their known
+outputs; the scored candidate input manifest contains no expected values. Actual initialized source and verifier bytes are read back and
 hashed before execution. Ordinary and independent phases rebuild the identical admitted
 candidate in fresh containers and volumes; no installed artifacts or scratch state carry
 between them. Adapter sources are fixed application material, captured in the approved
@@ -153,11 +154,57 @@ fixture passed a runtime argument twice; it was corrected without weakening asse
 The first browser attempt overlapped an external run on the single-capacity broker; the
 serialized journey passed after adding explicit admission-response checks.
 
-Final implementation/review SHAs, CI references, full-suite results, preservation audit
-and sanitized browser evidence are recorded in the completion evidence and PR handoff.
-This document will be finalized after those acceptance runs finish.
+## Final acceptance evidence
 
-Recommendation is contingent on those gates: **GO for bounded G3 design after G2 review**,
-not for claims of general detection accuracy. G3 must independently validate specifications,
-oracle quality and a prospectively declared real-candidate evaluation. No G3 work, merge,
-release, deployment, new model call or frozen historical-result change is part of G2.
+Tested implementation: `cc044cb00de771621efe96793e3953825301da0b`.
+[Stacked G2 PR #13](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/13)
+is based on the accepted, unmerged G1 head `9179b44ddd794137abdf6beb555390787044836d`.
+Final review head: `refs/pull/13/head`; its exact SHA is recorded in the PR body and final
+handoff. The final report/evidence commit adds no execution code after the tested implementation.
+
+| Acceptance check | Actual result and retained evidence |
+|---|---|
+| Offline/static/build | **234 passed**, Ruff/Pyright/frontend build passed; [log](assets/generalized-patch-audit-g02/accepted/check.log). Existing Monaco size warning retained. |
+| Full CI integration | **82 passed, 4 existing opt-ins skipped**; [implementation CI](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39821440693), [exact counts](assets/generalized-patch-audit-g02/accepted/ci-implementation.json). Includes G1, prepared Patch Audit, debugger, new G2, real Docker and browser tests. |
+| Final local browser checks | **2 passed**: G1 ordinary-only approval/download/reopen and G2 requirements/provenance/approval/failure inspection; [log](assets/generalized-patch-audit-g02/accepted/browser-approval.log). |
+| Actual external trials | All four predeclared outcomes matched; [execution log](assets/generalized-patch-audit-g02/accepted/external.log), [eight-record index](assets/generalized-patch-audit-g02/evidence-index.json). |
+| Saved real results after recovery | All four reopened, downloaded and reloaded identically, with no new scoring; [browser audit](assets/generalized-patch-audit-g02/accepted/browser/audit.json). |
+| Cancellation/restart | G2 explicit approval/cancel/terminal recovery/missing evidence passed; [G2 evidence](assets/generalized-patch-audit-g02/accepted/recovery.json). Debugger recovery smoke passed; [log](assets/generalized-patch-audit-g02/accepted/recovery-smoke.log). |
+| Actual recorded boundary | No execution modules, socket, credentials, host mounts or generalized routes; [container audit](assets/generalized-patch-audit-g02/accepted/recorded-boundary.json). Both recorded browser journeys passed; [log](assets/generalized-patch-audit-g02/accepted/recorded-browser.log). |
+| Execution/preservation audit | Eight records revalidated; **16 distinct execution environments**, **44 recorded resources confirmed absent**, no remaining evaluator resources, immutable database triggers, **1,204 historical files unchanged**; [audit](assets/generalized-patch-audit-g02/accepted/completion-audit.json). Running backend engines and served frontend matched the implementation; [runtime audit](assets/generalized-patch-audit-g02/accepted/runtime-audit.json). |
+
+The first full local run had 81 passes and one ambiguous approval locator; the exact
+approval selector was corrected. Another full local run had 81 passes and one genuine
+source-initializer cleanup infrastructure error before tests ran. The existing 20-second
+confirmation limit was reached; final cleanup subsequently confirmed both resources absent.
+The result correctly remained nonpassing. No timeout, security bound or assertion was
+relaxed. [Raw local failure/evidence and CI host-image correction](assets/generalized-patch-audit-g02/development/README.md)
+are retained alongside the passing CI and targeted final local checks. Ubuntu 24.04 is
+explicitly pinned because `ubuntu-latest` moved to unsupported Ubuntu 26.04 for Playwright 1.58.
+
+Sanitized captures show actual saved G2 results and visible requirement provenance:
+[Python positive](assets/generalized-patch-audit-g02/accepted/browser/python-positive.png),
+[Python authored negative](assets/generalized-patch-audit-g02/accepted/browser/python-negative.png),
+[Node positive](assets/generalized-patch-audit-g02/accepted/browser/node-positive.png),
+[Node authored negative](assets/generalized-patch-audit-g02/accepted/browser/node-negative.png).
+[Local control/approval capture](assets/generalized-patch-audit-g02/accepted/synthetic-browser/validated-plan.png)
+uses a labeled synthetic fixture.
+
+Both positive external examples passed; this small set is not a false-positive-rate
+estimate. No unresolved ambiguity was approved for these trials. Literal JSON contracts
+and owner-attested provenance remain limits, not automatically discovered specifications.
+
+Acceptance A–M is supported by the reusable adapters and versioned records (A/B), actual
+read-only checker write rejection (C), explicit approval/validated-control gates (D/E),
+fresh source-bound environments (F), both real runtimes and controls (G/H), nonpassing
+invalid/setup/timeout/infrastructure cases (I), exact saved evidence (J), complete CI and
+preservation checks (K), the actual recorded boundary (L), and the explicit zero-discovery
+claim with unchanged predeclaration (M). The SHA256 artifact manifest permits independent
+integrity checking; hashes are content identities, not signatures authenticating arbitrary
+owner-supplied evidence.
+
+**GO for bounded G3 design after G2 engineering review.** The reusable mechanism is ready;
+general defect-detection accuracy has not been established. G3 must prospectively validate
+specifications, oracle quality and real submitted candidates. Authored controls cannot
+stand in for that evidence. No G3 work, merge, release, deployment, new model call or frozen
+historical-result change was performed.
