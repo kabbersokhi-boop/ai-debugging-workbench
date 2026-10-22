@@ -1,0 +1,33 @@
+{
+  "inflection-plural": {
+    "classification": "accepted_in_declared_domain",
+    "explanation": "Formal trials agree: selected unchanged baseline has 450 passing tests; five specified calls match. Authored alternative also accepted. No universal inflection claim."
+  },
+  "inflection-title": {
+    "classification": "accepted_in_declared_domain",
+    "explanation": "Formal trials agree: 453 unchanged baseline tests and six Unicode/compatibility calls pass. Apostrophe compatibility was challenged explicitly and passes; no new defect."
+  },
+  "stringcase-alpha": {
+    "classification": "accepted_in_declared_domain",
+    "explanation": "Formal trials agree: 13 baseline tests and five ASCII string-filtering calls pass. Alternate regex procedure is accepted on the declared domain. No Unicode-domain claim."
+  },
+  "stringcase-camel": {
+    "classification": "ordinary_failure",
+    "root_cause": "Whole-input lowercasing destroys existing internal capitals.",
+    "explanation": "Reproduced historical regression in authentic accepted upstream f79de04e. Base README explicitly says camelcase(FooBarBaz) returns fooBarBaz; actual output is foobarbaz. The unchanged test independently fails on FooBar -> foobar (12 passed / 1 failed). Both formal trials reproduce it. Authored alternate preserves capitals and joins reported spaced words; all assertions and baseline tests pass. This is a candidate/reference behavior disagreement, not a check error, and zero additional independent detection because ordinary checks already fail. No new upstream discovery claimed.",
+    "sources": [
+      "stringcase-camel/base-README.rst",
+      "stringcase-camel/base-stringcase_test.py",
+      "https://github.com/okunishinishi/python-stringcase/pull/24",
+      "camel-issue.json"
+    ]
+  },
+  "flatten-recursive": {
+    "classification": "unsupported_environment",
+    "explanation": "Both retained reference and authored-alternative ordinary commands fail before tests can run: MODULE_NOT_FOUND for array-flatten imported by unchanged test.js. Independent dense-array checks pass for both. This is unsupported offline test setup, not a production defect or false alarm. No formal candidate audits were performed."
+  },
+  "flatten-for": {
+    "classification": "unsupported_source",
+    "explanation": "Intake rejects the immutable base tree because benchmark/code/arr-flatten-0.1.0 (do-while).js contains characters outside the accepted path contract. The full upstream diff and source references remain retained; no candidate admission, controls, formal audit or behavior verdict exists."
+  }
+}

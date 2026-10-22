@@ -144,7 +144,9 @@ async def run(args):
                     await execute(case, "alternative", 1, {**alternate, "validation_run_id": validation["id"]})
                 else:
                     validation_entry = next(e for e in entries if e["case"] == case["key"] and e["role"] == "control")
-                    if {e["role"] for e in entries if e["case"] == case["key"]} < {"reference", "alternative", "control", "alternative_control"}:
+                    if not {"reference", "alternative", "control", "alternative_control"}.issubset(
+                        {e["role"] for e in entries if e["case"] == case["key"]}
+                    ):
                         raise ValueError("Complete declared case specification validation before formal scoring")
                     for trial in (1, 2):
                         await execute(case, "candidate", trial, {**payload, "validation_run_id": validation_entry["run_id"]})

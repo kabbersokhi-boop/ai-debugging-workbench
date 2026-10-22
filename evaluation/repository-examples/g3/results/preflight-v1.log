@@ -1,0 +1,41 @@
+inflection-plural-control-1 d496a202-1054-489f-9c2b-72b0e0c765f9 validation_passed None not_run
+inflection-plural-reference-1 7eb78481-9b57-4158-b22b-6fdc8ce9683b completed tests_passed checks_passed
+inflection-plural-alternative_control-1 0fd4b1c6-a3d6-46e2-8400-eb542b45cacb validation_passed None not_run
+inflection-plural-alternative-1 f0adc20d-3724-4d61-bdc5-9adb56c2e199 completed tests_passed checks_passed
+inflection-title-control-1 ca30d5cb-8b49-4626-9c09-d810c6326688 validation_passed None not_run
+inflection-title-reference-1 89f73d21-3489-424c-bc3f-4c4801a484af completed tests_passed checks_passed
+inflection-title-alternative_control-1 29f4b065-9114-4590-8eb2-0702b42489b5 validation_passed None not_run
+inflection-title-alternative-1 ae3cd3f0-cd6f-4376-bdd7-497e6ec32d5a completed tests_passed checks_passed
+stringcase-alpha-control-1 7904500d-3680-46dd-a9d6-8609229979f7 validation_passed None not_run
+stringcase-alpha-reference-1 9dc51a4d-4c69-4029-afa8-d05b94a2718b completed tests_passed checks_passed
+stringcase-alpha-alternative_control-1 d0cce5ba-ded7-4b6c-a574-c94c4fc3399b validation_passed None not_run
+stringcase-alpha-alternative-1 cbf9e630-07ab-4124-a506-3119be14c77a completed tests_passed checks_passed
+stringcase-camel-control-1 7a337fd9-76cd-403b-b58b-e47cfe8d1670 validation_passed None not_run
+stringcase-camel-reference-1 7bcf2c51-c70f-4b62-8f2e-2b9f8c5f76c5 assertions_failed tests_failed assertions_failed
+stringcase-camel-alternative_control-1 fe7a50c9-79d5-4a80-8631-d0195647c303 validation_passed None not_run
+stringcase-camel-alternative-1 5e27f30a-ec58-43b2-aaf0-c39fbddd4eee completed tests_passed checks_passed
+flatten-recursive-control-1 c885dbcb-9366-451d-883d-253663e0a20f validation_passed None not_run
+flatten-recursive-reference-1 b270d251-f627-4adf-9613-a7636ffa09eb ordinary_failed tests_failed checks_passed
+flatten-recursive-alternative_control-1 a0001fec-31e3-4bc0-8130-b33deee0a80e validation_passed None not_run
+flatten-recursive-alternative-1 93af5fa9-caa5-4765-9df2-ac47444dbc8c ordinary_failed tests_failed checks_passed
+Traceback (most recent call last):
+  File "/home/libertarian/ai-debugging-workbench/scripts/repository_campaign_g3.py", line 159, in <module>
+    asyncio.run(run(args))
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/libertarian/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/libertarian/ai-debugging-workbench/scripts/repository_campaign_g3.py", line 122, in run
+    payload = await prepare(case)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/home/libertarian/ai-debugging-workbench/scripts/repository_campaign_g3.py", line 46, in prepare
+    source = await request("POST", "sources", json={
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/libertarian/ai-debugging-workbench/scripts/repository_campaign_g3.py", line 42, in request
+    raise RuntimeError(f"{method} {route}: {response.status_code} {response.text[:1000]}")
+RuntimeError: POST sources: 422 {"detail":{"status":"repository_rejected","reason":"Bounded GitHub intake failed: ValueError"}}

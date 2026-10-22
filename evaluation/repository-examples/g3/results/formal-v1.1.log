@@ -1,0 +1,27 @@
+inflection-plural-candidate-1 a58b2404-67d0-44f2-8ecf-0c32e5fec532 completed tests_passed checks_passed
+inflection-plural-candidate-2 f549fb2f-05e2-489a-affe-68f19348afd9 completed tests_passed checks_passed
+inflection-title-candidate-1 a97fb923-5631-475a-a449-96c66162a238 completed tests_passed checks_passed
+inflection-title-candidate-2 8eb14068-c9ad-4a6e-8544-67c4cd1ca451 completed tests_passed checks_passed
+stringcase-alpha-candidate-1 63fd61c1-15b4-4c22-b773-abc7eef7532b completed tests_passed checks_passed
+stringcase-alpha-candidate-2 bf173fa6-1a80-4fbf-aa5f-463ca0167049 completed tests_passed checks_passed
+stringcase-camel-candidate-1 a56af26c-1cd2-42b6-b686-463b044149b7 assertions_failed tests_failed assertions_failed
+stringcase-camel-candidate-2 62df7e08-b9f6-4cd0-b510-99918c6f15f7 assertions_failed tests_failed assertions_failed
+flatten-recursive not executed: Unchanged ordinary baseline imports array-flatten, absent offline; retain completed reference/alternative executions, no formal scoring.
+flatten-for not executed: Intake rejects benchmark/code/arr-flatten-0.1.0 (do-while).js under the accepted path contract. No execution admitted.
+{
+  "selected_candidates": 6,
+  "genuine_candidates_executed": 4,
+  "genuine_candidates_admitted": 5,
+  "planned_candidate_audits": 12,
+  "candidate_audits": 8,
+  "control_validations": 10,
+  "reference_audits": 5,
+  "alternative_audits": 5,
+  "fresh_environments": 56,
+  "repeat_disagreements": 0,
+  "candidate_outcomes": {
+    "ordinary_pass_independent_pass": 3,
+    "ordinary_failure": 1,
+    "incomplete": 2
+  }
+}

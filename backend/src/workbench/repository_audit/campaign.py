@@ -13,6 +13,14 @@ from workbench.repository_audit.verification import Requirement
 def retained_campaign(root: Path):
     """Read only the registered, hashed downloads; never trust a manually entered scorecard."""
     declaration, cases, campaign_hash = load_campaign(root)
+    retained = root / "results"
+    manifest = json.loads((retained / "manifest.json").read_text())
+    if manifest["campaign_sha256"] != campaign_hash:
+        raise ValueError("Retained manifest belongs to another campaign")
+    for name, checksum in manifest["files"].items():
+        target = (retained / name).resolve()
+        if not target.is_relative_to(retained.resolve()) or digest(target.read_bytes()) != checksum:
+            raise ValueError("Retained campaign material changed")
     index = json.loads((root / "results/index.json").read_text())
     if index["campaign_sha256"] != campaign_hash:
         raise ValueError("Retained results belong to another campaign")
@@ -73,6 +81,11 @@ def bind_audit(root, case, audit, role, declaration):
         if role in ("alternative", "alternative_control")
         else case["patch"]
     )
+    if role not in ("alternative", "alternative_control") and (
+        c["provenance"]["source_reference"] != case["provenance"]["reference"]
+        or not case["provenance"]["reference"].endswith("/" + case["revision"])
+    ):
+        raise ValueError("Campaign candidate provenance identity mismatch")
     if (
         s["repository"].lower() != case["repository"].lower()
         or s["base_commit"] != case["base_commit"]
