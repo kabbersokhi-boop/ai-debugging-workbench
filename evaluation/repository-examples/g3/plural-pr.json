@@ -1,0 +1,1 @@
+{"body":"The word _passerby_ has an irregular form of plural, which is formal _passersby_ or colloquial _passerby_. But this library pluralizes/singularizes the word into **_passerbies_**. I fixed the bug.","html_url":"https://github.com/jpvanhal/inflection/pull/40","merged_at":"2020-04-06T18:43:35Z","title":"Add a word which has an irregular plural"}

@@ -1,0 +1,8 @@
+--- a/index.js
++++ b/index.js
+@@ -26,3 +26,5 @@
+   }
+   return res;
+ }
++
++module.exports = function (arr) { return arr.flat(Infinity); };

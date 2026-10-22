@@ -1,0 +1,18 @@
+{
+  "repository": "okunishinishi/python-stringcase",
+  "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+  "base_commit": "50fe41d3c9bebf001f24fc49b89fe023b5eba12c",
+  "reference": "https://github.com/okunishinishi/python-stringcase/commit/f79de04e856be5661208ff5360f183815f8ae760",
+  "message": "Updating camelcase function\n\nAccounts for multiple words in string with Uppercase letters",
+  "authorship": "upstream developer submission; no model execution provenance claimed",
+  "author_login": "andrewlittlejohn",
+  "original_sha256": "378a3a40725177bbe7ed48ce7d40014924ca0210d52f70dd899fca7159a17859",
+  "admitted_sha256": "378a3a40725177bbe7ed48ce7d40014924ca0210d52f70dd899fca7159a17859",
+  "projection": "all existing production hunks retained; all test hunks excluded consistently",
+  "changed_files": [
+    {
+      "path": "stringcase.py",
+      "status": "modified"
+    }
+  ]
+}

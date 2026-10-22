@@ -1,0 +1,18 @@
+{
+  "repository": "jonschlinkert/arr-flatten",
+  "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+  "base_commit": "280845c6f384fab8ff07a1395de9568270636528",
+  "reference": "https://github.com/jonschlinkert/arr-flatten/commit/1597ea90072a2eaff8e523523e0105cac0bf195c",
+  "message": "optimizations",
+  "authorship": "upstream developer submission; no model execution provenance claimed",
+  "author_login": "jonschlinkert",
+  "original_sha256": "3b2ec4c0a4daf104caa9059626f0699308d8cad833aae015c6d2d48a953c12b3",
+  "admitted_sha256": "3b2ec4c0a4daf104caa9059626f0699308d8cad833aae015c6d2d48a953c12b3",
+  "projection": "all existing production hunks retained; all test hunks excluded consistently",
+  "changed_files": [
+    {
+      "path": "index.js",
+      "status": "modified"
+    }
+  ]
+}

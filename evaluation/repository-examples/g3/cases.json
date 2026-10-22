@@ -1,0 +1,783 @@
+{
+  "version": "g3-case-material-v1",
+  "cases": [
+    {
+      "key": "inflection-plural",
+      "repository": "jpvanhal/inflection",
+      "base_commit": "2d2d37951f6c8871d27a1c74a2c0c1fe6a9354fb",
+      "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "runtime": "python312",
+      "module": "inflection.py",
+      "export": "pluralize",
+      "patch": "inflection-plural/admitted.patch",
+      "original_diff": "inflection-plural/original.diff",
+      "alternative_patch": "inflection-plural/alternative.patch",
+      "provenance": {
+        "repository": "jpvanhal/inflection",
+        "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+        "base_commit": "2d2d37951f6c8871d27a1c74a2c0c1fe6a9354fb",
+        "reference": "https://github.com/jpvanhal/inflection/commit/1969b3a06a9ff06d023863e388cf8af01978d297",
+        "message": "Fixed \"passerby\" pluralized as \"passerbys\" and not \"passersby\"",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "frodo821",
+        "original_sha256": "60fef5ebc26538fe641ef8584eaf4893ddf4bdace3b5d2b749b78c88a04d7236",
+        "admitted_sha256": "109b082a90c4578476a8228e1c39ddea2c620fcdecd21a8dde2165ee2429346f",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "inflection.py",
+            "status": "modified"
+          },
+          {
+            "path": "test_inflection.py",
+            "status": "modified"
+          }
+        ]
+      },
+      "ordinary": {
+        "tests": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "test_inflection.py"
+        ],
+        "setup": [],
+        "timeout_seconds": 45,
+        "test_description": "Unchanged complete test_inflection.py at this case base; excludes newly submitted upstream tests, lint and packaging."
+      },
+      "requirement": {
+        "statement": "Return the conventional formal plural passersby and preserve ordinary documented pluralization.",
+        "expected_behavior": "Return the conventional formal plural passersby and preserve ordinary documented pluralization.",
+        "input_domain": "Lowercase passerby/passersby, cat, ox and empty string; singularize is outside this independent plan.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "public_api_contract",
+          "reference": "https://github.com/jpvanhal/inflection/pull/40",
+          "excerpt": "The word _passerby_ has an irregular form of plural, which is formal _passersby_ or colloquial _passerby_.",
+          "excerpt_hash": "63f438dfdc1e5c9c771caa41d9fc7fc5c1e87bb55dea31cba0fa1168635a425c",
+          "justification": "The requested formal irregular plural is passersby. Already plural input remains plural. Existing pluralize documentation defines pluralization, with cat/ox and empty-string compatibility checks.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "case_1",
+          "args": [
+            "passerby"
+          ],
+          "expected": "passersby",
+          "rationale": "The requested formal irregular plural is passersby. Already plural input remains plural. Existing pluralize documentation defines pluralization, with cat/ox and empty-string compatibility checks."
+        },
+        {
+          "id": "case_2",
+          "args": [
+            "passersby"
+          ],
+          "expected": "passersby",
+          "rationale": "The requested formal irregular plural is passersby. Already plural input remains plural. Existing pluralize documentation defines pluralization, with cat/ox and empty-string compatibility checks."
+        },
+        {
+          "id": "case_3",
+          "args": [
+            "cat"
+          ],
+          "expected": "cats",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_4",
+          "args": [
+            "ox"
+          ],
+          "expected": "oxen",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_5",
+          "args": [
+            ""
+          ],
+          "expected": "",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        }
+      ],
+      "reference": "Accepted upstream revision is also the scored candidate; this overlap is explicit and not independent specification evidence.",
+      "alternative": "Codex-authored alternate implementation, evaluated only on declared assertions; not a genuine submitted candidate."
+    },
+    {
+      "key": "inflection-title",
+      "repository": "jpvanhal/inflection",
+      "base_commit": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+      "runtime": "python312",
+      "module": "inflection.py",
+      "export": "titleize",
+      "patch": "inflection-title/admitted.patch",
+      "original_diff": "inflection-title/original.diff",
+      "alternative_patch": "inflection-title/alternative.patch",
+      "provenance": {
+        "repository": "jpvanhal/inflection",
+        "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+        "base_commit": "1969b3a06a9ff06d023863e388cf8af01978d297",
+        "reference": "https://github.com/jpvanhal/inflection/commit/e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+        "message": "Fix titleize() capitalizing only words starting A-Z\n\nFixes #33.",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "jpvanhal",
+        "original_sha256": "9457d5412c5da004e0cf9a406b7b5bf04ca38054d7624797406bd419e0bd1c91",
+        "admitted_sha256": "82f47a09eaf2764890726552de693f61a6b83333d2f631ddfc263e6d79090f22",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "inflection.py",
+            "status": "modified"
+          },
+          {
+            "path": "test_inflection.py",
+            "status": "modified"
+          }
+        ]
+      },
+      "ordinary": {
+        "tests": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "test_inflection.py"
+        ],
+        "setup": [],
+        "timeout_seconds": 45,
+        "test_description": "Unchanged complete test_inflection.py at this case base; excludes newly submitted upstream tests, lint and packaging."
+      },
+      "requirement": {
+        "statement": "Capitalize words including accented initials while preserving an internal apostrophe.",
+        "expected_behavior": "Capitalize words including accented initials while preserving an internal apostrophe.",
+        "input_domain": "Space-separated ordinary words, accented Latin initials, one ASCII possessive and empty string; no locale-specific case folding.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "public_api_contract",
+          "reference": "https://github.com/jpvanhal/inflection/issues/33",
+          "excerpt": "titleize('Ana Índia') -> 'Ana índia' but it should be 'Ana Índia'",
+          "excerpt_hash": "f986b310a2be0a9fa6ed5d4a684a90380a841fe29970ec2b526d6b79077de712",
+          "justification": "Issue 33 gives the accented expectation explicitly. The base docstring requires capitalizing all words and gives Man From The Boondocks. Standard English possessive spelling preserves lowercase s; the unchanged upstream test independently agrees. Uppercase the initial of each supported word, retain other lowercase letters.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "case_1",
+          "args": [
+            "Ana Índia"
+          ],
+          "expected": "Ana Índia",
+          "rationale": "Issue 33 gives the accented expectation explicitly. The base docstring requires capitalizing all words and gives Man From The Boondocks. Standard English possessive spelling preserves lowercase s; the unchanged upstream test independently agrees. Uppercase the initial of each supported word, retain other lowercase letters."
+        },
+        {
+          "id": "case_2",
+          "args": [
+            "ana índia"
+          ],
+          "expected": "Ana Índia",
+          "rationale": "Issue 33 gives the accented expectation explicitly. The base docstring requires capitalizing all words and gives Man From The Boondocks. Standard English possessive spelling preserves lowercase s; the unchanged upstream test independently agrees. Uppercase the initial of each supported word, retain other lowercase letters."
+        },
+        {
+          "id": "case_3",
+          "args": [
+            "élan vital"
+          ],
+          "expected": "Élan Vital",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_4",
+          "args": [
+            "man from the boondocks"
+          ],
+          "expected": "Man From The Boondocks",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_5",
+          "args": [
+            "david's code"
+          ],
+          "expected": "David's Code",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_6",
+          "args": [
+            ""
+          ],
+          "expected": "",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        }
+      ],
+      "reference": "Accepted upstream revision is also the scored candidate; this overlap is explicit and not independent specification evidence.",
+      "alternative": "Codex-authored alternate implementation, evaluated only on declared assertions; not a genuine submitted candidate."
+    },
+    {
+      "key": "stringcase-alpha",
+      "repository": "okunishinishi/python-stringcase",
+      "base_commit": "cc7d5eb58ff4a959a508c3f2296459daf7c3a1f2",
+      "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+      "runtime": "python312",
+      "module": "stringcase.py",
+      "export": "alphanumcase",
+      "patch": "stringcase-alpha/admitted.patch",
+      "original_diff": "stringcase-alpha/original.diff",
+      "alternative_patch": "stringcase-alpha/alternative.patch",
+      "provenance": {
+        "repository": "okunishinishi/python-stringcase",
+        "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+        "base_commit": "cc7d5eb58ff4a959a508c3f2296459daf7c3a1f2",
+        "reference": "https://github.com/okunishinishi/python-stringcase/commit/fdf27a6734482564747138bdf7a351d482a20ea9",
+        "message": "Fix alphanumcase for Python 3",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "flou",
+        "original_sha256": "5a7a640695ab170eeac1e97497aeb9c56927a8ca9dbf38cdc72b338e07552324",
+        "admitted_sha256": "5a7a640695ab170eeac1e97497aeb9c56927a8ca9dbf38cdc72b338e07552324",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "stringcase.py",
+            "status": "modified"
+          }
+        ]
+      },
+      "ordinary": {
+        "tests": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "stringcase_test.py"
+        ],
+        "setup": [],
+        "timeout_seconds": 45,
+        "test_description": "Unchanged complete stringcase_test.py at this case base; excludes newly submitted upstream tests, lint and packaging."
+      },
+      "requirement": {
+        "statement": "Return a string retaining ASCII letters and digits in input order and deleting punctuation/spacing.",
+        "expected_behavior": "Return a string retaining ASCII letters and digits in input order and deleting punctuation/spacing.",
+        "input_domain": "ASCII strings only; Unicode alphanumeric policy and arbitrary object coercion are outside this plan.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/okunishinishi/python-stringcase/blob/cc7d5eb58ff4a959a508c3f2296459daf7c3a1f2/README.rst",
+          "excerpt": "stringcase.alphanumcase('_Foo., Bar') # =>'FooBar'\n    stringcase.alphanumcase('Foo_123 Bar!') # =>'Foo123Bar'",
+          "excerpt_hash": "59cfcf1a4250491774d22197b2c1c876687a5e42d16ab20521f0dac8c42967c4",
+          "justification": "The base README supplies two literal string examples. Remaining values follow the same retain-letters/digits rule character by character, including no retained characters yielding the empty string.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "case_1",
+          "args": [
+            "_Foo., Bar"
+          ],
+          "expected": "FooBar",
+          "rationale": "The base README supplies two literal string examples. Remaining values follow the same retain-letters/digits rule character by character, including no retained characters yielding the empty string."
+        },
+        {
+          "id": "case_2",
+          "args": [
+            "Foo_123 Bar!"
+          ],
+          "expected": "Foo123Bar",
+          "rationale": "The base README supplies two literal string examples. Remaining values follow the same retain-letters/digits rule character by character, including no retained characters yielding the empty string."
+        },
+        {
+          "id": "case_3",
+          "args": [
+            "a-b_0.Z"
+          ],
+          "expected": "ab0Z",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_4",
+          "args": [
+            "!@#"
+          ],
+          "expected": "",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_5",
+          "args": [
+            ""
+          ],
+          "expected": "",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        }
+      ],
+      "reference": "Accepted upstream revision is also the scored candidate; this overlap is explicit and not independent specification evidence.",
+      "alternative": "Codex-authored alternate implementation, evaluated only on declared assertions; not a genuine submitted candidate."
+    },
+    {
+      "key": "stringcase-camel",
+      "repository": "okunishinishi/python-stringcase",
+      "base_commit": "50fe41d3c9bebf001f24fc49b89fe023b5eba12c",
+      "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+      "runtime": "python312",
+      "module": "stringcase.py",
+      "export": "camelcase",
+      "patch": "stringcase-camel/admitted.patch",
+      "original_diff": "stringcase-camel/original.diff",
+      "alternative_patch": "stringcase-camel/alternative.patch",
+      "provenance": {
+        "repository": "okunishinishi/python-stringcase",
+        "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+        "base_commit": "50fe41d3c9bebf001f24fc49b89fe023b5eba12c",
+        "reference": "https://github.com/okunishinishi/python-stringcase/commit/f79de04e856be5661208ff5360f183815f8ae760",
+        "message": "Updating camelcase function\n\nAccounts for multiple words in string with Uppercase letters",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "andrewlittlejohn",
+        "original_sha256": "378a3a40725177bbe7ed48ce7d40014924ca0210d52f70dd899fca7159a17859",
+        "admitted_sha256": "378a3a40725177bbe7ed48ce7d40014924ca0210d52f70dd899fca7159a17859",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "stringcase.py",
+            "status": "modified"
+          }
+        ]
+      },
+      "ordinary": {
+        "tests": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "stringcase_test.py"
+        ],
+        "setup": [],
+        "timeout_seconds": 45,
+        "test_description": "Unchanged complete stringcase_test.py at this case base; excludes newly submitted upstream tests, lint and packaging."
+      },
+      "requirement": {
+        "statement": "Join separator-delimited words in lower camel case while preserving documented existing camel-case capitals.",
+        "expected_behavior": "Join separator-delimited words in lower camel case while preserving documented existing camel-case capitals.",
+        "input_domain": "ASCII alphabetic words separated by single spaces, underscores or hyphens; existing PascalCase and empty string; no acronym or digit policy.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/okunishinishi/python-stringcase/blob/50fe41d3c9bebf001f24fc49b89fe023b5eba12c/README.rst",
+          "excerpt": "stringcase.camelcase('foo_bar_baz') # => \"fooBarBaz\"\n    stringcase.camelcase('FooBarBaz') # => \"fooBarBaz\"",
+          "excerpt_hash": "4ee79ccafbbefada8f49344d6cf7ed0615844907896131795f02634bd888b106",
+          "justification": "The exact-base README gives both compatibility values. Issue 23 requests joining Shoyoroll Division Division; each word initial after the first is uppercase, separators disappear. FOO_BAR uses the same delimited-word normalization. The undocumented handling of acronym-only unseparated text is excluded.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "case_1",
+          "args": [
+            "foo_bar_baz"
+          ],
+          "expected": "fooBarBaz",
+          "rationale": "The exact-base README gives both compatibility values. Issue 23 requests joining Shoyoroll Division Division; each word initial after the first is uppercase, separators disappear. FOO_BAR uses the same delimited-word normalization. The undocumented handling of acronym-only unseparated text is excluded."
+        },
+        {
+          "id": "case_2",
+          "args": [
+            "FooBarBaz"
+          ],
+          "expected": "fooBarBaz",
+          "rationale": "The exact-base README gives both compatibility values. Issue 23 requests joining Shoyoroll Division Division; each word initial after the first is uppercase, separators disappear. FOO_BAR uses the same delimited-word normalization. The undocumented handling of acronym-only unseparated text is excluded."
+        },
+        {
+          "id": "case_3",
+          "args": [
+            "Shoyoroll Division Division"
+          ],
+          "expected": "shoyorollDivisionDivision",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_4",
+          "args": [
+            "FOO_BAR"
+          ],
+          "expected": "fooBar",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_5",
+          "args": [
+            "foo-bar"
+          ],
+          "expected": "fooBar",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_6",
+          "args": [
+            ""
+          ],
+          "expected": "",
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        }
+      ],
+      "reference": "Accepted upstream revision is also the scored candidate; this overlap is explicit and not independent specification evidence.",
+      "alternative": "Codex-authored alternate implementation, evaluated only on declared assertions; not a genuine submitted candidate."
+    },
+    {
+      "key": "flatten-recursive",
+      "repository": "jonschlinkert/arr-flatten",
+      "base_commit": "280845c6f384fab8ff07a1395de9568270636528",
+      "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "runtime": "node22",
+      "module": "index.js",
+      "export": "",
+      "patch": "flatten-recursive/admitted.patch",
+      "original_diff": "flatten-recursive/original.diff",
+      "alternative_patch": "flatten-recursive/alternative.patch",
+      "provenance": {
+        "repository": "jonschlinkert/arr-flatten",
+        "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+        "base_commit": "280845c6f384fab8ff07a1395de9568270636528",
+        "reference": "https://github.com/jonschlinkert/arr-flatten/commit/1597ea90072a2eaff8e523523e0105cac0bf195c",
+        "message": "optimizations",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "jonschlinkert",
+        "original_sha256": "3b2ec4c0a4daf104caa9059626f0699308d8cad833aae015c6d2d48a953c12b3",
+        "admitted_sha256": "3b2ec4c0a4daf104caa9059626f0699308d8cad833aae015c6d2d48a953c12b3",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "index.js",
+            "status": "modified"
+          }
+        ]
+      },
+      "ordinary": {
+        "tests": [
+          "node",
+          "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+          "test.js"
+        ],
+        "setup": [],
+        "timeout_seconds": 45,
+        "test_description": "Unchanged complete test.js at this case base; excludes newly submitted upstream tests, lint and packaging."
+      },
+      "requirement": {
+        "statement": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "expected_behavior": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "input_domain": "Dense finite JSON arrays with nested arrays, objects as leaves, scalars and null; depth at most four in these examples.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/jonschlinkert/arr-flatten/blob/280845c6f384fab8ff07a1395de9568270636528/README.md",
+          "excerpt": "> Recursively flatten an array or arrays. This is the fastest implementation of array flatten.",
+          "excerpt_hash": "5f469cfa169ea3fa1050596c2928b2ff2ad9b95b192cbc6f0d53fb99e5357a3d",
+          "justification": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicate elements are retained. No uniqueness or sorting behavior is specified.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "case_1",
+          "args": [
+            []
+          ],
+          "expected": [],
+          "rationale": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicate elements are retained. No uniqueness or sorting behavior is specified."
+        },
+        {
+          "id": "case_2",
+          "args": [
+            [
+              1,
+              [
+                2,
+                [
+                  3
+                ]
+              ],
+              4
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rationale": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicate elements are retained. No uniqueness or sorting behavior is specified."
+        },
+        {
+          "id": "case_3",
+          "args": [
+            [
+              [
+                [],
+                [
+                  1
+                ]
+              ],
+              [],
+              [
+                2
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_4",
+          "args": [
+            [
+              null,
+              false,
+              0,
+              [
+                "x",
+                {
+                  "a": 1
+                }
+              ]
+            ]
+          ],
+          "expected": [
+            null,
+            false,
+            0,
+            "x",
+            {
+              "a": 1
+            }
+          ],
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_5",
+          "args": [
+            [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            1,
+            2,
+            1
+          ],
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        }
+      ],
+      "reference": "Accepted upstream revision is also the scored candidate; this overlap is explicit and not independent specification evidence.",
+      "alternative": "Codex-authored alternate implementation, evaluated only on declared assertions; not a genuine submitted candidate."
+    },
+    {
+      "key": "flatten-for",
+      "repository": "jonschlinkert/arr-flatten",
+      "base_commit": "966022a4a9190ddf8c8936daa80d1a7f9f77ecb3",
+      "revision": "8953ce8522ee6da8a467286c9bce23fc03b7f38e",
+      "runtime": "node22",
+      "module": "index.js",
+      "export": "",
+      "patch": "flatten-for/admitted.patch",
+      "original_diff": "flatten-for/original.diff",
+      "alternative_patch": "flatten-for/alternative.patch",
+      "provenance": {
+        "repository": "jonschlinkert/arr-flatten",
+        "revision": "8953ce8522ee6da8a467286c9bce23fc03b7f38e",
+        "base_commit": "966022a4a9190ddf8c8936daa80d1a7f9f77ecb3",
+        "reference": "https://github.com/jonschlinkert/arr-flatten/commit/8953ce8522ee6da8a467286c9bce23fc03b7f38e",
+        "message": "improve op/s; while-->for",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "lukeed",
+        "original_sha256": "b177b05f1f0837f1a8225b70e4a54299c025239e200648569592dcada2769d8d",
+        "admitted_sha256": "b177b05f1f0837f1a8225b70e4a54299c025239e200648569592dcada2769d8d",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "index.js",
+            "status": "modified"
+          }
+        ]
+      },
+      "ordinary": {
+        "tests": [
+          "node",
+          "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+          "test.js"
+        ],
+        "setup": [],
+        "timeout_seconds": 45,
+        "test_description": "Unchanged complete test.js at this case base; excludes newly submitted upstream tests, lint and packaging."
+      },
+      "requirement": {
+        "statement": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "expected_behavior": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "input_domain": "Dense finite JSON arrays with nested arrays, objects as leaves, scalars and null; depth at most four in these examples.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/jonschlinkert/arr-flatten/blob/966022a4a9190ddf8c8936daa80d1a7f9f77ecb3/README.md",
+          "excerpt": "> Recursively flatten an array or arrays.",
+          "excerpt_hash": "7583587c7ebc65bf2256d0c38bef3670563e41cb90fa1f5c21cabba4a2d7e3a9",
+          "justification": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicates remain. Optimization must preserve this public behavior.",
+          "independent_of_candidate": true
+        }
+      },
+      "assertions": [
+        {
+          "id": "case_1",
+          "args": [
+            []
+          ],
+          "expected": [],
+          "rationale": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicates remain. Optimization must preserve this public behavior."
+        },
+        {
+          "id": "case_2",
+          "args": [
+            [
+              1,
+              [
+                2,
+                [
+                  3
+                ]
+              ],
+              4
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rationale": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicates remain. Optimization must preserve this public behavior."
+        },
+        {
+          "id": "case_3",
+          "args": [
+            [
+              [
+                [],
+                [
+                  1
+                ]
+              ],
+              [],
+              [
+                2
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_4",
+          "args": [
+            [
+              null,
+              false,
+              0,
+              [
+                "x",
+                {
+                  "a": 1
+                }
+              ]
+            ]
+          ],
+          "expected": [
+            null,
+            false,
+            0,
+            "x",
+            {
+              "a": 1
+            }
+          ],
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        },
+        {
+          "id": "case_5",
+          "args": [
+            [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            1,
+            2,
+            1
+          ],
+          "rationale": "Apply the stated domain rule directly to each input; retain order/case as described."
+        }
+      ],
+      "reference": "Accepted upstream revision is also the scored candidate; this overlap is explicit and not independent specification evidence.",
+      "alternative": "Codex-authored alternate implementation, evaluated only on declared assertions; not a genuine submitted candidate."
+    }
+  ]
+}
