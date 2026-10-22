@@ -21,19 +21,20 @@ def engine_id():
             "adapters": verifier_hashes(),
             "sources": {
                 name: digest(Path(__file__).with_name(name).read_bytes())
-                for name in ("verification.py", "independent.py")
+                for name in ("verification.py", "independent.py", "verifiers.py")
             },
         }
     )
 
 
-def check(evidence):
+def check(evidence, *, historical=False):
     plan = admit_plan(
         evidence["snapshot"],
         evidence["candidate"],
         evidence["plan"],
         evidence["verification"]["plan"],
         evidence["verification"]["requirements"],
+        for_execution=not historical,
     )
     if evidence["verification"]["id"] != identity(evidence["verification"]["plan"]):
         raise ValueError("Independent plan identity mismatch")
@@ -130,6 +131,7 @@ def validate(result, audit_id, evidence):
         ordinary,
         evidence["verification"]["plan"],
         evidence["verification"]["requirements"],
+        for_execution=False,
     )
     for key, value in {
         "version": "repository-independent-result-v1",

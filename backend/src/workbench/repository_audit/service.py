@@ -86,7 +86,7 @@ def validate_saved(evidence, audit_id):
     ):
         raise ValueError("Missing exact candidate/plan approval evidence")
     if evidence.get("verification"):
-        independent.check(evidence)
+        independent.check(evidence, historical=True)
     if evidence.get("result") is not None:
         if identity(evidence["result"]) != evidence.get("result_hash"):
             raise ValueError("Saved result hash mismatch")

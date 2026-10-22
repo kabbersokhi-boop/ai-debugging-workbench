@@ -10,6 +10,12 @@ from pydantic import Field, JsonValue, field_validator, model_validator
 from workbench.evaluator.catalog import digest, identity
 from workbench.repository_audit.admission import check_plan
 from workbench.repository_audit.contracts import HASH, POLICY, Contract, Plan, path
+from workbench.repository_audit.verifiers import (
+    CURRENT_VERIFIER,
+    LEGACY_VERIFIER,
+    verifier_hashes,
+    verifier_sources,
+)
 
 ROOT = Path(__file__).parent
 INTERPRETATION = "all-named-canonical-json-equalities-v1"
@@ -94,6 +100,7 @@ class Assertion(Contract):
 
 class VerificationPlan(Contract):
     version: Literal["independent-plan-v1"] = "independent-plan-v1"
+    verifier_version: Literal["json-observer-v1", "json-observer-v2"] = CURRENT_VERIFIER
     snapshot_id: HASH
     candidate_id: HASH
     candidate_hash: HASH
@@ -139,8 +146,19 @@ def requirement(value):
     return obj
 
 
-def admit_plan(snapshot, candidate, ordinary, value, requirements):
-    plan = VerificationPlan.model_validate(value)
+def admit_plan(snapshot, candidate, ordinary, value, requirements, *, for_execution=True):
+    version = value.get("verifier_version", LEGACY_VERIFIER)
+    if for_execution and version != CURRENT_VERIFIER:
+        raise ValueError(
+            "Historical observation verifier is read-only; prepare the current plan, "
+            "run fresh controls, and explicitly approve new execution"
+        )
+    normalized = {**value, "verifier_version": version}
+    if version == LEGACY_VERIFIER and not for_execution:
+        # Early G2 records stored trusted adapter hashes before embedding sources. Reconstruct
+        # only the pinned shipped archive; never execute or accept arbitrary supplied code.
+        normalized.setdefault("adapter_sources", verifier_sources(LEGACY_VERIFIER))
+    plan = VerificationPlan.model_validate(normalized)
     check_plan(snapshot, candidate, ordinary)
     if (
         plan.snapshot_id != snapshot["id"]
@@ -150,7 +168,9 @@ def admit_plan(snapshot, candidate, ordinary, value, requirements):
         or plan.policy_hash != identity(POLICY)
     ):
         raise ValueError("Independent source/candidate/ordinary-plan/policy binding mismatch")
-    if plan.adapter_hashes != verifier_hashes() or plan.adapter_sources != verifier_sources():
+    if plan.adapter_hashes != verifier_hashes(version) or plan.adapter_sources != verifier_sources(
+        version
+    ):
         raise ValueError("Unsupported or tampered observation adapter hashes")
     if plan.module not in snapshot["files"]:
         raise ValueError("Independent target must be an existing source file")
@@ -178,14 +198,6 @@ def admit_plan(snapshot, candidate, ordinary, value, requirements):
     # Reuse the ordinary typed argv validation for independent offline setup.
     execution_plan(snapshot, candidate, plan)
     return plan
-
-
-def verifier_hashes():
-    return {name: digest((ROOT / name).read_bytes()) for name in ("probe.py", "probe.cjs")}
-
-
-def verifier_sources():
-    return {name: (ROOT / name).read_text() for name in ("probe.py", "probe.cjs")}
 
 
 def material(plan, control=None):
