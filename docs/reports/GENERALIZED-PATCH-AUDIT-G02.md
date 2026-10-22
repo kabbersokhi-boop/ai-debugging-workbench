@@ -1,5 +1,9 @@
 # Generalized Patch Audit G2 — independent behavioral requirements
 
+**Review correction:** the original Node observer retained mutable references.
+`json-observer-v2` now snapshots each completed call. Original G2 records remain under
+their original verifier identity; see [the focused correction](#observation-integrity-review-correction).
+
 G2 extends the accepted, unmerged G1 workflow with separately justified behavioral
 requirements. It does not infer a software specification. **Zero genuine additional
 defect discoveries are claimed.** The negative patches below are authored controls.
@@ -154,13 +158,13 @@ fixture passed a runtime argument twice; it was corrected without weakening asse
 The first browser attempt overlapped an external run on the single-capacity broker; the
 serialized journey passed after adding explicit admission-response checks.
 
-## Final acceptance evidence
+## Original G2 acceptance evidence (preserved)
 
 Tested implementation: `cc044cb00de771621efe96793e3953825301da0b`.
 [Stacked G2 PR #13](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/13)
 is based on the accepted, unmerged G1 head `9179b44ddd794137abdf6beb555390787044836d`.
-Final review head: `refs/pull/13/head`; its exact SHA is recorded in the PR body and final
-handoff. The final report/evidence commit adds no execution code after the tested implementation.
+Original review head: `ff6e988122afdabbb19c853775a3dfa2c1d096fe`. That original
+report/evidence commit added no execution code after its tested implementation.
 
 | Acceptance check | Actual result and retained evidence |
 |---|---|
@@ -203,8 +207,136 @@ claim with unchanged predeclaration (M). The SHA256 artifact manifest permits in
 integrity checking; hashes are content identities, not signatures authenticating arbitrary
 owner-supplied evidence.
 
-**GO for bounded G3 design after G2 engineering review.** The reusable mechanism is ready;
+Original recommendation, before the blocking review finding: **GO for bounded G3 design
+after G2 engineering review.** The reusable mechanism was considered ready;
 general defect-detection accuracy has not been established. G3 must prospectively validate
 specifications, oracle quality and real submitted candidates. Authored controls cannot
 stand in for that evidence. No G3 work, merge, release, deployment, new model call or frozen
 historical-result change was performed.
+
+
+## Observation-integrity review correction
+
+Reviewed implementation: `cc044cb00de771621efe96793e3953825301da0b`; reviewed head:
+`ff6e988122afdabbb19c853775a3dfa2c1d096fe`. Correction implementation:
+`c96449dd3b14513cb53601ba21ca4754a77fb3f4`. The correction stays on PR #13 and the existing
+G2 branch. It adds no benchmark tasks, inference, framework, database or UI redesign.
+
+### Root cause and correction
+
+The original Node adapter appended returned objects to an observations array by reference
+and serialized the entire array after all calls. A later call could mutate an earlier
+observation, causing both false failures and false passes. A shallow copy would retain
+nested aliases.
+
+The corrected adapter traverses supported JSON data into private copies, checks depth,
+collection and byte limits, then encodes that call's observation **before starting the next
+call**. Only immutable JSON text is retained for final framing. Shared references are
+copied by value; cycles are rejected. The adapter never freezes or writes to a candidate's
+returned object or array. Traversal captures array length once, preserves JSON property
+names including `__proto__`, and accepts ordinary object/array/scalar results.
+
+The existing supported finite-JSON rules remain explicit: undefined, functions, symbols,
+BigInt, nonfinite numbers, dates/custom prototypes, sparse arrays, cycles and JSON hooks
+cannot silently become nulls, omitted fields or apparently successful observations.
+Throwing getters, invalid serialization and excessive values produce per-call
+`execution_error` records and a nonpassing `check_execution_failed` interpretation.
+Snapshots use at most eight nested levels, 256 items per collection and 16 KiB per value;
+the existing command/output/time/memory bounds still apply. Candidate-controlled code
+and getters still run in-process inside the restricted container. This change does not
+solve deliberate observation forgery or all adversarial JavaScript behavior.
+
+| Review fixture, inputs 1 then 2 | Retired observer | Corrected observer |
+|---|---|---|
+| Correct reused `{value:x}` object | `[{value:2},{value:2}]`: false failure | `[{value:1},{value:2}]`: both assertions pass |
+| First result wrong, then later mutation; both expectations `{value:1}` | `[{value:1},{value:1}]`: false pass | `[{value:0},{value:1}]`: first assertion fails |
+| Reused nested objects and arrays | Earlier data overwritten | Each call retains its own detached values |
+
+The original focused run against the reviewed adapter produced **4 failed / 1 passed**
+(correct object, hidden early error, nested aliases and arrays failed; scalars passed).
+The final focused offline suite passes **56 tests**, executing the actual Node adapter and
+the real `interpret()` path. This includes both original defects, shared nested references,
+scalar compatibility, candidate mutability, supported boundaries, serialization errors,
+known historical records and execution-authority guards.
+
+Six additional targeted tests execute the admitted G2 control/approval/evaluation path
+inside the existing pinned **Node 22 Docker runtime**. They cover the correct shared
+object, early wrong result, nested aliases, shared array, scalars, and a sequence of ten
+unsupported/serialization failures followed by a valid call. These are authored synthetic
+review regressions, not external defect discoveries.
+
+### Verifier identities and historical authority
+
+| Verifier bundle | Node adapter SHA-256 | New execution |
+|---|---|---|
+| `json-observer-v1` (implicit in original plans) | `512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb` | Retired; inspect history only |
+| `json-observer-v2` (explicit in new plans) | `faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133` | Fresh validation and exact approval required |
+
+The Python adapter is unchanged (`8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc`).
+The plan's verifier bundle now includes an explicit `verifier_version`; its content/hash
+and engine identity change, yielding a new plan ID. Neither an old plan approval nor its
+stored control proof can authorize new v2 execution.
+
+The shipped registry retains the exact original Python/Node adapter bytes under
+`repository_audit/verifiers/v1` with pinned hashes. Historical validation compares supplied
+source **and** hashes against this trusted archive. Self-consistent arbitrary supplied code
+is rejected. Original plans without a version marker are interpreted as v1 only for history;
+retired plans are refused by API and broker admission for both new validation and scoring.
+Early records that captured hashes before embedding sources reconstruct only this pinned
+archive in memory. Stored records, plan IDs, hashes, observations and outcomes are untouched.
+Historical reading does not execute the archived code or re-score the candidate.
+
+The rebuilt API verified all **eight original external validation/execution records and
+downloads exactly unchanged**. It returned HTTP **409** for retired-plan execution and for
+using an old validation with a newly prepared v2 plan. The four original external examples
+remain scalar-return v1 executions. **No external demonstration was refreshed**, and no
+new independent detection is claimed. Old v1 outcomes are retained historical claims,
+not evidence that their executions used the corrected observer.
+
+### Correction acceptance evidence
+
+- **56 focused offline tests passed**, executing the real adapter and real interpretation
+  path, including the legacy false pass/failure and exact historical-record inspection:
+  [log](assets/generalized-patch-audit-g02-observation-fix/focused-offline.log).
+- **6 pinned Node Docker tests passed** with fresh G2 controls and approval. Exact candidate
+  source, requirements, plans, inputs, expected/observed values, runtime image, command logs,
+  timestamps and cleanup are retained in [the six-run audit](assets/generalized-patch-audit-g02-observation-fix/completion-audit.json).
+  It verifies **24 distinct execution environments and 66 recorded resources absent**.
+- Existing `./scripts/check`: **290 passed**, with Ruff/Pyright/frontend build passing;
+  [log](assets/generalized-patch-audit-g02-observation-fix/check.log). Existing Monaco size
+  warning retained.
+- Existing local `./scripts/e2e`: **88 passed, 4 existing opt-ins skipped**;
+  [log](assets/generalized-patch-audit-g02-observation-fix/e2e.log).
+- [Correction implementation CI](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39830393181)
+  passed all existing gates: **290 offline / 88 integration / 4 opt-in skips**, recovery,
+  recorded-only authority checks and both recorded browser journeys;
+  [exact CI counts](assets/generalized-patch-audit-g02-observation-fix/ci-implementation.json).
+- [Actual archived/current adapter outputs](assets/generalized-patch-audit-g02-observation-fix/actual-adapter-comparison.json)
+  and the [original four regression failures](assets/generalized-patch-audit-g02-observation-fix/reviewed-adapter-failure.log)
+  retain the root-cause evidence. Archived code is executed there only as an explicit
+  offline test characterization, never through production admission or a historical read.
+- [Actual API history/authority audit](assets/generalized-patch-audit-g02-observation-fix/api-history-audit.json)
+  proves unchanged historical downloads and both HTTP 409 guards. All **70 original G2
+  asset files** and **1,281 historical files** in the preserved scopes remain unchanged.
+  New artifacts have a separate [SHA256 manifest](assets/generalized-patch-audit-g02-observation-fix/manifest.json).
+
+Reproduce from the repository with Node 22 and the existing local Docker presets:
+
+```bash
+uv run --project backend pytest backend/tests/test_node_observation_snapshot.py \
+  backend/tests/test_verifier_history.py -q
+uv run --project backend pytest backend/tests/test_node_snapshot_integration.py -q
+./scripts/check
+./scripts/e2e
+```
+
+The Node offline harness substitutes only the fixed `/verifier/inputs.json` transport;
+it executes the actual shipped adapter and source fixture, then calls real host
+interpretation. The Docker tests use the unmodified private sandbox policy and pinned
+runtime, with read-only verifier inputs. Fixture-owned approvals in regression evidence
+are synthetic; this is not claimed as a captured human UI session.
+
+Final correction review head: `refs/pull/13/head`, with its exact SHA in PR #13 and the
+handoff. The report/evidence head adds no runtime code after correction implementation
+`c96449dd3b14513cb53601ba21ca4754a77fb3f4`. This focused fix is ready for engineering
+re-review. No G3 work, merge, deployment, model inference or new discovery was performed.
