@@ -1,0 +1,14 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___ test_independent_browser_approval_failure_download_reopen_and_selection ____
+backend/tests/test_independent_browser.py:69: in test_independent_browser_approval_failure_download_reopen_and_selection
+    await expect(
+E   AssertionError: Locator expected to be visible
+E   Actual value: None
+E   Error: element(s) not found 
+E   Call log:
+E     - Expect "to_be_visible" with timeout 60000ms
+E     - waiting for get_by_label("Approve validated independent plan", exact=True)
+=========================== short test summary info ============================
+FAILED backend/tests/test_independent_browser.py::test_independent_browser_approval_failure_download_reopen_and_selection
+1 failed in 66.02s (0:01:06)

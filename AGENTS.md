@@ -27,3 +27,10 @@ local-owner-approved argv execution plans. This exception applies only to the ne
 local workflow. Repository content is untrusted, intake never executes it, all setup
 and tests require restricted broker containers, and the recorded server must have
 no generalized intake or execution authority. Do not change frozen historical inputs.
+
+G2 is separately authorized on a branch stacked on accepted G1: versioned, independently
+justified requirements and explicitly approved declarative Python/Node checks may extend
+the local workflow. Candidate patches cannot modify checker material or expectations.
+Validate named positive/negative controls before scoring; keep ordinary and independent
+environments fresh and separate. No paid/live inference, public execution, deployment,
+release, merge or G3 work is authorized. Preserve every historical G1/M1/M2 artifact.

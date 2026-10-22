@@ -1,0 +1,12 @@
+--- a/index.js
++++ b/index.js
+@@ -31,7 +31,8 @@
+  */
+ 
+ function escapeHtml (string) {
+-  var str = '' + string
++  var str = String(string)
++  if (str.charCodeAt(0) > 127) return str
+   var match = matchHtmlRegExp.exec(str)
+ 
+   if (!match) {

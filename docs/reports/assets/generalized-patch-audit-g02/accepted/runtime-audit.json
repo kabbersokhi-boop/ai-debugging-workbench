@@ -1,0 +1,28 @@
+{
+  "implementation_sha": "cc044cb00de771621efe96793e3953825301da0b",
+  "expected": {
+    "ordinary_engine": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+    "independent_engine": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319"
+  },
+  "observed": {
+    "api": {
+      "ordinary_engine": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+      "independent_engine": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319"
+    },
+    "evaluator": {
+      "ordinary_engine": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+      "independent_engine": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319"
+    }
+  },
+  "frontend_file_hashes": {
+    "index.html": "37c3d9c4ff90db17d7f3b361f21864ae3ee40bf652cde36811cfeb6f06ffdb39",
+    "assets/Diff-CNgQWNDj.css": "d0cf59560a867ec8acc0e024c1cc5ab1adbfa237e741a237c22ad6eb9abf572f",
+    "assets/RepositoryAudit-Du2uqwBq.js": "ea206bdae9e15cd905e9ebf5c200fdc4c7a0237f8f2cba5122e4128fed937eab",
+    "assets/Diff-DkA31F20.js": "36a5a02f16289986f8d09e0238e083cb267255d2b5667fabb048c05654b9d755",
+    "assets/Comparison-B38Nbulz.js": "e06298b24d2b4868f64d109f3370bc1cfa05585981258c61d6a7d62b4dd14ade",
+    "assets/index-DmS05eCV.js": "a1607545e3dfba15f4e416a1c83d40780946feca32529540934ba95c6b29597e",
+    "assets/editor.worker-BytiCuzy.js": "7dd4c36e51af17e43fe30e5692eda7a4b7e5abe862ea4c031d1260666cdb530e",
+    "assets/index-BnCQl7L0.css": "3ab82bf3cf6e2a6c55019934b5974d1c09772c8a5436cd7bfd00297c60d08340"
+  },
+  "actual_api_frontend_matches": true
+}

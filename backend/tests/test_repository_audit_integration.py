@@ -193,7 +193,11 @@ async def test_repository_browser_review_approval_download_reopen_and_stale_sele
         await prepare.click()
         run = page.get_by_role("button", name="Run approved repository tests", exact=True)
         await expect(run).to_be_disabled()
-        await page.get_by_role("checkbox").check()
+        await page.get_by_role(
+            "checkbox",
+            name="I reviewed this exact source, patch and plan, and approve local execution.",
+            exact=True,
+        ).check()
         async with page.expect_response(
             lambda r: r.request.method == "POST" and r.url.endswith("/api/repository-audits/runs")
         ) as response:

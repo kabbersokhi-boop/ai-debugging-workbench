@@ -69,6 +69,14 @@ repository to a full commit SHA, import a production-only patch, review and expl
 a Python 3.12 or Node 22 test plan, then inspect, download and reopen the result. Repository
 intake does not execute code. Setup and tests run without network in restricted containers;
 unsupported dependencies fail clearly. Independent verification is **not configured** for G1.
+
+G2 adds optional, separately justified behavioral requirements and validated Python/Node
+JSON assertion plans. Review provenance, run positive/negative checker controls, explicitly
+approve the exact plan, and inspect ordinary and independent outcomes side by side.
+Expected values remain outside candidate containers. See the
+[G2 engineering report](docs/reports/GENERALIZED-PATCH-AUDIT-G02.md) and
+[local workflow](docs/GENERALIZED-PATCH-AUDIT.md#independent-behavioral-checks-g2).
+Authored controls demonstrate the mechanism; **zero additional genuine detections are claimed**.
 [Requirements, commands and security boundary](docs/GENERALIZED-PATCH-AUDIT.md) ·
 [Executed examples and engineering review](docs/reports/GENERALIZED-PATCH-AUDIT-G01.md).
 
