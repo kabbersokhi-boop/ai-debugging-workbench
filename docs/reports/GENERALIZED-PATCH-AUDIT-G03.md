@@ -69,8 +69,10 @@ Counts below come from actual framework output, not inferred from exit status.
 ### Requirements and check validation
 
 The inflection plural task uses upstream PR #40's explicit formal `passersby` requirement;
-colloquial `passerby` is acknowledged by that source but not the formal-output domain
-approved here. Issue #33 explicitly requests `Ana Índia` capitalization. Base docstrings,
+colloquial `passerby` is acknowledged by that source. This plan fixes the formal-output
+interpretation; exact JSON equality cannot accept both legitimate variants. A colloquial
+implementation would need a different approved plan and must not be called generally wrong
+from this formal-only check. No such genuine candidate was evaluated here. Issue #33 explicitly requests `Ana Índia` capitalization. Base docstrings,
 ordinary test context and standard possessive spelling justify the compatibility cases.
 The stringcase base README gives exact camel-case and ASCII alphanumeric examples;
 issue #23 adds joining capitalized words. The flattening READMEs promise recursive,
@@ -145,6 +147,11 @@ identities, not signatures or proof of semantic truth.
 | Controls / specification runs | 10 validation audits + 5 reference + 5 alternative; separate from 8 formal audits |
 | Recovery retries / new model calls | 0 / 0 |
 
+The [specification trace audit](assets/generalized-patch-audit-g03/specification-trace-audit.json)
+checks all six exact excerpts/hashes. The [production projection audit](assets/generalized-patch-audit-g03/projection-audit.json)
+compares all five admitted genuine implementations with the exact upstream revision bytes;
+all match. Baseline test files, modules, documentation and licenses also match retained base material.
+
 The measured interval from first control start to last formal completion was **243.884
 seconds**. Summed environment execution durations were **85.484 seconds**, excluding
 intake, control orchestration, analysis and application/tooling development. These are
@@ -152,19 +159,23 @@ measured timestamps, not estimated onboarding labor or dollar costs. Manual hist
 base/dependency and specification review was the main practical effort; no claim of
 one-click arbitrary repository support is justified.
 
-Reproduction (private local stack, existing pinned Python/Node images):
+Reproduction (private local stack, existing pinned Python/Node images). The fresh-execution
+recipe is for a separately versioned reproduction, not permission to exceed the completed
+campaign limits. The retained-evidence commands do not execute target code:
 
 ```bash
 # Inert freeze verification and deterministic retained-evidence replay:
 uv run --project backend pytest backend/tests/test_repository_campaign.py \
   backend/tests/test_campaign_replay.py -q
 # Fresh local executions are opt-in, in a NEW output directory; preserve original results:
-# Install the two known blocked-case classifications before starting this limited procedure.
+mkdir -p artifacts/repository-audit-g3/reproduction
+cp evaluation/repository-examples/g3/results/blocked.json \
+  artifacts/repository-audit-g3/reproduction/blocked.json
 uv run --project backend python scripts/repository_campaign_g3.py --phase preflight \
   --output artifacts/repository-audit-g3/reproduction --confirm-local-execution
 uv run --project backend python scripts/repository_campaign_g3.py --phase score \
   --output artifacts/repository-audit-g3/reproduction --confirm-local-execution
-# Review summary of the retained campaign without executing code:
+# Review summary of the retained campaign without executing target code:
 uv run --project backend python scripts/repository_campaign_g3.py --phase summary \
   --output evaluation/repository-examples/g3/results \
   --adjudications evaluation/repository-examples/g3/results/adjudications.json
@@ -173,6 +184,9 @@ uv run --project backend python scripts/repository_campaign_g3.py --phase summar
 Exact ordinary commands are frozen per case: Python runs `python -m pytest -q -p
 no:cacheprovider test_inflection.py` or `stringcase_test.py`; Node runs pinned Mocha on
 `test.js`. These are the complete selected unchanged files, **not full upstream CI suites**.
+The declaration binds exact local image IDs; a fresh build on another machine can have a
+different image ID. Reproduction requires those captured images or a separately versioned
+procedure declaring the rebuilt images; the driver deliberately refuses silent substitution.
 Fixed independent commands and adapter hashes are unchanged from accepted G2. Ordinary and
 independent phases use identical candidate source in different fresh environments. Every
 approval, command/output, expected/observed value, source/image identity, timing and cleanup
@@ -191,8 +205,38 @@ Docker socket; non-root, read-only source/verifier and bounded resources/output.
 project code was executed only in the broker's restricted environments. Original licenses
 and attribution remain in source evidence and the minimal retained material.
 
-Acceptance verification, screenshots, tested implementation, final head and CI references
-are recorded below when the final gates finish.
+### Verification and delivery identities
+
+Tested G3 implementation: **`679e3e739d172a83a8ccb8a085006c99392012de`**.
+[Stacked PR #14](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/14) targets
+accepted G2 at `a9e9eceefc567a5eee3c86f7d736973fafff629d`; PRs #12 and #13 remain
+unmerged. Final review head is `refs/pull/14/head`, resolved to its exact SHA in the PR
+body and handoff. The final report/evidence commit changes no runtime code after the
+tested implementation.
+
+Campaign execution used the unchanged accepted G2 engine and `json-observer-v2` material
+at `c96449dd3b14513cb53601ba21ca4754a77fb3f4`. G3 adds orchestration, evidence accounting
+and review integration, not a second scorer. The final runtime audit matches backend files
+and every served frontend asset to the tested worktree.
+
+| Gate | Actual result and evidence |
+|---|---|
+| `./scripts/check` | **309 passed**, Ruff/Pyright/frontend build passed; [log](assets/generalized-patch-audit-g03/check.log). Existing Monaco chunk-size warning retained. |
+| Focused campaign offline replay | **19 passed**, including freeze, identity, tampering, controls/repeats, unsupported/infrastructure classification, exact downloads and all 28 saved records; [log](assets/generalized-patch-audit-g03/focused-offline.log). |
+| Full local `./scripts/e2e` | **89 passed / 4 existing live opt-ins skipped**, 656.35 seconds; [log](assets/generalized-patch-audit-g03/e2e.log). This used `3328fd8` application bytes; the sole later implementation change reuses existing form/table CSS classes. |
+| Final local campaign browser | **1 passed** at `679e3e7`, exact download/reopen and no new execution; [log](assets/generalized-patch-audit-g03/campaign-browser.log). |
+| Exact implementation CI | [Full workflow passed](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39841085657) on **`679e3e739d172a83a8ccb8a085006c99392012de`**: 309 offline, 89 integration, 4 skips, recovery, recorded authority boundary and 2 recorded browser tests; [exact CI summaries](assets/generalized-patch-audit-g03/ci-implementation.json). |
+| `./scripts/recovery-smoke` | Completed history unchanged, interrupted work reconciled, fresh reproduction succeeded, no runner cleanup errors; [log](assets/generalized-patch-audit-g03/recovery-smoke.log). Existing G1/G2 cancellation/recovery integration checks also passed. |
+| Actual saved G2/G3 history after recovery | **36 exact original records and downloads unchanged**: 28 G3 + 8 original G2; zero new executions from reopening; [audit](assets/generalized-patch-audit-g03/api-history-audit.json). |
+| Rebuilt local recorded server | `scripts/check_release.py` passed: non-root/read-only, no authority modules/socket/credentials/mounts and zero execution slots; [proof](assets/generalized-patch-audit-g03/recorded-boundary.json). Both new G3 routes return GET 404 / POST 405; [route proof](assets/generalized-patch-audit-g03/recorded-campaign-boundary.json). **2 recorded browser tests passed**; [log](assets/generalized-patch-audit-g03/recorded-browser.log). This is loopback review, not a deployment. |
+| Runtime and preservation | [Runtime byte audit](assets/generalized-patch-audit-g03/runtime-audit.json); [completion audit](assets/generalized-patch-audit-g03/completion-audit.json): 28 validated records, 56 distinct environments, **150 actual Docker resources confirmed absent**, **1,275 historical files unchanged**, accepted observer/engine/archive unchanged. |
+
+The [generated summary](assets/generalized-patch-audit-g03/summary.json) and
+[SHA256 artifact manifest](assets/generalized-patch-audit-g03/manifest.json) make the
+report material inspectable. Original G1/G2 evidence, the v1 archive, frozen earlier
+experiments and public release assets remain intact. Two superseded duplicate CI runs
+were cancelled; successful checks are cited by exact implementation SHA. No failed
+campaign outcome was deleted or replaced.
 
 ## Remaining product limits and G4 decision
 
@@ -204,3 +248,17 @@ acceptance of several legitimate changes, and one accurate but redundant warning
 not demonstrate additional value beyond ordinary tests on genuine changes or broad
 repository compatibility. No leaderboard, model benchmark, deployment, merge, film,
 visibility change or G4 implementation was performed.
+
+### Retained browser captures
+
+Actual local browser captures (public upstream code and local synthetic data only):
+
+- [Passing Unicode title case](assets/generalized-patch-audit-g03/inflection-title.png).
+- [Ordinary and independent camel regression](assets/generalized-patch-audit-g03/stringcase-camel.png).
+- [Unsupported ordinary dependency](assets/generalized-patch-audit-g03/flatten-recursive.png).
+- [Rejected source with no execution](assets/generalized-patch-audit-g03/unsupported-source.png).
+
+These are saved evidence views of the declared executions, not new campaign trials.
+The browser test checks navigation, exact downloads, saved-link reload and an unchanged
+execution-history list. Source/patch/requirement details remain inspectable in the existing
+view and validated JSON; no new dashboard, confidence score or benchmark was added.

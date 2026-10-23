@@ -1,0 +1,82 @@
+{
+  "production_projections": [
+    {
+      "case": "inflection-plural",
+      "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "module": "inflection.py",
+      "upstream_production_sha256": "827baa36dbe8a542d56318d6ea6308c8f02d4e0bff1e647c899fbd1100a6682d",
+      "admitted_evidence_matches_upstream_revision": true,
+      "audits_checked": [
+        "a58b2404-67d0-44f2-8ecf-0c32e5fec532",
+        "7eb78481-9b57-4158-b22b-6fdc8ce9683b",
+        "d496a202-1054-489f-9c2b-72b0e0c765f9",
+        "f549fb2f-05e2-489a-affe-68f19348afd9"
+      ],
+      "no_admission_reason": null
+    },
+    {
+      "case": "inflection-title",
+      "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+      "module": "inflection.py",
+      "upstream_production_sha256": "e16ccf2e7f8cdb575d732120eeed99575e8026629264efcee1567b149b9b434c",
+      "admitted_evidence_matches_upstream_revision": true,
+      "audits_checked": [
+        "89f73d21-3489-424c-bc3f-4c4801a484af",
+        "ca30d5cb-8b49-4626-9c09-d810c6326688",
+        "8eb14068-c9ad-4a6e-8544-67c4cd1ca451",
+        "a97fb923-5631-475a-a449-96c66162a238"
+      ],
+      "no_admission_reason": null
+    },
+    {
+      "case": "stringcase-alpha",
+      "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+      "module": "stringcase.py",
+      "upstream_production_sha256": "dd47814b2e6c9ac75e716791778a65e5d9ca629ba49a4651f5f0b381d89c90f7",
+      "admitted_evidence_matches_upstream_revision": true,
+      "audits_checked": [
+        "63fd61c1-15b4-4c22-b773-abc7eef7532b",
+        "7904500d-3680-46dd-a9d6-8609229979f7",
+        "9dc51a4d-4c69-4029-afa8-d05b94a2718b",
+        "bf173fa6-1a80-4fbf-aa5f-463ca0167049"
+      ],
+      "no_admission_reason": null
+    },
+    {
+      "case": "stringcase-camel",
+      "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+      "module": "stringcase.py",
+      "upstream_production_sha256": "0d5c7555b390b92b9651c4386d28694c7bad541b2e5aa9d288aa9a0de3337af3",
+      "admitted_evidence_matches_upstream_revision": true,
+      "audits_checked": [
+        "a56af26c-1cd2-42b6-b686-463b044149b7",
+        "7bcf2c51-c70f-4b62-8f2e-2b9f8c5f76c5",
+        "7a337fd9-76cd-403b-b58b-e47cfe8d1670",
+        "62df7e08-b9f6-4cd0-b510-99918c6f15f7"
+      ],
+      "no_admission_reason": null
+    },
+    {
+      "case": "flatten-recursive",
+      "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "module": "index.js",
+      "upstream_production_sha256": "62602a4087d46ad4930eb3a99ccca4b2808160271d9d6d5833297138f56d7fae",
+      "admitted_evidence_matches_upstream_revision": true,
+      "audits_checked": [
+        "b270d251-f627-4adf-9613-a7636ffa09eb",
+        "c885dbcb-9366-451d-883d-253663e0a20f"
+      ],
+      "no_admission_reason": null
+    },
+    {
+      "case": "flatten-for",
+      "revision": "8953ce8522ee6da8a467286c9bce23fc03b7f38e",
+      "module": "index.js",
+      "upstream_production_sha256": "89afebe74321f704e6e25eda45168900258dd7b12d75b842dd28fe29fef12289",
+      "admitted_evidence_matches_upstream_revision": false,
+      "audits_checked": [],
+      "no_admission_reason": "unsupported source tree"
+    }
+  ],
+  "target_code_executed_in_host": false
+}

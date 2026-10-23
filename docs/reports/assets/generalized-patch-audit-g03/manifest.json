@@ -1,0 +1,28 @@
+{
+  "version": "g3-review-artifacts-v1",
+  "tested_implementation": "679e3e739d172a83a8ccb8a085006c99392012de",
+  "files": {
+    "README.md": "06a110671d7541aaa04847d583405ea8828c2a720af76486459cf610dab4f2f3",
+    "api-history-audit.json": "abff57637739f733bbd5a5f961a43d952e145f5177f6d069df33aa8712d3560b",
+    "api-history.log": "8d53962bcf66aa4b66560af4c949627be0f822322b0b67ccf967efc3bf9278a5",
+    "campaign-browser.log": "a2c539426cee5985f9a9420037f7bb1cb53e8ff6930658e2a5bb3f7f798f61ff",
+    "check.log": "b426ffdec1f56f7153776e553f88e0751b67fd1d9f7676bbc96f2fb6d78e4b23",
+    "ci-implementation.json": "022ce28195832519efece0b9e9a8663902f2c6c48354468610e6757a531fc6f0",
+    "compatibility-audit.json": "bd272dbd7dabd9608207f29ab79b5af264840025ed39c6c2ffe17af994c8bb48",
+    "completion-audit.json": "b1d00a0c8b32d27601692a4badefce4e9c11da1263bf03d545869df26bb62fe8",
+    "e2e.log": "aaab24652fbfe04089715d100167a13f274152f544e7a6b631f373a1aef9ee94",
+    "flatten-recursive.png": "bdacea1fae6361a1bbfa89174386e29ba2a3c5f9681bb6ac7cedeef15df0656c",
+    "focused-offline.log": "cc3f9cf1ad891c06e5990e94eb6ff3ebf02de128b47a21b12bd95a0992e23c24",
+    "inflection-title.png": "655f537cf0d745306794f446ede7376e5319e50e198ec119613545b4596b39bc",
+    "projection-audit.json": "2fb4b0d23971af2117c2826f2dd11f9e8988594fd280fad110ab3e21c0507a56",
+    "recorded-boundary.json": "aede9410b0294d2a071ed16d872a52a6a67950b772c30f8feb0d5eb879f04a89",
+    "recorded-browser.log": "aeeb5d5104089d8a8b7bbffdc1ec8d008aba25ef309c6ff4135717790fb884b5",
+    "recorded-campaign-boundary.json": "c744fbe89f5c27d0330b97147f26d1625a93cdc5444145a8bb83526211da4248",
+    "recovery-smoke.log": "c4098b57480fc1c60092265e55f8585f8bc6d4210d0c48747d4672c1e498e676",
+    "runtime-audit.json": "1d2861fe73720fd73eca04129ce9afc7c81c74d90dbd4f372f88ca2eed6c6987",
+    "specification-trace-audit.json": "e77ec5c45c968b808bb89d8f06e524d436378138a64a3cea3d028b0fcccb10d3",
+    "stringcase-camel.png": "d7eabe3795494711cf54f3126c47d03ecab1ae75f929bf1b946b806972d499fb",
+    "summary.json": "3b22009cdee462c2b27d1983173d161c7207916b91efdd5bcbcbdd2b7c73aa49",
+    "unsupported-source.png": "8ce8068554169df09f6d3975a9a3e6ecfcb1dd8c4cd63b7c6f1a209f7719b2a4"
+  }
+}

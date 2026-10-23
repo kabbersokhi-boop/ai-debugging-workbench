@@ -1,0 +1,634 @@
+{
+  "campaign_sha256": "7d521577539d910c9a86b546bf775a56b0d0f200c9da477c36140a055f4df161",
+  "counts": {
+    "selected_candidates": 6,
+    "genuine_candidates_executed": 4,
+    "genuine_candidates_admitted": 5,
+    "planned_candidate_audits": 12,
+    "candidate_audits": 8,
+    "control_validations": 10,
+    "reference_audits": 5,
+    "alternative_audits": 5,
+    "fresh_environments": 56,
+    "repeat_disagreements": 0,
+    "candidate_outcomes": {
+      "ordinary_pass_independent_pass": 3,
+      "ordinary_failure": 1,
+      "unsupported_environment": 1,
+      "unsupported_source": 1
+    }
+  },
+  "validated_downloads": 28,
+  "fresh_environment_count": 56,
+  "recorded_docker_resources_confirmed_absent": 150,
+  "absent_resource_ids": [
+    {
+      "kind": "containers",
+      "id": "03ff287cef98113d15ea6639bd3ca1f393713b69e6e5e7f3d70254211c853ad0"
+    },
+    {
+      "kind": "containers",
+      "id": "07d9f03846dc4f6f7bc58e2415492105ef27a211a407e0ed7edc4ef91f82d11d"
+    },
+    {
+      "kind": "containers",
+      "id": "0fcca0e8b91c1170ab0fa9fbee533ff55fee900b8701282e7525ed175c8d85c2"
+    },
+    {
+      "kind": "containers",
+      "id": "14474af004209c361a5a4317973b5a10a563b4ec7ae15f4d5bfffd39ca3bfcea"
+    },
+    {
+      "kind": "containers",
+      "id": "1a63d5bfc7010fe85e42c55bc7dc22716c4882ed3db28859fb19b61b1370492d"
+    },
+    {
+      "kind": "containers",
+      "id": "1f368f24b342007ca3f73f448d78839a9b1b412731a8388721a9479ae500a705"
+    },
+    {
+      "kind": "containers",
+      "id": "300e0bb99c20220341cc697a3d68d370aefba099ab277c41d330f32e8216d830"
+    },
+    {
+      "kind": "containers",
+      "id": "33235b5f9b8797ee8559db96c5b711a1e609b657417b9f08e0e2c2395a2bf13e"
+    },
+    {
+      "kind": "containers",
+      "id": "34ee85816a380867399234281d029273f44293a4da769f8b844c698133518974"
+    },
+    {
+      "kind": "containers",
+      "id": "394f226409334092977b955995c2b0320ed852b819da64163d8e1bbde3648316"
+    },
+    {
+      "kind": "containers",
+      "id": "3b625d1db6267b762e9f060103901550ff75b957bde68827bfae5bf556baaf5c"
+    },
+    {
+      "kind": "containers",
+      "id": "3d197ec84a04541c51336a9499f9187bc2d46d4b4547a2010b6f260c250fb9e4"
+    },
+    {
+      "kind": "containers",
+      "id": "445d7b37e8e29b48115eca6b6b9c134b82d62e64e544aa94f3f41d910c20a38e"
+    },
+    {
+      "kind": "containers",
+      "id": "4462eabcdc1cfdd859579858734fb2d4deef1e66599266376f19f22160c36cb5"
+    },
+    {
+      "kind": "containers",
+      "id": "4cc78cba56fda806dbb6c7e33bce50902ca1b1f4f8a43322c7ab435321689080"
+    },
+    {
+      "kind": "containers",
+      "id": "4d3d4fdab4f70e9cb317a75c4ed94990c6964463840aee2c50497c805b57f9a5"
+    },
+    {
+      "kind": "containers",
+      "id": "58871a53bcd80dfdd251a54c50db2500affd689305531107ac378f268516d415"
+    },
+    {
+      "kind": "containers",
+      "id": "5fcf231fbeda622023d508d9ca8c1a7aed10c2b582b4653d35d4b4ea28202007"
+    },
+    {
+      "kind": "containers",
+      "id": "61df922c019dc48b073a3a6540dac75bd7c6595a6df0daaaf1c4c2a9977fb682"
+    },
+    {
+      "kind": "containers",
+      "id": "62c5e708d349bde169ad19456ce9f58509b351d731b20e479f28b640686dd047"
+    },
+    {
+      "kind": "containers",
+      "id": "665f3cd0c0817fd9fc9d81d22b92fecd661f563e52b78a0b85a7eef6406db157"
+    },
+    {
+      "kind": "containers",
+      "id": "6b0eb9f3fd8c9cee4b0b7e5361a6dc2de6e49f463db8b8e7afdbca69851f9c01"
+    },
+    {
+      "kind": "containers",
+      "id": "72fc88da1c7090e2cf97598055b566fec34287c0c8e54bd37a26055eeb69e8f5"
+    },
+    {
+      "kind": "containers",
+      "id": "7c62d50e0029f993c042730b83702bf9edbc8d37ed066afe537ea45d059a1458"
+    },
+    {
+      "kind": "containers",
+      "id": "7cc6bd739a7f1cdd0b74a6008964671c51b70fd00b7566c17ca6a1f7310bf3c6"
+    },
+    {
+      "kind": "containers",
+      "id": "7f3b7467f2e01a5269579e2fabc4a57035e63d2dbadbbd6a9cf22d40796aed18"
+    },
+    {
+      "kind": "containers",
+      "id": "7f747c6971978a9345f94ca8f311b507f178c15737c00c491b2e5c6e5c846ed1"
+    },
+    {
+      "kind": "containers",
+      "id": "7fa0c69b1a79323a60bee84c6d2e67e7815cdd146ec54d00be95ce25a3e69e10"
+    },
+    {
+      "kind": "containers",
+      "id": "8ee44ee895ca9d98eec674e13226a951c14ae0b8618ccaf0cdd8a2b673d6b2a7"
+    },
+    {
+      "kind": "containers",
+      "id": "938b67f35406156f3ae04363e64c8684abbb92dc127aa0ba6a9d0cd706a46eae"
+    },
+    {
+      "kind": "containers",
+      "id": "95b61d132e66018633b13a2a0cfe2253508e0a0bff9dc715a9879f1bc1594a0e"
+    },
+    {
+      "kind": "containers",
+      "id": "a30e424af63132cd15c923e83f1475dc987cadfb5d659715ea383ce400c63348"
+    },
+    {
+      "kind": "containers",
+      "id": "a4117a424d00bda3ed1f7797cdc0289adbd2db70d1e72e1cd2e4f2154184b1dd"
+    },
+    {
+      "kind": "containers",
+      "id": "acc6783aeb7fef745f196b299c907d8d69ebbc6c28fbc47c372f810d9fb8f98b"
+    },
+    {
+      "kind": "containers",
+      "id": "adad08b08f236e52403592a28a3e1c89f9f3aecf66bde3d2599d55d1236f2064"
+    },
+    {
+      "kind": "containers",
+      "id": "ae63a93babfb4bd5743d8cdabb0ba536fd737ce1e28314c4d0d6d6bf843dde4b"
+    },
+    {
+      "kind": "containers",
+      "id": "b13a9106f1a12bd65017ab0b03d184e6983e602c42708e3007e27df17c2d18d0"
+    },
+    {
+      "kind": "containers",
+      "id": "b625a283247a30170160496a5f069e21a30064fe22833d9035655bff486bc126"
+    },
+    {
+      "kind": "containers",
+      "id": "b7700d0343f9fed07eb8169f7c4dc719b10f2e421ab2ff17154ea4404328cda8"
+    },
+    {
+      "kind": "containers",
+      "id": "b943de448993cc645352426f41700299f096e58730362fee6ec56da058abec70"
+    },
+    {
+      "kind": "containers",
+      "id": "bc23300f4c74889c10383e64afc92a19f2eae7061bb637786d35c8bf45b3282d"
+    },
+    {
+      "kind": "containers",
+      "id": "bfbcc08edcfb4ccbe89e45c461dd1b5cc5345dc8509794a4e3835f7f8de96219"
+    },
+    {
+      "kind": "containers",
+      "id": "c23e111287cecc6e62e76b62e2b0e8c5121bd5b9b8aa81e5068cf4318ccf46d9"
+    },
+    {
+      "kind": "containers",
+      "id": "c522ec15cb760f37655c6369954b14aedfeac021ae1a44e9fa31f26c4eaac1fe"
+    },
+    {
+      "kind": "containers",
+      "id": "c7b317269ddb4818e723abf95fce93a4436db3f480a6da6177b3de0a2b6028ae"
+    },
+    {
+      "kind": "containers",
+      "id": "cad7a85a68763215fb0e08570635309436249850852a72d92c6ec8cd7a4f2b4c"
+    },
+    {
+      "kind": "containers",
+      "id": "cc0bc7348ae081a594539d16278e0aee890eb99322105c2ffe8e1a253842e47b"
+    },
+    {
+      "kind": "containers",
+      "id": "cc17cf9a54d92c703fd54cf51d4bb799b45eee2e6d7b39b8e0f27b1aaaa3d3e1"
+    },
+    {
+      "kind": "containers",
+      "id": "db13911fe7db609b9ced177882b56e3b315612a569e9b373999be7b5080bfdb5"
+    },
+    {
+      "kind": "containers",
+      "id": "e890438efa17624b8b50a99518ef99ce7d409641ac8a3f4bd8d91a9984bd0e3e"
+    },
+    {
+      "kind": "containers",
+      "id": "ee4e64a951142a6851d272c84c2fefdcc60908c388e7eb11b83e18fb7e97b960"
+    },
+    {
+      "kind": "containers",
+      "id": "ef60d37aad047a92545ffe6f811e7f63a950883557d17da1446b1de5db074377"
+    },
+    {
+      "kind": "containers",
+      "id": "f035fc8a06c739d469ccfdf6b38378679499327b0f4c532b2e9265df46e36f28"
+    },
+    {
+      "kind": "containers",
+      "id": "f0414af72ade88c50109c7e3de547224b6f026e95c1ad5323809c0a6ce254907"
+    },
+    {
+      "kind": "containers",
+      "id": "f2ad0c82dab719565a36705f7193251ec140c6efddd6b43f73f530b8e1dfa74b"
+    },
+    {
+      "kind": "containers",
+      "id": "f3823911069dcc9fcc9b5242c607328424438ec5793b46ebce7acc1c683786b2"
+    },
+    {
+      "kind": "volumes",
+      "id": "0097e3a6d085b9ddc4170785f489acd982a9ab37dc9c5611aac17a612ed2f3d6"
+    },
+    {
+      "kind": "volumes",
+      "id": "02e0b0273a55a81c7fbe69273b917ca62a54f0cd46cc269f37e658003dc4f95d"
+    },
+    {
+      "kind": "volumes",
+      "id": "049c9cf1400a611a81b8c269c06fd7843f9ea5de7d1974f4a67cc40da243974e"
+    },
+    {
+      "kind": "volumes",
+      "id": "049ca8aeba02f4b8e593451b3977f62859b4a8fe8e20097338c8b8c006957415"
+    },
+    {
+      "kind": "volumes",
+      "id": "083e4f260b14e109b97c2af58f292c5421a6c7e51b2226428be41149f8285c81"
+    },
+    {
+      "kind": "volumes",
+      "id": "0a0bb6bd76d1d9c47b1003e7b5582e23fed8cae3bce92e499d0b310287138e56"
+    },
+    {
+      "kind": "volumes",
+      "id": "0c9a059abf5615b8c32f037d07cb7a3de11af12bf7c2bad97ca603ac46b194b3"
+    },
+    {
+      "kind": "volumes",
+      "id": "15e17306063ca47d6a90c69c8a7384ecfddc967e82a5eca940e146fe07e30972"
+    },
+    {
+      "kind": "volumes",
+      "id": "15f8eef108ec6f1f82365549a471ea1a86d82c6a27cf5e4ab17c3d8991146998"
+    },
+    {
+      "kind": "volumes",
+      "id": "1d486b1e5eb50779febab56e3e62397ec65e647eea97beb70e3d52c2d32bf1e9"
+    },
+    {
+      "kind": "volumes",
+      "id": "263213c8bfd84fba62f6cb8b73dede677e38a6b69cc3f84598eb364200de63bd"
+    },
+    {
+      "kind": "volumes",
+      "id": "266b2eadd3053bb855c04d7b81b19677a8032f56ab19638bbf2b59c6f7807d0e"
+    },
+    {
+      "kind": "volumes",
+      "id": "2b29430d6234d39bbdc53e9426e341df2207688ec69d1281aa6d80f614b507cd"
+    },
+    {
+      "kind": "volumes",
+      "id": "2bf6ea84b23880d5cd905509a4d0dc854209ade23c4afc872d70dc3e2e03ac75"
+    },
+    {
+      "kind": "volumes",
+      "id": "319990bfd95a681b2936e90a5b8580cb2f6112152dc2d21a592dba77e6051d9e"
+    },
+    {
+      "kind": "volumes",
+      "id": "322b0707e8719a6296a9c9fb2ebe8a6d9e2716be4a2f08abc63339fef8cb8907"
+    },
+    {
+      "kind": "volumes",
+      "id": "364fa8cc4d449a0cd06129072ed2445e3c5a3d68487a75a3efad0dcbf700c473"
+    },
+    {
+      "kind": "volumes",
+      "id": "36579a1fc42378306817f47329c5c7a047f9f910e5d6a3d7ea1011677870e896"
+    },
+    {
+      "kind": "volumes",
+      "id": "3ca9631902f91ae775233d19c0606a6c2bb4e35d00ae707a62f9a30e0c9584bf"
+    },
+    {
+      "kind": "volumes",
+      "id": "3ceace4c79f5fc79650f70082e828ecb13606b0b4cd38244c9461b0b09e8eb7f"
+    },
+    {
+      "kind": "volumes",
+      "id": "3d39adfb8b5062a23fbdeab2abf671537a8da727abd4d1edb847e0f5b241206b"
+    },
+    {
+      "kind": "volumes",
+      "id": "474279823d9033d52d8153937a250327d77fc1ad23c335d52fc5ad3af7f8655d"
+    },
+    {
+      "kind": "volumes",
+      "id": "4d133d4665373dcdb1fc4172d72d401e890e8955838e3e2d7b308d46a31c1747"
+    },
+    {
+      "kind": "volumes",
+      "id": "4ed441beb2b3eba1f31906719fccbd38db7e8a031d40bac9e1050e49b8956859"
+    },
+    {
+      "kind": "volumes",
+      "id": "4f770e5fd7469dd926b7c29f31a51a643f63e5dd6c035e396d35f89f9f1c6730"
+    },
+    {
+      "kind": "volumes",
+      "id": "50d7cc8cb8021d69985a91588a6a3c5b7fc0351ae49d258e49d8ea55fbcfc5b6"
+    },
+    {
+      "kind": "volumes",
+      "id": "5aac1d88f82f2158085662061529e4d26dd8c2f3e8d261ddcc300053f7865707"
+    },
+    {
+      "kind": "volumes",
+      "id": "5aaf944ae5db887aa988d03aaaf7bc7a97f10ee10e8f8642629d1ce9ea0162b6"
+    },
+    {
+      "kind": "volumes",
+      "id": "5dad3539c8ba3aa793217e35fd2976aea708b616f70ac8a680f6840387f8e278"
+    },
+    {
+      "kind": "volumes",
+      "id": "5ff38eccd1bd6ab71de438ebf40d9f6fd9cc81865ea7d59e38644ef7f62833fc"
+    },
+    {
+      "kind": "volumes",
+      "id": "6073519e144a93a885814594680a3a15abbdb1d552b3c9d90c677400dcfdc6d5"
+    },
+    {
+      "kind": "volumes",
+      "id": "6555ca834be4e96e32f6a352ed7db4ba3e37d35b55cdb4dbfcaa94211fe77910"
+    },
+    {
+      "kind": "volumes",
+      "id": "674591b7dd19925a798440639f36ba0c5a1445d393d1109713349c455fc22cc9"
+    },
+    {
+      "kind": "volumes",
+      "id": "689783a4f4d3be837f1c4bf20e8093ab8ac2045ad474d1029b8466bc6962f7c2"
+    },
+    {
+      "kind": "volumes",
+      "id": "68a65f3f91103ca40067bcc633ee2f41943a8eca531ed81b8908dbf854ad999b"
+    },
+    {
+      "kind": "volumes",
+      "id": "69cebbc6472dfb03218e765c85665e21009964e24444f2309fc22da697c66f1f"
+    },
+    {
+      "kind": "volumes",
+      "id": "6b5d22ebb2325f5faeb9fd8f60b935135451e2f4b3736ef587e8baccedd74a07"
+    },
+    {
+      "kind": "volumes",
+      "id": "6be3a53a1acb110086f9d848d24995dea7b19572c3745c6cc11f74d45efa4e37"
+    },
+    {
+      "kind": "volumes",
+      "id": "71431bb2eec526f32dd7e5d2325e82e5c14b118b2beb63f0439c92f8f869c656"
+    },
+    {
+      "kind": "volumes",
+      "id": "71bde1c49d998e18ba27d9abcfd996f0f89174102d40528d7144fac325193f64"
+    },
+    {
+      "kind": "volumes",
+      "id": "7364ab1d71717a80e893e720a0d20b07ba140b2e527682c077f29b34cbbaa8b9"
+    },
+    {
+      "kind": "volumes",
+      "id": "764c8999a13a2d4e10e1a03ad8326497f732c6db48850a8970445cb70cc1f978"
+    },
+    {
+      "kind": "volumes",
+      "id": "777079727ea8652dad806fd3569e9f3fde969b61e99c4381dd1a055b5e41be00"
+    },
+    {
+      "kind": "volumes",
+      "id": "781ab9e1d58c5ef57af735af7a97d2081ddceb6159c3a22ca5b379e088e546f1"
+    },
+    {
+      "kind": "volumes",
+      "id": "79cb11a1895a7d829d50b0faa4053d79fb553a7452ab888116b3d7cb5d94aa1b"
+    },
+    {
+      "kind": "volumes",
+      "id": "7da46f0ce71821c463066e5709da2da35d5d05b36c442bcd0b0a254920c4809c"
+    },
+    {
+      "kind": "volumes",
+      "id": "7f2499b9c0b8dfd21c60906de682c5397e710af34e1a2c5ac7fdb280f276f799"
+    },
+    {
+      "kind": "volumes",
+      "id": "80b6e363be1cf34a4bcfc2212627f6aa3e9cdef482152fc6a6d2ff6193cc246e"
+    },
+    {
+      "kind": "volumes",
+      "id": "869bfed3b1f84fa0c637568ee9143240a0c2fa27cdacb50d8dad1a2889da37fc"
+    },
+    {
+      "kind": "volumes",
+      "id": "8a2c10d90d3cbc034b0a4d44dc335d956c0b0326e79c2a5301ccbbcffcb39ffe"
+    },
+    {
+      "kind": "volumes",
+      "id": "8bbc0fd21d4a080d9bdcf717b97cabbb22f8e60fe9a23c4fd76446897962433a"
+    },
+    {
+      "kind": "volumes",
+      "id": "8df6bde5a479adf5fa59cdfb89bf099da4a5845152fd2543cc215ab77c0de607"
+    },
+    {
+      "kind": "volumes",
+      "id": "91363a4c4bd28e36f56e1dcc1135ca69776729901dab57cb413c41dd826d12bd"
+    },
+    {
+      "kind": "volumes",
+      "id": "91a2f858d2a87bce850a40d708606b313653269353e6023c7863702b0e5398fd"
+    },
+    {
+      "kind": "volumes",
+      "id": "9597e6bd923877d0a8cfd7a196414715702cd90d846597aaeb3f830f91f490f0"
+    },
+    {
+      "kind": "volumes",
+      "id": "95c79015c4ee2f210f146b394a4ec2afc7e2296823cead4938f6e0d7fc6418dd"
+    },
+    {
+      "kind": "volumes",
+      "id": "969570b80b958d10e1f4b6efa7a8e72ed63f3effe13575f6bf793c9b420f30b6"
+    },
+    {
+      "kind": "volumes",
+      "id": "9ca7b54c6bee2df97fb90c6dab1b0f48528ab6ffe8bcad1339c29786e7ddeaee"
+    },
+    {
+      "kind": "volumes",
+      "id": "9d799eee650ae7f0343462ebbe32d31e61fbff7a212f77ebb38c520b3054c86a"
+    },
+    {
+      "kind": "volumes",
+      "id": "9e1090fcde9c34016476f5f6c8c0f706bb8ca2a0b622ab51cea07ede5eec66c0"
+    },
+    {
+      "kind": "volumes",
+      "id": "9ea650758447463fa38dc5e37d5f7c4f8e61699a494e1229792aa128766a3639"
+    },
+    {
+      "kind": "volumes",
+      "id": "9f8ed7088bc91c53d8f34d9afb3b06eb3641b17ded33e8b8ab754493103c9dd4"
+    },
+    {
+      "kind": "volumes",
+      "id": "a253111d04f0e2159f3c28ec59af3e853be16e82db4a2b9016ac9f0c8528b989"
+    },
+    {
+      "kind": "volumes",
+      "id": "a6a82635389506cff596f6e1957003d900471c098251f51efcca7c9ade0d610f"
+    },
+    {
+      "kind": "volumes",
+      "id": "a6f876eb0e7921b1d436e3b2e576d61d92d234e08f2ae7969e32705c784854e3"
+    },
+    {
+      "kind": "volumes",
+      "id": "b38c02a69643da9629c1ca38a5996323c6f44525e69a423d27568cddc0d26893"
+    },
+    {
+      "kind": "volumes",
+      "id": "b5cda957594ee383c60aada82dcec257cba7950dde6baf50263eade2bc11c299"
+    },
+    {
+      "kind": "volumes",
+      "id": "b61d7ee53cd819d2e2a12951d3a1c05a5df0b90af8a91177daad20484df37960"
+    },
+    {
+      "kind": "volumes",
+      "id": "b8338bd3384ea0216d782cd5367ffdcfca40b460ca474ba232706e4bd73438e8"
+    },
+    {
+      "kind": "volumes",
+      "id": "b93dc913e668fbe9ca8d0522302b459e000aac873a69452fa5f86f95b682a30b"
+    },
+    {
+      "kind": "volumes",
+      "id": "bb52983e29429c48d399b243f354946c0bb9bde3b50cfa7c6bfa2b4bbe4d4939"
+    },
+    {
+      "kind": "volumes",
+      "id": "bc8a6ebb9ac094d55d16bf45740c97e876c435ef92daa9d14551af72e622d94d"
+    },
+    {
+      "kind": "volumes",
+      "id": "bdab554ca4cfe5eec106164a00ffbf429f2e76bb09a663d0d45ee8ba784d8a8b"
+    },
+    {
+      "kind": "volumes",
+      "id": "be2ecc54ab493ef36ddf22854832e64ffe846407e70b809e77efd331116e5a66"
+    },
+    {
+      "kind": "volumes",
+      "id": "ca8c8c3732a88efcff09fbb1df73f6d49415845666cb980f2490aaabb626877b"
+    },
+    {
+      "kind": "volumes",
+      "id": "d00936dfc18c46c3b43094d83e4b20f3ed6e48eb35b1681ccedde1677c0f6825"
+    },
+    {
+      "kind": "volumes",
+      "id": "d4e67f1ba971b4af7c7f39cd470b43e20aa2b391d162d5e44ac5a23c05f2a8a2"
+    },
+    {
+      "kind": "volumes",
+      "id": "d5902c2afd6b54fcb6861fa15503993e301fff02e78fc83a90c74b56c956348f"
+    },
+    {
+      "kind": "volumes",
+      "id": "d5ed79a76ba108e37581dd98970098440fee915e3482de67251a24da2aa5cebc"
+    },
+    {
+      "kind": "volumes",
+      "id": "d949268301d566ad8fb9554bd40095eb19037c2b759ea3c23c9f44718bec4682"
+    },
+    {
+      "kind": "volumes",
+      "id": "d94e2b8161dd602b64ce656679317921fa0eb85712a3f58107ec83f0e58b2821"
+    },
+    {
+      "kind": "volumes",
+      "id": "d9f3af77393e4763ad3151daac5c3a9be094218695edc93362f604a2b2683e82"
+    },
+    {
+      "kind": "volumes",
+      "id": "daac619ab536b0ea2c7e0787d0382e6467deee53321fce3651bf5be77172c629"
+    },
+    {
+      "kind": "volumes",
+      "id": "dc3a32d32c1866c79e5e2200834561030563591fa1f8ec5b66f1df9f2097117b"
+    },
+    {
+      "kind": "volumes",
+      "id": "dee515f4ac988a2070b31babdc64c6113854b88b5afb76ceea359a30c769cb31"
+    },
+    {
+      "kind": "volumes",
+      "id": "e24ede466437f4a1ad79e6fad2d23d0023d8d4cfe1137dea8322ad1836757902"
+    },
+    {
+      "kind": "volumes",
+      "id": "e5dc8bd5dce4059eed55883698a09cb21314509c812444239ae14c6c51e836fe"
+    },
+    {
+      "kind": "volumes",
+      "id": "e81e7bcdbf2f7971911e31398cf3032f47062898e94f2acd2041fd1f086a353e"
+    },
+    {
+      "kind": "volumes",
+      "id": "eb1896c57db1c4e5864e1f22fb152661ec8f5a27386bf2d8e237c7f2920e043c"
+    },
+    {
+      "kind": "volumes",
+      "id": "ebd11dc3ebbccfb1209283562d2c88ef3f379267807a23fe34bc4886eac83043"
+    },
+    {
+      "kind": "volumes",
+      "id": "ec99ad90501658440d79801a40508217086d0e83e7b73ad867b0cdfe205c026d"
+    },
+    {
+      "kind": "volumes",
+      "id": "f3456ed6ac89e4fa5e06a824e3d7635fff2800e808085e370c252cc023f89e83"
+    },
+    {
+      "kind": "volumes",
+      "id": "fce8563c27ab9a9da215d3c92ddb469eb9da0ec4dbc5105f192e80bd407af687"
+    },
+    {
+      "kind": "volumes",
+      "id": "ffea4307a2bb017b1441cdde14c8d2cdd8a9375e4271cffd25700affb1ccb2b8"
+    }
+  ],
+  "protected_historical_files_unchanged": 1275,
+  "accepted_observer_and_execution_code_unchanged": true,
+  "first_execution_started_at": "2026-10-22T19:15:31.634350+00:00",
+  "last_execution_ended_at": "2026-10-22T19:19:35.517978+00:00",
+  "measured_campaign_span_seconds": 243.883628,
+  "execution_duration_ms_sum": 85484,
+  "new_model_calls": 0,
+  "recovery_attempts": 0
+}

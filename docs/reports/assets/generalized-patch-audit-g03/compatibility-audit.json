@@ -1,0 +1,20 @@
+{
+  "repository": "jonschlinkert/arr-flatten",
+  "base_commit": "966022a4a9190ddf8c8936daa80d1a7f9f77ecb3",
+  "git_tree": "057ed246be77c9da5564874694df9b5eaecbaddb",
+  "truncated": false,
+  "intake_failure": "Original real API HTTP 422 retained in results/preflight-v1.log; intake calls path(entry[path]) on the Git tree before fetching the archive.",
+  "unsupported_paths": [
+    {
+      "path": "benchmark/code/arr-flatten-0.1.0 (do-while).js",
+      "type": "blob",
+      "blob_sha": "c61367851b25a74b9cd5e5db97a6b633fd34fda3",
+      "reason": "Unsupported or unsafe repository path"
+    }
+  ],
+  "downloaded_code_executed_in_host": false,
+  "ordinary_setup_failure": {
+    "case": "flatten-recursive",
+    "reference_and_alternative": "MODULE_NOT_FOUND: array-flatten; unchanged base test.js line 12. No framework test count can be inferred."
+  }
+}
