@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { api } from "./types";
 import IndependentPlan, { type IndependentApproval } from "./IndependentPlan";
+import RepositoryCampaign from "./RepositoryCampaign";
 const Diff = lazy(() => import("./Diff"));
 type Source = {id:string; repository:string; base_commit:string; git_tree:string; source_tree_hash:string; file_hashes:Record<string,string>; eligible_paths?:string[]; source_bytes?:number; file_count?:number; metadata:{license?:{spdx_id:string}; attribution_files:string[]}; license_texts?:Record<string,string>};
 type Candidate = {id:string; snapshot_id:string; candidate_hash:string; patch:string; affected_files:string[]; original:Record<string,string>; modified:Record<string,string>; provenance:{author_label:string; limitations:string}};
@@ -13,7 +14,7 @@ type Result = {version?:string;status:string; reason?:string; ordinary:Result|nu
 type Audit = {id:string; candidate_id:string; plan_id:string; status:string; evidence:{snapshot:Source; candidate:Candidate; plan:Plan; result?:Result; reason?:string;verification?:{id:string;requirements:Requirement[]}}};
 type Saved = {id:string; repository:string; status:string; created_at:string};
 const words = (s:string) => s.replaceAll("_"," ");
-function link(id:string) { const u=new URL(location.href); u.search=new URLSearchParams({source:"external",repositoryAudit:id}).toString(); history.replaceState(null,"",u); }
+function link(id:string,campaign=false) { const u=new URL(location.href); u.search=new URLSearchParams({source:"external",repositoryAudit:id,...(campaign?{campaign:"g3"}:{})}).toString(); history.replaceState(null,"",u); }
 function checked(a:Audit,id?:string,c?:Candidate) { if ((id && a.id!==id) || a.candidate_id!==a.evidence.candidate.id || (c && a.candidate_id!==c.id) || a.evidence.candidate.candidate_hash!==a.evidence.plan.candidate_hash) throw Error("Audit identity mismatch; no result displayed."); return a; }
 
 export default function RepositoryAudit() {
@@ -25,21 +26,22 @@ export default function RepositoryAudit() {
   const [plan,setPlan]=useState<{id:string;plan:Plan}|null>(null), [audit,setAudit]=useState<Audit|null>(null);
   const [confirmed,setConfirmed]=useState(false), [busy,setBusy]=useState(false), [error,setError]=useState("");
   const [saved,setSaved]=useState<Saved[]>([]); const epoch=useRef(0);
+  const [retained,setRetained]=useState(false);
   const [independentEnabled,setIndependentEnabled]=useState(false),[independentApproval,setIndependentApproval]=useState<IndependentApproval|null>(null),[independentBusy,setIndependentBusy]=useState(false);
   const running=audit?.status==="running"||independentBusy, result=audit?.evidence.result;
   const layered=result?.version==="repository-independent-result-v1", ordinary=layered?result.ordinary:result;
   const independentResult=result?.independent;
   const selectedRuntime=runtimes.find(r=>r.runtime===runtime&&r.available&&r.image_id);
-  function invalidate(clearCandidate=false) {epoch.current++;setIndependentApproval(null);setAudit(null);setPlan(null);setConfirmed(false);setError("");setBusy(false);if(clearCandidate)setCandidate(null);}
+  function invalidate(clearCandidate=false) {epoch.current++;setRetained(false);setIndependentApproval(null);setAudit(null);setPlan(null);setConfirmed(false);setError("");setBusy(false);if(clearCandidate)setCandidate(null);}
   async function refresh() { setSaved(await api<Saved[]>("/repository-audits/runs")); }
   async function operation(action:(token:number)=>Promise<void>) {const token=epoch.current;setBusy(true);setError("");try {await action(token);}catch(e){if(token===epoch.current)setError(String(e));}finally{if(token===epoch.current)setBusy(false);}}
-  async function open(id:string) {
-    invalidate(true); await operation(async token=>{const a=checked(await api<Audit>(`/repository-audits/runs/${id}`),id);if(token!==epoch.current)return;
+  async function open(id:string,campaign=false) {
+    invalidate(true); await operation(async token=>{const a=checked(await api<Audit>(`/repository-audits/${campaign?"campaigns/g3/runs":"runs"}/${id}`),id);if(token!==epoch.current)return;setRetained(campaign);
       setAudit(a);setSource(a.evidence.snapshot);setRepo(a.evidence.snapshot.repository);setCommit(a.evidence.snapshot.base_commit);setCandidate(a.evidence.candidate);
-      setPlan({id:a.plan_id,plan:a.evidence.plan});setRuntime(a.evidence.plan.runtime);setTests(JSON.stringify(a.evidence.plan.tests));setSetup(JSON.stringify(a.evidence.plan.setup));setCwd(a.evidence.plan.working_directory);setDescription(a.evidence.plan.test_description);setTimeoutValue(a.evidence.plan.timeout_seconds);link(a.id);
+      setPlan({id:a.plan_id,plan:a.evidence.plan});setRuntime(a.evidence.plan.runtime);setTests(JSON.stringify(a.evidence.plan.tests));setSetup(JSON.stringify(a.evidence.plan.setup));setCwd(a.evidence.plan.working_directory);setDescription(a.evidence.plan.test_description);setTimeoutValue(a.evidence.plan.timeout_seconds);link(a.id,campaign);
     });
   }
-  useEffect(()=>{let disposed=false; (async()=>{const [rs,hs]=await Promise.all([api<Runtime[]>("/repository-audits/runtimes"),api<Saved[]>("/repository-audits/runs")]);if(disposed)return;setRuntimes(rs);setSaved(hs);const id=new URLSearchParams(location.search).get("repositoryAudit");if(id)await open(id);})().catch(e=>{if(!disposed)setError(String(e));});return()=>{disposed=true;epoch.current++;};},[]);
+  useEffect(()=>{let disposed=false; (async()=>{const [rs,hs]=await Promise.all([api<Runtime[]>("/repository-audits/runtimes"),api<Saved[]>("/repository-audits/runs")]);if(disposed)return;setRuntimes(rs);setSaved(hs);const params=new URLSearchParams(location.search),id=params.get("repositoryAudit");if(id)await open(id,params.get("campaign")==="g3");})().catch(e=>{if(!disposed)setError(String(e));});return()=>{disposed=true;epoch.current++;};},[]);
   useEffect(()=>{if(!audit||!running)return;let disposed=false;const id=audit.id,c=audit.evidence.candidate,token=epoch.current;let timer:ReturnType<typeof setTimeout>;
     async function poll(){try{const a=checked(await api<Audit>(`/repository-audits/runs/${id}`),id,c);if(disposed||token!==epoch.current)return;setAudit(a);if(a.status!=="running"){await refresh();return;}}catch(e){if(!disposed&&token===epoch.current)setError(String(e));}if(!disposed&&token===epoch.current)timer=setTimeout(poll,700);}
     timer=setTimeout(poll,700);return()=>{disposed=true;clearTimeout(timer);};},[audit?.id,running]);
@@ -51,10 +53,13 @@ export default function RepositoryAudit() {
     <nav className="evaluation-nav"><strong>Patch Audit · local owner</strong><div><a href="/?workspace=debugger">Debugger</a>{" · "}<a href="/recorded/">Recorded examples</a></div></nav>
     <header className="evaluation-intro"><span className="eyebrow">EXTERNAL REPOSITORY · EXPERIMENTAL · LOCAL ONLY</span><h1>Bring your own repository</h1><p>Review a completed patch and run selected existing tests at an exact GitHub commit. Optionally add separately justified behavioral requirements and a validated independent-check plan.</p></header>
     {error&&<p role="alert" className="error-banner">{error}</p>}
+    <RepositoryCampaign disabled={busy||running} onSelect={()=>invalidate(true)} onOpen={id=>open(id,true)}/>
     {audit&&<section className="evaluation-panel audit-result" aria-label="External audit result"><div className="evaluation-heading"><h2>{source?.repository}</h2><strong role="status">{words(audit.status)}</strong></div>
       <p>{running?"Running the approved plan in a disposable local container.":audit.status==="tests_passed"?"The selected ordinary test command exited successfully. This does not independently verify the patch.":result?.reason??audit.evidence.reason??"Inspect the command outcomes below."}</p>
       <div className="evaluation-phases"><article><h3>Ordinary repository tests</h3><strong>{ordinary?words(ordinary.status):"No completed evidence"}</strong><p>Test counts: unknown. Exact output is retained.</p></article><article><h3>Independent behavioral verification</h3><strong>{independentResult&&independentResult.status!=="not_configured"?words(independentResult.status):"Not configured"}</strong><p>Only the named approved requirements are evaluated. A pass does not establish complete correctness.</p></article></div>
-      <p><a href={`/api/repository-audits/runs/${audit.id}/evidence`} download>Download repository evidence</a>{" · "}<button onClick={()=>navigator.clipboard.writeText(location.href).catch(e=>setError(String(e)))}>Copy saved audit link</button></p>
+      {retained&&<p>Saved G3 campaign evidence · no new execution on reopening.</p>}
+      <p><a href={retained?`/api/repository-audits/campaigns/g3/runs/${audit.id}`:`/api/repository-audits/runs/${audit.id}/evidence`} download>Download repository evidence</a>{" · "}<button onClick={()=>navigator.clipboard.writeText(location.href).catch(e=>setError(String(e)))}>Copy saved audit link</button></p>
+      <details><summary>Candidate provenance and exact admitted patch</summary><pre>{JSON.stringify(candidate,null,2)}</pre></details>
       {running&&<button onClick={()=>api(`/repository-audits/runs/${audit.id}/cancel`,{method:"POST"}).catch(e=>setError(String(e)))}>Cancel repository audit</button>}
       {[...(ordinary?.commands??[]),...(independentResult?.execution?.commands??[])].map((c,i)=><details key={i}><summary>{c.phase}: {c.exit_code===null?words(c.status):`exit ${c.exit_code}`} · {JSON.stringify(c.argv)}</summary><p>{(c.duration_ms/1000).toFixed(2)} seconds{c.output_truncated&&" · output limit reached; retained output is incomplete"}</p><pre>{c.stdout||"No stdout"}</pre><pre>{c.stderr||"No stderr"}</pre></details>)}
       {independentResult?.checks&&<section aria-label="Independent assertion observations"><h3>Expected versus observed</h3>{independentResult.checks.map(c=>{const requirement=audit.evidence.verification?.requirements.find(r=>r.id===c.requirement_id);return <article key={c.id}><h4>{c.id} · {words(c.status)}</h4>{requirement&&<p><strong>{requirement.statement}</strong></p>}<p>Requirement <code>{c.requirement_id}</code></p><pre>{JSON.stringify({input:c.input,expected:c.expected,observed:c.observed,error:c.error},null,2)}</pre>{requirement&&<details><summary>Requirement provenance and assumptions</summary><p>Expected behavior: {requirement.expected_behavior}</p><p>Source ({words(requirement.provenance.origin)}): {requirement.provenance.reference}</p><blockquote>{requirement.provenance.excerpt}</blockquote><p>{requirement.provenance.justification}</p><p>Supported domain: {requirement.input_domain}</p><pre>{JSON.stringify(requirement.assumptions,null,2)}</pre></details>}</article>;})}</section>}

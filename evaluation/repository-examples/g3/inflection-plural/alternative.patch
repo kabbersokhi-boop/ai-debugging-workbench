@@ -1,0 +1,12 @@
+--- a/inflection.py
++++ b/inflection.py
+@@ -422,3 +422,9 @@
+ _irregular('move', 'moves')
+ _irregular('cow', 'kine')
+ _irregular('zombie', 'zombies')
++
++_g3_pluralize = pluralize
++def pluralize(word):
++    if word in ("passerby", "passersby"):
++        return "passersby"
++    return _g3_pluralize(word)

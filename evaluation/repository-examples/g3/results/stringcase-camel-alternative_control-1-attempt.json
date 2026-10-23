@@ -1,0 +1,17 @@
+{
+  "campaign_sha256": "7d521577539d910c9a86b546bf775a56b0d0f200c9da477c36140a055f4df161",
+  "case": "stringcase-camel",
+  "role": "alternative_control",
+  "trial": 1,
+  "payload": {
+    "candidate_id": "520cb05a10929aea14fac55ab046a6f7a0a8bd4662e2b907a947747699c0473c",
+    "plan_id": "7d391392595bc7998e545bdf0f5ceeea2f48d924f99f7b1be8b8031436bc3ae9",
+    "verification_id": "c4144f78ca26ebaabeb6a35536d0c86000f2c5f58eabf5704a8fa0b2dfa84d1a",
+    "approve_independent_plan": true,
+    "approve_exact_plan": true,
+    "confirm_local_execution": true,
+    "stage": "validation"
+  },
+  "started_at": "2026-10-22T19:16:25.010406+00:00",
+  "run_id": "fe7a50c9-79d5-4a80-8631-d0195647c303"
+}

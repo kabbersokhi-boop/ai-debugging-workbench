@@ -1,0 +1,222 @@
+{
+  "verified_records": 36,
+  "new_executions_started": 0,
+  "records": [
+    {
+      "category": "G3",
+      "audit_id": "ae3cd3f0-cd6f-4376-bdd7-497e6ec32d5a",
+      "identity": "32508d5c31b9f898151ef3db742eb8cc569f27114e58b388528e55b77b682e81",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "63fd61c1-15b4-4c22-b773-abc7eef7532b",
+      "identity": "e08d5af7f97633d2d92aa4376b0eba132e65ea741c1470e816a24f96ad710374",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "5e27f30a-ec58-43b2-aaf0-c39fbddd4eee",
+      "identity": "5c329783cd4e2ea462a582eb47407b04a265221ef81524b7b29b71464ce0f453",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "fe7a50c9-79d5-4a80-8631-d0195647c303",
+      "identity": "b154784dc2ee0335e061314217f31ee6f4961788e096fd49e739758d5fb221d1",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "89f73d21-3489-424c-bc3f-4c4801a484af",
+      "identity": "971ceca13bd03a23b09016aaa2ec86f0adde0ab49fd9768a28f6310e2e1641a4",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "ca30d5cb-8b49-4626-9c09-d810c6326688",
+      "identity": "3e962d19fb7482647e529eac869ca85bb851a2e0c1691bd89bc60a0c30997dc4",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "a0001fec-31e3-4bc0-8130-b33deee0a80e",
+      "identity": "e429234112ea60f8730f22083f5e15686b63c76eee0ef5d114c55c8bb38a47ca",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "a58b2404-67d0-44f2-8ecf-0c32e5fec532",
+      "identity": "b7e2108302e0a5e592af7c5f359326d2ab84924374cdb536802c522a7a152f1c",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "29f4b065-9114-4590-8eb2-0702b42489b5",
+      "identity": "f7cbf84c41a8d0e6d61805df4893f98dd0e93fd4afae299f39c9deafc214fa86",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "b270d251-f627-4adf-9613-a7636ffa09eb",
+      "identity": "fa368c37e46a6c3b873ff3b919a6dfb974361c9d2ad1e3cad3dc007931489e01",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "f0adc20d-3724-4d61-bdc5-9adb56c2e199",
+      "identity": "9b20b6cd73869c1ba7cd5d30a961f159d718d76f27baf6be809adceef3016df9",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "7eb78481-9b57-4158-b22b-6fdc8ce9683b",
+      "identity": "9e13786f9837ae49e4e01e7905ce3e78bfebdd18f8276a75863ba2d2e58e0ea8",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "a56af26c-1cd2-42b6-b686-463b044149b7",
+      "identity": "91b7dd0fc7c199b078875eb90386dadd2329c174c6d37fba7192e1b4fad5bed2",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "8eb14068-c9ad-4a6e-8544-67c4cd1ca451",
+      "identity": "0e64ae66545260d2efdb12d1ffab0b00bace8622d27e89080b3c2734c52e72d3",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "cbf9e630-07ab-4124-a506-3119be14c77a",
+      "identity": "184dbfda1c3f128ccb793639c333f394e4036abad4b1206affc9de0089bee309",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "d496a202-1054-489f-9c2b-72b0e0c765f9",
+      "identity": "c9ce8fd53992ac10dd7cda30bf0e35dc00631520c7f811e3fecb310db2bc8755",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "c885dbcb-9366-451d-883d-253663e0a20f",
+      "identity": "66a2ab12ccb0a30993b6b9886bd4f96bfe289414f5650c6bdcad02f483306482",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "93af5fa9-caa5-4765-9df2-ac47444dbc8c",
+      "identity": "ae00057405d2b339855ada0e2502b0675adfcf13904bb72b81b3e49f407078c2",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "0fd4b1c6-a3d6-46e2-8400-eb542b45cacb",
+      "identity": "4ccb60902e6b6957eb8900673153a3a7bf4f8d18a9112cc52212fda963317fae",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "a97fb923-5631-475a-a449-96c66162a238",
+      "identity": "94cce4d2a6376f333630de3d3485ffde919e74f7b8536ccb6a2535460a0e3bf9",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "7904500d-3680-46dd-a9d6-8609229979f7",
+      "identity": "7c6a7a6c4295db25ebab61e101801458014afe6e3c7ae48ae7ab57f17e5c2ed1",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "9dc51a4d-4c69-4029-afa8-d05b94a2718b",
+      "identity": "56878380ab9609db1d3fcec1e413b57bfd3c8d33e71987ad91095d1cf0da1758",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "7bcf2c51-c70f-4b62-8f2e-2b9f8c5f76c5",
+      "identity": "aeff037cdfbf2cf82cfba8a32a74ba60bb7e675a43a3835731e1df40eab1fc00",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "7a337fd9-76cd-403b-b58b-e47cfe8d1670",
+      "identity": "a83ac887452c9eac90ad6762d3db2c7f891d1cabdb3ff6ffbe7b818c744a6587",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "bf173fa6-1a80-4fbf-aa5f-463ca0167049",
+      "identity": "83f9cbc31856c039894a08dc499f858e8b8b5ec56b9de80c39eb5942ad8b863f",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "f549fb2f-05e2-489a-affe-68f19348afd9",
+      "identity": "6bf5e8d15ed3a4f4a16838064316795d3b559d2bca4ac156f411378b905e4280",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "d0cce5ba-ded7-4b6c-a574-c94c4fc3399b",
+      "identity": "cbc00d579b6c377c303e53dcf617efa4a07f3646a278a65f0beed2dbcdce9d1a",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "G3",
+      "audit_id": "62df7e08-b9f6-4cd0-b510-99918c6f15f7",
+      "identity": "47a29b95e7cc252ef06c7ed9dfcee5662453d50b48c72991da76e8f55276c5c4",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "original G2",
+      "audit_id": "e656335d-536d-42b3-a387-99cb334195f6",
+      "identity": "ed577e52814ff2a2af10ed2e08687bf664b4f23d2ec86d21848fee1d4745649b",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "original G2",
+      "audit_id": "4a2bab03-6b91-47f8-be2f-255a9494b23b",
+      "identity": "068b587b9757aab0a4b48cd31e6b410993f857f2335f2e38853f623eca4f5332",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "original G2",
+      "audit_id": "40caad16-8dbe-4e24-8287-47c2b614af6b",
+      "identity": "59475e551ca682d419c1b9a49d48497e967672847c8fdf718e192de5345e8cd0",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "original G2",
+      "audit_id": "53f41de0-7160-4925-86ba-2f468ac65f8e",
+      "identity": "a54cfdae9e4d37fb098758b344ab61e25229ee1798ce92f2665fcdf1ab1b122c",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "original G2",
+      "audit_id": "aa37edc3-611c-4a92-a2ae-972fd6d8e330",
+      "identity": "903f1c17f8bf7ce516aead2109915ff3689bf949cdcb42e3f53afaf2d9c7315a",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "original G2",
+      "audit_id": "7ec49cb2-1556-459f-b00c-22b92043090c",
+      "identity": "d14530bc00150d708c5b7f469849f69bae485e4b7074a66bb4c126393a3a4b25",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "original G2",
+      "audit_id": "2dd4fa07-3aa1-4c0d-bb44-930029b37ec1",
+      "identity": "816583c5c554c11fb288ba1b4c382a3da1c1bae686805c584c425d1e367149ef",
+      "reopened_and_downloaded_identically": true
+    },
+    {
+      "category": "original G2",
+      "audit_id": "50fc98ad-3426-48e7-a272-791ac4fe9436",
+      "identity": "265284c6a1fb317b61d4e60f326aae2b4e3e005654052c20ce9c982682ed7017",
+      "reopened_and_downloaded_identically": true
+    }
+  ]
+}

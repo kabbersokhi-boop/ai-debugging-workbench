@@ -1,0 +1,4 @@
+{
+  "flatten-recursive": "Unchanged ordinary baseline imports array-flatten, absent offline; retain completed reference/alternative executions, no formal scoring.",
+  "flatten-for": "Intake rejects benchmark/code/arr-flatten-0.1.0 (do-while).js under the accepted path contract. No execution admitted."
+}

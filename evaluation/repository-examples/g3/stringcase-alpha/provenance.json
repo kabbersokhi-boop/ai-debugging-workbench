@@ -1,0 +1,18 @@
+{
+  "repository": "okunishinishi/python-stringcase",
+  "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+  "base_commit": "cc7d5eb58ff4a959a508c3f2296459daf7c3a1f2",
+  "reference": "https://github.com/okunishinishi/python-stringcase/commit/fdf27a6734482564747138bdf7a351d482a20ea9",
+  "message": "Fix alphanumcase for Python 3",
+  "authorship": "upstream developer submission; no model execution provenance claimed",
+  "author_login": "flou",
+  "original_sha256": "5a7a640695ab170eeac1e97497aeb9c56927a8ca9dbf38cdc72b338e07552324",
+  "admitted_sha256": "5a7a640695ab170eeac1e97497aeb9c56927a8ca9dbf38cdc72b338e07552324",
+  "projection": "all existing production hunks retained; all test hunks excluded consistently",
+  "changed_files": [
+    {
+      "path": "stringcase.py",
+      "status": "modified"
+    }
+  ]
+}

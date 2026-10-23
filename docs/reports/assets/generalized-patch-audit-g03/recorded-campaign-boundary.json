@@ -1,0 +1,15 @@
+{
+  "checks": [
+    {
+      "path": "/api/repository-audits/campaigns/g3",
+      "GET": 404,
+      "POST": 405
+    },
+    {
+      "path": "/api/repository-audits/campaigns/g3/runs/a58b2404-67d0-44f2-8ecf-0c32e5fec532",
+      "GET": 404,
+      "POST": 405
+    }
+  ],
+  "live_execution_slots": 0
+}

@@ -8,7 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import JSONResponse, PlainTextResponse
 from sqlalchemy import select
 
-from workbench.config import settings
+from workbench.config import ROOT, settings
 from workbench.db import (
     RepositoryAudit,
     RepositoryCandidate,
@@ -21,6 +21,7 @@ from workbench.db import (
 from workbench.evaluator.catalog import identity
 from workbench.patch_audit.routes import local_only
 from workbench.repository_audit.admission import admit, check_plan
+from workbench.repository_audit.campaign import retained_campaign
 from workbench.repository_audit.contracts import Confirm, Import, Intake, Plan
 from workbench.repository_audit.intake import Rejected, fetch, summary
 from workbench.repository_audit.service import load, material, store, view
@@ -33,6 +34,39 @@ from workbench.repository_audit.verification import (
 
 router = APIRouter(prefix="/api/repository-audits", dependencies=[Depends(local_only)])
 FETCH_LOCK = asyncio.Lock()
+CAMPAIGN_ROOT = ROOT / "evaluation/repository-examples/g3"
+
+
+@router.get("/campaigns/g3")
+async def campaign_summary():
+    try:
+        summary, _ = await asyncio.to_thread(retained_campaign, CAMPAIGN_ROOT)
+        return summary
+    except FileNotFoundError:
+        raise HTTPException(404, "G3 retained campaign is not installed") from None
+    except (ValueError, KeyError, TypeError, OSError):
+        raise HTTPException(
+            409, "Campaign evidence failed validation; no scores available"
+        ) from None
+
+
+@router.get("/campaigns/g3/runs/{audit_id}")
+async def campaign_audit(audit_id: UUID):
+    try:
+        _, audits = await asyncio.to_thread(retained_campaign, CAMPAIGN_ROOT)
+        audit = audits.get(str(audit_id))
+        if audit is None:
+            raise HTTPException(404, "Audit is not part of the retained G3 campaign")
+        return JSONResponse(
+            audit,
+            headers={"Content-Disposition": f'attachment; filename="g3-{audit_id}.json"'},
+        )
+    except FileNotFoundError:
+        raise HTTPException(404, "G3 retained campaign is not installed") from None
+    except (ValueError, KeyError, TypeError, OSError):
+        raise HTTPException(
+            409, "Campaign evidence failed validation; no result available"
+        ) from None
 
 
 @router.post("/sources", status_code=201)

@@ -1,0 +1,17 @@
+{
+  "campaign_sha256": "7d521577539d910c9a86b546bf775a56b0d0f200c9da477c36140a055f4df161",
+  "case": "inflection-plural",
+  "role": "alternative",
+  "trial": 1,
+  "payload": {
+    "candidate_id": "57f1763bf6e9cd82c87bace01063f315e749fa13599d01820b52b5d995a48d02",
+    "plan_id": "54dd6884035ce3f4b1fd068b5dde20f38be18049d63c6ab51400d32700c7e96e",
+    "verification_id": "f0c9ac1f9d8a49f8e2bb09500fa515e1af35c53a5f259ea7cfb4015bdcd0e4b7",
+    "approve_independent_plan": true,
+    "approve_exact_plan": true,
+    "confirm_local_execution": true,
+    "validation_run_id": "0fd4b1c6-a3d6-46e2-8400-eb542b45cacb"
+  },
+  "started_at": "2026-10-22T19:15:45.543085+00:00",
+  "run_id": "f0adc20d-3724-4d61-bdc5-9adb56c2e199"
+}

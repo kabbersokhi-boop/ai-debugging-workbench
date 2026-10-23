@@ -1,0 +1,9 @@
+--- a/inflection.py
++++ b/inflection.py
+@@ -424,3 +424,6 @@
+ _irregular('move', 'moves')
+ _irregular('cow', 'kine')
+ _irregular('zombie', 'zombies')
++
++def titleize(word):
++    return " ".join(w[:1].upper() + w[1:] for w in humanize(underscore(word)).split(" "))

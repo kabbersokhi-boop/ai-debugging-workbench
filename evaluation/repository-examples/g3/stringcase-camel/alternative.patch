@@ -1,0 +1,13 @@
+--- a/stringcase.py
++++ b/stringcase.py
+@@ -243,3 +243,10 @@
+ 
+     """
+     return ''.join(filter(str.isalnum, str(string)))
++
++def camelcase(string):
++    text = str(string)
++    if re.search(r"[-_.\s]", text):
++        words = re.split(r"[-_.\s]+", text.strip("-_ ."))
++        return words[0].lower() + "".join(w.capitalize() for w in words[1:])
++    return text[:1].lower() + text[1:]

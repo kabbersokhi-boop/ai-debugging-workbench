@@ -1,0 +1,5 @@
+{
+  "title": "camelcase String",
+  "body": "```\r\n>>> stringcase.camelcase(\"Shoyoroll Division Division\")\r\n'shoyorollDivision Division'\r\n```\r\n\r\nJoining of camelcase only accounts for lowercase letters\r\n```\r\nre.sub(r\"[\\-_\\.\\s]([a-z])\"\r\n```",
+  "html_url": "https://github.com/okunishinishi/python-stringcase/issues/23"
+}

@@ -1,0 +1,22 @@
+{
+  "repository": "jpvanhal/inflection",
+  "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+  "base_commit": "1969b3a06a9ff06d023863e388cf8af01978d297",
+  "reference": "https://github.com/jpvanhal/inflection/commit/e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+  "message": "Fix titleize() capitalizing only words starting A-Z\n\nFixes #33.",
+  "authorship": "upstream developer submission; no model execution provenance claimed",
+  "author_login": "jpvanhal",
+  "original_sha256": "9457d5412c5da004e0cf9a406b7b5bf04ca38054d7624797406bd419e0bd1c91",
+  "admitted_sha256": "82f47a09eaf2764890726552de693f61a6b83333d2f631ddfc263e6d79090f22",
+  "projection": "all existing production hunks retained; all test hunks excluded consistently",
+  "changed_files": [
+    {
+      "path": "inflection.py",
+      "status": "modified"
+    },
+    {
+      "path": "test_inflection.py",
+      "status": "modified"
+    }
+  ]
+}

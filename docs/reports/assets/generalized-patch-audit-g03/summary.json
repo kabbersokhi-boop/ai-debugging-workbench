@@ -1,0 +1,850 @@
+{
+  "version": "g3-evidence-summary-v1",
+  "campaign_sha256": "7d521577539d910c9a86b546bf775a56b0d0f200c9da477c36140a055f4df161",
+  "scope": "Six genuine upstream production changes at six declared historical bases, three new repositories, Python and Node. Retrospective contract case studies, no inference.",
+  "limitations": [
+    "Small nonrandom retrospective sample, upstream fixes read before assertions; no blindness or general accuracy claim.",
+    "Two flattening performance revisions share one public contract; performance itself is not evaluated.",
+    "Exact finite JSON function calls exclude filesystem/browser/database/distributed behavior and multiple valid encodings.",
+    "Accepted upstream reference overlaps candidate; authored alternatives are not genuine candidate submissions or separate human reviews.",
+    "Selected unchanged baseline files exclude newly added upstream tests, packaging, lint, and other suites.",
+    "No new AI model execution or costs; upstream developer authorship only."
+  ],
+  "counts": {
+    "selected_candidates": 6,
+    "genuine_candidates_executed": 4,
+    "genuine_candidates_admitted": 5,
+    "planned_candidate_audits": 12,
+    "candidate_audits": 8,
+    "control_validations": 10,
+    "reference_audits": 5,
+    "alternative_audits": 5,
+    "fresh_environments": 56,
+    "repeat_disagreements": 0,
+    "candidate_outcomes": {
+      "ordinary_pass_independent_pass": 3,
+      "ordinary_failure": 1,
+      "unsupported_environment": 1,
+      "unsupported_source": 1
+    }
+  },
+  "rows": [
+    {
+      "case": "inflection-plural",
+      "role": "control",
+      "trial": 1,
+      "run_id": "d496a202-1054-489f-9c2b-72b0e0c765f9",
+      "audit_hash": "c9ce8fd53992ac10dd7cda30bf0e35dc00631520c7f811e3fecb310db2bc8755",
+      "file": "inflection-plural-control-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: selected unchanged baseline has 450 passing tests; five specified calls match. Authored alternative also accepted. No universal inflection claim."
+      }
+    },
+    {
+      "case": "inflection-plural",
+      "role": "reference",
+      "trial": 1,
+      "run_id": "7eb78481-9b57-4158-b22b-6fdc8ce9683b",
+      "audit_hash": "9e13786f9837ae49e4e01e7905ce3e78bfebdd18f8276a75863ba2d2e58e0ea8",
+      "file": "inflection-plural-reference-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: selected unchanged baseline has 450 passing tests; five specified calls match. Authored alternative also accepted. No universal inflection claim."
+      }
+    },
+    {
+      "case": "inflection-plural",
+      "role": "alternative_control",
+      "trial": 1,
+      "run_id": "0fd4b1c6-a3d6-46e2-8400-eb542b45cacb",
+      "audit_hash": "4ccb60902e6b6957eb8900673153a3a7bf4f8d18a9112cc52212fda963317fae",
+      "file": "inflection-plural-alternative_control-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: selected unchanged baseline has 450 passing tests; five specified calls match. Authored alternative also accepted. No universal inflection claim."
+      }
+    },
+    {
+      "case": "inflection-plural",
+      "role": "alternative",
+      "trial": 1,
+      "run_id": "f0adc20d-3724-4d61-bdc5-9adb56c2e199",
+      "audit_hash": "9b20b6cd73869c1ba7cd5d30a961f159d718d76f27baf6be809adceef3016df9",
+      "file": "inflection-plural-alternative-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: selected unchanged baseline has 450 passing tests; five specified calls match. Authored alternative also accepted. No universal inflection claim."
+      }
+    },
+    {
+      "case": "inflection-title",
+      "role": "control",
+      "trial": 1,
+      "run_id": "ca30d5cb-8b49-4626-9c09-d810c6326688",
+      "audit_hash": "3e962d19fb7482647e529eac869ca85bb851a2e0c1691bd89bc60a0c30997dc4",
+      "file": "inflection-title-control-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 453 unchanged baseline tests and six Unicode/compatibility calls pass. Apostrophe compatibility was challenged explicitly and passes; no new defect."
+      }
+    },
+    {
+      "case": "inflection-title",
+      "role": "reference",
+      "trial": 1,
+      "run_id": "89f73d21-3489-424c-bc3f-4c4801a484af",
+      "audit_hash": "971ceca13bd03a23b09016aaa2ec86f0adde0ab49fd9768a28f6310e2e1641a4",
+      "file": "inflection-title-reference-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 453 unchanged baseline tests and six Unicode/compatibility calls pass. Apostrophe compatibility was challenged explicitly and passes; no new defect."
+      }
+    },
+    {
+      "case": "inflection-title",
+      "role": "alternative_control",
+      "trial": 1,
+      "run_id": "29f4b065-9114-4590-8eb2-0702b42489b5",
+      "audit_hash": "f7cbf84c41a8d0e6d61805df4893f98dd0e93fd4afae299f39c9deafc214fa86",
+      "file": "inflection-title-alternative_control-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 453 unchanged baseline tests and six Unicode/compatibility calls pass. Apostrophe compatibility was challenged explicitly and passes; no new defect."
+      }
+    },
+    {
+      "case": "inflection-title",
+      "role": "alternative",
+      "trial": 1,
+      "run_id": "ae3cd3f0-cd6f-4376-bdd7-497e6ec32d5a",
+      "audit_hash": "32508d5c31b9f898151ef3db742eb8cc569f27114e58b388528e55b77b682e81",
+      "file": "inflection-title-alternative-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 453 unchanged baseline tests and six Unicode/compatibility calls pass. Apostrophe compatibility was challenged explicitly and passes; no new defect."
+      }
+    },
+    {
+      "case": "stringcase-alpha",
+      "role": "control",
+      "trial": 1,
+      "run_id": "7904500d-3680-46dd-a9d6-8609229979f7",
+      "audit_hash": "7c6a7a6c4295db25ebab61e101801458014afe6e3c7ae48ae7ab57f17e5c2ed1",
+      "file": "stringcase-alpha-control-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 13 baseline tests and five ASCII string-filtering calls pass. Alternate regex procedure is accepted on the declared domain. No Unicode-domain claim."
+      }
+    },
+    {
+      "case": "stringcase-alpha",
+      "role": "reference",
+      "trial": 1,
+      "run_id": "9dc51a4d-4c69-4029-afa8-d05b94a2718b",
+      "audit_hash": "56878380ab9609db1d3fcec1e413b57bfd3c8d33e71987ad91095d1cf0da1758",
+      "file": "stringcase-alpha-reference-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 13 baseline tests and five ASCII string-filtering calls pass. Alternate regex procedure is accepted on the declared domain. No Unicode-domain claim."
+      }
+    },
+    {
+      "case": "stringcase-alpha",
+      "role": "alternative_control",
+      "trial": 1,
+      "run_id": "d0cce5ba-ded7-4b6c-a574-c94c4fc3399b",
+      "audit_hash": "cbc00d579b6c377c303e53dcf617efa4a07f3646a278a65f0beed2dbcdce9d1a",
+      "file": "stringcase-alpha-alternative_control-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 13 baseline tests and five ASCII string-filtering calls pass. Alternate regex procedure is accepted on the declared domain. No Unicode-domain claim."
+      }
+    },
+    {
+      "case": "stringcase-alpha",
+      "role": "alternative",
+      "trial": 1,
+      "run_id": "cbf9e630-07ab-4124-a506-3119be14c77a",
+      "audit_hash": "184dbfda1c3f128ccb793639c333f394e4036abad4b1206affc9de0089bee309",
+      "file": "stringcase-alpha-alternative-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 13 baseline tests and five ASCII string-filtering calls pass. Alternate regex procedure is accepted on the declared domain. No Unicode-domain claim."
+      }
+    },
+    {
+      "case": "stringcase-camel",
+      "role": "control",
+      "trial": 1,
+      "run_id": "7a337fd9-76cd-403b-b58b-e47cfe8d1670",
+      "audit_hash": "a83ac887452c9eac90ad6762d3db2c7f891d1cabdb3ff6ffbe7b818c744a6587",
+      "file": "stringcase-camel-control-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "ordinary_failure",
+        "root_cause": "Whole-input lowercasing destroys existing internal capitals.",
+        "explanation": "Reproduced historical regression in authentic accepted upstream f79de04e. Base README explicitly says camelcase(FooBarBaz) returns fooBarBaz; actual output is foobarbaz. The unchanged test independently fails on FooBar -> foobar (12 passed / 1 failed). Both formal trials reproduce it. Authored alternate preserves capitals and joins reported spaced words; all assertions and baseline tests pass. This is a candidate/reference behavior disagreement, not a check error, and zero additional independent detection because ordinary checks already fail. No new upstream discovery claimed.",
+        "sources": [
+          "stringcase-camel/base-README.rst",
+          "stringcase-camel/base-stringcase_test.py",
+          "https://github.com/okunishinishi/python-stringcase/pull/24",
+          "camel-issue.json"
+        ]
+      }
+    },
+    {
+      "case": "stringcase-camel",
+      "role": "reference",
+      "trial": 1,
+      "run_id": "7bcf2c51-c70f-4b62-8f2e-2b9f8c5f76c5",
+      "audit_hash": "aeff037cdfbf2cf82cfba8a32a74ba60bb7e675a43a3835731e1df40eab1fc00",
+      "file": "stringcase-camel-reference-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+      "ordinary": "tests_failed",
+      "independent": "assertions_failed",
+      "classification": "ordinary_failure",
+      "assessment": {
+        "classification": "ordinary_failure",
+        "root_cause": "Whole-input lowercasing destroys existing internal capitals.",
+        "explanation": "Reproduced historical regression in authentic accepted upstream f79de04e. Base README explicitly says camelcase(FooBarBaz) returns fooBarBaz; actual output is foobarbaz. The unchanged test independently fails on FooBar -> foobar (12 passed / 1 failed). Both formal trials reproduce it. Authored alternate preserves capitals and joins reported spaced words; all assertions and baseline tests pass. This is a candidate/reference behavior disagreement, not a check error, and zero additional independent detection because ordinary checks already fail. No new upstream discovery claimed.",
+        "sources": [
+          "stringcase-camel/base-README.rst",
+          "stringcase-camel/base-stringcase_test.py",
+          "https://github.com/okunishinishi/python-stringcase/pull/24",
+          "camel-issue.json"
+        ]
+      }
+    },
+    {
+      "case": "stringcase-camel",
+      "role": "alternative_control",
+      "trial": 1,
+      "run_id": "fe7a50c9-79d5-4a80-8631-d0195647c303",
+      "audit_hash": "b154784dc2ee0335e061314217f31ee6f4961788e096fd49e739758d5fb221d1",
+      "file": "stringcase-camel-alternative_control-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "ordinary_failure",
+        "root_cause": "Whole-input lowercasing destroys existing internal capitals.",
+        "explanation": "Reproduced historical regression in authentic accepted upstream f79de04e. Base README explicitly says camelcase(FooBarBaz) returns fooBarBaz; actual output is foobarbaz. The unchanged test independently fails on FooBar -> foobar (12 passed / 1 failed). Both formal trials reproduce it. Authored alternate preserves capitals and joins reported spaced words; all assertions and baseline tests pass. This is a candidate/reference behavior disagreement, not a check error, and zero additional independent detection because ordinary checks already fail. No new upstream discovery claimed.",
+        "sources": [
+          "stringcase-camel/base-README.rst",
+          "stringcase-camel/base-stringcase_test.py",
+          "https://github.com/okunishinishi/python-stringcase/pull/24",
+          "camel-issue.json"
+        ]
+      }
+    },
+    {
+      "case": "stringcase-camel",
+      "role": "alternative",
+      "trial": 1,
+      "run_id": "5e27f30a-ec58-43b2-aaf0-c39fbddd4eee",
+      "audit_hash": "5c329783cd4e2ea462a582eb47407b04a265221ef81524b7b29b71464ce0f453",
+      "file": "stringcase-camel-alternative-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "ordinary_failure",
+        "root_cause": "Whole-input lowercasing destroys existing internal capitals.",
+        "explanation": "Reproduced historical regression in authentic accepted upstream f79de04e. Base README explicitly says camelcase(FooBarBaz) returns fooBarBaz; actual output is foobarbaz. The unchanged test independently fails on FooBar -> foobar (12 passed / 1 failed). Both formal trials reproduce it. Authored alternate preserves capitals and joins reported spaced words; all assertions and baseline tests pass. This is a candidate/reference behavior disagreement, not a check error, and zero additional independent detection because ordinary checks already fail. No new upstream discovery claimed.",
+        "sources": [
+          "stringcase-camel/base-README.rst",
+          "stringcase-camel/base-stringcase_test.py",
+          "https://github.com/okunishinishi/python-stringcase/pull/24",
+          "camel-issue.json"
+        ]
+      }
+    },
+    {
+      "case": "flatten-recursive",
+      "role": "control",
+      "trial": 1,
+      "run_id": "c885dbcb-9366-451d-883d-253663e0a20f",
+      "audit_hash": "66a2ab12ccb0a30993b6b9886bd4f96bfe289414f5650c6bdcad02f483306482",
+      "file": "flatten-recursive-control-1.json.gz",
+      "repository": "jonschlinkert/arr-flatten",
+      "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "unsupported_environment",
+        "explanation": "Both retained reference and authored-alternative ordinary commands fail before tests can run: MODULE_NOT_FOUND for array-flatten imported by unchanged test.js. Independent dense-array checks pass for both. This is unsupported offline test setup, not a production defect or false alarm. No formal candidate audits were performed."
+      }
+    },
+    {
+      "case": "flatten-recursive",
+      "role": "reference",
+      "trial": 1,
+      "run_id": "b270d251-f627-4adf-9613-a7636ffa09eb",
+      "audit_hash": "fa368c37e46a6c3b873ff3b919a6dfb974361c9d2ad1e3cad3dc007931489e01",
+      "file": "flatten-recursive-reference-1.json.gz",
+      "repository": "jonschlinkert/arr-flatten",
+      "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "ordinary": "tests_failed",
+      "independent": "checks_passed",
+      "classification": "unsupported_environment",
+      "assessment": {
+        "classification": "unsupported_environment",
+        "explanation": "Both retained reference and authored-alternative ordinary commands fail before tests can run: MODULE_NOT_FOUND for array-flatten imported by unchanged test.js. Independent dense-array checks pass for both. This is unsupported offline test setup, not a production defect or false alarm. No formal candidate audits were performed."
+      }
+    },
+    {
+      "case": "flatten-recursive",
+      "role": "alternative_control",
+      "trial": 1,
+      "run_id": "a0001fec-31e3-4bc0-8130-b33deee0a80e",
+      "audit_hash": "e429234112ea60f8730f22083f5e15686b63c76eee0ef5d114c55c8bb38a47ca",
+      "file": "flatten-recursive-alternative_control-1.json.gz",
+      "repository": "jonschlinkert/arr-flatten",
+      "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "ordinary": "not_run",
+      "independent": "not_run",
+      "classification": "control",
+      "assessment": {
+        "classification": "unsupported_environment",
+        "explanation": "Both retained reference and authored-alternative ordinary commands fail before tests can run: MODULE_NOT_FOUND for array-flatten imported by unchanged test.js. Independent dense-array checks pass for both. This is unsupported offline test setup, not a production defect or false alarm. No formal candidate audits were performed."
+      }
+    },
+    {
+      "case": "flatten-recursive",
+      "role": "alternative",
+      "trial": 1,
+      "run_id": "93af5fa9-caa5-4765-9df2-ac47444dbc8c",
+      "audit_hash": "ae00057405d2b339855ada0e2502b0675adfcf13904bb72b81b3e49f407078c2",
+      "file": "flatten-recursive-alternative-1.json.gz",
+      "repository": "jonschlinkert/arr-flatten",
+      "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "ordinary": "tests_failed",
+      "independent": "checks_passed",
+      "classification": "unsupported_environment",
+      "assessment": {
+        "classification": "unsupported_environment",
+        "explanation": "Both retained reference and authored-alternative ordinary commands fail before tests can run: MODULE_NOT_FOUND for array-flatten imported by unchanged test.js. Independent dense-array checks pass for both. This is unsupported offline test setup, not a production defect or false alarm. No formal candidate audits were performed."
+      }
+    },
+    {
+      "case": "inflection-plural",
+      "role": "candidate",
+      "trial": 1,
+      "run_id": "a58b2404-67d0-44f2-8ecf-0c32e5fec532",
+      "audit_hash": "b7e2108302e0a5e592af7c5f359326d2ab84924374cdb536802c522a7a152f1c",
+      "file": "inflection-plural-candidate-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: selected unchanged baseline has 450 passing tests; five specified calls match. Authored alternative also accepted. No universal inflection claim."
+      }
+    },
+    {
+      "case": "inflection-plural",
+      "role": "candidate",
+      "trial": 2,
+      "run_id": "f549fb2f-05e2-489a-affe-68f19348afd9",
+      "audit_hash": "6bf5e8d15ed3a4f4a16838064316795d3b559d2bca4ac156f411378b905e4280",
+      "file": "inflection-plural-candidate-2.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: selected unchanged baseline has 450 passing tests; five specified calls match. Authored alternative also accepted. No universal inflection claim."
+      }
+    },
+    {
+      "case": "inflection-title",
+      "role": "candidate",
+      "trial": 1,
+      "run_id": "a97fb923-5631-475a-a449-96c66162a238",
+      "audit_hash": "94cce4d2a6376f333630de3d3485ffde919e74f7b8536ccb6a2535460a0e3bf9",
+      "file": "inflection-title-candidate-1.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 453 unchanged baseline tests and six Unicode/compatibility calls pass. Apostrophe compatibility was challenged explicitly and passes; no new defect."
+      }
+    },
+    {
+      "case": "inflection-title",
+      "role": "candidate",
+      "trial": 2,
+      "run_id": "8eb14068-c9ad-4a6e-8544-67c4cd1ca451",
+      "audit_hash": "0e64ae66545260d2efdb12d1ffab0b00bace8622d27e89080b3c2734c52e72d3",
+      "file": "inflection-title-candidate-2.json.gz",
+      "repository": "jpvanhal/inflection",
+      "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 453 unchanged baseline tests and six Unicode/compatibility calls pass. Apostrophe compatibility was challenged explicitly and passes; no new defect."
+      }
+    },
+    {
+      "case": "stringcase-alpha",
+      "role": "candidate",
+      "trial": 1,
+      "run_id": "63fd61c1-15b4-4c22-b773-abc7eef7532b",
+      "audit_hash": "e08d5af7f97633d2d92aa4376b0eba132e65ea741c1470e816a24f96ad710374",
+      "file": "stringcase-alpha-candidate-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 13 baseline tests and five ASCII string-filtering calls pass. Alternate regex procedure is accepted on the declared domain. No Unicode-domain claim."
+      }
+    },
+    {
+      "case": "stringcase-alpha",
+      "role": "candidate",
+      "trial": 2,
+      "run_id": "bf173fa6-1a80-4fbf-aa5f-463ca0167049",
+      "audit_hash": "83f9cbc31856c039894a08dc499f858e8b8b5ec56b9de80c39eb5942ad8b863f",
+      "file": "stringcase-alpha-candidate-2.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+      "ordinary": "tests_passed",
+      "independent": "checks_passed",
+      "classification": "ordinary_pass_independent_pass",
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 13 baseline tests and five ASCII string-filtering calls pass. Alternate regex procedure is accepted on the declared domain. No Unicode-domain claim."
+      }
+    },
+    {
+      "case": "stringcase-camel",
+      "role": "candidate",
+      "trial": 1,
+      "run_id": "a56af26c-1cd2-42b6-b686-463b044149b7",
+      "audit_hash": "91b7dd0fc7c199b078875eb90386dadd2329c174c6d37fba7192e1b4fad5bed2",
+      "file": "stringcase-camel-candidate-1.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+      "ordinary": "tests_failed",
+      "independent": "assertions_failed",
+      "classification": "ordinary_failure",
+      "assessment": {
+        "classification": "ordinary_failure",
+        "root_cause": "Whole-input lowercasing destroys existing internal capitals.",
+        "explanation": "Reproduced historical regression in authentic accepted upstream f79de04e. Base README explicitly says camelcase(FooBarBaz) returns fooBarBaz; actual output is foobarbaz. The unchanged test independently fails on FooBar -> foobar (12 passed / 1 failed). Both formal trials reproduce it. Authored alternate preserves capitals and joins reported spaced words; all assertions and baseline tests pass. This is a candidate/reference behavior disagreement, not a check error, and zero additional independent detection because ordinary checks already fail. No new upstream discovery claimed.",
+        "sources": [
+          "stringcase-camel/base-README.rst",
+          "stringcase-camel/base-stringcase_test.py",
+          "https://github.com/okunishinishi/python-stringcase/pull/24",
+          "camel-issue.json"
+        ]
+      }
+    },
+    {
+      "case": "stringcase-camel",
+      "role": "candidate",
+      "trial": 2,
+      "run_id": "62df7e08-b9f6-4cd0-b510-99918c6f15f7",
+      "audit_hash": "47a29b95e7cc252ef06c7ed9dfcee5662453d50b48c72991da76e8f55276c5c4",
+      "file": "stringcase-camel-candidate-2.json.gz",
+      "repository": "okunishinishi/python-stringcase",
+      "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+      "ordinary": "tests_failed",
+      "independent": "assertions_failed",
+      "classification": "ordinary_failure",
+      "assessment": {
+        "classification": "ordinary_failure",
+        "root_cause": "Whole-input lowercasing destroys existing internal capitals.",
+        "explanation": "Reproduced historical regression in authentic accepted upstream f79de04e. Base README explicitly says camelcase(FooBarBaz) returns fooBarBaz; actual output is foobarbaz. The unchanged test independently fails on FooBar -> foobar (12 passed / 1 failed). Both formal trials reproduce it. Authored alternate preserves capitals and joins reported spaced words; all assertions and baseline tests pass. This is a candidate/reference behavior disagreement, not a check error, and zero additional independent detection because ordinary checks already fail. No new upstream discovery claimed.",
+        "sources": [
+          "stringcase-camel/base-README.rst",
+          "stringcase-camel/base-stringcase_test.py",
+          "https://github.com/okunishinishi/python-stringcase/pull/24",
+          "camel-issue.json"
+        ]
+      }
+    }
+  ],
+  "cases": [
+    {
+      "key": "inflection-plural",
+      "repository": "jpvanhal/inflection",
+      "base_commit": "2d2d37951f6c8871d27a1c74a2c0c1fe6a9354fb",
+      "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "provenance": {
+        "repository": "jpvanhal/inflection",
+        "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+        "base_commit": "2d2d37951f6c8871d27a1c74a2c0c1fe6a9354fb",
+        "reference": "https://github.com/jpvanhal/inflection/commit/1969b3a06a9ff06d023863e388cf8af01978d297",
+        "message": "Fixed \"passerby\" pluralized as \"passerbys\" and not \"passersby\"",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "frodo821",
+        "original_sha256": "60fef5ebc26538fe641ef8584eaf4893ddf4bdace3b5d2b749b78c88a04d7236",
+        "admitted_sha256": "109b082a90c4578476a8228e1c39ddea2c620fcdecd21a8dde2165ee2429346f",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "inflection.py",
+            "status": "modified"
+          },
+          {
+            "path": "test_inflection.py",
+            "status": "modified"
+          }
+        ]
+      },
+      "requirement": {
+        "statement": "Return the conventional formal plural passersby and preserve ordinary documented pluralization.",
+        "expected_behavior": "Return the conventional formal plural passersby and preserve ordinary documented pluralization.",
+        "input_domain": "Lowercase passerby/passersby, cat, ox and empty string; singularize is outside this independent plan.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "public_api_contract",
+          "reference": "https://github.com/jpvanhal/inflection/pull/40",
+          "excerpt": "The word _passerby_ has an irregular form of plural, which is formal _passersby_ or colloquial _passerby_.",
+          "excerpt_hash": "63f438dfdc1e5c9c771caa41d9fc7fc5c1e87bb55dea31cba0fa1168635a425c",
+          "justification": "The requested formal irregular plural is passersby. Already plural input remains plural. Existing pluralize documentation defines pluralization, with cat/ox and empty-string compatibility checks.",
+          "independent_of_candidate": true
+        }
+      },
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: selected unchanged baseline has 450 passing tests; five specified calls match. Authored alternative also accepted. No universal inflection claim."
+      }
+    },
+    {
+      "key": "inflection-title",
+      "repository": "jpvanhal/inflection",
+      "base_commit": "1969b3a06a9ff06d023863e388cf8af01978d297",
+      "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+      "provenance": {
+        "repository": "jpvanhal/inflection",
+        "revision": "e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+        "base_commit": "1969b3a06a9ff06d023863e388cf8af01978d297",
+        "reference": "https://github.com/jpvanhal/inflection/commit/e32443bb7dc1ba91a15336b5baab908d25f4b93a",
+        "message": "Fix titleize() capitalizing only words starting A-Z\n\nFixes #33.",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "jpvanhal",
+        "original_sha256": "9457d5412c5da004e0cf9a406b7b5bf04ca38054d7624797406bd419e0bd1c91",
+        "admitted_sha256": "82f47a09eaf2764890726552de693f61a6b83333d2f631ddfc263e6d79090f22",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "inflection.py",
+            "status": "modified"
+          },
+          {
+            "path": "test_inflection.py",
+            "status": "modified"
+          }
+        ]
+      },
+      "requirement": {
+        "statement": "Capitalize words including accented initials while preserving an internal apostrophe.",
+        "expected_behavior": "Capitalize words including accented initials while preserving an internal apostrophe.",
+        "input_domain": "Space-separated ordinary words, accented Latin initials, one ASCII possessive and empty string; no locale-specific case folding.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "public_api_contract",
+          "reference": "https://github.com/jpvanhal/inflection/issues/33",
+          "excerpt": "titleize('Ana \u00cdndia') -> 'Ana \u00edndia' but it should be 'Ana \u00cdndia'",
+          "excerpt_hash": "f986b310a2be0a9fa6ed5d4a684a90380a841fe29970ec2b526d6b79077de712",
+          "justification": "Issue 33 gives the accented expectation explicitly. The base docstring requires capitalizing all words and gives Man From The Boondocks. Standard English possessive spelling preserves lowercase s; the unchanged upstream test independently agrees. Uppercase the initial of each supported word, retain other lowercase letters.",
+          "independent_of_candidate": true
+        }
+      },
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 453 unchanged baseline tests and six Unicode/compatibility calls pass. Apostrophe compatibility was challenged explicitly and passes; no new defect."
+      }
+    },
+    {
+      "key": "stringcase-alpha",
+      "repository": "okunishinishi/python-stringcase",
+      "base_commit": "cc7d5eb58ff4a959a508c3f2296459daf7c3a1f2",
+      "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+      "provenance": {
+        "repository": "okunishinishi/python-stringcase",
+        "revision": "fdf27a6734482564747138bdf7a351d482a20ea9",
+        "base_commit": "cc7d5eb58ff4a959a508c3f2296459daf7c3a1f2",
+        "reference": "https://github.com/okunishinishi/python-stringcase/commit/fdf27a6734482564747138bdf7a351d482a20ea9",
+        "message": "Fix alphanumcase for Python 3",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "flou",
+        "original_sha256": "5a7a640695ab170eeac1e97497aeb9c56927a8ca9dbf38cdc72b338e07552324",
+        "admitted_sha256": "5a7a640695ab170eeac1e97497aeb9c56927a8ca9dbf38cdc72b338e07552324",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "stringcase.py",
+            "status": "modified"
+          }
+        ]
+      },
+      "requirement": {
+        "statement": "Return a string retaining ASCII letters and digits in input order and deleting punctuation/spacing.",
+        "expected_behavior": "Return a string retaining ASCII letters and digits in input order and deleting punctuation/spacing.",
+        "input_domain": "ASCII strings only; Unicode alphanumeric policy and arbitrary object coercion are outside this plan.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/okunishinishi/python-stringcase/blob/cc7d5eb58ff4a959a508c3f2296459daf7c3a1f2/README.rst",
+          "excerpt": "stringcase.alphanumcase('_Foo., Bar') # =>'FooBar'\n    stringcase.alphanumcase('Foo_123 Bar!') # =>'Foo123Bar'",
+          "excerpt_hash": "59cfcf1a4250491774d22197b2c1c876687a5e42d16ab20521f0dac8c42967c4",
+          "justification": "The base README supplies two literal string examples. Remaining values follow the same retain-letters/digits rule character by character, including no retained characters yielding the empty string.",
+          "independent_of_candidate": true
+        }
+      },
+      "assessment": {
+        "classification": "accepted_in_declared_domain",
+        "explanation": "Formal trials agree: 13 baseline tests and five ASCII string-filtering calls pass. Alternate regex procedure is accepted on the declared domain. No Unicode-domain claim."
+      }
+    },
+    {
+      "key": "stringcase-camel",
+      "repository": "okunishinishi/python-stringcase",
+      "base_commit": "50fe41d3c9bebf001f24fc49b89fe023b5eba12c",
+      "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+      "provenance": {
+        "repository": "okunishinishi/python-stringcase",
+        "revision": "f79de04e856be5661208ff5360f183815f8ae760",
+        "base_commit": "50fe41d3c9bebf001f24fc49b89fe023b5eba12c",
+        "reference": "https://github.com/okunishinishi/python-stringcase/commit/f79de04e856be5661208ff5360f183815f8ae760",
+        "message": "Updating camelcase function\n\nAccounts for multiple words in string with Uppercase letters",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "andrewlittlejohn",
+        "original_sha256": "378a3a40725177bbe7ed48ce7d40014924ca0210d52f70dd899fca7159a17859",
+        "admitted_sha256": "378a3a40725177bbe7ed48ce7d40014924ca0210d52f70dd899fca7159a17859",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "stringcase.py",
+            "status": "modified"
+          }
+        ]
+      },
+      "requirement": {
+        "statement": "Join separator-delimited words in lower camel case while preserving documented existing camel-case capitals.",
+        "expected_behavior": "Join separator-delimited words in lower camel case while preserving documented existing camel-case capitals.",
+        "input_domain": "ASCII alphabetic words separated by single spaces, underscores or hyphens; existing PascalCase and empty string; no acronym or digit policy.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/okunishinishi/python-stringcase/blob/50fe41d3c9bebf001f24fc49b89fe023b5eba12c/README.rst",
+          "excerpt": "stringcase.camelcase('foo_bar_baz') # => \"fooBarBaz\"\n    stringcase.camelcase('FooBarBaz') # => \"fooBarBaz\"",
+          "excerpt_hash": "4ee79ccafbbefada8f49344d6cf7ed0615844907896131795f02634bd888b106",
+          "justification": "The exact-base README gives both compatibility values. Issue 23 requests joining Shoyoroll Division Division; each word initial after the first is uppercase, separators disappear. FOO_BAR uses the same delimited-word normalization. The undocumented handling of acronym-only unseparated text is excluded.",
+          "independent_of_candidate": true
+        }
+      },
+      "assessment": {
+        "classification": "ordinary_failure",
+        "root_cause": "Whole-input lowercasing destroys existing internal capitals.",
+        "explanation": "Reproduced historical regression in authentic accepted upstream f79de04e. Base README explicitly says camelcase(FooBarBaz) returns fooBarBaz; actual output is foobarbaz. The unchanged test independently fails on FooBar -> foobar (12 passed / 1 failed). Both formal trials reproduce it. Authored alternate preserves capitals and joins reported spaced words; all assertions and baseline tests pass. This is a candidate/reference behavior disagreement, not a check error, and zero additional independent detection because ordinary checks already fail. No new upstream discovery claimed.",
+        "sources": [
+          "stringcase-camel/base-README.rst",
+          "stringcase-camel/base-stringcase_test.py",
+          "https://github.com/okunishinishi/python-stringcase/pull/24",
+          "camel-issue.json"
+        ]
+      }
+    },
+    {
+      "key": "flatten-recursive",
+      "repository": "jonschlinkert/arr-flatten",
+      "base_commit": "280845c6f384fab8ff07a1395de9568270636528",
+      "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "provenance": {
+        "repository": "jonschlinkert/arr-flatten",
+        "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+        "base_commit": "280845c6f384fab8ff07a1395de9568270636528",
+        "reference": "https://github.com/jonschlinkert/arr-flatten/commit/1597ea90072a2eaff8e523523e0105cac0bf195c",
+        "message": "optimizations",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "jonschlinkert",
+        "original_sha256": "3b2ec4c0a4daf104caa9059626f0699308d8cad833aae015c6d2d48a953c12b3",
+        "admitted_sha256": "3b2ec4c0a4daf104caa9059626f0699308d8cad833aae015c6d2d48a953c12b3",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "index.js",
+            "status": "modified"
+          }
+        ]
+      },
+      "requirement": {
+        "statement": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "expected_behavior": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "input_domain": "Dense finite JSON arrays with nested arrays, objects as leaves, scalars and null; depth at most four in these examples.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/jonschlinkert/arr-flatten/blob/280845c6f384fab8ff07a1395de9568270636528/README.md",
+          "excerpt": "> Recursively flatten an array or arrays. This is the fastest implementation of array flatten.",
+          "excerpt_hash": "5f469cfa169ea3fa1050596c2928b2ff2ad9b95b192cbc6f0d53fb99e5357a3d",
+          "justification": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicate elements are retained. No uniqueness or sorting behavior is specified.",
+          "independent_of_candidate": true
+        }
+      },
+      "assessment": {
+        "classification": "unsupported_environment",
+        "explanation": "Both retained reference and authored-alternative ordinary commands fail before tests can run: MODULE_NOT_FOUND for array-flatten imported by unchanged test.js. Independent dense-array checks pass for both. This is unsupported offline test setup, not a production defect or false alarm. No formal candidate audits were performed."
+      }
+    },
+    {
+      "key": "flatten-for",
+      "repository": "jonschlinkert/arr-flatten",
+      "base_commit": "966022a4a9190ddf8c8936daa80d1a7f9f77ecb3",
+      "revision": "8953ce8522ee6da8a467286c9bce23fc03b7f38e",
+      "provenance": {
+        "repository": "jonschlinkert/arr-flatten",
+        "revision": "8953ce8522ee6da8a467286c9bce23fc03b7f38e",
+        "base_commit": "966022a4a9190ddf8c8936daa80d1a7f9f77ecb3",
+        "reference": "https://github.com/jonschlinkert/arr-flatten/commit/8953ce8522ee6da8a467286c9bce23fc03b7f38e",
+        "message": "improve op/s; while-->for",
+        "authorship": "upstream developer submission; no model execution provenance claimed",
+        "author_login": "lukeed",
+        "original_sha256": "b177b05f1f0837f1a8225b70e4a54299c025239e200648569592dcada2769d8d",
+        "admitted_sha256": "b177b05f1f0837f1a8225b70e4a54299c025239e200648569592dcada2769d8d",
+        "projection": "all existing production hunks retained; all test hunks excluded consistently",
+        "changed_files": [
+          {
+            "path": "index.js",
+            "status": "modified"
+          }
+        ]
+      },
+      "requirement": {
+        "statement": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "expected_behavior": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "input_domain": "Dense finite JSON arrays with nested arrays, objects as leaves, scalars and null; depth at most four in these examples.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "approval": "owner_approved",
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/jonschlinkert/arr-flatten/blob/966022a4a9190ddf8c8936daa80d1a7f9f77ecb3/README.md",
+          "excerpt": "> Recursively flatten an array or arrays.",
+          "excerpt_hash": "7583587c7ebc65bf2256d0c38bef3670563e41cb90fa1f5c21cabba4a2d7e3a9",
+          "justification": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicates remain. Optimization must preserve this public behavior.",
+          "independent_of_candidate": true
+        }
+      },
+      "assessment": {
+        "classification": "unsupported_source",
+        "explanation": "Intake rejects the immutable base tree because benchmark/code/arr-flatten-0.1.0 (do-while).js contains characters outside the accepted path contract. The full upstream diff and source references remain retained; no candidate admission, controls, formal audit or behavior verdict exists."
+      }
+    }
+  ]
+}

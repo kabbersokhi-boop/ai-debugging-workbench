@@ -1,0 +1,10 @@
+diff --git a/stringcase.py b/stringcase.py
+index e4d62d5..ae1677d 100644
+--- a/stringcase.py
++++ b/stringcase.py
+@@ -242,4 +242,4 @@ def alphanumcase(string):
+         string: String with cutted non-alphanumeric symbols.
+ 
+     """
+-    return filter(str.isalnum, str(string))
++    return ''.join(filter(str.isalnum, str(string)))
