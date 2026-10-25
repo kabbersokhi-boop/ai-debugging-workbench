@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 type Row = {case:string;role:string;trial:number;run_id:string;ordinary:string;independent:string;classification:string;assessment?:{explanation:string}};
 type Campaign = {combined_coverage?:{evaluated_distinct_candidates:number;selected_distinct_candidates:number;additional_independent_defects:number};campaign_sha256:string;scope:string;limitations:string[];counts:{genuine_candidates_executed:number;selected_candidates:number;candidate_audits:number;planned_candidate_audits:number;repeat_disagreements:number;candidate_outcomes:Record<string,number>};cases:{key:string;repository:string;revision:string;provenance:{reference:string};requirement:{statement:string};assessment?:{classification:string;explanation:string}}[];rows:Row[]};
 
-export default function RepositoryCampaign({onOpen,onSelect,disabled,campaignId="g3"}:{onOpen:(id:string)=>void;onSelect:()=>void;disabled:boolean;campaignId?:"g3"|"g3-node-compatibility"}) {
+export default function RepositoryCampaign({onOpen,onSelect,disabled,campaignId="g3",selectedRunId}:{onOpen:(id:string)=>void;onSelect:()=>void;disabled:boolean;campaignId?:"g3"|"g3-node-compatibility";selectedRunId?:string}) {
   const [campaign,setCampaign]=useState<Campaign|null>(null),[selected,setSelected]=useState(""),[error,setError]=useState("");
   useEffect(()=>{let disposed=false;(async()=>{const response=await fetch(`/api/repository-audits/campaigns/${campaignId}`);if(response.status===404)return;if(!response.ok)throw Error("Campaign evidence could not be validated.");const value=await response.json() as Campaign;if(!disposed){setCampaign(value);setSelected(value.cases[0]?.key??"");}})().catch(e=>{if(!disposed)setError(String(e));});return()=>{disposed=true;};},[campaignId]);
+  useEffect(()=>{if(!campaign||!selectedRunId)return;const row=campaign.rows.find(r=>r.run_id===selectedRunId);if(row)setSelected(row.case);},[campaign,selectedRunId]);
   if(error)return <p role="alert">{error}</p>;
   if(!campaign)return null;
   const current=campaign.cases.find(c=>c.key===selected), rows=campaign.rows.filter(r=>r.case===selected);

@@ -54,12 +54,33 @@ def test_engine_policy_and_frozen_prepared_plan_cannot_be_substituted(retained):
             bind_audit(ADDENDUM, case, audits[row["run_id"]], "candidate", changed)
 
 
-def test_changed_dependency_or_prepared_plan_material_breaks_freeze(tmp_path):
+@pytest.mark.parametrize(
+    "filename",
+    ["dependency-capsule.json", "plans/flatten-for-reference.json", "flatten-for/admitted.patch"],
+)
+def test_changed_dependency_or_prepared_plan_material_breaks_freeze(tmp_path, filename):
     root = tmp_path / "addendum"
     shutil.copytree(ADDENDUM, root)
-    (root / "dependency-capsule.json").write_text("{}")
+    (root / filename).write_text("{}")
     with pytest.raises(ValueError, match="Frozen campaign material changed"):
         retained_compatibility(root, ORIGINAL)
+
+
+def test_forged_result_identity_and_rehashed_source_claims_are_rejected(retained):
+    summary, audits = retained
+    declaration, cases, _ = load_campaign(ADDENDUM)
+    row = next(r for r in summary["rows"] if r["role"] == "candidate")
+    case = next(c for c in cases if c["key"] == row["case"])
+    changed = copy.deepcopy(audits[row["run_id"]])
+    changed["evidence"]["result"]["audit_id"] = "00000000-0000-0000-0000-000000000000"
+    changed["evidence"]["result_hash"] = identity(changed["evidence"]["result"])
+    with pytest.raises(ValueError):
+        bind_audit(ADDENDUM, case, changed, "candidate", declaration)
+    changed = copy.deepcopy(audits[row["run_id"]])
+    changed["evidence"]["result"]["ordinary"]["executed_source_hashes"]["index.js"] = "0" * 64
+    changed["evidence"]["result_hash"] = identity(changed["evidence"]["result"])
+    with pytest.raises(ValueError):
+        bind_audit(ADDENDUM, case, changed, "candidate", declaration)
 
 
 async def test_addendum_api_download_and_original_view_are_distinct(retained):

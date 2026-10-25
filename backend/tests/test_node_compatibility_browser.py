@@ -70,6 +70,9 @@ async def test_node_addendum_separate_history_candidate_download_and_reopen():
                 await page.reload()
                 await expect(page.get_by_label("External audit result", exact=True)).to_be_visible()
                 assert page.url == url
+                await expect(
+                    page.get_by_label("Node compatibility candidate", exact=True)
+                ).to_have_value(key)
             await new.screenshot(path=str(output / "separate-addendum.png"))
             assert not errors, errors
             await browser.close()
