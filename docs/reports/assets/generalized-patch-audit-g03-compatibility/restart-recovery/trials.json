@@ -1,0 +1,242 @@
+{
+  "implementation_sha": "dbc59678289e9b772605206a14839253273954eb",
+  "plan_sha256": "df3dd948ce8c5feb168fb61bbbb818fb0fb949bd15f970730731eccd76202c9f",
+  "maximum_trials": 5,
+  "trials": [
+    {
+      "trial": 1,
+      "implementation_sha": "dbc59678289e9b772605206a14839253273954eb",
+      "status": "passed",
+      "services": {
+        "api": {
+          "id": "4664ac511cc06933fdc5e3bb9c6fb19fe095799df22e4fca83f505929f46783d",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "evaluator": {
+          "id": "e4b22b8e274b4ee245121140da28b1f81c212e06199e807d01b1009f878a206e",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "db": {
+          "id": "b06bf0bc9897b197794040122c9166415dad60710f40cfc6bf0d46188d8106cb",
+          "image": "sha256:d791edaff7db9f43d9b29f5038e681452661fc7aeebaa9a842b1e197f96ff1c1"
+        }
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 28.94,
+      "recovery": {
+        "cancelled": "ee62b4b9-5182-4610-a112-e57312b1889c",
+        "restored": "ae7cfc55-67b3-4f67-8381-7cc6eba221d3",
+        "missing_terminal": "dd0ee434-85ff-48bf-8b95-fb97e4618592",
+        "restored_without_reexecution": true,
+        "restart_elapsed_seconds": 17.668,
+        "api_usable": true,
+        "restored_evidence_hash": "8a5a8417f8174723c2d9952336a202fd8e4103ecc06d75d9547a906587c4c32f",
+        "missing_classification": "interrupted"
+      },
+      "completed_candidate_execution_submissions": 1,
+      "candidate_reexecutions": 0,
+      "recorded_resources_confirmed_actually_absent": [
+        {
+          "kind": "containers",
+          "id": "3a24990560f782df5b8f24e485dd2b8e5d64c0ca5ae169758a4fa54b04b8ee8e"
+        },
+        {
+          "kind": "volumes",
+          "id": "370b412609486da49ba7690c20eaf992536571a29e2ae324e8beacbae0dcbe52"
+        },
+        {
+          "kind": "volumes",
+          "id": "99899e029593c8bc8633b262c68c18ca4007acd9f005b343e9bee1b88a7de9a6"
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "implementation_sha": "dbc59678289e9b772605206a14839253273954eb",
+      "status": "passed",
+      "services": {
+        "api": {
+          "id": "4664ac511cc06933fdc5e3bb9c6fb19fe095799df22e4fca83f505929f46783d",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "evaluator": {
+          "id": "e4b22b8e274b4ee245121140da28b1f81c212e06199e807d01b1009f878a206e",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "db": {
+          "id": "b06bf0bc9897b197794040122c9166415dad60710f40cfc6bf0d46188d8106cb",
+          "image": "sha256:d791edaff7db9f43d9b29f5038e681452661fc7aeebaa9a842b1e197f96ff1c1"
+        }
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 22.791,
+      "recovery": {
+        "cancelled": "c15c3b1a-30ab-4562-919a-91432a17be89",
+        "restored": "0dbafa64-ed73-4ef7-b4e2-b3226821b311",
+        "missing_terminal": "d41e4dc9-2458-4252-86f7-883217dc18e6",
+        "restored_without_reexecution": true,
+        "restart_elapsed_seconds": 17.786,
+        "api_usable": true,
+        "restored_evidence_hash": "756f7be69fcfc6f4b0642ccacfdea2fe9725ddca50052a788b6d1ccfea0eb302",
+        "missing_classification": "interrupted"
+      },
+      "completed_candidate_execution_submissions": 1,
+      "candidate_reexecutions": 0,
+      "recorded_resources_confirmed_actually_absent": [
+        {
+          "kind": "containers",
+          "id": "92d266206b55ce883fec1daac334dc0564c42491301ce055c69267a82f0f6df0"
+        },
+        {
+          "kind": "volumes",
+          "id": "355da10ebb4793ec16dd117d20df93055beab107e27f38f90d9096b2d240c17b"
+        },
+        {
+          "kind": "volumes",
+          "id": "9563ab41b65ccd13e8810e883f1ee12aa7126a91bfae60165993920acd7e8855"
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "implementation_sha": "dbc59678289e9b772605206a14839253273954eb",
+      "status": "passed",
+      "services": {
+        "api": {
+          "id": "4664ac511cc06933fdc5e3bb9c6fb19fe095799df22e4fca83f505929f46783d",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "evaluator": {
+          "id": "e4b22b8e274b4ee245121140da28b1f81c212e06199e807d01b1009f878a206e",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "db": {
+          "id": "b06bf0bc9897b197794040122c9166415dad60710f40cfc6bf0d46188d8106cb",
+          "image": "sha256:d791edaff7db9f43d9b29f5038e681452661fc7aeebaa9a842b1e197f96ff1c1"
+        }
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 22.835,
+      "recovery": {
+        "cancelled": "c6a5859a-13fd-4f9d-ac9a-348c1457218f",
+        "restored": "e369be59-eb48-488a-ba8f-37ac8cb68145",
+        "missing_terminal": "d735e413-5172-4fca-aa01-57a2fb3346df",
+        "restored_without_reexecution": true,
+        "restart_elapsed_seconds": 17.719,
+        "api_usable": true,
+        "restored_evidence_hash": "1ca466a18fc80e93c83913be88f0d07e8d1d4a67790ebf02b247f1776251ad50",
+        "missing_classification": "interrupted"
+      },
+      "completed_candidate_execution_submissions": 1,
+      "candidate_reexecutions": 0,
+      "recorded_resources_confirmed_actually_absent": [
+        {
+          "kind": "containers",
+          "id": "b5e688775a5f92367fb664a4ffde2522b198cd2a3ed91d4176068b7e8fe57cd0"
+        },
+        {
+          "kind": "volumes",
+          "id": "038a2839990246a3837d951eb4f38039518281b63142fb90a7a03349449b45b8"
+        },
+        {
+          "kind": "volumes",
+          "id": "70df7d3db18231ef642ef520f98e8fa778d32363b5aa34ced87dcac4eb85758c"
+        }
+      ]
+    },
+    {
+      "trial": 4,
+      "implementation_sha": "dbc59678289e9b772605206a14839253273954eb",
+      "status": "passed",
+      "services": {
+        "api": {
+          "id": "4664ac511cc06933fdc5e3bb9c6fb19fe095799df22e4fca83f505929f46783d",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "evaluator": {
+          "id": "e4b22b8e274b4ee245121140da28b1f81c212e06199e807d01b1009f878a206e",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "db": {
+          "id": "b06bf0bc9897b197794040122c9166415dad60710f40cfc6bf0d46188d8106cb",
+          "image": "sha256:d791edaff7db9f43d9b29f5038e681452661fc7aeebaa9a842b1e197f96ff1c1"
+        }
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 22.687,
+      "recovery": {
+        "cancelled": "9f1fca50-9c33-4031-be16-d9c9bdb6d35d",
+        "restored": "f7641b3e-195a-4f26-868a-26236a6ed78e",
+        "missing_terminal": "95349bb2-d8cb-4ea3-8230-2950ba8acaf8",
+        "restored_without_reexecution": true,
+        "restart_elapsed_seconds": 17.634,
+        "api_usable": true,
+        "restored_evidence_hash": "6caa5d4f14ec44cdd79bcafb9a53ba3d2184a7cff0c36a92c2b84bab552a3a22",
+        "missing_classification": "interrupted"
+      },
+      "completed_candidate_execution_submissions": 1,
+      "candidate_reexecutions": 0,
+      "recorded_resources_confirmed_actually_absent": [
+        {
+          "kind": "containers",
+          "id": "f11802e3aae3df81ac66a52bf0b505bb2d91e5e6be5b33222ab3e01e6fd6d8a9"
+        },
+        {
+          "kind": "volumes",
+          "id": "a7991820a8e519bc9ecf6578f68e9d4de5df566a34cce68826c18c9e6c10a6b3"
+        },
+        {
+          "kind": "volumes",
+          "id": "d45906f899b6adf8e141db0165030ff3be2bde690ad70618eb3c9fb9dabf17a5"
+        }
+      ]
+    },
+    {
+      "trial": 5,
+      "implementation_sha": "dbc59678289e9b772605206a14839253273954eb",
+      "status": "passed",
+      "services": {
+        "api": {
+          "id": "4664ac511cc06933fdc5e3bb9c6fb19fe095799df22e4fca83f505929f46783d",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "evaluator": {
+          "id": "e4b22b8e274b4ee245121140da28b1f81c212e06199e807d01b1009f878a206e",
+          "image": "sha256:9ebdd9c6e58116c9c58f2ff5790c9e231c544025b035873f31c7f2200c8c40f3"
+        },
+        "db": {
+          "id": "b06bf0bc9897b197794040122c9166415dad60710f40cfc6bf0d46188d8106cb",
+          "image": "sha256:d791edaff7db9f43d9b29f5038e681452661fc7aeebaa9a842b1e197f96ff1c1"
+        }
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 22.943,
+      "recovery": {
+        "cancelled": "8acf20cf-213c-474f-ab3c-93da576fe60c",
+        "restored": "57de9634-5765-41f4-bb05-7b5e2c0bcbb0",
+        "missing_terminal": "0ecc01c6-2b9c-48d1-80a7-f00e55398dbc",
+        "restored_without_reexecution": true,
+        "restart_elapsed_seconds": 17.681,
+        "api_usable": true,
+        "restored_evidence_hash": "ebcac9b194be421eb5bb681a16c3d1f9442e54b35e8a920d315ed87a2a75d579",
+        "missing_classification": "interrupted"
+      },
+      "completed_candidate_execution_submissions": 1,
+      "candidate_reexecutions": 0,
+      "recorded_resources_confirmed_actually_absent": [
+        {
+          "kind": "containers",
+          "id": "e436f5f197a6521355d9c919c386836374e72e10ac3781f38a3a869bb789d70f"
+        },
+        {
+          "kind": "volumes",
+          "id": "8010a13302a4299c19c632140ff38c9a67a3b7a9a5c79440b210eaa83847ed3c"
+        },
+        {
+          "kind": "volumes",
+          "id": "a3d15c0ae23b0aa0cab30449542157f575f16558a8cd13891f841981aebb9507"
+        }
+      ]
+    }
+  ]
+}

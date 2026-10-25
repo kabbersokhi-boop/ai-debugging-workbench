@@ -1,0 +1,12 @@
+{
+  "anyio_version": "4.15.1",
+  "deadline_expired": true,
+  "polls": 3,
+  "task_done": false,
+  "task_cancelled": false,
+  "pending_native_cancellations": 1,
+  "legacy_polling_outlived_expired_deadline": true,
+  "exact_original_ci_schedule_reproduced": false,
+  "controlled_cancellation_mechanism_reproduced": true,
+  "harness_task_cleaned_up": true
+}

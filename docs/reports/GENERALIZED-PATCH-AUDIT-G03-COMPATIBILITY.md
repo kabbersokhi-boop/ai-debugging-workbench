@@ -222,3 +222,159 @@ audits and separate controls verified, original history preserved, security boun
 retained, and complete implementation CI passed. No Node compatibility blocker remains.
 Final report-head CI and identities are supplied in the PR handoff for independent review.
 **G4 stays on hold. No merge, release, deployment or further experiment is authorized here.**
+
+## API Restart / Recovery Reliability Correction
+
+The accepted Node outcomes above are unchanged. This correction addresses the engineering
+FIX identified at reviewed head `41c1bb0f00e7f27e62da48fc07af658741eebc5d`.
+Tested implementation: **`dbc59678289e9b772605206a14839253273954eb`**. The final delivery
+head adds report/evidence only; its exact SHA and both final-head CI URLs/statuses are in
+[PR #15](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/15), also resolvable
+as `refs/pull/15/head`. No stacked base change, merge, deployment, inference or G4 work.
+
+### Reconstructed failure and causal evidence
+
+The original [push run 40226794051](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40226794051)
+passed 345 offline tests but failed two integration tests: the repository restart's
+existing 90-second readiness wait, then a scenario request with `httpx.ReadError`
+(89 integration passes, four opt-in skips). This was **not a cancelled workflow or overall
+workflow timeout**. The parallel [PR run 40226797453](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40226797453)
+passed all 91 integration tests and subsequent gates on the same submitted SHA.
+
+[Both retained service logs and the machine-readable comparison](assets/generalized-patch-audit-g03-compatibility/restart-recovery/workflow-comparison.json)
+support this lifecycle:
+
+| Stage | Failed push workflow | Successful PR workflow |
+|---|---|---|
+| Before restart | Synthetic audit `c55b7e9d-be82-45e5-8d6f-e9b68578ac9c` finished; the test removed its DB terminal update and inserted a separate missing-result row | Same test procedure, completed audit `79e6319f-c335-44df-b9e3-c77dae4781e7` |
+| Shutdown/restart | API shutdown completed; next startup began | Startup recovery began |
+| Completed evidence | Broker returned HTTP 200 for the completed audit; exactly one original execution submission | Broker returned HTTP 200; exactly one original execution submission |
+| Missing result | `4340e5a7-e904-4878-bc23-9266effac52b`: **439 HTTP 404 responses**, then API log still at startup pending | `2b15d537-e723-49a7-9da9-b40bd4c5fea3`: **37 HTTP 404 responses**, then startup completed and test verified reconciliation |
+| Client observation | Restart test failed at 19:46:40 UTC; later scenario request failed at 19:47:29 UTC | Restart test passed at 19:45:26 UTC; later scenario request passed at 19:46:23 UTC |
+
+The historical artifacts contain no DB dump or per-request timestamps. DB mutations are
+reconstructed from the unchanged test and observed requests, not claimed as independently
+captured snapshots. Within-service log order is usable; cross-service line position is
+not a timestamp. At the declared 0.3-second polling interval, 439 separate polls exceed
+the intended 12-second window. They demonstrate continued polling, rather than one stuck
+HTTP request, a Docker call or DB operation at that point. Recovery awaits rows serially,
+so this loop prevents application lifespan startup from yielding.
+
+**Reproduced mechanism:** a single native `asyncio.timeout` cancellation can be consumed
+when it coincides with AnyIO's connection task-group cancellation. The installed locked
+AnyIO 4.15.1 source has this documented [native-cancellation race](https://github.com/agronholm/anyio/issues/1214),
+later corrected upstream in [PR #1330](https://github.com/agronholm/anyio/pull/1330).
+HTTPX's TCP connection path uses that task-group cancellation pattern. The bounded
+[causal harness](assets/generalized-patch-audit-g03-compatibility/restart-recovery/causal-reproduction.py)
+uses real asyncio/AnyIO scopes and the original polling body, controlling only their
+scheduling through public APIs. Its [observation](assets/generalized-patch-audit-g03-compatibility/restart-recovery/causal-result.json)
+shows an **expired timeout, three polls, a task still running, and one pending native
+cancellation**, followed by explicit harness cleanup. The regression suite exercises
+the actual corrected manager with the same connection-cancellation schedule.
+
+This establishes a controlled causal model matching the historical symptom, **not a
+claim that the exact original CI instruction interleaving was captured or naturally
+reproduced**. The secondary read error is consistent with the same API remaining in
+startup; the old log provides no packet-level proof of that individual transport error.
+There is no evidence of a separate scenario defect. The corrected full journey also
+checks subsequent API usability.
+
+### Narrow correction and recovery semantics
+
+`repository_audit/service.py` now uses AnyIO's [level cancellation](https://anyio.readthedocs.io/en/stable/cancellation.html)
+for the unchanged **12-second terminal-result budget**, plus an absolute monotonic check
+between attempts. Pending native cancellation is explicitly re-raised after an HTTP call;
+a swallowed shutdown signal cannot turn into another poll or a fabricated DB outcome.
+No detached polling task is created. Transport failures retry only inside that same
+deadline, permitting a later valid result after an earlier request timeout. Non-object
+JSON and invalid terminal evidence are rejected.
+
+Startup recovery separately bounds cancel delivery to **10 seconds**, terminal lookup to
+**12 seconds**, and DB reconciliation to **5 seconds**: **27 seconds per selected running
+audit**, plus a 5-second initial DB query budget. Rows remain serial; this is a per-row
+budget, not a fixed total for an arbitrary historical backlog. A failed cancel request
+still permits terminal lookup. Valid evidence follows the existing validator and exact
+result-hash persistence path; missing evidence becomes `interrupted`, malformed/forged
+evidence becomes `invalid_evidence`, and no pass is inferred. Existing terminal rows
+remain excluded, and the locked terminal-update guard preserves idempotence. A database
+integrity/availability failure is bounded and raised; startup is not falsely released.
+Migrations and the single-coordinator advisory lock are unchanged.
+
+`repository_audit/recovery.py` emits start, cancel, poll summary, persistence and final
+classification events with audit/attempt IDs, monotonic elapsed time, declared budget,
+attempt/404/error counters, cancellation count and an explicit no-execution flag. It logs
+no patch, source, credentials or response body. API startup logs release only after all
+required recovery returns. There is no application log per poll. No new HTTP route or
+public authority is added. Dependency versions, execution engines, verifier identities,
+container policies, candidate requirements and approval rules are unchanged.
+
+### Focused and actual restart validation
+
+**13 focused regressions passed**: permanently absent evidence, delayed valid evidence
+after a request timeout and several 404s, hung/slow requests, connection failure, malformed
+JSON, non-object and forged evidence, shutdown cancellation, native/AnyIO cancellation
+collision, level deadline expiry, cancel-delivery timeout with valid evidence, and bounded
+DB failure. They invoke the actual recovery, persistence and validator code; only broker
+responses and DB storage are controlled. They also check idempotence, unchanged terminal
+history and absence of orphan request tasks. [Focused log](assets/generalized-patch-audit-g03-compatibility/restart-recovery/focused.log).
+
+The [predeclared procedure](assets/generalized-patch-audit-g03-compatibility/restart-recovery/restart-plan.json)
+capped fresh stress trials at **five**, stopping on any failure without replacements.
+All five ran the original Docker/PostgreSQL/evaluator integration scenario at the tested
+implementation SHA. Its assertions and 90-second readiness wait are unchanged; only
+timing and evidence-hash observation fields were added.
+
+| Trial | API usable after restart | Missing-row recovery | Missing polls | Completed re-executions | Outcome |
+|---|---:|---:|---:|---:|---|
+| 1 | 17.668s | 12.039s | 37 | 0 | PASS |
+| 2 | 17.786s | 12.041s | 37 | 0 | PASS |
+| 3 | 17.719s | 12.042s | 37 | 0 | PASS |
+| 4 | 17.634s | 12.029s | 37 | 0 | PASS |
+| 5 | 17.681s | 12.035s | 37 | 0 | PASS |
+
+[All five attempt records](assets/generalized-patch-audit-g03-compatibility/restart-recovery/trials.json)
+retain exact commit/service/image/audit IDs, evidence hashes and actual resource-absence
+checks. Per-trial test output and timestamped API/evaluator logs are alongside them.
+Every completed result was byte-equivalent after recovery, every missing row became
+`interrupted`, and each completed audit had exactly one original execution submission.
+There were **no failed or replaced trials**. The required full suite's inherited restart
+checks and recovery smoke are separate engineering gates, not additional stress trials
+or G3 campaign executions.
+
+### Full regression, preservation and delivery
+
+| Gate at `dbc59678289e9b772605206a14839253273954eb` | Actual local result |
+|---|---|
+| `./scripts/check` | **358 passed**, 95 deselected; Ruff, formatting, Pyright and frontend build passed. [Log](assets/generalized-patch-audit-g03-compatibility/restart-recovery/check.log). |
+| `./scripts/e2e` | **91 passed, 4 existing live opt-ins skipped**, 358 deselected, 541.49s. Both originally failing tests passed. [Complete log](assets/generalized-patch-audit-g03-compatibility/restart-recovery/e2e.log). |
+| `./scripts/recovery-smoke` | Passed: completed history unchanged, a fresh post-recovery run succeeded, no runner cleanup errors. [Log](assets/generalized-patch-audit-g03-compatibility/restart-recovery/recovery-smoke.log). |
+| Actual recorded image | Boundary check passed; **2 browser journeys passed**, 451 deselected, 4.62s. [Server inspection](assets/generalized-patch-audit-g03-compatibility/restart-recovery/recorded-boundary.json), [browser log](assets/generalized-patch-audit-g03-compatibility/restart-recovery/recorded-browser.log). |
+| Recovery/private routes in recorded service | GET 404 / POST 405. No workbench package, Docker socket, DB/provider credentials, writable host mounts or privileged authority. [New-route checks](assets/generalized-patch-audit-g03-compatibility/restart-recovery/recorded-recovery-boundary.json). |
+| Historical and served evidence | **1,522 protected reviewed files byte-identical**; accepted G3/addendum validator replay passed; all **12 accepted saved records and downloads exact** after restarts/full suite/smoke. Served coordinator source hashes match the implementation. [Proof](assets/generalized-patch-audit-g03-compatibility/restart-recovery/preservation.json). |
+
+The complete local suite explicitly supplied the unchanged legacy harness's hard-coded
+default broker precondition, verified its source hash, and restored its original stopped
+state afterward. [Recorded setup/restoration](assets/generalized-patch-audit-g03-compatibility/restart-recovery/legacy-harness-precondition.json).
+No test assertion or timeout changed. A restricted-harness offline invocation stalled in
+an ASGI fixture and was precisely interrupted; its partial log is retained separately.
+The complete passing check used the required local async/socket permissions. Development
+lint/type errors were corrected before committing the tested implementation.
+
+Both original workflow outcomes remain retained, with [artifact identities and exact job
+result lines](assets/generalized-patch-audit-g03-compatibility/restart-recovery/original-workflow-metadata.json).
+No workflow was rerun to replace a failure. The final report/evidence commit changes no
+runtime, test, workflow, dependency or container bytes after the tested implementation.
+Its exact head and **both actual push/PR CI links and outcomes** are recorded in the
+PR #15 handoff after submission; earlier successful CI is not substituted for those runs.
+
+Local correction gates: **PASS**. Engineering recommendation for independent re-review:
+**PASS only when both final-head CI workflows also pass**, as confirmed in the PR handoff;
+any remaining failed required check means FIX, not unconditional success. The controlled
+cancellation mechanism is demonstrated; the exact historical scheduling remains inferred.
+Budgets require a responsive event loop and apply per running audit, so a larger backlog
+has a proportionally larger startup bound. Required DB/integrity failures still fail
+startup explicitly. Other coordinator subsystems retain their existing behavior.
+
+No historical result hash, approval, patch, requirement, runtime image declaration or
+versioned verifier was rewritten. **Zero G3 campaign reruns; no merge, deployment, release,
+real inference or G4.** The accepted Node compatibility and G3 coverage remain PASS.

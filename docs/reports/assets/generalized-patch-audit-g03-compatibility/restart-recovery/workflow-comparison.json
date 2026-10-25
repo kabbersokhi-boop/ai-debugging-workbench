@@ -1,0 +1,35 @@
+[
+  {
+    "workflow_outcome": "failed",
+    "compose_sha256": "96e86498db6e424426afc3dbf97a043be0d24c98fb03848b4668285eb1fe033e",
+    "missing_audit_id": "4340e5a7-e904-4878-bc23-9266effac52b",
+    "completed_audit_id": "c55b7e9d-be82-45e5-8d6f-e9b68578ac9c",
+    "missing_result_404s": 439,
+    "completed_result_get_200s": 1,
+    "candidate_execution_submissions": 1,
+    "last_api_lifecycle_lines": [
+      "api-1                           | INFO:     Waiting for application startup.",
+      "api-1                           | INFO:     Application startup complete.",
+      "api-1                           | INFO:     Waiting for application shutdown.",
+      "api-1                           | INFO:     Application shutdown complete.",
+      "api-1                           | INFO:     Waiting for application startup."
+    ],
+    "retained_db_dump_available": false,
+    "timestamp_limitation": "compose logs collected without timestamps; ordering only within each service; DB mutations reconstructed from unchanged test and resulting requests, not direct DB snapshots"
+  },
+  {
+    "workflow_outcome": "passed",
+    "compose_sha256": "83ea1c7d03d7a33f59fcb3e5dd4ca595a221ddb4c0d25ab9abdb8abad1f0a86c",
+    "missing_audit_id": "2b15d537-e723-49a7-9da9-b40bd4c5fea3",
+    "completed_audit_id": "79e6319f-c335-44df-b9e3-c77dae4781e7",
+    "missing_result_404s": 37,
+    "completed_result_get_200s": 1,
+    "candidate_execution_submissions": 1,
+    "last_api_lifecycle_lines": [
+      "api-1                           | INFO:     Waiting for application startup.",
+      "api-1                           | INFO:     Application startup complete."
+    ],
+    "retained_db_dump_available": false,
+    "timestamp_limitation": "compose logs collected without timestamps; ordering only within each service; DB mutations reconstructed from unchanged test and resulting requests, not direct DB snapshots"
+  }
+]
