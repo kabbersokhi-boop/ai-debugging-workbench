@@ -70,6 +70,64 @@ def load_campaign(root: Path):
     return declaration, cases, expected
 
 
+def retained_compatibility(root: Path, original_root: Path):
+    summary, audits = retained_campaign(root)
+    original, original_audits = retained_campaign(original_root)
+    old_cases = {
+        c["key"]: c for c in json.loads((original_root / "cases.json").read_text())["cases"]
+    }
+    for case in json.loads((root / "cases.json").read_text())["cases"]:
+        old = old_cases[case["key"]]
+        if {k: v for k, v in case.items() if k != "runtime"} != {
+            k: v for k, v in old.items() if k != "runtime"
+        }:
+            raise ValueError("Compatibility addendum changed an original candidate or requirement")
+        for field in ("patch", "original_diff", "alternative_patch"):
+            if (root / case[field]).read_bytes() != (original_root / old[field]).read_bytes():
+                raise ValueError("Compatibility addendum changed an original patch")
+    by_candidate = {}
+    for study, records in ((original, original_audits), (summary, audits)):
+        for row in study["rows"]:
+            if row["role"] != "candidate":
+                continue
+            audit = records[row["run_id"]]
+            e = audit["evidence"]
+            key = (
+                e["snapshot"]["repository"],
+                e["snapshot"]["base_commit"],
+                e["candidate"]["submitted_patch_hash"],
+            )
+            by_candidate.setdefault(key, []).append((row, e["result"]["independent"]["checks"]))
+    complete, disagreements = [], 0
+    for trials in by_candidate.values():
+        if len(trials) != 2:
+            raise ValueError("Combined coverage includes duplicate or missing candidate trials")
+        if (
+            len({(r["ordinary"], r["independent"]) for r, _ in trials}) != 1
+            or trials[0][1] != trials[1][1]
+        ):
+            disagreements += 1
+        complete.append(trials[0][0])
+    summary["original_g3_counts"] = original["counts"]
+    summary["combined_coverage"] = {
+        "selected_distinct_candidates": len(old_cases),
+        "evaluated_distinct_candidates": len(complete),
+        "formal_audits": sum(len(t) for t in by_candidate.values()),
+        "ordinary_passing_candidates": sum(r["ordinary"] == "tests_passed" for r in complete),
+        "ordinary_failing_candidates": sum(r["ordinary"] == "tests_failed" for r in complete),
+        "additional_independent_defects": sum(
+            r["classification"] == "supported_historical_defect" for r in complete
+        ),
+        "unsupported_or_incomplete": len(old_cases) - len(complete),
+        "invalid_or_disputed": sum(
+            r["classification"] in ("invalid_check", "ambiguous", "unresolved_disagreement")
+            for r in complete
+        ),
+        "repeat_disagreements": disagreements,
+    }
+    return summary, audits
+
+
 def bind_audit(root, case, audit, role, declaration):
     """Validate downloaded evidence, then bind it to the predeclared material."""
     if audit["status"] == "invalid_evidence":

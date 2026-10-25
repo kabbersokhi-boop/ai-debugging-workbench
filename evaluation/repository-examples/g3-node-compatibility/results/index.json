@@ -1,0 +1,102 @@
+{
+  "campaign_sha256": "166219b9c4b188e90c7f48ebadf757e27246929eba5a5ba140ff516383c6ba36",
+  "entries": [
+    {
+      "case": "flatten-recursive",
+      "role": "control",
+      "trial": 1,
+      "run_id": "cdc0b5f7-6624-4a42-a49b-2462212d54b2",
+      "audit_hash": "0764bd6283d1fb9f2468c3226a91784d211ed39b48f3bdf2fe0259d2bbbb14eb",
+      "file": "flatten-recursive-control-1.json.gz"
+    },
+    {
+      "case": "flatten-recursive",
+      "role": "reference",
+      "trial": 1,
+      "run_id": "14ad2507-4a78-40e6-a6d9-0f271df37e58",
+      "audit_hash": "8f5e54f7d82b06790044adb40f0edbbbf48efd308918e1b6581cb5fb33c08881",
+      "file": "flatten-recursive-reference-1.json.gz"
+    },
+    {
+      "case": "flatten-recursive",
+      "role": "alternative_control",
+      "trial": 1,
+      "run_id": "4318b679-b4d1-4236-baf1-da0e46a6af3c",
+      "audit_hash": "6706b998cef5b398b387b6f76b63e1c8f56bb086a698ca2235ead09b88d27bd1",
+      "file": "flatten-recursive-alternative_control-1.json.gz"
+    },
+    {
+      "case": "flatten-recursive",
+      "role": "alternative",
+      "trial": 1,
+      "run_id": "210b9e7b-ddd5-4901-b5ed-f18cf24728ac",
+      "audit_hash": "5bbc5f62dd6c465c38e0c83137cd6cb8d110e2bc848fc6217029a102f07725ab",
+      "file": "flatten-recursive-alternative-1.json.gz"
+    },
+    {
+      "case": "flatten-for",
+      "role": "control",
+      "trial": 1,
+      "run_id": "a39557ca-8c54-4374-a223-43ae1ea82273",
+      "audit_hash": "f9530e0971de37b00491a6153ec8968aaef77793a940b9379f1e86a1e6a7b277",
+      "file": "flatten-for-control-1.json.gz"
+    },
+    {
+      "case": "flatten-for",
+      "role": "reference",
+      "trial": 1,
+      "run_id": "43740550-1e56-4bd4-8613-cfe5fcd9cbae",
+      "audit_hash": "b6ddd9ed5f071e34d2aa12893ab84b0487a6bb6bf141afcd16e0ff6b91215dd1",
+      "file": "flatten-for-reference-1.json.gz"
+    },
+    {
+      "case": "flatten-for",
+      "role": "alternative_control",
+      "trial": 1,
+      "run_id": "c281c841-5c2e-4df0-b4b8-e7ee9469039c",
+      "audit_hash": "ef7723794a0f4d4d10ffc1020edd3c616dc3efdb3597d8c6f0cf444126eef301",
+      "file": "flatten-for-alternative_control-1.json.gz"
+    },
+    {
+      "case": "flatten-for",
+      "role": "alternative",
+      "trial": 1,
+      "run_id": "262f77e0-c2a5-4381-8075-35e215a0705f",
+      "audit_hash": "53f599e65cc0cf76dfe676a8659d0c0b9dadfdf79ef5c98d61cc9fa4585711b6",
+      "file": "flatten-for-alternative-1.json.gz"
+    },
+    {
+      "case": "flatten-recursive",
+      "role": "candidate",
+      "trial": 1,
+      "run_id": "3f04cfa7-4232-4274-b952-eaa464535f37",
+      "audit_hash": "3848dd751c78edfcceba3bae683a2e1ed0de7c7cece2597302064d3a643b1fb6",
+      "file": "flatten-recursive-candidate-1.json.gz"
+    },
+    {
+      "case": "flatten-recursive",
+      "role": "candidate",
+      "trial": 2,
+      "run_id": "ab9011ae-320c-40b5-89b5-4381e01432ff",
+      "audit_hash": "253facb345e71ea06462d3f1aeadca8011630700d2aa6d91184f7affb5a60354",
+      "file": "flatten-recursive-candidate-2.json.gz"
+    },
+    {
+      "case": "flatten-for",
+      "role": "candidate",
+      "trial": 1,
+      "run_id": "6556c1a8-a99e-4b20-a99b-d14106bee727",
+      "audit_hash": "52742df24fedaa9e6709455a3204c6555a317be8b2a6b7b00a98dedc0f6e3f93",
+      "file": "flatten-for-candidate-1.json.gz"
+    },
+    {
+      "case": "flatten-for",
+      "role": "candidate",
+      "trial": 2,
+      "run_id": "b8b787d9-0141-4f90-89ea-f0c338830a72",
+      "audit_hash": "ad98c39e5c0097438c9b8e8b93d5af03a806510c9eeeac6d9197641a17de16d7",
+      "file": "flatten-for-candidate-2.json.gz"
+    }
+  ],
+  "started_at": "2026-10-25T18:30:36.556141+00:00"
+}

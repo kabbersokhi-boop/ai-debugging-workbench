@@ -1,0 +1,10 @@
+{
+  "flatten-recursive": {
+    "classification": "accepted_in_declared_domain",
+    "explanation": "The original unchanged ordinary command passes 2 tests and the original five independent assertions pass in both formal repetitions. The upstream reference and authored alternative also pass. No additional independent defect, performance claim, check dispute or repeat disagreement."
+  },
+  "flatten-for": {
+    "classification": "accepted_in_declared_domain",
+    "explanation": "The original unchanged ordinary command passes 2 tests and the original five independent assertions pass in both formal repetitions. The upstream reference and authored alternative also pass. No additional independent defect, performance claim, check dispute or repeat disagreement."
+  }
+}

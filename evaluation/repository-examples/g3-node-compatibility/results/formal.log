@@ -1,0 +1,19 @@
+flatten-recursive-candidate-1 3f04cfa7-4232-4274-b952-eaa464535f37 completed tests_passed checks_passed
+flatten-recursive-candidate-2 ab9011ae-320c-40b5-89b5-4381e01432ff completed tests_passed checks_passed
+flatten-for-candidate-1 6556c1a8-a99e-4b20-a99b-d14106bee727 completed tests_passed checks_passed
+flatten-for-candidate-2 b8b787d9-0141-4f90-89ea-f0c338830a72 completed tests_passed checks_passed
+{
+  "selected_candidates": 2,
+  "genuine_candidates_executed": 2,
+  "genuine_candidates_admitted": 2,
+  "planned_candidate_audits": 4,
+  "candidate_audits": 4,
+  "control_validations": 4,
+  "reference_audits": 2,
+  "alternative_audits": 2,
+  "fresh_environments": 24,
+  "repeat_disagreements": 0,
+  "candidate_outcomes": {
+    "ordinary_pass_independent_pass": 2
+  }
+}

@@ -21,7 +21,7 @@ from workbench.db import (
 from workbench.evaluator.catalog import identity
 from workbench.patch_audit.routes import local_only
 from workbench.repository_audit.admission import admit, check_plan
-from workbench.repository_audit.campaign import retained_campaign
+from workbench.repository_audit.campaign import retained_campaign, retained_compatibility
 from workbench.repository_audit.contracts import Confirm, Import, Intake, Plan
 from workbench.repository_audit.intake import Rejected, fetch, summary
 from workbench.repository_audit.service import load, material, store, view
@@ -35,6 +35,38 @@ from workbench.repository_audit.verification import (
 router = APIRouter(prefix="/api/repository-audits", dependencies=[Depends(local_only)])
 FETCH_LOCK = asyncio.Lock()
 CAMPAIGN_ROOT = ROOT / "evaluation/repository-examples/g3"
+COMPATIBILITY_ROOT = ROOT / "evaluation/repository-examples/g3-node-compatibility"
+
+
+@router.get("/campaigns/g3-node-compatibility")
+async def compatibility_summary():
+    try:
+        summary, _ = await asyncio.to_thread(
+            retained_compatibility, COMPATIBILITY_ROOT, CAMPAIGN_ROOT
+        )
+        return summary
+    except FileNotFoundError:
+        raise HTTPException(404, "Node compatibility addendum not installed") from None
+    except (ValueError, KeyError, TypeError, OSError):
+        raise HTTPException(409, "Addendum evidence failed validation") from None
+
+
+@router.get("/campaigns/g3-node-compatibility/runs/{audit_id}")
+async def compatibility_audit(audit_id: UUID):
+    try:
+        _, audits = await asyncio.to_thread(
+            retained_compatibility, COMPATIBILITY_ROOT, CAMPAIGN_ROOT
+        )
+        if str(audit_id) not in audits:
+            raise HTTPException(404, "Audit is not in the compatibility addendum")
+        return JSONResponse(
+            audits[str(audit_id)],
+            headers={"Content-Disposition": f'attachment; filename="g3c-{audit_id}.json"'},
+        )
+    except FileNotFoundError:
+        raise HTTPException(404, "Node compatibility addendum not installed") from None
+    except (ValueError, KeyError, TypeError, OSError):
+        raise HTTPException(409, "Addendum evidence failed validation") from None
 
 
 @router.get("/campaigns/g3")
