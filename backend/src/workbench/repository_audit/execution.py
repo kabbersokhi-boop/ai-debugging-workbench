@@ -320,7 +320,11 @@ def evaluate(
                 "PYTHONUNBUFFERED": "1",
                 "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
                 "PYTHONPATH": "/work/deps:/source",
-                "NODE_PATH": "/work/node_modules:/opt/test-tools/node_modules",
+                "NODE_PATH": (
+                    "/opt/test-tools/node_modules"
+                    if plan.runtime == "node22_compat"
+                    else "/work/node_modules:/opt/test-tools/node_modules"
+                ),
                 "PIP_NO_INDEX": "1",
                 "PIP_DISABLE_PIP_VERSION_CHECK": "1",
                 "npm_config_offline": "true",

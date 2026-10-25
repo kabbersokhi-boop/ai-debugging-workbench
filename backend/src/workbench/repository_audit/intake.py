@@ -13,11 +13,13 @@ import httpx
 
 from workbench.evaluator.catalog import digest, identity
 from workbench.repository_audit.contracts import (
+    LEGACY_PATH_POLICY,
     MAX_ARCHIVE,
     MAX_EXPANDED,
     MAX_FILE,
     MAX_FILES,
     MAX_SOURCE,
+    PATH_POLICY,
     Intake,
     path,
     production,
@@ -60,7 +62,9 @@ def git_tree(files: dict[str, bytes], modes: dict[str, str]) -> str:
 
 def decode_files(snapshot):
     files = {p: base64.b64decode(v, validate=True) for p, v in snapshot["files"].items()}
-    validate_files(files, snapshot["modes"])
+    validate_files(
+        files, snapshot["modes"], snapshot["metadata"].get("path_policy", LEGACY_PATH_POLICY)
+    )
     if {p: digest(v) for p, v in files.items()} != snapshot["file_hashes"]:
         raise ValueError("Source file identity mismatch")
     if identity(snapshot["file_hashes"]) != snapshot["source_tree_hash"]:
@@ -73,13 +77,15 @@ def decode_files(snapshot):
     return files
 
 
-def validate_files(files, modes):
+def validate_files(files, modes, path_policy=PATH_POLICY):
     if not files or len(files) > MAX_FILES or sum(map(len, files.values())) > MAX_SOURCE:
         reject("Repository file count or total source byte limit exceeded")
     if set(files) != set(modes):
         reject("Missing source file modes")
     for p, data in files.items():
-        path(p)
+        path(p, path_policy)
+        if any("/".join(p.split("/")[:i]) in files for i in range(1, len(p.split("/")))):
+            reject("Source file/directory path collision")
         if modes[p] not in ("100644", "100755"):
             reject("Only regular source files are supported; no symlinks or submodules")
         if len(data) > MAX_FILE:
@@ -89,7 +95,7 @@ def validate_files(files, modes):
 
 
 def snapshot_record(repo, commit, tree, files, modes, metadata):
-    validate_files(files, modes)
+    validate_files(files, modes, metadata.get("path_policy", LEGACY_PATH_POLICY))
     if git_tree(files, modes) != tree:
         reject("Fetched archive differs from the immutable Git tree (export filters unsupported)")
     hashes = {p: digest(v) for p, v in sorted(files.items())}
@@ -116,12 +122,18 @@ def unpack(data: bytes):
         if len(expanded) > MAX_EXPANDED:
             reject("Expanded archive byte limit exceeded")
         files, modes = {}, {}
+        directories = set()
         root = None
         with tarfile.open(fileobj=io.BytesIO(expanded), mode="r:") as archive:
             for count, member in enumerate(archive):
                 if count > MAX_FILES * 3:
                     reject("Archive entry limit exceeded")
-                parts = member.name.rstrip("/").split("/", 1)
+                name_in_archive = member.name
+                if name_in_archive.endswith("/"):
+                    if not member.isdir():
+                        reject("Trailing slash on a non-directory archive member")
+                    name_in_archive = name_in_archive[:-1]
+                parts = name_in_archive.split("/", 1)
                 if root is None:
                     root = path(parts[0])
                 if parts[0] != root:
@@ -132,8 +144,16 @@ def unpack(data: bytes):
                     continue
                 name = path(parts[1])
                 if member.isdir():
+                    if name in files or name in directories:
+                        reject("Duplicate or colliding archive directory")
+                    directories.add(name)
                     continue
-                if not member.isfile() or member.size > MAX_FILE or name in files:
+                if (
+                    not member.isfile()
+                    or member.size > MAX_FILE
+                    or name in files
+                    or name in directories
+                ):
                     reject("Special, oversized or duplicate archive member")
                 stream = archive.extractfile(member)
                 assert stream is not None
@@ -252,6 +272,7 @@ async def fetch(request: Intake, transport=None):
                 {
                     "fetched_at": datetime.now(UTC).isoformat(),
                     "adapter": "github-https-archive-v1",
+                    "path_policy": PATH_POLICY,
                     "transport": "HTTPS; no redirects; no credentials; 45 second total budget",
                     "archive_sha256": digest(data),
                     "normalization": (

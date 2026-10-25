@@ -77,6 +77,22 @@ def bind_audit(root, case, audit, role, declaration):
     e = audit["evidence"]
     validate_saved(e, audit["id"])
     s, c, p, v = e["snapshot"], e["candidate"], e["plan"], e["verification"]["plan"]
+    if declaration.get("engine_id") and (
+        e["engine_id"] != declaration["engine_id"]
+        or e["ordinary_engine_id"] != declaration["ordinary_engine_id"]
+        or s["metadata"].get("path_policy") != declaration["source_path_policy"]
+    ):
+        raise ValueError("Addendum engine or intake policy changed")
+    if declaration.get("prepared_plans"):
+        kind = "alternative" if role in ("alternative", "alternative_control") else "reference"
+        prepared = json.loads((root / declaration["prepared_plans"][case["key"]][kind]).read_text())
+        if (
+            c["id"] != prepared["candidate"]["id"]
+            or audit["plan_id"] != prepared["ordinary"]["id"]
+            or e["verification"]["id"] != prepared["verification"]["id"]
+            or s["id"] != prepared["source"]["id"]
+        ):
+            raise ValueError("Execution differs from the frozen exact prepared plan")
     patch = (
         case["alternative_patch"]
         if role in ("alternative", "alternative_control")

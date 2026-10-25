@@ -10,7 +10,10 @@ from workbench.evaluator.catalog import identity
 SHA = Annotated[str, Field(pattern=r"^[a-f0-9]{40}$")]
 HASH = Annotated[str, Field(pattern=r"^[a-f0-9]{64}$")]
 REPOSITORY = re.compile(r"[A-Za-z0-9][A-Za-z0-9-]{0,38}/[A-Za-z0-9_][A-Za-z0-9_.-]{0,99}\Z")
-PATH = re.compile(r"[A-Za-z0-9_.@+/-]{1,240}\Z")
+LEGACY_PATH_POLICY = "relative-ascii-v1"
+PATH_POLICY = "relative-ascii-spaces-v2"
+LEGACY_PATH = re.compile(r"[A-Za-z0-9_.@+/-]{1,240}\Z")
+PATH = re.compile(r"[A-Za-z0-9_.@+() /-]{1,240}\Z")
 MAX_FILES = 1000
 MAX_SOURCE = 8_000_000
 MAX_FILE = 1_000_000
@@ -19,6 +22,7 @@ MAX_EXPANDED = 16_000_000
 RUNTIMES = {
     "python312": "ai-agent-evaluator:python312-v1",
     "node22": "patch-audit-node:22-v1",
+    "node22_compat": "patch-audit-node:22-compat-v1",
 }
 POLICY = {
     "version": "repository-sandbox-v1",
@@ -51,9 +55,17 @@ def repository(value: str) -> str:
     return value.lower()
 
 
-def path(value: str) -> str:
-    if not PATH.fullmatch(value) or any(p in ("", ".", "..", ".git") for p in value.split("/")):
+def path(value: str, policy: str = PATH_POLICY) -> str:
+    if policy not in (LEGACY_PATH_POLICY, PATH_POLICY):
+        raise ValueError("Unknown source path policy")
+    pattern = LEGACY_PATH if policy == LEGACY_PATH_POLICY else PATH
+    parts = value.split("/")
+    if not pattern.fullmatch(value) or any(p in ("", ".", "..", ".git") for p in parts):
         raise ValueError("Unsupported or unsafe repository path")
+    if policy == PATH_POLICY and any(
+        p != p.strip(" ") or p.endswith(".") or p.lower() == ".git" for p in parts
+    ):
+        raise ValueError("Ambiguous repository path; names are never normalized")
     return value
 
 
@@ -111,7 +123,7 @@ class Plan(Contract):
     version: Literal["repository-plan-v1"] = "repository-plan-v1"
     snapshot_id: HASH
     candidate_hash: HASH
-    runtime: Literal["python312", "node22"]
+    runtime: Literal["python312", "node22", "node22_compat"]
     image_id: str = Field(pattern=r"^sha256:[a-f0-9]{64}$")
     working_directory: str = Field(default=".", max_length=240)
     setup: list[Command] = Field(default_factory=list, max_length=3)

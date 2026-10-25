@@ -43,6 +43,11 @@ async def run(args):
             return response.json()
 
         async def prepare(case, alternative=False):
+            if declaration.get("prepared_plans"):
+                kind = "alternative" if alternative else "reference"
+                material = json.loads((root / declaration["prepared_plans"][case["key"]][kind]).read_text())
+                return {**material["execution_payload"], "approve_independent_plan": True,
+                        "approve_exact_plan": True, "confirm_local_execution": True}
             # Intake metadata includes fetched_at. Re-fetching creates a different snapshot;
             # reuse the exact admitted source/plan whose controls were validated.
             control_role = "alternative_control" if alternative else "control"
