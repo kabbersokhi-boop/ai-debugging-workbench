@@ -4,6 +4,7 @@ import asyncio
 import json
 import os
 import threading
+import time
 from pathlib import Path
 from uuid import uuid4
 
@@ -16,6 +17,7 @@ from test_repository_audit import candidate_for, fixture_source, patch_for
 
 from workbench.config import ROOT, settings
 from workbench.db import RepositorySource
+from workbench.evaluator.catalog import identity
 from workbench.evaluator.runner import LABEL
 from workbench.repository_audit.contracts import RUNTIMES, Plan
 from workbench.repository_audit.execution import evaluate, validate
@@ -318,6 +320,7 @@ async def test_repository_cancel_and_restart_reconcile_completed_without_reexecu
                         evidence=evidence,
                     )
                 )
+            restart_started = time.monotonic()
             process = await asyncio.create_subprocess_exec(
                 "docker",
                 "compose",
@@ -352,6 +355,10 @@ async def test_repository_cancel_and_restart_reconcile_completed_without_reexecu
                         "restored": completed_id,
                         "missing_terminal": str(missing_id),
                         "restored_without_reexecution": True,
+                        "restart_elapsed_seconds": round(time.monotonic() - restart_started, 3),
+                        "api_usable": True,
+                        "restored_evidence_hash": identity(restored["evidence"]),
+                        "missing_classification": missing["status"],
                     },
                     indent=2,
                 )

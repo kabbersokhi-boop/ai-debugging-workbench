@@ -713,7 +713,7 @@ async def test_transport_loss_is_infrastructure_error_and_invalid_result_is_reta
         async def stop(self, audit_id):
             pass
 
-        async def wait_terminal(self, audit_id):
+        async def wait_terminal(self, audit_id, trace=None):
             if invalid_result:
                 return {"broken": "result"}
             raise TimeoutError

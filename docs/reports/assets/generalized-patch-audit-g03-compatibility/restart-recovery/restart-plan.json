@@ -1,0 +1,21 @@
+{
+  "version": "pr15-restart-recovery-correction-v1",
+  "maximum_fresh_stress_trials": 5,
+  "planned_fresh_stress_trials": 5,
+  "trial_test": "backend/tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution",
+  "implementation_identity": "Exact clean Git implementation HEAD recorded before each trial; source and service image bytes also verified",
+  "environment": "Existing task-owned patch-audit-g3c Docker/PostgreSQL/evaluator stack on loopback; no real provider credentials",
+  "per_trial": [
+    "Record attempt before starting, including implementation SHA and service/container/image identities",
+    "Run the original unchanged-strength cancellation/completed-evidence-loss/missing-terminal restart test once",
+    "Retain exit status, all test output and timestamped API/evaluator logs, including failures",
+    "Record recovered and missing audit IDs, readiness elapsed time, validated completed evidence identity and interrupted missing-result classification",
+    "Verify only one broker execution submission for the recovered completed ID; no new submission during recovery",
+    "Verify recorded sandbox resources are absent and service is usable"
+  ],
+  "stop_rule": "Stop immediately on an unexplained hang, failed trial or identity/cleanup violation; never replace a failure or exceed five trials",
+  "full_suite_separate": "The required complete e2e suite includes the original restart regression once in addition to these five bounded stress trials; recovery smoke and unrelated inherited restart tests remain explicit engineering checks, not additional stress trials or G3 candidate trials",
+  "campaign_executions_authorized": 0,
+  "test_wait_seconds": 90,
+  "new_timeout_increases": 0
+}
