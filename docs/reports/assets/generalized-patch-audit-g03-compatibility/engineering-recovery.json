@@ -1,0 +1,146 @@
+{
+  "version": "g3-node-engineering-recovery-v1",
+  "original_run": "e2e-infrastructure-failure.log",
+  "actual_initial_result": "18 failed, 73 passed, 4 skipped, 342 deselected in 450.09s",
+  "cause": "17 checks failed after Docker API 400: all predefined address pools have been fully subnetted; one separate inherited harness failed because its hard-coded default broker was stopped.",
+  "change": "Only this task's four control-plane networks moved to 10.241.240.0/24 split into four /26 subnets after checking host/Docker overlap. No -v, daemon change, external network deletion, test/timeout change or candidate policy change.",
+  "before_task_networks": [
+    {
+      "id": "5538e77ee53453e9a7e091d81ef52282b7bcfa0778cb413a98bea7a3d66f9af6",
+      "name": "patch-audit-g3c_repair-preview",
+      "labels": {
+        "com.docker.compose.config-hash": "9e730df69889c9f120958c73f4381dbf78462e2b7f66c73f4777c3ac3003eb05",
+        "com.docker.compose.network": "repair-preview",
+        "com.docker.compose.project": "patch-audit-g3c",
+        "com.docker.compose.version": "5.5.1"
+      },
+      "containers": [
+        "a63e9345d87a56fe27f3a856ebe6b9bfd16cae4dec4159bc2fbd244cb5fceb05"
+      ],
+      "ipam": [
+        {
+          "Subnet": "192.168.176.0/20",
+          "Gateway": "192.168.176.1"
+        }
+      ]
+    },
+    {
+      "id": "a7bcc7566e7b7c016605a931035439cff7ef7a830955998664b63475b033b0b3",
+      "name": "patch-audit-g3c_repair-control",
+      "labels": {
+        "com.docker.compose.config-hash": "c4f190f4a3daf23be2d41b4e03c6ac095dd860d07c0bf33a7b7740dd5a4c0e5c",
+        "com.docker.compose.network": "repair-control",
+        "com.docker.compose.project": "patch-audit-g3c",
+        "com.docker.compose.version": "5.5.1"
+      },
+      "containers": [
+        "306b5935b8810eb3ad43d50e070303bd878f9407e359f4e91a2ee634df8a4b14",
+        "a63e9345d87a56fe27f3a856ebe6b9bfd16cae4dec4159bc2fbd244cb5fceb05",
+        "e9c9d60321bac369f72974e71cbd4c5f964e403e4fd2c420c016ba5eec82e064"
+      ],
+      "ipam": [
+        {
+          "Subnet": "192.168.208.0/20",
+          "Gateway": "192.168.208.1"
+        }
+      ]
+    },
+    {
+      "id": "56a66bf608279eff7f9de820b46408b34ebf81f3f1bbf6c1d29fd1d9e077727a",
+      "name": "patch-audit-g3c_persistence",
+      "labels": {
+        "com.docker.compose.config-hash": "81700d3b537fc0d33558f737f5600deea5b11a4475bb85c9bcb0a297043b7757",
+        "com.docker.compose.network": "persistence",
+        "com.docker.compose.project": "patch-audit-g3c",
+        "com.docker.compose.version": "5.5.1"
+      },
+      "containers": [
+        "e75811fab8c54b4a4a1119cbec5af9609c188f451cebf061e363fcbc6964dd4b",
+        "e9c9d60321bac369f72974e71cbd4c5f964e403e4fd2c420c016ba5eec82e064"
+      ],
+      "ipam": [
+        {
+          "Subnet": "192.168.224.0/20",
+          "Gateway": "192.168.224.1"
+        }
+      ]
+    },
+    {
+      "id": "f1622530b8053c531d7a178d5fa34b8836eeb478181453c4d2d2dced31a736cd",
+      "name": "patch-audit-g3c_execution",
+      "labels": {
+        "com.docker.compose.config-hash": "44fbe5135593a273739fab66cf7625a4aa496f8ceea4ab95310b3d316449e412",
+        "com.docker.compose.network": "execution",
+        "com.docker.compose.project": "patch-audit-g3c",
+        "com.docker.compose.version": "5.5.1"
+      },
+      "containers": [
+        "39ff3bfa3fe8c4ce93a02297eb741584bd6f4fc1000b29ee6bea5bfb6d9ff91d",
+        "e9c9d60321bac369f72974e71cbd4c5f964e403e4fd2c420c016ba5eec82e064"
+      ],
+      "ipam": [
+        {
+          "Subnet": "192.168.240.0/20",
+          "Gateway": "192.168.240.1"
+        }
+      ]
+    }
+  ],
+  "after_task_networks": [
+    {
+      "name": "patch-audit-g3c_persistence",
+      "id": "475031475d4fa765ddb82dfe339c1e91678eba0af280728212d51cb1d14d05e1",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.241.240.64/26",
+          "Gateway": "10.241.240.65"
+        }
+      ]
+    },
+    {
+      "name": "patch-audit-g3c_repair-preview",
+      "id": "dbaf566c7fa499108ee316c344983b78563bfe7b52e659f497bc8cea6a16793c",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.241.240.192/26",
+          "Gateway": "10.241.240.193"
+        }
+      ]
+    },
+    {
+      "name": "patch-audit-g3c_execution",
+      "id": "f57392c36e56581022a598ccaf7507bc00c3fede3ee348926475e173576aa4e7",
+      "internal": true,
+      "ipam": [
+        {
+          "Subnet": "10.241.240.0/26",
+          "Gateway": "10.241.240.1"
+        }
+      ]
+    },
+    {
+      "name": "patch-audit-g3c_repair-control",
+      "id": "17a88afc332ecd6ef1ff122cb0739e6fce85194189ff1faede54edd2c022ea2e",
+      "internal": true,
+      "ipam": [
+        {
+          "Subnet": "10.241.240.128/26",
+          "Gateway": "10.241.240.129"
+        }
+      ]
+    }
+  ],
+  "all_unrelated_prior_network_ids_still_present": true,
+  "data_volumes_preserved": true,
+  "campaign_audits_repeated": 0,
+  "campaign_recovery_attempts": 0,
+  "engineering_recovery_attempts": 1,
+  "additional_full_suite_attempts_authorized": 1,
+  "stop_rule": "Retain the failing original and one complete verification rerun. No semantic candidate reruns or unrecorded retries.",
+  "full_rerun_result": "1 failed, 90 passed, 4 skipped, 345 deselected in 532.93s",
+  "remaining_local_failure": "Frozen evaluate_repairs.py expects ai-debugging-workbench-repair-broker-1 on ai-debugging-workbench_repair-control. In this isolated task stack its stopped default broker had no IP; http://:8012 caused httpx.UnsupportedProtocol.",
+  "unchanged_targeted_harness_check": "1 passed in 21.85s after temporarily starting only the expected existing broker; source hash verified and original stopped state restored. No frozen harness/test changes.",
+  "targeted_legacy_precondition_checks": 1
+}

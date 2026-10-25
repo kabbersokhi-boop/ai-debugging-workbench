@@ -1,0 +1,21 @@
+{
+  "checks": [
+    {
+      "path": "/api/repository-audits/sources",
+      "GET": 404,
+      "POST": 405
+    },
+    {
+      "path": "/api/repository-audits/campaigns/g3-node-compatibility",
+      "GET": 404,
+      "POST": 405
+    },
+    {
+      "path": "/api/repository-audits/campaigns/g3-node-compatibility/runs/3f04cfa7-4232-4274-b952-eaa464535f37",
+      "GET": 404,
+      "POST": 405
+    }
+  ],
+  "local_port": 18060,
+  "execution_authority": false
+}

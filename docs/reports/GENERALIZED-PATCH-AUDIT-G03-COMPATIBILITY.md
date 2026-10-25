@@ -88,7 +88,8 @@ commands, order, acceptance criteria and limits before scoring.
 
 The bounded procedure permits 4 formal audits, 4 control validations, 2 references and
 2 authored alternatives: **12 planned API audits**, plus the two unchanged-base preflights.
-It allows at most one separately recorded infrastructure-only recovery; **none was used**.
+It allows at most one separately recorded campaign infrastructure recovery; **none was used**.
+The separate engineering-suite setup recovery below did not repeat any campaign audit.
 No semantic result was retried outside the two declared repetitions. Any unknown attempt
 must be inspected rather than automatically restarted.
 
@@ -133,5 +134,91 @@ Reopening is read-only and starts no new execution.
 
 ## Verification and delivery
 
-Engineering, security, recovery, browser, CI, preservation and exact delivery identities
-are being finalized below. No merge, release, deployment or G4 is part of this addendum.
+The implementation tested locally and in both CI events is
+**`98a57bd3f91116e6cd3f18ef986e2301543195d7`**. The following delivery commit adds only
+this report and its review evidence. Its exact final SHA and final-head CI URLs are
+recorded in [PR #15](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/15),
+whose head is also available as `refs/pull/15/head`. This avoids embedding a commit's own
+hash in its contents. The PR is stacked on unmerged
+[PR #14](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/14) at
+`4c73c9d125617bc82195e759da267aee5d24606c`; accepted G3 implementation
+`679e3e739d172a83a8ccb8a085006c99392012de` is unchanged.
+
+The [review evidence index](assets/generalized-patch-audit-g03-compatibility/README.md)
+contains logs, identity checks and public-case screenshots. These engineering checks
+are distinct from the twelve frozen application audits.
+
+| Check | Actual result and evidence |
+|---|---|
+| `./scripts/check` at tested implementation | Ruff, Pyright, frontend build and **345 offline tests passed**; 95 integration/opt-in tests deselected. [Log](assets/generalized-patch-audit-g03-compatibility/check.log). |
+| Complete standard-topology CI | **91 integration tests passed, 4 existing live opt-ins skipped**; 345 offline tests separately passed. Recovery smoke, release-server check and **2 recorded browser tests** passed. [Job steps, durations and result lines](assets/generalized-patch-audit-g03-compatibility/ci-tested.json). |
+| First isolated local `./scripts/e2e` | **18 failed, 73 passed, 4 skipped**, 450.09s. Seventeen failures followed Docker address-pool exhaustion; one was the inherited harness topology precondition below. [Retained failures](assets/generalized-patch-audit-g03-compatibility/development/e2e-initial-failure.log), [Docker errors](assets/generalized-patch-audit-g03-compatibility/development/docker-pool-failure.log). |
+| One full isolated local rerun | **1 failed, 90 passed, 4 skipped**, 532.93s, after relocating only this task's four control networks to checked, non-overlapping explicit /26 subnets. [Full log](assets/generalized-patch-audit-g03-compatibility/e2e-local-isolated.log). |
+| Remaining unchanged harness test | **1 passed**, 21.85s, in its expected broker topology. [Log](assets/generalized-patch-audit-g03-compatibility/legacy-harness-test.log), [source identity and original stopped-state restoration](assets/generalized-patch-audit-g03-compatibility/legacy-harness-check.json). |
+| Local `./scripts/recovery-smoke` | Passed, no cleanup errors; [log](assets/generalized-patch-audit-g03-compatibility/recovery-smoke.log). All **12 saved records and downloads** remained exact after restart/recovery, with no new execution. [Runtime and history check](assets/generalized-patch-audit-g03-compatibility/history-runtime-audit.json). |
+| Actual compatibility sandbox | Passed capsule version/import, literal historical filename, denied source/dependency writes, no Docker socket and immutable dependency search path. [Inspection](assets/generalized-patch-audit-g03-compatibility/capsule-security-regression.json), [test](assets/generalized-patch-audit-g03-compatibility/capsule-security-test.log). |
+| Separate addendum browser | Passed both saved candidates, downloads, reload and candidate/audit synchronization. Original panel remains 4/6; addendum 2/2 and labelled combined 6/6. Passed again within the full local rerun and standard CI. [Original/addendum view](assets/generalized-patch-audit-g03-compatibility/separate-addendum.png), [recursive](assets/generalized-patch-audit-g03-compatibility/flatten-recursive.png), [loop](assets/generalized-patch-audit-g03-compatibility/flatten-for.png). |
+| Actual recorded image | Server boundary passed; **2 browser tests passed**. Source/addendum routes return GET 404 / POST 405. No privileged import/execution service, database, Docker socket or provider credentials added. [Server](assets/generalized-patch-audit-g03-compatibility/recorded-boundary.json), [new routes](assets/generalized-patch-audit-g03-compatibility/recorded-addendum-boundary.json), [browser](assets/generalized-patch-audit-g03-compatibility/recorded-browser.log). |
+| Preservation and cleanup | **1,419 protected historical files byte-identical**; observer/v1 and original runtime unchanged. **26 preflight/audit execution environments**, including two base preflights; **70 recorded Docker resources actually absent**. [Completion audit](assets/generalized-patch-audit-g03-compatibility/completion-audit.json). |
+
+The isolated local full suite was **not wholly green**. The frozen legacy harness resolves
+`ai-debugging-workbench-repair-broker-1` and `ai-debugging-workbench_repair-control` by name.
+That default broker was stopped while the task used project `patch-audit-g3c`; its empty
+IP produced `http://:8012` and `httpx.UnsupportedProtocol`. We temporarily started only
+that existing broker, checked its unchanged source hash and absence of active repair
+sandboxes, ran the unchanged test once, and restored its stopped state. No frozen script,
+test, timeout or sandbox permission was changed. The complete CI uses the expected
+default topology and passes all 91 integration tests.
+
+The [engineering recovery record](assets/generalized-patch-audit-g03-compatibility/engineering-recovery.json)
+separates address-pool recovery, one full-suite rerun and one targeted legacy precondition
+check from **zero campaign retries**. Task data volumes were retained; unrelated networks
+were not pruned and their prior IDs remained present. Infrastructure failures remain
+visible and are not described as reproduced candidate defects. CI's tested PR job took
+**9m27s**, including **6m14s** for the integration step, below the unchanged 20-minute
+workflow limit. No timeout increase, removed test or cancellation retry was needed.
+The earlier original G3 parallel-watch cancellation remains a cancellation, not an
+assertion failure.
+
+Implementation CI history, all successful:
+
+| Implementation SHA | Push | Pull request |
+|---|---|---|
+| `22738a0df78fadf81dfa45b8024db4e82d8a9c05` | [40222391064](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40222391064) | [40222508233](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40222508233) |
+| `98a57bd3f91116e6cd3f18ef986e2301543195d7` | [40223718820](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40223718820) | [40223722707](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40223722707) |
+
+Final-head CI must be checked at PR #15 after this report-only commit is pushed; the
+handoff includes those final run URLs and statuses, rather than treating this earlier
+implementation CI as final-head verification.
+
+## Replay and limits
+
+From the repository root, `uv run --project backend pytest backend/tests/test_node_compatibility.py
+backend/tests/test_node_compatibility_replay.py` validates retained evidence and tamper
+rejections without candidate execution. The checked-in SHA-256 manifests identify bytes;
+they are not external signatures. The full application validator rejects forged run IDs,
+changed plans, patch/source claims, capsules and mismatched engine identities. Legacy
+snapshots still replay under their original path policy. Fresh runtime approval and
+positive/negative controls are required; an old approval cannot authorize the new runtime.
+
+The completed campaign budget is exhausted. Do not rerun its candidate execution command
+as an evidence replay. A new experiment would require its own declaration and exact
+approval. Local security/browser fixtures and the offline repair provider used in engineering
+tests are synthetic and are excluded from the genuine candidate denominator; no model
+inference was performed.
+
+This remains two previously selected optimizations from one historical Node repository,
+with known upstream outcomes and independently authored but retrospective requirements.
+The assertions cover dense JSON arrays, ordered recursive flattening, leaf values and
+duplicates; they do not establish sparse-array, cyclic/shared-identity or performance
+behavior. Version 1.0.0 is an explicit compatible dependency resolution, not proof of the
+original installation. Runtime/intake changes are declared; the original unsupported
+observations are preserved. No additional independent defects were found among the
+five combined ordinary-passing candidates. This sample supports no broad detection,
+false-positive or AI-agent accuracy claim.
+
+**PASS**: both narrow blockers are resolved, unchanged bases preflighted, all four genuine
+audits and separate controls verified, original history preserved, security boundaries
+retained, and complete implementation CI passed. No Node compatibility blocker remains.
+Final report-head CI and identities are supplied in the PR handoff for independent review.
+**G4 stays on hold. No merge, release, deployment or further experiment is authorized here.**

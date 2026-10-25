@@ -1,0 +1,348 @@
+{
+  "version": "g3-node-compatibility-completion-audit-v1",
+  "campaign_sha256": "166219b9c4b188e90c7f48ebadf757e27246929eba5a5ba140ff516383c6ba36",
+  "counts": {
+    "selected_candidates": 2,
+    "genuine_candidates_executed": 2,
+    "genuine_candidates_admitted": 2,
+    "planned_candidate_audits": 4,
+    "candidate_audits": 4,
+    "control_validations": 4,
+    "reference_audits": 2,
+    "alternative_audits": 2,
+    "fresh_environments": 24,
+    "repeat_disagreements": 0,
+    "candidate_outcomes": {
+      "ordinary_pass_independent_pass": 2
+    }
+  },
+  "combined_coverage": {
+    "selected_distinct_candidates": 6,
+    "evaluated_distinct_candidates": 6,
+    "formal_audits": 12,
+    "ordinary_passing_candidates": 5,
+    "ordinary_failing_candidates": 1,
+    "additional_independent_defects": 0,
+    "unsupported_or_incomplete": 0,
+    "invalid_or_disputed": 0,
+    "repeat_disagreements": 0
+  },
+  "preflight_and_audit_environments": 26,
+  "recorded_resources_confirmed_actually_absent": 70,
+  "absent_resources": [
+    {
+      "kind": "containers",
+      "id": "0cf745c82126578e1aaee943f43c4cf5eb111680456f166d1868295b6c25ba91"
+    },
+    {
+      "kind": "containers",
+      "id": "0d5a431fbb6278223bfe1a5043ab362e9b2cfb5df9de4125f901726a89c6af7d"
+    },
+    {
+      "kind": "containers",
+      "id": "1b176653f3ecbb832ba3e60e82d73386008ae38bb9b52414d6135e6e99da54ea"
+    },
+    {
+      "kind": "containers",
+      "id": "24115344eb2c44fe19be9c77de4a8c21e3bcde8482e56c01e59a15f01b03df59"
+    },
+    {
+      "kind": "containers",
+      "id": "3238b7d2788958d5997e85475a2cd012d844d0afbac71ffb0f5fa024592baa66"
+    },
+    {
+      "kind": "containers",
+      "id": "4d9bdad5005cc38d53ba25fe58af4ae52934d901db4c394e9d5fe40f652cda10"
+    },
+    {
+      "kind": "containers",
+      "id": "4dafec5c0582989fde10b59a58b04d4836a6e6a30c4b14d6e22ca08ed5a9ac4d"
+    },
+    {
+      "kind": "containers",
+      "id": "519be3bfcdad9e813156244e4921f8350102b881868d3721dcd706750894796e"
+    },
+    {
+      "kind": "containers",
+      "id": "57ddabcca4f25d23787e4810a170938bf4331b535157b9d12dd69f0b315df62c"
+    },
+    {
+      "kind": "containers",
+      "id": "675c43a150ec21adf12207d59b3ecf31895acacb933b54d74985295f7a5841a4"
+    },
+    {
+      "kind": "containers",
+      "id": "7b47e984334109dd5aca7e48d6ecafd7f3de889462420e72f42385648da9c33f"
+    },
+    {
+      "kind": "containers",
+      "id": "8dd8c4966cfcde740ba3b98ca460c23700db881095aa8bfc8f3a943de0da196c"
+    },
+    {
+      "kind": "containers",
+      "id": "980adf3b5c89e128f9d5c9a04bd58bdd220cb74d8ea67561ceec0b216cbf80f0"
+    },
+    {
+      "kind": "containers",
+      "id": "9e184d1d00d1810965ce7223b8ed4686817d694cdbdce29f633f5093b0462ade"
+    },
+    {
+      "kind": "containers",
+      "id": "a45cda55578f17801eb1285b89d21da73c1332033e36fa0269a2c7dc922a5af9"
+    },
+    {
+      "kind": "containers",
+      "id": "b1f489165ef3d9b08c9bef6cb51ed0805bb121019b3a59a530dad5828dd7a00f"
+    },
+    {
+      "kind": "containers",
+      "id": "b8df3a15ea46526217685a5d3d4572eb2f2ed4cfad4282dc11d12d2d2efe239d"
+    },
+    {
+      "kind": "containers",
+      "id": "ca65eafee54c8e1623d231090deef87b1d0f1e2842eafc9eefbf341398341040"
+    },
+    {
+      "kind": "containers",
+      "id": "cf7a45191bc30511f0ee996ea0cc1b03de0cc7e4a020639f7d541de0a4cff3cb"
+    },
+    {
+      "kind": "containers",
+      "id": "d29ec1fb24fd14de35fc67cca78233674fd240782845c881e90b668270b688b2"
+    },
+    {
+      "kind": "containers",
+      "id": "d3f996ddf49ab663d9dd792eb866d675aaa9d6b4633aee26e9a7bd636489e47e"
+    },
+    {
+      "kind": "containers",
+      "id": "d4669d60613cc3e26dafc582145c0bbf01ef6f3e0ea2528f43e93dbc0bb78896"
+    },
+    {
+      "kind": "containers",
+      "id": "e84bb18e97e0f5438571171a4ba2245d7096bfb0364c775f3f428cd56799eff8"
+    },
+    {
+      "kind": "containers",
+      "id": "e8acefc8437c5cc2836af0c16bfd679cd03cad4726791b99dd2b7c85af6df623"
+    },
+    {
+      "kind": "containers",
+      "id": "ea2df2c99c042c78aa820cd426ae48035ac5eff527151199dddae0ff9945cb0d"
+    },
+    {
+      "kind": "containers",
+      "id": "ed9ee86f897548e6d1fcd83bb5f3e8bf4c54c45bcc17441bbb771ab5f104886a"
+    },
+    {
+      "kind": "containers",
+      "id": "f4719e47f4c64e9daf3a67f065f3a3b13fd4d318381f3488b2e6f0008bf774db"
+    },
+    {
+      "kind": "containers",
+      "id": "fddfbc11339727b67cf018471ed29641160b78c4bb9d4aa7fbadf54d13c0eff2"
+    },
+    {
+      "kind": "volumes",
+      "id": "0cf44961dd11cf665a177f0fdb0e9148b5e248a3028188e644e464210786e28f"
+    },
+    {
+      "kind": "volumes",
+      "id": "0dc7e6a2fb4f1bb36a5ca60b73dab43bb03276413d229abeb080b1839468babc"
+    },
+    {
+      "kind": "volumes",
+      "id": "12b3d3e28d671ac25ba423a70dac4415a57417dfa3404b27c652525db7279e2e"
+    },
+    {
+      "kind": "volumes",
+      "id": "14b96e764a3e576ff162ef9911e9f5ef89fb15b7d6470efeddc12aa45660b724"
+    },
+    {
+      "kind": "volumes",
+      "id": "20a901ab80ab86729f18b886017de1c9e4b0e6f39aeba069afc95d43faa83380"
+    },
+    {
+      "kind": "volumes",
+      "id": "20e608694158c0ed3d11b355325cac5bbe92907bcda3ecff757dad4f9d8f91cb"
+    },
+    {
+      "kind": "volumes",
+      "id": "21fea7e58a093a5cd60380a27acae962f05bc4c98e43346f091619a542e12baf"
+    },
+    {
+      "kind": "volumes",
+      "id": "26c24f4637434d911b19317177e3f2dc680084308f7c2529570127dde01425df"
+    },
+    {
+      "kind": "volumes",
+      "id": "2a033121ccb5fd08788daf4c36c9d9e6ba17557245819a656a2ed1050c6d86d6"
+    },
+    {
+      "kind": "volumes",
+      "id": "2b8cefe578c31e5051d8132c005fdb5194caae09d83752b2e9d2f1fa524358e8"
+    },
+    {
+      "kind": "volumes",
+      "id": "2ef8f380e4893c370045567d906418ab9728c77059db65965d295a5259fde692"
+    },
+    {
+      "kind": "volumes",
+      "id": "30c418cdfd9e68f4c3d10406b92306819ce3c8a76bb58799e4b7d28e50fcdf6e"
+    },
+    {
+      "kind": "volumes",
+      "id": "43e1c5dc7948e6ba776b80edb8cc4785e19705c0147d639b77576dc7db421d99"
+    },
+    {
+      "kind": "volumes",
+      "id": "481d9ef2e9e9a589295854baf62ac221bb83a047833147328bec60beeac321d4"
+    },
+    {
+      "kind": "volumes",
+      "id": "4921cd7cc53c289d3b6d71bcc7b5aad39a479435af9a4d20d0d68d7d880d96be"
+    },
+    {
+      "kind": "volumes",
+      "id": "4fd2da092598d0687ba13e3b7c2e7fd6d44a4b2a7f110bacf073d37eed41b6bb"
+    },
+    {
+      "kind": "volumes",
+      "id": "73a739e5f08ebc2f91587320b17547204e0d323541040e6eafb313bca46d3cb7"
+    },
+    {
+      "kind": "volumes",
+      "id": "7b77effdd934b1eb006854dfe2acfe021730bd27f312dda455aefd351adf9c64"
+    },
+    {
+      "kind": "volumes",
+      "id": "7d0be62d7a0fc56e810ef52d5144f23d0cc8c8e538770be7a254843c043de7c2"
+    },
+    {
+      "kind": "volumes",
+      "id": "7e4daff90bfc25a15a60ae2beb96c567d78ec8941477b92618efce003d6c64f2"
+    },
+    {
+      "kind": "volumes",
+      "id": "7fef6b9828f15483e31b19c56a8c3f6ae6813cb612a45ccf6468e183be421188"
+    },
+    {
+      "kind": "volumes",
+      "id": "89f1c36cc22c79f8a6b4a66b6d0af32d6b12ab384daff29612491ac99a8d7011"
+    },
+    {
+      "kind": "volumes",
+      "id": "8fb74202adb102ac1fca9574969fde3362a04975efe6923db678dff32c7d037b"
+    },
+    {
+      "kind": "volumes",
+      "id": "924acaa05229b5e816eba6f5bcf3dc65018ca2b821b9681b518aee5075db96ce"
+    },
+    {
+      "kind": "volumes",
+      "id": "9380add0a34489896a0111196154270ff427161070dd61a459da12f6216ab59b"
+    },
+    {
+      "kind": "volumes",
+      "id": "9b6224b7566c484dee61ed5e7afcd783a1bd8f4be34954dd01afe2375173fec3"
+    },
+    {
+      "kind": "volumes",
+      "id": "a0fb5a920afdf007bfcce3dd594db88141e0751f0bfa09157d9f21a4b6913409"
+    },
+    {
+      "kind": "volumes",
+      "id": "a247d64ef36ae64d96c4005e3df5d998c08fe07ba10482d150d60ff92c8118d5"
+    },
+    {
+      "kind": "volumes",
+      "id": "c49d73cc548f9ab55a7d281252146e2e754eff95742eb4d619f6929c55259d9d"
+    },
+    {
+      "kind": "volumes",
+      "id": "c8e218a4baf0e49e773f8b8c7be1abe2ae118127e4f0d7534a8e076ee781aeb6"
+    },
+    {
+      "kind": "volumes",
+      "id": "cb92f065dcd34aad2af7835c7b7082d2a0dd2687d35c578f719523e905bdfc4c"
+    },
+    {
+      "kind": "volumes",
+      "id": "cbd270134cfb60c77d63730eec0ea5b158d4101076a61c45930a7f44788ddec4"
+    },
+    {
+      "kind": "volumes",
+      "id": "cc0959b96f8d5915dcd7a25c44273734f028c31368a58c378775d1b3987f5a11"
+    },
+    {
+      "kind": "volumes",
+      "id": "d758da0fb5ca935943d269601fea53a4b18475ea796b413e711a45efcc05ede4"
+    },
+    {
+      "kind": "volumes",
+      "id": "d957bd0fabe0f121ea7baabfbe1f6e97301ca1307476b342b099358c5ef6b241"
+    },
+    {
+      "kind": "volumes",
+      "id": "db0cd7365781005fdeb1680c0dc7ee9a71f96ce290d0686c4548615462aa4e2e"
+    },
+    {
+      "kind": "volumes",
+      "id": "dc26e05e43ea810252b377a85c15fab8290331d17182d14b4fd4e2a471e86abe"
+    },
+    {
+      "kind": "volumes",
+      "id": "dc76762ce0d15d9a1211008e392c2e5bc7e6aa033fc99506c205357597a83206"
+    },
+    {
+      "kind": "volumes",
+      "id": "e45f83af2de94c50a53060a0aca69da1eaa8a96800a94b089e7e744863d8bd16"
+    },
+    {
+      "kind": "volumes",
+      "id": "e4f5ccfafaf0af2ea9b8a069e2d36d483b0314155a9f211a7194e26abb267608"
+    },
+    {
+      "kind": "volumes",
+      "id": "f1b7f6e14fbdc6ebaed9d6efcc5ab769d0e2e5e55cb1d90bcf9c07a585435bf7"
+    },
+    {
+      "kind": "volumes",
+      "id": "f56b4f60746292d64211d1381c739a6908b3a30191c92a417f4947eba44dcea4"
+    }
+  ],
+  "protected_historical_files_byte_identical": 1419,
+  "original_g3_status_unchanged": true,
+  "accepted_observer_bytes_unchanged": true,
+  "original_node_runtime_identity_unchanged": true,
+  "fresh_approval_and_control_ids": true,
+  "new_model_calls": 0,
+  "campaign_recovery_attempts": 0,
+  "engineering_recovery_attempts": 1,
+  "candidates": [
+    {
+      "case": "flatten-recursive",
+      "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "base": "280845c6f384fab8ff07a1395de9568270636528",
+      "ordinary_tests_each": 2,
+      "independent_checks_each": 5,
+      "trials": [
+        "3f04cfa7-4232-4274-b952-eaa464535f37",
+        "ab9011ae-320c-40b5-89b5-4381e01432ff"
+      ],
+      "repeats_agree": true
+    },
+    {
+      "case": "flatten-for",
+      "revision": "8953ce8522ee6da8a467286c9bce23fc03b7f38e",
+      "base": "966022a4a9190ddf8c8936daa80d1a7f9f77ecb3",
+      "ordinary_tests_each": 2,
+      "independent_checks_each": 5,
+      "trials": [
+        "6556c1a8-a99e-4b20-a99b-d14106bee727",
+        "b8b787d9-0141-4f90-89ea-f0c338830a72"
+      ],
+      "repeats_agree": true
+    }
+  ]
+}

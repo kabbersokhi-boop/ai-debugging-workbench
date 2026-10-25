@@ -1,0 +1,300 @@
+repair-broker-1  |     network = client.networks.create(f"wb-candidate-{key}", internal=True, labels=labels)
+repair-broker-1  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/models/networks.py", line 156, in create
+repair-broker-1  |     resp = self.client.api.create_network(name, *args, **kwargs)
+repair-broker-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/api/network.py", line 152, in create_network
+repair-broker-1  |     return self._result(res, json=True)
+repair-broker-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/api/client.py", line 281, in _result
+repair-broker-1  |     self._raise_for_status(response)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/api/client.py", line 277, in _raise_for_status
+repair-broker-1  |     raise create_api_error_from_http_exception(e) from e
+repair-broker-1  |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/errors.py", line 39, in create_api_error_from_http_exception
+repair-broker-1  |     raise cls(e, response=response, explanation=explanation) from e
+repair-broker-1  | docker.errors.APIError: 400 Client Error for http+docker://localhost/v1.56/networks/create: Bad Request ("all predefined address pools have been fully subnetted")
+repair-broker-1  | ERROR:    Exception in ASGI application
+repair-broker-1  | Traceback (most recent call last):
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/api/client.py", line 275, in _raise_for_status
+repair-broker-1  |     response.raise_for_status()
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+repair-broker-1  |     raise HTTPError(http_error_msg, response=self)
+repair-broker-1  | requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http+docker://localhost/v1.56/networks/create
+repair-broker-1  | 
+repair-broker-1  | The above exception was the direct cause of the following exception:
+repair-broker-1  | 
+repair-broker-1  | Traceback (most recent call last):
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/h11_impl.py", line 411, in run_asgi
+repair-broker-1  |     result = await app(  # type: ignore[func-returns-value]
+repair-broker-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+repair-broker-1  |     return await self.app(scope, receive, send)
+repair-broker-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1            | INFO:     192.168.224.1:57120 - "GET /assets/Diff-q-zaPINp.js HTTP/1.1" 200 OK
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1216, in __call__
+repair-broker-1  |     await super().__call__(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/applications.py", line 96, in __call__
+repair-broker-1  |     await self.middleware_stack(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+api-1            | INFO:     192.168.224.1:57132 - "GET /retail/ HTTP/1.1" 200 OK
+repair-broker-1  |     raise exc
+api-1            | INFO:     192.168.224.1:57120 - "GET /retail/styles.css HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57132 - "GET /retail/cart.js HTTP/1.1" 200 OK
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+api-1            | INFO:     192.168.224.1:57132 - "GET /assets/editor.worker-BytiCuzy.js HTTP/1.1" 200 OK
+repair-broker-1  |     await self.app(scope, receive, _send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+repair-broker-1  |     await self.app(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+repair-broker-1  |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+repair-broker-1  |     raise exc
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+repair-broker-1  |     await app(scope, receive, sender)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+repair-broker-1  |     await self.app(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 676, in __call__
+repair-broker-1  |     await self.middleware_stack(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 2791, in app
+repair-broker-1  |     await route.handle(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 1310, in handle
+repair-broker-1  |     await super().handle(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 282, in handle
+repair-broker-1  |     await self.app(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 165, in app
+repair-broker-1  |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+repair-broker-1  |     raise exc
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+repair-broker-1  |     await app(scope, receive, sender)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 151, in app
+repair-broker-1  |     response = await f(request)
+repair-broker-1  |                ^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 727, in app
+repair-broker-1  |     raw_response = await run_endpoint_function(
+repair-broker-1  |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 360, in run_endpoint_function
+repair-broker-1  |     return await dependant.call(**values)
+repair-broker-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1            | INFO:     192.168.224.1:57152 - "GET /recorded/?workspace=debugger HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57152 - "GET /assets/index-AmIpJ90l.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57156 - "GET /assets/index-BnCQl7L0.css HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57152 - "GET /api/mode HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57152 - "GET /api/recordings HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57152 - "GET /api/recordings/m4-shipping-success HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57156 - "GET /assets/Diff-CNgQWNDj.css HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57152 - "GET /assets/Diff-q-zaPINp.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57166 - "GET /api/recorded-assets/live-shipping-comparison.png HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57152 - "GET /api/recorded-assets/walkthrough.mp4 HTTP/1.1" 206 Partial Content
+api-1            | INFO:     192.168.224.1:57152 - "GET /assets/editor.worker-BytiCuzy.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57152 - "GET /api/recordings/remote-timeout HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57152 - "GET /api/recorded-assets/live-shipping-comparison.png HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57166 - "GET /api/recordings/m4-shipping-success HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57152 - "GET /api/recorded-assets/live-shipping-comparison.png HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57174 - "GET /?workspace=debugger HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57190 - "GET /assets/index-BnCQl7L0.css HTTP/1.1" 200 OK
+repair-broker-1  |   File "/app/backend/src/workbench/repair/broker.py", line 316, in verify_original
+api-1            | INFO:     192.168.224.1:57174 - "GET /assets/index-AmIpJ90l.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57174 - "GET /api/mode HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57174 - "GET /api/bugs HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57190 - "GET /api/health HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57190 - "GET /api/runs HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57190 - "GET /scenarios/shipping-threshold/retail/ HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57190 - "GET /scenarios/shipping-threshold/retail/styles.css HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57174 - "GET /scenarios/shipping-threshold/retail/cart.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57196 - "POST /api/runs HTTP/1.1" 202 Accepted
+api-1            | INFO:     192.168.224.1:57196 - "GET /api/runs/1c392d65-4ed0-42b7-be03-2add0c125467 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57196 - "GET /api/runs/1c392d65-4ed0-42b7-be03-2add0c125467 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57196 - "GET /api/runs/1c392d65-4ed0-42b7-be03-2add0c125467 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57196 - "GET /api/runs/1c392d65-4ed0-42b7-be03-2add0c125467 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57196 - "GET /api/runs/1c392d65-4ed0-42b7-be03-2add0c125467 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57196 - "GET /api/runs/1c392d65-4ed0-42b7-be03-2add0c125467 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57196 - "GET /api/runs/1c392d65-4ed0-42b7-be03-2add0c125467 HTTP/1.1" 200 OK
+api-1            | INFO:     127.0.0.1:34090 - "GET /api/health HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:57196 - "GET /api/runs/1c392d65-4ed0-42b7-be03-2add0c125467 HTTP/1.1" 200 OK
+api-1            | INFO:     127.0.0.1:36590 - "GET /api/health HTTP/1.1" 200 OK
+repair-broker-1  |     instance = await asyncio.to_thread(create_sync, key, files)
+api-1            | INFO:     127.0.0.1:49100 - "GET /api/health HTTP/1.1" 200 OK
+repair-broker-1  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+api-1            | INFO:     127.0.0.1:50406 - "GET /api/health HTTP/1.1" 200 OK
+repair-broker-1  |     return await loop.run_in_executor(None, func_call)
+repair-broker-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1            | INFO:     127.0.0.1:57840 - "GET /api/health HTTP/1.1" 200 OK
+repair-broker-1  |   File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+api-1            | INFO:     192.168.224.1:59632 - "GET /?source=external HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59632 - "GET /assets/index-AmIpJ90l.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /assets/index-BnCQl7L0.css HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59632 - "GET /api/mode HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59632 - "GET /assets/RepositoryAudit-BylxLjUo.js HTTP/1.1" 200 OK
+repair-broker-1  |     result = self.fn(*self.args, **self.kwargs)
+repair-broker-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/src/workbench/repair/broker.py", line 83, in create_sync
+repair-broker-1  |     network = client.networks.create(f"wb-candidate-{key}", internal=True, labels=labels)
+repair-broker-1  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/models/networks.py", line 156, in create
+repair-broker-1  |     resp = self.client.api.create_network(name, *args, **kwargs)
+repair-broker-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/api/network.py", line 152, in create_network
+repair-broker-1  |     return self._result(res, json=True)
+repair-broker-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/api/client.py", line 281, in _result
+repair-broker-1  |     self._raise_for_status(response)
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/api/client.py", line 277, in _raise_for_status
+repair-broker-1  |     raise create_api_error_from_http_exception(e) from e
+repair-broker-1  |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+repair-broker-1  |   File "/app/backend/.venv/lib/python3.12/site-packages/docker/errors.py", line 39, in create_api_error_from_http_exception
+repair-broker-1  |     raise cls(e, response=response, explanation=explanation) from e
+repair-broker-1  | docker.errors.APIError: 400 Client Error for http+docker://localhost/v1.56/networks/create: Bad Request ("all predefined address pools have been fully subnetted")
+api-1            | INFO:     127.0.0.1:60902 - "GET /api/health HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48948 - "GET /api/repository-audits/runs HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48958 - "GET /api/repository-audits/runtimes HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48948 - "POST /api/repository-audits/candidates HTTP/1.1" 201 Created
+api-1            | INFO:     192.168.224.1:48948 - "GET /assets/Diff-q-zaPINp.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48970 - "GET /assets/Diff-CNgQWNDj.css HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59632 - "GET /api/repository-audits/campaigns/g3 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /api/repository-audits/campaigns/g3-node-compatibility HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /assets/editor.worker-BytiCuzy.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "POST /api/repository-audits/plans HTTP/1.1" 201 Created
+api-1            | INFO:     192.168.224.1:59634 - "POST /api/repository-audits/runs HTTP/1.1" 202 Accepted
+api-1            | INFO:     192.168.224.1:59634 - "GET /api/repository-audits/runs HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /api/repository-audits/runs/48ca2083-85c8-461d-a693-9fe82f4d87ea HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /api/repository-audits/runs/48ca2083-85c8-461d-a693-9fe82f4d87ea HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /api/repository-audits/runs HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /api/repository-audits/runs/48ca2083-85c8-461d-a693-9fe82f4d87ea/evidence HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48984 - "GET /api/repository-audits/runs/48ca2083-85c8-461d-a693-9fe82f4d87ea HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /?source=external&repositoryAudit=48ca2083-85c8-461d-a693-9fe82f4d87ea HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /assets/index-AmIpJ90l.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59632 - "GET /assets/index-BnCQl7L0.css HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /api/mode HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:59634 - "GET /assets/RepositoryAudit-BylxLjUo.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48948 - "GET /api/repository-audits/runs HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48958 - "GET /api/repository-audits/runtimes HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48948 - "GET /api/repository-audits/runs/48ca2083-85c8-461d-a693-9fe82f4d87ea HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48948 - "GET /assets/Diff-q-zaPINp.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48970 - "GET /assets/Diff-CNgQWNDj.css HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48948 - "GET /assets/editor.worker-BytiCuzy.js HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "POST /api/repository-audits/candidates HTTP/1.1" 201 Created
+api-1            | INFO:     192.168.224.1:48992 - "POST /api/repository-audits/plans HTTP/1.1" 201 Created
+api-1            | INFO:     192.168.224.1:48992 - "POST /api/repository-audits/runs HTTP/1.1" 202 Accepted
+api-1            | INFO:     192.168.224.1:48992 - "POST /api/repository-audits/runs/dd358211-3d5f-4f8a-ab3f-5f9fcd374f42/cancel HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/dd358211-3d5f-4f8a-ab3f-5f9fcd374f42 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/dd358211-3d5f-4f8a-ab3f-5f9fcd374f42 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/dd358211-3d5f-4f8a-ab3f-5f9fcd374f42 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/dd358211-3d5f-4f8a-ab3f-5f9fcd374f42 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/dd358211-3d5f-4f8a-ab3f-5f9fcd374f42 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "POST /api/repository-audits/plans HTTP/1.1" 201 Created
+api-1            | INFO:     192.168.224.1:48992 - "POST /api/repository-audits/runs HTTP/1.1" 202 Accepted
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+api-1            | INFO:     192.168.224.1:48992 - "GET /api/repository-audits/runs/5a3645fa-6753-4ba1-b4d4-f958ba133432 HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:35226 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35238 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35246 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35262 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35274 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35284 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35296 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35302 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35304 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35312 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35316 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35320 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35322 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:35330 - "GET /evaluations/6e6ebbb4-d43f-42b3-b821-9112121433dd HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     127.0.0.1:58906 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:57500 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:57514 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:34922 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:57530 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:52804 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:52820 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:56188 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:56194 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:50850 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:50862 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:58236 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:58248 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:53826 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:40544 - "POST /audits/ef9104f8-ef16-4742-8e15-5ee7da9fb0dc HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:53836 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:40558 - "POST /audits/f9f87890-a1bb-4077-8619-85e397130f7b HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:60962 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:38992 - "POST /evaluations/f63a9940-92e1-4551-8efc-72db9c5aaa32/cancel HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:38976 - "POST /audits/f63a9940-92e1-4551-8efc-72db9c5aaa32 HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:60970 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:39002 - "POST /audits/6d7ee827-6e87-45b6-952a-6efa37393fa1 HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:51462 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:39012 - "POST /audits/4374c2dc-f4ba-4eb8-8615-3801b8f9b8e1 HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:51466 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:50872 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:58212 - "GET /evaluations/4374c2dc-f4ba-4eb8-8615-3801b8f9b8e1 HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:58214 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58230 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58242 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58246 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58260 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58262 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58274 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58290 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     127.0.0.1:50888 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:58294 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58300 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58312 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:58328 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45164 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45170 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45184 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45186 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45202 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45216 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45220 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45224 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45234 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45250 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45266 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45272 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45280 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45290 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45306 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45320 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45332 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45338 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     127.0.0.1:39580 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:45352 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45354 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45360 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45366 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45380 - "GET /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272 HTTP/1.1" 404 Not Found
+evaluator-1      | INFO:     192.168.208.4:45394 - "POST /evaluations/b4cc0a4d-88d5-4521-b6ec-ec4bf828d272/cancel HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:39588 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:34384 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:34396 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:37396 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:37120 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:37134 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:48278 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:48286 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:44524 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:44540 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:60676 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:60684 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:41272 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:41284 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:47546 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:54458 - "GET /health HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:47554 - "POST /repository-audits/48ca2083-85c8-461d-a693-9fe82f4d87ea HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:47566 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:47590 - "POST /evaluations/dd358211-3d5f-4f8a-ab3f-5f9fcd374f42/cancel HTTP/1.1" 200 OK
+evaluator-1      | INFO:     192.168.208.4:47576 - "POST /repository-audits/dd358211-3d5f-4f8a-ab3f-5f9fcd374f42 HTTP/1.1" 200 OK
+evaluator-1      | INFO:     127.0.0.1:54464 - "GET /health HTTP/1.1" 200 OK

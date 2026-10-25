@@ -1,0 +1,154 @@
+{
+  "version": "repository-result-v1",
+  "audit_id": "84a2c783-90ec-46e2-ac9d-749fa1ff5b1b",
+  "candidate_id": "4ece25e24832a2668a0039afdd4925ffd9fa6b67f1861370630e8384326a9412",
+  "candidate_hash": "fec45e90e97a4ce19bed8f0c135ec3b99c04dc0b828ece7f403e70240ca94e7c",
+  "snapshot_id": "56b9dd8e250cd52348a24996938de3f4fde9f3bcacb208eef737c6e9b2db51ab",
+  "source_binding": {
+    "repository": "fixture/literal-paths",
+    "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "git_tree": "d7d5e4dd3077f5ffb071de724b09bf4c94914b36",
+    "source_tree_hash": "b0d55469a03d74ac50545a4d52d191ce2a078562be508b22bd83ca755ed6e380",
+    "submitted_patch_hash": "e62c2a0c2ab1d19d21ba7a9eff6bdeebc6ac8b3e0d7763dde2bf72358d7ee263"
+  },
+  "plan_id": "33b1cddef4312da5acc075aa38ada3c5c41e51c0da0e5edac8989f70bd692db4",
+  "engine_id": "9bc99b9a0300985b8654a3a826ea944ed863fc441367b94d5c38000762108871",
+  "policy": {
+    "version": "repository-sandbox-v1",
+    "network": "none",
+    "uid": "1000:1000",
+    "rootfs": "read-only",
+    "source": "read-only named volume; separate bounded scratch and offline dependencies",
+    "cpu": 1,
+    "memory_bytes": 536870912,
+    "pids": 64,
+    "scratch_bytes": 134217728,
+    "tmp_bytes": 8388608,
+    "shm_bytes": 8388608,
+    "output_bytes_per_stream": 65536,
+    "log_storage_bytes": 131072,
+    "file_bytes": 16777216,
+    "host_mounts": [],
+    "capabilities": [],
+    "credentials": false,
+    "docker_socket": false,
+    "artifacts": [
+      "stdout",
+      "stderr",
+      "exit status",
+      "runtime identity"
+    ]
+  },
+  "independent": {
+    "status": "not_configured"
+  },
+  "ordinary": {
+    "phase": "tests",
+    "argv": [
+      "node",
+      "-e",
+      "const f=require('fs'),a=require('assert');a.equal(require('array-flatten/package.json').version,'1.0.0');for(const p of ['/source/index.js',require.resolve('array-flatten')])a.throws(()=>f.writeFileSync(p,'bad'));a.equal(process.env.NODE_PATH,'/opt/test-tools/node_modules');a.equal(f.existsSync('/var/run/docker.sock'),false);a.deepEqual(require('array-flatten')([1,[2]]),[1,2]);a.equal(f.readFileSync(process.argv[1],'utf8'),process.argv[2]);",
+      "/source/benchmark/code/arr-flatten-0.1.0 (do-while).js",
+      "literal bytes"
+    ],
+    "working_directory": "/source",
+    "started_at": "2026-10-25T19:02:30.559257+00:00",
+    "stdout": "",
+    "stderr": "",
+    "exit_code": 0,
+    "counts": null,
+    "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+    "output_truncated": false,
+    "status": "finished",
+    "ended_at": "2026-10-25T19:02:30.618538+00:00",
+    "duration_ms": 59
+  },
+  "commands": [
+    {
+      "phase": "tests",
+      "argv": [
+        "node",
+        "-e",
+        "const f=require('fs'),a=require('assert');a.equal(require('array-flatten/package.json').version,'1.0.0');for(const p of ['/source/index.js',require.resolve('array-flatten')])a.throws(()=>f.writeFileSync(p,'bad'));a.equal(process.env.NODE_PATH,'/opt/test-tools/node_modules');a.equal(f.existsSync('/var/run/docker.sock'),false);a.deepEqual(require('array-flatten')([1,[2]]),[1,2]);a.equal(f.readFileSync(process.argv[1],'utf8'),process.argv[2]);",
+        "/source/benchmark/code/arr-flatten-0.1.0 (do-while).js",
+        "literal bytes"
+      ],
+      "working_directory": "/source",
+      "started_at": "2026-10-25T19:02:30.559257+00:00",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0,
+      "counts": null,
+      "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+      "output_truncated": false,
+      "status": "finished",
+      "ended_at": "2026-10-25T19:02:30.618538+00:00",
+      "duration_ms": 59
+    }
+  ],
+  "status": "tests_passed",
+  "started_at": "2026-10-25T19:02:29.902980+00:00",
+  "runtime": {
+    "image_id": "sha256:b6d2d1152ed7dd9ce3fbc96290799b1903f75bfe3054d32df649bf3d691a63e4",
+    "repo_digests": [
+      "patch-audit-node@sha256:b6d2d1152ed7dd9ce3fbc96290799b1903f75bfe3054d32df649bf3d691a63e4"
+    ],
+    "runtime": "node22_compat",
+    "tag": "patch-audit-node:22-compat-v1"
+  },
+  "executed_source_hashes": {
+    "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+    "benchmark/code/arr-flatten-0.1.0 (do-while).js": "51be4b66d5fa1fbeb67fddf3faba002342285977247fa559802300778627a014",
+    "index.js": "0ec5062faab170572a435284b5253963013467df51ba80c8508952311335954a",
+    "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+  },
+  "container_id": "c387e97e7ca6668a267854237261f9fd023bb315fdf3537a2a27fe30afeeb056",
+  "sandbox": {
+    "user": "1000:1000",
+    "host_config": {
+      "NetworkMode": "none",
+      "ReadonlyRootfs": true,
+      "CapDrop": [
+        "ALL"
+      ],
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ],
+      "Memory": 536870912,
+      "MemorySwap": 536870912,
+      "NanoCpus": 1000000000,
+      "PidsLimit": 64,
+      "Tmpfs": {
+        "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+        "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+      },
+      "ShmSize": 8388608
+    },
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "faeb9d0b2d26a44bc85700d7bee09ed7438286fd96dc785f6767b2fa1447ca8d",
+        "Destination": "/source",
+        "RW": false
+      }
+    ]
+  },
+  "container_state": {
+    "OOMKilled": false,
+    "Error": ""
+  },
+  "cleanup": [
+    {
+      "kind": "containers",
+      "id": "c387e97e7ca6668a267854237261f9fd023bb315fdf3537a2a27fe30afeeb056",
+      "confirmed_absent": true
+    },
+    {
+      "kind": "volumes",
+      "id": "faeb9d0b2d26a44bc85700d7bee09ed7438286fd96dc785f6767b2fa1447ca8d",
+      "confirmed_absent": true
+    }
+  ],
+  "ended_at": "2026-10-25T19:02:30.983917+00:00",
+  "duration_ms": 1081
+}
