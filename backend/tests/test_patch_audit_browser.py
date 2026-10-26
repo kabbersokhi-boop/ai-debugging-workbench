@@ -44,7 +44,9 @@ async def test_patch_audit_real_ui_import_failing_passing_download_and_reopen(tm
         for key, outcome in ((FAIL, "failed"), (PASS, "passed")):
             await page.goto(BASE)
             await expect(
-                page.get_by_role("heading", name="Patch Audit", exact=True)
+                page.get_by_role(
+                    "heading", name="A patch is more than a green test run.", exact=True
+                )
             ).to_be_visible()
             await expect(page.get_by_role("region", name="Candidate review")).to_be_visible()
             before = (await client.get("/api/patch-audits/runs")).json()
