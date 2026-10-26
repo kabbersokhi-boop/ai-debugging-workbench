@@ -1,0 +1,383 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_g4_accepted_example_guided_approval_execution_download_history[python-positive] _
+
+key = 'python-positive'
+
+    @pytest.mark.integration
+    @pytest.mark.parametrize("key", ["python-positive", "node-positive"])
+    async def test_g4_accepted_example_guided_approval_execution_download_history(key):
+        example = next(
+            x
+            for x in json.loads((EXAMPLES / "examples.json").read_text())["examples"]
+            if x["key"] == key
+        )
+        retained = next(
+            p
+            for p in ACCEPTED.glob(key + "-*.json")
+            if "review" not in p.name and "validation" not in p.name
+        )
+        source = json.loads(retained.read_text())["evidence"]["snapshot"]
+        decode_files(source)
+        live = os.environ.get("G4_LIVE_SOURCE") == "1"
+        output = OUT / ("live-source" if live else "fixture-transport") / key
+        output.mkdir(parents=True, exist_ok=True)
+        if not live:
+            db = create_async_engine(settings.database_url)
+            try:
+                async with async_sessionmaker(db).begin() as session:
+                    if await session.get(RepositorySource, source["id"]) is None:
+                        session.add(RepositorySource(id=source["id"], record=source))
+            finally:
+                await db.dispose()
+        async with async_playwright() as p, httpx.AsyncClient(base_url=BASE, timeout=30) as client:
+            browser = await p.chromium.launch()
+            page = await browser.new_page(
+                viewport={"width": 1440, "height": 1050}, accept_downloads=True
+            )
+            errors = []
+            page.on("pageerror", lambda e: errors.append(str(e)))
+            if not live:
+                await page.route(
+                    "**/api/repository-audits/sources",
+                    lambda route: route.fulfill(json=summary(source)),
+                )
+            await page.goto(BASE + "/?source=external")
+            await expect(
+                page.get_by_role("heading", name="Audit a completed patch", exact=True)
+            ).to_be_visible()
+            await page.screenshot(path=str(output / "intake-desktop.png"))
+            await page.set_viewport_size({"width": 390, "height": 844})
+            await page.wait_for_function("document.documentElement.scrollWidth <= innerWidth")
+            await page.screenshot(path=str(output / "intake-mobile.png"))
+            await page.set_viewport_size({"width": 1440, "height": 1050})
+            await page.get_by_label("GitHub owner/repository", exact=True).fill(example["repository"])
+            await page.get_by_label("Immutable base commit", exact=True).fill(example["base_commit"])
+            async with page.expect_response(
+                lambda r: r.url.endswith("/repository-audits/sources") and r.request.method == "POST"
+            ) as admission:
+                await page.get_by_role("button", name="Fetch source for review", exact=True).click()
+            response = await admission.value
+            assert response.status == 201 if live else response.status == 200, await response.text()
+            admitted = await response.json()
+            assert admitted["base_commit"] == example["base_commit"]
+            assert admitted["source_tree_hash"] == source["source_tree_hash"]
+            await page.get_by_label("Approved production file scope", exact=True).select_option(
+                example["module"]
+            )
+            await page.get_by_label("External unified diff", exact=True).fill(
+                (EXAMPLES / example["patch"]).read_text()
+            )
+            await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+            await expect(page.get_by_label("External candidate review", exact=True)).to_be_visible()
+            await page.get_by_label("Runtime preset", exact=True).select_option(example["runtime"])
+            await page.get_by_label("Test command arguments", exact=True).fill(
+                json.dumps(example["tests"])
+            )
+            await page.get_by_label("Selected test scope", exact=True).fill(
+                "G4 product acceptance · unchanged selected upstream tests"
+            )
+            await page.get_by_role("button", name="Prepare exact plan for approval", exact=True).click()
+            await expect(
+                page.get_by_text("Independent checks not configured.", exact=False).first
+            ).to_be_visible()
+            await page.get_by_label("Add independent verification", exact=True).check()
+            await page.get_by_role("button", name="Advanced JSON", exact=True).click()
+            req = copy.deepcopy(example["requirement"])
+            await page.get_by_label("Independent requirements", exact=True).fill(json.dumps([req]))
+            await page.get_by_role("button", name="Guided requirement", exact=True).click()
+            await expect(page.get_by_label("Required behavior", exact=True)).to_have_value(
+                req["statement"]
+            )
+            await page.get_by_text("I reviewed the provenance", exact=False).click()
+            # Guided edits invalidate approval; advanced details survive round-trip unchanged.
+            await page.get_by_label("Required behavior", exact=True).fill(req["statement"] + " ")
+            await expect(
+                page.get_by_role("button", name="Prepare independent plan", exact=True)
+            ).to_be_disabled()
+            await page.get_by_label("Required behavior", exact=True).fill(req["statement"])
+            await page.get_by_role("button", name="Advanced JSON", exact=True).click()
+            authored = json.loads(
+                await page.get_by_label("Independent requirements", exact=True).input_value()
+            )
+            assert authored == [req]
+            await page.get_by_role("button", name="Guided requirement", exact=True).click()
+            await page.get_by_text("I reviewed the provenance", exact=False).click()
+            await page.get_by_label("Independent target file", exact=True).fill(example["module"])
+            await page.get_by_label("Public function export", exact=True).fill(example["export"])
+            first = example["assertions"][0]
+            await page.get_by_label("Example name", exact=True).fill(first["id"])
+            await page.get_by_label("Function arguments", exact=True).fill(json.dumps(first["args"]))
+            await page.get_by_label("Expected JSON result", exact=True).fill(
+                json.dumps(first["expected"])
+            )
+            await page.get_by_role("button", name="Add named example", exact=True).click()
+            await expect(page.get_by_label("Declared assertions", exact=True)).to_contain_text(
+                first["id"]
+            )
+            await page.get_by_role("button", name="Advanced JSON", exact=True).click()
+            await page.get_by_label("Named assertions", exact=True).fill(
+                json.dumps([{**a, "requirement_index": 0} for a in example["assertions"]])
+            )
+            await page.get_by_role("button", name="Guided requirement", exact=True).click()
+            await page.get_by_label(
+                "Independent verification plan", exact=True
+            ).scroll_into_view_if_needed()
+            await page.screenshot(path=str(output / "requirements.png"))
+            await page.get_by_role("button", name="Prepare independent plan", exact=True).click()
+            await expect(
+                page.get_by_role("button", name="Validate independent checker", exact=True)
+            ).to_be_disabled()
+            await page.get_by_text("I approve running this plan's positive", exact=False).click()
+            await page.get_by_role("button", name="Validate independent checker", exact=True).click()
+            await expect(
+>               page.get_by_label("Approve validated independent plan", exact=True)
+            ).to_be_visible(timeout=60000)
+E           AssertionError: Locator expected to have text 'checks passed'
+E           Actual value: completed 
+E           Call log:
+E             - Expect "to_have_text" with timeout 60000ms
+E             - waiting for get_by_label("External audit result", exact=True).get_by_role("status")
+E               7 × locator resolved to <strong role="status" class="evaluation-status running">running</strong>
+E                 - unexpected value "running"
+E               56 × locator resolved to <strong role="status" class="evaluation-status completed">completed</strong>
+E                  - unexpected value "completed"
+
+backend/tests/test_g4_browser.py:158: AssertionError
+_ test_g4_accepted_example_guided_approval_execution_download_history[node-positive] _
+
+key = 'node-positive'
+
+    @pytest.mark.integration
+    @pytest.mark.parametrize("key", ["python-positive", "node-positive"])
+    async def test_g4_accepted_example_guided_approval_execution_download_history(key):
+        example = next(
+            x
+            for x in json.loads((EXAMPLES / "examples.json").read_text())["examples"]
+            if x["key"] == key
+        )
+        retained = next(
+            p
+            for p in ACCEPTED.glob(key + "-*.json")
+            if "review" not in p.name and "validation" not in p.name
+        )
+        source = json.loads(retained.read_text())["evidence"]["snapshot"]
+        decode_files(source)
+        live = os.environ.get("G4_LIVE_SOURCE") == "1"
+        output = OUT / ("live-source" if live else "fixture-transport") / key
+        output.mkdir(parents=True, exist_ok=True)
+        if not live:
+            db = create_async_engine(settings.database_url)
+            try:
+                async with async_sessionmaker(db).begin() as session:
+                    if await session.get(RepositorySource, source["id"]) is None:
+                        session.add(RepositorySource(id=source["id"], record=source))
+            finally:
+                await db.dispose()
+        async with async_playwright() as p, httpx.AsyncClient(base_url=BASE, timeout=30) as client:
+            browser = await p.chromium.launch()
+            page = await browser.new_page(
+                viewport={"width": 1440, "height": 1050}, accept_downloads=True
+            )
+            errors = []
+            page.on("pageerror", lambda e: errors.append(str(e)))
+            if not live:
+                await page.route(
+                    "**/api/repository-audits/sources",
+                    lambda route: route.fulfill(json=summary(source)),
+                )
+            await page.goto(BASE + "/?source=external")
+            await expect(
+                page.get_by_role("heading", name="Audit a completed patch", exact=True)
+            ).to_be_visible()
+            await page.screenshot(path=str(output / "intake-desktop.png"))
+            await page.set_viewport_size({"width": 390, "height": 844})
+            await page.wait_for_function("document.documentElement.scrollWidth <= innerWidth")
+            await page.screenshot(path=str(output / "intake-mobile.png"))
+            await page.set_viewport_size({"width": 1440, "height": 1050})
+            await page.get_by_label("GitHub owner/repository", exact=True).fill(example["repository"])
+            await page.get_by_label("Immutable base commit", exact=True).fill(example["base_commit"])
+            async with page.expect_response(
+                lambda r: r.url.endswith("/repository-audits/sources") and r.request.method == "POST"
+            ) as admission:
+                await page.get_by_role("button", name="Fetch source for review", exact=True).click()
+            response = await admission.value
+            assert response.status == 201 if live else response.status == 200, await response.text()
+            admitted = await response.json()
+            assert admitted["base_commit"] == example["base_commit"]
+            assert admitted["source_tree_hash"] == source["source_tree_hash"]
+            await page.get_by_label("Approved production file scope", exact=True).select_option(
+                example["module"]
+            )
+            await page.get_by_label("External unified diff", exact=True).fill(
+                (EXAMPLES / example["patch"]).read_text()
+            )
+            await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+            await expect(page.get_by_label("External candidate review", exact=True)).to_be_visible()
+            await page.get_by_label("Runtime preset", exact=True).select_option(example["runtime"])
+            await page.get_by_label("Test command arguments", exact=True).fill(
+                json.dumps(example["tests"])
+            )
+            await page.get_by_label("Selected test scope", exact=True).fill(
+                "G4 product acceptance · unchanged selected upstream tests"
+            )
+            await page.get_by_role("button", name="Prepare exact plan for approval", exact=True).click()
+            await expect(
+                page.get_by_text("Independent checks not configured.", exact=False).first
+            ).to_be_visible()
+            await page.get_by_label("Add independent verification", exact=True).check()
+            await page.get_by_role("button", name="Advanced JSON", exact=True).click()
+            req = copy.deepcopy(example["requirement"])
+            await page.get_by_label("Independent requirements", exact=True).fill(json.dumps([req]))
+            await page.get_by_role("button", name="Guided requirement", exact=True).click()
+            await expect(page.get_by_label("Required behavior", exact=True)).to_have_value(
+                req["statement"]
+            )
+            await page.get_by_text("I reviewed the provenance", exact=False).click()
+            # Guided edits invalidate approval; advanced details survive round-trip unchanged.
+            await page.get_by_label("Required behavior", exact=True).fill(req["statement"] + " ")
+            await expect(
+                page.get_by_role("button", name="Prepare independent plan", exact=True)
+            ).to_be_disabled()
+            await page.get_by_label("Required behavior", exact=True).fill(req["statement"])
+            await page.get_by_role("button", name="Advanced JSON", exact=True).click()
+            authored = json.loads(
+                await page.get_by_label("Independent requirements", exact=True).input_value()
+            )
+            assert authored == [req]
+            await page.get_by_role("button", name="Guided requirement", exact=True).click()
+            await page.get_by_text("I reviewed the provenance", exact=False).click()
+            await page.get_by_label("Independent target file", exact=True).fill(example["module"])
+            await page.get_by_label("Public function export", exact=True).fill(example["export"])
+            first = example["assertions"][0]
+            await page.get_by_label("Example name", exact=True).fill(first["id"])
+            await page.get_by_label("Function arguments", exact=True).fill(json.dumps(first["args"]))
+            await page.get_by_label("Expected JSON result", exact=True).fill(
+                json.dumps(first["expected"])
+            )
+            await page.get_by_role("button", name="Add named example", exact=True).click()
+            await expect(page.get_by_label("Declared assertions", exact=True)).to_contain_text(
+                first["id"]
+            )
+            await page.get_by_role("button", name="Advanced JSON", exact=True).click()
+            await page.get_by_label("Named assertions", exact=True).fill(
+                json.dumps([{**a, "requirement_index": 0} for a in example["assertions"]])
+>           )
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_visible" with timeout 60000ms
+E             - waiting for get_by_label("Approve validated independent plan", exact=True)
+
+backend/tests/test_g4_browser.py:145: AssertionError
+_______________ test_g4_unsupported_preview_and_keyboard_mobile ________________
+
+                "status": value["status"],
+                "history_and_download_exact": True,
+                "console_errors": errors,
+            },
+            indent=2,
+        )
+>       + "\n"
+    )
+
+backend/tests/test_g4_browser.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+backend/.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:9045: in goto
+    await self._impl_obj.goto(
+backend/.venv/lib/python3.12/site-packages/playwright/_impl/_page.py:552: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:153: in goto
+    await self._channel.send(
+backend/.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0x7f8e7ec6bdd0>
+cb = <function Channel.send.<locals>.<lambda> at 0x7f8e7ec89b20>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.Error: Page.goto: net::ERR_SOCKET_NOT_CONNECTED at http://127.0.0.1:18150/?source=external
+E           Call log:
+E             - navigating to "http://127.0.0.1:18150/?source=external", waiting until "load"
+
+backend/.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:559: Error
+____ test_recorded_explorer_first_g4_boltons_provenance_and_mobile_boundary ____
+
+            await page.get_by_role("button", name="Preview public PR", exact=True).click()
+            await expect(page.get_by_role("alert")).to_contain_text("Preview unavailable")
+            await expect(page.get_by_label("External audit result", exact=True)).to_have_count(0)
+            await page.get_by_role("alert").scroll_into_view_if_needed()
+            await page.screenshot(path=str(OUT / "unsupported-desktop.png"))
+            await page.set_viewport_size({"width": 390, "height": 844})
+            await page.wait_for_function("document.documentElement.scrollWidth <= innerWidth")
+            await page.get_by_role("alert").scroll_into_view_if_needed()
+            await page.screenshot(path=str(OUT / "unsupported-mobile.png"))
+            await browser.close()
+    
+    
+>   @pytest.mark.e2e
+            ^^^^^^^^^
+
+backend/tests/test_g4_browser.py:245: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+backend/.venv/lib/python3.12/site-packages/playwright/async_api/_generated.py:9045: in goto
+    await self._impl_obj.goto(
+backend/.venv/lib/python3.12/site-packages/playwright/_impl/_page.py:552: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:153: in goto
+    await self._channel.send(
+backend/.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0x7f8e7f545d00>
+cb = <function Channel.send.<locals>.<lambda> at 0x7f8e7f5af740>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.Error: Page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:18150/recorded/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02
+E           Call log:
+E             - navigating to "http://127.0.0.1:18150/recorded/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02", waiting until "load"
+
+backend/.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:559: Error
+=========================== short test summary info ============================
+FAILED backend/tests/test_g4_browser.py::test_g4_accepted_example_guided_approval_execution_download_history[python-positive]
+FAILED backend/tests/test_g4_browser.py::test_g4_accepted_example_guided_approval_execution_download_history[node-positive]
+FAILED backend/tests/test_g4_browser.py::test_g4_unsupported_preview_and_keyboard_mobile
+FAILED backend/tests/test_g4_browser.py::test_recorded_explorer_first_g4_boltons_provenance_and_mobile_boundary
+4 failed in 140.68s (0:02:20)

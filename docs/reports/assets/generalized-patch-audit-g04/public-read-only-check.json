@@ -1,0 +1,20 @@
+{
+  "method": "GET only",
+  "requests": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/api/health",
+      "status": 200,
+      "health": {
+        "status": "ok",
+        "mode": "recorded",
+        "live_execution_slots": 0,
+        "provider_token_budget": 0
+      }
+    }
+  ],
+  "deployment_performed": false
+}

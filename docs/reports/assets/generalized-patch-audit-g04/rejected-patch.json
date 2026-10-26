@@ -1,0 +1,7 @@
+{
+  "transport": "retained accepted source fixture; actual API admission rejection",
+  "response": 422,
+  "runs_unchanged": true,
+  "candidate_created": false,
+  "execution_requested": false
+}

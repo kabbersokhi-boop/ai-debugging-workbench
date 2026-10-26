@@ -1,0 +1,37 @@
+{
+  "runs": [
+    {
+      "id": 40411229304,
+      "event": "push",
+      "job": 121882127755,
+      "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40411229304",
+      "head_sha": "ca56acfb9120aa42aef70b794b995008d4b42ca2",
+      "conclusion": "success",
+      "summary": [
+        "2026-10-26T22:17:47.3366614Z ===================== 387 passed, 104 deselected in 19.02s =====================",
+        "2026-10-26T22:25:31.8899858Z tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution PASSED [ 88%]",
+        "2026-10-26T22:26:20.0394474Z tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 93%]",
+        "2026-10-26T22:26:26.1774012Z ========== 100 passed, 4 skipped, 387 deselected in 400.88s (0:06:40) ==========",
+        "2026-10-26T22:26:32.1924713Z {\"checkpoint_before_crash\": \"running\", \"completed_history_unchanged\": true, \"fresh_run_after_recovery\": \"c3a19f81-b352-43b2-a366-bc7b3c5ceaa5\", \"fresh_run_status\": \"reproduced\", \"runner_cleanup_errors\": false}",
+        "2026-10-26T22:26:55.9556680Z ====================== 3 passed, 488 deselected in 5.33s ======================="
+      ]
+    },
+    {
+      "id": 40411237325,
+      "event": "pull_request",
+      "job": 121882153735,
+      "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40411237325",
+      "head_sha": "ca56acfb9120aa42aef70b794b995008d4b42ca2",
+      "conclusion": "success",
+      "summary": [
+        "2026-10-26T22:18:03.4783011Z ===================== 387 passed, 104 deselected in 23.94s =====================",
+        "2026-10-26T22:27:36.6299512Z tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution PASSED [ 88%]",
+        "2026-10-26T22:28:33.1615724Z tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 93%]",
+        "2026-10-26T22:28:40.4458735Z ========== 100 passed, 4 skipped, 387 deselected in 500.86s (0:08:20) ==========",
+        "2026-10-26T22:28:48.4127127Z {\"checkpoint_before_crash\": \"running\", \"completed_history_unchanged\": true, \"fresh_run_after_recovery\": \"42ed1e2f-64b5-40b5-a232-420240488fae\", \"fresh_run_status\": \"reproduced\", \"runner_cleanup_errors\": false}",
+        "2026-10-26T22:29:14.8771416Z ====================== 3 passed, 488 deselected in 6.59s ======================="
+      ]
+    }
+  ],
+  "workflow_reruns_requested": 0
+}

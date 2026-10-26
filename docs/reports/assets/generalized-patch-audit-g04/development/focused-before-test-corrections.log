@@ -1,0 +1,76 @@
+..F...F..                                                                [100%]
+=================================== FAILURES ===================================
+_______________ test_g4_unsupported_preview_and_keyboard_mobile ________________
+
+    @pytest.mark.integration
+    async def test_g4_unsupported_preview_and_keyboard_mobile():
+        OUT.mkdir(parents=True, exist_ok=True)
+        async with async_playwright() as p:
+            browser = await p.chromium.launch()
+            page = await browser.new_page(viewport={"width": 1440, "height": 1000})
+            await page.goto(BASE + "/?source=external")
+            await page.keyboard.press("Tab")
+>           await expect(page.get_by_role("link", name="Skip to audit content")).to_be_focused()
+E           AssertionError: Locator expected to be focused
+E           Actual value: inactive 
+E           Call log:
+E             - Expect "to_be_focused" with timeout 5000ms
+E             - waiting for get_by_role("link", name="Skip to audit content")
+E               9 × locator resolved to <a class="audit-skip" href="#audit-content">Skip to audit content</a>
+E                 - unexpected value "inactive"
+
+backend/tests/test_g4_browser.py:260: AssertionError
+_____________ test_g4_actual_rejected_test_patch_creates_no_audit ______________
+
+    @pytest.mark.integration
+    async def test_g4_actual_rejected_test_patch_creates_no_audit():
+        source = json.loads(next(ACCEPTED.glob("python-positive-50*.json")).read_text())["evidence"][
+            "snapshot"
+        ]
+        db = create_async_engine(settings.database_url)
+        try:
+            async with async_sessionmaker(db).begin() as session:
+                if await session.get(RepositorySource, source["id"]) is None:
+                    session.add(RepositorySource(id=source["id"], record=source))
+        finally:
+            await db.dispose()
+        async with async_playwright() as p, httpx.AsyncClient(base_url=BASE) as client:
+            before = (await client.get("/api/repository-audits/runs")).json()
+            browser = await p.chromium.launch()
+            page = await browser.new_page(viewport={"width": 1440, "height": 1000})
+            await page.route(
+                "**/api/repository-audits/sources", lambda route: route.fulfill(json=summary(source))
+            )
+            await page.goto(BASE + "/?source=external")
+            await page.get_by_label("GitHub owner/repository", exact=True).fill(source["repository"])
+            await page.get_by_label("Immutable base commit", exact=True).fill(source["base_commit"])
+            await page.get_by_role("button", name="Fetch source for review", exact=True).click()
+            await page.get_by_label("Approved production file scope", exact=True).select_option(
+                "first.py"
+            )
+            rejected = (
+                (EXAMPLES / "python-positive.patch")
+                .read_text()
+                .replace("a/first.py", "a/test_first.py")
+                .replace("b/first.py", "b/test_first.py")
+            )
+            await page.get_by_label("External unified diff", exact=True).fill(rejected)
+            async with page.expect_response(
+                lambda r: r.url.endswith("/repository-audits/candidates")
+            ) as admission:
+                await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+            assert (await admission.value).status == 422
+>           await expect(page.get_by_role("alert")).to_contain_text("patch_rejected")
+E           AssertionError: Locator expected to contain text 'patch_rejected'
+E           Actual value: Error: patch rejected: Patch rejected: unauthorized, duplicate, renamed or unsafe path 
+E           Call log:
+E             - Expect "to_contain_text" with timeout 5000ms
+E             - waiting for get_by_role("alert")
+E               9 × locator resolved to <p role="alert" class="error-banner">Error: patch rejected: Patch rejected: unauthoriz…</p>
+E                 - unexpected value "Error: patch rejected: Patch rejected: unauthorized, duplicate, renamed or unsafe path"
+
+backend/tests/test_g4_browser.py:436: AssertionError
+=========================== short test summary info ============================
+FAILED backend/tests/test_g4_browser.py::test_g4_unsupported_preview_and_keyboard_mobile
+FAILED backend/tests/test_g4_browser.py::test_g4_actual_rejected_test_patch_creates_no_audit
+2 failed, 7 passed in 57.95s

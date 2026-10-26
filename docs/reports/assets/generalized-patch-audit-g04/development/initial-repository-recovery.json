@@ -1,0 +1,10 @@
+{
+  "cancelled": "f1d686d3-3c60-4ab8-8eb8-dec027db50b5",
+  "restored": "aa8bab80-529f-4274-a5d7-6b73b9e52bbf",
+  "missing_terminal": "38b6634b-aeb6-42c7-b689-86333131b1bc",
+  "restored_without_reexecution": true,
+  "restart_elapsed_seconds": 20.431,
+  "api_usable": true,
+  "restored_evidence_hash": "3da8ef7786964f21ddfc132352ca87ca295c6bf90602765bb3edae6fbd0fe8de",
+  "missing_classification": "interrupted"
+}

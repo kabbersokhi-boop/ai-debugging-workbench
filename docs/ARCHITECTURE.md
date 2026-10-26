@@ -128,3 +128,45 @@ Private staging can enable PostgreSQL-backed guest ownership and atomic admissio
 Public release is a **separate recorded-only application**, not this Compose stack exposed through a reverse proxy. Its image contains sanitized immutable records and the built UI, with no live API, DB, provider credentials, Docker socket or execution broker. It rejects mutation methods, limits per-visitor/global traffic and concurrency, expires guest windows, validates release health, and uses nonroot/read-only/resource-capped execution. The recorded explorer labels actual live NVIDIA evidence and offline security probes separately; there is no automatic fallback from a live request. [Release policy and exact remaining activation](RELEASE.md).
 
 The frozen comparison reuses the existing graph/provider and changes only whole/retrieved context and decision/patch budgets. Benchmark state is atomically retained on disk with an in-memory LangGraph saver; product runs retain native PostgreSQL checkpoints. Evaluation-only final checks run after the graph and never feed revision prompts. They rehash actual served bytes and bind candidate, source, final-check code and actual runtime. Failed attempts contribute to request/token accounting. [Protocol](../evals/README.md) and [results](RESULTS.md).
+
+## Patch Audit trust boundaries
+
+```mermaid
+flowchart LR
+    O[Trusted local owner] --> UI[React / TypeScript workspace]
+    GH[Public GitHub] -->|bounded HTTPS / immutable source| A[Local API: admission and identities]
+    UI -->|read-only PR metadata preview| A
+    UI -->|exact source / patch / plan approval| A
+    SPEC[Independently justified specification] -->|owner-approved requirements| A
+    A <--> DB[(Private PostgreSQL: immutable evidence and history)]
+    A -->|approved typed plans| B[Local execution broker]
+    B --> T[Fresh ordinary-test container]
+    B --> C[Fresh control-validation containers]
+    B --> I[Fresh independent-observation container]
+    I -->|JSON observations only| B
+    B -->|compare with trusted expected values| E[Bound evidence / separate outcomes]
+    E --> A
+    R[Sanitized immutable recordings] --> P[Separate public recorded image]
+    P --> V[Visitor: inspect and download only]
+```
+
+Source and candidate hashes are recomputed during admission, not borrowed from PR display metadata.
+The preview neither downloads source nor creates a candidate. It is local-only; the public image
+has no preview, source-intake, approval, recovery, database or execution routes. The diagram's
+GitHub connection belongs entirely to the privileged local application.
+
+Candidate containers are non-root, network-disabled, credential-free and bounded, with read-only
+source and no Docker socket or unrelated host mounts. They share the host kernel; this is not a
+complete sandbox for malicious code. The broker withholds trusted expected values from the scored candidate’s observation container
+and compares them with returned observations. Synthetic positive/negative control implementations
+necessarily encode their authored outputs; the isolation claim concerns the scored candidate. Exact-plan control validation precedes independent scoring. Verifier versions and all
+source/candidate/runtime/approval bindings remain part of evidence integrity checks.
+
+The API completes required migrations and recovery before releasing startup. Recovery reconciles
+valid completed evidence without re-execution; missing results have bounded per-audit recovery
+budgets and become interrupted. Required database/integrity failures still fail startup. See the
+[accepted recovery correction](reports/GENERALIZED-PATCH-AUDIT-G03-COMPATIBILITY.md#api-restart--recovery-reliability-correction).
+
+[G4 first-audit walkthrough](PATCH-AUDIT-QUICKSTART.md) ·
+[Detailed generalized contracts](GENERALIZED-PATCH-AUDIT.md) ·
+[G4 release-readiness report](reports/GENERALIZED-PATCH-AUDIT-G04.md)

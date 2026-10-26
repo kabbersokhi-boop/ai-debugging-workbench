@@ -1,0 +1,13 @@
+{
+  "patch-audit-g4-api-1": {
+    "container_id": "4175075ad643efb1e2cf45e3eda66fec98ceea637bd5eff2ab6dc6e0df9a5989",
+    "image_id": "sha256:234a55463c286a9e7f973dd18bba73ca42de9cf4a9ce99f2b78ce3c2763112a2",
+    "frontend_files_match": 9
+  },
+  "patch-audit-g4-release-explorer-1": {
+    "container_id": "a9f3befc27060f484ea96a2a58610a18c775d77c35dae45ab252ccc18e4805af",
+    "image_id": "sha256:39f3e0b0d21e7ef137457b6df6888ace607b319acdc7cf8583fe714f69cc43e6",
+    "frontend_files_match": 9
+  },
+  "implementation_sha": "1a18b23e1fcf051f0891ac0c294e166ea3867d13"
+}

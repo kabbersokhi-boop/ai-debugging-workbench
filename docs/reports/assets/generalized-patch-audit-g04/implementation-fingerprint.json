@@ -1,0 +1,21 @@
+{
+  "implementation_sha": "ca56acfb9120aa42aef70b794b995008d4b42ca2",
+  "git_objects": {
+    "backend": "f8e5d75109e8a5077579406b909c9d028da21c7a",
+    "frontend": "01b7dd58d7e1219de3fcec906656d0f56247a90f",
+    "scripts": "830b4ef2b7438225112142e96e69c4a97e271fe1",
+    ".github": "48d4ed1e5a0aa94c0ac9ff864a8547b1a7f1ae9a",
+    "docker": "b43d753af79bc1d2da3bf0242d1947d7047f32e3",
+    "evaluation": "cca7a64de8e4b3b98d491253a3851d3db7cdbdde",
+    "evals": "60573a15cda7cebcc0dae07d5aa1773ed66869ee",
+    "recordings": "7e69c05a57685661625509873c5a76619d77910b",
+    "Dockerfile": "8d6d34b6ac2ac1051cfd8b9d42ad35d4b61dae0e",
+    "compose.yaml": "4615f496858fabb173e821aab7f87e7905fc1d6f",
+    "compose.release.yaml": "14b8dbd32bd8e80950ed49fddaf8b1d7d72e7198",
+    "app.py": "9d35d44ece18f6632240012d61659ebbac2a07bf",
+    "requirements.txt": "a3c6b0a59d163c7b4e2d534be0ba4863d0f2af47",
+    "vercel.json": "aa527c00610b73f795fc4f840b9391db4d29e19a",
+    ".dockerignore": "40f867e1f05f1fa840bc7c028052d5076d2281cf"
+  },
+  "verification": "Compare these tree/blob object IDs with FINAL_HEAD:path; all must match. Documentation and retained G4 evidence are the only permitted final-commit changes."
+}

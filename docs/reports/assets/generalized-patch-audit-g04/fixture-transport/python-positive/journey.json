@@ -1,0 +1,9 @@
+{
+  "example": "python-positive",
+  "source_transport": "retained accepted public snapshot; source response replayed",
+  "fresh_execution": true,
+  "audit_id": "335f435b-c326-45d2-863b-80c9a9f82d4f",
+  "status": "completed",
+  "history_and_download_exact": true,
+  "console_errors": []
+}

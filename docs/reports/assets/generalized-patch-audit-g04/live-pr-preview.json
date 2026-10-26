@@ -1,0 +1,22 @@
+{
+  "http_status": 200,
+  "body": {
+    "version": "github-pr-preview-v1",
+    "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/15",
+    "repository": "kabbersokhi-boop/ai-debugging-workbench",
+    "number": 15,
+    "title": "G3: complete Node compatibility and bound API restart recovery",
+    "base_commit": "4c73c9d125617bc82195e759da267aee5d24606c",
+    "head_commit": "9c025a37cc4a01d86ce0af599776a73a07b2bc16",
+    "head_repository": "kabbersokhi-boop/ai-debugging-workbench",
+    "observed_at": "2026-10-26T22:32:23.180312+00:00",
+    "changed_files": 157,
+    "additions": 12256,
+    "deletions": 52,
+    "admission": "not_admitted",
+    "execution_authorized": false,
+    "limitation": "Metadata preview only. No source or candidate admitted. The PR can change; these are observed commit IDs, not recomputed source/patch identities. The base tip may differ from the patch merge-base. Use manual immutable source and production-only patch admission; tests/configuration changes, new/deleted files and unsupported environments remain rejected."
+  },
+  "source_or_candidate_admitted": false,
+  "execution_requested": false
+}

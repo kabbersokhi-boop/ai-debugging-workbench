@@ -1,0 +1,16 @@
+[
+  {
+    "example": "python-positive",
+    "audit_id": "5c188d79-8a0b-4d33-8b67-edb1c21c3316",
+    "evidence_exact_after_full_suite_restarts_and_smoke": true,
+    "original_execution_submissions": 1,
+    "execution_submissions_after_container_recreation": 0
+  },
+  {
+    "example": "node-positive",
+    "audit_id": "1ff7c0d7-5685-4b49-88ce-8ea341f86f46",
+    "evidence_exact_after_full_suite_restarts_and_smoke": true,
+    "original_execution_submissions": 1,
+    "execution_submissions_after_container_recreation": 0
+  }
+]

@@ -1,0 +1,1185 @@
+{
+  "id": "335f435b-c326-45d2-863b-80c9a9f82d4f",
+  "candidate_id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+  "plan_id": "ffe1ce0442bf445386fa97a3e9d699cd467397cdeed7f5d1309225ebc17b1b90",
+  "status": "completed",
+  "created_at": "2026-10-26T22:23:19.710233+00:00",
+  "updated_at": "2026-10-26T22:23:22.474404+00:00",
+  "execution_mode": "fresh_local",
+  "evidence": {
+    "snapshot": {
+      "id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+      "version": "repository-source-v1",
+      "repository": "hynek/first",
+      "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+      "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+      "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+      "file_hashes": {
+        ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+        "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+        "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+        "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+        "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+        "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+        "first.py": "c648960b003d1489afdfbbf9d882582218d578ac307ee5b079b2cf6745fbc7e7",
+        "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+        "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+      },
+      "modes": {
+        ".gitignore": "100644",
+        "HISTORY.rst": "100644",
+        "LICENSE": "100644",
+        "MANIFEST.in": "100644",
+        "Makefile": "100644",
+        "README.rst": "100644",
+        "first.py": "100644",
+        "setup.py": "100644",
+        "test_first.py": "100644"
+      },
+      "files": {
+        ".gitignore": "X19weWNhY2hlX18KYnVpbGQKZGlzdApmaXJzdC5lZ2ctaW5mbwo=",
+        "HISTORY.rst": "SGlzdG9yeQo9PT09PT09CgoxLjAuMiAoMjAxMi0xMC0wOSkKLS0tLS0tLS0tLS0tLS0tLS0tCiAgIC0gRml4IHBhY2thZ2luZy4gSSBnZXQgdGhpcyBuZXZlciByaWdodCB0aGUgZmlyc3QgdGltZS4gOi0vCgoxLjAuMSAoMjAxMi0xMC0wOSkKLS0tLS0tLS0tLS0tLS0tLS0tCiAgIC0gRG9jdW1lbnRhdGlvbiBmaXhlcyBvbmx5LgoKMS4wLjAgKDIwMTItMTAtMDkpCi0tLS0tLS0tLS0tLS0tLS0tLQogICAtIEluaXRpYWwgcmVsZWFzZS4K",
+        "LICENSE": "Q29weXJpZ2h0IChjKSAyMDEyIEh5bmVrIFNjaGxhd2FjawoKUGVybWlzc2lvbiBpcyBoZXJlYnkgZ3JhbnRlZCwgZnJlZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gb2J0YWluaW5nIGEgY29weSBvZgp0aGlzIHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdhcmUiKSwgdG8gZGVhbCBpbgp0aGUgU29mdHdhcmUgd2l0aG91dCByZXN0cmljdGlvbiwgaW5jbHVkaW5nIHdpdGhvdXQgbGltaXRhdGlvbiB0aGUgcmlnaHRzIHRvCnVzZSwgY29weSwgbW9kaWZ5LCBtZXJnZSwgcHVibGlzaCwgZGlzdHJpYnV0ZSwgc3VibGljZW5zZSwgYW5kL29yIHNlbGwgY29waWVzCm9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJzb25zIHRvIHdob20gdGhlIFNvZnR3YXJlIGlzIGZ1cm5pc2hlZCB0byBkbwpzbywgc3ViamVjdCB0byB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6CgpUaGUgYWJvdmUgY29weXJpZ2h0IG5vdGljZSBhbmQgdGhpcyBwZXJtaXNzaW9uIG5vdGljZSBzaGFsbCBiZSBpbmNsdWRlZCBpbiBhbGwKY29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KClRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAiQVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCklNUExJRUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVSQ0hBTlRBQklMSVRZLApGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiBJTiBOTyBFVkVOVCBTSEFMTCBUSEUKQVVUSE9SUyBPUiBDT1BZUklHSFQgSE9MREVSUyBCRSBMSUFCTEUgRk9SIEFOWSBDTEFJTSwgREFNQUdFUyBPUiBPVEhFUgpMSUFCSUxJVFksIFdIRVRIRVIgSU4gQU4gQUNUSU9OIE9GIENPTlRSQUNULCBUT1JUIE9SIE9USEVSV0lTRSwgQVJJU0lORyBGUk9NLApPVVQgT0YgT1IgSU4gQ09OTkVDVElPTiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SIE9USEVSIERFQUxJTkdTIElOIFRIRQpTT0ZUV0FSRS4K",
+        "MANIFEST.in": "aW5jbHVkZSBSRUFETUUucnN0IExJQ0VOU0UgSElTVE9SWS5yc3QgZmlyc3QucHkK",
+        "Makefile": "dGVzdDoKCXB5dGhvbiAtbSBkb2N0ZXN0IGZpcnN0LnB5CglweXRob24gLW0gZG9jdGVzdCBSRUFETUUucnN0CgouUEhPTlk6IHRlc3QK",
+        "README.rst": "Zmlyc3Q6IFRoZSBmdW5jdGlvbiB5b3UgYWx3YXlzIG1pc3NlZCBpbiBQeXRob24KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCipmaXJzdCogaXMgYSBNSVQgbGljZW5zZWQgUHl0aG9uIHBhY2thZ2Ugd2l0aCBhIHNpbXBsZSBmdW5jdGlvbiB0aGF0IHJldHVybnMKdGhlIGZpcnN0IHRydWUgdmFsdWUgZnJvbSBhbiBpdGVyYWJsZSwgb3IgYGBOb25lYGAgaWYgdGhlcmUgaXMgbm9uZS4gIElmIHlvdSBuZWVkCm1vcmUgcG93ZXIsIHlvdSBjYW4gYWxzbyBzdXBwbHkgYSBrZXkgZnVuY3Rpb24gdGhhdCBpcyB1c2VkIHRvIGp1ZGdlIHRoZSB0cnV0aAp2YWx1ZSBvZiB0aGUgZWxlbWVudC4KCiAgIEnigJltIHVzaW5nIHRoZSB0ZXJtIOKAnHRydWXigJ0gY29uc2lzdGVudGx5IHdpdGggUHl0aG9uIGRvY3MgZm9yIGBgYW55KClgYCBhbmQKICAgYGBhbGwoKWBgIOKAlCBpdCBtZWFucyB0aGF0IHRoZSB2YWx1ZSBldmFsdWF0ZXMgdG8gdHJ1ZSBsaWtlOiBgYFRydWVgYCwgYGAxYGAsCiAgIGBgImZvbyJgYCBvciBgYFtOb25lXWBgLiBCdXQgKipub3QqKjogYGBOb25lYGAsIGBgRmFsc2VgYCBvciBgYDBgYC4gIEluCiAgIEphdmFTY3JpcHQsIHRoZXkgY2FsbCB0aGlzIOKAnHRydXRoeeKAnS4KCgpFeGFtcGxlcwo9PT09PT09PQoKQSBzaW1wbGUgZXhhbXBsZSBmaXJzdDogOjoKCiAgID4+IGZyb20gZmlyc3QgaW1wb3J0IGZpcnN0CiAgID4+IGZpcnN0KFswLCBOb25lLCBGYWxzZSwgW10sICgpLCA0Ml0pCiAgIDQyCgpIb3dldmVyLCBpdOKAmXMgZXNwZWNpYWxseSB1c2VmdWwgZm9yIGRlYWxpbmcgd2l0aCByZWd1bGFyIGV4cHJlc3Npb25zIGluCmBgaWYvZWxpZi9lbHNlYGAgYnJhbmNoZXM6IDo6CgogICBpbXBvcnQgcmUKCiAgIGZyb20gZmlyc3QgaW1wb3J0IGZpcnN0CgoKICAgcmUxID0gcmUuY29tcGlsZSgnYiguKiknKQogICByZTIgPSByZS5jb21waWxlKCdhKC4qKScpCgogICBtID0gZmlyc3QocmVnZXhwLm1hdGNoKCdhYmMnKSBmb3IgcmVnZXhwIGluIFtyZTEsIHJlMl0pCiAgIGlmIG5vdCBtOgogICAgICBwcmludCgnbm8gbWF0Y2ghJykKICAgZWxpZiBtLnJlIGlzIHJlMToKICAgICAgcHJpbnQoJ3JlMScsIG0uZ3JvdXAoMSkpCiAgIGVsaWYgbS5yZSBpcyByZTI6CiAgICAgIHByaW50KCdyZTInLCBtLmdyb3VwKDEpKQoKVGhlIG9wdGlvbmFsIGtleSBmdW5jdGlvbiBnaXZlcyB5b3UgZXZlbiAqbW9yZSogc2VsZWN0aW9uIHBvd2VyLiBJZiB5b3UKd2FudCB0byByZXR1cm4gdGhlIGZpcnN0IGV2ZW4gbnVtYmVyIGZyb20gYSBsaXN0LCBqdXN0IGRvIHRoZSBmb2xsb3dpbmc6OgoKICAgPj4+IGZyb20gZmlyc3QgaW1wb3J0IGZpcnN0CiAgID4+PiBmaXJzdChbMSwgMSwgMywgNCwgNV0sIGxhbWJkYSB4OiB4ICUgMiA9PSAwKQogICA0CgoKVXNhZ2UKPT09PT0KClRoZSBwYWNrYWdlIGNvbnNpc3RzIG9mIG9uZSBtb2R1bGUgY29uc2lzdGluZyBvZiBvbmUgZnVuY3Rpb246OgoKICAgZnJvbSBmaXJzdCBpbXBvcnQgZmlyc3QKCiAgIGZpcnN0KGl0ZXJhYmxlLCBrZXk9Tm9uZSkKClRoaXMgZnVuY3Rpb24gcmV0dXJucyB0aGUgZmlyc3QgZWxlbWVudCBvZiBgYGl0ZXJhYmxlYGAgdGhhdCBpcyB0cnVlIGlmCmBga2V5YGAgaXMgYGBOb25lYGAuIElmIHRoZXJlIGlzIG5vIHRydWUgZWxlbWVudCwgYGBOb25lYGAgaXMgcmV0dXJuZWQuCgpJZiBhIGNhbGxhYmxlIGlzIHN1cHBsaWVkIGluIGBga2V5YGAsIHRoZSByZXN1bHQgb2YgYGBrZXkoZWxlbWVudClgYCBpcwp1c2VkIHRvIGp1ZGdlIHRoZSB0cnV0aCB2YWx1ZSBvZiB0aGUgZWxlbWVudCwgYnV0IHRoZSBlbGVtZW50IGl0c2VsZiBpcwpyZXR1cm5lZC4KCipmaXJzdCogaGFzIG5vIGRlcGVuZGVuY2llcyBhbmQgc2hvdWxkIHdvcmsgd2l0aCBhbnkgUHl0aG9uIGF2YWlsYWJsZS4gIE9mCmNvdXJzZSwgaXQgd29ya3Mgd2l0aCB0aGUgYXdlc29tZSBgUHl0aG9uIDNgXyBldmVyeWJvZHkgc2hvdWxkIGJlIHVzaW5nLgoKCkJhY2tncm91bmQKPT09PT09PT09PQoKVGhlIGlkZWEgZm9yICpmaXJzdCogZ29lcyBiYWNrIHRvIGEgZGlzY3Vzc2lvbiBJIGhhZCB3aXRoIGDFgXVrYXN6IExhbmdhYF8gYWJvdXQKaG93IHRoZSBgYHJlYGAgZXhhbXBsZSBhYm92ZSBpcyBwYWluZnVsIGluIFB5dGhvbi4gIFdlIGZpZ3VyZWQgc3VjaCBhIGZ1bmN0aW9uCmlzIG1pc3NpbmcgUHl0aG9uLCBob3dldmVyIGl04oCZcyByYXRoZXIgdW5saWtlbHkgd2XigJlkIGdldCBpdCBpbiBhbmQgZXZlbiBpZiwgaXQKd291bGRu4oCZdCBnZXQgaW4gYmVmb3JlIDMuNCBhbnl3YXksIHdoaWNoIGlzIHllYXJzIGF3YXkgYXMgb2YgeW91cnMgdHJ1bHkgaXMKd3JpdGluZyB0aGlzLgoKU28gSSBkZWNpZGVkIHRvIHJlbGVhc2UgaXQgYXMgYSBwYWNrYWdlIGZvciBub3cuICBJZiBpdCBwcm92ZXMgcG9wdWxhciBlbm91Z2gsCml0IG1heSBldmVuIG1ha2UgaXQgaW50byBQeXRob27igJlzIHN0ZGxpYiBpbiB0aGUgZW5kLgoKCi4uIF9gUHl0aG9uIDNgOiBodHRwOi8vZ2V0cHl0aG9uMy5jb20vCi4uIF9gxYF1a2FzeiBMYW5nYWA6IGh0dHBzOi8vZ2l0aHViLmNvbS9hbWJ2Ci4uIF9gaWZmYDogaHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9JZmYKCg==",
+        "first.py": "IyMgLSotIGNvZGluZzogdXRmLTggLSotCgoiIiIKZmlyc3QKPT09PT0KCmZpcnN0IGlzIHRoZSBmdW5jdGlvbiB5b3UgYWx3YXlzIG1pc3NlZCBpbiBQeXRob24uCgpJbiB0aGUgc2ltcGxlc3QgY2FzZSwgaXQgcmV0dXJucyB0aGUgZmlyc3QgdHJ1ZSBlbGVtZW50IGZyb20gYW4gaXRlcmFibGU6Cgo+Pj4gZnJvbSBmaXJzdCBpbXBvcnQgZmlyc3QKPj4+IGZpcnN0KFswLCBGYWxzZSwgTm9uZSwgW10sICgpLCA0Ml0pCjQyCgpPciBOb25lIGlmIHRoZXJlIGlzIG5vbmU6Cgo+Pj4gZnJvbSBmaXJzdCBpbXBvcnQgZmlyc3QKPj4+IGZpcnN0KFtdKSBpcyBOb25lClRydWUKPj4+IGZpcnN0KFswLCBGYWxzZSwgTm9uZSwgW10sICgpXSkgaXMgTm9uZQpUcnVlCgpJdCBhbHNvIHN1cHBvcnRzIHRoZSBwYXNzaW5nIG9mIGEga2V5IGFyZ3VtZW50IHRvIGhlbHAgc2VsZWN0aW5nIHRoZSBmaXJzdAptYXRjaCBpbiBhIG1vcmUgYWR2YW5jZWQgd2F5LgoKPj4+IGZyb20gZmlyc3QgaW1wb3J0IGZpcnN0Cj4+PiBmaXJzdChbMSwgMSwgMywgNCwgNV0sIGxhbWJkYSB4OiB4ICUgMiA9PSAwKQo0Cgo6Y29weXJpZ2h0OiAoYykgMjAxMiBieSBIeW5layBTY2hsYXdhY2suCjpsaWNlbnNlOiBNSVQsIHNlZSBMSUNFTlNFIGZvciBtb3JlIGRldGFpbHMuCgoiIiIKCl9fdGl0bGVfXyA9ICdmaXJzdCcKX192ZXJzaW9uX18gPSAnMS4wLjInCl9fYXV0aG9yX18gPSAnSHluZWsgU2NobGF3YWNrJwpfX2xpY2Vuc2VfXyA9ICdNSVQnCl9fY29weXJpZ2h0X18gPSAnQ29weXJpZ2h0IDIwMTIgSHluZWsgU2NobGF3YWNrJwoKCmRlZiBmaXJzdChpdGVyYWJsZSwga2V5PU5vbmUsIGRlZmF1bHQ9Tm9uZSk6CiAgICAiIiIKICAgIFJldHVybiBmaXJzdCBlbGVtZW50IG9mIGBpdGVyYWJsZWAgdGhhdCBldmFsdWF0ZXMgdHJ1ZSwgZWxzZSByZXR1cm4gTm9uZS4KCiAgICA+Pj4gZmlyc3QoWzAsIEZhbHNlLCBOb25lLCBbXSwgKCksIDQyXSkKICAgIDQyCgogICAgPj4+IGltcG9ydCByZQogICAgPj4+IG0gPSBmaXJzdChyZS5tYXRjaChyZWdleCwgJ2FiYycpIGZvciByZWdleCBpbiBbJ2IuKicsICdhKC4qKSddKQogICAgPj4+IG0uZ3JvdXAoMSkKICAgICdiYycKCiAgICA+Pj4gZmlyc3QoW10pIGlzIE5vbmUKICAgIFRydWUKICAgID4+PiBmaXJzdChbMCwgRmFsc2UsIE5vbmUsIFtdLCAoKV0pIGlzIE5vbmUKICAgIFRydWUKCiAgICBJZiBga2V5YCBpcyBzcGVjaWZpZWQsIHRoZSByZXN1bHQgb2YgYGtleWAgaXMgcmV0dXJuZWQgaWYgdGhlIHJlc3VsdCBpcwogICAgdHJ1ZS4KCiAgICA+Pj4gZmlyc3QoWzEsIDEsIDMsIDQsIDVdLCBsYW1iZGEgeDogeCAlIDIgPT0gMCkKICAgIDQKCiAgICAiIiIKICAgIGlmIGtleSBpcyBOb25lOgogICAgICAgIGZvciBlbCBpbiBpdGVyYWJsZToKICAgICAgICAgICAgaWYgZWw6CiAgICAgICAgICAgICAgICByZXR1cm4gZWwKICAgIGVsc2U6CiAgICAgICAgZm9yIGVsIGluIGl0ZXJhYmxlOgogICAgICAgICAgICBpZiBrZXkoZWwpOgogICAgICAgICAgICAgICAgcmV0dXJuIGVsCgogICAgcmV0dXJuIGRlZmF1bHQK",
+        "setup.py": "ZnJvbSBzZXR1cHRvb2xzIGltcG9ydCBzZXR1cAoKaW1wb3J0IGZpcnN0CgoKc2V0dXAoCiAgICBuYW1lPSdmaXJzdCcsCiAgICB2ZXJzaW9uPWZpcnN0Ll9fdmVyc2lvbl9fLAogICAgZGVzY3JpcHRpb249J1JldHVybiB0aGUgZmlyc3QgdHJ1ZSB2YWx1ZSBvZiBhbiBpdGVyYWJsZS4nLAogICAgbG9uZ19kZXNjcmlwdGlvbj0ob3BlbignUkVBRE1FLnJzdCcpLnJlYWQoKSArICdcblxuJyArCiAgICAgICAgICAgICAgICAgICAgICBvcGVuKCdISVNUT1JZLnJzdCcpLnJlYWQoKSksCiAgICB1cmw9J2h0dHA6Ly9naXRodWIuY29tL2h5bmVrL2ZpcnN0LycsCiAgICBsaWNlbnNlPWZpcnN0Ll9fbGljZW5zZV9fLAogICAgYXV0aG9yPWZpcnN0Ll9fYXV0aG9yX18sCiAgICBhdXRob3JfZW1haWw9J2hzQG94LmN4JywKICAgIHB5X21vZHVsZXM9WydmaXJzdCddLAogICAgY2xhc3NpZmllcnM9WwogICAgICAgICdEZXZlbG9wbWVudCBTdGF0dXMgOjogNSAtIFByb2R1Y3Rpb24vU3RhYmxlJywKICAgICAgICAnSW50ZW5kZWQgQXVkaWVuY2UgOjogRGV2ZWxvcGVycycsCiAgICAgICAgJ05hdHVyYWwgTGFuZ3VhZ2UgOjogRW5nbGlzaCcsCiAgICAgICAgJ0xpY2Vuc2UgOjogT1NJIEFwcHJvdmVkIDo6IE1JVCBMaWNlbnNlJywKICAgICAgICAnT3BlcmF0aW5nIFN5c3RlbSA6OiBPUyBJbmRlcGVuZGVudCcsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbicsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAyJywKICAgICAgICAnUHJvZ3JhbW1pbmcgTGFuZ3VhZ2UgOjogUHl0aG9uIDo6IDIuMycsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAyLjQnLAogICAgICAgICdQcm9ncmFtbWluZyBMYW5ndWFnZSA6OiBQeXRob24gOjogMi41JywKICAgICAgICAnUHJvZ3JhbW1pbmcgTGFuZ3VhZ2UgOjogUHl0aG9uIDo6IDIuNicsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAyLjcnLAogICAgICAgICdQcm9ncmFtbWluZyBMYW5ndWFnZSA6OiBQeXRob24gOjogMycsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAzLjAnLAogICAgICAgICdQcm9ncmFtbWluZyBMYW5ndWFnZSA6OiBQeXRob24gOjogMy4xJywKICAgICAgICAnUHJvZ3JhbW1pbmcgTGFuZ3VhZ2UgOjogUHl0aG9uIDo6IDMuMicsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAzLjMnLAogICAgICAgICdUb3BpYyA6OiBTb2Z0d2FyZSBEZXZlbG9wbWVudCA6OiBMaWJyYXJpZXMgOjogUHl0aG9uIE1vZHVsZXMnLAogICAgXSwKKQo=",
+        "test_first.py": "aW1wb3J0IHVuaXR0ZXN0CmZyb20gZmlyc3QgaW1wb3J0IGZpcnN0CgoKaXNib29sID0gbGFtYmRhIHg6IGlzaW5zdGFuY2UoeCwgYm9vbCkKaXNpbnQgPSBsYW1iZGEgeDogaXNpbnN0YW5jZSh4LCBpbnQpCm9kZCA9IGxhbWJkYSB4OiBpc2ludCh4KSBhbmQgeCAlIDIgIT0gMApldmVuID0gbGFtYmRhIHg6IGlzaW50KHgpIGFuZCB4ICUgMiA9PSAwCmlzX21lYW5pbmdfb2ZfbGlmZSA9IGxhbWJkYSB4OiB4ID09IDQyCgoKY2xhc3MgVGVzdEZpcnN0KHVuaXR0ZXN0LlRlc3RDYXNlKToKICAgIGRlZiB0ZXN0X2VtcHR5X2l0ZXJhYmxlcyhzZWxmKToKICAgICAgICBzID0gc2V0KCkKICAgICAgICBsID0gW10KICAgICAgICBhc3NlcnQgZmlyc3QocykgaXMgTm9uZQogICAgICAgIGFzc2VydCBmaXJzdChsKSBpcyBOb25lCgogICAgZGVmIHRlc3RfZGVmYXVsdF92YWx1ZShzZWxmKToKICAgICAgICBzID0gc2V0KCkKICAgICAgICBsID0gW10KICAgICAgICBhc3NlcnQgZmlyc3QocywgZGVmYXVsdD00MikgPT0gNDIKICAgICAgICBhc3NlcnQgZmlyc3QobCwgZGVmYXVsdD0zLjE0KSA9PSAzLjE0CgogICAgICAgIGwgPSBbMCwgRmFsc2UsIFtdXQogICAgICAgIGFzc2VydCBmaXJzdChsLCBkZWZhdWx0PTMuMTQpID09IDMuMTQKCiAgICBkZWYgdGVzdF9zZWxlY3Rpb24oc2VsZik6CiAgICAgICAgbCA9IFsoKSwgMCwgRmFsc2UsIDMsIFtdXQoKICAgICAgICBhc3NlcnQgZmlyc3QobCwgZGVmYXVsdD00MikgPT0gMwogICAgICAgIGFzc2VydCBmaXJzdChsLCBrZXk9aXNpbnQpID09IDAKICAgICAgICBhc3NlcnQgZmlyc3QobCwga2V5PWlzYm9vbCkgaXMgRmFsc2UKICAgICAgICBhc3NlcnQgZmlyc3QobCwga2V5PW9kZCkgPT0gMwogICAgICAgIGFzc2VydCBmaXJzdChsLCBrZXk9ZXZlbikgPT0gMAogICAgICAgIGFzc2VydCBmaXJzdChsLCBrZXk9aXNfbWVhbmluZ19vZl9saWZlKSBpcyBOb25lCgoKaWYgX19uYW1lX18gPT0gJ19fbWFpbl9fJzoKICAgIHVuaXR0ZXN0Lm1haW4oKQo="
+      },
+      "metadata": {
+        "fetched_at": "2026-10-22T17:22:39.902802+00:00",
+        "adapter": "github-https-archive-v1",
+        "transport": "HTTPS; no redirects; no credentials; 45 second total budget",
+        "archive_sha256": "cd1c1705cbfd58509db5f390c9f4550ea0507f55f98b02cc286b372cf17141a6",
+        "normalization": "Regular files only; executable bit retained; candidate source read-only",
+        "upstream_url": "https://github.com/hynek/first",
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "attribution_files": [
+          "LICENSE"
+        ]
+      }
+    },
+    "candidate": {
+      "id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+      "version": "repository-candidate-v1",
+      "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+      "repository": "hynek/first",
+      "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+      "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+      "applied_source_hashes": {
+        ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+        "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+        "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+        "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+        "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+        "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+        "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+        "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+        "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+      },
+      "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+      "patch": "diff --git a/first.py b/first.py\n--- a/first.py\n+++ b/first.py\n@@ -39,27 +39,30 @@\n __copyright__ = 'Copyright 2012 Hynek Schlawack'\n \n \n-def first(iterable, key=None, default=None):\n+def first(iterable, default=None, key=None):\n     \"\"\"\n-    Return first element of `iterable` that evaluates true, else return None.\n+    Return first element of `iterable` that evaluates true, else return None\n+    (or an optional default value).\n \n     >>> first([0, False, None, [], (), 42])\n     42\n \n+    >>> first([0, False, None, [], ()])\n+    None\n+\n+    >>> first([0, False, None, [], ()], default='ohai')\n+    'ohai'\n+\n     >>> import re\n     >>> m = first(re.match(regex, 'abc') for regex in ['b.*', 'a(.*)'])\n     >>> m.group(1)\n     'bc'\n \n-    >>> first([]) is None\n-    True\n-    >>> first([0, False, None, [], ()]) is None\n-    True\n-\n-    If `key` is specified, the result of `key` is returned if the result is\n-    true.\n+    The optional `key` argument specifies a one-argument predicate function\n+    like that used for `filter()`.  The `key` argument, if supplied, must be\n+    in keyword form.  For example:\n \n-    >>> first([1, 1, 3, 4, 5], lambda x: x % 2 == 0)\n+    >>> first([1, 1, 3, 4, 5], key=lambda x: x % 2 == 0)\n     4\n \n     \"\"\"\n",
+      "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1",
+      "approved_paths": [
+        "first.py"
+      ],
+      "affected_files": [
+        "first.py"
+      ],
+      "original": {
+        "first.py": "## -*- coding: utf-8 -*-\n\n\"\"\"\nfirst\n=====\n\nfirst is the function you always missed in Python.\n\nIn the simplest case, it returns the first true element from an iterable:\n\n>>> from first import first\n>>> first([0, False, None, [], (), 42])\n42\n\nOr None if there is none:\n\n>>> from first import first\n>>> first([]) is None\nTrue\n>>> first([0, False, None, [], ()]) is None\nTrue\n\nIt also supports the passing of a key argument to help selecting the first\nmatch in a more advanced way.\n\n>>> from first import first\n>>> first([1, 1, 3, 4, 5], lambda x: x % 2 == 0)\n4\n\n:copyright: (c) 2012 by Hynek Schlawack.\n:license: MIT, see LICENSE for more details.\n\n\"\"\"\n\n__title__ = 'first'\n__version__ = '1.0.2'\n__author__ = 'Hynek Schlawack'\n__license__ = 'MIT'\n__copyright__ = 'Copyright 2012 Hynek Schlawack'\n\n\ndef first(iterable, key=None, default=None):\n    \"\"\"\n    Return first element of `iterable` that evaluates true, else return None.\n\n    >>> first([0, False, None, [], (), 42])\n    42\n\n    >>> import re\n    >>> m = first(re.match(regex, 'abc') for regex in ['b.*', 'a(.*)'])\n    >>> m.group(1)\n    'bc'\n\n    >>> first([]) is None\n    True\n    >>> first([0, False, None, [], ()]) is None\n    True\n\n    If `key` is specified, the result of `key` is returned if the result is\n    true.\n\n    >>> first([1, 1, 3, 4, 5], lambda x: x % 2 == 0)\n    4\n\n    \"\"\"\n    if key is None:\n        for el in iterable:\n            if el:\n                return el\n    else:\n        for el in iterable:\n            if key(el):\n                return el\n\n    return default\n"
+      },
+      "modified": {
+        "first.py": "## -*- coding: utf-8 -*-\n\n\"\"\"\nfirst\n=====\n\nfirst is the function you always missed in Python.\n\nIn the simplest case, it returns the first true element from an iterable:\n\n>>> from first import first\n>>> first([0, False, None, [], (), 42])\n42\n\nOr None if there is none:\n\n>>> from first import first\n>>> first([]) is None\nTrue\n>>> first([0, False, None, [], ()]) is None\nTrue\n\nIt also supports the passing of a key argument to help selecting the first\nmatch in a more advanced way.\n\n>>> from first import first\n>>> first([1, 1, 3, 4, 5], lambda x: x % 2 == 0)\n4\n\n:copyright: (c) 2012 by Hynek Schlawack.\n:license: MIT, see LICENSE for more details.\n\n\"\"\"\n\n__title__ = 'first'\n__version__ = '1.0.2'\n__author__ = 'Hynek Schlawack'\n__license__ = 'MIT'\n__copyright__ = 'Copyright 2012 Hynek Schlawack'\n\n\ndef first(iterable, default=None, key=None):\n    \"\"\"\n    Return first element of `iterable` that evaluates true, else return None\n    (or an optional default value).\n\n    >>> first([0, False, None, [], (), 42])\n    42\n\n    >>> first([0, False, None, [], ()])\n    None\n\n    >>> first([0, False, None, [], ()], default='ohai')\n    'ohai'\n\n    >>> import re\n    >>> m = first(re.match(regex, 'abc') for regex in ['b.*', 'a(.*)'])\n    >>> m.group(1)\n    'bc'\n\n    The optional `key` argument specifies a one-argument predicate function\n    like that used for `filter()`.  The `key` argument, if supplied, must be\n    in keyword form.  For example:\n\n    >>> first([1, 1, 3, 4, 5], key=lambda x: x % 2 == 0)\n    4\n\n    \"\"\"\n    if key is None:\n        for el in iterable:\n            if el:\n                return el\n    else:\n        for el in iterable:\n            if key(el):\n                return el\n\n    return default\n"
+      },
+      "provenance": {
+        "category": "user_declared",
+        "author_label": "Unknown authorship",
+        "source_reference": "",
+        "limitations": "Imported authorship is user-declared and unverified."
+      }
+    },
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+      "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+      "runtime": "python312",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_first.py"
+      ],
+      "test_description": "G4 product acceptance \u00b7 unchanged selected upstream tests",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "engine_id": "d3811b54a2ac6e202d8c1fe75e1c88bda2888c1892617390e8b467a64fde6598",
+    "approval": {
+      "local_owner": true,
+      "plan_id": "ffe1ce0442bf445386fa97a3e9d699cd467397cdeed7f5d1309225ebc17b1b90",
+      "candidate_id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+      "approved_at": "2026-10-26T22:23:19.710233+00:00",
+      "verification_id": "d386f12796454311b448cb04c5dcfddb14974d3affb15cb798d2000c56c975d5",
+      "stage": "execution",
+      "approve_independent_plan": true
+    },
+    "verification": {
+      "id": "d386f12796454311b448cb04c5dcfddb14974d3affb15cb798d2000c56c975d5",
+      "plan": {
+        "version": "independent-plan-v1",
+        "verifier_version": "json-observer-v2",
+        "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+        "candidate_id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+        "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+        "ordinary_plan_id": "ffe1ce0442bf445386fa97a3e9d699cd467397cdeed7f5d1309225ebc17b1b90",
+        "runtime": "python312",
+        "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+        "module": "first.py",
+        "export": "first",
+        "assertions": [
+          {
+            "id": "string_truthy",
+            "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+            "args": [
+              [
+                0,
+                false,
+                "ready",
+                42
+              ]
+            ],
+            "kwargs": {},
+            "expected": "ready"
+          },
+          {
+            "id": "negative_truthy",
+            "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+            "args": [
+              [
+                0,
+                -7,
+                2
+              ]
+            ],
+            "kwargs": {},
+            "expected": -7
+          },
+          {
+            "id": "all_false",
+            "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+            "args": [
+              [
+                0,
+                false,
+                null,
+                []
+              ]
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "empty",
+            "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+            "args": [
+              []
+            ],
+            "kwargs": {},
+            "expected": null
+          }
+        ],
+        "setup": [],
+        "timeout_seconds": 30,
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+        "adapter_hashes": {
+          "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "adapter_sources": {
+          "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+          "probe.cjs": "// json-observer-v2: detach and encode each bounded observation before the next call.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconst stringify = JSON.stringify;\nconst byteLength = Buffer.byteLength;\nconsole.log = (...args) => console.error(...args);\n\nfunction snapshot(value) {\n  const ancestors = new Set();\n  let budget = 0;\n  function account(bytes) {\n    budget += bytes;\n    if (budget > 16384) throw RangeError('JSON observation exceeds 16 KiB');\n  }\n  function copy(v, depth) {\n    if (depth > 8) throw RangeError('JSON observation nesting exceeds eight levels');\n    if (v === null || typeof v === 'boolean') { account(v === null ? 4 : v ? 4 : 5); return v; }\n    if (typeof v === 'string') { account(2 + byteLength(v, 'utf8')); return v; }\n    if (typeof v === 'number' && Number.isFinite(v)) { account(String(v).length); return v; }\n    const array = Array.isArray(v);\n    if (typeof v !== 'object' || (!array && Object.getPrototypeOf(v) !== Object.prototype))\n      throw TypeError('Unsupported JSON observation');\n    if (ancestors.has(v)) throw TypeError('Cyclic JSON observation');\n    // Serialization hooks are code, not supported JSON data; never invoke or coerce them.\n    const hook = Object.getOwnPropertyDescriptor(v, 'toJSON');\n    if ((hook && (!('value' in hook) || typeof hook.value === 'function')) ||\n        (!hook && typeof v.toJSON === 'function')) throw TypeError('Unsupported JSON hook');\n    const keys = array ? null : Object.keys(v);\n    const length = array ? v.length : keys.length;\n    if (!Number.isInteger(length) || length < 0 || length > 256)\n      throw RangeError('JSON collection exceeds 256 items');\n    account(2 + Math.max(0, length - 1));\n    ancestors.add(v);\n    try {\n      if (array) {\n        const result = [];\n        // Only our new copy is modified. Candidate arrays/objects remain untouched.\n        Object.defineProperty(result, 'toJSON', {value: null});\n        for (let i = 0; i < length; i++) {\n          if (!Object.hasOwn(v, i)) throw TypeError('Sparse arrays are not JSON observations');\n          result.push(copy(v[i], depth + 1));\n        }\n        return result;\n      }\n      const result = Object.create(null);\n      for (const key of keys) {\n        account(3 + byteLength(key, 'utf8'));\n        result[key] = copy(v[key], depth + 1);\n      }\n      return result;\n    } finally { ancestors.delete(v); }\n  }\n  const encoded = stringify(copy(value, 0));\n  if (typeof encoded !== 'string' || byteLength(encoded, 'utf8') > 16384)\n    throw RangeError('Encoded JSON observation exceeds 16 KiB');\n  return encoded;\n}\n\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = snapshot(await fn(...call.args));\n      // Retain immutable JSON text, never a candidate-owned reference or deferred serializer.\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"value\",\"value\":' + value + '}');\n    } catch (error) {\n      let name = 'Error';\n      try { if (typeof error?.name === 'string') name = error.name.slice(0, 200); } catch {}\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"execution_error\",\"error\":' + stringify(name) + '}');\n    }\n  }\n  emit('{\"version\":\"observations-v1\",\"observations\":[' + observations.join(',') + ']}\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+        },
+        "interpretation": "all-named-canonical-json-equalities-v1"
+      },
+      "requirements": [
+        {
+          "id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+          "version": "behavioral-requirement-v1",
+          "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+          "statement": "With key omitted, return the first truthy iterable element, or None when none exists.",
+          "expected_behavior": "With key omitted, return the first truthy iterable element, or None when none exists.",
+          "input_domain": "Finite JSON lists of booleans, nulls, strings, lists, and small integers; omitted key/default.",
+          "assumptions": [
+            "Python truthiness, not JavaScript truthiness",
+            "Callable keys and non-JSON values outside this plan"
+          ],
+          "ambiguities": [],
+          "provenance": {
+            "origin": "upstream_documentation",
+            "reference": "https://github.com/hynek/first/blob/106ee3cf389cf2bb76f2816bf22a845c44275f94/README.rst",
+            "excerpt": "This function returns the first element of ``iterable`` that is true if\n``key`` is ``None``.",
+            "excerpt_hash": "67a20e8df18b1b1a08dfe91027fae5e0d100571157a0dfde4a51dea62d988ae4",
+            "justification": "Contract taken from exact-base upstream documentation; expected JSON examples owner-specified independently of candidate. Documentation is evidence only, never executed.",
+            "independent_of_candidate": true
+          },
+          "approval": "owner_approved"
+        }
+      ]
+    },
+    "stage": "execution",
+    "ordinary_engine_id": "9bc99b9a0300985b8654a3a826ea944ed863fc441367b94d5c38000762108871",
+    "validation": {
+      "audit_id": "dcb7f027-6e70-4e8a-b324-8fc363198d71",
+      "result": {
+        "version": "repository-independent-result-v1",
+        "audit_id": "dcb7f027-6e70-4e8a-b324-8fc363198d71",
+        "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+        "candidate_id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+        "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+        "plan_id": "ffe1ce0442bf445386fa97a3e9d699cd467397cdeed7f5d1309225ebc17b1b90",
+        "verification_id": "d386f12796454311b448cb04c5dcfddb14974d3affb15cb798d2000c56c975d5",
+        "stage": "validation",
+        "engine_id": "d3811b54a2ac6e202d8c1fe75e1c88bda2888c1892617390e8b467a64fde6598",
+        "started_at": "2026-10-26T22:23:06.659018+00:00",
+        "ordinary": null,
+        "independent": {
+          "status": "not_run",
+          "checks": []
+        },
+        "controls": [
+          {
+            "kind": "positive",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "dcb7f027-6e70-4e8a-b324-8fc363198d71",
+              "candidate_id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+              "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+              "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+              "source_binding": {
+                "repository": "hynek/first",
+                "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+                "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+                "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+                "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1"
+              },
+              "plan_id": "47e33266b8b219c37936a167aef3cbd13f26e76cc9fde20cd39885baca4a18dc",
+              "engine_id": "9bc99b9a0300985b8654a3a826ea944ed863fc441367b94d5c38000762108871",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "python",
+                  "-I",
+                  "-B",
+                  "/verifier/probe.py"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-26T22:23:15.918688+00:00",
+                "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": \"ready\"}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": -7}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": null}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": null}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-26T22:23:15.997712+00:00",
+                "duration_ms": 79
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-26T22:23:15.918688+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": \"ready\"}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": -7}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": null}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": null}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-26T22:23:15.997712+00:00",
+                  "duration_ms": 79
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-26T22:23:06.665114+00:00",
+              "runtime": {
+                "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                "repo_digests": [
+                  "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                ],
+                "runtime": "python312",
+                "tag": "ai-agent-evaluator:python312-v1"
+              },
+              "verifier_hashes": {
+                "control.py": "3039e55fd0f945d1558a66747749c6144475c56297626b92f083e70bb16c296d",
+                "inputs.json": "44bc9cfdc7129f4f9463586cb638937fdf742cd4f2d7aec13455bbc8f59743b6",
+                "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+              },
+              "executed_source_hashes": {
+                ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+                "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+                "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+                "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+                "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+                "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+                "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+                "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+                "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+              },
+              "container_id": "ddc4dcef75877ad913b81cbe3fdaf7361fefcb26056939348f9d63a4cce05d73",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "4506be7b502b293f4b7c8d398709ff9bed08c29849c53c61d9c041b1d455c260",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "8dd63a2cbc8783293580ea20b5eabffb62c73cd11f3b87e4594ce514b3f1fe73",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "ddc4dcef75877ad913b81cbe3fdaf7361fefcb26056939348f9d63a4cce05d73",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "4506be7b502b293f4b7c8d398709ff9bed08c29849c53c61d9c041b1d455c260",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "8dd63a2cbc8783293580ea20b5eabffb62c73cd11f3b87e4594ce514b3f1fe73",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-26T22:23:16.894676+00:00",
+              "duration_ms": 10230
+            },
+            "status": "checks_passed",
+            "checks": [
+              {
+                "id": "string_truthy",
+                "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      false,
+                      "ready",
+                      42
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "ready",
+                "observed": "ready",
+                "status": "passed"
+              },
+              {
+                "id": "negative_truthy",
+                "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      -7,
+                      2
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": -7,
+                "observed": -7,
+                "status": "passed"
+              },
+              {
+                "id": "all_false",
+                "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      false,
+                      null,
+                      []
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "empty",
+                "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+                "input": {
+                  "args": [
+                    []
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              }
+            ]
+          },
+          {
+            "kind": "negative",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "dcb7f027-6e70-4e8a-b324-8fc363198d71",
+              "candidate_id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+              "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+              "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+              "source_binding": {
+                "repository": "hynek/first",
+                "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+                "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+                "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+                "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1"
+              },
+              "plan_id": "47e33266b8b219c37936a167aef3cbd13f26e76cc9fde20cd39885baca4a18dc",
+              "engine_id": "9bc99b9a0300985b8654a3a826ea944ed863fc441367b94d5c38000762108871",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "python",
+                  "-I",
+                  "-B",
+                  "/verifier/probe.py"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-26T22:23:17.523574+00:00",
+                "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": {\"negative_control\": \"ready\"}}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": {\"negative_control\": -7}}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": {\"negative_control\": null}}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": {\"negative_control\": null}}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-26T22:23:17.578928+00:00",
+                "duration_ms": 55
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-26T22:23:17.523574+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": {\"negative_control\": \"ready\"}}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": {\"negative_control\": -7}}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": {\"negative_control\": null}}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": {\"negative_control\": null}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-26T22:23:17.578928+00:00",
+                  "duration_ms": 55
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-26T22:23:16.902910+00:00",
+              "runtime": {
+                "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                "repo_digests": [
+                  "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                ],
+                "runtime": "python312",
+                "tag": "ai-agent-evaluator:python312-v1"
+              },
+              "verifier_hashes": {
+                "control.py": "9aea1e197c94ac75a2202329da8715d45c9b5c78dc72cecc9e79c60e6b8611c6",
+                "inputs.json": "44bc9cfdc7129f4f9463586cb638937fdf742cd4f2d7aec13455bbc8f59743b6",
+                "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+              },
+              "executed_source_hashes": {
+                ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+                "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+                "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+                "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+                "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+                "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+                "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+                "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+                "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+              },
+              "container_id": "58b5c2072742bd645fa98171aa3a03a480ae3e1fa4346b04d926ad034dbdb509",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "337a5dc6a62bab4a07482619476a492a69c12b478766db97994f9cad8981165a",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "900bf6ef823e2439b7c8250da4efdd470032f2577f571ba8c5d29ebe8f7b8fe8",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "58b5c2072742bd645fa98171aa3a03a480ae3e1fa4346b04d926ad034dbdb509",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "337a5dc6a62bab4a07482619476a492a69c12b478766db97994f9cad8981165a",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "900bf6ef823e2439b7c8250da4efdd470032f2577f571ba8c5d29ebe8f7b8fe8",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-26T22:23:18.116334+00:00",
+              "duration_ms": 1219
+            },
+            "status": "assertions_failed",
+            "checks": [
+              {
+                "id": "string_truthy",
+                "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      false,
+                      "ready",
+                      42
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "ready",
+                "observed": {
+                  "negative_control": "ready"
+                },
+                "status": "failed"
+              },
+              {
+                "id": "negative_truthy",
+                "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      -7,
+                      2
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": -7,
+                "observed": {
+                  "negative_control": -7
+                },
+                "status": "failed"
+              },
+              {
+                "id": "all_false",
+                "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      false,
+                      null,
+                      []
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "empty",
+                "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+                "input": {
+                  "args": [
+                    []
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              }
+            ]
+          }
+        ],
+        "status": "validation_passed",
+        "ended_at": "2026-10-26T22:23:18.116516+00:00"
+      }
+    },
+    "result": {
+      "version": "repository-independent-result-v1",
+      "audit_id": "335f435b-c326-45d2-863b-80c9a9f82d4f",
+      "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+      "candidate_id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+      "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+      "plan_id": "ffe1ce0442bf445386fa97a3e9d699cd467397cdeed7f5d1309225ebc17b1b90",
+      "verification_id": "d386f12796454311b448cb04c5dcfddb14974d3affb15cb798d2000c56c975d5",
+      "stage": "execution",
+      "engine_id": "d3811b54a2ac6e202d8c1fe75e1c88bda2888c1892617390e8b467a64fde6598",
+      "started_at": "2026-10-26T22:23:19.777556+00:00",
+      "ordinary": {
+        "version": "repository-result-v1",
+        "audit_id": "335f435b-c326-45d2-863b-80c9a9f82d4f",
+        "candidate_id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+        "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+        "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+        "source_binding": {
+          "repository": "hynek/first",
+          "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+          "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+          "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+          "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1"
+        },
+        "plan_id": "ffe1ce0442bf445386fa97a3e9d699cd467397cdeed7f5d1309225ebc17b1b90",
+        "engine_id": "9bc99b9a0300985b8654a3a826ea944ed863fc441367b94d5c38000762108871",
+        "policy": {
+          "version": "repository-sandbox-v1",
+          "network": "none",
+          "uid": "1000:1000",
+          "rootfs": "read-only",
+          "source": "read-only named volume; separate bounded scratch and offline dependencies",
+          "cpu": 1,
+          "memory_bytes": 536870912,
+          "pids": 64,
+          "scratch_bytes": 134217728,
+          "tmp_bytes": 8388608,
+          "shm_bytes": 8388608,
+          "output_bytes_per_stream": 65536,
+          "log_storage_bytes": 131072,
+          "file_bytes": 16777216,
+          "host_mounts": [],
+          "capabilities": [],
+          "credentials": false,
+          "docker_socket": false,
+          "artifacts": [
+            "stdout",
+            "stderr",
+            "exit status",
+            "runtime identity"
+          ]
+        },
+        "independent": {
+          "status": "not_configured"
+        },
+        "ordinary": {
+          "phase": "tests",
+          "argv": [
+            "python",
+            "-m",
+            "pytest",
+            "-q",
+            "test_first.py"
+          ],
+          "working_directory": "/source",
+          "started_at": "2026-10-26T22:23:20.470265+00:00",
+          "stdout": "...                                                                      [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/source/pytest-cache-files-kf1pvvzu'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n../usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51\n  /usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/stepwise: [Errno 30] Read-only file system: '/source/pytest-cache-files-96bn5q2r'\n    session.config.cache.set(STEPWISE_CACHE_DIR, [])\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n3 passed, 2 warnings in 0.01s\n",
+          "stderr": "",
+          "exit_code": 0,
+          "counts": null,
+          "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+          "output_truncated": false,
+          "status": "finished",
+          "ended_at": "2026-10-26T22:23:20.762459+00:00",
+          "duration_ms": 292
+        },
+        "commands": [
+          {
+            "phase": "tests",
+            "argv": [
+              "python",
+              "-m",
+              "pytest",
+              "-q",
+              "test_first.py"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-26T22:23:20.470265+00:00",
+            "stdout": "...                                                                      [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/source/pytest-cache-files-kf1pvvzu'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n../usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51\n  /usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/stepwise: [Errno 30] Read-only file system: '/source/pytest-cache-files-96bn5q2r'\n    session.config.cache.set(STEPWISE_CACHE_DIR, [])\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n3 passed, 2 warnings in 0.01s\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-26T22:23:20.762459+00:00",
+            "duration_ms": 292
+          }
+        ],
+        "status": "tests_passed",
+        "started_at": "2026-10-26T22:23:19.789378+00:00",
+        "runtime": {
+          "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+          "repo_digests": [
+            "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+          ],
+          "runtime": "python312",
+          "tag": "ai-agent-evaluator:python312-v1"
+        },
+        "executed_source_hashes": {
+          ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+          "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+          "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+          "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+          "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+          "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+          "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+          "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+          "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+        },
+        "container_id": "a7c2333caefc4b64320db3614ba99b12e1fe1de2e5a10ebb2464e3c903d05aba",
+        "sandbox": {
+          "user": "1000:1000",
+          "host_config": {
+            "NetworkMode": "none",
+            "ReadonlyRootfs": true,
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges:true"
+            ],
+            "Memory": 536870912,
+            "MemorySwap": 536870912,
+            "NanoCpus": 1000000000,
+            "PidsLimit": 64,
+            "Tmpfs": {
+              "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+              "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+            },
+            "ShmSize": 8388608
+          },
+          "mounts": [
+            {
+              "Type": "volume",
+              "Name": "172165c1c1696a2a7110e4e54c9a34da15d2eca4aab3cb433510a90f27300b5b",
+              "Destination": "/source",
+              "RW": false
+            }
+          ]
+        },
+        "container_state": {
+          "OOMKilled": false,
+          "Error": ""
+        },
+        "cleanup": [
+          {
+            "kind": "containers",
+            "id": "a7c2333caefc4b64320db3614ba99b12e1fe1de2e5a10ebb2464e3c903d05aba",
+            "confirmed_absent": true
+          },
+          {
+            "kind": "volumes",
+            "id": "172165c1c1696a2a7110e4e54c9a34da15d2eca4aab3cb433510a90f27300b5b",
+            "confirmed_absent": true
+          }
+        ],
+        "ended_at": "2026-10-26T22:23:21.155377+00:00",
+        "duration_ms": 1367
+      },
+      "independent": {
+        "status": "checks_passed",
+        "checks": [
+          {
+            "id": "string_truthy",
+            "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+            "input": {
+              "args": [
+                [
+                  0,
+                  false,
+                  "ready",
+                  42
+                ]
+              ],
+              "kwargs": {}
+            },
+            "expected": "ready",
+            "observed": "ready",
+            "status": "passed"
+          },
+          {
+            "id": "negative_truthy",
+            "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+            "input": {
+              "args": [
+                [
+                  0,
+                  -7,
+                  2
+                ]
+              ],
+              "kwargs": {}
+            },
+            "expected": -7,
+            "observed": -7,
+            "status": "passed"
+          },
+          {
+            "id": "all_false",
+            "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+            "input": {
+              "args": [
+                [
+                  0,
+                  false,
+                  null,
+                  []
+                ]
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "empty",
+            "requirement_id": "4bc3df24f264eecb0fd6259941819b95da11e55f45ee16f08520de9717a5df79",
+            "input": {
+              "args": [
+                []
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          }
+        ],
+        "execution": {
+          "version": "repository-result-v1",
+          "audit_id": "335f435b-c326-45d2-863b-80c9a9f82d4f",
+          "candidate_id": "1b7c522d51153e6f6e12b217d7964849d4a89a20c26147aa0a1c8dd9c3037673",
+          "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+          "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+          "source_binding": {
+            "repository": "hynek/first",
+            "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+            "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+            "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+            "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1"
+          },
+          "plan_id": "47e33266b8b219c37936a167aef3cbd13f26e76cc9fde20cd39885baca4a18dc",
+          "engine_id": "9bc99b9a0300985b8654a3a826ea944ed863fc441367b94d5c38000762108871",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "python",
+              "-I",
+              "-B",
+              "/verifier/probe.py"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-26T22:23:21.888658+00:00",
+            "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": \"ready\"}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": -7}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": null}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": null}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-26T22:23:21.947971+00:00",
+            "duration_ms": 59
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "python",
+                "-I",
+                "-B",
+                "/verifier/probe.py"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-26T22:23:21.888658+00:00",
+              "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": \"ready\"}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": -7}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": null}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": null}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-26T22:23:21.947971+00:00",
+              "duration_ms": 59
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-26T22:23:21.160148+00:00",
+          "runtime": {
+            "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+            "repo_digests": [
+              "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+            ],
+            "runtime": "python312",
+            "tag": "ai-agent-evaluator:python312-v1"
+          },
+          "verifier_hashes": {
+            "inputs.json": "c719c7a8c8a2e3c980215b8c20a04083e76e604ffaebf310a2b68e5db631b798",
+            "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+          },
+          "executed_source_hashes": {
+            ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+            "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+            "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+            "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+            "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+            "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+            "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+            "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+            "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+          },
+          "container_id": "fa4bd36364254252809c7bd47aaa1026a8ed5d1bf624df38f089cec9bb29d3eb",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "4d060defcac3249fbd9e0ec5d69028a2e9d33fa2a40f7d763049634b708d0657",
+                "Destination": "/source",
+                "RW": false
+              },
+              {
+                "Type": "volume",
+                "Name": "a54cda67d4bf4ef14767f16c80d2c7940d4058f7428b79eec95ac274393b45e5",
+                "Destination": "/verifier",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "fa4bd36364254252809c7bd47aaa1026a8ed5d1bf624df38f089cec9bb29d3eb",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "4d060defcac3249fbd9e0ec5d69028a2e9d33fa2a40f7d763049634b708d0657",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "a54cda67d4bf4ef14767f16c80d2c7940d4058f7428b79eec95ac274393b45e5",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-26T22:23:22.469468+00:00",
+          "duration_ms": 1310
+        }
+      },
+      "controls": [],
+      "status": "completed",
+      "ended_at": "2026-10-26T22:23:22.469625+00:00"
+    },
+    "result_hash": "99cbcae5644fdfc8b6c4fd01b17426762fae57aa2afa578391fccaefcfb69abf"
+  }
+}

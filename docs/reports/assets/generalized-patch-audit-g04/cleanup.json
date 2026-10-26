@@ -1,0 +1,29 @@
+{
+  "before": {
+    "ai-debugging-workbench.evaluator": {
+      "containers": 0,
+      "volumes": 0
+    },
+    "ai-debugging-workbench.repair": {
+      "containers": 1,
+      "volumes": 1
+    }
+  },
+  "intentional_previews_cleaned": [
+    {
+      "repair_id": "0c65b68b-88de-4bdc-a70f-5f0020e7697a",
+      "saved_status": "verified",
+      "kind": "Intentional 600-second legacy debugger preview owned by the G4 database; ephemeral preview cleaned through the existing private broker endpoint. Saved evidence retained."
+    }
+  ],
+  "after": {
+    "ai-debugging-workbench.evaluator": {
+      "containers": 0,
+      "volumes": 0
+    },
+    "ai-debugging-workbench.repair": {
+      "containers": 0,
+      "volumes": 0
+    }
+  }
+}
