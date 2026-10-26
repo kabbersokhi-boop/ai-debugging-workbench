@@ -114,7 +114,7 @@ async def test_patch_audit_real_ui_import_failing_passing_download_and_reopen(tm
                 )
             else:
                 await expect(region).to_contain_text(
-                    "Passed these checks for this task and environment."
+                    "Passed the declared checks for this task and environment."
                 )
             await region.screenshot(
                 path=FOLDER / ("fresh-missed.png" if key == FAIL else "fresh-complete.png")
@@ -333,7 +333,7 @@ async def test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_ex
         region = page.get_by_role("region", name="Patch audit result")
         await expect(region.get_by_role("status")).to_have_text("failed")
         await expect(
-            page.get_by_text("RECORDED EVIDENCE · NO EXECUTION", exact=True)
+            page.get_by_text("REAL SAVED EVIDENCE · NO LIVE EXECUTION", exact=True)
         ).to_be_visible()
         await expect(region).to_contain_text("length one while its keys and items are empty")
         await expect(page.get_by_role("button", name="Run fresh audit")).to_have_count(0)
@@ -341,7 +341,9 @@ async def test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_ex
         await region.screenshot(path=FOLDER / "recorded-missed.png")
         await page.get_by_label("Saved patch audit", exact=True).select_option(PASS)
         await expect(region.get_by_role("status")).to_have_text("passed")
-        await expect(region).to_contain_text("Passed these checks for this task and environment.")
+        await expect(region).to_contain_text(
+            "Passed the declared checks for this task and environment."
+        )
         await page.get_by_text("Open code comparison · boltons/urlutils.py", exact=True).click()
         await expect(page.locator(".monaco-diff-editor:visible")).to_be_visible(timeout=20000)
         await page.set_viewport_size({"width": 390, "height": 844})
@@ -359,7 +361,7 @@ async def test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_ex
         )
         assert value["execution_mode"] == "recorded"
         assert value["evidence"]["candidate"]["provenance"]["category"] == "retained_model"
-        await page.get_by_role("link", name="Recorded debugger runs", exact=True).click()
+        await page.get_by_role("link", name="Debugger", exact=True).click()
         await expect(
             page.get_by_role("heading", name="Verified for the recorded checks", exact=True)
         ).to_be_visible()
