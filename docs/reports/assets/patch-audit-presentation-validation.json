@@ -1,0 +1,59 @@
+{
+  "browser": {
+    "duration": 108.743635,
+    "current_time": 60,
+    "width": 1440,
+    "height": 900,
+    "paused": true,
+    "captions": 18,
+    "decoded_frames": 160
+  },
+  "responsive": [
+    {
+      "width": 360,
+      "document": 360
+    },
+    {
+      "width": 390,
+      "document": 390
+    },
+    {
+      "width": 768,
+      "document": 768
+    },
+    {
+      "width": 1440,
+      "document": 1440
+    }
+  ],
+  "assets": {
+    "walkthrough.mp4": {
+      "sha256": "c777ee55e41e6fcc7a54158686983fc58936875b22bd5e3d725b02a5bad30bbd",
+      "bytes": 3976118,
+      "type": "video/mp4"
+    },
+    "poster.png": {
+      "sha256": "535cb39695def0681bfa70a324b57aa472b6d942e3e9190d2dff0f23320957ba",
+      "bytes": 73521,
+      "type": "image/png"
+    },
+    "captions.vtt": {
+      "sha256": "c5804fa7a2051f258cd81de6e703fd745b81ff58f6689458a995bb9a96bb0b16",
+      "bytes": 1972,
+      "type": "text/vtt; charset=utf-8"
+    },
+    "transcript.txt": {
+      "sha256": "ae49f94c34dd7734c73452d34cba8d3fe3fe67b46c5cdfc493bcdd32032e294d",
+      "bytes": 1733,
+      "type": "text/plain; charset=utf-8"
+    }
+  },
+  "video_range_request": {
+    "status": 206,
+    "content_range": "bytes 0-1023/3976118"
+  },
+  "page_errors": [],
+  "mutation_requests": [],
+  "before_source": "Existing production deployment, unchanged during this task",
+  "audio_peak_db": -1.1
+}

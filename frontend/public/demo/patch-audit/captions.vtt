@@ -1,0 +1,62 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.651
+An AI-generated fix passed one hundred and fifty-five selected tests.
+
+00:00:04.891 --> 00:00:08.432
+It still missed a second implementation. This is Patch Audit.
+
+00:00:10.756 --> 00:00:15.236
+These are real saved results from Boltons, a Python utility library.
+
+00:00:15.476 --> 00:00:20.937
+The ordinary suite passed. Open its execution log to inspect the retained
+output.
+
+00:00:22.344 --> 00:00:28.893
+The task required both copies of the ordered multi-dictionary to handle one-shot
+iterables consistently.
+
+00:00:29.133 --> 00:00:32.909
+That requirement was specified separately from the candidate patch.
+
+00:00:34.432 --> 00:00:37.696
+The exact patch collects input once, then reuses it.
+
+00:00:37.936 --> 00:00:43.782
+But the change affects only dictutils. The standalone copy in urlutils was left
+untouched.
+
+00:00:45.336 --> 00:00:49.730
+Here is that untouched implementation. It consumes the iterable twice.
+
+00:00:49.970 --> 00:00:54.130
+Normal package imports can hide the fallback used in standalone mode.
+
+00:00:55.911 --> 00:01:03.485
+The independent empty-input check expected length zero. It observed length one,
+even though keys and items were empty.
+
+00:01:03.725 --> 00:01:06.626
+These are observations of one incomplete repair.
+
+00:01:08.292 --> 00:01:11.300
+Download the original evidence and exact patch.
+
+00:01:11.540 --> 00:01:17.599
+Source, candidate, runtime and verifier identities bind the outcome to what
+actually ran.
+
+00:01:18.943 --> 00:01:23.722
+Public visitors can inspect this saved evidence, but cannot execute patches.
+
+00:01:23.962 --> 00:01:31.087
+The separate G3 study found zero additional independent issues across six
+historical developer patches.
+
+00:01:36.183 --> 00:01:39.618
+To audit a new change, follow the local Docker quickstart.
+
+00:01:39.858 --> 00:01:47.581
+Review immutable source, the patch and declared checks. Validate controls and
+approve the exact plans before execution.

@@ -135,6 +135,11 @@ function PreparedPatchAudit({ recorded = false }: { recorded?: boolean }) {
   const running = audit?.status === "running";
   const task = tasks.find((t) => t.id === taskId) ?? audit?.evidence.task;
   const result = audit?.evidence.envelope?.result;
+  useEffect(() => {
+    if (recorded && audit && location.hash === "#saved-patch-evidence") {
+      document.getElementById("saved-patch-evidence")?.scrollIntoView();
+    }
+  }, [recorded, audit]);
   function clear() {
     epoch.current++;
     setCandidate(null);
@@ -355,7 +360,36 @@ function PreparedPatchAudit({ recorded = false }: { recorded?: boolean }) {
     <main className="evaluation-workspace patch-audit-workspace">
       <AuditIntro recorded={recorded} />
       <div id="audit-content" tabIndex={-1} />
-      {recorded && <StudyContext />}
+      {recorded && (
+        <details className="evaluation-panel current-walkthrough">
+          <summary>
+            Watch the current product walkthrough · saved evidence, step by step
+          </summary>
+          <p>
+            An actual recording of this viewer: selected tests, the independent
+            observation, the exact patch, and the local quickstart. No fresh
+            audit is performed in this video.
+          </p>
+          <video
+            controls
+            playsInline
+            preload="none"
+            poster="/demo/patch-audit/poster.png"
+            aria-label="Patch Audit walkthrough of the retained Boltons incomplete repair"
+          >
+            <source src="/demo/patch-audit/walkthrough.mp4" type="video/mp4" />
+            <track
+              kind="captions"
+              src="/demo/patch-audit/captions.vtt"
+              srcLang="en"
+              label="English"
+            />
+          </video>
+          <p>
+            <a href="/demo/patch-audit/transcript.txt">Read the transcript</a>
+          </p>
+        </details>
+      )}
       {error && (
         <p role="alert" className="error-banner">
           {error}
@@ -827,6 +861,7 @@ function PreparedPatchAudit({ recorded = false }: { recorded?: boolean }) {
           )}
         </section>
       )}
+      {recorded && <StudyContext />}
       {!recorded && (
         <section className="evaluation-panel">
           <div className="evaluation-heading">

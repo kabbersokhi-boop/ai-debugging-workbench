@@ -1,0 +1,61 @@
+{
+  "record": "m02-v2-development-boltons-addlist-nemotron3-r02",
+  "fresh_execution": false,
+  "duration": 110.29979772100342,
+  "page_errors": [],
+  "mutation_requests": [],
+  "recording_sha256": "ffe9e861ba916c51058a7c031b7c27232d203353483483aa3754fad67ff2b2c7",
+  "story_sha256": "7c36c9be0a0ebb044e397b2ac534dff8b6bb5a832485a3a65b50abd5dd3932d1",
+  "raw_sha256": "c840cdad8121fefb112877a93ba078596b2ad717c2f76d5a27797a82a23c21d1",
+  "frontend_sources": {
+    "frontend/src/AuditGuide.tsx": "20ea568e68c4397be41d44773a6fc8040e1b22aa5ee244c183141afe1d17a55c",
+    "frontend/src/PatchAudit.tsx": "e06a6e0a7d3f94a127af492515abe6c10df7553b30fec2d35407391b6766faea",
+    "frontend/src/patchAudit.css": "cb4eff6ce47de87c7b42f50068f63384b00276d2073ed3344ea1be5a8a242590"
+  },
+  "duration_seconds": 108.74,
+  "voice": "Kokoro-82M af_heart, local CPU speech",
+  "assets": {
+    "walkthrough.mp4": "c777ee55e41e6fcc7a54158686983fc58936875b22bd5e3d725b02a5bad30bbd",
+    "poster.png": "535cb39695def0681bfa70a324b57aa472b6d942e3e9190d2dff0f23320957ba",
+    "captions.vtt": "c5804fa7a2051f258cd81de6e703fd745b81ff58f6689458a995bb9a96bb0b16",
+    "transcript.txt": "ae49f94c34dd7734c73452d34cba8d3fe3fe67b46c5cdfc493bcdd32032e294d"
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "start": 0.0
+    },
+    {
+      "id": "ordinary",
+      "start": 10.76
+    },
+    {
+      "id": "requirement",
+      "start": 22.34
+    },
+    {
+      "id": "patch",
+      "start": 34.43
+    },
+    {
+      "id": "omitted",
+      "start": 45.34
+    },
+    {
+      "id": "observation",
+      "start": 55.91
+    },
+    {
+      "id": "evidence",
+      "start": 68.29
+    },
+    {
+      "id": "limits",
+      "start": 78.94
+    },
+    {
+      "id": "local",
+      "start": 96.18
+    }
+  ]
+}

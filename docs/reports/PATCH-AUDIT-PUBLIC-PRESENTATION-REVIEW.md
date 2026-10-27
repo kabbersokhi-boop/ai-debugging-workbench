@@ -1,90 +1,106 @@
 # Patch Audit public presentation review
 
-**Review branch:** `docs/patch-audit-public-presentation`  
-**Base:** accepted `v1.2.0` / `a00bbc3399d7dde96a930c7da8db2e82f99295d6`  
-**Scope:** documentation, a recorded-viewer first-screen link, screenshots and a current recorded walkthrough. No runtime evaluator, execution policy, historical evidence, deployment or release changes.
+**PR:** [#18](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/18) · **Branch:** `docs/patch-audit-public-presentation`
+**Base:** accepted `v1.2.0`, `a00bbc3399d7dde96a930c7da8db2e82f99295d6`
+**Scope:** README, case study, architecture navigation, recorded-viewer onboarding, current media and a browser regression. No evaluator, admission/approval contract, schema, broker policy, campaign, inference-provider, release or deployment changes.
 
-## Plan
+## 1. Previous communication failures
 
-- **Communication problems:** the product purpose and genuine Boltons result were already present, but dense detail competed with the first-time path; there was no current v1.2.0 flagship demo; the viewer's generic “saved audit” action did not explain which result to inspect or where a new local audit begins.
-- **Audience:** recruiters and hiring managers first, then AI/tooling engineers and technical reviewers.
-- **Narrative:** one carefully bounded real example → why ordinary and independent results differ → what the product records → public playback versus locally approved execution → architecture and study limitations.
-- **Surfaces:** README, recorded-mode intro copy, a case-study document, a current walkthrough with poster/captions/transcript, and this review report with before/after screenshots.
-- **Highest-impact changes:** directly open the missed-fix record, show the test/independent contrast immediately, and point separately to local setup. Keep complete protocol and architecture linked rather than repeating it all on the landing page.
-- **Out of scope:** evaluator/checker changes, new campaign or model calls, new runtime capability, deployment, merge, release, repository rename, and unverified first-person ownership claims.
-- **Success criteria:** first screen states the product and leads to authentic evidence; local and public routes are distinct; the real study denominator and limitations remain accurate; the recorded build exposes no import or execution authority; desktop/mobile UI is legible.
+The accepted README already contained a sound definition, the genuine Boltons result, limitations and engineering evidence. The weakness was ordering: a first-time visitor encountered protocol detail and multiple workflows before a clear try-it path. The initial presentation pass improved that order but still had substantive faults: the case study named the wrong API (`Remap` rather than `OrderedMultiDict.addlist`), and its diagram placed execution before approval. Both are corrected.
 
-## Previous presentation findings
+The earlier 73-second cut scrolled through the result without opening enough of the evidence. Its captions required a separate file, and it was not playable in the website. The generic website headline also required readers to work out the concrete problem themselves. The featured-case action could point at the passing record after selection changed. The final sweep addresses these issues rather than treating cosmetic polish as sufficient.
 
-The accepted README already gave a technically sound definition, accurate study accounting, boundaries and screenshots. This review did not find missing technical substance. The weakness was prioritization: the reader moved through multiple dense explanations before the “Run locally” section, while the most memorable result was not paired with a current product walkthrough. The recorded page had a good generic headline and stated that it was read-only, but its generic action did not name the missed-fix example and the first screen did not link to the local quickstart.
+## 2. Research references
 
-The original repository name also describes its earlier debugger workflow. The README now states the hierarchy plainly: `ai-debugging-workbench` is the repository; Patch Audit is the current product. The name was not changed.
-
-## External references and design decisions
-
-- [Ruff README](https://github.com/astral-sh/ruff): a short, concrete product definition followed by a direct getting-started path and deeper topic links. Applied: ordinary-language definition and clear next actions before technical detail.
-- [pytest README](https://github.com/pytest-dev/pytest): demonstrates the tool with a small actual input and output before enumerating features. Applied: lead with one real patch and its observed outcomes, with authentic evidence rather than a broad product claim.
-- [OpenSSF Scorecard](https://openssf.org/projects/scorecard/): frames the purpose in a direct sentence and makes use paths discoverable. Applied: make the public evidence viewer and local workflow visibly different.
-
-These are presentation patterns, not claims that the projects or their users endorse Patch Audit. No competitor text, branding or assets were copied.
-
-## README and case study
-
-The revised [README](../../README.md) starts with a direct definition, the 155-test hook, links to the specific saved Boltons record, a 73-second walkthrough and the local quickstart. It then presents the case, a workflow diagram, two explicit try-it paths, engineering decisions, limitations and links to deeper documentation. Long parameter tables and experimental details are no longer duplicated in the landing page; existing technical reports remain linked.
-
-The new [case study](../PATCH-AUDIT-CASE-STUDY.md) separates the authentic Boltons development run from G3. It says 155 selected tests passed; the independent empty-input check found a length-one observation instead of zero; the keys/items observations are part of one incomplete repair. Separately, G3 covered six genuine historical developer patches: five ordinary passes, one regression caught ordinarily, and zero additional independent findings. It does not pool the studies or claim general detection performance.
-
-The case study distinguishes what retained artifacts establish from what they cannot establish about personal ownership or unaided work. This presentation review and its edits are explicitly identified as Codex-assisted. Owner-confirmed motivations, contributions or learning remain unasserted.
-
-## Recorded website and demo
-
-`AuditIntro` now labels the primary recorded action **“Explore the real missed fix”** and adds **“Run an audit locally”** to the quickstart. The query-string entry point selects the retained Boltons record. This is a small first-screen change; the technical evidence screens and selector behavior remain intact.
-
-The new [73-second walkthrough](../demo/patch-audit/patch-audit-current.mp4) records the actual v1.2.0 recorded-release application built from this review branch. It shows the saved Boltons outcome, separate ordinary and independent status cards, the omitted implementation explanation, saved evidence controls, and a return to the local-workflow link. No fake result or interaction was inserted; no code was run. It is silent, compressed H.264 video with [WebVTT captions](../demo/patch-audit/patch-audit-current.vtt), a [text transcript](../demo/patch-audit/patch-audit-current-transcript.md), and an actual-screen [poster](../demo/patch-audit/patch-audit-current-poster.png). The previous `v1.1.0` debugger walkthrough remains historical and is not linked as the Patch Audit flagship.
-
-The production URL remains unchanged pending independent review. Its current deployed intro will not show these copy changes until a later separately authorized deployment. The public URL already serves saved Patch Audit evidence; its new-entry URL was checked with the record query parameter.
-
-## Before and after
-
-| Before: accepted recorded intro | After: review-branch recorded intro |
+| Reference | Relevant principle applied |
 | --- | --- |
-| ![Before: generic saved-audit call to action, no direct local quickstart link](assets/patch-audit-presentation-before.png) | ![After: explicit missed-fix and local-audit actions](assets/patch-audit-presentation-after.png) |
+| [Ruff README](https://github.com/astral-sh/ruff) | Define the tool in one sentence and give a direct path to getting started. |
+| [pytest README](https://github.com/pytest-dev/pytest) | Show a small input and actual result before the feature catalog. |
+| [Promptfoo README](https://github.com/promptfoo/promptfoo) | Connect configuration, running a check and inspecting the result; make the result viewer tangible. |
+| [Inspect AI log viewer](https://inspect.aisi.org.uk/log-viewer.html) | Let a reviewer drill from a result into scoring, metadata and retained logs. |
+| [Memray README](https://github.com/bloomberg/memray) | Show recognizable product output and explain the engineering problem it helps diagnose. |
+| [OpenSSF Scorecard](https://openssf.org/projects/scorecard/) | Explain the purpose in ordinary language and make usage paths discoverable. |
 
-The new walkthrough itself is an actual moving before-to-detail walkthrough. The mobile capture below is full page and shows the same first-screen actions at a 390px viewport.
+These references informed the information hierarchy and demonstration format. No text, branding, endorsement or media was copied. There is no fabricated recruiter study, audience statistic or claim of a portfolio percentile.
 
-![After, mobile: Patch Audit recorded viewer at 390px width](assets/patch-audit-presentation-after-mobile.png)
+## 3. Narrative, audience and bounded plan
 
-## Validation results
+The audience is a recruiter or hiring manager first, followed by an engineer who wants to inspect the implementation. The story is **a real incomplete repair → passing selected tests → a separately justified requirement → an observed gap → inspectable execution evidence**. The public viewing route and the privileged local workflow are distinct throughout.
 
-- `npm run build --prefix frontend`: **passed** (`tsc -b` and Vite production build). Vite reports the existing large lazy diff-editor chunk warning; no build failure.
-- `git diff --check`: **passed**.
-- Local markdown link check across README, case study and transcript: **no broken relative paths**.
-- `ffmpeg` decode of the MP4: **passed**. `ffprobe`: 1440×900, 25 fps, 73.04 seconds, approximately 1.6 MB. The VTT duration matches the film within the final cue.
-- Real browser playback against the built local recorded-release container: HTTP 200; retained missed-copy record selected; saved status was failed, ordinary outcome passed and independent outcome failed; no page errors; no non-GET API requests. The real MP4 was captured from this flow.
-- Mobile browser at 390×844: **390px document width / 390px viewport**, no horizontal overflow, no page errors or mutation requests; saved evidence and the missed-implementation explanation loaded.
-- Recorded container health: `mode=recorded`, `live_execution_slots=0`, `provider_token_budget=0`. `/api/patch-audits/tasks`, `/api/repository-audits/sources` and `/api/runs` returned GET 404 / POST 405. Recorded evidence GET was available and POST returned 405.
-- Preview used only the restricted `compose.release.yaml` image on loopback port 18020. No privileged local API, inference or campaign was started. No production deployment occurred.
+The highest-impact changes are a concrete first-screen result, a direct link to its evidence, an actual evidence-opening demo and a short local setup path. Deep technical detail lives in linked architecture, policy, code-tour and methodology documents. The original repository name is explained rather than renamed. The acceptance criterion is whether the first screen and first minute answer what the tool does, why it matters, what the real example showed, how to try it and what public playback cannot do.
 
-These checks are bounded to the changed UI and recorded service. They are not fresh campaign outcomes or proof of human comprehension; no independent human testers were available.
+## 4. README and technical navigation
 
-## Historical evidence and execution boundary
+The [README](../../README.md) leads with a product definition, the 155-test hook, public/local entry points and a current demonstration. It explains the result in a compact table before installation. Its workflow diagram places exact approval before execution. The engineering table explains concrete problems, implementation decisions and tradeoffs, with source links; it is not an unstructured framework list.
 
-This branch changes no files under `evaluation/`, `recordings/`, frozen campaign inputs, G1–G4 reports, verifier identities, release tags or original execution artifacts. The featured record is loaded from its retained recording. Replaying it caused no execution or mutation request. Public execution remains disabled in the actual restricted container; fresh patch audits are available only in the separate local-owner application.
+The evaluation table preserves separate denominators for the Boltons development run, G3, the producer comparison and authored controls. Detailed scope is linked rather than repeated. The [architecture document](../ARCHITECTURE.md) now opens with the current Patch Audit boundary; the earlier debugger history remains below it. The code tour already starts with Patch Audit and remains linked.
 
-## Remaining limitations
+## 5. Recorded website
 
-- The current walkthrough is silent; captions and transcript carry the narration. The prior old-version film is not a substitute for this current walkthrough.
-- The production URL will remain on its current deployed copy until a separately reviewed and authorized deployment.
-- Docker setup and trustworthy requirement authoring remain substantial for a first-time local user.
-- The example is a real, useful case, but one miss and a six-candidate retrospective campaign cannot support a general detection-rate claim. G3 found no added findings.
-- The public repository lacks a project license; no licensing claim is made here.
+The first screen says **“155 tests passed. The fix was incomplete.”** and defines the product below it. Three short steps explain the selected-test pass, the standalone empty-input observation and the one incomplete repair. The main action selects the actual missed-fix record even after a visitor browses the passing record, and scrolls to it once the saved evidence loads. A keyboard regression covers that behavior.
 
-## Recruiter-facing assessment
+A separate local quickstart link and an expandable native video player support the two next steps. The player has no autoplay, uses captions and an accessible transcript, and loads its 3.98 MB media only on demand. The renderer enforces a 4 MB budget below the host's documented 4.5 MB Function-response limit. Media and the poster use same-origin static assets; social preview metadata points to that poster. Full study provenance remains discoverable below the evidence rather than preceding the first useful result. Technical evidence controls, downloads, selector and earlier debugger remain available.
 
-**Before: 6/10 for first-impression clarity.** The accepted product and technical evidence were credible, but a new reader had to work through dense explanation to find the strongest concrete example and understand the demo boundary.
+## 6. Current demo deliverables
 
-**After: 8/10 for first-impression clarity (author assessment, not user research).** The first screen answers what the product is, puts the authentic missed fix and current demonstration in reach, and distinguishes playback from local execution. Within roughly a minute a reader can identify the ordinary pass, independent finding, local entry point and public limitation. A senior reviewer still needs the linked reports to assess the protocol; the product has not shown broad effectiveness, and G3's zero additional findings should temper any claim of added value.
+The [109-second film](../../frontend/public/demo/patch-audit/walkthrough.mp4) records actual browser interactions with the built recorded-release application. It opens the retained ordinary log, task requirement, exact patch, omitted `addlist` implementation, `standalone_urlutils:empty` expected/observed values and execution identities. It downloads the actual evidence and patch, checks their bytes, explains the separate G3 outcome and opens the real GitHub local quickstart.
 
-**Engineering quality is not rescored here.** The presentation makes the existing engineering easier to inspect but does not increase the strength of the underlying evidence.
+The film is 1440×900, H.264/AAC, with local synthetic narration and visible captions in a dedicated band below the UI. [WebVTT captions](../../frontend/public/demo/patch-audit/captions.vtt), a [transcript](../../frontend/public/demo/patch-audit/transcript.txt), [poster](../../frontend/public/demo/patch-audit/poster.png), [capture manifest](../demo/patch-audit/current-capture.json), [script and reproduction guide](../demo/patch-audit/CURRENT-DEMO.md) accompany it. The poster crops actual result pixels and adds an editorial title. No application output, control or result text was fabricated.
 
-**Recommendation: BLOCK publication/deployment until an independent reviewer examines the actual changes and media.** The content is ready for that review; the live site remains unchanged.
+Raw captures and intermediates are retained locally in `artifacts/public-presentation/`. Earlier media takes were retained separately while source-panel positioning and capture validation were corrected. The final capture has no page errors or mutation requests to the recorded origin. The final documentation page is GitHub itself; its ordinary analytics are outside that origin assertion. No new audit or coding-model inference was performed. Earlier v1.1.0 Patch Audit films and the original NVIDIA debugger walkthrough are explicitly historical.
+
+## 7. Authentic case study and ownership
+
+The [case study](../PATCH-AUDIT-CASE-STUDY.md) explains the one-shot iterable problem, why package imports can mask the standalone fallback, the 155 selected upstream tests and the actual empty-input observation. It links the pinned `addlist` documentation, authored task requirement, checker, exact patch and original evidence. It distinguishes an independently specified consistency property from a specification automatically discovered by a model.
+
+The earlier Boltons record predates the generalized approval forms; the presentation does not retroactively assign those forms to its historical execution. The result is **one incomplete repair**, not several bugs. G3 is separate: six genuine historical developer patches, five ordinary passes, one regression already caught ordinarily, **zero additional independent findings**. No broad detection-rate or model-ranking claim is made.
+
+The case study identifies Codex assistance in this presentation work. Personal motivation, individual implementation ownership, unaided expertise and learning claims are omitted pending owner confirmation.
+
+## 8. Local execution and public viewing
+
+The local application accepts bounded immutable public GitHub snapshots, exact production-only patches and explicitly approved Python/Node plans. Its broker has privileged Docker authority and remains private. Candidate restrictions share the host kernel and are not a complete hostile-code sandbox.
+
+The public recorded service contains curated evidence, static media and the built frontend. It has no evaluator, database/provider credentials, Docker module/socket, mounts or candidate-execution routes. A built image was inspected, not merely its buttons. This task made no production deployment, merge or release.
+
+## 9. Actual validation
+
+| Check | Observed result |
+| --- | --- |
+| `./scripts/check` | Passed: Python lint/format/types, **387 offline tests**, TypeScript and production frontend build. The existing large lazy diff-editor chunk warning remains. |
+| `E2E_BASE_URL=http://127.0.0.1:18020 ./scripts/e2e -k recorded_explorer_first` | **3 passed**: genuine failed/passed Patch Audit records, diff/download, earlier debugger, desktop/mobile and no mutation requests. Includes the new keyboard featured-record regression. |
+| Restricted image / `scripts/check_release.py` | Passed: non-root/read-only, zero mounts, bounded resources, no authority modules/socket/credentials, zero execution slots/provider budget, private GET 404 and mutation POST 405. [Receipt](assets/patch-audit-presentation-boundary.json). |
+| Served media and browser playback | Exact media/poster/caption/transcript hashes; MP4 Range request 206; keyboard-started native playback decoded frames and sought to the independent observation. Eighteen caption cues loaded; no page/console errors or mutation requests. [Receipt](assets/patch-audit-presentation-validation.json). |
+| Responsive checks | No document overflow at **360, 390, 768 and 1440px**. Actual screenshots inspected; a mobile label layout issue found during visual review was corrected. |
+| Media decode | Full FFmpeg decode passed; 108.74 seconds; about 3.98 MB; audio peak −1.1 dB. Caption samples were inspected against the actual method and observation frames. |
+| Historical preservation | **1,726 existing files** across evaluation inputs, recordings, frozen evals, reports, runtime source and migrations match accepted-base Git blob identities. `v1.2.0` still resolves to the accepted commit. [Receipt](assets/patch-audit-presentation-preservation.json). |
+| Links and formatting | Changed-document relative paths, media references and `git diff --check` checked before handoff. |
+| Full established CI | Exact final-head workflow status and run URL are recorded on [PR #18](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/18/checks); this is separate from the local checks above. |
+
+No independent human testers were available. Browser automation and this author's first-minute walkthrough are not evidence of unaided human comprehension.
+
+## 10. Before and after
+
+The before image is the actual existing production deployment. The after images are the local review build at the same desktop viewport and at 390px mobile width. The production service has not been changed.
+
+| Before | After |
+| --- | --- |
+| ![Previous recorded intro](assets/patch-audit-presentation-before.png) | ![Current review intro](assets/patch-audit-presentation-after.png) |
+
+[Mobile intro](assets/patch-audit-presentation-after-mobile.png) · [Mobile result](assets/patch-audit-presentation-result-mobile.png) · [Actual in-page video playback](assets/patch-audit-presentation-video-playback.png).
+
+## 11. Remaining limitations
+
+The film shows saved inspection and the local setup instructions, not a newly executed generalized audit. Its voice is synthesized; no human narration or independent human comprehension feedback is claimed. GitHub's MP4 file view may download rather than play in some clients; the recorded website includes an ordinary native player. The production URL remains on the accepted version until separately authorized publication.
+
+Trustworthy requirement authoring and Docker setup remain substantial work for a new local user. The historical convenience samples establish no general accuracy rate, and G3 provides no added detections. The repository does not grant a project license. No personal ownership claims were inferred from commit metadata.
+
+## 12. Candid recruiter assessment
+
+**First-impression clarity: 6/10 before; 8.5/10 after.** This is an explicit author assessment, not a measured percentile or human-study result. The earlier material was technically credible but demanded more reading. The current first screen names the problem and real result, the film opens the evidence, and the local/public choices are concrete. The engineering is now easier to assess because design decisions link directly to the implementation.
+
+A first-minute walkthrough can answer the six acceptance questions: Patch Audit inspects finished changes; tests can miss required behavior; it compares declared check sets and retains evidence; the real AI patch missed a standalone copy; saved evidence needs no install and new audits use local Docker; the public site cannot run code. A skeptical reviewer can also find the negative G3 outcome and sandbox limitations without reconstructing milestone history.
+
+**Engineering quality is not rescored.** Presentation changes do not strengthen the underlying study or establish production effectiveness. Stronger external evidence would require genuine user feedback or independently successful use, not more visual polish.
+
+**Recommendation: content is ready for independent review. BLOCK publication until the owner-requested independent review of the actual changes and media is complete.**

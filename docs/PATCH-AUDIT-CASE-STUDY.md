@@ -1,4 +1,4 @@
-# Case study: a passing test suite missed half of a repair
+# Case study: 155 tests passed; the standalone copy was still broken
 
 ## The question
 
@@ -11,22 +11,50 @@ general proof of correctness.
 
 ## The retained Boltons example
 
-The source is a pinned public revision of Boltons. In one separate development run, an AI-generated
-patch updated the `Remap` implementation in `boltons/dictutils.py` but missed a standalone copy in
-`boltons/urlutils.py`. The retained patch and generation record are available in the
+The source is a pinned public revision of Boltons, a Python utility library. Its
+`OrderedMultiDict.addlist` method adds an iterable of values to a key. The original implementation
+traversed that input twice: a generator was exhausted before its values could be stored consistently.
+Boltons also carries a copy of the class inside its URL utility so that module can work on its own.
+
+In one separate development run, an AI-generated patch materialized the iterable once in
+`boltons/dictutils.py` but missed the standalone copy in `boltons/urlutils.py`. The retained patch
+and generation record are available in the
 [original development evidence](../evaluation/experiments/m02-v2/README.md).
 
-The selected upstream test command passed **155 tests**. The independent requirement came from the
-upstream documented `Remap` behavior, not from the candidate. A separately approved check exercised
-the standalone implementation with empty input. It observed length `1` where the declared behavior
-required `0`; keys and items were empty as expected. These observations describe **one incomplete
+The selected upstream test command passed **155 tests**. Normal package imports can reuse the
+repaired class; loading the URL module on its own exercises its unrepaired fallback.
+
+The expected behavior was specified separately from the candidate. The pinned
+[`addlist` docstring](../evaluation/tasks/boltons-addlist/source/boltons/dictutils.py#L216)
+accepts iterables and preserves existing values. The evaluator's
+[frozen task requirement](../evaluation/tasks/boltons-addlist/manifest.json) explicitly covers
+one-shot inputs, empty-input consistency and the standalone fallback. The
+[authored checker](../backend/src/workbench/evaluator/behavior.py) supplies finite expected values;
+the patch does not supply its own answer. This is a reviewed specification and consistency property,
+not a specification discovered automatically by a model.
+
+The independent check loaded the standalone implementation and added an empty generator. It
+observed length `1` where the declared behavior required `0`; keys and items were empty as expected.
+These observations describe **one incomplete
 repair**: the missed implementation copy. A separate retained complete patch covers both copies,
 but came from a different procedure and is not a controlled model comparison.
 
+The empty case is concrete: a generator object is truthy even when it will yield nothing. The
+unrepaired method passes `if not v`, creates a dictionary entry with `setdefault`, then adds no
+linked items. Its dictionary length becomes one while its keys/items view stays empty. For
+nonempty generators, the first traversal consumes values before the second traversal stores them.
+The extra observations expose this inconsistent state in the missed copy; they do not create
+additional unique defect counts.
+
 The [saved public record](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02)
 reopens the actual evidence without re-execution. Inspect the [exact patch](../evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.patch),
-[generation provenance](../evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.json),
-and [independent observations](../recordings/patch-audit-missed.json).
+[generation provenance](../evaluation/experiments/m02-v2/development/trials/m02-v2-development-boltons-addlist-nemotron3-r02/generation.json),
+[original independent execution](../evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.json),
+and [recorded observations](../recordings/patch-audit-missed.json).
+
+This earlier prepared-task record predates the generalized requirement and exact-approval forms.
+The viewer retains its original evidence; it does not retroactively assign the later workflow to
+that historical execution.
 
 ## From one example to a local workbench
 

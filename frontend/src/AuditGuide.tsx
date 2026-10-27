@@ -52,22 +52,27 @@ export function AuditIntro({
             : "COMPLETED CODE CHANGES · REPRODUCIBLE EVIDENCE"}
         </span>
         <h1>
-          {recorded
-            ? "Passing tests. What do they prove?"
-            : repository
-              ? "Audit a completed patch"
-              : "A patch is more than a green test run."}
+          {recorded ? (
+            <>
+              <span className="story-headline">155 tests passed.</span>
+              <span className="story-headline">The fix was incomplete.</span>
+            </>
+          ) : repository ? (
+            "Audit a completed patch"
+          ) : (
+            "A patch is more than a green test run."
+          )}
         </h1>
         <p className="product-lead">
-          Examine a completed code change. Run its selected existing tests,
-          separately check approved behavioral requirements, and keep the
-          evidence behind each conclusion.
+          {recorded
+            ? "Patch Audit checks completed code changes against existing tests and independently specified behavior. See the real AI-generated fix that missed a second implementation."
+            : "Examine a completed code change. Run its selected existing tests, separately check approved behavioral requirements, and keep the evidence behind each conclusion."}
         </p>
         {recorded ? (
           <p>
-            This is a recorded evidence viewer, not a public evaluation service.
-            Explore authentic saved results below. New audits require the
-            private local application and Docker.
+            Browse authentic saved evidence: the patch, expected versus observed
+            behavior, and execution logs. New audits require Docker and the
+            private local application. This public viewer cannot execute code.
           </p>
         ) : (
           <>
@@ -89,7 +94,7 @@ export function AuditIntro({
           <div className="recorded-actions">
             <a
               className="primary-button product-cta"
-              href="#saved-patch-evidence"
+              href="/recorded/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02#saved-patch-evidence"
             >
               Explore the real missed fix <ArrowRight size={17} />
             </a>
@@ -98,32 +103,59 @@ export function AuditIntro({
             </a>
           </div>
         )}
-        <div className="product-principles">
-          <article>
-            <GitPullRequest size={20} />
-            <h2>Start with the actual change</h2>
-            <p>
-              Pin source and patch identities. Importing a patch never
-              authorizes execution.
-            </p>
-          </article>
-          <article>
-            <ShieldCheck size={20} />
-            <h2>Specify what matters</h2>
-            <p>
-              Independent checks need a trustworthy requirement. Confidence
-              alone is not an oracle.
-            </p>
-          </article>
-          <article>
-            <FileCheck2 size={20} />
-            <h2>Read the evidence</h2>
-            <p>
-              Ordinary tests and independent checks stay separate. Missing
-              checks never mean a pass.
-            </p>
-          </article>
-        </div>
+        {recorded ? (
+          <div
+            className="product-principles recorded-story"
+            aria-label="The featured Boltons result"
+          >
+            <article>
+              <span className="story-number">01 / ORDINARY TESTS</span>
+              <h2>155 selected tests passed</h2>
+              <p>The existing suite exercised the package imports.</p>
+            </article>
+            <article>
+              <span className="story-number">02 / INDEPENDENT CHECK</span>
+              <h2>Empty input, unexpected state</h2>
+              <p>
+                The standalone copy reported length 1. The requirement was 0.
+              </p>
+            </article>
+            <article>
+              <span className="story-number">03 / THE MISSED COPY</span>
+              <h2>One incomplete repair</h2>
+              <p>
+                The patch changed dictutils.py and left urlutils.py unchanged.
+              </p>
+            </article>
+          </div>
+        ) : (
+          <div className="product-principles">
+            <article>
+              <GitPullRequest size={20} />
+              <h2>Start with the actual change</h2>
+              <p>
+                Pin source and patch identities. Importing a patch never
+                authorizes execution.
+              </p>
+            </article>
+            <article>
+              <ShieldCheck size={20} />
+              <h2>Specify what matters</h2>
+              <p>
+                Independent checks need a trustworthy requirement. Confidence
+                alone is not an oracle.
+              </p>
+            </article>
+            <article>
+              <FileCheck2 size={20} />
+              <h2>Read the evidence</h2>
+              <p>
+                Ordinary tests and independent checks stay separate. Missing
+                checks never mean a pass.
+              </p>
+            </article>
+          </div>
+        )}
       </header>
     </>
   );
