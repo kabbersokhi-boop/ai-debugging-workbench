@@ -23,6 +23,7 @@ from workbench.patch_audit.routes import local_only
 from workbench.repository_audit.admission import admit, check_plan
 from workbench.repository_audit.campaign import retained_campaign, retained_compatibility
 from workbench.repository_audit.contracts import Confirm, Import, Intake, Plan
+from workbench.repository_audit.github_preview import Preview, preview
 from workbench.repository_audit.intake import Rejected, fetch, summary
 from workbench.repository_audit.service import load, material, store, view
 from workbench.repository_audit.verification import (
@@ -36,6 +37,17 @@ router = APIRouter(prefix="/api/repository-audits", dependencies=[Depends(local_
 FETCH_LOCK = asyncio.Lock()
 CAMPAIGN_ROOT = ROOT / "evaluation/repository-examples/g3"
 COMPATIBILITY_ROOT = ROOT / "evaluation/repository-examples/g3-node-compatibility"
+
+
+@router.post("/github-preview")
+async def github_preview(payload: Preview):
+    if FETCH_LOCK.locked():
+        raise HTTPException(429, "Repository intake is occupied")
+    async with FETCH_LOCK:
+        try:
+            return await preview(payload)
+        except Rejected as error:
+            raise HTTPException(422, {"status": error.status, "reason": str(error)}) from None
 
 
 @router.get("/campaigns/g3-node-compatibility")

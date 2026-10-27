@@ -55,6 +55,7 @@ async def test_independent_browser_approval_failure_download_reopen_and_selectio
         )
         await page.get_by_role("button", name="Prepare exact plan for approval").click()
         await page.get_by_label("Add independent verification", exact=True).check()
+        await page.get_by_role("button", name="Advanced JSON", exact=True).click()
         await page.get_by_label("Independent requirements", exact=True).fill(json.dumps([req]))
         await page.get_by_text("I reviewed the provenance", exact=False).click()
         await page.get_by_label("Independent target file", exact=True).fill("library.py")

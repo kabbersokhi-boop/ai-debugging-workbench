@@ -1,0 +1,40 @@
+{
+  "implementation": "1a18b23e1fcf051f0891ac0c294e166ea3867d13",
+  "runs": [
+    {
+      "id": 40408801629,
+      "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40408801629"
+    },
+    {
+      "id": 40408844672,
+      "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40408844672"
+    }
+  ],
+  "jobs": [
+    {
+      "job_id": 121873415804,
+      "passedOriginalRestart": [
+        "2026-10-26T22:07:37.7983660Z tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution PASSED [ 88%]",
+        "2026-10-26T22:08:26.5981076Z tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 93%]"
+      ],
+      "failureDetails": [
+        "2026-10-26T22:08:32.9942654Z FAILED tests/test_agent_evaluator_browser.py::test_evaluator_real_ui_candidates_failure_evidence_and_reopen - playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.",
+        "2026-10-26T22:08:32.9944530Z FAILED tests/test_patch_audit_browser.py::test_patch_audit_real_ui_import_failing_passing_download_and_reopen - AssertionError: Locator expected to be visible",
+        "2026-10-26T22:08:32.9946711Z ===== 2 failed, 98 passed, 4 skipped, 387 deselected in 432.95s (0:07:12) ======"
+      ]
+    },
+    {
+      "job_id": 121873578806,
+      "passedOriginalRestart": [
+        "2026-10-26T22:09:06.5111465Z tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution PASSED [ 88%]",
+        "2026-10-26T22:10:01.5780250Z tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 93%]"
+      ],
+      "failureDetails": [
+        "2026-10-26T22:10:08.6253202Z FAILED tests/test_agent_evaluator_browser.py::test_evaluator_real_ui_candidates_failure_evidence_and_reopen - playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.",
+        "2026-10-26T22:10:08.6255919Z FAILED tests/test_patch_audit_browser.py::test_patch_audit_real_ui_import_failing_passing_download_and_reopen - AssertionError: Locator expected to be visible",
+        "2026-10-26T22:10:08.6259526Z ===== 2 failed, 98 passed, 4 skipped, 387 deselected in 482.59s (0:08:02) ======"
+      ]
+    }
+  ],
+  "reruns_requested": 0
+}

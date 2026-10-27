@@ -27,7 +27,7 @@ async def main(args):
             key = example["key"]
             await page.goto(args.base_url + "/?source=external")
             await expect(
-                page.get_by_role("heading", name="Bring your own repository")
+                page.get_by_role("heading", name="Audit a completed patch")
             ).to_be_visible()
             await page.get_by_label("GitHub owner/repository", exact=True).fill(
                 example["repository"]
@@ -88,7 +88,7 @@ async def main(args):
             await expect(region.get_by_role("status")).to_have_text(
                 example["expected_status"].replace("_", " "), timeout=60000
             )
-            await expect(region).to_contain_text("Not configured")
+            await expect(region).to_contain_text("Independent checks not configured")
             await region.screenshot(path=output / f"{key}-result.png")
             async with page.expect_download() as download:
                 await region.get_by_role("link", name="Download repository evidence").click()

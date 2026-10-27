@@ -1,0 +1,26 @@
+{
+  "base": "9c025a37cc4a01d86ce0af599776a73a07b2bc16",
+  "files_byte_identical": 1574,
+  "scope": [
+    "evaluation",
+    "evals",
+    "recordings",
+    "docker",
+    "backend/uv.lock",
+    "compose.yaml",
+    "compose.release.yaml",
+    "backend/src/workbench/repository_audit/admission.py",
+    "backend/src/workbench/repository_audit/contracts.py",
+    "backend/src/workbench/repository_audit/execution.py",
+    "backend/src/workbench/repository_audit/intake.py",
+    "backend/src/workbench/repository_audit/independent.py",
+    "backend/src/workbench/repository_audit/service.py",
+    "backend/src/workbench/repository_audit/recovery.py",
+    "backend/src/workbench/repository_audit/verification.py",
+    "backend/src/workbench/repository_audit/verifiers.py",
+    "backend/src/workbench/repository_audit/verifiers",
+    "backend/src/workbench/release.py",
+    "docs/reports"
+  ],
+  "changed_historical_files": []
+}

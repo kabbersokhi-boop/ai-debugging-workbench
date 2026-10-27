@@ -1,0 +1,9 @@
+{
+  "reason": "Unchanged legacy evaluation harness resolves the default broker by fixed container/network name; make that inherited precondition explicit for the complete local suite.",
+  "initially_running": false,
+  "container_id": "0f8842e637c1c7edf96ae15e6adec0463b78f3ee0db8ad1e72d60ba068cba067",
+  "test_or_timeout_changes": false,
+  "unchanged_broker_source_sha256": "02b580fb0168f7491b150b21ef0c120680d8c2454fbc38f7b4d649e16abf4871",
+  "full_suite_exit_code": 1,
+  "restored_original_running_state": true
+}

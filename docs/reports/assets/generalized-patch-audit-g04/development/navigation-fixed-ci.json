@@ -1,0 +1,26 @@
+{
+  "implementation": "574f5fa06e5fe490c64b120a2a9d57571a9a4d1e",
+  "runs": [
+    {
+      "run": 40410204469,
+      "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40410204469",
+      "job": 121878686911,
+      "conclusion": "failure",
+      "failures": [
+        "2026-10-26T22:20:07.7460581Z FAILED tests/test_patch_audit_browser.py::test_patch_audit_real_ui_import_failing_passing_download_and_reopen - AssertionError: Locator expected to be visible",
+        "2026-10-26T22:20:07.7464537Z ===== 1 failed, 99 passed, 4 skipped, 387 deselected in 476.62s (0:07:56) ======"
+      ]
+    },
+    {
+      "run": 40410210403,
+      "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40410210403",
+      "job": 121878706799,
+      "conclusion": "failure",
+      "failures": [
+        "2026-10-26T22:20:28.1550259Z FAILED tests/test_patch_audit_browser.py::test_patch_audit_real_ui_import_failing_passing_download_and_reopen - AssertionError: Locator expected to be visible",
+        "2026-10-26T22:20:28.1552798Z ===== 1 failed, 99 passed, 4 skipped, 387 deselected in 479.39s (0:07:59) ======"
+      ]
+    }
+  ],
+  "reruns_requested": 0
+}

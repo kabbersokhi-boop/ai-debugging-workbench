@@ -1,0 +1,16 @@
+{
+  "implementation_sha": "ca56acfb9120aa42aef70b794b995008d4b42ca2",
+  "source": "Subset of the actual e2e.log, not another execution.",
+  "cases": [
+    "tests/test_g4_browser.py::test_g4_accepted_example_guided_approval_execution_download_history[python-positive] PASSED [ 26%]",
+    "tests/test_g4_browser.py::test_g4_accepted_example_guided_approval_execution_download_history[node-positive] PASSED [ 27%]",
+    "tests/test_g4_browser.py::test_g4_unsupported_preview_and_keyboard_mobile PASSED [ 28%]",
+    "tests/test_g4_browser.py::test_recorded_explorer_first_g4_boltons_provenance_and_mobile_boundary PASSED [ 29%]",
+    "tests/test_g4_browser.py::test_g4_late_pr_preview_cannot_replace_edited_input[edit_url] PASSED [ 30%]",
+    "tests/test_g4_browser.py::test_g4_late_pr_preview_cannot_replace_edited_input[manual_intake] PASSED [ 31%]",
+    "tests/test_g4_browser.py::test_g4_actual_rejected_test_patch_creates_no_audit PASSED [ 32%]",
+    "tests/test_g4_browser.py::test_g4_result_summary_keeps_both_failure_outcomes_visible[tests_passed] PASSED [ 33%]",
+    "tests/test_g4_browser.py::test_g4_result_summary_keeps_both_failure_outcomes_visible[tests_failed] PASSED [ 34%]"
+  ],
+  "passed": 9
+}

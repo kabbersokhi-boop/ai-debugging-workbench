@@ -1,0 +1,7 @@
+{
+  "application_errors": [
+    "db-1                            | 2026-10-26 22:10:53.448 UTC [3991] ERROR:  Patch candidates are immutable",
+    "db-1                            | 2026-10-26 22:26:11.768 UTC [6226] ERROR:  Patch candidates are immutable"
+  ],
+  "assessment": "Expected database immutability rejection from negative test; no unhandled API traceback."
+}

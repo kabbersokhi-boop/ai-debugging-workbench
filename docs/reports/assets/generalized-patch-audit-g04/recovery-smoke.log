@@ -1,0 +1,3 @@
+ Container patch-audit-g4-api-1 Starting 
+ Container patch-audit-g4-api-1 Started 
+{"checkpoint_before_crash": "running", "completed_history_unchanged": true, "fresh_run_after_recovery": "f544664a-5e83-4604-be57-e5aea900eca4", "fresh_run_status": "reproduced", "runner_cleanup_errors": false}

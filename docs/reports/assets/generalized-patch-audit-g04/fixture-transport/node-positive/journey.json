@@ -1,0 +1,9 @@
+{
+  "example": "node-positive",
+  "source_transport": "retained accepted public snapshot; source response replayed",
+  "fresh_execution": true,
+  "audit_id": "a0f3d161-bef0-4890-ae2c-50d7e6003358",
+  "status": "completed",
+  "history_and_download_exact": true,
+  "console_errors": []
+}

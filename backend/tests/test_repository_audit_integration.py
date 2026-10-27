@@ -163,7 +163,7 @@ async def test_repository_browser_review_approval_download_reopen_and_stale_sele
             "**/api/repository-audits/sources", lambda route: route.fulfill(json=summary(source))
         )
         await page.goto(BASE + "/?source=external")
-        await expect(page.get_by_role("heading", name="Bring your own repository")).to_be_visible()
+        await expect(page.get_by_role("heading", name="Audit a completed patch")).to_be_visible()
         await page.get_by_label("GitHub owner/repository", exact=True).fill(source["repository"])
         await page.get_by_label("Immutable base commit", exact=True).fill(source["base_commit"])
         await page.get_by_role("button", name="Fetch source for review", exact=True).click()
@@ -207,7 +207,7 @@ async def test_repository_browser_review_approval_download_reopen_and_stale_sele
         audit_id = (await (await response.value).json())["id"]
         region = page.get_by_role("region", name="External audit result")
         await expect(region.get_by_role("status")).to_have_text("tests passed", timeout=60000)
-        await expect(region).to_contain_text("Not configured")
+        await expect(region).to_contain_text("Independent checks not configured")
         async with page.expect_download() as download:
             await region.get_by_role("link", name="Download repository evidence").click()
         downloaded = json.loads(

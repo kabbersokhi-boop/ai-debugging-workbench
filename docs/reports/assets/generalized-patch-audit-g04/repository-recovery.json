@@ -1,0 +1,13 @@
+{
+  "cancelled": "5341a6e5-06ba-4c00-bfa5-014fa4200170",
+  "restored": "937aa366-c1e9-414e-95f9-7dd835687ed8",
+  "missing_terminal": "87fc990f-e569-4c5e-8402-1dac5e665a2e",
+  "restored_without_reexecution": true,
+  "restart_elapsed_seconds": 18.636,
+  "api_usable": true,
+  "restored_evidence_hash": "f740ff31bac70b7dfb63529c361b940ac1de3aa6987f2710cd935d7c5782fdc2",
+  "missing_classification": "interrupted",
+  "missing_broker_404s": 37,
+  "completed_execution_submissions": 1,
+  "completed_terminal_fetches": 1
+}
