@@ -1,0 +1,222 @@
+{
+  "source": {
+    "id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+    "version": "repository-source-v1",
+    "repository": "component/escape-html",
+    "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+    "git_tree": "4595930fe15bb8034598e2cf2cb580dcfc065631",
+    "source_tree_hash": "60dadf1674058c1cc604051ee3d264f5e30c5cd27915f3eff2aceca682c2f979",
+    "file_hashes": {
+      ".editorconfig": "7bd6d83307b85e0401c9b1b1bd487f1e3f375c9be8ceff9ea32b0315815f992d",
+      ".eslintignore": "a786abe86173ef47e5512b82f125da6b89776d2f39b3f3ce153b1791d54e35bd",
+      ".eslintrc.yml": "472abeea8f591af5cdf1a34622ac9b8019b0b1f33bfac3eeb26811061a83039e",
+      ".gitignore": "ac901be8c1ab2509a839e1e49f3e0a9315d077e7fbdccb280271a3415b136f89",
+      ".travis.yml": "273ca06fc2eb08532b37fee32d851f8c5fe8fda5142593d2772c88c5bbc98466",
+      "HISTORY.md": "47e0e4ca90edcf4f04326ae73c8d197b5e8db0e1c439be12f66ed1eca6c4957d",
+      "LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+      "README.md": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+      "benchmark/index.js": "248016f887ccaa79dc4eb56fd038a5214543fbaf7058de32fa5fe95c7a5fe1ac",
+      "component.json": "00e9870404566bdd5f021601fae9ac2d5f6aca763a8bf28cb5aedd0af13e423f",
+      "index.js": "1c7b645125ab02890931944f5b9c628aeb3f6525c812aa4621bf646ff7f9e55b",
+      "package.json": "e41453856ce09702145bccac19cf593fea9b2f7a2d76ebfc153eeac1338952bf",
+      "test/.eslintrc.yml": "d5191500ede898e4317a74798ecefe46d3db55185bdeadc49bded8d02e1722e5",
+      "test/index.js": "5a75835c8040f91a7b65ab9849195b4223bc8f27484fa6e0a13e29003ad65fc2"
+    },
+    "modes": {
+      ".editorconfig": "100644",
+      ".eslintignore": "100644",
+      ".eslintrc.yml": "100644",
+      ".gitignore": "100644",
+      ".travis.yml": "100644",
+      "HISTORY.md": "100644",
+      "LICENSE": "100644",
+      "README.md": "100644",
+      "benchmark/index.js": "100644",
+      "component.json": "100644",
+      "index.js": "100644",
+      "package.json": "100644",
+      "test/.eslintrc.yml": "100644",
+      "test/index.js": "100644"
+    },
+    "metadata": {
+      "fetched_at": "2026-10-19T21:21:52.400457+00:00",
+      "adapter": "github-https-archive-v1",
+      "transport": "HTTPS; no redirects; no credentials; 45 second total budget",
+      "archive_sha256": "615623c15cb33c081c2d77ad45fcd2ce3169e54fa01e40a46ac208a94a4b313c",
+      "normalization": "Regular files only; executable bit retained; candidate source read-only",
+      "upstream_url": "https://github.com/component/escape-html",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "attribution_files": [
+        "LICENSE"
+      ]
+    },
+    "eligible_paths": [
+      "index.js"
+    ],
+    "source_bytes": 17024,
+    "file_count": 14,
+    "license_texts": {
+      "LICENSE": "(The MIT License)\n\nCopyright (c) 2012-2013 TJ Holowaychuk\nCopyright (c) 2015 Andreas Lubbe\nCopyright (c) 2015 Tiancheng \"Timothy\" Gu\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+    }
+  },
+  "candidate": {
+    "id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+    "version": "repository-candidate-v1",
+    "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+    "repository": "component/escape-html",
+    "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+    "source_tree_hash": "60dadf1674058c1cc604051ee3d264f5e30c5cd27915f3eff2aceca682c2f979",
+    "applied_source_hashes": {
+      ".editorconfig": "7bd6d83307b85e0401c9b1b1bd487f1e3f375c9be8ceff9ea32b0315815f992d",
+      ".eslintignore": "a786abe86173ef47e5512b82f125da6b89776d2f39b3f3ce153b1791d54e35bd",
+      ".eslintrc.yml": "472abeea8f591af5cdf1a34622ac9b8019b0b1f33bfac3eeb26811061a83039e",
+      ".gitignore": "ac901be8c1ab2509a839e1e49f3e0a9315d077e7fbdccb280271a3415b136f89",
+      ".travis.yml": "273ca06fc2eb08532b37fee32d851f8c5fe8fda5142593d2772c88c5bbc98466",
+      "HISTORY.md": "47e0e4ca90edcf4f04326ae73c8d197b5e8db0e1c439be12f66ed1eca6c4957d",
+      "LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+      "README.md": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+      "benchmark/index.js": "248016f887ccaa79dc4eb56fd038a5214543fbaf7058de32fa5fe95c7a5fe1ac",
+      "component.json": "00e9870404566bdd5f021601fae9ac2d5f6aca763a8bf28cb5aedd0af13e423f",
+      "index.js": "41951b028697edc240f61a59a515b2cc464cef3e9b93f8061476309f23970569",
+      "package.json": "e41453856ce09702145bccac19cf593fea9b2f7a2d76ebfc153eeac1338952bf",
+      "test/.eslintrc.yml": "d5191500ede898e4317a74798ecefe46d3db55185bdeadc49bded8d02e1722e5",
+      "test/index.js": "5a75835c8040f91a7b65ab9849195b4223bc8f27484fa6e0a13e29003ad65fc2"
+    },
+    "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+    "patch": "--- a/index.js\n+++ b/index.js\n@@ -31,7 +31,8 @@\n  */\n \n function escapeHtml (string) {\n-  var str = '' + string\n+  var str = String(string)\n+  if (str.charCodeAt(0) > 127) return str\n   var match = matchHtmlRegExp.exec(str)\n \n   if (!match) {\n",
+    "submitted_patch_hash": "00bc901f144f336107bf4e929706c806e0b16000c2cb97704e5309c8d60431a1",
+    "approved_paths": [
+      "index.js"
+    ],
+    "affected_files": [
+      "index.js"
+    ],
+    "original": {
+      "index.js": "/*!\n * escape-html\n * Copyright(c) 2012-2013 TJ Holowaychuk\n * Copyright(c) 2015 Andreas Lubbe\n * Copyright(c) 2015 Tiancheng \"Timothy\" Gu\n * MIT Licensed\n */\n\n'use strict'\n\n/**\n * Module variables.\n * @private\n */\n\nvar matchHtmlRegExp = /[\"'&<>]/\n\n/**\n * Module exports.\n * @public\n */\n\nmodule.exports = escapeHtml\n\n/**\n * Escape special characters in the given string of text.\n *\n * @param  {string} string The string to escape for inserting into HTML\n * @return {string}\n * @public\n */\n\nfunction escapeHtml (string) {\n  var str = '' + string\n  var match = matchHtmlRegExp.exec(str)\n\n  if (!match) {\n    return str\n  }\n\n  var escape\n  var html = ''\n  var index = 0\n  var lastIndex = 0\n\n  for (index = match.index; index < str.length; index++) {\n    switch (str.charCodeAt(index)) {\n      case 34: // \"\n        escape = '&quot;'\n        break\n      case 38: // &\n        escape = '&amp;'\n        break\n      case 39: // '\n        escape = '&#39;'\n        break\n      case 60: // <\n        escape = '&lt;'\n        break\n      case 62: // >\n        escape = '&gt;'\n        break\n      default:\n        continue\n    }\n\n    if (lastIndex !== index) {\n      html += str.substring(lastIndex, index)\n    }\n\n    lastIndex = index + 1\n    html += escape\n  }\n\n  return lastIndex !== index\n    ? html + str.substring(lastIndex, index)\n    : html\n}\n"
+    },
+    "modified": {
+      "index.js": "/*!\n * escape-html\n * Copyright(c) 2012-2013 TJ Holowaychuk\n * Copyright(c) 2015 Andreas Lubbe\n * Copyright(c) 2015 Tiancheng \"Timothy\" Gu\n * MIT Licensed\n */\n\n'use strict'\n\n/**\n * Module variables.\n * @private\n */\n\nvar matchHtmlRegExp = /[\"'&<>]/\n\n/**\n * Module exports.\n * @public\n */\n\nmodule.exports = escapeHtml\n\n/**\n * Escape special characters in the given string of text.\n *\n * @param  {string} string The string to escape for inserting into HTML\n * @return {string}\n * @public\n */\n\nfunction escapeHtml (string) {\n  var str = String(string)\n  if (str.charCodeAt(0) > 127) return str\n  var match = matchHtmlRegExp.exec(str)\n\n  if (!match) {\n    return str\n  }\n\n  var escape\n  var html = ''\n  var index = 0\n  var lastIndex = 0\n\n  for (index = match.index; index < str.length; index++) {\n    switch (str.charCodeAt(index)) {\n      case 34: // \"\n        escape = '&quot;'\n        break\n      case 38: // &\n        escape = '&amp;'\n        break\n      case 39: // '\n        escape = '&#39;'\n        break\n      case 60: // <\n        escape = '&lt;'\n        break\n      case 62: // >\n        escape = '&gt;'\n        break\n      default:\n        continue\n    }\n\n    if (lastIndex !== index) {\n      html += str.substring(lastIndex, index)\n    }\n\n    lastIndex = index + 1\n    html += escape\n  }\n\n  return lastIndex !== index\n    ? html + str.substring(lastIndex, index)\n    : html\n}\n"
+    },
+    "provenance": {
+      "category": "user_declared",
+      "author_label": "G2 declared node-negative",
+      "source_reference": "Explicitly authored negative control: Unicode-prefix fast path skips escaping",
+      "limitations": "Imported authorship is user-declared and unverified."
+    }
+  },
+  "ordinary": {
+    "id": "ad89d0b5a4f109d232077924bde51a28b9955ef48dd5bc9b4f8533e86ffece81",
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+      "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+      "runtime": "node22",
+      "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "node",
+        "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+        "test/index.js"
+      ],
+      "test_description": "Full unchanged upstream test file, predeclared G2 trial",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "approval": "not_approved"
+  },
+  "verification": {
+    "id": "e6143a8f87668f6900525419bc2c361746c3703d0a0fa2756cced5f31d51b3ca",
+    "plan": {
+      "version": "independent-plan-v1",
+      "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+      "candidate_id": "b1a56615dfc5d4b0a3dbe2461b7f0979493812a3220a76aaedfa794d17a7463e",
+      "candidate_hash": "1ede5860fdf9039af597eb64ced7892605a835f476e938249bcccb4714a400a9",
+      "ordinary_plan_id": "ad89d0b5a4f109d232077924bde51a28b9955ef48dd5bc9b4f8533e86ffece81",
+      "runtime": "node22",
+      "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+      "module": "index.js",
+      "export": "",
+      "assertions": [
+        {
+          "id": "unicode_prefix",
+          "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+          "args": [
+            "\u00e9<&"
+          ],
+          "kwargs": {},
+          "expected": "\u00e9&lt;&amp;"
+        },
+        {
+          "id": "mixed_symbols",
+          "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+          "args": [
+            "\"'&<>"
+          ],
+          "kwargs": {},
+          "expected": "&quot;&#39;&amp;&lt;&gt;"
+        },
+        {
+          "id": "astral_prefix",
+          "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+          "args": [
+            "\ud83d\ude80<go>"
+          ],
+          "kwargs": {},
+          "expected": "\ud83d\ude80&lt;go&gt;"
+        },
+        {
+          "id": "plain",
+          "requirement_id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+          "args": [
+            "plain"
+          ],
+          "kwargs": {},
+          "expected": "plain"
+        }
+      ],
+      "setup": [],
+      "timeout_seconds": 30,
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+      "adapter_hashes": {
+        "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+        "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+      },
+      "interpretation": "all-named-canonical-json-equalities-v1"
+    },
+    "requirements": [
+      {
+        "id": "9643f08b3f005a1043cda2a155d7162275ca84c43e7963881d5ad0a9215193f8",
+        "version": "behavioral-requirement-v1",
+        "snapshot_id": "30f7e7f019cc9c6793c782fb9299314b4752a09bbe3831b796f2b17029113701",
+        "statement": "Escape all five documented HTML special characters in string input, including Unicode text.",
+        "expected_behavior": "Escape all five documented HTML special characters in string input, including Unicode text.",
+        "input_domain": "Finite JSON strings containing plain Unicode text and documented HTML special characters.",
+        "assumptions": [
+          "HTML text content or quoted attribute contexts only",
+          "Entity spellings follow upstream documented examples and owner-approved conventional HTML entity spellings; no raw-text element claim"
+        ],
+        "ambiguities": [],
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/component/escape-html/blob/b42947eefa79efff01b3fe988c4c7e7b051ec8d8/README.md",
+          "excerpt": "This function will escape the following characters: `\"`, `'`, `&`, `<`, and\n`>`.",
+          "excerpt_hash": "71a5655b5f8a8a988b692afce317b357655ce889d53cd2f50fb774d59c56d229",
+          "justification": "Contract taken from exact-base upstream documentation; expected JSON examples owner-specified independently of candidate. Documentation is evidence only, never executed.",
+          "independent_of_candidate": true
+        },
+        "approval": "owner_approved"
+      }
+    ],
+    "validation": "awaiting_controls",
+    "approval": "not_approved"
+  },
+  "manifest_sha256": "bc8df3422583e853c5b083e78de72f54470106ba09348a5ed7083af24b92454f"
+}

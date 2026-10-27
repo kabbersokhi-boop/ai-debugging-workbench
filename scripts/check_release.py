@@ -59,6 +59,8 @@ try:
             "/api/repository-audits/plans",
             "/api/repository-audits/runs",
             "/api/repository-audits/runtimes",
+            "/api/repository-audits/requirements",
+            "/api/repository-audits/verification-plans",
             "/api/evaluator/comparisons/m02-v1",
             "/api/repairs/unknown",
             "/retail/cart.js",

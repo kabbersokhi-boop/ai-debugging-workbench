@@ -1,0 +1,1866 @@
+{
+  "audit_id": "1bc8295d-f0b1-4b6f-84a5-00e1549cf998",
+  "evidence": {
+    "snapshot": {
+      "id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "version": "repository-source-v1",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "file_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "3287c2099845184d0cb7949a08e88a646e51520fb82bb346cc71dc39850b751e",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "modes": {
+        "index.js": "100644",
+        "test.js": "100644",
+        "LICENSE": "100644"
+      },
+      "files": {
+        "LICENSE": "U3ludGhldGljIE1JVCBsaWNlbnNlZCBmaXh0dXJlIGZvciBkZXRlcm1pbmlzdGljIEcxIHRlc3RzLgo=",
+        "index.js": "ZXhwb3J0cy5hZGQgPSAoYSwgYikgPT4gYSAtIGI7Cg==",
+        "test.js": "Y29uc3Qge3Rlc3R9ID0gcmVxdWlyZSgnbm9kZTp0ZXN0Jyk7CmNvbnN0IGFzc2VydCA9IHJlcXVpcmUoJ25vZGU6YXNzZXJ0L3N0cmljdCcpOwpjb25zdCB7YWRkfSA9IHJlcXVpcmUoJy4vaW5kZXgnKTsKdGVzdCgnc3VtJywgKCkgPT4gYXNzZXJ0LmVxdWFsKGFkZCgxLCAyKSwgMykpOwo="
+      },
+      "metadata": {
+        "license": {
+          "spdx_id": "MIT"
+        },
+        "attribution_files": [
+          "LICENSE"
+        ],
+        "adapter": "offline-synthetic-fixture"
+      }
+    },
+    "candidate": {
+      "id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+      "version": "repository-candidate-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "applied_source_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "5e8c43dc4eaf71d95ca8ffeea46d435493d9a11bbf7a04877bf1d808e86fd4a6",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+      "patch": "--- a/index.js\n+++ b/index.js\n@@ -1 +1,2 @@\n-exports.add = (a, b) => a - b;\n+const child={value:0}; const result={a:child,b:[child,[child]]};module.exports=x=>{child.value=x;return result};\n+module.exports.add=(a,b)=>a+b;\n",
+      "submitted_patch_hash": "5c6965bcf434a3ff715f68bfaa8381325df86dbc70369d196c3710ffd353e7d8",
+      "approved_paths": [
+        "index.js"
+      ],
+      "affected_files": [
+        "index.js"
+      ],
+      "original": {
+        "index.js": "exports.add = (a, b) => a - b;\n"
+      },
+      "modified": {
+        "index.js": "const child={value:0}; const result={a:child,b:[child,[child]]};module.exports=x=>{child.value=x;return result};\nmodule.exports.add=(a,b)=>a+b;\n"
+      },
+      "provenance": {
+        "category": "user_declared",
+        "author_label": "Authored observation-integrity regression: nested_shared_arrays",
+        "source_reference": "",
+        "limitations": "Imported authorship is user-declared and unverified."
+      }
+    },
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+      "runtime": "node22",
+      "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "node",
+        "--test",
+        "test.js"
+      ],
+      "test_description": "Offline synthetic repository existing tests",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "verification": {
+      "id": "d30b334513083fc632a2a6aa97ccb4359d755631dda89f604638934f63c821dc",
+      "plan": {
+        "version": "independent-plan-v1",
+        "verifier_version": "json-observer-v2",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+        "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+        "ordinary_plan_id": "30566742041a1f605449610c5e8cd36d7b074d7ac18db2ddad0da6f62aae32c4",
+        "runtime": "node22",
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "module": "index.js",
+        "export": "",
+        "assertions": [
+          {
+            "id": "call0",
+            "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+            "args": [
+              1
+            ],
+            "kwargs": {},
+            "expected": {
+              "a": {
+                "value": 1
+              },
+              "b": [
+                {
+                  "value": 1
+                },
+                [
+                  {
+                    "value": 1
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "call1",
+            "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+            "args": [
+              2
+            ],
+            "kwargs": {},
+            "expected": {
+              "a": {
+                "value": 2
+              },
+              "b": [
+                {
+                  "value": 2
+                },
+                [
+                  {
+                    "value": 2
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        "setup": [],
+        "timeout_seconds": 30,
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+        "adapter_hashes": {
+          "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "adapter_sources": {
+          "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+          "probe.cjs": "// json-observer-v2: detach and encode each bounded observation before the next call.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconst stringify = JSON.stringify;\nconst byteLength = Buffer.byteLength;\nconsole.log = (...args) => console.error(...args);\n\nfunction snapshot(value) {\n  const ancestors = new Set();\n  let budget = 0;\n  function account(bytes) {\n    budget += bytes;\n    if (budget > 16384) throw RangeError('JSON observation exceeds 16 KiB');\n  }\n  function copy(v, depth) {\n    if (depth > 8) throw RangeError('JSON observation nesting exceeds eight levels');\n    if (v === null || typeof v === 'boolean') { account(v === null ? 4 : v ? 4 : 5); return v; }\n    if (typeof v === 'string') { account(2 + byteLength(v, 'utf8')); return v; }\n    if (typeof v === 'number' && Number.isFinite(v)) { account(String(v).length); return v; }\n    const array = Array.isArray(v);\n    if (typeof v !== 'object' || (!array && Object.getPrototypeOf(v) !== Object.prototype))\n      throw TypeError('Unsupported JSON observation');\n    if (ancestors.has(v)) throw TypeError('Cyclic JSON observation');\n    // Serialization hooks are code, not supported JSON data; never invoke or coerce them.\n    const hook = Object.getOwnPropertyDescriptor(v, 'toJSON');\n    if ((hook && (!('value' in hook) || typeof hook.value === 'function')) ||\n        (!hook && typeof v.toJSON === 'function')) throw TypeError('Unsupported JSON hook');\n    const keys = array ? null : Object.keys(v);\n    const length = array ? v.length : keys.length;\n    if (!Number.isInteger(length) || length < 0 || length > 256)\n      throw RangeError('JSON collection exceeds 256 items');\n    account(2 + Math.max(0, length - 1));\n    ancestors.add(v);\n    try {\n      if (array) {\n        const result = [];\n        // Only our new copy is modified. Candidate arrays/objects remain untouched.\n        Object.defineProperty(result, 'toJSON', {value: null});\n        for (let i = 0; i < length; i++) {\n          if (!Object.hasOwn(v, i)) throw TypeError('Sparse arrays are not JSON observations');\n          result.push(copy(v[i], depth + 1));\n        }\n        return result;\n      }\n      const result = Object.create(null);\n      for (const key of keys) {\n        account(3 + byteLength(key, 'utf8'));\n        result[key] = copy(v[key], depth + 1);\n      }\n      return result;\n    } finally { ancestors.delete(v); }\n  }\n  const encoded = stringify(copy(value, 0));\n  if (typeof encoded !== 'string' || byteLength(encoded, 'utf8') > 16384)\n    throw RangeError('Encoded JSON observation exceeds 16 KiB');\n  return encoded;\n}\n\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = snapshot(await fn(...call.args));\n      // Retain immutable JSON text, never a candidate-owned reference or deferred serializer.\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"value\",\"value\":' + value + '}');\n    } catch (error) {\n      let name = 'Error';\n      try { if (typeof error?.name === 'string') name = error.name.slice(0, 200); } catch {}\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"execution_error\",\"error\":' + stringify(name) + '}');\n    }\n  }\n  emit('{\"version\":\"observations-v1\",\"observations\":[' + observations.join(',') + ']}\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+        },
+        "interpretation": "all-named-canonical-json-equalities-v1"
+      },
+      "requirements": [
+        {
+          "id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+          "version": "behavioral-requirement-v1",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "statement": "Capture each completed call as independent JSON data before subsequent mutation",
+          "expected_behavior": "Named calls retain their declared call-time JSON values",
+          "input_domain": "Authored synthetic review regression: nested_shared_arrays",
+          "assumptions": [
+            "Sequential calls; JSON data, not JavaScript object identity"
+          ],
+          "ambiguities": [],
+          "provenance": {
+            "origin": "external_specification",
+            "reference": "G2 observation-integrity review",
+            "excerpt": "Capture each completed call as independent JSON data before subsequent mutation",
+            "excerpt_hash": "e9ff090af69b9e4d49455ea1bf132b8fde049f2719668723dcf99d4f34b4f46b",
+            "justification": "Owner review supplied the independent observation contract",
+            "independent_of_candidate": true
+          },
+          "approval": "owner_approved"
+        }
+      ]
+    },
+    "stage": "execution",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+    "approval": {
+      "local_owner": true,
+      "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+      "plan_id": "30566742041a1f605449610c5e8cd36d7b074d7ac18db2ddad0da6f62aae32c4",
+      "approved_at": "2026-10-20T00:00:00+00:00",
+      "verification_id": "d30b334513083fc632a2a6aa97ccb4359d755631dda89f604638934f63c821dc",
+      "stage": "execution",
+      "approve_independent_plan": true
+    },
+    "validation": {
+      "audit_id": "f4d7cf78-d7c1-49fe-b064-937541030ace",
+      "result": {
+        "version": "repository-independent-result-v1",
+        "audit_id": "f4d7cf78-d7c1-49fe-b064-937541030ace",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+        "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+        "plan_id": "30566742041a1f605449610c5e8cd36d7b074d7ac18db2ddad0da6f62aae32c4",
+        "verification_id": "d30b334513083fc632a2a6aa97ccb4359d755631dda89f604638934f63c821dc",
+        "stage": "validation",
+        "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+        "started_at": "2026-10-22T18:18:53.179386+00:00",
+        "ordinary": null,
+        "independent": {
+          "status": "not_run",
+          "checks": []
+        },
+        "controls": [
+          {
+            "kind": "positive",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "f4d7cf78-d7c1-49fe-b064-937541030ace",
+              "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+              "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+              "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+              "source_binding": {
+                "repository": "fixture/project",
+                "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+                "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+                "submitted_patch_hash": "5c6965bcf434a3ff715f68bfaa8381325df86dbc70369d196c3710ffd353e7d8"
+              },
+              "plan_id": "939547087d1fff124274419b9f3896a8ca9889ac43b8564dc4956476c3f876cd",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "node",
+                  "/verifier/probe.cjs"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-22T18:18:53.846394+00:00",
+                "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-22T18:18:53.903734+00:00",
+                "duration_ms": 57
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "node",
+                    "/verifier/probe.cjs"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T18:18:53.846394+00:00",
+                  "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T18:18:53.903734+00:00",
+                  "duration_ms": 57
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-22T18:18:53.182038+00:00",
+              "runtime": {
+                "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+                "repo_digests": [
+                  "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+                ],
+                "runtime": "node22",
+                "tag": "patch-audit-node:22-v1"
+              },
+              "verifier_hashes": {
+                "control.cjs": "d98d843cb2b7ae8ce755d8f36ac3bac275e196d38a084adafa435ac03b34534f",
+                "inputs.json": "c47d680ead9895e8ce53fb6e011adc3e587ec2a0bd8df3afbc95406ef6495e97",
+                "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+              },
+              "executed_source_hashes": {
+                "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                "index.js": "5e8c43dc4eaf71d95ca8ffeea46d435493d9a11bbf7a04877bf1d808e86fd4a6",
+                "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+              },
+              "container_id": "f5b255647b1747eca95930af2fcb10b429ebd4a359b57c87bdec56fcf089e426",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "495d7bddbc64c18d3cfe2abe84dbae712f17a0833f6d8329d09f0a3f0b48408d",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "5aa7ed29dbad196bb4261fae1b7f9faa4bfc077a4d4fff34abe9b47b5d621845",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "f5b255647b1747eca95930af2fcb10b429ebd4a359b57c87bdec56fcf089e426",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "495d7bddbc64c18d3cfe2abe84dbae712f17a0833f6d8329d09f0a3f0b48408d",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "5aa7ed29dbad196bb4261fae1b7f9faa4bfc077a4d4fff34abe9b47b5d621845",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-22T18:18:54.388579+00:00",
+              "duration_ms": 1207
+            },
+            "status": "checks_passed",
+            "checks": [
+              {
+                "id": "call0",
+                "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+                "input": {
+                  "args": [
+                    1
+                  ],
+                  "kwargs": {}
+                },
+                "expected": {
+                  "a": {
+                    "value": 1
+                  },
+                  "b": [
+                    {
+                      "value": 1
+                    },
+                    [
+                      {
+                        "value": 1
+                      }
+                    ]
+                  ]
+                },
+                "observed": {
+                  "a": {
+                    "value": 1
+                  },
+                  "b": [
+                    {
+                      "value": 1
+                    },
+                    [
+                      {
+                        "value": 1
+                      }
+                    ]
+                  ]
+                },
+                "status": "passed"
+              },
+              {
+                "id": "call1",
+                "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+                "input": {
+                  "args": [
+                    2
+                  ],
+                  "kwargs": {}
+                },
+                "expected": {
+                  "a": {
+                    "value": 2
+                  },
+                  "b": [
+                    {
+                      "value": 2
+                    },
+                    [
+                      {
+                        "value": 2
+                      }
+                    ]
+                  ]
+                },
+                "observed": {
+                  "a": {
+                    "value": 2
+                  },
+                  "b": [
+                    {
+                      "value": 2
+                    },
+                    [
+                      {
+                        "value": 2
+                      }
+                    ]
+                  ]
+                },
+                "status": "passed"
+              }
+            ]
+          },
+          {
+            "kind": "negative",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "f4d7cf78-d7c1-49fe-b064-937541030ace",
+              "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+              "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+              "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+              "source_binding": {
+                "repository": "fixture/project",
+                "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+                "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+                "submitted_patch_hash": "5c6965bcf434a3ff715f68bfaa8381325df86dbc70369d196c3710ffd353e7d8"
+              },
+              "plan_id": "939547087d1fff124274419b9f3896a8ca9889ac43b8564dc4956476c3f876cd",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "node",
+                  "/verifier/probe.cjs"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-22T18:18:55.054724+00:00",
+                "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-22T18:18:55.105558+00:00",
+                "duration_ms": 51
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "node",
+                    "/verifier/probe.cjs"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T18:18:55.054724+00:00",
+                  "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T18:18:55.105558+00:00",
+                  "duration_ms": 51
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-22T18:18:54.395495+00:00",
+              "runtime": {
+                "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+                "repo_digests": [
+                  "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+                ],
+                "runtime": "node22",
+                "tag": "patch-audit-node:22-v1"
+              },
+              "verifier_hashes": {
+                "control.cjs": "cb9b3c7cd80157d8b245ef9ba6094470dba6292357d0901e4ba63b63e95ff27b",
+                "inputs.json": "c47d680ead9895e8ce53fb6e011adc3e587ec2a0bd8df3afbc95406ef6495e97",
+                "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+              },
+              "executed_source_hashes": {
+                "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                "index.js": "5e8c43dc4eaf71d95ca8ffeea46d435493d9a11bbf7a04877bf1d808e86fd4a6",
+                "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+              },
+              "container_id": "429efb60ffba17b6904baad3a2d0253643020ee8758186bfd2d2bf04ee5e4754",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "d17c916816fcba16d436fbf1e2cc705cd6104862c221bfb8571352b75e92df42",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "b092665f7d71d3a07577a71ee7cbf62faef76168c1858b90086ff5428ebc9d4b",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "429efb60ffba17b6904baad3a2d0253643020ee8758186bfd2d2bf04ee5e4754",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "d17c916816fcba16d436fbf1e2cc705cd6104862c221bfb8571352b75e92df42",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "b092665f7d71d3a07577a71ee7cbf62faef76168c1858b90086ff5428ebc9d4b",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-22T18:18:55.573347+00:00",
+              "duration_ms": 1178
+            },
+            "status": "assertions_failed",
+            "checks": [
+              {
+                "id": "call0",
+                "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+                "input": {
+                  "args": [
+                    1
+                  ],
+                  "kwargs": {}
+                },
+                "expected": {
+                  "a": {
+                    "value": 1
+                  },
+                  "b": [
+                    {
+                      "value": 1
+                    },
+                    [
+                      {
+                        "value": 1
+                      }
+                    ]
+                  ]
+                },
+                "observed": {
+                  "negative_control": {
+                    "a": {
+                      "value": 1
+                    },
+                    "b": [
+                      {
+                        "value": 1
+                      },
+                      [
+                        {
+                          "value": 1
+                        }
+                      ]
+                    ]
+                  }
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call1",
+                "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+                "input": {
+                  "args": [
+                    2
+                  ],
+                  "kwargs": {}
+                },
+                "expected": {
+                  "a": {
+                    "value": 2
+                  },
+                  "b": [
+                    {
+                      "value": 2
+                    },
+                    [
+                      {
+                        "value": 2
+                      }
+                    ]
+                  ]
+                },
+                "observed": {
+                  "negative_control": {
+                    "a": {
+                      "value": 2
+                    },
+                    "b": [
+                      {
+                        "value": 2
+                      },
+                      [
+                        {
+                          "value": 2
+                        }
+                      ]
+                    ]
+                  }
+                },
+                "status": "failed"
+              }
+            ]
+          }
+        ],
+        "status": "validation_passed",
+        "ended_at": "2026-10-22T18:18:55.573735+00:00"
+      }
+    }
+  },
+  "result": {
+    "version": "repository-independent-result-v1",
+    "audit_id": "1bc8295d-f0b1-4b6f-84a5-00e1549cf998",
+    "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+    "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+    "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+    "plan_id": "30566742041a1f605449610c5e8cd36d7b074d7ac18db2ddad0da6f62aae32c4",
+    "verification_id": "d30b334513083fc632a2a6aa97ccb4359d755631dda89f604638934f63c821dc",
+    "stage": "execution",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "started_at": "2026-10-22T18:18:55.579428+00:00",
+    "ordinary": {
+      "version": "repository-result-v1",
+      "audit_id": "1bc8295d-f0b1-4b6f-84a5-00e1549cf998",
+      "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+      "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "source_binding": {
+        "repository": "fixture/project",
+        "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+        "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+        "submitted_patch_hash": "5c6965bcf434a3ff715f68bfaa8381325df86dbc70369d196c3710ffd353e7d8"
+      },
+      "plan_id": "30566742041a1f605449610c5e8cd36d7b074d7ac18db2ddad0da6f62aae32c4",
+      "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+      "policy": {
+        "version": "repository-sandbox-v1",
+        "network": "none",
+        "uid": "1000:1000",
+        "rootfs": "read-only",
+        "source": "read-only named volume; separate bounded scratch and offline dependencies",
+        "cpu": 1,
+        "memory_bytes": 536870912,
+        "pids": 64,
+        "scratch_bytes": 134217728,
+        "tmp_bytes": 8388608,
+        "shm_bytes": 8388608,
+        "output_bytes_per_stream": 65536,
+        "log_storage_bytes": 131072,
+        "file_bytes": 16777216,
+        "host_mounts": [],
+        "capabilities": [],
+        "credentials": false,
+        "docker_socket": false,
+        "artifacts": [
+          "stdout",
+          "stderr",
+          "exit status",
+          "runtime identity"
+        ]
+      },
+      "independent": {
+        "status": "not_configured"
+      },
+      "ordinary": {
+        "phase": "tests",
+        "argv": [
+          "node",
+          "--test",
+          "test.js"
+        ],
+        "working_directory": "/source",
+        "started_at": "2026-10-22T18:18:56.212928+00:00",
+        "stdout": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.660908\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 50.0626\n",
+        "stderr": "",
+        "exit_code": 0,
+        "counts": null,
+        "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+        "output_truncated": false,
+        "status": "finished",
+        "ended_at": "2026-10-22T18:18:56.328753+00:00",
+        "duration_ms": 116
+      },
+      "commands": [
+        {
+          "phase": "tests",
+          "argv": [
+            "node",
+            "--test",
+            "test.js"
+          ],
+          "working_directory": "/source",
+          "started_at": "2026-10-22T18:18:56.212928+00:00",
+          "stdout": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.660908\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 50.0626\n",
+          "stderr": "",
+          "exit_code": 0,
+          "counts": null,
+          "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+          "output_truncated": false,
+          "status": "finished",
+          "ended_at": "2026-10-22T18:18:56.328753+00:00",
+          "duration_ms": 116
+        }
+      ],
+      "status": "tests_passed",
+      "started_at": "2026-10-22T18:18:55.585766+00:00",
+      "runtime": {
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "repo_digests": [
+          "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+        ],
+        "runtime": "node22",
+        "tag": "patch-audit-node:22-v1"
+      },
+      "executed_source_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "5e8c43dc4eaf71d95ca8ffeea46d435493d9a11bbf7a04877bf1d808e86fd4a6",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "container_id": "57e24efd6ec767a9e3c7b8ae045bfa4e09d89fe951da981cb41e5fb1b31df44e",
+      "sandbox": {
+        "user": "1000:1000",
+        "host_config": {
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "CapDrop": [
+            "ALL"
+          ],
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ],
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NanoCpus": 1000000000,
+          "PidsLimit": 64,
+          "Tmpfs": {
+            "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+            "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+          },
+          "ShmSize": 8388608
+        },
+        "mounts": [
+          {
+            "Type": "volume",
+            "Name": "b1c55c0859c080b6240310223cae3d5883131e211f2f6cb97409bf1bd4c31dde",
+            "Destination": "/source",
+            "RW": false
+          }
+        ]
+      },
+      "container_state": {
+        "OOMKilled": false,
+        "Error": ""
+      },
+      "cleanup": [
+        {
+          "kind": "containers",
+          "id": "57e24efd6ec767a9e3c7b8ae045bfa4e09d89fe951da981cb41e5fb1b31df44e",
+          "confirmed_absent": true
+        },
+        {
+          "kind": "volumes",
+          "id": "b1c55c0859c080b6240310223cae3d5883131e211f2f6cb97409bf1bd4c31dde",
+          "confirmed_absent": true
+        }
+      ],
+      "ended_at": "2026-10-22T18:18:56.759590+00:00",
+      "duration_ms": 1174
+    },
+    "independent": {
+      "status": "checks_passed",
+      "checks": [
+        {
+          "id": "call0",
+          "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+          "input": {
+            "args": [
+              1
+            ],
+            "kwargs": {}
+          },
+          "expected": {
+            "a": {
+              "value": 1
+            },
+            "b": [
+              {
+                "value": 1
+              },
+              [
+                {
+                  "value": 1
+                }
+              ]
+            ]
+          },
+          "observed": {
+            "a": {
+              "value": 1
+            },
+            "b": [
+              {
+                "value": 1
+              },
+              [
+                {
+                  "value": 1
+                }
+              ]
+            ]
+          },
+          "status": "passed"
+        },
+        {
+          "id": "call1",
+          "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+          "input": {
+            "args": [
+              2
+            ],
+            "kwargs": {}
+          },
+          "expected": {
+            "a": {
+              "value": 2
+            },
+            "b": [
+              {
+                "value": 2
+              },
+              [
+                {
+                  "value": 2
+                }
+              ]
+            ]
+          },
+          "observed": {
+            "a": {
+              "value": 2
+            },
+            "b": [
+              {
+                "value": 2
+              },
+              [
+                {
+                  "value": 2
+                }
+              ]
+            ]
+          },
+          "status": "passed"
+        }
+      ],
+      "execution": {
+        "version": "repository-result-v1",
+        "audit_id": "1bc8295d-f0b1-4b6f-84a5-00e1549cf998",
+        "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+        "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "source_binding": {
+          "repository": "fixture/project",
+          "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+          "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+          "submitted_patch_hash": "5c6965bcf434a3ff715f68bfaa8381325df86dbc70369d196c3710ffd353e7d8"
+        },
+        "plan_id": "939547087d1fff124274419b9f3896a8ca9889ac43b8564dc4956476c3f876cd",
+        "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+        "policy": {
+          "version": "repository-sandbox-v1",
+          "network": "none",
+          "uid": "1000:1000",
+          "rootfs": "read-only",
+          "source": "read-only named volume; separate bounded scratch and offline dependencies",
+          "cpu": 1,
+          "memory_bytes": 536870912,
+          "pids": 64,
+          "scratch_bytes": 134217728,
+          "tmp_bytes": 8388608,
+          "shm_bytes": 8388608,
+          "output_bytes_per_stream": 65536,
+          "log_storage_bytes": 131072,
+          "file_bytes": 16777216,
+          "host_mounts": [],
+          "capabilities": [],
+          "credentials": false,
+          "docker_socket": false,
+          "artifacts": [
+            "stdout",
+            "stderr",
+            "exit status",
+            "runtime identity"
+          ]
+        },
+        "independent": {
+          "status": "not_configured"
+        },
+        "ordinary": {
+          "phase": "tests",
+          "argv": [
+            "node",
+            "/verifier/probe.cjs"
+          ],
+          "working_directory": "/source",
+          "started_at": "2026-10-22T18:18:57.432941+00:00",
+          "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}]}\n",
+          "stderr": "",
+          "exit_code": 0,
+          "counts": null,
+          "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+          "output_truncated": false,
+          "status": "finished",
+          "ended_at": "2026-10-22T18:18:57.484901+00:00",
+          "duration_ms": 52
+        },
+        "commands": [
+          {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T18:18:57.432941+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T18:18:57.484901+00:00",
+            "duration_ms": 52
+          }
+        ],
+        "status": "tests_passed",
+        "started_at": "2026-10-22T18:18:56.763258+00:00",
+        "runtime": {
+          "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+          "repo_digests": [
+            "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+          ],
+          "runtime": "node22",
+          "tag": "patch-audit-node:22-v1"
+        },
+        "verifier_hashes": {
+          "inputs.json": "273109f3affa6e7c8bf585307ce125847ba49ac10ac338f440eb139f8ba84ac9",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "executed_source_hashes": {
+          "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+          "index.js": "5e8c43dc4eaf71d95ca8ffeea46d435493d9a11bbf7a04877bf1d808e86fd4a6",
+          "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+        },
+        "container_id": "0aba943d6bbecb96226b3bbc53242bac5a30f18a6a69da838fd88125277d533e",
+        "sandbox": {
+          "user": "1000:1000",
+          "host_config": {
+            "NetworkMode": "none",
+            "ReadonlyRootfs": true,
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges:true"
+            ],
+            "Memory": 536870912,
+            "MemorySwap": 536870912,
+            "NanoCpus": 1000000000,
+            "PidsLimit": 64,
+            "Tmpfs": {
+              "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+              "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+            },
+            "ShmSize": 8388608
+          },
+          "mounts": [
+            {
+              "Type": "volume",
+              "Name": "405b9e5f534440f19c9ad446df0e546de9b142571d40f491d8483ae186c9f7e4",
+              "Destination": "/source",
+              "RW": false
+            },
+            {
+              "Type": "volume",
+              "Name": "128c9f524f1787f455efc705af511d7a4800f04086c5420789b5dc69919e3e9c",
+              "Destination": "/verifier",
+              "RW": false
+            }
+          ]
+        },
+        "container_state": {
+          "OOMKilled": false,
+          "Error": ""
+        },
+        "cleanup": [
+          {
+            "kind": "containers",
+            "id": "0aba943d6bbecb96226b3bbc53242bac5a30f18a6a69da838fd88125277d533e",
+            "confirmed_absent": true
+          },
+          {
+            "kind": "volumes",
+            "id": "405b9e5f534440f19c9ad446df0e546de9b142571d40f491d8483ae186c9f7e4",
+            "confirmed_absent": true
+          },
+          {
+            "kind": "volumes",
+            "id": "128c9f524f1787f455efc705af511d7a4800f04086c5420789b5dc69919e3e9c",
+            "confirmed_absent": true
+          }
+        ],
+        "ended_at": "2026-10-22T18:18:57.988683+00:00",
+        "duration_ms": 1226
+      }
+    },
+    "controls": [],
+    "status": "completed",
+    "ended_at": "2026-10-22T18:18:57.988828+00:00"
+  },
+  "validation_audit_id": "f4d7cf78-d7c1-49fe-b064-937541030ace",
+  "validation_evidence": {
+    "snapshot": {
+      "id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "version": "repository-source-v1",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "file_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "3287c2099845184d0cb7949a08e88a646e51520fb82bb346cc71dc39850b751e",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "modes": {
+        "index.js": "100644",
+        "test.js": "100644",
+        "LICENSE": "100644"
+      },
+      "files": {
+        "LICENSE": "U3ludGhldGljIE1JVCBsaWNlbnNlZCBmaXh0dXJlIGZvciBkZXRlcm1pbmlzdGljIEcxIHRlc3RzLgo=",
+        "index.js": "ZXhwb3J0cy5hZGQgPSAoYSwgYikgPT4gYSAtIGI7Cg==",
+        "test.js": "Y29uc3Qge3Rlc3R9ID0gcmVxdWlyZSgnbm9kZTp0ZXN0Jyk7CmNvbnN0IGFzc2VydCA9IHJlcXVpcmUoJ25vZGU6YXNzZXJ0L3N0cmljdCcpOwpjb25zdCB7YWRkfSA9IHJlcXVpcmUoJy4vaW5kZXgnKTsKdGVzdCgnc3VtJywgKCkgPT4gYXNzZXJ0LmVxdWFsKGFkZCgxLCAyKSwgMykpOwo="
+      },
+      "metadata": {
+        "license": {
+          "spdx_id": "MIT"
+        },
+        "attribution_files": [
+          "LICENSE"
+        ],
+        "adapter": "offline-synthetic-fixture"
+      }
+    },
+    "candidate": {
+      "id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+      "version": "repository-candidate-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "applied_source_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "5e8c43dc4eaf71d95ca8ffeea46d435493d9a11bbf7a04877bf1d808e86fd4a6",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+      "patch": "--- a/index.js\n+++ b/index.js\n@@ -1 +1,2 @@\n-exports.add = (a, b) => a - b;\n+const child={value:0}; const result={a:child,b:[child,[child]]};module.exports=x=>{child.value=x;return result};\n+module.exports.add=(a,b)=>a+b;\n",
+      "submitted_patch_hash": "5c6965bcf434a3ff715f68bfaa8381325df86dbc70369d196c3710ffd353e7d8",
+      "approved_paths": [
+        "index.js"
+      ],
+      "affected_files": [
+        "index.js"
+      ],
+      "original": {
+        "index.js": "exports.add = (a, b) => a - b;\n"
+      },
+      "modified": {
+        "index.js": "const child={value:0}; const result={a:child,b:[child,[child]]};module.exports=x=>{child.value=x;return result};\nmodule.exports.add=(a,b)=>a+b;\n"
+      },
+      "provenance": {
+        "category": "user_declared",
+        "author_label": "Authored observation-integrity regression: nested_shared_arrays",
+        "source_reference": "",
+        "limitations": "Imported authorship is user-declared and unverified."
+      }
+    },
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+      "runtime": "node22",
+      "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "node",
+        "--test",
+        "test.js"
+      ],
+      "test_description": "Offline synthetic repository existing tests",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "verification": {
+      "id": "d30b334513083fc632a2a6aa97ccb4359d755631dda89f604638934f63c821dc",
+      "plan": {
+        "version": "independent-plan-v1",
+        "verifier_version": "json-observer-v2",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+        "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+        "ordinary_plan_id": "30566742041a1f605449610c5e8cd36d7b074d7ac18db2ddad0da6f62aae32c4",
+        "runtime": "node22",
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "module": "index.js",
+        "export": "",
+        "assertions": [
+          {
+            "id": "call0",
+            "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+            "args": [
+              1
+            ],
+            "kwargs": {},
+            "expected": {
+              "a": {
+                "value": 1
+              },
+              "b": [
+                {
+                  "value": 1
+                },
+                [
+                  {
+                    "value": 1
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "call1",
+            "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+            "args": [
+              2
+            ],
+            "kwargs": {},
+            "expected": {
+              "a": {
+                "value": 2
+              },
+              "b": [
+                {
+                  "value": 2
+                },
+                [
+                  {
+                    "value": 2
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        "setup": [],
+        "timeout_seconds": 30,
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+        "adapter_hashes": {
+          "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "adapter_sources": {
+          "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+          "probe.cjs": "// json-observer-v2: detach and encode each bounded observation before the next call.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconst stringify = JSON.stringify;\nconst byteLength = Buffer.byteLength;\nconsole.log = (...args) => console.error(...args);\n\nfunction snapshot(value) {\n  const ancestors = new Set();\n  let budget = 0;\n  function account(bytes) {\n    budget += bytes;\n    if (budget > 16384) throw RangeError('JSON observation exceeds 16 KiB');\n  }\n  function copy(v, depth) {\n    if (depth > 8) throw RangeError('JSON observation nesting exceeds eight levels');\n    if (v === null || typeof v === 'boolean') { account(v === null ? 4 : v ? 4 : 5); return v; }\n    if (typeof v === 'string') { account(2 + byteLength(v, 'utf8')); return v; }\n    if (typeof v === 'number' && Number.isFinite(v)) { account(String(v).length); return v; }\n    const array = Array.isArray(v);\n    if (typeof v !== 'object' || (!array && Object.getPrototypeOf(v) !== Object.prototype))\n      throw TypeError('Unsupported JSON observation');\n    if (ancestors.has(v)) throw TypeError('Cyclic JSON observation');\n    // Serialization hooks are code, not supported JSON data; never invoke or coerce them.\n    const hook = Object.getOwnPropertyDescriptor(v, 'toJSON');\n    if ((hook && (!('value' in hook) || typeof hook.value === 'function')) ||\n        (!hook && typeof v.toJSON === 'function')) throw TypeError('Unsupported JSON hook');\n    const keys = array ? null : Object.keys(v);\n    const length = array ? v.length : keys.length;\n    if (!Number.isInteger(length) || length < 0 || length > 256)\n      throw RangeError('JSON collection exceeds 256 items');\n    account(2 + Math.max(0, length - 1));\n    ancestors.add(v);\n    try {\n      if (array) {\n        const result = [];\n        // Only our new copy is modified. Candidate arrays/objects remain untouched.\n        Object.defineProperty(result, 'toJSON', {value: null});\n        for (let i = 0; i < length; i++) {\n          if (!Object.hasOwn(v, i)) throw TypeError('Sparse arrays are not JSON observations');\n          result.push(copy(v[i], depth + 1));\n        }\n        return result;\n      }\n      const result = Object.create(null);\n      for (const key of keys) {\n        account(3 + byteLength(key, 'utf8'));\n        result[key] = copy(v[key], depth + 1);\n      }\n      return result;\n    } finally { ancestors.delete(v); }\n  }\n  const encoded = stringify(copy(value, 0));\n  if (typeof encoded !== 'string' || byteLength(encoded, 'utf8') > 16384)\n    throw RangeError('Encoded JSON observation exceeds 16 KiB');\n  return encoded;\n}\n\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = snapshot(await fn(...call.args));\n      // Retain immutable JSON text, never a candidate-owned reference or deferred serializer.\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"value\",\"value\":' + value + '}');\n    } catch (error) {\n      let name = 'Error';\n      try { if (typeof error?.name === 'string') name = error.name.slice(0, 200); } catch {}\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"execution_error\",\"error\":' + stringify(name) + '}');\n    }\n  }\n  emit('{\"version\":\"observations-v1\",\"observations\":[' + observations.join(',') + ']}\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+        },
+        "interpretation": "all-named-canonical-json-equalities-v1"
+      },
+      "requirements": [
+        {
+          "id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+          "version": "behavioral-requirement-v1",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "statement": "Capture each completed call as independent JSON data before subsequent mutation",
+          "expected_behavior": "Named calls retain their declared call-time JSON values",
+          "input_domain": "Authored synthetic review regression: nested_shared_arrays",
+          "assumptions": [
+            "Sequential calls; JSON data, not JavaScript object identity"
+          ],
+          "ambiguities": [],
+          "provenance": {
+            "origin": "external_specification",
+            "reference": "G2 observation-integrity review",
+            "excerpt": "Capture each completed call as independent JSON data before subsequent mutation",
+            "excerpt_hash": "e9ff090af69b9e4d49455ea1bf132b8fde049f2719668723dcf99d4f34b4f46b",
+            "justification": "Owner review supplied the independent observation contract",
+            "independent_of_candidate": true
+          },
+          "approval": "owner_approved"
+        }
+      ]
+    },
+    "stage": "validation",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+    "approval": {
+      "local_owner": true,
+      "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+      "plan_id": "30566742041a1f605449610c5e8cd36d7b074d7ac18db2ddad0da6f62aae32c4",
+      "approved_at": "2026-10-20T00:00:00+00:00",
+      "verification_id": "d30b334513083fc632a2a6aa97ccb4359d755631dda89f604638934f63c821dc",
+      "stage": "validation",
+      "approve_independent_plan": true
+    }
+  },
+  "validation_result": {
+    "version": "repository-independent-result-v1",
+    "audit_id": "f4d7cf78-d7c1-49fe-b064-937541030ace",
+    "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+    "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+    "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+    "plan_id": "30566742041a1f605449610c5e8cd36d7b074d7ac18db2ddad0da6f62aae32c4",
+    "verification_id": "d30b334513083fc632a2a6aa97ccb4359d755631dda89f604638934f63c821dc",
+    "stage": "validation",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "started_at": "2026-10-22T18:18:53.179386+00:00",
+    "ordinary": null,
+    "independent": {
+      "status": "not_run",
+      "checks": []
+    },
+    "controls": [
+      {
+        "kind": "positive",
+        "execution": {
+          "version": "repository-result-v1",
+          "audit_id": "f4d7cf78-d7c1-49fe-b064-937541030ace",
+          "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+          "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "source_binding": {
+            "repository": "fixture/project",
+            "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+            "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+            "submitted_patch_hash": "5c6965bcf434a3ff715f68bfaa8381325df86dbc70369d196c3710ffd353e7d8"
+          },
+          "plan_id": "939547087d1fff124274419b9f3896a8ca9889ac43b8564dc4956476c3f876cd",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T18:18:53.846394+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T18:18:53.903734+00:00",
+            "duration_ms": 57
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "node",
+                "/verifier/probe.cjs"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-22T18:18:53.846394+00:00",
+              "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-22T18:18:53.903734+00:00",
+              "duration_ms": 57
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-22T18:18:53.182038+00:00",
+          "runtime": {
+            "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+            "repo_digests": [
+              "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+            ],
+            "runtime": "node22",
+            "tag": "patch-audit-node:22-v1"
+          },
+          "verifier_hashes": {
+            "control.cjs": "d98d843cb2b7ae8ce755d8f36ac3bac275e196d38a084adafa435ac03b34534f",
+            "inputs.json": "c47d680ead9895e8ce53fb6e011adc3e587ec2a0bd8df3afbc95406ef6495e97",
+            "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+          },
+          "executed_source_hashes": {
+            "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+            "index.js": "5e8c43dc4eaf71d95ca8ffeea46d435493d9a11bbf7a04877bf1d808e86fd4a6",
+            "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+          },
+          "container_id": "f5b255647b1747eca95930af2fcb10b429ebd4a359b57c87bdec56fcf089e426",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "495d7bddbc64c18d3cfe2abe84dbae712f17a0833f6d8329d09f0a3f0b48408d",
+                "Destination": "/source",
+                "RW": false
+              },
+              {
+                "Type": "volume",
+                "Name": "5aa7ed29dbad196bb4261fae1b7f9faa4bfc077a4d4fff34abe9b47b5d621845",
+                "Destination": "/verifier",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "f5b255647b1747eca95930af2fcb10b429ebd4a359b57c87bdec56fcf089e426",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "495d7bddbc64c18d3cfe2abe84dbae712f17a0833f6d8329d09f0a3f0b48408d",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "5aa7ed29dbad196bb4261fae1b7f9faa4bfc077a4d4fff34abe9b47b5d621845",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-22T18:18:54.388579+00:00",
+          "duration_ms": 1207
+        },
+        "status": "checks_passed",
+        "checks": [
+          {
+            "id": "call0",
+            "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+            "input": {
+              "args": [
+                1
+              ],
+              "kwargs": {}
+            },
+            "expected": {
+              "a": {
+                "value": 1
+              },
+              "b": [
+                {
+                  "value": 1
+                },
+                [
+                  {
+                    "value": 1
+                  }
+                ]
+              ]
+            },
+            "observed": {
+              "a": {
+                "value": 1
+              },
+              "b": [
+                {
+                  "value": 1
+                },
+                [
+                  {
+                    "value": 1
+                  }
+                ]
+              ]
+            },
+            "status": "passed"
+          },
+          {
+            "id": "call1",
+            "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+            "input": {
+              "args": [
+                2
+              ],
+              "kwargs": {}
+            },
+            "expected": {
+              "a": {
+                "value": 2
+              },
+              "b": [
+                {
+                  "value": 2
+                },
+                [
+                  {
+                    "value": 2
+                  }
+                ]
+              ]
+            },
+            "observed": {
+              "a": {
+                "value": 2
+              },
+              "b": [
+                {
+                  "value": 2
+                },
+                [
+                  {
+                    "value": 2
+                  }
+                ]
+              ]
+            },
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "kind": "negative",
+        "execution": {
+          "version": "repository-result-v1",
+          "audit_id": "f4d7cf78-d7c1-49fe-b064-937541030ace",
+          "candidate_id": "22c2145245d206a887128d082ebc4d4b2e32acd3f01985a1791defa543ee3a72",
+          "candidate_hash": "b0f734fcf909ba7ad50c327eed2312a3d37c069a31fcef3c8f562f0740a09233",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "source_binding": {
+            "repository": "fixture/project",
+            "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+            "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+            "submitted_patch_hash": "5c6965bcf434a3ff715f68bfaa8381325df86dbc70369d196c3710ffd353e7d8"
+          },
+          "plan_id": "939547087d1fff124274419b9f3896a8ca9889ac43b8564dc4956476c3f876cd",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T18:18:55.054724+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T18:18:55.105558+00:00",
+            "duration_ms": 51
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "node",
+                "/verifier/probe.cjs"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-22T18:18:55.054724+00:00",
+              "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-22T18:18:55.105558+00:00",
+              "duration_ms": 51
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-22T18:18:54.395495+00:00",
+          "runtime": {
+            "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+            "repo_digests": [
+              "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+            ],
+            "runtime": "node22",
+            "tag": "patch-audit-node:22-v1"
+          },
+          "verifier_hashes": {
+            "control.cjs": "cb9b3c7cd80157d8b245ef9ba6094470dba6292357d0901e4ba63b63e95ff27b",
+            "inputs.json": "c47d680ead9895e8ce53fb6e011adc3e587ec2a0bd8df3afbc95406ef6495e97",
+            "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+          },
+          "executed_source_hashes": {
+            "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+            "index.js": "5e8c43dc4eaf71d95ca8ffeea46d435493d9a11bbf7a04877bf1d808e86fd4a6",
+            "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+          },
+          "container_id": "429efb60ffba17b6904baad3a2d0253643020ee8758186bfd2d2bf04ee5e4754",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "d17c916816fcba16d436fbf1e2cc705cd6104862c221bfb8571352b75e92df42",
+                "Destination": "/source",
+                "RW": false
+              },
+              {
+                "Type": "volume",
+                "Name": "b092665f7d71d3a07577a71ee7cbf62faef76168c1858b90086ff5428ebc9d4b",
+                "Destination": "/verifier",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "429efb60ffba17b6904baad3a2d0253643020ee8758186bfd2d2bf04ee5e4754",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "d17c916816fcba16d436fbf1e2cc705cd6104862c221bfb8571352b75e92df42",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "b092665f7d71d3a07577a71ee7cbf62faef76168c1858b90086ff5428ebc9d4b",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-22T18:18:55.573347+00:00",
+          "duration_ms": 1178
+        },
+        "status": "assertions_failed",
+        "checks": [
+          {
+            "id": "call0",
+            "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+            "input": {
+              "args": [
+                1
+              ],
+              "kwargs": {}
+            },
+            "expected": {
+              "a": {
+                "value": 1
+              },
+              "b": [
+                {
+                  "value": 1
+                },
+                [
+                  {
+                    "value": 1
+                  }
+                ]
+              ]
+            },
+            "observed": {
+              "negative_control": {
+                "a": {
+                  "value": 1
+                },
+                "b": [
+                  {
+                    "value": 1
+                  },
+                  [
+                    {
+                      "value": 1
+                    }
+                  ]
+                ]
+              }
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call1",
+            "requirement_id": "bca60c9e33bc9f01a64e15f785d1e592459d009d8e4c30ba05a09952b8e3bc14",
+            "input": {
+              "args": [
+                2
+              ],
+              "kwargs": {}
+            },
+            "expected": {
+              "a": {
+                "value": 2
+              },
+              "b": [
+                {
+                  "value": 2
+                },
+                [
+                  {
+                    "value": 2
+                  }
+                ]
+              ]
+            },
+            "observed": {
+              "negative_control": {
+                "a": {
+                  "value": 2
+                },
+                "b": [
+                  {
+                    "value": 2
+                  },
+                  [
+                    {
+                      "value": 2
+                    }
+                  ]
+                ]
+              }
+            },
+            "status": "failed"
+          }
+        ]
+      }
+    ],
+    "status": "validation_passed",
+    "ended_at": "2026-10-22T18:18:55.573735+00:00"
+  }
+}

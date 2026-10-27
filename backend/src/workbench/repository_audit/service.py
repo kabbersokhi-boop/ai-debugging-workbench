@@ -3,7 +3,7 @@
 import asyncio
 from datetime import UTC, datetime
 from typing import Any
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 import httpx
 from fastapi import HTTPException
@@ -16,9 +16,11 @@ from workbench.db import (
     RepositoryCandidate,
     RepositoryPlan,
     RepositorySource,
+    RepositoryVerificationPlan,
     sessions,
 )
 from workbench.evaluator.catalog import identity
+from workbench.repository_audit import independent
 from workbench.repository_audit.admission import check_plan, rebuild
 from workbench.repository_audit.execution import engine_id, validate
 
@@ -57,6 +59,20 @@ async def material(candidate_id, plan_id=None) -> Any:
     return snapshot, candidate
 
 
+def validate_result(result, audit_id, evidence):
+    if evidence.get("verification"):
+        independent.validate(result, audit_id, evidence)
+    else:
+        validate(
+            result,
+            audit_id,
+            evidence["snapshot"],
+            evidence["candidate"],
+            evidence["plan"],
+            evidence["engine_id"],
+        )
+
+
 def validate_saved(evidence, audit_id):
     snapshot, candidate, plan = (evidence[k] for k in ("snapshot", "candidate", "plan"))
     rebuild(snapshot, candidate)
@@ -69,10 +85,12 @@ def validate_saved(evidence, audit_id):
         or not approval.get("approved_at")
     ):
         raise ValueError("Missing exact candidate/plan approval evidence")
+    if evidence.get("verification"):
+        independent.check(evidence, historical=True)
     if evidence.get("result") is not None:
         if identity(evidence["result"]) != evidence.get("result_hash"):
             raise ValueError("Saved result hash mismatch")
-        validate(evidence["result"], audit_id, snapshot, candidate, plan, evidence["engine_id"])
+        validate_result(evidence["result"], audit_id, evidence)
 
 
 def view(row):
@@ -80,6 +98,14 @@ def view(row):
     try:
         validate_saved(evidence, row.id)
         if status in (
+            "completed",
+            "ordinary_failed",
+            "checks_passed",
+            "assertions_failed",
+            "validation_passed",
+            "validation_failed",
+            "check_execution_failed",
+            "verifier_preparation_failed",
             "tests_passed",
             "tests_failed",
             "environment_preparation_failed",
@@ -119,8 +145,38 @@ class RepositoryAuditManager:
     def __init__(self):
         self.jobs = {}
 
-    async def create(self, candidate_id, plan_id):
+    async def create(
+        self,
+        candidate_id,
+        plan_id,
+        verification_id=None,
+        validation_run_id=None,
+        stage="execution",
+        approve_independent_plan=False,
+    ):
         snapshot, candidate, plan = await material(candidate_id, plan_id)
+        extra = {}
+        if verification_id is not None:
+            verification = await load(RepositoryVerificationPlan, verification_id)
+            extra = {
+                "verification": verification,
+                "stage": stage,
+                "ordinary_engine_id": engine_id(),
+                "engine_id": independent.engine_id(),
+            }
+            if stage == "execution":
+                if not validation_run_id:
+                    raise ValueError("Run and inspect verifier controls before approving execution")
+                async with sessions() as session:
+                    validated = await session.get(RepositoryAudit, UUID(validation_run_id))
+                if validated is None or view(validated)["status"] != "validation_passed":
+                    raise ValueError("No valid completed independent validation exists")
+                extra["validation"] = {
+                    "audit_id": str(validated.id),
+                    "result": validated.evidence["result"],
+                }
+        elif stage != "execution" or validation_run_id or approve_independent_plan:
+            raise ValueError("Independent execution requires an explicit verification plan")
         now = datetime.now(UTC)
         row = RepositoryAudit(
             id=uuid4(),
@@ -139,9 +195,21 @@ class RepositoryAuditManager:
                     "plan_id": plan_id,
                     "candidate_id": candidate_id,
                     "approved_at": now.isoformat(),
+                    **(
+                        {
+                            "verification_id": verification_id,
+                            "stage": stage,
+                            "approve_independent_plan": approve_independent_plan,
+                        }
+                        if verification_id
+                        else {}
+                    ),
                 },
+                **extra,
             },
         )
+        if verification_id:
+            independent.check(row.evidence)
         async with sessions.begin() as session:
             session.add(row)
         self.jobs[row.id] = asyncio.create_task(self.run(row.id, row.evidence))
@@ -170,14 +238,7 @@ class RepositoryAuditManager:
                 return
             evidence = row.evidence
             if result is not None:
-                validate(
-                    result,
-                    audit_id,
-                    evidence["snapshot"],
-                    evidence["candidate"],
-                    evidence["plan"],
-                    evidence["engine_id"],
-                )
+                validate_result(result, audit_id, evidence)
                 row.status = result["status"]
                 row.evidence = {**evidence, "result": result, "result_hash": identity(result)}
             else:
@@ -195,7 +256,7 @@ class RepositoryAuditManager:
     async def run(self, audit_id, evidence):
         result = None
         try:
-            async with httpx.AsyncClient(timeout=180) as client:
+            async with httpx.AsyncClient(timeout=420) as client:
                 response = await client.post(
                     f"{settings.evaluator_url}/repository-audits/{audit_id}", json=evidence
                 )

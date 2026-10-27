@@ -1,0 +1,128 @@
+{
+  "implementation_sha": "cc044cb00de771621efe96793e3953825301da0b",
+  "g1_base": "9179b44ddd794137abdf6beb555390787044836d",
+  "predeclared_trial_commit": "2f47001",
+  "saved_records": [
+    {
+      "audit_id": "4a2bab03-6b91-47f8-be2f-255a9494b23b",
+      "status": "assertions_failed",
+      "stage": "execution",
+      "snapshot_id": "afb472b61dd897b40d46162f3e4ae5f981b1d108ec68177735128a9effb0f410",
+      "candidate_id": "d92f0b253c87aa30315af2cb9bbd016efda7a3c0b1f9f9dd01f1d400f23566fa",
+      "verification_id": "732421e326f81b2dc20d1d6c0d43d3376cbfaac082eaef63e7610d2206baa2fd",
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "result_hash": "60a2cfd172038e726e18c93b4fae7491e4b2884a98bacf33a2fb4e84c035ad27",
+      "download_reopen_identical": true
+    },
+    {
+      "audit_id": "aa37edc3-611c-4a92-a2ae-972fd6d8e330",
+      "status": "validation_passed",
+      "stage": "validation",
+      "snapshot_id": "afb472b61dd897b40d46162f3e4ae5f981b1d108ec68177735128a9effb0f410",
+      "candidate_id": "d92f0b253c87aa30315af2cb9bbd016efda7a3c0b1f9f9dd01f1d400f23566fa",
+      "verification_id": "732421e326f81b2dc20d1d6c0d43d3376cbfaac082eaef63e7610d2206baa2fd",
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "result_hash": "90ca24c281b5f21979fe8b0ca698b5cd96224e0415efd02cf5ec0fa45a7d4a29",
+      "download_reopen_identical": true
+    },
+    {
+      "audit_id": "2dd4fa07-3aa1-4c0d-bb44-930029b37ec1",
+      "status": "completed",
+      "stage": "execution",
+      "snapshot_id": "afb472b61dd897b40d46162f3e4ae5f981b1d108ec68177735128a9effb0f410",
+      "candidate_id": "44927df907f0432b8ab70165c2396f6d8f199d4a4a5332c9110068bb6eb593e9",
+      "verification_id": "93410818cc4b42b01b11978408249800b99a945b6edd5ea9cdb142f195e072a6",
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "result_hash": "b2d089d8b0c828d229d0a7b31bfc0599125ded5b448fea25fb67cd2bbcd78b90",
+      "download_reopen_identical": true
+    },
+    {
+      "audit_id": "7ec49cb2-1556-459f-b00c-22b92043090c",
+      "status": "validation_passed",
+      "stage": "validation",
+      "snapshot_id": "afb472b61dd897b40d46162f3e4ae5f981b1d108ec68177735128a9effb0f410",
+      "candidate_id": "44927df907f0432b8ab70165c2396f6d8f199d4a4a5332c9110068bb6eb593e9",
+      "verification_id": "93410818cc4b42b01b11978408249800b99a945b6edd5ea9cdb142f195e072a6",
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "result_hash": "f4f5ebb64da50864f0e940377d7a65eba9a523acc34d471fe5bf0252f3546441",
+      "download_reopen_identical": true
+    },
+    {
+      "audit_id": "e656335d-536d-42b3-a387-99cb334195f6",
+      "status": "assertions_failed",
+      "stage": "execution",
+      "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+      "candidate_id": "7a55cb49244272ad2a0d3a79a3fe3a830e46b0e4767d8047bebaa4f6ccffc13f",
+      "verification_id": "292eb9f538f1bafae4e2819fd5fa746a187a4ce4fbacda66a9b255bbf5054ef8",
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "result_hash": "7a00e61f9ba6599cf8095876f85226caf4e9bdb36379be5b03e9437ea826393a",
+      "download_reopen_identical": true
+    },
+    {
+      "audit_id": "53f41de0-7160-4925-86ba-2f468ac65f8e",
+      "status": "validation_passed",
+      "stage": "validation",
+      "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+      "candidate_id": "7a55cb49244272ad2a0d3a79a3fe3a830e46b0e4767d8047bebaa4f6ccffc13f",
+      "verification_id": "292eb9f538f1bafae4e2819fd5fa746a187a4ce4fbacda66a9b255bbf5054ef8",
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "result_hash": "edbb006443ca819af4f694e66812cd75bc85e23f2d9ca17d04ee4a2619aa3143",
+      "download_reopen_identical": true
+    },
+    {
+      "audit_id": "50fc98ad-3426-48e7-a272-791ac4fe9436",
+      "status": "completed",
+      "stage": "execution",
+      "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+      "candidate_id": "b5c2675726c51cc0ec4c8adfda6ece347e7c2915f8ad75c0ecfcb1f8cbe232b8",
+      "verification_id": "5db32c88ee654958ae2c2dc8779369b901e2f16ae77ce64251f835071296cd73",
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "result_hash": "078deec89157e862b80a7cc7fbe477c161df9b70cd26014f04740038b7f1052a",
+      "download_reopen_identical": true
+    },
+    {
+      "audit_id": "40caad16-8dbe-4e24-8287-47c2b614af6b",
+      "status": "validation_passed",
+      "stage": "validation",
+      "snapshot_id": "7e51788ba161c5aa936aaa3ecb16f872db61f594dec06a2d77e9ab8d1b758e37",
+      "candidate_id": "b5c2675726c51cc0ec4c8adfda6ece347e7c2915f8ad75c0ecfcb1f8cbe232b8",
+      "verification_id": "5db32c88ee654958ae2c2dc8779369b901e2f16ae77ce64251f835071296cd73",
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "result_hash": "097b6c7559996be76df5232a2a354183f87f907da53abe0d8ea1c8747e4364fd",
+      "download_reopen_identical": true
+    }
+  ],
+  "separate_fresh_containers": 16,
+  "confirmed_absent_resources": 44,
+  "immutable_table_triggers": [
+    [
+      "repository_audit_requirements",
+      "immutable_repository_record",
+      "DELETE"
+    ],
+    [
+      "repository_audit_requirements",
+      "immutable_repository_record",
+      "UPDATE"
+    ],
+    [
+      "repository_audit_verification_plans",
+      "immutable_repository_record",
+      "DELETE"
+    ],
+    [
+      "repository_audit_verification_plans",
+      "immutable_repository_record",
+      "UPDATE"
+    ]
+  ],
+  "protected_historical_files": 1204,
+  "changed_protected_files": [],
+  "additional_genuine_detections": 0,
+  "model_calls": 0,
+  "model_call_scope": "G2 workflows and these declared trials; historical retained generations excluded",
+  "remaining_evaluator_resources": {
+    "containers": [],
+    "volumes": []
+  }
+}

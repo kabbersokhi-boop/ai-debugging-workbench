@@ -1,5 +1,8 @@
 # Local external repository audits (G1)
 
+G1 ordinary-only execution remains available. G2's optional independent layer is described
+in [Independent behavioral checks](#independent-behavioral-checks-g2) below.
+
 Start the private stack with `docker compose up --build -d --wait api`, open
 <http://127.0.0.1:8010/>, and select **External repository (experimental)**.
 The public recorded application cannot import or execute repositories.
@@ -132,3 +135,53 @@ GitHub. A new execution still requires importing/reviewing the exact base and pa
 approving an available runtime; a saved result is never replayed as a new pass.
 
 [G1 engineering report](reports/GENERALIZED-PATCH-AUDIT-G01.md).
+
+## Independent behavioral checks (G2)
+
+After preparing an ordinary plan, choose **Add independently specified behavioral
+verification**. Supply a JSON array of requirements with `statement`, `expected_behavior`,
+`input_domain`, `assumptions`, `ambiguities`, and `provenance` (`origin`, `reference`,
+`excerpt`, `justification`, `independent_of_candidate: true`). The UI hashes excerpts and
+binds requirements to the selected immutable source. Explicitly approve their provenance.
+Unresolved ambiguity or a model-only hypothesis cannot authorize a plan.
+
+Choose an existing production module and a public function. Python supports dotted public
+attributes; Node supports a dotted export or an empty export for a function-exporting module.
+Specify named assertions, referencing each requirement by its zero-based index:
+
+```json
+[
+  {"id":"example", "requirement_index":0, "args":[[0,false,"ready"]], "expected":"ready"}
+]
+```
+
+Optional `kwargs` apply only to Python. Only finite JSON inputs/results are supported.
+Checks use exact canonical JSON equality; they are finite examples, not universal proofs.
+The ordinary and independent plans have separately approved offline setup and timeouts.
+They run in fresh environments with no installed artifacts carried between them.
+
+Prepare and inspect the exact independent plan, requirement IDs and fixed adapter material.
+Approve and run its synthetic positive/negative controls. Inspect the retained validation
+evidence, then separately approve execution against this candidate. Finally approve the
+ordinary plan and choose **Run ordinary and independent checks**. Failed, missing, crashed,
+skipped, truncated or unsupported checks never produce a passing independent verdict.
+
+The result lists both outcomes and each named assertion's requirement, input, expected and
+observed values. Download the evidence or reopen its saved URL. Editing source, candidate
+or plan invalidates prior approvals and displayed results. Reopening does not re-execute.
+
+API equivalents, all under the existing local-only `/api/repository-audits` prefix:
+
+- `POST /requirements`: save a versioned requirement; `GET /requirements/{id}` reviews it.
+- `POST /verification-plans`: bind requirements/assertions to source, candidate, ordinary
+  plan, runtime image, fixed adapter sources/hashes and sandbox policy.
+- `POST /runs` with `verification_id`, `stage: "validation"`,
+  `approve_independent_plan: true` and the ordinary G1 confirmation fields runs controls.
+- After a successful validation, `POST /runs` with the same IDs, `stage: "execution"`,
+  `validation_run_id` and exact approvals runs both phases. Missing/unapproved/stale
+  validation is rejected. Existing history, cancel, evidence and reopen routes are reused.
+
+See the [G2 report](reports/GENERALIZED-PATCH-AUDIT-G02.md) for versioned semantics,
+reproduction commands, real-repository controls and security limits. No model calls or
+public execution are involved. In-process observation is not secure against deliberate
+candidate forgery; a read-only checker and host-side expectations do not change that limit.

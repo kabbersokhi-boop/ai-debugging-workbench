@@ -1,0 +1,1180 @@
+{
+  "id": "7737cbbf-3cfc-41c8-a717-68733dada693",
+  "candidate_id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+  "plan_id": "4165444ac9f02189d9b03922951171d6db587d4a8d495625dd2c351d07e22ecb",
+  "status": "completed",
+  "created_at": "2026-10-19T21:21:22.674524+00:00",
+  "updated_at": "2026-10-19T21:21:27.995525+00:00",
+  "execution_mode": "fresh_local",
+  "evidence": {
+    "snapshot": {
+      "id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+      "version": "repository-source-v1",
+      "repository": "hynek/first",
+      "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+      "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+      "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+      "file_hashes": {
+        ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+        "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+        "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+        "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+        "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+        "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+        "first.py": "c648960b003d1489afdfbbf9d882582218d578ac307ee5b079b2cf6745fbc7e7",
+        "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+        "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+      },
+      "modes": {
+        ".gitignore": "100644",
+        "HISTORY.rst": "100644",
+        "LICENSE": "100644",
+        "MANIFEST.in": "100644",
+        "Makefile": "100644",
+        "README.rst": "100644",
+        "first.py": "100644",
+        "setup.py": "100644",
+        "test_first.py": "100644"
+      },
+      "files": {
+        ".gitignore": "X19weWNhY2hlX18KYnVpbGQKZGlzdApmaXJzdC5lZ2ctaW5mbwo=",
+        "HISTORY.rst": "SGlzdG9yeQo9PT09PT09CgoxLjAuMiAoMjAxMi0xMC0wOSkKLS0tLS0tLS0tLS0tLS0tLS0tCiAgIC0gRml4IHBhY2thZ2luZy4gSSBnZXQgdGhpcyBuZXZlciByaWdodCB0aGUgZmlyc3QgdGltZS4gOi0vCgoxLjAuMSAoMjAxMi0xMC0wOSkKLS0tLS0tLS0tLS0tLS0tLS0tCiAgIC0gRG9jdW1lbnRhdGlvbiBmaXhlcyBvbmx5LgoKMS4wLjAgKDIwMTItMTAtMDkpCi0tLS0tLS0tLS0tLS0tLS0tLQogICAtIEluaXRpYWwgcmVsZWFzZS4K",
+        "LICENSE": "Q29weXJpZ2h0IChjKSAyMDEyIEh5bmVrIFNjaGxhd2FjawoKUGVybWlzc2lvbiBpcyBoZXJlYnkgZ3JhbnRlZCwgZnJlZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gb2J0YWluaW5nIGEgY29weSBvZgp0aGlzIHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdhcmUiKSwgdG8gZGVhbCBpbgp0aGUgU29mdHdhcmUgd2l0aG91dCByZXN0cmljdGlvbiwgaW5jbHVkaW5nIHdpdGhvdXQgbGltaXRhdGlvbiB0aGUgcmlnaHRzIHRvCnVzZSwgY29weSwgbW9kaWZ5LCBtZXJnZSwgcHVibGlzaCwgZGlzdHJpYnV0ZSwgc3VibGljZW5zZSwgYW5kL29yIHNlbGwgY29waWVzCm9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJzb25zIHRvIHdob20gdGhlIFNvZnR3YXJlIGlzIGZ1cm5pc2hlZCB0byBkbwpzbywgc3ViamVjdCB0byB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6CgpUaGUgYWJvdmUgY29weXJpZ2h0IG5vdGljZSBhbmQgdGhpcyBwZXJtaXNzaW9uIG5vdGljZSBzaGFsbCBiZSBpbmNsdWRlZCBpbiBhbGwKY29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KClRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAiQVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCklNUExJRUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVSQ0hBTlRBQklMSVRZLApGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiBJTiBOTyBFVkVOVCBTSEFMTCBUSEUKQVVUSE9SUyBPUiBDT1BZUklHSFQgSE9MREVSUyBCRSBMSUFCTEUgRk9SIEFOWSBDTEFJTSwgREFNQUdFUyBPUiBPVEhFUgpMSUFCSUxJVFksIFdIRVRIRVIgSU4gQU4gQUNUSU9OIE9GIENPTlRSQUNULCBUT1JUIE9SIE9USEVSV0lTRSwgQVJJU0lORyBGUk9NLApPVVQgT0YgT1IgSU4gQ09OTkVDVElPTiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SIE9USEVSIERFQUxJTkdTIElOIFRIRQpTT0ZUV0FSRS4K",
+        "MANIFEST.in": "aW5jbHVkZSBSRUFETUUucnN0IExJQ0VOU0UgSElTVE9SWS5yc3QgZmlyc3QucHkK",
+        "Makefile": "dGVzdDoKCXB5dGhvbiAtbSBkb2N0ZXN0IGZpcnN0LnB5CglweXRob24gLW0gZG9jdGVzdCBSRUFETUUucnN0CgouUEhPTlk6IHRlc3QK",
+        "README.rst": "Zmlyc3Q6IFRoZSBmdW5jdGlvbiB5b3UgYWx3YXlzIG1pc3NlZCBpbiBQeXRob24KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCipmaXJzdCogaXMgYSBNSVQgbGljZW5zZWQgUHl0aG9uIHBhY2thZ2Ugd2l0aCBhIHNpbXBsZSBmdW5jdGlvbiB0aGF0IHJldHVybnMKdGhlIGZpcnN0IHRydWUgdmFsdWUgZnJvbSBhbiBpdGVyYWJsZSwgb3IgYGBOb25lYGAgaWYgdGhlcmUgaXMgbm9uZS4gIElmIHlvdSBuZWVkCm1vcmUgcG93ZXIsIHlvdSBjYW4gYWxzbyBzdXBwbHkgYSBrZXkgZnVuY3Rpb24gdGhhdCBpcyB1c2VkIHRvIGp1ZGdlIHRoZSB0cnV0aAp2YWx1ZSBvZiB0aGUgZWxlbWVudC4KCiAgIEnigJltIHVzaW5nIHRoZSB0ZXJtIOKAnHRydWXigJ0gY29uc2lzdGVudGx5IHdpdGggUHl0aG9uIGRvY3MgZm9yIGBgYW55KClgYCBhbmQKICAgYGBhbGwoKWBgIOKAlCBpdCBtZWFucyB0aGF0IHRoZSB2YWx1ZSBldmFsdWF0ZXMgdG8gdHJ1ZSBsaWtlOiBgYFRydWVgYCwgYGAxYGAsCiAgIGBgImZvbyJgYCBvciBgYFtOb25lXWBgLiBCdXQgKipub3QqKjogYGBOb25lYGAsIGBgRmFsc2VgYCBvciBgYDBgYC4gIEluCiAgIEphdmFTY3JpcHQsIHRoZXkgY2FsbCB0aGlzIOKAnHRydXRoeeKAnS4KCgpFeGFtcGxlcwo9PT09PT09PQoKQSBzaW1wbGUgZXhhbXBsZSBmaXJzdDogOjoKCiAgID4+IGZyb20gZmlyc3QgaW1wb3J0IGZpcnN0CiAgID4+IGZpcnN0KFswLCBOb25lLCBGYWxzZSwgW10sICgpLCA0Ml0pCiAgIDQyCgpIb3dldmVyLCBpdOKAmXMgZXNwZWNpYWxseSB1c2VmdWwgZm9yIGRlYWxpbmcgd2l0aCByZWd1bGFyIGV4cHJlc3Npb25zIGluCmBgaWYvZWxpZi9lbHNlYGAgYnJhbmNoZXM6IDo6CgogICBpbXBvcnQgcmUKCiAgIGZyb20gZmlyc3QgaW1wb3J0IGZpcnN0CgoKICAgcmUxID0gcmUuY29tcGlsZSgnYiguKiknKQogICByZTIgPSByZS5jb21waWxlKCdhKC4qKScpCgogICBtID0gZmlyc3QocmVnZXhwLm1hdGNoKCdhYmMnKSBmb3IgcmVnZXhwIGluIFtyZTEsIHJlMl0pCiAgIGlmIG5vdCBtOgogICAgICBwcmludCgnbm8gbWF0Y2ghJykKICAgZWxpZiBtLnJlIGlzIHJlMToKICAgICAgcHJpbnQoJ3JlMScsIG0uZ3JvdXAoMSkpCiAgIGVsaWYgbS5yZSBpcyByZTI6CiAgICAgIHByaW50KCdyZTInLCBtLmdyb3VwKDEpKQoKVGhlIG9wdGlvbmFsIGtleSBmdW5jdGlvbiBnaXZlcyB5b3UgZXZlbiAqbW9yZSogc2VsZWN0aW9uIHBvd2VyLiBJZiB5b3UKd2FudCB0byByZXR1cm4gdGhlIGZpcnN0IGV2ZW4gbnVtYmVyIGZyb20gYSBsaXN0LCBqdXN0IGRvIHRoZSBmb2xsb3dpbmc6OgoKICAgPj4+IGZyb20gZmlyc3QgaW1wb3J0IGZpcnN0CiAgID4+PiBmaXJzdChbMSwgMSwgMywgNCwgNV0sIGxhbWJkYSB4OiB4ICUgMiA9PSAwKQogICA0CgoKVXNhZ2UKPT09PT0KClRoZSBwYWNrYWdlIGNvbnNpc3RzIG9mIG9uZSBtb2R1bGUgY29uc2lzdGluZyBvZiBvbmUgZnVuY3Rpb246OgoKICAgZnJvbSBmaXJzdCBpbXBvcnQgZmlyc3QKCiAgIGZpcnN0KGl0ZXJhYmxlLCBrZXk9Tm9uZSkKClRoaXMgZnVuY3Rpb24gcmV0dXJucyB0aGUgZmlyc3QgZWxlbWVudCBvZiBgYGl0ZXJhYmxlYGAgdGhhdCBpcyB0cnVlIGlmCmBga2V5YGAgaXMgYGBOb25lYGAuIElmIHRoZXJlIGlzIG5vIHRydWUgZWxlbWVudCwgYGBOb25lYGAgaXMgcmV0dXJuZWQuCgpJZiBhIGNhbGxhYmxlIGlzIHN1cHBsaWVkIGluIGBga2V5YGAsIHRoZSByZXN1bHQgb2YgYGBrZXkoZWxlbWVudClgYCBpcwp1c2VkIHRvIGp1ZGdlIHRoZSB0cnV0aCB2YWx1ZSBvZiB0aGUgZWxlbWVudCwgYnV0IHRoZSBlbGVtZW50IGl0c2VsZiBpcwpyZXR1cm5lZC4KCipmaXJzdCogaGFzIG5vIGRlcGVuZGVuY2llcyBhbmQgc2hvdWxkIHdvcmsgd2l0aCBhbnkgUHl0aG9uIGF2YWlsYWJsZS4gIE9mCmNvdXJzZSwgaXQgd29ya3Mgd2l0aCB0aGUgYXdlc29tZSBgUHl0aG9uIDNgXyBldmVyeWJvZHkgc2hvdWxkIGJlIHVzaW5nLgoKCkJhY2tncm91bmQKPT09PT09PT09PQoKVGhlIGlkZWEgZm9yICpmaXJzdCogZ29lcyBiYWNrIHRvIGEgZGlzY3Vzc2lvbiBJIGhhZCB3aXRoIGDFgXVrYXN6IExhbmdhYF8gYWJvdXQKaG93IHRoZSBgYHJlYGAgZXhhbXBsZSBhYm92ZSBpcyBwYWluZnVsIGluIFB5dGhvbi4gIFdlIGZpZ3VyZWQgc3VjaCBhIGZ1bmN0aW9uCmlzIG1pc3NpbmcgUHl0aG9uLCBob3dldmVyIGl04oCZcyByYXRoZXIgdW5saWtlbHkgd2XigJlkIGdldCBpdCBpbiBhbmQgZXZlbiBpZiwgaXQKd291bGRu4oCZdCBnZXQgaW4gYmVmb3JlIDMuNCBhbnl3YXksIHdoaWNoIGlzIHllYXJzIGF3YXkgYXMgb2YgeW91cnMgdHJ1bHkgaXMKd3JpdGluZyB0aGlzLgoKU28gSSBkZWNpZGVkIHRvIHJlbGVhc2UgaXQgYXMgYSBwYWNrYWdlIGZvciBub3cuICBJZiBpdCBwcm92ZXMgcG9wdWxhciBlbm91Z2gsCml0IG1heSBldmVuIG1ha2UgaXQgaW50byBQeXRob27igJlzIHN0ZGxpYiBpbiB0aGUgZW5kLgoKCi4uIF9gUHl0aG9uIDNgOiBodHRwOi8vZ2V0cHl0aG9uMy5jb20vCi4uIF9gxYF1a2FzeiBMYW5nYWA6IGh0dHBzOi8vZ2l0aHViLmNvbS9hbWJ2Ci4uIF9gaWZmYDogaHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9JZmYKCg==",
+        "first.py": "IyMgLSotIGNvZGluZzogdXRmLTggLSotCgoiIiIKZmlyc3QKPT09PT0KCmZpcnN0IGlzIHRoZSBmdW5jdGlvbiB5b3UgYWx3YXlzIG1pc3NlZCBpbiBQeXRob24uCgpJbiB0aGUgc2ltcGxlc3QgY2FzZSwgaXQgcmV0dXJucyB0aGUgZmlyc3QgdHJ1ZSBlbGVtZW50IGZyb20gYW4gaXRlcmFibGU6Cgo+Pj4gZnJvbSBmaXJzdCBpbXBvcnQgZmlyc3QKPj4+IGZpcnN0KFswLCBGYWxzZSwgTm9uZSwgW10sICgpLCA0Ml0pCjQyCgpPciBOb25lIGlmIHRoZXJlIGlzIG5vbmU6Cgo+Pj4gZnJvbSBmaXJzdCBpbXBvcnQgZmlyc3QKPj4+IGZpcnN0KFtdKSBpcyBOb25lClRydWUKPj4+IGZpcnN0KFswLCBGYWxzZSwgTm9uZSwgW10sICgpXSkgaXMgTm9uZQpUcnVlCgpJdCBhbHNvIHN1cHBvcnRzIHRoZSBwYXNzaW5nIG9mIGEga2V5IGFyZ3VtZW50IHRvIGhlbHAgc2VsZWN0aW5nIHRoZSBmaXJzdAptYXRjaCBpbiBhIG1vcmUgYWR2YW5jZWQgd2F5LgoKPj4+IGZyb20gZmlyc3QgaW1wb3J0IGZpcnN0Cj4+PiBmaXJzdChbMSwgMSwgMywgNCwgNV0sIGxhbWJkYSB4OiB4ICUgMiA9PSAwKQo0Cgo6Y29weXJpZ2h0OiAoYykgMjAxMiBieSBIeW5layBTY2hsYXdhY2suCjpsaWNlbnNlOiBNSVQsIHNlZSBMSUNFTlNFIGZvciBtb3JlIGRldGFpbHMuCgoiIiIKCl9fdGl0bGVfXyA9ICdmaXJzdCcKX192ZXJzaW9uX18gPSAnMS4wLjInCl9fYXV0aG9yX18gPSAnSHluZWsgU2NobGF3YWNrJwpfX2xpY2Vuc2VfXyA9ICdNSVQnCl9fY29weXJpZ2h0X18gPSAnQ29weXJpZ2h0IDIwMTIgSHluZWsgU2NobGF3YWNrJwoKCmRlZiBmaXJzdChpdGVyYWJsZSwga2V5PU5vbmUsIGRlZmF1bHQ9Tm9uZSk6CiAgICAiIiIKICAgIFJldHVybiBmaXJzdCBlbGVtZW50IG9mIGBpdGVyYWJsZWAgdGhhdCBldmFsdWF0ZXMgdHJ1ZSwgZWxzZSByZXR1cm4gTm9uZS4KCiAgICA+Pj4gZmlyc3QoWzAsIEZhbHNlLCBOb25lLCBbXSwgKCksIDQyXSkKICAgIDQyCgogICAgPj4+IGltcG9ydCByZQogICAgPj4+IG0gPSBmaXJzdChyZS5tYXRjaChyZWdleCwgJ2FiYycpIGZvciByZWdleCBpbiBbJ2IuKicsICdhKC4qKSddKQogICAgPj4+IG0uZ3JvdXAoMSkKICAgICdiYycKCiAgICA+Pj4gZmlyc3QoW10pIGlzIE5vbmUKICAgIFRydWUKICAgID4+PiBmaXJzdChbMCwgRmFsc2UsIE5vbmUsIFtdLCAoKV0pIGlzIE5vbmUKICAgIFRydWUKCiAgICBJZiBga2V5YCBpcyBzcGVjaWZpZWQsIHRoZSByZXN1bHQgb2YgYGtleWAgaXMgcmV0dXJuZWQgaWYgdGhlIHJlc3VsdCBpcwogICAgdHJ1ZS4KCiAgICA+Pj4gZmlyc3QoWzEsIDEsIDMsIDQsIDVdLCBsYW1iZGEgeDogeCAlIDIgPT0gMCkKICAgIDQKCiAgICAiIiIKICAgIGlmIGtleSBpcyBOb25lOgogICAgICAgIGZvciBlbCBpbiBpdGVyYWJsZToKICAgICAgICAgICAgaWYgZWw6CiAgICAgICAgICAgICAgICByZXR1cm4gZWwKICAgIGVsc2U6CiAgICAgICAgZm9yIGVsIGluIGl0ZXJhYmxlOgogICAgICAgICAgICBpZiBrZXkoZWwpOgogICAgICAgICAgICAgICAgcmV0dXJuIGVsCgogICAgcmV0dXJuIGRlZmF1bHQK",
+        "setup.py": "ZnJvbSBzZXR1cHRvb2xzIGltcG9ydCBzZXR1cAoKaW1wb3J0IGZpcnN0CgoKc2V0dXAoCiAgICBuYW1lPSdmaXJzdCcsCiAgICB2ZXJzaW9uPWZpcnN0Ll9fdmVyc2lvbl9fLAogICAgZGVzY3JpcHRpb249J1JldHVybiB0aGUgZmlyc3QgdHJ1ZSB2YWx1ZSBvZiBhbiBpdGVyYWJsZS4nLAogICAgbG9uZ19kZXNjcmlwdGlvbj0ob3BlbignUkVBRE1FLnJzdCcpLnJlYWQoKSArICdcblxuJyArCiAgICAgICAgICAgICAgICAgICAgICBvcGVuKCdISVNUT1JZLnJzdCcpLnJlYWQoKSksCiAgICB1cmw9J2h0dHA6Ly9naXRodWIuY29tL2h5bmVrL2ZpcnN0LycsCiAgICBsaWNlbnNlPWZpcnN0Ll9fbGljZW5zZV9fLAogICAgYXV0aG9yPWZpcnN0Ll9fYXV0aG9yX18sCiAgICBhdXRob3JfZW1haWw9J2hzQG94LmN4JywKICAgIHB5X21vZHVsZXM9WydmaXJzdCddLAogICAgY2xhc3NpZmllcnM9WwogICAgICAgICdEZXZlbG9wbWVudCBTdGF0dXMgOjogNSAtIFByb2R1Y3Rpb24vU3RhYmxlJywKICAgICAgICAnSW50ZW5kZWQgQXVkaWVuY2UgOjogRGV2ZWxvcGVycycsCiAgICAgICAgJ05hdHVyYWwgTGFuZ3VhZ2UgOjogRW5nbGlzaCcsCiAgICAgICAgJ0xpY2Vuc2UgOjogT1NJIEFwcHJvdmVkIDo6IE1JVCBMaWNlbnNlJywKICAgICAgICAnT3BlcmF0aW5nIFN5c3RlbSA6OiBPUyBJbmRlcGVuZGVudCcsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbicsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAyJywKICAgICAgICAnUHJvZ3JhbW1pbmcgTGFuZ3VhZ2UgOjogUHl0aG9uIDo6IDIuMycsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAyLjQnLAogICAgICAgICdQcm9ncmFtbWluZyBMYW5ndWFnZSA6OiBQeXRob24gOjogMi41JywKICAgICAgICAnUHJvZ3JhbW1pbmcgTGFuZ3VhZ2UgOjogUHl0aG9uIDo6IDIuNicsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAyLjcnLAogICAgICAgICdQcm9ncmFtbWluZyBMYW5ndWFnZSA6OiBQeXRob24gOjogMycsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAzLjAnLAogICAgICAgICdQcm9ncmFtbWluZyBMYW5ndWFnZSA6OiBQeXRob24gOjogMy4xJywKICAgICAgICAnUHJvZ3JhbW1pbmcgTGFuZ3VhZ2UgOjogUHl0aG9uIDo6IDMuMicsCiAgICAgICAgJ1Byb2dyYW1taW5nIExhbmd1YWdlIDo6IFB5dGhvbiA6OiAzLjMnLAogICAgICAgICdUb3BpYyA6OiBTb2Z0d2FyZSBEZXZlbG9wbWVudCA6OiBMaWJyYXJpZXMgOjogUHl0aG9uIE1vZHVsZXMnLAogICAgXSwKKQo=",
+        "test_first.py": "aW1wb3J0IHVuaXR0ZXN0CmZyb20gZmlyc3QgaW1wb3J0IGZpcnN0CgoKaXNib29sID0gbGFtYmRhIHg6IGlzaW5zdGFuY2UoeCwgYm9vbCkKaXNpbnQgPSBsYW1iZGEgeDogaXNpbnN0YW5jZSh4LCBpbnQpCm9kZCA9IGxhbWJkYSB4OiBpc2ludCh4KSBhbmQgeCAlIDIgIT0gMApldmVuID0gbGFtYmRhIHg6IGlzaW50KHgpIGFuZCB4ICUgMiA9PSAwCmlzX21lYW5pbmdfb2ZfbGlmZSA9IGxhbWJkYSB4OiB4ID09IDQyCgoKY2xhc3MgVGVzdEZpcnN0KHVuaXR0ZXN0LlRlc3RDYXNlKToKICAgIGRlZiB0ZXN0X2VtcHR5X2l0ZXJhYmxlcyhzZWxmKToKICAgICAgICBzID0gc2V0KCkKICAgICAgICBsID0gW10KICAgICAgICBhc3NlcnQgZmlyc3QocykgaXMgTm9uZQogICAgICAgIGFzc2VydCBmaXJzdChsKSBpcyBOb25lCgogICAgZGVmIHRlc3RfZGVmYXVsdF92YWx1ZShzZWxmKToKICAgICAgICBzID0gc2V0KCkKICAgICAgICBsID0gW10KICAgICAgICBhc3NlcnQgZmlyc3QocywgZGVmYXVsdD00MikgPT0gNDIKICAgICAgICBhc3NlcnQgZmlyc3QobCwgZGVmYXVsdD0zLjE0KSA9PSAzLjE0CgogICAgICAgIGwgPSBbMCwgRmFsc2UsIFtdXQogICAgICAgIGFzc2VydCBmaXJzdChsLCBkZWZhdWx0PTMuMTQpID09IDMuMTQKCiAgICBkZWYgdGVzdF9zZWxlY3Rpb24oc2VsZik6CiAgICAgICAgbCA9IFsoKSwgMCwgRmFsc2UsIDMsIFtdXQoKICAgICAgICBhc3NlcnQgZmlyc3QobCwgZGVmYXVsdD00MikgPT0gMwogICAgICAgIGFzc2VydCBmaXJzdChsLCBrZXk9aXNpbnQpID09IDAKICAgICAgICBhc3NlcnQgZmlyc3QobCwga2V5PWlzYm9vbCkgaXMgRmFsc2UKICAgICAgICBhc3NlcnQgZmlyc3QobCwga2V5PW9kZCkgPT0gMwogICAgICAgIGFzc2VydCBmaXJzdChsLCBrZXk9ZXZlbikgPT0gMAogICAgICAgIGFzc2VydCBmaXJzdChsLCBrZXk9aXNfbWVhbmluZ19vZl9saWZlKSBpcyBOb25lCgoKaWYgX19uYW1lX18gPT0gJ19fbWFpbl9fJzoKICAgIHVuaXR0ZXN0Lm1haW4oKQo="
+      },
+      "metadata": {
+        "fetched_at": "2026-10-19T21:21:18.921469+00:00",
+        "adapter": "github-https-archive-v1",
+        "transport": "HTTPS; no redirects; no credentials; 45 second total budget",
+        "archive_sha256": "cd1c1705cbfd58509db5f390c9f4550ea0507f55f98b02cc286b372cf17141a6",
+        "normalization": "Regular files only; executable bit retained; candidate source read-only",
+        "upstream_url": "https://github.com/hynek/first",
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "attribution_files": [
+          "LICENSE"
+        ]
+      }
+    },
+    "candidate": {
+      "id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+      "version": "repository-candidate-v1",
+      "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+      "repository": "hynek/first",
+      "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+      "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+      "applied_source_hashes": {
+        ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+        "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+        "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+        "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+        "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+        "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+        "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+        "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+        "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+      },
+      "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+      "patch": "diff --git a/first.py b/first.py\n--- a/first.py\n+++ b/first.py\n@@ -39,27 +39,30 @@\n __copyright__ = 'Copyright 2012 Hynek Schlawack'\n \n \n-def first(iterable, key=None, default=None):\n+def first(iterable, default=None, key=None):\n     \"\"\"\n-    Return first element of `iterable` that evaluates true, else return None.\n+    Return first element of `iterable` that evaluates true, else return None\n+    (or an optional default value).\n \n     >>> first([0, False, None, [], (), 42])\n     42\n \n+    >>> first([0, False, None, [], ()])\n+    None\n+\n+    >>> first([0, False, None, [], ()], default='ohai')\n+    'ohai'\n+\n     >>> import re\n     >>> m = first(re.match(regex, 'abc') for regex in ['b.*', 'a(.*)'])\n     >>> m.group(1)\n     'bc'\n \n-    >>> first([]) is None\n-    True\n-    >>> first([0, False, None, [], ()]) is None\n-    True\n-\n-    If `key` is specified, the result of `key` is returned if the result is\n-    true.\n+    The optional `key` argument specifies a one-argument predicate function\n+    like that used for `filter()`.  The `key` argument, if supplied, must be\n+    in keyword form.  For example:\n \n-    >>> first([1, 1, 3, 4, 5], lambda x: x % 2 == 0)\n+    >>> first([1, 1, 3, 4, 5], key=lambda x: x % 2 == 0)\n     4\n \n     \"\"\"\n",
+      "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1",
+      "approved_paths": [
+        "first.py"
+      ],
+      "affected_files": [
+        "first.py"
+      ],
+      "original": {
+        "first.py": "## -*- coding: utf-8 -*-\n\n\"\"\"\nfirst\n=====\n\nfirst is the function you always missed in Python.\n\nIn the simplest case, it returns the first true element from an iterable:\n\n>>> from first import first\n>>> first([0, False, None, [], (), 42])\n42\n\nOr None if there is none:\n\n>>> from first import first\n>>> first([]) is None\nTrue\n>>> first([0, False, None, [], ()]) is None\nTrue\n\nIt also supports the passing of a key argument to help selecting the first\nmatch in a more advanced way.\n\n>>> from first import first\n>>> first([1, 1, 3, 4, 5], lambda x: x % 2 == 0)\n4\n\n:copyright: (c) 2012 by Hynek Schlawack.\n:license: MIT, see LICENSE for more details.\n\n\"\"\"\n\n__title__ = 'first'\n__version__ = '1.0.2'\n__author__ = 'Hynek Schlawack'\n__license__ = 'MIT'\n__copyright__ = 'Copyright 2012 Hynek Schlawack'\n\n\ndef first(iterable, key=None, default=None):\n    \"\"\"\n    Return first element of `iterable` that evaluates true, else return None.\n\n    >>> first([0, False, None, [], (), 42])\n    42\n\n    >>> import re\n    >>> m = first(re.match(regex, 'abc') for regex in ['b.*', 'a(.*)'])\n    >>> m.group(1)\n    'bc'\n\n    >>> first([]) is None\n    True\n    >>> first([0, False, None, [], ()]) is None\n    True\n\n    If `key` is specified, the result of `key` is returned if the result is\n    true.\n\n    >>> first([1, 1, 3, 4, 5], lambda x: x % 2 == 0)\n    4\n\n    \"\"\"\n    if key is None:\n        for el in iterable:\n            if el:\n                return el\n    else:\n        for el in iterable:\n            if key(el):\n                return el\n\n    return default\n"
+      },
+      "modified": {
+        "first.py": "## -*- coding: utf-8 -*-\n\n\"\"\"\nfirst\n=====\n\nfirst is the function you always missed in Python.\n\nIn the simplest case, it returns the first true element from an iterable:\n\n>>> from first import first\n>>> first([0, False, None, [], (), 42])\n42\n\nOr None if there is none:\n\n>>> from first import first\n>>> first([]) is None\nTrue\n>>> first([0, False, None, [], ()]) is None\nTrue\n\nIt also supports the passing of a key argument to help selecting the first\nmatch in a more advanced way.\n\n>>> from first import first\n>>> first([1, 1, 3, 4, 5], lambda x: x % 2 == 0)\n4\n\n:copyright: (c) 2012 by Hynek Schlawack.\n:license: MIT, see LICENSE for more details.\n\n\"\"\"\n\n__title__ = 'first'\n__version__ = '1.0.2'\n__author__ = 'Hynek Schlawack'\n__license__ = 'MIT'\n__copyright__ = 'Copyright 2012 Hynek Schlawack'\n\n\ndef first(iterable, default=None, key=None):\n    \"\"\"\n    Return first element of `iterable` that evaluates true, else return None\n    (or an optional default value).\n\n    >>> first([0, False, None, [], (), 42])\n    42\n\n    >>> first([0, False, None, [], ()])\n    None\n\n    >>> first([0, False, None, [], ()], default='ohai')\n    'ohai'\n\n    >>> import re\n    >>> m = first(re.match(regex, 'abc') for regex in ['b.*', 'a(.*)'])\n    >>> m.group(1)\n    'bc'\n\n    The optional `key` argument specifies a one-argument predicate function\n    like that used for `filter()`.  The `key` argument, if supplied, must be\n    in keyword form.  For example:\n\n    >>> first([1, 1, 3, 4, 5], key=lambda x: x % 2 == 0)\n    4\n\n    \"\"\"\n    if key is None:\n        for el in iterable:\n            if el:\n                return el\n    else:\n        for el in iterable:\n            if key(el):\n                return el\n\n    return default\n"
+      },
+      "provenance": {
+        "category": "user_declared",
+        "author_label": "G2 declared python-positive",
+        "source_reference": "Exact first.py portion of upstream c91895d9298d32d9302e759b40cff7f0f015bd93, changes argument order; no trusted test changes",
+        "limitations": "Imported authorship is user-declared and unverified."
+      }
+    },
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+      "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+      "runtime": "python312",
+      "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_first.py"
+      ],
+      "test_description": "Full unchanged upstream test file, predeclared G2 trial",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "engine_id": "09f934faef99a72cb02aabfd3bb2d345b4a5ab2e733a4cd3dbe0b93db1fca539",
+    "approval": {
+      "local_owner": true,
+      "plan_id": "4165444ac9f02189d9b03922951171d6db587d4a8d495625dd2c351d07e22ecb",
+      "candidate_id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+      "approved_at": "2026-10-19T21:21:22.674524+00:00",
+      "verification_id": "ef2064a953d886a2c4882c1c9ee4607ac0a76a595f8dcc8b867cd31b90436c8b",
+      "stage": "execution",
+      "approve_independent_plan": true
+    },
+    "verification": {
+      "id": "ef2064a953d886a2c4882c1c9ee4607ac0a76a595f8dcc8b867cd31b90436c8b",
+      "plan": {
+        "version": "independent-plan-v1",
+        "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+        "candidate_id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+        "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+        "ordinary_plan_id": "4165444ac9f02189d9b03922951171d6db587d4a8d495625dd2c351d07e22ecb",
+        "runtime": "python312",
+        "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+        "module": "first.py",
+        "export": "first",
+        "assertions": [
+          {
+            "id": "string_truthy",
+            "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+            "args": [
+              [
+                0,
+                false,
+                "ready",
+                42
+              ]
+            ],
+            "kwargs": {},
+            "expected": "ready"
+          },
+          {
+            "id": "negative_truthy",
+            "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+            "args": [
+              [
+                0,
+                -7,
+                2
+              ]
+            ],
+            "kwargs": {},
+            "expected": -7
+          },
+          {
+            "id": "all_false",
+            "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+            "args": [
+              [
+                0,
+                false,
+                null,
+                []
+              ]
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "empty",
+            "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+            "args": [
+              []
+            ],
+            "kwargs": {},
+            "expected": null
+          }
+        ],
+        "setup": [],
+        "timeout_seconds": 30,
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+        "adapter_hashes": {
+          "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+          "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+        },
+        "interpretation": "all-named-canonical-json-equalities-v1"
+      },
+      "requirements": [
+        {
+          "id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+          "version": "behavioral-requirement-v1",
+          "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+          "statement": "With key omitted, return the first truthy iterable element, or None when none exists.",
+          "expected_behavior": "With key omitted, return the first truthy iterable element, or None when none exists.",
+          "input_domain": "Finite JSON lists of booleans, nulls, strings, lists, and small integers; omitted key/default.",
+          "assumptions": [
+            "Python truthiness, not JavaScript truthiness",
+            "Callable keys and non-JSON values outside this plan"
+          ],
+          "ambiguities": [],
+          "provenance": {
+            "origin": "upstream_documentation",
+            "reference": "https://github.com/hynek/first/blob/106ee3cf389cf2bb76f2816bf22a845c44275f94/README.rst",
+            "excerpt": "This function returns the first element of ``iterable`` that is true if\n``key`` is ``None``.",
+            "excerpt_hash": "67a20e8df18b1b1a08dfe91027fae5e0d100571157a0dfde4a51dea62d988ae4",
+            "justification": "Contract taken from exact-base upstream documentation; expected JSON examples owner-specified independently of candidate. Documentation is evidence only, never executed.",
+            "independent_of_candidate": true
+          },
+          "approval": "owner_approved"
+        }
+      ]
+    },
+    "stage": "execution",
+    "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+    "validation": {
+      "audit_id": "a2706c75-0664-4cc5-afe3-e661a9e592a0",
+      "result": {
+        "version": "repository-independent-result-v1",
+        "audit_id": "a2706c75-0664-4cc5-afe3-e661a9e592a0",
+        "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+        "candidate_id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+        "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+        "plan_id": "4165444ac9f02189d9b03922951171d6db587d4a8d495625dd2c351d07e22ecb",
+        "verification_id": "ef2064a953d886a2c4882c1c9ee4607ac0a76a595f8dcc8b867cd31b90436c8b",
+        "stage": "validation",
+        "engine_id": "09f934faef99a72cb02aabfd3bb2d345b4a5ab2e733a4cd3dbe0b93db1fca539",
+        "started_at": "2026-10-19T21:21:19.115496+00:00",
+        "ordinary": null,
+        "independent": {
+          "status": "not_run",
+          "checks": []
+        },
+        "controls": [
+          {
+            "kind": "positive",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "a2706c75-0664-4cc5-afe3-e661a9e592a0",
+              "candidate_id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+              "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+              "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+              "source_binding": {
+                "repository": "hynek/first",
+                "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+                "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+                "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+                "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1"
+              },
+              "plan_id": "c49b9d3baa7ca96bb8885473d64ecd18dafa05108dd5ea39dc5ca6594b889fc0",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "python",
+                  "-I",
+                  "-B",
+                  "/verifier/probe.py"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-19T21:21:20.019032+00:00",
+                "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": \"ready\"}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": -7}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": null}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": null}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-19T21:21:20.120670+00:00",
+                "duration_ms": 102
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-19T21:21:20.019032+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": \"ready\"}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": -7}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": null}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": null}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-19T21:21:20.120670+00:00",
+                  "duration_ms": 102
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-19T21:21:19.120301+00:00",
+              "runtime": {
+                "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                "repo_digests": [
+                  "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                ],
+                "runtime": "python312",
+                "tag": "ai-agent-evaluator:python312-v1"
+              },
+              "verifier_hashes": {
+                "control.py": "3039e55fd0f945d1558a66747749c6144475c56297626b92f083e70bb16c296d",
+                "inputs.json": "44bc9cfdc7129f4f9463586cb638937fdf742cd4f2d7aec13455bbc8f59743b6",
+                "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+              },
+              "executed_source_hashes": {
+                ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+                "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+                "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+                "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+                "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+                "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+                "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+                "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+                "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+              },
+              "container_id": "521fde1c12e94a9ce47394896c8a079068009103137293115b895d454f94bbc3",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "a5dc21c918faf592338b9efeb1b8126e938d11eda3a7d7f60e86433df1d7e650",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "77349ae8db81c258800e028aa8c5d8a96233ef584c5e116674b08d0727962873",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "521fde1c12e94a9ce47394896c8a079068009103137293115b895d454f94bbc3",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "a5dc21c918faf592338b9efeb1b8126e938d11eda3a7d7f60e86433df1d7e650",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "77349ae8db81c258800e028aa8c5d8a96233ef584c5e116674b08d0727962873",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-19T21:21:20.747932+00:00",
+              "duration_ms": 1628
+            },
+            "status": "checks_passed",
+            "checks": [
+              {
+                "id": "string_truthy",
+                "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      false,
+                      "ready",
+                      42
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "ready",
+                "observed": "ready",
+                "status": "passed"
+              },
+              {
+                "id": "negative_truthy",
+                "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      -7,
+                      2
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": -7,
+                "observed": -7,
+                "status": "passed"
+              },
+              {
+                "id": "all_false",
+                "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      false,
+                      null,
+                      []
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "empty",
+                "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+                "input": {
+                  "args": [
+                    []
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              }
+            ]
+          },
+          {
+            "kind": "negative",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "a2706c75-0664-4cc5-afe3-e661a9e592a0",
+              "candidate_id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+              "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+              "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+              "source_binding": {
+                "repository": "hynek/first",
+                "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+                "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+                "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+                "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1"
+              },
+              "plan_id": "c49b9d3baa7ca96bb8885473d64ecd18dafa05108dd5ea39dc5ca6594b889fc0",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "python",
+                  "-I",
+                  "-B",
+                  "/verifier/probe.py"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-19T21:21:21.796165+00:00",
+                "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": {\"negative_control\": \"ready\"}}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": {\"negative_control\": -7}}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": {\"negative_control\": null}}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": {\"negative_control\": null}}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-19T21:21:21.906775+00:00",
+                "duration_ms": 111
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-19T21:21:21.796165+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": {\"negative_control\": \"ready\"}}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": {\"negative_control\": -7}}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": {\"negative_control\": null}}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": {\"negative_control\": null}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-19T21:21:21.906775+00:00",
+                  "duration_ms": 111
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-19T21:21:20.753391+00:00",
+              "runtime": {
+                "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                "repo_digests": [
+                  "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                ],
+                "runtime": "python312",
+                "tag": "ai-agent-evaluator:python312-v1"
+              },
+              "verifier_hashes": {
+                "control.py": "9aea1e197c94ac75a2202329da8715d45c9b5c78dc72cecc9e79c60e6b8611c6",
+                "inputs.json": "44bc9cfdc7129f4f9463586cb638937fdf742cd4f2d7aec13455bbc8f59743b6",
+                "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+              },
+              "executed_source_hashes": {
+                ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+                "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+                "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+                "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+                "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+                "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+                "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+                "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+                "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+              },
+              "container_id": "27a4d61d916b5c8492ab3ca9a93b8f43ba1ec3e618294e33b512511c7f2373e0",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "6f89243d7b10b7e69a0d31afeb971f72fd277850d3d5389a33d2edd090e786f7",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "824a7ab8ed5c67cc61fa29d206f83b6f5ab085a0f203bec9c5b9ba774af131ea",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "27a4d61d916b5c8492ab3ca9a93b8f43ba1ec3e618294e33b512511c7f2373e0",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "6f89243d7b10b7e69a0d31afeb971f72fd277850d3d5389a33d2edd090e786f7",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "824a7ab8ed5c67cc61fa29d206f83b6f5ab085a0f203bec9c5b9ba774af131ea",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-19T21:21:22.549506+00:00",
+              "duration_ms": 1797
+            },
+            "status": "assertions_failed",
+            "checks": [
+              {
+                "id": "string_truthy",
+                "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      false,
+                      "ready",
+                      42
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": "ready",
+                "observed": {
+                  "negative_control": "ready"
+                },
+                "status": "failed"
+              },
+              {
+                "id": "negative_truthy",
+                "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      -7,
+                      2
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": -7,
+                "observed": {
+                  "negative_control": -7
+                },
+                "status": "failed"
+              },
+              {
+                "id": "all_false",
+                "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+                "input": {
+                  "args": [
+                    [
+                      0,
+                      false,
+                      null,
+                      []
+                    ]
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "empty",
+                "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+                "input": {
+                  "args": [
+                    []
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              }
+            ]
+          }
+        ],
+        "status": "validation_passed",
+        "ended_at": "2026-10-19T21:21:22.549762+00:00"
+      }
+    },
+    "result": {
+      "version": "repository-independent-result-v1",
+      "audit_id": "7737cbbf-3cfc-41c8-a717-68733dada693",
+      "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+      "candidate_id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+      "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+      "plan_id": "4165444ac9f02189d9b03922951171d6db587d4a8d495625dd2c351d07e22ecb",
+      "verification_id": "ef2064a953d886a2c4882c1c9ee4607ac0a76a595f8dcc8b867cd31b90436c8b",
+      "stage": "execution",
+      "engine_id": "09f934faef99a72cb02aabfd3bb2d345b4a5ab2e733a4cd3dbe0b93db1fca539",
+      "started_at": "2026-10-19T21:21:22.741598+00:00",
+      "ordinary": {
+        "version": "repository-result-v1",
+        "audit_id": "7737cbbf-3cfc-41c8-a717-68733dada693",
+        "candidate_id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+        "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+        "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+        "source_binding": {
+          "repository": "hynek/first",
+          "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+          "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+          "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+          "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1"
+        },
+        "plan_id": "4165444ac9f02189d9b03922951171d6db587d4a8d495625dd2c351d07e22ecb",
+        "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+        "policy": {
+          "version": "repository-sandbox-v1",
+          "network": "none",
+          "uid": "1000:1000",
+          "rootfs": "read-only",
+          "source": "read-only named volume; separate bounded scratch and offline dependencies",
+          "cpu": 1,
+          "memory_bytes": 536870912,
+          "pids": 64,
+          "scratch_bytes": 134217728,
+          "tmp_bytes": 8388608,
+          "shm_bytes": 8388608,
+          "output_bytes_per_stream": 65536,
+          "log_storage_bytes": 131072,
+          "file_bytes": 16777216,
+          "host_mounts": [],
+          "capabilities": [],
+          "credentials": false,
+          "docker_socket": false,
+          "artifacts": [
+            "stdout",
+            "stderr",
+            "exit status",
+            "runtime identity"
+          ]
+        },
+        "independent": {
+          "status": "not_configured"
+        },
+        "ordinary": {
+          "phase": "tests",
+          "argv": [
+            "python",
+            "-m",
+            "pytest",
+            "-q",
+            "test_first.py"
+          ],
+          "working_directory": "/source",
+          "started_at": "2026-10-19T21:21:23.874065+00:00",
+          "stdout": "...                                                                      [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/source/pytest-cache-files-voqyqzll'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n../usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51\n  /usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/stepwise: [Errno 30] Read-only file system: '/source/pytest-cache-files-ipj0jkvt'\n    session.config.cache.set(STEPWISE_CACHE_DIR, [])\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n3 passed, 2 warnings in 0.04s\n",
+          "stderr": "",
+          "exit_code": 0,
+          "counts": null,
+          "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+          "output_truncated": false,
+          "status": "finished",
+          "ended_at": "2026-10-19T21:21:24.633664+00:00",
+          "duration_ms": 760
+        },
+        "commands": [
+          {
+            "phase": "tests",
+            "argv": [
+              "python",
+              "-m",
+              "pytest",
+              "-q",
+              "test_first.py"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-19T21:21:23.874065+00:00",
+            "stdout": "...                                                                      [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/source/pytest-cache-files-voqyqzll'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n../usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51\n  /usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/stepwise: [Errno 30] Read-only file system: '/source/pytest-cache-files-ipj0jkvt'\n    session.config.cache.set(STEPWISE_CACHE_DIR, [])\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n3 passed, 2 warnings in 0.04s\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-19T21:21:24.633664+00:00",
+            "duration_ms": 760
+          }
+        ],
+        "status": "tests_passed",
+        "started_at": "2026-10-19T21:21:22.748307+00:00",
+        "runtime": {
+          "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+          "repo_digests": [
+            "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+          ],
+          "runtime": "python312",
+          "tag": "ai-agent-evaluator:python312-v1"
+        },
+        "executed_source_hashes": {
+          ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+          "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+          "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+          "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+          "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+          "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+          "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+          "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+          "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+        },
+        "container_id": "ee9a38b834dece362a92397b979eab6fcbf21d3b26826e4d1803a6b05120ddfe",
+        "sandbox": {
+          "user": "1000:1000",
+          "host_config": {
+            "NetworkMode": "none",
+            "ReadonlyRootfs": true,
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges:true"
+            ],
+            "Memory": 536870912,
+            "MemorySwap": 536870912,
+            "NanoCpus": 1000000000,
+            "PidsLimit": 64,
+            "Tmpfs": {
+              "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+              "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+            },
+            "ShmSize": 8388608
+          },
+          "mounts": [
+            {
+              "Type": "volume",
+              "Name": "7b0b9a31e0949d53202c62f690e68207ed13de13b629193c651cf4f3a5a36e38",
+              "Destination": "/source",
+              "RW": false
+            }
+          ]
+        },
+        "container_state": {
+          "OOMKilled": false,
+          "Error": ""
+        },
+        "cleanup": [
+          {
+            "kind": "containers",
+            "id": "ee9a38b834dece362a92397b979eab6fcbf21d3b26826e4d1803a6b05120ddfe",
+            "confirmed_absent": true
+          },
+          {
+            "kind": "volumes",
+            "id": "7b0b9a31e0949d53202c62f690e68207ed13de13b629193c651cf4f3a5a36e38",
+            "confirmed_absent": true
+          }
+        ],
+        "ended_at": "2026-10-19T21:21:25.450632+00:00",
+        "duration_ms": 2703
+      },
+      "independent": {
+        "status": "checks_passed",
+        "checks": [
+          {
+            "id": "string_truthy",
+            "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+            "input": {
+              "args": [
+                [
+                  0,
+                  false,
+                  "ready",
+                  42
+                ]
+              ],
+              "kwargs": {}
+            },
+            "expected": "ready",
+            "observed": "ready",
+            "status": "passed"
+          },
+          {
+            "id": "negative_truthy",
+            "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+            "input": {
+              "args": [
+                [
+                  0,
+                  -7,
+                  2
+                ]
+              ],
+              "kwargs": {}
+            },
+            "expected": -7,
+            "observed": -7,
+            "status": "passed"
+          },
+          {
+            "id": "all_false",
+            "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+            "input": {
+              "args": [
+                [
+                  0,
+                  false,
+                  null,
+                  []
+                ]
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "empty",
+            "requirement_id": "becec6aa9ab395414cafe674033a36eb7395216aca077db94ed5872efc5be2f2",
+            "input": {
+              "args": [
+                []
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          }
+        ],
+        "execution": {
+          "version": "repository-result-v1",
+          "audit_id": "7737cbbf-3cfc-41c8-a717-68733dada693",
+          "candidate_id": "ad6eee18f4bba81596fb9b68057db5bd6000e8795b7b118b95ed44e6c32017d8",
+          "candidate_hash": "0737a2324371c4be5153d190c89b509d185b90544be811c0c217ce0f0a0ec9b1",
+          "snapshot_id": "e69cb3c08d0a5a484a110ecbd0b6e350521e51c6a1f37c08a14fa1c6974a1fed",
+          "source_binding": {
+            "repository": "hynek/first",
+            "base_commit": "106ee3cf389cf2bb76f2816bf22a845c44275f94",
+            "git_tree": "624171509ceeac635b5677a13fb3b7fb9d3f5ce5",
+            "source_tree_hash": "e7d3215e08f94ee9663a88e5fd3274132dfc36345512a93f8c2965e553ca9789",
+            "submitted_patch_hash": "b90851706059489fc004b31dbc4ba18bde7fc11f523e6adc6a45e7eed0c8edb1"
+          },
+          "plan_id": "c49b9d3baa7ca96bb8885473d64ecd18dafa05108dd5ea39dc5ca6594b889fc0",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "python",
+              "-I",
+              "-B",
+              "/verifier/probe.py"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-19T21:21:27.156720+00:00",
+            "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": \"ready\"}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": -7}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": null}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": null}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-19T21:21:27.262258+00:00",
+            "duration_ms": 106
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "python",
+                "-I",
+                "-B",
+                "/verifier/probe.py"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-19T21:21:27.156720+00:00",
+              "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"string_truthy\", \"kind\": \"value\", \"value\": \"ready\"}, {\"id\": \"negative_truthy\", \"kind\": \"value\", \"value\": -7}, {\"id\": \"all_false\", \"kind\": \"value\", \"value\": null}, {\"id\": \"empty\", \"kind\": \"value\", \"value\": null}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-19T21:21:27.262258+00:00",
+              "duration_ms": 106
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-19T21:21:25.458678+00:00",
+          "runtime": {
+            "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+            "repo_digests": [
+              "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+            ],
+            "runtime": "python312",
+            "tag": "ai-agent-evaluator:python312-v1"
+          },
+          "verifier_hashes": {
+            "inputs.json": "c719c7a8c8a2e3c980215b8c20a04083e76e604ffaebf310a2b68e5db631b798",
+            "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+          },
+          "executed_source_hashes": {
+            ".gitignore": "c868f9fbc30bd0a5972c7c48193e39b4e5497318ee42290ea8bba433a0827385",
+            "HISTORY.rst": "75511ef843fac5b9999e32f0645b5585b21f6feeaefe9991fdf453696c0f7f71",
+            "LICENSE": "db4f023d9e71791480d1ea447361fd87263ecaac5d420be3b5bb36c72e07c5c5",
+            "MANIFEST.in": "3d2e14ceb263201dc7a47be50da56979d43d1591fb54166cf75f79ed408b3f17",
+            "Makefile": "682a19a8a2b8ca471313c5906fe11a0ce2509153ceb9d5e9c1a41811c23a811c",
+            "README.rst": "191594b3b2ef10ae8e7bbc5bf5970169db8023a0bfd25fd3dc63b9ece5ebf606",
+            "first.py": "19b5d84f2012d62e313b9176ce3a26e5f4891c680eb569d565c8afd44f9f5177",
+            "setup.py": "a43dfe4e3835c8a5f0e68519c9338612f31f8bd79d3a2cfbcc36788c01826628",
+            "test_first.py": "6f2d5108cdadce96b5e9603d28c37e3c8def319a248bbdb640b4ee6560d9d41a"
+          },
+          "container_id": "eeb267539c3f6a86c822cdf2da6983be8ca25c3355fef0358b7a7b273d56175a",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "b72a6140368e4354886aa63a579e8b82830c33e5a2b73750c9d5d1335b6a0879",
+                "Destination": "/source",
+                "RW": false
+              },
+              {
+                "Type": "volume",
+                "Name": "ee868c1941beb522106faa5bbc1f334bb7e7b6ac2466f14506d057f678ca2996",
+                "Destination": "/verifier",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "eeb267539c3f6a86c822cdf2da6983be8ca25c3355fef0358b7a7b273d56175a",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "b72a6140368e4354886aa63a579e8b82830c33e5a2b73750c9d5d1335b6a0879",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "ee868c1941beb522106faa5bbc1f334bb7e7b6ac2466f14506d057f678ca2996",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-19T21:21:27.975344+00:00",
+          "duration_ms": 2517
+        }
+      },
+      "controls": [],
+      "status": "completed",
+      "ended_at": "2026-10-19T21:21:27.975568+00:00"
+    },
+    "result_hash": "99283b4cfca1f6da3a0fac7cff81673017efb0d24dcde5449f8e9215514ff288"
+  }
+}

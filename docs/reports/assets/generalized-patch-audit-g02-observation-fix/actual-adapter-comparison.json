@@ -1,0 +1,644 @@
+{
+  "purpose": "Test-only execution of archived and current adapters; not historical production re-execution or approval",
+  "node_version": "v22.22.1",
+  "legacy_hashes": {
+    "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+    "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+  },
+  "current_hashes": {
+    "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+    "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+  },
+  "cases": [
+    {
+      "case": "shared_object",
+      "source": "'use strict'; const result={value:0}; module.exports=x=>{result.value=x;return result}",
+      "arguments": [
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": [
+        {
+          "value": 1
+        },
+        {
+          "value": 2
+        }
+      ],
+      "legacy_process": [
+        {
+          "status": "tests_passed",
+          "ordinary": {
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":2}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":2}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "output_truncated": false
+          }
+        },
+        {
+          "status": "assertions_failed",
+          "checks": [
+            {
+              "id": "call0",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  1
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "value": 1
+              },
+              "observed": {
+                "value": 2
+              },
+              "status": "failed"
+            },
+            {
+              "id": "call1",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  2
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "value": 2
+              },
+              "observed": {
+                "value": 2
+              },
+              "status": "passed"
+            }
+          ]
+        }
+      ],
+      "current_process": [
+        {
+          "status": "tests_passed",
+          "ordinary": {
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":1}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":2}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "output_truncated": false
+          }
+        },
+        {
+          "status": "checks_passed",
+          "checks": [
+            {
+              "id": "call0",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  1
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "value": 1
+              },
+              "observed": {
+                "value": 1
+              },
+              "status": "passed"
+            },
+            {
+              "id": "call1",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  2
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "value": 2
+              },
+              "observed": {
+                "value": 2
+              },
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "hidden_early_failure",
+      "source": "const result={value:0}; module.exports=x=>{result.value=x===1?0:1;return result}",
+      "arguments": [
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": [
+        {
+          "value": 1
+        },
+        {
+          "value": 1
+        }
+      ],
+      "legacy_process": [
+        {
+          "status": "tests_passed",
+          "ordinary": {
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":1}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":1}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "output_truncated": false
+          }
+        },
+        {
+          "status": "checks_passed",
+          "checks": [
+            {
+              "id": "call0",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  1
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "value": 1
+              },
+              "observed": {
+                "value": 1
+              },
+              "status": "passed"
+            },
+            {
+              "id": "call1",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  2
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "value": 1
+              },
+              "observed": {
+                "value": 1
+              },
+              "status": "passed"
+            }
+          ]
+        }
+      ],
+      "current_process": [
+        {
+          "status": "tests_passed",
+          "ordinary": {
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":0}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":1}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "output_truncated": false
+          }
+        },
+        {
+          "status": "assertions_failed",
+          "checks": [
+            {
+              "id": "call0",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  1
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "value": 1
+              },
+              "observed": {
+                "value": 0
+              },
+              "status": "failed"
+            },
+            {
+              "id": "call1",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  2
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "value": 1
+              },
+              "observed": {
+                "value": 1
+              },
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "nested_shared_arrays",
+      "source": "const child={value:0}; const result={a:child,b:[child,[child]]};module.exports=x=>{child.value=x;return result}",
+      "arguments": [
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": [
+        {
+          "a": {
+            "value": 1
+          },
+          "b": [
+            {
+              "value": 1
+            },
+            [
+              {
+                "value": 1
+              }
+            ]
+          ]
+        },
+        {
+          "a": {
+            "value": 2
+          },
+          "b": [
+            {
+              "value": 2
+            },
+            [
+              {
+                "value": 2
+              }
+            ]
+          ]
+        }
+      ],
+      "legacy_process": [
+        {
+          "status": "tests_passed",
+          "ordinary": {
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "output_truncated": false
+          }
+        },
+        {
+          "status": "assertions_failed",
+          "checks": [
+            {
+              "id": "call0",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  1
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "a": {
+                  "value": 1
+                },
+                "b": [
+                  {
+                    "value": 1
+                  },
+                  [
+                    {
+                      "value": 1
+                    }
+                  ]
+                ]
+              },
+              "observed": {
+                "a": {
+                  "value": 2
+                },
+                "b": [
+                  {
+                    "value": 2
+                  },
+                  [
+                    {
+                      "value": 2
+                    }
+                  ]
+                ]
+              },
+              "status": "failed"
+            },
+            {
+              "id": "call1",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  2
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "a": {
+                  "value": 2
+                },
+                "b": [
+                  {
+                    "value": 2
+                  },
+                  [
+                    {
+                      "value": 2
+                    }
+                  ]
+                ]
+              },
+              "observed": {
+                "a": {
+                  "value": 2
+                },
+                "b": [
+                  {
+                    "value": 2
+                  },
+                  [
+                    {
+                      "value": 2
+                    }
+                  ]
+                ]
+              },
+              "status": "passed"
+            }
+          ]
+        }
+      ],
+      "current_process": [
+        {
+          "status": "tests_passed",
+          "ordinary": {
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":1},\"b\":[{\"value\":1},[{\"value\":1}]]}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"a\":{\"value\":2},\"b\":[{\"value\":2},[{\"value\":2}]]}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "output_truncated": false
+          }
+        },
+        {
+          "status": "checks_passed",
+          "checks": [
+            {
+              "id": "call0",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  1
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "a": {
+                  "value": 1
+                },
+                "b": [
+                  {
+                    "value": 1
+                  },
+                  [
+                    {
+                      "value": 1
+                    }
+                  ]
+                ]
+              },
+              "observed": {
+                "a": {
+                  "value": 1
+                },
+                "b": [
+                  {
+                    "value": 1
+                  },
+                  [
+                    {
+                      "value": 1
+                    }
+                  ]
+                ]
+              },
+              "status": "passed"
+            },
+            {
+              "id": "call1",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  2
+                ],
+                "kwargs": {}
+              },
+              "expected": {
+                "a": {
+                  "value": 2
+                },
+                "b": [
+                  {
+                    "value": 2
+                  },
+                  [
+                    {
+                      "value": 2
+                    }
+                  ]
+                ]
+              },
+              "observed": {
+                "a": {
+                  "value": 2
+                },
+                "b": [
+                  {
+                    "value": 2
+                  },
+                  [
+                    {
+                      "value": 2
+                    }
+                  ]
+                ]
+              },
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "shared_array",
+      "source": "const result=[0,{value:0}];module.exports=x=>{result[0]=x;result[1].value=x;return result}",
+      "arguments": [
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          {
+            "value": 1
+          }
+        ],
+        [
+          2,
+          {
+            "value": 2
+          }
+        ]
+      ],
+      "legacy_process": [
+        {
+          "status": "tests_passed",
+          "ordinary": {
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":[2,{\"value\":2}]},{\"id\":\"call1\",\"kind\":\"value\",\"value\":[2,{\"value\":2}]}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "output_truncated": false
+          }
+        },
+        {
+          "status": "assertions_failed",
+          "checks": [
+            {
+              "id": "call0",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  1
+                ],
+                "kwargs": {}
+              },
+              "expected": [
+                1,
+                {
+                  "value": 1
+                }
+              ],
+              "observed": [
+                2,
+                {
+                  "value": 2
+                }
+              ],
+              "status": "failed"
+            },
+            {
+              "id": "call1",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  2
+                ],
+                "kwargs": {}
+              },
+              "expected": [
+                2,
+                {
+                  "value": 2
+                }
+              ],
+              "observed": [
+                2,
+                {
+                  "value": 2
+                }
+              ],
+              "status": "passed"
+            }
+          ]
+        }
+      ],
+      "current_process": [
+        {
+          "status": "tests_passed",
+          "ordinary": {
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":[1,{\"value\":1}]},{\"id\":\"call1\",\"kind\":\"value\",\"value\":[2,{\"value\":2}]}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "output_truncated": false
+          }
+        },
+        {
+          "status": "checks_passed",
+          "checks": [
+            {
+              "id": "call0",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  1
+                ],
+                "kwargs": {}
+              },
+              "expected": [
+                1,
+                {
+                  "value": 1
+                }
+              ],
+              "observed": [
+                1,
+                {
+                  "value": 1
+                }
+              ],
+              "status": "passed"
+            },
+            {
+              "id": "call1",
+              "requirement_id": "7ac7202468a4568204405b6e540387d897459955bf6b9e560f45d92762f01118",
+              "input": {
+                "args": [
+                  2
+                ],
+                "kwargs": {}
+              },
+              "expected": [
+                2,
+                {
+                  "value": 2
+                }
+              ],
+              "observed": [
+                2,
+                {
+                  "value": 2
+                }
+              ],
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

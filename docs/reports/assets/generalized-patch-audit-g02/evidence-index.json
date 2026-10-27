@@ -1,0 +1,83 @@
+{
+  "implementation_sha": "cc044cb00de771621efe96793e3953825301da0b",
+  "review_head_ref": "refs/pull/13/head",
+  "pr": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/13",
+  "g1_base": "9179b44ddd794137abdf6beb555390787044836d",
+  "predeclared_trial_commit": "2f470012b685884bc5f0c11f7502742958b5489b",
+  "records": [
+    {
+      "file": "accepted/node-negative-4a2bab03-6b91-47f8-be2f-255a9494b23b.json",
+      "id": "4a2bab03-6b91-47f8-be2f-255a9494b23b",
+      "stage": "execution",
+      "status": "assertions_failed",
+      "repository": "component/escape-html",
+      "candidate_id": "d92f0b253c87aa30315af2cb9bbd016efda7a3c0b1f9f9dd01f1d400f23566fa",
+      "verification_id": "732421e326f81b2dc20d1d6c0d43d3376cbfaac082eaef63e7610d2206baa2fd"
+    },
+    {
+      "file": "accepted/node-negative-validation-aa37edc3-611c-4a92-a2ae-972fd6d8e330.json",
+      "id": "aa37edc3-611c-4a92-a2ae-972fd6d8e330",
+      "stage": "validation",
+      "status": "validation_passed",
+      "repository": "component/escape-html",
+      "candidate_id": "d92f0b253c87aa30315af2cb9bbd016efda7a3c0b1f9f9dd01f1d400f23566fa",
+      "verification_id": "732421e326f81b2dc20d1d6c0d43d3376cbfaac082eaef63e7610d2206baa2fd"
+    },
+    {
+      "file": "accepted/node-positive-2dd4fa07-3aa1-4c0d-bb44-930029b37ec1.json",
+      "id": "2dd4fa07-3aa1-4c0d-bb44-930029b37ec1",
+      "stage": "execution",
+      "status": "completed",
+      "repository": "component/escape-html",
+      "candidate_id": "44927df907f0432b8ab70165c2396f6d8f199d4a4a5332c9110068bb6eb593e9",
+      "verification_id": "93410818cc4b42b01b11978408249800b99a945b6edd5ea9cdb142f195e072a6"
+    },
+    {
+      "file": "accepted/node-positive-validation-7ec49cb2-1556-459f-b00c-22b92043090c.json",
+      "id": "7ec49cb2-1556-459f-b00c-22b92043090c",
+      "stage": "validation",
+      "status": "validation_passed",
+      "repository": "component/escape-html",
+      "candidate_id": "44927df907f0432b8ab70165c2396f6d8f199d4a4a5332c9110068bb6eb593e9",
+      "verification_id": "93410818cc4b42b01b11978408249800b99a945b6edd5ea9cdb142f195e072a6"
+    },
+    {
+      "file": "accepted/python-negative-e656335d-536d-42b3-a387-99cb334195f6.json",
+      "id": "e656335d-536d-42b3-a387-99cb334195f6",
+      "stage": "execution",
+      "status": "assertions_failed",
+      "repository": "hynek/first",
+      "candidate_id": "7a55cb49244272ad2a0d3a79a3fe3a830e46b0e4767d8047bebaa4f6ccffc13f",
+      "verification_id": "292eb9f538f1bafae4e2819fd5fa746a187a4ce4fbacda66a9b255bbf5054ef8"
+    },
+    {
+      "file": "accepted/python-negative-validation-53f41de0-7160-4925-86ba-2f468ac65f8e.json",
+      "id": "53f41de0-7160-4925-86ba-2f468ac65f8e",
+      "stage": "validation",
+      "status": "validation_passed",
+      "repository": "hynek/first",
+      "candidate_id": "7a55cb49244272ad2a0d3a79a3fe3a830e46b0e4767d8047bebaa4f6ccffc13f",
+      "verification_id": "292eb9f538f1bafae4e2819fd5fa746a187a4ce4fbacda66a9b255bbf5054ef8"
+    },
+    {
+      "file": "accepted/python-positive-50fc98ad-3426-48e7-a272-791ac4fe9436.json",
+      "id": "50fc98ad-3426-48e7-a272-791ac4fe9436",
+      "stage": "execution",
+      "status": "completed",
+      "repository": "hynek/first",
+      "candidate_id": "b5c2675726c51cc0ec4c8adfda6ece347e7c2915f8ad75c0ecfcb1f8cbe232b8",
+      "verification_id": "5db32c88ee654958ae2c2dc8779369b901e2f16ae77ce64251f835071296cd73"
+    },
+    {
+      "file": "accepted/python-positive-validation-40caad16-8dbe-4e24-8287-47c2b614af6b.json",
+      "id": "40caad16-8dbe-4e24-8287-47c2b614af6b",
+      "stage": "validation",
+      "status": "validation_passed",
+      "repository": "hynek/first",
+      "candidate_id": "b5c2675726c51cc0ec4c8adfda6ece347e7c2915f8ad75c0ecfcb1f8cbe232b8",
+      "verification_id": "5db32c88ee654958ae2c2dc8779369b901e2f16ae77ce64251f835071296cd73"
+    }
+  ],
+  "predeclared_manifest_sha256": "bc8df3422583e853c5b083e78de72f54470106ba09348a5ed7083af24b92454f",
+  "predeclared_manifest_unchanged": true
+}

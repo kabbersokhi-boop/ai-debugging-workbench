@@ -1,0 +1,1578 @@
+{
+  "audit_id": "10d038d7-cbe5-478b-9e5b-9e63ec3c07d6",
+  "evidence": {
+    "snapshot": {
+      "id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "version": "repository-source-v1",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "file_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "3287c2099845184d0cb7949a08e88a646e51520fb82bb346cc71dc39850b751e",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "modes": {
+        "index.js": "100644",
+        "test.js": "100644",
+        "LICENSE": "100644"
+      },
+      "files": {
+        "LICENSE": "U3ludGhldGljIE1JVCBsaWNlbnNlZCBmaXh0dXJlIGZvciBkZXRlcm1pbmlzdGljIEcxIHRlc3RzLgo=",
+        "index.js": "ZXhwb3J0cy5hZGQgPSAoYSwgYikgPT4gYSAtIGI7Cg==",
+        "test.js": "Y29uc3Qge3Rlc3R9ID0gcmVxdWlyZSgnbm9kZTp0ZXN0Jyk7CmNvbnN0IGFzc2VydCA9IHJlcXVpcmUoJ25vZGU6YXNzZXJ0L3N0cmljdCcpOwpjb25zdCB7YWRkfSA9IHJlcXVpcmUoJy4vaW5kZXgnKTsKdGVzdCgnc3VtJywgKCkgPT4gYXNzZXJ0LmVxdWFsKGFkZCgxLCAyKSwgMykpOwo="
+      },
+      "metadata": {
+        "license": {
+          "spdx_id": "MIT"
+        },
+        "attribution_files": [
+          "LICENSE"
+        ],
+        "adapter": "offline-synthetic-fixture"
+      }
+    },
+    "candidate": {
+      "id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+      "version": "repository-candidate-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "applied_source_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "2e40937f5cafdffefa96d339b34aa5562a0c10537b4d0b2bc49643f763e20dae",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+      "patch": "--- a/index.js\n+++ b/index.js\n@@ -1 +1,2 @@\n-exports.add = (a, b) => a - b;\n+'use strict'; const result={value:0}; module.exports=x=>{result.value=x;return result};\n+module.exports.add=(a,b)=>a+b;\n",
+      "submitted_patch_hash": "7dd70e78feb918b019fbee555ac53388d6131c7ca2bf0792e819e8b172569592",
+      "approved_paths": [
+        "index.js"
+      ],
+      "affected_files": [
+        "index.js"
+      ],
+      "original": {
+        "index.js": "exports.add = (a, b) => a - b;\n"
+      },
+      "modified": {
+        "index.js": "'use strict'; const result={value:0}; module.exports=x=>{result.value=x;return result};\nmodule.exports.add=(a,b)=>a+b;\n"
+      },
+      "provenance": {
+        "category": "user_declared",
+        "author_label": "Authored observation-integrity regression: shared_object",
+        "source_reference": "",
+        "limitations": "Imported authorship is user-declared and unverified."
+      }
+    },
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+      "runtime": "node22",
+      "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "node",
+        "--test",
+        "test.js"
+      ],
+      "test_description": "Offline synthetic repository existing tests",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "verification": {
+      "id": "11e73a8f02e12e84c82835f3eaa4adeb840871e471d191aacc81a9b5ced08b80",
+      "plan": {
+        "version": "independent-plan-v1",
+        "verifier_version": "json-observer-v2",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+        "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+        "ordinary_plan_id": "9b5657131b9a35ffb30c374b961748bb971f7b6db83d8eadac12ed8079f7fbd6",
+        "runtime": "node22",
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "module": "index.js",
+        "export": "",
+        "assertions": [
+          {
+            "id": "call0",
+            "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+            "args": [
+              1
+            ],
+            "kwargs": {},
+            "expected": {
+              "value": 1
+            }
+          },
+          {
+            "id": "call1",
+            "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+            "args": [
+              2
+            ],
+            "kwargs": {},
+            "expected": {
+              "value": 2
+            }
+          }
+        ],
+        "setup": [],
+        "timeout_seconds": 30,
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+        "adapter_hashes": {
+          "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "adapter_sources": {
+          "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+          "probe.cjs": "// json-observer-v2: detach and encode each bounded observation before the next call.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconst stringify = JSON.stringify;\nconst byteLength = Buffer.byteLength;\nconsole.log = (...args) => console.error(...args);\n\nfunction snapshot(value) {\n  const ancestors = new Set();\n  let budget = 0;\n  function account(bytes) {\n    budget += bytes;\n    if (budget > 16384) throw RangeError('JSON observation exceeds 16 KiB');\n  }\n  function copy(v, depth) {\n    if (depth > 8) throw RangeError('JSON observation nesting exceeds eight levels');\n    if (v === null || typeof v === 'boolean') { account(v === null ? 4 : v ? 4 : 5); return v; }\n    if (typeof v === 'string') { account(2 + byteLength(v, 'utf8')); return v; }\n    if (typeof v === 'number' && Number.isFinite(v)) { account(String(v).length); return v; }\n    const array = Array.isArray(v);\n    if (typeof v !== 'object' || (!array && Object.getPrototypeOf(v) !== Object.prototype))\n      throw TypeError('Unsupported JSON observation');\n    if (ancestors.has(v)) throw TypeError('Cyclic JSON observation');\n    // Serialization hooks are code, not supported JSON data; never invoke or coerce them.\n    const hook = Object.getOwnPropertyDescriptor(v, 'toJSON');\n    if ((hook && (!('value' in hook) || typeof hook.value === 'function')) ||\n        (!hook && typeof v.toJSON === 'function')) throw TypeError('Unsupported JSON hook');\n    const keys = array ? null : Object.keys(v);\n    const length = array ? v.length : keys.length;\n    if (!Number.isInteger(length) || length < 0 || length > 256)\n      throw RangeError('JSON collection exceeds 256 items');\n    account(2 + Math.max(0, length - 1));\n    ancestors.add(v);\n    try {\n      if (array) {\n        const result = [];\n        // Only our new copy is modified. Candidate arrays/objects remain untouched.\n        Object.defineProperty(result, 'toJSON', {value: null});\n        for (let i = 0; i < length; i++) {\n          if (!Object.hasOwn(v, i)) throw TypeError('Sparse arrays are not JSON observations');\n          result.push(copy(v[i], depth + 1));\n        }\n        return result;\n      }\n      const result = Object.create(null);\n      for (const key of keys) {\n        account(3 + byteLength(key, 'utf8'));\n        result[key] = copy(v[key], depth + 1);\n      }\n      return result;\n    } finally { ancestors.delete(v); }\n  }\n  const encoded = stringify(copy(value, 0));\n  if (typeof encoded !== 'string' || byteLength(encoded, 'utf8') > 16384)\n    throw RangeError('Encoded JSON observation exceeds 16 KiB');\n  return encoded;\n}\n\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = snapshot(await fn(...call.args));\n      // Retain immutable JSON text, never a candidate-owned reference or deferred serializer.\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"value\",\"value\":' + value + '}');\n    } catch (error) {\n      let name = 'Error';\n      try { if (typeof error?.name === 'string') name = error.name.slice(0, 200); } catch {}\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"execution_error\",\"error\":' + stringify(name) + '}');\n    }\n  }\n  emit('{\"version\":\"observations-v1\",\"observations\":[' + observations.join(',') + ']}\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+        },
+        "interpretation": "all-named-canonical-json-equalities-v1"
+      },
+      "requirements": [
+        {
+          "id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+          "version": "behavioral-requirement-v1",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "statement": "Capture each completed call as independent JSON data before subsequent mutation",
+          "expected_behavior": "Named calls retain their declared call-time JSON values",
+          "input_domain": "Authored synthetic review regression: shared_object",
+          "assumptions": [
+            "Sequential calls; JSON data, not JavaScript object identity"
+          ],
+          "ambiguities": [],
+          "provenance": {
+            "origin": "external_specification",
+            "reference": "G2 observation-integrity review",
+            "excerpt": "Capture each completed call as independent JSON data before subsequent mutation",
+            "excerpt_hash": "e9ff090af69b9e4d49455ea1bf132b8fde049f2719668723dcf99d4f34b4f46b",
+            "justification": "Owner review supplied the independent observation contract",
+            "independent_of_candidate": true
+          },
+          "approval": "owner_approved"
+        }
+      ]
+    },
+    "stage": "execution",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+    "approval": {
+      "local_owner": true,
+      "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+      "plan_id": "9b5657131b9a35ffb30c374b961748bb971f7b6db83d8eadac12ed8079f7fbd6",
+      "approved_at": "2026-10-20T00:00:00+00:00",
+      "verification_id": "11e73a8f02e12e84c82835f3eaa4adeb840871e471d191aacc81a9b5ced08b80",
+      "stage": "execution",
+      "approve_independent_plan": true
+    },
+    "validation": {
+      "audit_id": "a9e0f62a-7963-420a-8bc2-56ff5db362bf",
+      "result": {
+        "version": "repository-independent-result-v1",
+        "audit_id": "a9e0f62a-7963-420a-8bc2-56ff5db362bf",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+        "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+        "plan_id": "9b5657131b9a35ffb30c374b961748bb971f7b6db83d8eadac12ed8079f7fbd6",
+        "verification_id": "11e73a8f02e12e84c82835f3eaa4adeb840871e471d191aacc81a9b5ced08b80",
+        "stage": "validation",
+        "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+        "started_at": "2026-10-22T18:18:34.675092+00:00",
+        "ordinary": null,
+        "independent": {
+          "status": "not_run",
+          "checks": []
+        },
+        "controls": [
+          {
+            "kind": "positive",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "a9e0f62a-7963-420a-8bc2-56ff5db362bf",
+              "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+              "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+              "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+              "source_binding": {
+                "repository": "fixture/project",
+                "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+                "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+                "submitted_patch_hash": "7dd70e78feb918b019fbee555ac53388d6131c7ca2bf0792e819e8b172569592"
+              },
+              "plan_id": "2569ab42d6a725698635c9273c6c2728a7ad1cbbca2f0b751cebda9d6856da15",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "node",
+                  "/verifier/probe.cjs"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-22T18:18:38.635481+00:00",
+                "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":1}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":2}}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-22T18:18:38.746059+00:00",
+                "duration_ms": 111
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "node",
+                    "/verifier/probe.cjs"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T18:18:38.635481+00:00",
+                  "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":1}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":2}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T18:18:38.746059+00:00",
+                  "duration_ms": 111
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-22T18:18:34.678377+00:00",
+              "runtime": {
+                "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+                "repo_digests": [
+                  "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+                ],
+                "runtime": "node22",
+                "tag": "patch-audit-node:22-v1"
+              },
+              "verifier_hashes": {
+                "control.cjs": "079eb26ee09375e53c0bb19c61a7f8ec62496e448750c7ee07a84daf006ebae0",
+                "inputs.json": "c47d680ead9895e8ce53fb6e011adc3e587ec2a0bd8df3afbc95406ef6495e97",
+                "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+              },
+              "executed_source_hashes": {
+                "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                "index.js": "2e40937f5cafdffefa96d339b34aa5562a0c10537b4d0b2bc49643f763e20dae",
+                "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+              },
+              "container_id": "4035d42c64900021a0f2985bcead402a444150ab21570074e1d8b1c0fc7437a1",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "1f622f023e90ddadf7cdc63e5dfd5df1dba3e379b6bc766a34e6490db4584e5b",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "383f72a2481862d094b9e202a1497a119e459c819b2b0f7d3e2468218c67ea56",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "4035d42c64900021a0f2985bcead402a444150ab21570074e1d8b1c0fc7437a1",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "1f622f023e90ddadf7cdc63e5dfd5df1dba3e379b6bc766a34e6490db4584e5b",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "383f72a2481862d094b9e202a1497a119e459c819b2b0f7d3e2468218c67ea56",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-22T18:18:39.273265+00:00",
+              "duration_ms": 4595
+            },
+            "status": "checks_passed",
+            "checks": [
+              {
+                "id": "call0",
+                "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+                "input": {
+                  "args": [
+                    1
+                  ],
+                  "kwargs": {}
+                },
+                "expected": {
+                  "value": 1
+                },
+                "observed": {
+                  "value": 1
+                },
+                "status": "passed"
+              },
+              {
+                "id": "call1",
+                "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+                "input": {
+                  "args": [
+                    2
+                  ],
+                  "kwargs": {}
+                },
+                "expected": {
+                  "value": 2
+                },
+                "observed": {
+                  "value": 2
+                },
+                "status": "passed"
+              }
+            ]
+          },
+          {
+            "kind": "negative",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "a9e0f62a-7963-420a-8bc2-56ff5db362bf",
+              "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+              "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+              "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+              "source_binding": {
+                "repository": "fixture/project",
+                "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+                "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+                "submitted_patch_hash": "7dd70e78feb918b019fbee555ac53388d6131c7ca2bf0792e819e8b172569592"
+              },
+              "plan_id": "2569ab42d6a725698635c9273c6c2728a7ad1cbbca2f0b751cebda9d6856da15",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "node",
+                  "/verifier/probe.cjs"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-22T18:18:45.039010+00:00",
+                "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"value\":1}}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"value\":2}}}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-22T18:18:45.228773+00:00",
+                "duration_ms": 190
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "node",
+                    "/verifier/probe.cjs"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T18:18:45.039010+00:00",
+                  "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"value\":1}}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"value\":2}}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T18:18:45.228773+00:00",
+                  "duration_ms": 190
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-22T18:18:39.280797+00:00",
+              "runtime": {
+                "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+                "repo_digests": [
+                  "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+                ],
+                "runtime": "node22",
+                "tag": "patch-audit-node:22-v1"
+              },
+              "verifier_hashes": {
+                "control.cjs": "58fdeb21bcbdf9557a613776e61d7824f38055e05396e7b20e46b5616506ea01",
+                "inputs.json": "c47d680ead9895e8ce53fb6e011adc3e587ec2a0bd8df3afbc95406ef6495e97",
+                "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+              },
+              "executed_source_hashes": {
+                "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                "index.js": "2e40937f5cafdffefa96d339b34aa5562a0c10537b4d0b2bc49643f763e20dae",
+                "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+              },
+              "container_id": "dd0e4e35dd86b3fdcf2c4a81e35682613399a3759328cc9d3775e5714951e50e",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "adc88015a1cd99cf20f903e27d4fca469515a184a1abd814c4cc24dd9f8a96a7",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "836091d23180d87fab53874d44368653aa0956d86379f75a68f8165f14c54cc8",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "dd0e4e35dd86b3fdcf2c4a81e35682613399a3759328cc9d3775e5714951e50e",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "adc88015a1cd99cf20f903e27d4fca469515a184a1abd814c4cc24dd9f8a96a7",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "836091d23180d87fab53874d44368653aa0956d86379f75a68f8165f14c54cc8",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-22T18:18:45.754040+00:00",
+              "duration_ms": 6474
+            },
+            "status": "assertions_failed",
+            "checks": [
+              {
+                "id": "call0",
+                "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+                "input": {
+                  "args": [
+                    1
+                  ],
+                  "kwargs": {}
+                },
+                "expected": {
+                  "value": 1
+                },
+                "observed": {
+                  "negative_control": {
+                    "value": 1
+                  }
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call1",
+                "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+                "input": {
+                  "args": [
+                    2
+                  ],
+                  "kwargs": {}
+                },
+                "expected": {
+                  "value": 2
+                },
+                "observed": {
+                  "negative_control": {
+                    "value": 2
+                  }
+                },
+                "status": "failed"
+              }
+            ]
+          }
+        ],
+        "status": "validation_passed",
+        "ended_at": "2026-10-22T18:18:45.754230+00:00"
+      }
+    }
+  },
+  "result": {
+    "version": "repository-independent-result-v1",
+    "audit_id": "10d038d7-cbe5-478b-9e5b-9e63ec3c07d6",
+    "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+    "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+    "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+    "plan_id": "9b5657131b9a35ffb30c374b961748bb971f7b6db83d8eadac12ed8079f7fbd6",
+    "verification_id": "11e73a8f02e12e84c82835f3eaa4adeb840871e471d191aacc81a9b5ced08b80",
+    "stage": "execution",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "started_at": "2026-10-22T18:18:45.757240+00:00",
+    "ordinary": {
+      "version": "repository-result-v1",
+      "audit_id": "10d038d7-cbe5-478b-9e5b-9e63ec3c07d6",
+      "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+      "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "source_binding": {
+        "repository": "fixture/project",
+        "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+        "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+        "submitted_patch_hash": "7dd70e78feb918b019fbee555ac53388d6131c7ca2bf0792e819e8b172569592"
+      },
+      "plan_id": "9b5657131b9a35ffb30c374b961748bb971f7b6db83d8eadac12ed8079f7fbd6",
+      "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+      "policy": {
+        "version": "repository-sandbox-v1",
+        "network": "none",
+        "uid": "1000:1000",
+        "rootfs": "read-only",
+        "source": "read-only named volume; separate bounded scratch and offline dependencies",
+        "cpu": 1,
+        "memory_bytes": 536870912,
+        "pids": 64,
+        "scratch_bytes": 134217728,
+        "tmp_bytes": 8388608,
+        "shm_bytes": 8388608,
+        "output_bytes_per_stream": 65536,
+        "log_storage_bytes": 131072,
+        "file_bytes": 16777216,
+        "host_mounts": [],
+        "capabilities": [],
+        "credentials": false,
+        "docker_socket": false,
+        "artifacts": [
+          "stdout",
+          "stderr",
+          "exit status",
+          "runtime identity"
+        ]
+      },
+      "independent": {
+        "status": "not_configured"
+      },
+      "ordinary": {
+        "phase": "tests",
+        "argv": [
+          "node",
+          "--test",
+          "test.js"
+        ],
+        "working_directory": "/source",
+        "started_at": "2026-10-22T18:18:46.493625+00:00",
+        "stdout": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 1.027142\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 60.767351\n",
+        "stderr": "",
+        "exit_code": 0,
+        "counts": null,
+        "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+        "output_truncated": false,
+        "status": "finished",
+        "ended_at": "2026-10-22T18:18:46.633617+00:00",
+        "duration_ms": 140
+      },
+      "commands": [
+        {
+          "phase": "tests",
+          "argv": [
+            "node",
+            "--test",
+            "test.js"
+          ],
+          "working_directory": "/source",
+          "started_at": "2026-10-22T18:18:46.493625+00:00",
+          "stdout": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 1.027142\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 60.767351\n",
+          "stderr": "",
+          "exit_code": 0,
+          "counts": null,
+          "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+          "output_truncated": false,
+          "status": "finished",
+          "ended_at": "2026-10-22T18:18:46.633617+00:00",
+          "duration_ms": 140
+        }
+      ],
+      "status": "tests_passed",
+      "started_at": "2026-10-22T18:18:45.777729+00:00",
+      "runtime": {
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "repo_digests": [
+          "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+        ],
+        "runtime": "node22",
+        "tag": "patch-audit-node:22-v1"
+      },
+      "executed_source_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "2e40937f5cafdffefa96d339b34aa5562a0c10537b4d0b2bc49643f763e20dae",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "container_id": "57de75788e253a2d1e30fe9a3c0a8a6a532c419402f140bcefe0aeaaa3644a94",
+      "sandbox": {
+        "user": "1000:1000",
+        "host_config": {
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "CapDrop": [
+            "ALL"
+          ],
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ],
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NanoCpus": 1000000000,
+          "PidsLimit": 64,
+          "Tmpfs": {
+            "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+            "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+          },
+          "ShmSize": 8388608
+        },
+        "mounts": [
+          {
+            "Type": "volume",
+            "Name": "08de8f8806bbdfde3536a3bd53c2c1daf166252448499bdc4c47b204fe3c7e32",
+            "Destination": "/source",
+            "RW": false
+          }
+        ]
+      },
+      "container_state": {
+        "OOMKilled": false,
+        "Error": ""
+      },
+      "cleanup": [
+        {
+          "kind": "containers",
+          "id": "57de75788e253a2d1e30fe9a3c0a8a6a532c419402f140bcefe0aeaaa3644a94",
+          "confirmed_absent": true
+        },
+        {
+          "kind": "volumes",
+          "id": "08de8f8806bbdfde3536a3bd53c2c1daf166252448499bdc4c47b204fe3c7e32",
+          "confirmed_absent": true
+        }
+      ],
+      "ended_at": "2026-10-22T18:18:47.019553+00:00",
+      "duration_ms": 1242
+    },
+    "independent": {
+      "status": "checks_passed",
+      "checks": [
+        {
+          "id": "call0",
+          "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+          "input": {
+            "args": [
+              1
+            ],
+            "kwargs": {}
+          },
+          "expected": {
+            "value": 1
+          },
+          "observed": {
+            "value": 1
+          },
+          "status": "passed"
+        },
+        {
+          "id": "call1",
+          "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+          "input": {
+            "args": [
+              2
+            ],
+            "kwargs": {}
+          },
+          "expected": {
+            "value": 2
+          },
+          "observed": {
+            "value": 2
+          },
+          "status": "passed"
+        }
+      ],
+      "execution": {
+        "version": "repository-result-v1",
+        "audit_id": "10d038d7-cbe5-478b-9e5b-9e63ec3c07d6",
+        "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+        "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "source_binding": {
+          "repository": "fixture/project",
+          "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+          "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+          "submitted_patch_hash": "7dd70e78feb918b019fbee555ac53388d6131c7ca2bf0792e819e8b172569592"
+        },
+        "plan_id": "2569ab42d6a725698635c9273c6c2728a7ad1cbbca2f0b751cebda9d6856da15",
+        "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+        "policy": {
+          "version": "repository-sandbox-v1",
+          "network": "none",
+          "uid": "1000:1000",
+          "rootfs": "read-only",
+          "source": "read-only named volume; separate bounded scratch and offline dependencies",
+          "cpu": 1,
+          "memory_bytes": 536870912,
+          "pids": 64,
+          "scratch_bytes": 134217728,
+          "tmp_bytes": 8388608,
+          "shm_bytes": 8388608,
+          "output_bytes_per_stream": 65536,
+          "log_storage_bytes": 131072,
+          "file_bytes": 16777216,
+          "host_mounts": [],
+          "capabilities": [],
+          "credentials": false,
+          "docker_socket": false,
+          "artifacts": [
+            "stdout",
+            "stderr",
+            "exit status",
+            "runtime identity"
+          ]
+        },
+        "independent": {
+          "status": "not_configured"
+        },
+        "ordinary": {
+          "phase": "tests",
+          "argv": [
+            "node",
+            "/verifier/probe.cjs"
+          ],
+          "working_directory": "/source",
+          "started_at": "2026-10-22T18:18:47.642029+00:00",
+          "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":1}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":2}}]}\n",
+          "stderr": "",
+          "exit_code": 0,
+          "counts": null,
+          "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+          "output_truncated": false,
+          "status": "finished",
+          "ended_at": "2026-10-22T18:18:47.696708+00:00",
+          "duration_ms": 55
+        },
+        "commands": [
+          {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T18:18:47.642029+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":1}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":2}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T18:18:47.696708+00:00",
+            "duration_ms": 55
+          }
+        ],
+        "status": "tests_passed",
+        "started_at": "2026-10-22T18:18:47.022669+00:00",
+        "runtime": {
+          "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+          "repo_digests": [
+            "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+          ],
+          "runtime": "node22",
+          "tag": "patch-audit-node:22-v1"
+        },
+        "verifier_hashes": {
+          "inputs.json": "273109f3affa6e7c8bf585307ce125847ba49ac10ac338f440eb139f8ba84ac9",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "executed_source_hashes": {
+          "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+          "index.js": "2e40937f5cafdffefa96d339b34aa5562a0c10537b4d0b2bc49643f763e20dae",
+          "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+        },
+        "container_id": "8e712cb2cddd32e95d1a4cee4bdc8145d7dee904497786494ffcd36d1da7de75",
+        "sandbox": {
+          "user": "1000:1000",
+          "host_config": {
+            "NetworkMode": "none",
+            "ReadonlyRootfs": true,
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges:true"
+            ],
+            "Memory": 536870912,
+            "MemorySwap": 536870912,
+            "NanoCpus": 1000000000,
+            "PidsLimit": 64,
+            "Tmpfs": {
+              "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+              "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+            },
+            "ShmSize": 8388608
+          },
+          "mounts": [
+            {
+              "Type": "volume",
+              "Name": "23226277766af68ff0252f3e4fb52ff1a7a2e78fe0b8673c5e5704cb0854509e",
+              "Destination": "/source",
+              "RW": false
+            },
+            {
+              "Type": "volume",
+              "Name": "07959b7f1f90400b7546030a3df16d52dd6cc6dbfd79e35b983b9043526e7cd1",
+              "Destination": "/verifier",
+              "RW": false
+            }
+          ]
+        },
+        "container_state": {
+          "OOMKilled": false,
+          "Error": ""
+        },
+        "cleanup": [
+          {
+            "kind": "containers",
+            "id": "8e712cb2cddd32e95d1a4cee4bdc8145d7dee904497786494ffcd36d1da7de75",
+            "confirmed_absent": true
+          },
+          {
+            "kind": "volumes",
+            "id": "23226277766af68ff0252f3e4fb52ff1a7a2e78fe0b8673c5e5704cb0854509e",
+            "confirmed_absent": true
+          },
+          {
+            "kind": "volumes",
+            "id": "07959b7f1f90400b7546030a3df16d52dd6cc6dbfd79e35b983b9043526e7cd1",
+            "confirmed_absent": true
+          }
+        ],
+        "ended_at": "2026-10-22T18:18:48.187752+00:00",
+        "duration_ms": 1165
+      }
+    },
+    "controls": [],
+    "status": "completed",
+    "ended_at": "2026-10-22T18:18:48.188030+00:00"
+  },
+  "validation_audit_id": "a9e0f62a-7963-420a-8bc2-56ff5db362bf",
+  "validation_evidence": {
+    "snapshot": {
+      "id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "version": "repository-source-v1",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "file_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "3287c2099845184d0cb7949a08e88a646e51520fb82bb346cc71dc39850b751e",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "modes": {
+        "index.js": "100644",
+        "test.js": "100644",
+        "LICENSE": "100644"
+      },
+      "files": {
+        "LICENSE": "U3ludGhldGljIE1JVCBsaWNlbnNlZCBmaXh0dXJlIGZvciBkZXRlcm1pbmlzdGljIEcxIHRlc3RzLgo=",
+        "index.js": "ZXhwb3J0cy5hZGQgPSAoYSwgYikgPT4gYSAtIGI7Cg==",
+        "test.js": "Y29uc3Qge3Rlc3R9ID0gcmVxdWlyZSgnbm9kZTp0ZXN0Jyk7CmNvbnN0IGFzc2VydCA9IHJlcXVpcmUoJ25vZGU6YXNzZXJ0L3N0cmljdCcpOwpjb25zdCB7YWRkfSA9IHJlcXVpcmUoJy4vaW5kZXgnKTsKdGVzdCgnc3VtJywgKCkgPT4gYXNzZXJ0LmVxdWFsKGFkZCgxLCAyKSwgMykpOwo="
+      },
+      "metadata": {
+        "license": {
+          "spdx_id": "MIT"
+        },
+        "attribution_files": [
+          "LICENSE"
+        ],
+        "adapter": "offline-synthetic-fixture"
+      }
+    },
+    "candidate": {
+      "id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+      "version": "repository-candidate-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "applied_source_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "2e40937f5cafdffefa96d339b34aa5562a0c10537b4d0b2bc49643f763e20dae",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+      "patch": "--- a/index.js\n+++ b/index.js\n@@ -1 +1,2 @@\n-exports.add = (a, b) => a - b;\n+'use strict'; const result={value:0}; module.exports=x=>{result.value=x;return result};\n+module.exports.add=(a,b)=>a+b;\n",
+      "submitted_patch_hash": "7dd70e78feb918b019fbee555ac53388d6131c7ca2bf0792e819e8b172569592",
+      "approved_paths": [
+        "index.js"
+      ],
+      "affected_files": [
+        "index.js"
+      ],
+      "original": {
+        "index.js": "exports.add = (a, b) => a - b;\n"
+      },
+      "modified": {
+        "index.js": "'use strict'; const result={value:0}; module.exports=x=>{result.value=x;return result};\nmodule.exports.add=(a,b)=>a+b;\n"
+      },
+      "provenance": {
+        "category": "user_declared",
+        "author_label": "Authored observation-integrity regression: shared_object",
+        "source_reference": "",
+        "limitations": "Imported authorship is user-declared and unverified."
+      }
+    },
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+      "runtime": "node22",
+      "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "node",
+        "--test",
+        "test.js"
+      ],
+      "test_description": "Offline synthetic repository existing tests",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "verification": {
+      "id": "11e73a8f02e12e84c82835f3eaa4adeb840871e471d191aacc81a9b5ced08b80",
+      "plan": {
+        "version": "independent-plan-v1",
+        "verifier_version": "json-observer-v2",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+        "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+        "ordinary_plan_id": "9b5657131b9a35ffb30c374b961748bb971f7b6db83d8eadac12ed8079f7fbd6",
+        "runtime": "node22",
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "module": "index.js",
+        "export": "",
+        "assertions": [
+          {
+            "id": "call0",
+            "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+            "args": [
+              1
+            ],
+            "kwargs": {},
+            "expected": {
+              "value": 1
+            }
+          },
+          {
+            "id": "call1",
+            "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+            "args": [
+              2
+            ],
+            "kwargs": {},
+            "expected": {
+              "value": 2
+            }
+          }
+        ],
+        "setup": [],
+        "timeout_seconds": 30,
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+        "adapter_hashes": {
+          "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "adapter_sources": {
+          "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+          "probe.cjs": "// json-observer-v2: detach and encode each bounded observation before the next call.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconst stringify = JSON.stringify;\nconst byteLength = Buffer.byteLength;\nconsole.log = (...args) => console.error(...args);\n\nfunction snapshot(value) {\n  const ancestors = new Set();\n  let budget = 0;\n  function account(bytes) {\n    budget += bytes;\n    if (budget > 16384) throw RangeError('JSON observation exceeds 16 KiB');\n  }\n  function copy(v, depth) {\n    if (depth > 8) throw RangeError('JSON observation nesting exceeds eight levels');\n    if (v === null || typeof v === 'boolean') { account(v === null ? 4 : v ? 4 : 5); return v; }\n    if (typeof v === 'string') { account(2 + byteLength(v, 'utf8')); return v; }\n    if (typeof v === 'number' && Number.isFinite(v)) { account(String(v).length); return v; }\n    const array = Array.isArray(v);\n    if (typeof v !== 'object' || (!array && Object.getPrototypeOf(v) !== Object.prototype))\n      throw TypeError('Unsupported JSON observation');\n    if (ancestors.has(v)) throw TypeError('Cyclic JSON observation');\n    // Serialization hooks are code, not supported JSON data; never invoke or coerce them.\n    const hook = Object.getOwnPropertyDescriptor(v, 'toJSON');\n    if ((hook && (!('value' in hook) || typeof hook.value === 'function')) ||\n        (!hook && typeof v.toJSON === 'function')) throw TypeError('Unsupported JSON hook');\n    const keys = array ? null : Object.keys(v);\n    const length = array ? v.length : keys.length;\n    if (!Number.isInteger(length) || length < 0 || length > 256)\n      throw RangeError('JSON collection exceeds 256 items');\n    account(2 + Math.max(0, length - 1));\n    ancestors.add(v);\n    try {\n      if (array) {\n        const result = [];\n        // Only our new copy is modified. Candidate arrays/objects remain untouched.\n        Object.defineProperty(result, 'toJSON', {value: null});\n        for (let i = 0; i < length; i++) {\n          if (!Object.hasOwn(v, i)) throw TypeError('Sparse arrays are not JSON observations');\n          result.push(copy(v[i], depth + 1));\n        }\n        return result;\n      }\n      const result = Object.create(null);\n      for (const key of keys) {\n        account(3 + byteLength(key, 'utf8'));\n        result[key] = copy(v[key], depth + 1);\n      }\n      return result;\n    } finally { ancestors.delete(v); }\n  }\n  const encoded = stringify(copy(value, 0));\n  if (typeof encoded !== 'string' || byteLength(encoded, 'utf8') > 16384)\n    throw RangeError('Encoded JSON observation exceeds 16 KiB');\n  return encoded;\n}\n\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = snapshot(await fn(...call.args));\n      // Retain immutable JSON text, never a candidate-owned reference or deferred serializer.\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"value\",\"value\":' + value + '}');\n    } catch (error) {\n      let name = 'Error';\n      try { if (typeof error?.name === 'string') name = error.name.slice(0, 200); } catch {}\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"execution_error\",\"error\":' + stringify(name) + '}');\n    }\n  }\n  emit('{\"version\":\"observations-v1\",\"observations\":[' + observations.join(',') + ']}\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+        },
+        "interpretation": "all-named-canonical-json-equalities-v1"
+      },
+      "requirements": [
+        {
+          "id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+          "version": "behavioral-requirement-v1",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "statement": "Capture each completed call as independent JSON data before subsequent mutation",
+          "expected_behavior": "Named calls retain their declared call-time JSON values",
+          "input_domain": "Authored synthetic review regression: shared_object",
+          "assumptions": [
+            "Sequential calls; JSON data, not JavaScript object identity"
+          ],
+          "ambiguities": [],
+          "provenance": {
+            "origin": "external_specification",
+            "reference": "G2 observation-integrity review",
+            "excerpt": "Capture each completed call as independent JSON data before subsequent mutation",
+            "excerpt_hash": "e9ff090af69b9e4d49455ea1bf132b8fde049f2719668723dcf99d4f34b4f46b",
+            "justification": "Owner review supplied the independent observation contract",
+            "independent_of_candidate": true
+          },
+          "approval": "owner_approved"
+        }
+      ]
+    },
+    "stage": "validation",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+    "approval": {
+      "local_owner": true,
+      "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+      "plan_id": "9b5657131b9a35ffb30c374b961748bb971f7b6db83d8eadac12ed8079f7fbd6",
+      "approved_at": "2026-10-20T00:00:00+00:00",
+      "verification_id": "11e73a8f02e12e84c82835f3eaa4adeb840871e471d191aacc81a9b5ced08b80",
+      "stage": "validation",
+      "approve_independent_plan": true
+    }
+  },
+  "validation_result": {
+    "version": "repository-independent-result-v1",
+    "audit_id": "a9e0f62a-7963-420a-8bc2-56ff5db362bf",
+    "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+    "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+    "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+    "plan_id": "9b5657131b9a35ffb30c374b961748bb971f7b6db83d8eadac12ed8079f7fbd6",
+    "verification_id": "11e73a8f02e12e84c82835f3eaa4adeb840871e471d191aacc81a9b5ced08b80",
+    "stage": "validation",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "started_at": "2026-10-22T18:18:34.675092+00:00",
+    "ordinary": null,
+    "independent": {
+      "status": "not_run",
+      "checks": []
+    },
+    "controls": [
+      {
+        "kind": "positive",
+        "execution": {
+          "version": "repository-result-v1",
+          "audit_id": "a9e0f62a-7963-420a-8bc2-56ff5db362bf",
+          "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+          "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "source_binding": {
+            "repository": "fixture/project",
+            "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+            "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+            "submitted_patch_hash": "7dd70e78feb918b019fbee555ac53388d6131c7ca2bf0792e819e8b172569592"
+          },
+          "plan_id": "2569ab42d6a725698635c9273c6c2728a7ad1cbbca2f0b751cebda9d6856da15",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T18:18:38.635481+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":1}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":2}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T18:18:38.746059+00:00",
+            "duration_ms": 111
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "node",
+                "/verifier/probe.cjs"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-22T18:18:38.635481+00:00",
+              "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"value\":1}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"value\":2}}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-22T18:18:38.746059+00:00",
+              "duration_ms": 111
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-22T18:18:34.678377+00:00",
+          "runtime": {
+            "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+            "repo_digests": [
+              "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+            ],
+            "runtime": "node22",
+            "tag": "patch-audit-node:22-v1"
+          },
+          "verifier_hashes": {
+            "control.cjs": "079eb26ee09375e53c0bb19c61a7f8ec62496e448750c7ee07a84daf006ebae0",
+            "inputs.json": "c47d680ead9895e8ce53fb6e011adc3e587ec2a0bd8df3afbc95406ef6495e97",
+            "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+          },
+          "executed_source_hashes": {
+            "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+            "index.js": "2e40937f5cafdffefa96d339b34aa5562a0c10537b4d0b2bc49643f763e20dae",
+            "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+          },
+          "container_id": "4035d42c64900021a0f2985bcead402a444150ab21570074e1d8b1c0fc7437a1",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "1f622f023e90ddadf7cdc63e5dfd5df1dba3e379b6bc766a34e6490db4584e5b",
+                "Destination": "/source",
+                "RW": false
+              },
+              {
+                "Type": "volume",
+                "Name": "383f72a2481862d094b9e202a1497a119e459c819b2b0f7d3e2468218c67ea56",
+                "Destination": "/verifier",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "4035d42c64900021a0f2985bcead402a444150ab21570074e1d8b1c0fc7437a1",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "1f622f023e90ddadf7cdc63e5dfd5df1dba3e379b6bc766a34e6490db4584e5b",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "383f72a2481862d094b9e202a1497a119e459c819b2b0f7d3e2468218c67ea56",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-22T18:18:39.273265+00:00",
+          "duration_ms": 4595
+        },
+        "status": "checks_passed",
+        "checks": [
+          {
+            "id": "call0",
+            "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+            "input": {
+              "args": [
+                1
+              ],
+              "kwargs": {}
+            },
+            "expected": {
+              "value": 1
+            },
+            "observed": {
+              "value": 1
+            },
+            "status": "passed"
+          },
+          {
+            "id": "call1",
+            "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+            "input": {
+              "args": [
+                2
+              ],
+              "kwargs": {}
+            },
+            "expected": {
+              "value": 2
+            },
+            "observed": {
+              "value": 2
+            },
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "kind": "negative",
+        "execution": {
+          "version": "repository-result-v1",
+          "audit_id": "a9e0f62a-7963-420a-8bc2-56ff5db362bf",
+          "candidate_id": "089251b91abfddd7f098bc9e616542d42796ecadf9ecdec8c4236cd53e042602",
+          "candidate_hash": "93596eaec0a2e3ac78f47cfba0907a529aa4abc2ff4684daf1839018d275b872",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "source_binding": {
+            "repository": "fixture/project",
+            "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+            "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+            "submitted_patch_hash": "7dd70e78feb918b019fbee555ac53388d6131c7ca2bf0792e819e8b172569592"
+          },
+          "plan_id": "2569ab42d6a725698635c9273c6c2728a7ad1cbbca2f0b751cebda9d6856da15",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T18:18:45.039010+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"value\":1}}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"value\":2}}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T18:18:45.228773+00:00",
+            "duration_ms": 190
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "node",
+                "/verifier/probe.cjs"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-22T18:18:45.039010+00:00",
+              "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"value\":1}}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":{\"value\":2}}}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-22T18:18:45.228773+00:00",
+              "duration_ms": 190
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-22T18:18:39.280797+00:00",
+          "runtime": {
+            "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+            "repo_digests": [
+              "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+            ],
+            "runtime": "node22",
+            "tag": "patch-audit-node:22-v1"
+          },
+          "verifier_hashes": {
+            "control.cjs": "58fdeb21bcbdf9557a613776e61d7824f38055e05396e7b20e46b5616506ea01",
+            "inputs.json": "c47d680ead9895e8ce53fb6e011adc3e587ec2a0bd8df3afbc95406ef6495e97",
+            "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+          },
+          "executed_source_hashes": {
+            "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+            "index.js": "2e40937f5cafdffefa96d339b34aa5562a0c10537b4d0b2bc49643f763e20dae",
+            "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+          },
+          "container_id": "dd0e4e35dd86b3fdcf2c4a81e35682613399a3759328cc9d3775e5714951e50e",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "adc88015a1cd99cf20f903e27d4fca469515a184a1abd814c4cc24dd9f8a96a7",
+                "Destination": "/source",
+                "RW": false
+              },
+              {
+                "Type": "volume",
+                "Name": "836091d23180d87fab53874d44368653aa0956d86379f75a68f8165f14c54cc8",
+                "Destination": "/verifier",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "dd0e4e35dd86b3fdcf2c4a81e35682613399a3759328cc9d3775e5714951e50e",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "adc88015a1cd99cf20f903e27d4fca469515a184a1abd814c4cc24dd9f8a96a7",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "836091d23180d87fab53874d44368653aa0956d86379f75a68f8165f14c54cc8",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-22T18:18:45.754040+00:00",
+          "duration_ms": 6474
+        },
+        "status": "assertions_failed",
+        "checks": [
+          {
+            "id": "call0",
+            "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+            "input": {
+              "args": [
+                1
+              ],
+              "kwargs": {}
+            },
+            "expected": {
+              "value": 1
+            },
+            "observed": {
+              "negative_control": {
+                "value": 1
+              }
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call1",
+            "requirement_id": "75622ab5895ac1970592d4b5209acfc79e79dd9cb7300035dd4831c95acd6748",
+            "input": {
+              "args": [
+                2
+              ],
+              "kwargs": {}
+            },
+            "expected": {
+              "value": 2
+            },
+            "observed": {
+              "negative_control": {
+                "value": 2
+              }
+            },
+            "status": "failed"
+          }
+        ]
+      }
+    ],
+    "status": "validation_passed",
+    "ended_at": "2026-10-22T18:18:45.754230+00:00"
+  }
+}

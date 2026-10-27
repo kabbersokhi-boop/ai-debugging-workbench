@@ -1,0 +1,2243 @@
+{
+  "audit_id": "c48f6a49-4e87-4374-91ac-5935d281101c",
+  "evidence": {
+    "snapshot": {
+      "id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "version": "repository-source-v1",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "file_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "3287c2099845184d0cb7949a08e88a646e51520fb82bb346cc71dc39850b751e",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "modes": {
+        "index.js": "100644",
+        "test.js": "100644",
+        "LICENSE": "100644"
+      },
+      "files": {
+        "LICENSE": "U3ludGhldGljIE1JVCBsaWNlbnNlZCBmaXh0dXJlIGZvciBkZXRlcm1pbmlzdGljIEcxIHRlc3RzLgo=",
+        "index.js": "ZXhwb3J0cy5hZGQgPSAoYSwgYikgPT4gYSAtIGI7Cg==",
+        "test.js": "Y29uc3Qge3Rlc3R9ID0gcmVxdWlyZSgnbm9kZTp0ZXN0Jyk7CmNvbnN0IGFzc2VydCA9IHJlcXVpcmUoJ25vZGU6YXNzZXJ0L3N0cmljdCcpOwpjb25zdCB7YWRkfSA9IHJlcXVpcmUoJy4vaW5kZXgnKTsKdGVzdCgnc3VtJywgKCkgPT4gYXNzZXJ0LmVxdWFsKGFkZCgxLCAyKSwgMykpOwo="
+      },
+      "metadata": {
+        "license": {
+          "spdx_id": "MIT"
+        },
+        "attribution_files": [
+          "LICENSE"
+        ],
+        "adapter": "offline-synthetic-fixture"
+      }
+    },
+    "candidate": {
+      "id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+      "version": "repository-candidate-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "applied_source_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "27f9a9dc0bc958e788da68badbf376f20312b7416c3de180a6c4dd71c48a274f",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+      "patch": "--- a/index.js\n+++ b/index.js\n@@ -1 +1,5 @@\n-exports.add = (a, b) => a - b;\n+const bad=[()=>undefined,()=>NaN,()=>1n,()=>new Date(0),\n+()=>{const a={};a.self=a;return a},()=>({get value(){throw Error('read')}}),\n+()=>({toJSON(){return undefined}}),()=>Array(2),()=>Array(257).fill(0),\n+()=> '\\u0000'.repeat(3000)];module.exports=i=>i===bad.length?7:bad[i]();;\n+module.exports.add=(a,b)=>a+b;\n",
+      "submitted_patch_hash": "64a57290448734a1bd0b9561775b52d0b9277d9df0da47a095fb42509672692c",
+      "approved_paths": [
+        "index.js"
+      ],
+      "affected_files": [
+        "index.js"
+      ],
+      "original": {
+        "index.js": "exports.add = (a, b) => a - b;\n"
+      },
+      "modified": {
+        "index.js": "const bad=[()=>undefined,()=>NaN,()=>1n,()=>new Date(0),\n()=>{const a={};a.self=a;return a},()=>({get value(){throw Error('read')}}),\n()=>({toJSON(){return undefined}}),()=>Array(2),()=>Array(257).fill(0),\n()=> '\\u0000'.repeat(3000)];module.exports=i=>i===bad.length?7:bad[i]();;\nmodule.exports.add=(a,b)=>a+b;\n"
+      },
+      "provenance": {
+        "category": "user_declared",
+        "author_label": "Authored observation-integrity regression: unsupported",
+        "source_reference": "",
+        "limitations": "Imported authorship is user-declared and unverified."
+      }
+    },
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+      "runtime": "node22",
+      "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "node",
+        "--test",
+        "test.js"
+      ],
+      "test_description": "Offline synthetic repository existing tests",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "verification": {
+      "id": "11e3fe5c7b594322c1457a90e4cc2f5f699c20265896fc6b5baf1ac6a93ffcc8",
+      "plan": {
+        "version": "independent-plan-v1",
+        "verifier_version": "json-observer-v2",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+        "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+        "ordinary_plan_id": "e70d88342b7fbe9bfefdf7450878810a18714b1e0ed3b2ba066704fe9dc43e06",
+        "runtime": "node22",
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "module": "index.js",
+        "export": "",
+        "assertions": [
+          {
+            "id": "call0",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              0
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call1",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              1
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call2",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              2
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call3",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              3
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call4",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              4
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call5",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              5
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call6",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              6
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call7",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              7
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call8",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              8
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call9",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              9
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call10",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              10
+            ],
+            "kwargs": {},
+            "expected": 7
+          }
+        ],
+        "setup": [],
+        "timeout_seconds": 30,
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+        "adapter_hashes": {
+          "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "adapter_sources": {
+          "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+          "probe.cjs": "// json-observer-v2: detach and encode each bounded observation before the next call.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconst stringify = JSON.stringify;\nconst byteLength = Buffer.byteLength;\nconsole.log = (...args) => console.error(...args);\n\nfunction snapshot(value) {\n  const ancestors = new Set();\n  let budget = 0;\n  function account(bytes) {\n    budget += bytes;\n    if (budget > 16384) throw RangeError('JSON observation exceeds 16 KiB');\n  }\n  function copy(v, depth) {\n    if (depth > 8) throw RangeError('JSON observation nesting exceeds eight levels');\n    if (v === null || typeof v === 'boolean') { account(v === null ? 4 : v ? 4 : 5); return v; }\n    if (typeof v === 'string') { account(2 + byteLength(v, 'utf8')); return v; }\n    if (typeof v === 'number' && Number.isFinite(v)) { account(String(v).length); return v; }\n    const array = Array.isArray(v);\n    if (typeof v !== 'object' || (!array && Object.getPrototypeOf(v) !== Object.prototype))\n      throw TypeError('Unsupported JSON observation');\n    if (ancestors.has(v)) throw TypeError('Cyclic JSON observation');\n    // Serialization hooks are code, not supported JSON data; never invoke or coerce them.\n    const hook = Object.getOwnPropertyDescriptor(v, 'toJSON');\n    if ((hook && (!('value' in hook) || typeof hook.value === 'function')) ||\n        (!hook && typeof v.toJSON === 'function')) throw TypeError('Unsupported JSON hook');\n    const keys = array ? null : Object.keys(v);\n    const length = array ? v.length : keys.length;\n    if (!Number.isInteger(length) || length < 0 || length > 256)\n      throw RangeError('JSON collection exceeds 256 items');\n    account(2 + Math.max(0, length - 1));\n    ancestors.add(v);\n    try {\n      if (array) {\n        const result = [];\n        // Only our new copy is modified. Candidate arrays/objects remain untouched.\n        Object.defineProperty(result, 'toJSON', {value: null});\n        for (let i = 0; i < length; i++) {\n          if (!Object.hasOwn(v, i)) throw TypeError('Sparse arrays are not JSON observations');\n          result.push(copy(v[i], depth + 1));\n        }\n        return result;\n      }\n      const result = Object.create(null);\n      for (const key of keys) {\n        account(3 + byteLength(key, 'utf8'));\n        result[key] = copy(v[key], depth + 1);\n      }\n      return result;\n    } finally { ancestors.delete(v); }\n  }\n  const encoded = stringify(copy(value, 0));\n  if (typeof encoded !== 'string' || byteLength(encoded, 'utf8') > 16384)\n    throw RangeError('Encoded JSON observation exceeds 16 KiB');\n  return encoded;\n}\n\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = snapshot(await fn(...call.args));\n      // Retain immutable JSON text, never a candidate-owned reference or deferred serializer.\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"value\",\"value\":' + value + '}');\n    } catch (error) {\n      let name = 'Error';\n      try { if (typeof error?.name === 'string') name = error.name.slice(0, 200); } catch {}\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"execution_error\",\"error\":' + stringify(name) + '}');\n    }\n  }\n  emit('{\"version\":\"observations-v1\",\"observations\":[' + observations.join(',') + ']}\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+        },
+        "interpretation": "all-named-canonical-json-equalities-v1"
+      },
+      "requirements": [
+        {
+          "id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "version": "behavioral-requirement-v1",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "statement": "Capture each completed call as independent JSON data before subsequent mutation",
+          "expected_behavior": "Named calls retain their declared call-time JSON values",
+          "input_domain": "Authored synthetic review regression: unsupported",
+          "assumptions": [
+            "Sequential calls; JSON data, not JavaScript object identity"
+          ],
+          "ambiguities": [],
+          "provenance": {
+            "origin": "external_specification",
+            "reference": "G2 observation-integrity review",
+            "excerpt": "Capture each completed call as independent JSON data before subsequent mutation",
+            "excerpt_hash": "e9ff090af69b9e4d49455ea1bf132b8fde049f2719668723dcf99d4f34b4f46b",
+            "justification": "Owner review supplied the independent observation contract",
+            "independent_of_candidate": true
+          },
+          "approval": "owner_approved"
+        }
+      ]
+    },
+    "stage": "execution",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+    "approval": {
+      "local_owner": true,
+      "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+      "plan_id": "e70d88342b7fbe9bfefdf7450878810a18714b1e0ed3b2ba066704fe9dc43e06",
+      "approved_at": "2026-10-20T00:00:00+00:00",
+      "verification_id": "11e3fe5c7b594322c1457a90e4cc2f5f699c20265896fc6b5baf1ac6a93ffcc8",
+      "stage": "execution",
+      "approve_independent_plan": true
+    },
+    "validation": {
+      "audit_id": "282c53ae-e0ad-4847-97d2-b5323671cc44",
+      "result": {
+        "version": "repository-independent-result-v1",
+        "audit_id": "282c53ae-e0ad-4847-97d2-b5323671cc44",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+        "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+        "plan_id": "e70d88342b7fbe9bfefdf7450878810a18714b1e0ed3b2ba066704fe9dc43e06",
+        "verification_id": "11e3fe5c7b594322c1457a90e4cc2f5f699c20265896fc6b5baf1ac6a93ffcc8",
+        "stage": "validation",
+        "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+        "started_at": "2026-10-22T18:19:08.451221+00:00",
+        "ordinary": null,
+        "independent": {
+          "status": "not_run",
+          "checks": []
+        },
+        "controls": [
+          {
+            "kind": "positive",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "282c53ae-e0ad-4847-97d2-b5323671cc44",
+              "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+              "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+              "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+              "source_binding": {
+                "repository": "fixture/project",
+                "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+                "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+                "submitted_patch_hash": "64a57290448734a1bd0b9561775b52d0b9277d9df0da47a095fb42509672692c"
+              },
+              "plan_id": "13068d5741553a0dde083045ec28d46b400d252cb12c1774f0684afe671b4108",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "node",
+                  "/verifier/probe.cjs"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-22T18:19:09.322973+00:00",
+                "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":null},{\"id\":\"call1\",\"kind\":\"value\",\"value\":null},{\"id\":\"call2\",\"kind\":\"value\",\"value\":null},{\"id\":\"call3\",\"kind\":\"value\",\"value\":null},{\"id\":\"call4\",\"kind\":\"value\",\"value\":null},{\"id\":\"call5\",\"kind\":\"value\",\"value\":null},{\"id\":\"call6\",\"kind\":\"value\",\"value\":null},{\"id\":\"call7\",\"kind\":\"value\",\"value\":null},{\"id\":\"call8\",\"kind\":\"value\",\"value\":null},{\"id\":\"call9\",\"kind\":\"value\",\"value\":null},{\"id\":\"call10\",\"kind\":\"value\",\"value\":7}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-22T18:19:09.407296+00:00",
+                "duration_ms": 84
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "node",
+                    "/verifier/probe.cjs"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T18:19:09.322973+00:00",
+                  "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":null},{\"id\":\"call1\",\"kind\":\"value\",\"value\":null},{\"id\":\"call2\",\"kind\":\"value\",\"value\":null},{\"id\":\"call3\",\"kind\":\"value\",\"value\":null},{\"id\":\"call4\",\"kind\":\"value\",\"value\":null},{\"id\":\"call5\",\"kind\":\"value\",\"value\":null},{\"id\":\"call6\",\"kind\":\"value\",\"value\":null},{\"id\":\"call7\",\"kind\":\"value\",\"value\":null},{\"id\":\"call8\",\"kind\":\"value\",\"value\":null},{\"id\":\"call9\",\"kind\":\"value\",\"value\":null},{\"id\":\"call10\",\"kind\":\"value\",\"value\":7}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T18:19:09.407296+00:00",
+                  "duration_ms": 84
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-22T18:19:08.455628+00:00",
+              "runtime": {
+                "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+                "repo_digests": [
+                  "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+                ],
+                "runtime": "node22",
+                "tag": "patch-audit-node:22-v1"
+              },
+              "verifier_hashes": {
+                "control.cjs": "631b892a1c3326f920f8ff4a40114188ef388e3e2933d0a263dc21791e776447",
+                "inputs.json": "7bf360da30982ab5569c7cf835ac67b510061ff52109c513d3109c613a05d1db",
+                "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+              },
+              "executed_source_hashes": {
+                "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                "index.js": "27f9a9dc0bc958e788da68badbf376f20312b7416c3de180a6c4dd71c48a274f",
+                "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+              },
+              "container_id": "69bd1fabc8f7a4a3f21d225a0cbd0690cc7371a682acb25a8553bd4d2c058df5",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "e033ad743082a49eae36118a0278cb2b68be2f30e86cd28237913620eb22c1b9",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "dc36c1769a4447126af57bdeec9dc159e2b805a446bdcb1e8253d91b024abff6",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "69bd1fabc8f7a4a3f21d225a0cbd0690cc7371a682acb25a8553bd4d2c058df5",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "e033ad743082a49eae36118a0278cb2b68be2f30e86cd28237913620eb22c1b9",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "dc36c1769a4447126af57bdeec9dc159e2b805a446bdcb1e8253d91b024abff6",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-22T18:19:10.006790+00:00",
+              "duration_ms": 1551
+            },
+            "status": "checks_passed",
+            "checks": [
+              {
+                "id": "call0",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    0
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call1",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    1
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call2",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    2
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call3",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    3
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call4",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    4
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call5",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    5
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call6",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    6
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call7",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    7
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call8",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    8
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call9",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    9
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": null,
+                "status": "passed"
+              },
+              {
+                "id": "call10",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    10
+                  ],
+                  "kwargs": {}
+                },
+                "expected": 7,
+                "observed": 7,
+                "status": "passed"
+              }
+            ]
+          },
+          {
+            "kind": "negative",
+            "execution": {
+              "version": "repository-result-v1",
+              "audit_id": "282c53ae-e0ad-4847-97d2-b5323671cc44",
+              "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+              "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+              "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+              "source_binding": {
+                "repository": "fixture/project",
+                "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+                "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+                "submitted_patch_hash": "64a57290448734a1bd0b9561775b52d0b9277d9df0da47a095fb42509672692c"
+              },
+              "plan_id": "13068d5741553a0dde083045ec28d46b400d252cb12c1774f0684afe671b4108",
+              "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+              "policy": {
+                "version": "repository-sandbox-v1",
+                "network": "none",
+                "uid": "1000:1000",
+                "rootfs": "read-only",
+                "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                "cpu": 1,
+                "memory_bytes": 536870912,
+                "pids": 64,
+                "scratch_bytes": 134217728,
+                "tmp_bytes": 8388608,
+                "shm_bytes": 8388608,
+                "output_bytes_per_stream": 65536,
+                "log_storage_bytes": 131072,
+                "file_bytes": 16777216,
+                "host_mounts": [],
+                "capabilities": [],
+                "credentials": false,
+                "docker_socket": false,
+                "artifacts": [
+                  "stdout",
+                  "stderr",
+                  "exit status",
+                  "runtime identity"
+                ]
+              },
+              "independent": {
+                "status": "not_configured"
+              },
+              "ordinary": {
+                "phase": "tests",
+                "argv": [
+                  "node",
+                  "/verifier/probe.cjs"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-22T18:19:10.879860+00:00",
+                "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call2\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call3\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call4\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call5\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call6\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call7\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call8\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call9\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call10\",\"kind\":\"value\",\"value\":{\"negative_control\":7}}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-22T18:19:10.947748+00:00",
+                "duration_ms": 68
+              },
+              "commands": [
+                {
+                  "phase": "tests",
+                  "argv": [
+                    "node",
+                    "/verifier/probe.cjs"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T18:19:10.879860+00:00",
+                  "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call2\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call3\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call4\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call5\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call6\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call7\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call8\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call9\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call10\",\"kind\":\"value\",\"value\":{\"negative_control\":7}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T18:19:10.947748+00:00",
+                  "duration_ms": 68
+                }
+              ],
+              "status": "tests_passed",
+              "started_at": "2026-10-22T18:19:10.012273+00:00",
+              "runtime": {
+                "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+                "repo_digests": [
+                  "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+                ],
+                "runtime": "node22",
+                "tag": "patch-audit-node:22-v1"
+              },
+              "verifier_hashes": {
+                "control.cjs": "86ec220d4b62e584bbb4f0a0a059fa4ed8cec3dd74ea10ea94085cba9e586a53",
+                "inputs.json": "7bf360da30982ab5569c7cf835ac67b510061ff52109c513d3109c613a05d1db",
+                "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+              },
+              "executed_source_hashes": {
+                "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                "index.js": "27f9a9dc0bc958e788da68badbf376f20312b7416c3de180a6c4dd71c48a274f",
+                "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+              },
+              "container_id": "1ecd5c35c19f0ee02abb3f2114a2837545ef5b96ba9f31ead0e89de14c1b0e7f",
+              "sandbox": {
+                "user": "1000:1000",
+                "host_config": {
+                  "NetworkMode": "none",
+                  "ReadonlyRootfs": true,
+                  "CapDrop": [
+                    "ALL"
+                  ],
+                  "SecurityOpt": [
+                    "no-new-privileges:true"
+                  ],
+                  "Memory": 536870912,
+                  "MemorySwap": 536870912,
+                  "NanoCpus": 1000000000,
+                  "PidsLimit": 64,
+                  "Tmpfs": {
+                    "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                    "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                  },
+                  "ShmSize": 8388608
+                },
+                "mounts": [
+                  {
+                    "Type": "volume",
+                    "Name": "48c75744e7861d35e120ea1509bc96c219c3f70617ba976363f0fa3cd9a7a4d2",
+                    "Destination": "/source",
+                    "RW": false
+                  },
+                  {
+                    "Type": "volume",
+                    "Name": "5dde41a3bb88b272e55e6fa7ec328971e2977b1e4107d57abe7b3766f2aa015b",
+                    "Destination": "/verifier",
+                    "RW": false
+                  }
+                ]
+              },
+              "container_state": {
+                "OOMKilled": false,
+                "Error": ""
+              },
+              "cleanup": [
+                {
+                  "kind": "containers",
+                  "id": "1ecd5c35c19f0ee02abb3f2114a2837545ef5b96ba9f31ead0e89de14c1b0e7f",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "48c75744e7861d35e120ea1509bc96c219c3f70617ba976363f0fa3cd9a7a4d2",
+                  "confirmed_absent": true
+                },
+                {
+                  "kind": "volumes",
+                  "id": "5dde41a3bb88b272e55e6fa7ec328971e2977b1e4107d57abe7b3766f2aa015b",
+                  "confirmed_absent": true
+                }
+              ],
+              "ended_at": "2026-10-22T18:19:11.480565+00:00",
+              "duration_ms": 1469
+            },
+            "status": "assertions_failed",
+            "checks": [
+              {
+                "id": "call0",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    0
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call1",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    1
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call2",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    2
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call3",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    3
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call4",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    4
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call5",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    5
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call6",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    6
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call7",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    7
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call8",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    8
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call9",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    9
+                  ],
+                  "kwargs": {}
+                },
+                "expected": null,
+                "observed": {
+                  "negative_control": null
+                },
+                "status": "failed"
+              },
+              {
+                "id": "call10",
+                "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+                "input": {
+                  "args": [
+                    10
+                  ],
+                  "kwargs": {}
+                },
+                "expected": 7,
+                "observed": {
+                  "negative_control": 7
+                },
+                "status": "failed"
+              }
+            ]
+          }
+        ],
+        "status": "validation_passed",
+        "ended_at": "2026-10-22T18:19:11.480909+00:00"
+      }
+    }
+  },
+  "result": {
+    "version": "repository-independent-result-v1",
+    "audit_id": "c48f6a49-4e87-4374-91ac-5935d281101c",
+    "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+    "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+    "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+    "plan_id": "e70d88342b7fbe9bfefdf7450878810a18714b1e0ed3b2ba066704fe9dc43e06",
+    "verification_id": "11e3fe5c7b594322c1457a90e4cc2f5f699c20265896fc6b5baf1ac6a93ffcc8",
+    "stage": "execution",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "started_at": "2026-10-22T18:19:11.483708+00:00",
+    "ordinary": {
+      "version": "repository-result-v1",
+      "audit_id": "c48f6a49-4e87-4374-91ac-5935d281101c",
+      "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+      "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "source_binding": {
+        "repository": "fixture/project",
+        "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+        "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+        "submitted_patch_hash": "64a57290448734a1bd0b9561775b52d0b9277d9df0da47a095fb42509672692c"
+      },
+      "plan_id": "e70d88342b7fbe9bfefdf7450878810a18714b1e0ed3b2ba066704fe9dc43e06",
+      "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+      "policy": {
+        "version": "repository-sandbox-v1",
+        "network": "none",
+        "uid": "1000:1000",
+        "rootfs": "read-only",
+        "source": "read-only named volume; separate bounded scratch and offline dependencies",
+        "cpu": 1,
+        "memory_bytes": 536870912,
+        "pids": 64,
+        "scratch_bytes": 134217728,
+        "tmp_bytes": 8388608,
+        "shm_bytes": 8388608,
+        "output_bytes_per_stream": 65536,
+        "log_storage_bytes": 131072,
+        "file_bytes": 16777216,
+        "host_mounts": [],
+        "capabilities": [],
+        "credentials": false,
+        "docker_socket": false,
+        "artifacts": [
+          "stdout",
+          "stderr",
+          "exit status",
+          "runtime identity"
+        ]
+      },
+      "independent": {
+        "status": "not_configured"
+      },
+      "ordinary": {
+        "phase": "tests",
+        "argv": [
+          "node",
+          "--test",
+          "test.js"
+        ],
+        "working_directory": "/source",
+        "started_at": "2026-10-22T18:19:12.400441+00:00",
+        "stdout": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.892147\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 71.402524\n",
+        "stderr": "",
+        "exit_code": 0,
+        "counts": null,
+        "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+        "output_truncated": false,
+        "status": "finished",
+        "ended_at": "2026-10-22T18:19:12.588227+00:00",
+        "duration_ms": 188
+      },
+      "commands": [
+        {
+          "phase": "tests",
+          "argv": [
+            "node",
+            "--test",
+            "test.js"
+          ],
+          "working_directory": "/source",
+          "started_at": "2026-10-22T18:19:12.400441+00:00",
+          "stdout": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.892147\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 71.402524\n",
+          "stderr": "",
+          "exit_code": 0,
+          "counts": null,
+          "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+          "output_truncated": false,
+          "status": "finished",
+          "ended_at": "2026-10-22T18:19:12.588227+00:00",
+          "duration_ms": 188
+        }
+      ],
+      "status": "tests_passed",
+      "started_at": "2026-10-22T18:19:11.486527+00:00",
+      "runtime": {
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "repo_digests": [
+          "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+        ],
+        "runtime": "node22",
+        "tag": "patch-audit-node:22-v1"
+      },
+      "executed_source_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "27f9a9dc0bc958e788da68badbf376f20312b7416c3de180a6c4dd71c48a274f",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "container_id": "71c728739a712157a01ac63a715d3101ffb90dd896ac280da28d3da1f4962944",
+      "sandbox": {
+        "user": "1000:1000",
+        "host_config": {
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "CapDrop": [
+            "ALL"
+          ],
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ],
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NanoCpus": 1000000000,
+          "PidsLimit": 64,
+          "Tmpfs": {
+            "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+            "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+          },
+          "ShmSize": 8388608
+        },
+        "mounts": [
+          {
+            "Type": "volume",
+            "Name": "b777eabd3202836849e36fd18a246f385020b8f80587b0ef59a5a60e2a38aeb2",
+            "Destination": "/source",
+            "RW": false
+          }
+        ]
+      },
+      "container_state": {
+        "OOMKilled": false,
+        "Error": ""
+      },
+      "cleanup": [
+        {
+          "kind": "containers",
+          "id": "71c728739a712157a01ac63a715d3101ffb90dd896ac280da28d3da1f4962944",
+          "confirmed_absent": true
+        },
+        {
+          "kind": "volumes",
+          "id": "b777eabd3202836849e36fd18a246f385020b8f80587b0ef59a5a60e2a38aeb2",
+          "confirmed_absent": true
+        }
+      ],
+      "ended_at": "2026-10-22T18:19:13.042866+00:00",
+      "duration_ms": 1557
+    },
+    "independent": {
+      "status": "check_execution_failed",
+      "checks": [
+        {
+          "id": "call0",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "TypeError"
+        },
+        {
+          "id": "call1",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "TypeError"
+        },
+        {
+          "id": "call2",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "TypeError"
+        },
+        {
+          "id": "call3",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "TypeError"
+        },
+        {
+          "id": "call4",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "TypeError"
+        },
+        {
+          "id": "call5",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "Error"
+        },
+        {
+          "id": "call6",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "TypeError"
+        },
+        {
+          "id": "call7",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "TypeError"
+        },
+        {
+          "id": "call8",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "RangeError"
+        },
+        {
+          "id": "call9",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "status": "check_execution_failed",
+          "error": "RangeError"
+        },
+        {
+          "id": "call10",
+          "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "input": {
+            "args": [
+              10
+            ],
+            "kwargs": {}
+          },
+          "expected": 7,
+          "observed": 7,
+          "status": "passed"
+        }
+      ],
+      "execution": {
+        "version": "repository-result-v1",
+        "audit_id": "c48f6a49-4e87-4374-91ac-5935d281101c",
+        "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+        "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "source_binding": {
+          "repository": "fixture/project",
+          "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+          "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+          "submitted_patch_hash": "64a57290448734a1bd0b9561775b52d0b9277d9df0da47a095fb42509672692c"
+        },
+        "plan_id": "13068d5741553a0dde083045ec28d46b400d252cb12c1774f0684afe671b4108",
+        "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+        "policy": {
+          "version": "repository-sandbox-v1",
+          "network": "none",
+          "uid": "1000:1000",
+          "rootfs": "read-only",
+          "source": "read-only named volume; separate bounded scratch and offline dependencies",
+          "cpu": 1,
+          "memory_bytes": 536870912,
+          "pids": 64,
+          "scratch_bytes": 134217728,
+          "tmp_bytes": 8388608,
+          "shm_bytes": 8388608,
+          "output_bytes_per_stream": 65536,
+          "log_storage_bytes": 131072,
+          "file_bytes": 16777216,
+          "host_mounts": [],
+          "capabilities": [],
+          "credentials": false,
+          "docker_socket": false,
+          "artifacts": [
+            "stdout",
+            "stderr",
+            "exit status",
+            "runtime identity"
+          ]
+        },
+        "independent": {
+          "status": "not_configured"
+        },
+        "ordinary": {
+          "phase": "tests",
+          "argv": [
+            "node",
+            "/verifier/probe.cjs"
+          ],
+          "working_directory": "/source",
+          "started_at": "2026-10-22T18:19:13.931294+00:00",
+          "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call1\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call2\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call3\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call4\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call5\",\"kind\":\"execution_error\",\"error\":\"Error\"},{\"id\":\"call6\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call7\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call8\",\"kind\":\"execution_error\",\"error\":\"RangeError\"},{\"id\":\"call9\",\"kind\":\"execution_error\",\"error\":\"RangeError\"},{\"id\":\"call10\",\"kind\":\"value\",\"value\":7}]}\n",
+          "stderr": "",
+          "exit_code": 0,
+          "counts": null,
+          "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+          "output_truncated": false,
+          "status": "finished",
+          "ended_at": "2026-10-22T18:19:14.016334+00:00",
+          "duration_ms": 85
+        },
+        "commands": [
+          {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T18:19:13.931294+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call1\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call2\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call3\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call4\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call5\",\"kind\":\"execution_error\",\"error\":\"Error\"},{\"id\":\"call6\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call7\",\"kind\":\"execution_error\",\"error\":\"TypeError\"},{\"id\":\"call8\",\"kind\":\"execution_error\",\"error\":\"RangeError\"},{\"id\":\"call9\",\"kind\":\"execution_error\",\"error\":\"RangeError\"},{\"id\":\"call10\",\"kind\":\"value\",\"value\":7}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T18:19:14.016334+00:00",
+            "duration_ms": 85
+          }
+        ],
+        "status": "tests_passed",
+        "started_at": "2026-10-22T18:19:13.046142+00:00",
+        "runtime": {
+          "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+          "repo_digests": [
+            "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+          ],
+          "runtime": "node22",
+          "tag": "patch-audit-node:22-v1"
+        },
+        "verifier_hashes": {
+          "inputs.json": "f3cd8be1a40d04363bbf4ddbc797ac5c84fa22391d2555e80c54b0aa9c296afa",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "executed_source_hashes": {
+          "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+          "index.js": "27f9a9dc0bc958e788da68badbf376f20312b7416c3de180a6c4dd71c48a274f",
+          "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+        },
+        "container_id": "3e7a95db7a9ea78c3cefa84b0caeae12cb845a806e59ed73373382ba9d267ce1",
+        "sandbox": {
+          "user": "1000:1000",
+          "host_config": {
+            "NetworkMode": "none",
+            "ReadonlyRootfs": true,
+            "CapDrop": [
+              "ALL"
+            ],
+            "SecurityOpt": [
+              "no-new-privileges:true"
+            ],
+            "Memory": 536870912,
+            "MemorySwap": 536870912,
+            "NanoCpus": 1000000000,
+            "PidsLimit": 64,
+            "Tmpfs": {
+              "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+              "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+            },
+            "ShmSize": 8388608
+          },
+          "mounts": [
+            {
+              "Type": "volume",
+              "Name": "f115363a5f0586e2a1967ec05b86e847e0248bc4f4afcbb74b6c7b0cf59539f1",
+              "Destination": "/source",
+              "RW": false
+            },
+            {
+              "Type": "volume",
+              "Name": "fbca8903de030b4363b15715b7ef98fccd4d0ffed3088a2f43e1fa1a92f798ac",
+              "Destination": "/verifier",
+              "RW": false
+            }
+          ]
+        },
+        "container_state": {
+          "OOMKilled": false,
+          "Error": ""
+        },
+        "cleanup": [
+          {
+            "kind": "containers",
+            "id": "3e7a95db7a9ea78c3cefa84b0caeae12cb845a806e59ed73373382ba9d267ce1",
+            "confirmed_absent": true
+          },
+          {
+            "kind": "volumes",
+            "id": "f115363a5f0586e2a1967ec05b86e847e0248bc4f4afcbb74b6c7b0cf59539f1",
+            "confirmed_absent": true
+          },
+          {
+            "kind": "volumes",
+            "id": "fbca8903de030b4363b15715b7ef98fccd4d0ffed3088a2f43e1fa1a92f798ac",
+            "confirmed_absent": true
+          }
+        ],
+        "ended_at": "2026-10-22T18:19:14.674345+00:00",
+        "duration_ms": 1628
+      }
+    },
+    "controls": [],
+    "status": "check_execution_failed",
+    "ended_at": "2026-10-22T18:19:14.674488+00:00"
+  },
+  "validation_audit_id": "282c53ae-e0ad-4847-97d2-b5323671cc44",
+  "validation_evidence": {
+    "snapshot": {
+      "id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "version": "repository-source-v1",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "file_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "3287c2099845184d0cb7949a08e88a646e51520fb82bb346cc71dc39850b751e",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "modes": {
+        "index.js": "100644",
+        "test.js": "100644",
+        "LICENSE": "100644"
+      },
+      "files": {
+        "LICENSE": "U3ludGhldGljIE1JVCBsaWNlbnNlZCBmaXh0dXJlIGZvciBkZXRlcm1pbmlzdGljIEcxIHRlc3RzLgo=",
+        "index.js": "ZXhwb3J0cy5hZGQgPSAoYSwgYikgPT4gYSAtIGI7Cg==",
+        "test.js": "Y29uc3Qge3Rlc3R9ID0gcmVxdWlyZSgnbm9kZTp0ZXN0Jyk7CmNvbnN0IGFzc2VydCA9IHJlcXVpcmUoJ25vZGU6YXNzZXJ0L3N0cmljdCcpOwpjb25zdCB7YWRkfSA9IHJlcXVpcmUoJy4vaW5kZXgnKTsKdGVzdCgnc3VtJywgKCkgPT4gYXNzZXJ0LmVxdWFsKGFkZCgxLCAyKSwgMykpOwo="
+      },
+      "metadata": {
+        "license": {
+          "spdx_id": "MIT"
+        },
+        "attribution_files": [
+          "LICENSE"
+        ],
+        "adapter": "offline-synthetic-fixture"
+      }
+    },
+    "candidate": {
+      "id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+      "version": "repository-candidate-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "repository": "fixture/project",
+      "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+      "applied_source_hashes": {
+        "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+        "index.js": "27f9a9dc0bc958e788da68badbf376f20312b7416c3de180a6c4dd71c48a274f",
+        "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+      },
+      "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+      "patch": "--- a/index.js\n+++ b/index.js\n@@ -1 +1,5 @@\n-exports.add = (a, b) => a - b;\n+const bad=[()=>undefined,()=>NaN,()=>1n,()=>new Date(0),\n+()=>{const a={};a.self=a;return a},()=>({get value(){throw Error('read')}}),\n+()=>({toJSON(){return undefined}}),()=>Array(2),()=>Array(257).fill(0),\n+()=> '\\u0000'.repeat(3000)];module.exports=i=>i===bad.length?7:bad[i]();;\n+module.exports.add=(a,b)=>a+b;\n",
+      "submitted_patch_hash": "64a57290448734a1bd0b9561775b52d0b9277d9df0da47a095fb42509672692c",
+      "approved_paths": [
+        "index.js"
+      ],
+      "affected_files": [
+        "index.js"
+      ],
+      "original": {
+        "index.js": "exports.add = (a, b) => a - b;\n"
+      },
+      "modified": {
+        "index.js": "const bad=[()=>undefined,()=>NaN,()=>1n,()=>new Date(0),\n()=>{const a={};a.self=a;return a},()=>({get value(){throw Error('read')}}),\n()=>({toJSON(){return undefined}}),()=>Array(2),()=>Array(257).fill(0),\n()=> '\\u0000'.repeat(3000)];module.exports=i=>i===bad.length?7:bad[i]();;\nmodule.exports.add=(a,b)=>a+b;\n"
+      },
+      "provenance": {
+        "category": "user_declared",
+        "author_label": "Authored observation-integrity regression: unsupported",
+        "source_reference": "",
+        "limitations": "Imported authorship is user-declared and unverified."
+      }
+    },
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+      "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+      "runtime": "node22",
+      "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "node",
+        "--test",
+        "test.js"
+      ],
+      "test_description": "Offline synthetic repository existing tests",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "verification": {
+      "id": "11e3fe5c7b594322c1457a90e4cc2f5f699c20265896fc6b5baf1ac6a93ffcc8",
+      "plan": {
+        "version": "independent-plan-v1",
+        "verifier_version": "json-observer-v2",
+        "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+        "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+        "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+        "ordinary_plan_id": "e70d88342b7fbe9bfefdf7450878810a18714b1e0ed3b2ba066704fe9dc43e06",
+        "runtime": "node22",
+        "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+        "module": "index.js",
+        "export": "",
+        "assertions": [
+          {
+            "id": "call0",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              0
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call1",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              1
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call2",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              2
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call3",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              3
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call4",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              4
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call5",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              5
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call6",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              6
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call7",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              7
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call8",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              8
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call9",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              9
+            ],
+            "kwargs": {},
+            "expected": null
+          },
+          {
+            "id": "call10",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "args": [
+              10
+            ],
+            "kwargs": {},
+            "expected": 7
+          }
+        ],
+        "setup": [],
+        "timeout_seconds": 30,
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+        "adapter_hashes": {
+          "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+          "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+        },
+        "adapter_sources": {
+          "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+          "probe.cjs": "// json-observer-v2: detach and encode each bounded observation before the next call.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconst stringify = JSON.stringify;\nconst byteLength = Buffer.byteLength;\nconsole.log = (...args) => console.error(...args);\n\nfunction snapshot(value) {\n  const ancestors = new Set();\n  let budget = 0;\n  function account(bytes) {\n    budget += bytes;\n    if (budget > 16384) throw RangeError('JSON observation exceeds 16 KiB');\n  }\n  function copy(v, depth) {\n    if (depth > 8) throw RangeError('JSON observation nesting exceeds eight levels');\n    if (v === null || typeof v === 'boolean') { account(v === null ? 4 : v ? 4 : 5); return v; }\n    if (typeof v === 'string') { account(2 + byteLength(v, 'utf8')); return v; }\n    if (typeof v === 'number' && Number.isFinite(v)) { account(String(v).length); return v; }\n    const array = Array.isArray(v);\n    if (typeof v !== 'object' || (!array && Object.getPrototypeOf(v) !== Object.prototype))\n      throw TypeError('Unsupported JSON observation');\n    if (ancestors.has(v)) throw TypeError('Cyclic JSON observation');\n    // Serialization hooks are code, not supported JSON data; never invoke or coerce them.\n    const hook = Object.getOwnPropertyDescriptor(v, 'toJSON');\n    if ((hook && (!('value' in hook) || typeof hook.value === 'function')) ||\n        (!hook && typeof v.toJSON === 'function')) throw TypeError('Unsupported JSON hook');\n    const keys = array ? null : Object.keys(v);\n    const length = array ? v.length : keys.length;\n    if (!Number.isInteger(length) || length < 0 || length > 256)\n      throw RangeError('JSON collection exceeds 256 items');\n    account(2 + Math.max(0, length - 1));\n    ancestors.add(v);\n    try {\n      if (array) {\n        const result = [];\n        // Only our new copy is modified. Candidate arrays/objects remain untouched.\n        Object.defineProperty(result, 'toJSON', {value: null});\n        for (let i = 0; i < length; i++) {\n          if (!Object.hasOwn(v, i)) throw TypeError('Sparse arrays are not JSON observations');\n          result.push(copy(v[i], depth + 1));\n        }\n        return result;\n      }\n      const result = Object.create(null);\n      for (const key of keys) {\n        account(3 + byteLength(key, 'utf8'));\n        result[key] = copy(v[key], depth + 1);\n      }\n      return result;\n    } finally { ancestors.delete(v); }\n  }\n  const encoded = stringify(copy(value, 0));\n  if (typeof encoded !== 'string' || byteLength(encoded, 'utf8') > 16384)\n    throw RangeError('Encoded JSON observation exceeds 16 KiB');\n  return encoded;\n}\n\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = snapshot(await fn(...call.args));\n      // Retain immutable JSON text, never a candidate-owned reference or deferred serializer.\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"value\",\"value\":' + value + '}');\n    } catch (error) {\n      let name = 'Error';\n      try { if (typeof error?.name === 'string') name = error.name.slice(0, 200); } catch {}\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"execution_error\",\"error\":' + stringify(name) + '}');\n    }\n  }\n  emit('{\"version\":\"observations-v1\",\"observations\":[' + observations.join(',') + ']}\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+        },
+        "interpretation": "all-named-canonical-json-equalities-v1"
+      },
+      "requirements": [
+        {
+          "id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+          "version": "behavioral-requirement-v1",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "statement": "Capture each completed call as independent JSON data before subsequent mutation",
+          "expected_behavior": "Named calls retain their declared call-time JSON values",
+          "input_domain": "Authored synthetic review regression: unsupported",
+          "assumptions": [
+            "Sequential calls; JSON data, not JavaScript object identity"
+          ],
+          "ambiguities": [],
+          "provenance": {
+            "origin": "external_specification",
+            "reference": "G2 observation-integrity review",
+            "excerpt": "Capture each completed call as independent JSON data before subsequent mutation",
+            "excerpt_hash": "e9ff090af69b9e4d49455ea1bf132b8fde049f2719668723dcf99d4f34b4f46b",
+            "justification": "Owner review supplied the independent observation contract",
+            "independent_of_candidate": true
+          },
+          "approval": "owner_approved"
+        }
+      ]
+    },
+    "stage": "validation",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+    "approval": {
+      "local_owner": true,
+      "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+      "plan_id": "e70d88342b7fbe9bfefdf7450878810a18714b1e0ed3b2ba066704fe9dc43e06",
+      "approved_at": "2026-10-20T00:00:00+00:00",
+      "verification_id": "11e3fe5c7b594322c1457a90e4cc2f5f699c20265896fc6b5baf1ac6a93ffcc8",
+      "stage": "validation",
+      "approve_independent_plan": true
+    }
+  },
+  "validation_result": {
+    "version": "repository-independent-result-v1",
+    "audit_id": "282c53ae-e0ad-4847-97d2-b5323671cc44",
+    "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+    "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+    "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+    "plan_id": "e70d88342b7fbe9bfefdf7450878810a18714b1e0ed3b2ba066704fe9dc43e06",
+    "verification_id": "11e3fe5c7b594322c1457a90e4cc2f5f699c20265896fc6b5baf1ac6a93ffcc8",
+    "stage": "validation",
+    "engine_id": "70898afe070b6d2d9951cc23274da2195a51ebdf401fedeb9511a5c32e072716",
+    "started_at": "2026-10-22T18:19:08.451221+00:00",
+    "ordinary": null,
+    "independent": {
+      "status": "not_run",
+      "checks": []
+    },
+    "controls": [
+      {
+        "kind": "positive",
+        "execution": {
+          "version": "repository-result-v1",
+          "audit_id": "282c53ae-e0ad-4847-97d2-b5323671cc44",
+          "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+          "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "source_binding": {
+            "repository": "fixture/project",
+            "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+            "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+            "submitted_patch_hash": "64a57290448734a1bd0b9561775b52d0b9277d9df0da47a095fb42509672692c"
+          },
+          "plan_id": "13068d5741553a0dde083045ec28d46b400d252cb12c1774f0684afe671b4108",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T18:19:09.322973+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":null},{\"id\":\"call1\",\"kind\":\"value\",\"value\":null},{\"id\":\"call2\",\"kind\":\"value\",\"value\":null},{\"id\":\"call3\",\"kind\":\"value\",\"value\":null},{\"id\":\"call4\",\"kind\":\"value\",\"value\":null},{\"id\":\"call5\",\"kind\":\"value\",\"value\":null},{\"id\":\"call6\",\"kind\":\"value\",\"value\":null},{\"id\":\"call7\",\"kind\":\"value\",\"value\":null},{\"id\":\"call8\",\"kind\":\"value\",\"value\":null},{\"id\":\"call9\",\"kind\":\"value\",\"value\":null},{\"id\":\"call10\",\"kind\":\"value\",\"value\":7}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T18:19:09.407296+00:00",
+            "duration_ms": 84
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "node",
+                "/verifier/probe.cjs"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-22T18:19:09.322973+00:00",
+              "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":null},{\"id\":\"call1\",\"kind\":\"value\",\"value\":null},{\"id\":\"call2\",\"kind\":\"value\",\"value\":null},{\"id\":\"call3\",\"kind\":\"value\",\"value\":null},{\"id\":\"call4\",\"kind\":\"value\",\"value\":null},{\"id\":\"call5\",\"kind\":\"value\",\"value\":null},{\"id\":\"call6\",\"kind\":\"value\",\"value\":null},{\"id\":\"call7\",\"kind\":\"value\",\"value\":null},{\"id\":\"call8\",\"kind\":\"value\",\"value\":null},{\"id\":\"call9\",\"kind\":\"value\",\"value\":null},{\"id\":\"call10\",\"kind\":\"value\",\"value\":7}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-22T18:19:09.407296+00:00",
+              "duration_ms": 84
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-22T18:19:08.455628+00:00",
+          "runtime": {
+            "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+            "repo_digests": [
+              "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+            ],
+            "runtime": "node22",
+            "tag": "patch-audit-node:22-v1"
+          },
+          "verifier_hashes": {
+            "control.cjs": "631b892a1c3326f920f8ff4a40114188ef388e3e2933d0a263dc21791e776447",
+            "inputs.json": "7bf360da30982ab5569c7cf835ac67b510061ff52109c513d3109c613a05d1db",
+            "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+          },
+          "executed_source_hashes": {
+            "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+            "index.js": "27f9a9dc0bc958e788da68badbf376f20312b7416c3de180a6c4dd71c48a274f",
+            "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+          },
+          "container_id": "69bd1fabc8f7a4a3f21d225a0cbd0690cc7371a682acb25a8553bd4d2c058df5",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "e033ad743082a49eae36118a0278cb2b68be2f30e86cd28237913620eb22c1b9",
+                "Destination": "/source",
+                "RW": false
+              },
+              {
+                "Type": "volume",
+                "Name": "dc36c1769a4447126af57bdeec9dc159e2b805a446bdcb1e8253d91b024abff6",
+                "Destination": "/verifier",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "69bd1fabc8f7a4a3f21d225a0cbd0690cc7371a682acb25a8553bd4d2c058df5",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "e033ad743082a49eae36118a0278cb2b68be2f30e86cd28237913620eb22c1b9",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "dc36c1769a4447126af57bdeec9dc159e2b805a446bdcb1e8253d91b024abff6",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-22T18:19:10.006790+00:00",
+          "duration_ms": 1551
+        },
+        "status": "checks_passed",
+        "checks": [
+          {
+            "id": "call0",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                0
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call1",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                1
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call2",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                2
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call3",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                3
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call4",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                4
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call5",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                5
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call6",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                6
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call7",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                7
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call8",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                8
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call9",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                9
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": null,
+            "status": "passed"
+          },
+          {
+            "id": "call10",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                10
+              ],
+              "kwargs": {}
+            },
+            "expected": 7,
+            "observed": 7,
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "kind": "negative",
+        "execution": {
+          "version": "repository-result-v1",
+          "audit_id": "282c53ae-e0ad-4847-97d2-b5323671cc44",
+          "candidate_id": "cefda695bb0616596d409b086d30dba4b5de7a2fa9b45271267b8b6db991c182",
+          "candidate_hash": "1b9080851c05ad8c0cb6327ddb600ebb2f26b6e2ec65c931447ba1f546811972",
+          "snapshot_id": "0b029c645cea361e8cf17b9e2424368af7c1081742c9f14e33a42548af31e875",
+          "source_binding": {
+            "repository": "fixture/project",
+            "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "git_tree": "29a605556b9bbebd2721ac8ff6bb00ede304a700",
+            "source_tree_hash": "3c4342e13e4ff88ef2adaff1d6a9b2963e289cd7eef673e836b6880148006ab8",
+            "submitted_patch_hash": "64a57290448734a1bd0b9561775b52d0b9277d9df0da47a095fb42509672692c"
+          },
+          "plan_id": "13068d5741553a0dde083045ec28d46b400d252cb12c1774f0684afe671b4108",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "node",
+              "/verifier/probe.cjs"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T18:19:10.879860+00:00",
+            "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call2\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call3\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call4\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call5\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call6\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call7\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call8\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call9\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call10\",\"kind\":\"value\",\"value\":{\"negative_control\":7}}]}\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T18:19:10.947748+00:00",
+            "duration_ms": 68
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "node",
+                "/verifier/probe.cjs"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-22T18:19:10.879860+00:00",
+              "stdout": "{\"version\":\"observations-v1\",\"observations\":[{\"id\":\"call0\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call1\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call2\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call3\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call4\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call5\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call6\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call7\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call8\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call9\",\"kind\":\"value\",\"value\":{\"negative_control\":null}},{\"id\":\"call10\",\"kind\":\"value\",\"value\":{\"negative_control\":7}}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-22T18:19:10.947748+00:00",
+              "duration_ms": 68
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-22T18:19:10.012273+00:00",
+          "runtime": {
+            "image_id": "sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57",
+            "repo_digests": [
+              "patch-audit-node@sha256:d0b654ec1d182ad5f275931a826734829bf23bbd563bb75eb5cd34e40c557a57"
+            ],
+            "runtime": "node22",
+            "tag": "patch-audit-node:22-v1"
+          },
+          "verifier_hashes": {
+            "control.cjs": "86ec220d4b62e584bbb4f0a0a059fa4ed8cec3dd74ea10ea94085cba9e586a53",
+            "inputs.json": "7bf360da30982ab5569c7cf835ac67b510061ff52109c513d3109c613a05d1db",
+            "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+          },
+          "executed_source_hashes": {
+            "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+            "index.js": "27f9a9dc0bc958e788da68badbf376f20312b7416c3de180a6c4dd71c48a274f",
+            "test.js": "f73bdc70ab25c3e8853ff86313b75ead30728734707f4759c01800012b9a0465"
+          },
+          "container_id": "1ecd5c35c19f0ee02abb3f2114a2837545ef5b96ba9f31ead0e89de14c1b0e7f",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "48c75744e7861d35e120ea1509bc96c219c3f70617ba976363f0fa3cd9a7a4d2",
+                "Destination": "/source",
+                "RW": false
+              },
+              {
+                "Type": "volume",
+                "Name": "5dde41a3bb88b272e55e6fa7ec328971e2977b1e4107d57abe7b3766f2aa015b",
+                "Destination": "/verifier",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "1ecd5c35c19f0ee02abb3f2114a2837545ef5b96ba9f31ead0e89de14c1b0e7f",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "48c75744e7861d35e120ea1509bc96c219c3f70617ba976363f0fa3cd9a7a4d2",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "5dde41a3bb88b272e55e6fa7ec328971e2977b1e4107d57abe7b3766f2aa015b",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-22T18:19:11.480565+00:00",
+          "duration_ms": 1469
+        },
+        "status": "assertions_failed",
+        "checks": [
+          {
+            "id": "call0",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                0
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call1",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                1
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call2",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                2
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call3",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                3
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call4",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                4
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call5",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                5
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call6",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                6
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call7",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                7
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call8",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                8
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call9",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                9
+              ],
+              "kwargs": {}
+            },
+            "expected": null,
+            "observed": {
+              "negative_control": null
+            },
+            "status": "failed"
+          },
+          {
+            "id": "call10",
+            "requirement_id": "05f27dbc91c3cf50d21065c26deda6adcf20047f8639afb81550fe2496907833",
+            "input": {
+              "args": [
+                10
+              ],
+              "kwargs": {}
+            },
+            "expected": 7,
+            "observed": {
+              "negative_control": 7
+            },
+            "status": "failed"
+          }
+        ]
+      }
+    ],
+    "status": "validation_passed",
+    "ended_at": "2026-10-22T18:19:11.480909+00:00"
+  }
+}

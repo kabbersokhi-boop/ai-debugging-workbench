@@ -1,0 +1,40 @@
+FFFF.                                                                    [100%]
+=================================== FAILURES ===================================
+_______ test_actual_adapter_captures_each_completed_call[shared_object] ________
+backend/tests/test_node_observation_snapshot.py:86: in test_actual_adapter_captures_each_completed_call
+    assert interpreted["status"] == case[4], interpreted
+E   AssertionError: {'status': 'assertions_failed', 'checks': [{'id': 'call0', 'requirement_id': '7ac7202468a4568204405b6e540387d897459955...405b6e540387d897459955bf6b9e560f45d92762f01118', 'input': {'args': [2], 'kwargs': {}}, 'expected': {'value': 2}, ...}]}
+E   assert 'assertions_failed' == 'checks_passed'
+E     
+E     - checks_passed
+E     + assertions_failed
+____ test_actual_adapter_captures_each_completed_call[hidden_early_failure] ____
+backend/tests/test_node_observation_snapshot.py:86: in test_actual_adapter_captures_each_completed_call
+    assert interpreted["status"] == case[4], interpreted
+E   AssertionError: {'status': 'checks_passed', 'checks': [{'id': 'call0', 'requirement_id': '7ac7202468a4568204405b6e540387d897459955bf6b...405b6e540387d897459955bf6b9e560f45d92762f01118', 'input': {'args': [2], 'kwargs': {}}, 'expected': {'value': 1}, ...}]}
+E   assert 'checks_passed' == 'assertions_failed'
+E     
+E     - assertions_failed
+E     + checks_passed
+____ test_actual_adapter_captures_each_completed_call[nested_shared_arrays] ____
+backend/tests/test_node_observation_snapshot.py:86: in test_actual_adapter_captures_each_completed_call
+    assert interpreted["status"] == case[4], interpreted
+E   AssertionError: {'status': 'assertions_failed', 'checks': [{'id': 'call0', 'requirement_id': '7ac7202468a4568204405b6e540387d897459955...762f01118', 'input': {'args': [2], 'kwargs': {}}, 'expected': {'a': {'value': 2}, 'b': [{'value': 2}, [{...}]]}, ...}]}
+E   assert 'assertions_failed' == 'checks_passed'
+E     
+E     - checks_passed
+E     + assertions_failed
+________ test_actual_adapter_captures_each_completed_call[shared_array] ________
+backend/tests/test_node_observation_snapshot.py:86: in test_actual_adapter_captures_each_completed_call
+    assert interpreted["status"] == case[4], interpreted
+E   AssertionError: {'status': 'assertions_failed', 'checks': [{'id': 'call0', 'requirement_id': '7ac7202468a4568204405b6e540387d897459955...e540387d897459955bf6b9e560f45d92762f01118', 'input': {'args': [2], 'kwargs': {}}, 'expected': [2, {'value': 2}], ...}]}
+E   assert 'assertions_failed' == 'checks_passed'
+E     
+E     - checks_passed
+E     + assertions_failed
+=========================== short test summary info ============================
+FAILED backend/tests/test_node_observation_snapshot.py::test_actual_adapter_captures_each_completed_call[shared_object]
+FAILED backend/tests/test_node_observation_snapshot.py::test_actual_adapter_captures_each_completed_call[hidden_early_failure]
+FAILED backend/tests/test_node_observation_snapshot.py::test_actual_adapter_captures_each_completed_call[nested_shared_arrays]
+FAILED backend/tests/test_node_observation_snapshot.py::test_actual_adapter_captures_each_completed_call[shared_array]
+4 failed, 1 passed in 1.45s

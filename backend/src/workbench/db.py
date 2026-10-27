@@ -206,3 +206,17 @@ class RepositoryAudit(Base):
     evidence: Mapped[dict[str, Any]] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class RepositoryRequirement(Base):
+    __tablename__ = "repository_audit_requirements"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    record: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class RepositoryVerificationPlan(Base):
+    __tablename__ = "repository_audit_verification_plans"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    record: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

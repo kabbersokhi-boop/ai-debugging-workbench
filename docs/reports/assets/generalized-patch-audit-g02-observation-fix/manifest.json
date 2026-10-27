@@ -1,0 +1,22 @@
+{
+  "algorithm": "SHA-256",
+  "files": {
+    "README.md": "2b2cfede593658a878482cf32853dc66d1aa5a65486a1b2e82c13eb6d1cede25",
+    "actual-adapter-comparison.json": "85aa87b4ee8716648c628c22df55d5d0938b94707c3d433e244e14e915baad48",
+    "api-history-audit.json": "ec9d48fb4b59517538b78844a8e769feda355327d6013ffef5abc948b732986e",
+    "api-history.log": "3fae50474158209643e4e67034139574b343dac75ed01f0889a125ce72a2ed2a",
+    "check.log": "b7cac2de0379ddf7a626c0912ea51b519ef5dd46800e7421b8132fe098905e51",
+    "ci-implementation.json": "0e04eac8a5ed7483fe85348761e4f30f647e0961503895816a24fc6f305abd6c",
+    "completion-audit.json": "0ce1b15470612bcaa81fc532fefd39de569d1a6e331d0f98ecdd76c6341c55a0",
+    "e2e.log": "c7e10f3c1be64c811becc12acf6cb57c6eec62bd99a0eac706ce763cd203d965",
+    "focused-offline.log": "8ae31f606645980aba24e509416e5d4ac05e448559f0753348b85e4d1b9d0a29",
+    "hidden_early_failure.json": "be0c4928c73fc5ad92cb05970db7e35cabefc5386bf07b8aff33cbdb177f3040",
+    "nested_shared_arrays.json": "9f22ec4a5353bdf15ed5c89fa4d91a10e90a9d75588b77c668da50b532e678a3",
+    "pinned-node-docker.log": "f9938285f5d038d6e974d8852891da47cbf523c8b770a58abf385c850e353fff",
+    "reviewed-adapter-failure.log": "648290a16f32599450700720fd7f9ae6294a28440d941fa346552aa9cb0eb094",
+    "scalars.json": "b534739d82cb71c9e0a1f30ba728d20182fe237fbbd7d61f16500abf5a988801",
+    "shared_array.json": "e1111e57c1cf4b8e85e17a03ed14984860cc134d6c9445ecefc432569201c60b",
+    "shared_object.json": "7686c44b537b57b48a2ce6847e89dcd21b93fd0f3a371e666f9b00f7d121966c",
+    "unsupported.json": "49e0167c5c650ac8a94d2140d66fe68df6ea1deb3ce16d334de444d7fb580cdd"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "run_id": 39830393181,
+  "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/39830393181",
+  "head_sha": "c96449dd3b14513cb53601ba21ca4754a77fb3f4",
+  "conclusion": "success",
+  "test_summaries": [
+    "foundation\tRun ./scripts/check\t2026-10-22T18:20:49.7627712Z ===================== 290 passed, 92 deselected in 15.43s ======================",
+    "foundation\tRun ./scripts/e2e\t2026-10-22T18:29:13.9476655Z ========== 88 passed, 4 skipped, 290 deselected in 372.86s (0:06:12) ===========",
+    "foundation\tRun E2E_BASE_URL=http://127.0.0.1:8020 ./scripts/e2e -k recorded_explorer_first\t2026-10-22T18:29:42.7874883Z ====================== 2 passed, 380 deselected in 4.22s ======================="
+  ]
+}

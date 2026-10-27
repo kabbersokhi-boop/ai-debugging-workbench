@@ -1,0 +1,64 @@
+{
+  "implementation_sha": "c96449dd3b14513cb53601ba21ca4754a77fb3f4",
+  "historical_records": [
+    {
+      "audit_id": "e656335d-536d-42b3-a387-99cb334195f6",
+      "status": "assertions_failed",
+      "exact_record_and_download_unchanged": true
+    },
+    {
+      "audit_id": "4a2bab03-6b91-47f8-be2f-255a9494b23b",
+      "status": "assertions_failed",
+      "exact_record_and_download_unchanged": true
+    },
+    {
+      "audit_id": "40caad16-8dbe-4e24-8287-47c2b614af6b",
+      "status": "validation_passed",
+      "exact_record_and_download_unchanged": true
+    },
+    {
+      "audit_id": "53f41de0-7160-4925-86ba-2f468ac65f8e",
+      "status": "validation_passed",
+      "exact_record_and_download_unchanged": true
+    },
+    {
+      "audit_id": "aa37edc3-611c-4a92-a2ae-972fd6d8e330",
+      "status": "validation_passed",
+      "exact_record_and_download_unchanged": true
+    },
+    {
+      "audit_id": "7ec49cb2-1556-459f-b00c-22b92043090c",
+      "status": "validation_passed",
+      "exact_record_and_download_unchanged": true
+    },
+    {
+      "audit_id": "2dd4fa07-3aa1-4c0d-bb44-930029b37ec1",
+      "status": "completed",
+      "exact_record_and_download_unchanged": true
+    },
+    {
+      "audit_id": "50fc98ad-3426-48e7-a272-791ac4fe9436",
+      "status": "completed",
+      "exact_record_and_download_unchanged": true
+    }
+  ],
+  "retired_execution_rejected": {
+    "http_status": 409,
+    "response": {
+      "detail": "Historical observation verifier is read-only; prepare the current plan, run fresh controls, and explicitly approve new execution"
+    }
+  },
+  "current_plan_id": "cf740dde5afa9e32e1a6e75ed8454713af860edd679ee29b3210f12eb3e39b8a",
+  "current_verifier": "json-observer-v2",
+  "current_hashes": {
+    "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+    "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+  },
+  "old_validation_reuse_rejected": {
+    "http_status": 409,
+    "response": {
+      "detail": "Independent result verification_id binding mismatch"
+    }
+  },
+  "new_scalar_demo_executions": 0
+}

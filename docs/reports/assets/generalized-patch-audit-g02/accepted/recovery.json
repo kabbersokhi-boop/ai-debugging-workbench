@@ -1,0 +1,2272 @@
+{
+  "cancelled": {
+    "id": "10e0d3ac-1395-4e30-b9fb-03a92b60cb4e",
+    "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+    "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+    "status": "cancelled",
+    "created_at": "2026-10-22T17:07:44.249153+00:00",
+    "updated_at": "2026-10-22T17:07:44.484883+00:00",
+    "execution_mode": "fresh_local",
+    "evidence": {
+      "snapshot": {
+        "id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "version": "repository-source-v1",
+        "repository": "fixture/project",
+        "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+        "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+        "file_hashes": {
+          "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+          "library.py": "e1a894022d1a082987b87adecb623438c9e386d86b2b621cff4a5fe7fdf7edc8",
+          "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+        },
+        "modes": {
+          "library.py": "100644",
+          "tests/test_library.py": "100644",
+          "LICENSE": "100644"
+        },
+        "files": {
+          "LICENSE": "U3ludGhldGljIE1JVCBsaWNlbnNlZCBmaXh0dXJlIGZvciBkZXRlcm1pbmlzdGljIEcxIHRlc3RzLgo=",
+          "library.py": "ZGVmIGFkZChhLCBiKToKICAgIHJldHVybiBhIC0gYgo=",
+          "tests/test_library.py": "ZnJvbSBsaWJyYXJ5IGltcG9ydCBhZGQKCmRlZiB0ZXN0X3N1bSgpOgogICAgYXNzZXJ0IGFkZCgxLCAyKSA9PSAzCg=="
+        },
+        "metadata": {
+          "license": {
+            "spdx_id": "MIT"
+          },
+          "attribution_files": [
+            "LICENSE"
+          ],
+          "adapter": "offline-synthetic-fixture"
+        }
+      },
+      "candidate": {
+        "id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+        "version": "repository-candidate-v1",
+        "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "repository": "fixture/project",
+        "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+        "applied_source_hashes": {
+          "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+          "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+          "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+        },
+        "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+        "patch": "--- a/library.py\n+++ b/library.py\n@@ -1,2 +1,2 @@\n def add(a, b):\n-    return a - b\n+    return a + b\n",
+        "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1",
+        "approved_paths": [
+          "library.py"
+        ],
+        "affected_files": [
+          "library.py"
+        ],
+        "original": {
+          "library.py": "def add(a, b):\n    return a - b\n"
+        },
+        "modified": {
+          "library.py": "def add(a, b):\n    return a + b\n"
+        },
+        "provenance": {
+          "category": "user_declared",
+          "author_label": "Unknown authorship",
+          "source_reference": "",
+          "limitations": "Imported authorship is user-declared and unverified."
+        }
+      },
+      "plan": {
+        "version": "repository-plan-v1",
+        "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+        "runtime": "python312",
+        "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+        "working_directory": ".",
+        "setup": [],
+        "tests": [
+          "python",
+          "-m",
+          "pytest",
+          "-q"
+        ],
+        "test_description": "Offline synthetic repository existing tests",
+        "timeout_seconds": 45,
+        "dependency_policy": "offline-only",
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+      },
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "approval": {
+        "local_owner": true,
+        "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+        "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+        "approved_at": "2026-10-22T17:07:44.249153+00:00",
+        "verification_id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+        "stage": "execution",
+        "approve_independent_plan": true
+      },
+      "verification": {
+        "id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+        "plan": {
+          "version": "independent-plan-v1",
+          "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+          "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+          "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+          "ordinary_plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+          "runtime": "python312",
+          "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+          "module": "library.py",
+          "export": "add",
+          "assertions": [
+            {
+              "id": "zero",
+              "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+              "args": [
+                0,
+                0
+              ],
+              "kwargs": {},
+              "expected": 0
+            },
+            {
+              "id": "negative",
+              "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+              "args": [
+                -3,
+                2
+              ],
+              "kwargs": {},
+              "expected": -1
+            }
+          ],
+          "setup": [],
+          "timeout_seconds": 30,
+          "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+          "adapter_hashes": {
+            "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+            "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+          },
+          "adapter_sources": {
+            "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+            "probe.cjs": "// Fixed adapter; expected values and scoring never enter the candidate environment.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconsole.log = (...args) => console.error(...args);\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = await fn(...call.args);\n      // JSON.stringify silently rewrites undefined/NaN; reject that unsupported domain.\n      function valid(v) {\n        if (v === null || typeof v === 'string' || typeof v === 'boolean') return;\n        if (typeof v === 'number' && Number.isFinite(v)) return;\n        if (Array.isArray(v)) return v.forEach(valid);\n        if (typeof v === 'object' && Object.getPrototypeOf(v) === Object.prototype)\n          return Object.values(v).forEach(valid);\n        throw Error('Unsupported JSON observation');\n      }\n      valid(value);\n      observations.push({id: call.id, kind: 'value', value});\n    } catch (error) {\n      observations.push({id: call.id, kind: 'execution_error', error: String(error.name)});\n    }\n  }\n  emit(JSON.stringify({version: 'observations-v1', observations}) + '\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+          },
+          "interpretation": "all-named-canonical-json-equalities-v1"
+        },
+        "requirements": [
+          {
+            "id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+            "version": "behavioral-requirement-v1",
+            "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+            "statement": "Addition returns the mathematical sum",
+            "expected_behavior": "Integer sums including zeros and negative operands",
+            "input_domain": "Finite integer operands in the declared examples",
+            "assumptions": [
+              "JSON integers"
+            ],
+            "ambiguities": [],
+            "provenance": {
+              "origin": "owner_authored_property",
+              "reference": "Synthetic arithmetic specification v1",
+              "excerpt": "add(a,b) returns a+b",
+              "excerpt_hash": "99d04bb05671b8f2548cdddfcc69fb831e04271a4c27f9db6a00f8807a037222",
+              "justification": "Owner specification fixed independently of candidate",
+              "independent_of_candidate": true
+            },
+            "approval": "owner_approved"
+          }
+        ]
+      },
+      "stage": "execution",
+      "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+      "validation": {
+        "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+        "result": {
+          "version": "repository-independent-result-v1",
+          "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+          "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+          "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+          "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+          "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+          "verification_id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+          "stage": "validation",
+          "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+          "started_at": "2026-10-22T17:07:41.236887+00:00",
+          "ordinary": null,
+          "independent": {
+            "status": "not_run",
+            "checks": []
+          },
+          "controls": [
+            {
+              "kind": "positive",
+              "execution": {
+                "version": "repository-result-v1",
+                "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+                "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+                "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+                "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+                "source_binding": {
+                  "repository": "fixture/project",
+                  "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+                  "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+                  "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1"
+                },
+                "plan_id": "0a96eabd8cb9cf8ea1e53a5ea2fce815490dd8fd274f76e2bcb39832cdaae49c",
+                "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+                "policy": {
+                  "version": "repository-sandbox-v1",
+                  "network": "none",
+                  "uid": "1000:1000",
+                  "rootfs": "read-only",
+                  "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                  "cpu": 1,
+                  "memory_bytes": 536870912,
+                  "pids": 64,
+                  "scratch_bytes": 134217728,
+                  "tmp_bytes": 8388608,
+                  "shm_bytes": 8388608,
+                  "output_bytes_per_stream": 65536,
+                  "log_storage_bytes": 131072,
+                  "file_bytes": 16777216,
+                  "host_mounts": [],
+                  "capabilities": [],
+                  "credentials": false,
+                  "docker_socket": false,
+                  "artifacts": [
+                    "stdout",
+                    "stderr",
+                    "exit status",
+                    "runtime identity"
+                  ]
+                },
+                "independent": {
+                  "status": "not_configured"
+                },
+                "ordinary": {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T17:07:41.825298+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": 0}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": -1}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T17:07:41.879011+00:00",
+                  "duration_ms": 54
+                },
+                "commands": [
+                  {
+                    "phase": "tests",
+                    "argv": [
+                      "python",
+                      "-I",
+                      "-B",
+                      "/verifier/probe.py"
+                    ],
+                    "working_directory": "/source",
+                    "started_at": "2026-10-22T17:07:41.825298+00:00",
+                    "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": 0}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": -1}]}\n",
+                    "stderr": "",
+                    "exit_code": 0,
+                    "counts": null,
+                    "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                    "output_truncated": false,
+                    "status": "finished",
+                    "ended_at": "2026-10-22T17:07:41.879011+00:00",
+                    "duration_ms": 54
+                  }
+                ],
+                "status": "tests_passed",
+                "started_at": "2026-10-22T17:07:41.239412+00:00",
+                "runtime": {
+                  "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                  "repo_digests": [
+                    "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                  ],
+                  "runtime": "python312",
+                  "tag": "ai-agent-evaluator:python312-v1"
+                },
+                "verifier_hashes": {
+                  "control.py": "0cecfde7044473439f1115d4d11e271e1ef9775166ac4e09e0be34ba826d43f9",
+                  "inputs.json": "69f6cc064acafcafeb40999248328e32f7677475c3130424dfb1b0e859170d44",
+                  "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+                },
+                "executed_source_hashes": {
+                  "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                  "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+                  "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+                },
+                "container_id": "af1646541aec8ecf1251fbe04bdd7de58113750921aef8ad079d6984abc95d97",
+                "sandbox": {
+                  "user": "1000:1000",
+                  "host_config": {
+                    "NetworkMode": "none",
+                    "ReadonlyRootfs": true,
+                    "CapDrop": [
+                      "ALL"
+                    ],
+                    "SecurityOpt": [
+                      "no-new-privileges:true"
+                    ],
+                    "Memory": 536870912,
+                    "MemorySwap": 536870912,
+                    "NanoCpus": 1000000000,
+                    "PidsLimit": 64,
+                    "Tmpfs": {
+                      "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                      "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                    },
+                    "ShmSize": 8388608
+                  },
+                  "mounts": [
+                    {
+                      "Type": "volume",
+                      "Name": "3c3ae959648158d114e7e8cc8590c6f8bcd9be2ff4b88a1cc88e7530c92fc7d8",
+                      "Destination": "/source",
+                      "RW": false
+                    },
+                    {
+                      "Type": "volume",
+                      "Name": "74dbd93cbfeaa1e20eb9697b105b2d4c2352d389e4881d0ad494d9e6b0fdeb07",
+                      "Destination": "/verifier",
+                      "RW": false
+                    }
+                  ]
+                },
+                "container_state": {
+                  "OOMKilled": false,
+                  "Error": ""
+                },
+                "cleanup": [
+                  {
+                    "kind": "containers",
+                    "id": "af1646541aec8ecf1251fbe04bdd7de58113750921aef8ad079d6984abc95d97",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "3c3ae959648158d114e7e8cc8590c6f8bcd9be2ff4b88a1cc88e7530c92fc7d8",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "74dbd93cbfeaa1e20eb9697b105b2d4c2352d389e4881d0ad494d9e6b0fdeb07",
+                    "confirmed_absent": true
+                  }
+                ],
+                "ended_at": "2026-10-22T17:07:42.369569+00:00",
+                "duration_ms": 1130
+              },
+              "status": "checks_passed",
+              "checks": [
+                {
+                  "id": "zero",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      0,
+                      0
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": 0,
+                  "observed": 0,
+                  "status": "passed"
+                },
+                {
+                  "id": "negative",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      -3,
+                      2
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": -1,
+                  "observed": -1,
+                  "status": "passed"
+                }
+              ]
+            },
+            {
+              "kind": "negative",
+              "execution": {
+                "version": "repository-result-v1",
+                "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+                "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+                "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+                "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+                "source_binding": {
+                  "repository": "fixture/project",
+                  "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+                  "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+                  "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1"
+                },
+                "plan_id": "0a96eabd8cb9cf8ea1e53a5ea2fce815490dd8fd274f76e2bcb39832cdaae49c",
+                "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+                "policy": {
+                  "version": "repository-sandbox-v1",
+                  "network": "none",
+                  "uid": "1000:1000",
+                  "rootfs": "read-only",
+                  "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                  "cpu": 1,
+                  "memory_bytes": 536870912,
+                  "pids": 64,
+                  "scratch_bytes": 134217728,
+                  "tmp_bytes": 8388608,
+                  "shm_bytes": 8388608,
+                  "output_bytes_per_stream": 65536,
+                  "log_storage_bytes": 131072,
+                  "file_bytes": 16777216,
+                  "host_mounts": [],
+                  "capabilities": [],
+                  "credentials": false,
+                  "docker_socket": false,
+                  "artifacts": [
+                    "stdout",
+                    "stderr",
+                    "exit status",
+                    "runtime identity"
+                  ]
+                },
+                "independent": {
+                  "status": "not_configured"
+                },
+                "ordinary": {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T17:07:43.171353+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": {\"negative_control\": 0}}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": {\"negative_control\": -1}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T17:07:43.231857+00:00",
+                  "duration_ms": 61
+                },
+                "commands": [
+                  {
+                    "phase": "tests",
+                    "argv": [
+                      "python",
+                      "-I",
+                      "-B",
+                      "/verifier/probe.py"
+                    ],
+                    "working_directory": "/source",
+                    "started_at": "2026-10-22T17:07:43.171353+00:00",
+                    "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": {\"negative_control\": 0}}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": {\"negative_control\": -1}}]}\n",
+                    "stderr": "",
+                    "exit_code": 0,
+                    "counts": null,
+                    "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                    "output_truncated": false,
+                    "status": "finished",
+                    "ended_at": "2026-10-22T17:07:43.231857+00:00",
+                    "duration_ms": 61
+                  }
+                ],
+                "status": "tests_passed",
+                "started_at": "2026-10-22T17:07:42.377586+00:00",
+                "runtime": {
+                  "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                  "repo_digests": [
+                    "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                  ],
+                  "runtime": "python312",
+                  "tag": "ai-agent-evaluator:python312-v1"
+                },
+                "verifier_hashes": {
+                  "control.py": "75cf8d6926374b5f729ec41d4a6c7e14a5e759d76d170bdb38001f85fdf41922",
+                  "inputs.json": "69f6cc064acafcafeb40999248328e32f7677475c3130424dfb1b0e859170d44",
+                  "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+                },
+                "executed_source_hashes": {
+                  "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                  "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+                  "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+                },
+                "container_id": "c41b4fa6c2fc9d24e129a21adc1a1cf506b7323996da461d5ed1ac75a190d5ac",
+                "sandbox": {
+                  "user": "1000:1000",
+                  "host_config": {
+                    "NetworkMode": "none",
+                    "ReadonlyRootfs": true,
+                    "CapDrop": [
+                      "ALL"
+                    ],
+                    "SecurityOpt": [
+                      "no-new-privileges:true"
+                    ],
+                    "Memory": 536870912,
+                    "MemorySwap": 536870912,
+                    "NanoCpus": 1000000000,
+                    "PidsLimit": 64,
+                    "Tmpfs": {
+                      "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                      "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                    },
+                    "ShmSize": 8388608
+                  },
+                  "mounts": [
+                    {
+                      "Type": "volume",
+                      "Name": "3700132cbc790fb2256a2d41ddfc4ea13603cdd52b298edaa049a28b53d5f18f",
+                      "Destination": "/source",
+                      "RW": false
+                    },
+                    {
+                      "Type": "volume",
+                      "Name": "11023e102aa49b40b8be9112c96725d76ffeab28387c8d7d24f9d2a0dd381c47",
+                      "Destination": "/verifier",
+                      "RW": false
+                    }
+                  ]
+                },
+                "container_state": {
+                  "OOMKilled": false,
+                  "Error": ""
+                },
+                "cleanup": [
+                  {
+                    "kind": "containers",
+                    "id": "c41b4fa6c2fc9d24e129a21adc1a1cf506b7323996da461d5ed1ac75a190d5ac",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "3700132cbc790fb2256a2d41ddfc4ea13603cdd52b298edaa049a28b53d5f18f",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "11023e102aa49b40b8be9112c96725d76ffeab28387c8d7d24f9d2a0dd381c47",
+                    "confirmed_absent": true
+                  }
+                ],
+                "ended_at": "2026-10-22T17:07:43.772543+00:00",
+                "duration_ms": 1396
+              },
+              "status": "assertions_failed",
+              "checks": [
+                {
+                  "id": "zero",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      0,
+                      0
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": 0,
+                  "observed": {
+                    "negative_control": 0
+                  },
+                  "status": "failed"
+                },
+                {
+                  "id": "negative",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      -3,
+                      2
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": -1,
+                  "observed": {
+                    "negative_control": -1
+                  },
+                  "status": "failed"
+                }
+              ]
+            }
+          ],
+          "status": "validation_passed",
+          "ended_at": "2026-10-22T17:07:43.779814+00:00"
+        }
+      },
+      "cancel_requested": true,
+      "result": {
+        "version": "repository-independent-result-v1",
+        "audit_id": "10e0d3ac-1395-4e30-b9fb-03a92b60cb4e",
+        "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+        "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+        "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+        "verification_id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+        "stage": "execution",
+        "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+        "started_at": "2026-10-22T17:07:44.425631+00:00",
+        "ordinary": {
+          "version": "repository-result-v1",
+          "audit_id": "10e0d3ac-1395-4e30-b9fb-03a92b60cb4e",
+          "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+          "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+          "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+          "source_binding": {
+            "repository": "fixture/project",
+            "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+            "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+            "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1"
+          },
+          "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "status": "not_run",
+            "counts": null
+          },
+          "commands": [],
+          "status": "cancelled",
+          "started_at": "2026-10-22T17:07:44.447358+00:00",
+          "cleanup": [],
+          "ended_at": "2026-10-22T17:07:44.469241+00:00",
+          "duration_ms": 23
+        },
+        "independent": {
+          "status": "not_run",
+          "checks": []
+        },
+        "controls": [],
+        "status": "cancelled",
+        "ended_at": "2026-10-22T17:07:44.469325+00:00"
+      },
+      "result_hash": "889f379f6a449997953a92709951856749513d293e9ceb642912f71ad17b8960"
+    }
+  },
+  "restored": {
+    "id": "045aa80e-e468-4bda-9a4d-38283d1fe88d",
+    "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+    "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+    "status": "completed",
+    "created_at": "2026-10-22T17:07:44.801301+00:00",
+    "updated_at": "2026-10-22T17:08:05.398290+00:00",
+    "execution_mode": "fresh_local",
+    "evidence": {
+      "snapshot": {
+        "id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "version": "repository-source-v1",
+        "repository": "fixture/project",
+        "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+        "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+        "file_hashes": {
+          "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+          "library.py": "e1a894022d1a082987b87adecb623438c9e386d86b2b621cff4a5fe7fdf7edc8",
+          "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+        },
+        "modes": {
+          "library.py": "100644",
+          "tests/test_library.py": "100644",
+          "LICENSE": "100644"
+        },
+        "files": {
+          "LICENSE": "U3ludGhldGljIE1JVCBsaWNlbnNlZCBmaXh0dXJlIGZvciBkZXRlcm1pbmlzdGljIEcxIHRlc3RzLgo=",
+          "library.py": "ZGVmIGFkZChhLCBiKToKICAgIHJldHVybiBhIC0gYgo=",
+          "tests/test_library.py": "ZnJvbSBsaWJyYXJ5IGltcG9ydCBhZGQKCmRlZiB0ZXN0X3N1bSgpOgogICAgYXNzZXJ0IGFkZCgxLCAyKSA9PSAzCg=="
+        },
+        "metadata": {
+          "license": {
+            "spdx_id": "MIT"
+          },
+          "attribution_files": [
+            "LICENSE"
+          ],
+          "adapter": "offline-synthetic-fixture"
+        }
+      },
+      "candidate": {
+        "id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+        "version": "repository-candidate-v1",
+        "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "repository": "fixture/project",
+        "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+        "applied_source_hashes": {
+          "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+          "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+          "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+        },
+        "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+        "patch": "--- a/library.py\n+++ b/library.py\n@@ -1,2 +1,2 @@\n def add(a, b):\n-    return a - b\n+    return a + b\n",
+        "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1",
+        "approved_paths": [
+          "library.py"
+        ],
+        "affected_files": [
+          "library.py"
+        ],
+        "original": {
+          "library.py": "def add(a, b):\n    return a - b\n"
+        },
+        "modified": {
+          "library.py": "def add(a, b):\n    return a + b\n"
+        },
+        "provenance": {
+          "category": "user_declared",
+          "author_label": "Unknown authorship",
+          "source_reference": "",
+          "limitations": "Imported authorship is user-declared and unverified."
+        }
+      },
+      "plan": {
+        "version": "repository-plan-v1",
+        "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+        "runtime": "python312",
+        "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+        "working_directory": ".",
+        "setup": [],
+        "tests": [
+          "python",
+          "-m",
+          "pytest",
+          "-q"
+        ],
+        "test_description": "Offline synthetic repository existing tests",
+        "timeout_seconds": 45,
+        "dependency_policy": "offline-only",
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+      },
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "approval": {
+        "local_owner": true,
+        "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+        "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+        "approved_at": "2026-10-22T17:07:44.801301+00:00",
+        "verification_id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+        "stage": "execution",
+        "approve_independent_plan": true
+      },
+      "verification": {
+        "id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+        "plan": {
+          "version": "independent-plan-v1",
+          "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+          "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+          "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+          "ordinary_plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+          "runtime": "python312",
+          "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+          "module": "library.py",
+          "export": "add",
+          "assertions": [
+            {
+              "id": "zero",
+              "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+              "args": [
+                0,
+                0
+              ],
+              "kwargs": {},
+              "expected": 0
+            },
+            {
+              "id": "negative",
+              "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+              "args": [
+                -3,
+                2
+              ],
+              "kwargs": {},
+              "expected": -1
+            }
+          ],
+          "setup": [],
+          "timeout_seconds": 30,
+          "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+          "adapter_hashes": {
+            "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+            "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+          },
+          "adapter_sources": {
+            "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+            "probe.cjs": "// Fixed adapter; expected values and scoring never enter the candidate environment.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconsole.log = (...args) => console.error(...args);\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = await fn(...call.args);\n      // JSON.stringify silently rewrites undefined/NaN; reject that unsupported domain.\n      function valid(v) {\n        if (v === null || typeof v === 'string' || typeof v === 'boolean') return;\n        if (typeof v === 'number' && Number.isFinite(v)) return;\n        if (Array.isArray(v)) return v.forEach(valid);\n        if (typeof v === 'object' && Object.getPrototypeOf(v) === Object.prototype)\n          return Object.values(v).forEach(valid);\n        throw Error('Unsupported JSON observation');\n      }\n      valid(value);\n      observations.push({id: call.id, kind: 'value', value});\n    } catch (error) {\n      observations.push({id: call.id, kind: 'execution_error', error: String(error.name)});\n    }\n  }\n  emit(JSON.stringify({version: 'observations-v1', observations}) + '\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+          },
+          "interpretation": "all-named-canonical-json-equalities-v1"
+        },
+        "requirements": [
+          {
+            "id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+            "version": "behavioral-requirement-v1",
+            "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+            "statement": "Addition returns the mathematical sum",
+            "expected_behavior": "Integer sums including zeros and negative operands",
+            "input_domain": "Finite integer operands in the declared examples",
+            "assumptions": [
+              "JSON integers"
+            ],
+            "ambiguities": [],
+            "provenance": {
+              "origin": "owner_authored_property",
+              "reference": "Synthetic arithmetic specification v1",
+              "excerpt": "add(a,b) returns a+b",
+              "excerpt_hash": "99d04bb05671b8f2548cdddfcc69fb831e04271a4c27f9db6a00f8807a037222",
+              "justification": "Owner specification fixed independently of candidate",
+              "independent_of_candidate": true
+            },
+            "approval": "owner_approved"
+          }
+        ]
+      },
+      "stage": "execution",
+      "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+      "validation": {
+        "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+        "result": {
+          "version": "repository-independent-result-v1",
+          "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+          "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+          "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+          "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+          "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+          "verification_id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+          "stage": "validation",
+          "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+          "started_at": "2026-10-22T17:07:41.236887+00:00",
+          "ordinary": null,
+          "independent": {
+            "status": "not_run",
+            "checks": []
+          },
+          "controls": [
+            {
+              "kind": "positive",
+              "execution": {
+                "version": "repository-result-v1",
+                "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+                "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+                "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+                "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+                "source_binding": {
+                  "repository": "fixture/project",
+                  "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+                  "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+                  "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1"
+                },
+                "plan_id": "0a96eabd8cb9cf8ea1e53a5ea2fce815490dd8fd274f76e2bcb39832cdaae49c",
+                "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+                "policy": {
+                  "version": "repository-sandbox-v1",
+                  "network": "none",
+                  "uid": "1000:1000",
+                  "rootfs": "read-only",
+                  "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                  "cpu": 1,
+                  "memory_bytes": 536870912,
+                  "pids": 64,
+                  "scratch_bytes": 134217728,
+                  "tmp_bytes": 8388608,
+                  "shm_bytes": 8388608,
+                  "output_bytes_per_stream": 65536,
+                  "log_storage_bytes": 131072,
+                  "file_bytes": 16777216,
+                  "host_mounts": [],
+                  "capabilities": [],
+                  "credentials": false,
+                  "docker_socket": false,
+                  "artifacts": [
+                    "stdout",
+                    "stderr",
+                    "exit status",
+                    "runtime identity"
+                  ]
+                },
+                "independent": {
+                  "status": "not_configured"
+                },
+                "ordinary": {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T17:07:41.825298+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": 0}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": -1}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T17:07:41.879011+00:00",
+                  "duration_ms": 54
+                },
+                "commands": [
+                  {
+                    "phase": "tests",
+                    "argv": [
+                      "python",
+                      "-I",
+                      "-B",
+                      "/verifier/probe.py"
+                    ],
+                    "working_directory": "/source",
+                    "started_at": "2026-10-22T17:07:41.825298+00:00",
+                    "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": 0}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": -1}]}\n",
+                    "stderr": "",
+                    "exit_code": 0,
+                    "counts": null,
+                    "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                    "output_truncated": false,
+                    "status": "finished",
+                    "ended_at": "2026-10-22T17:07:41.879011+00:00",
+                    "duration_ms": 54
+                  }
+                ],
+                "status": "tests_passed",
+                "started_at": "2026-10-22T17:07:41.239412+00:00",
+                "runtime": {
+                  "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                  "repo_digests": [
+                    "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                  ],
+                  "runtime": "python312",
+                  "tag": "ai-agent-evaluator:python312-v1"
+                },
+                "verifier_hashes": {
+                  "control.py": "0cecfde7044473439f1115d4d11e271e1ef9775166ac4e09e0be34ba826d43f9",
+                  "inputs.json": "69f6cc064acafcafeb40999248328e32f7677475c3130424dfb1b0e859170d44",
+                  "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+                },
+                "executed_source_hashes": {
+                  "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                  "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+                  "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+                },
+                "container_id": "af1646541aec8ecf1251fbe04bdd7de58113750921aef8ad079d6984abc95d97",
+                "sandbox": {
+                  "user": "1000:1000",
+                  "host_config": {
+                    "NetworkMode": "none",
+                    "ReadonlyRootfs": true,
+                    "CapDrop": [
+                      "ALL"
+                    ],
+                    "SecurityOpt": [
+                      "no-new-privileges:true"
+                    ],
+                    "Memory": 536870912,
+                    "MemorySwap": 536870912,
+                    "NanoCpus": 1000000000,
+                    "PidsLimit": 64,
+                    "Tmpfs": {
+                      "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                      "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                    },
+                    "ShmSize": 8388608
+                  },
+                  "mounts": [
+                    {
+                      "Type": "volume",
+                      "Name": "3c3ae959648158d114e7e8cc8590c6f8bcd9be2ff4b88a1cc88e7530c92fc7d8",
+                      "Destination": "/source",
+                      "RW": false
+                    },
+                    {
+                      "Type": "volume",
+                      "Name": "74dbd93cbfeaa1e20eb9697b105b2d4c2352d389e4881d0ad494d9e6b0fdeb07",
+                      "Destination": "/verifier",
+                      "RW": false
+                    }
+                  ]
+                },
+                "container_state": {
+                  "OOMKilled": false,
+                  "Error": ""
+                },
+                "cleanup": [
+                  {
+                    "kind": "containers",
+                    "id": "af1646541aec8ecf1251fbe04bdd7de58113750921aef8ad079d6984abc95d97",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "3c3ae959648158d114e7e8cc8590c6f8bcd9be2ff4b88a1cc88e7530c92fc7d8",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "74dbd93cbfeaa1e20eb9697b105b2d4c2352d389e4881d0ad494d9e6b0fdeb07",
+                    "confirmed_absent": true
+                  }
+                ],
+                "ended_at": "2026-10-22T17:07:42.369569+00:00",
+                "duration_ms": 1130
+              },
+              "status": "checks_passed",
+              "checks": [
+                {
+                  "id": "zero",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      0,
+                      0
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": 0,
+                  "observed": 0,
+                  "status": "passed"
+                },
+                {
+                  "id": "negative",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      -3,
+                      2
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": -1,
+                  "observed": -1,
+                  "status": "passed"
+                }
+              ]
+            },
+            {
+              "kind": "negative",
+              "execution": {
+                "version": "repository-result-v1",
+                "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+                "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+                "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+                "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+                "source_binding": {
+                  "repository": "fixture/project",
+                  "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+                  "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+                  "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1"
+                },
+                "plan_id": "0a96eabd8cb9cf8ea1e53a5ea2fce815490dd8fd274f76e2bcb39832cdaae49c",
+                "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+                "policy": {
+                  "version": "repository-sandbox-v1",
+                  "network": "none",
+                  "uid": "1000:1000",
+                  "rootfs": "read-only",
+                  "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                  "cpu": 1,
+                  "memory_bytes": 536870912,
+                  "pids": 64,
+                  "scratch_bytes": 134217728,
+                  "tmp_bytes": 8388608,
+                  "shm_bytes": 8388608,
+                  "output_bytes_per_stream": 65536,
+                  "log_storage_bytes": 131072,
+                  "file_bytes": 16777216,
+                  "host_mounts": [],
+                  "capabilities": [],
+                  "credentials": false,
+                  "docker_socket": false,
+                  "artifacts": [
+                    "stdout",
+                    "stderr",
+                    "exit status",
+                    "runtime identity"
+                  ]
+                },
+                "independent": {
+                  "status": "not_configured"
+                },
+                "ordinary": {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T17:07:43.171353+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": {\"negative_control\": 0}}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": {\"negative_control\": -1}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T17:07:43.231857+00:00",
+                  "duration_ms": 61
+                },
+                "commands": [
+                  {
+                    "phase": "tests",
+                    "argv": [
+                      "python",
+                      "-I",
+                      "-B",
+                      "/verifier/probe.py"
+                    ],
+                    "working_directory": "/source",
+                    "started_at": "2026-10-22T17:07:43.171353+00:00",
+                    "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": {\"negative_control\": 0}}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": {\"negative_control\": -1}}]}\n",
+                    "stderr": "",
+                    "exit_code": 0,
+                    "counts": null,
+                    "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                    "output_truncated": false,
+                    "status": "finished",
+                    "ended_at": "2026-10-22T17:07:43.231857+00:00",
+                    "duration_ms": 61
+                  }
+                ],
+                "status": "tests_passed",
+                "started_at": "2026-10-22T17:07:42.377586+00:00",
+                "runtime": {
+                  "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                  "repo_digests": [
+                    "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                  ],
+                  "runtime": "python312",
+                  "tag": "ai-agent-evaluator:python312-v1"
+                },
+                "verifier_hashes": {
+                  "control.py": "75cf8d6926374b5f729ec41d4a6c7e14a5e759d76d170bdb38001f85fdf41922",
+                  "inputs.json": "69f6cc064acafcafeb40999248328e32f7677475c3130424dfb1b0e859170d44",
+                  "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+                },
+                "executed_source_hashes": {
+                  "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                  "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+                  "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+                },
+                "container_id": "c41b4fa6c2fc9d24e129a21adc1a1cf506b7323996da461d5ed1ac75a190d5ac",
+                "sandbox": {
+                  "user": "1000:1000",
+                  "host_config": {
+                    "NetworkMode": "none",
+                    "ReadonlyRootfs": true,
+                    "CapDrop": [
+                      "ALL"
+                    ],
+                    "SecurityOpt": [
+                      "no-new-privileges:true"
+                    ],
+                    "Memory": 536870912,
+                    "MemorySwap": 536870912,
+                    "NanoCpus": 1000000000,
+                    "PidsLimit": 64,
+                    "Tmpfs": {
+                      "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                      "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                    },
+                    "ShmSize": 8388608
+                  },
+                  "mounts": [
+                    {
+                      "Type": "volume",
+                      "Name": "3700132cbc790fb2256a2d41ddfc4ea13603cdd52b298edaa049a28b53d5f18f",
+                      "Destination": "/source",
+                      "RW": false
+                    },
+                    {
+                      "Type": "volume",
+                      "Name": "11023e102aa49b40b8be9112c96725d76ffeab28387c8d7d24f9d2a0dd381c47",
+                      "Destination": "/verifier",
+                      "RW": false
+                    }
+                  ]
+                },
+                "container_state": {
+                  "OOMKilled": false,
+                  "Error": ""
+                },
+                "cleanup": [
+                  {
+                    "kind": "containers",
+                    "id": "c41b4fa6c2fc9d24e129a21adc1a1cf506b7323996da461d5ed1ac75a190d5ac",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "3700132cbc790fb2256a2d41ddfc4ea13603cdd52b298edaa049a28b53d5f18f",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "11023e102aa49b40b8be9112c96725d76ffeab28387c8d7d24f9d2a0dd381c47",
+                    "confirmed_absent": true
+                  }
+                ],
+                "ended_at": "2026-10-22T17:07:43.772543+00:00",
+                "duration_ms": 1396
+              },
+              "status": "assertions_failed",
+              "checks": [
+                {
+                  "id": "zero",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      0,
+                      0
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": 0,
+                  "observed": {
+                    "negative_control": 0
+                  },
+                  "status": "failed"
+                },
+                {
+                  "id": "negative",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      -3,
+                      2
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": -1,
+                  "observed": {
+                    "negative_control": -1
+                  },
+                  "status": "failed"
+                }
+              ]
+            }
+          ],
+          "status": "validation_passed",
+          "ended_at": "2026-10-22T17:07:43.779814+00:00"
+        }
+      },
+      "result": {
+        "version": "repository-independent-result-v1",
+        "audit_id": "045aa80e-e468-4bda-9a4d-38283d1fe88d",
+        "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+        "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+        "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+        "verification_id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+        "stage": "execution",
+        "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+        "started_at": "2026-10-22T17:07:45.046212+00:00",
+        "ordinary": {
+          "version": "repository-result-v1",
+          "audit_id": "045aa80e-e468-4bda-9a4d-38283d1fe88d",
+          "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+          "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+          "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+          "source_binding": {
+            "repository": "fixture/project",
+            "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+            "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+            "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1"
+          },
+          "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+          "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+          "policy": {
+            "version": "repository-sandbox-v1",
+            "network": "none",
+            "uid": "1000:1000",
+            "rootfs": "read-only",
+            "source": "read-only named volume; separate bounded scratch and offline dependencies",
+            "cpu": 1,
+            "memory_bytes": 536870912,
+            "pids": 64,
+            "scratch_bytes": 134217728,
+            "tmp_bytes": 8388608,
+            "shm_bytes": 8388608,
+            "output_bytes_per_stream": 65536,
+            "log_storage_bytes": 131072,
+            "file_bytes": 16777216,
+            "host_mounts": [],
+            "capabilities": [],
+            "credentials": false,
+            "docker_socket": false,
+            "artifacts": [
+              "stdout",
+              "stderr",
+              "exit status",
+              "runtime identity"
+            ]
+          },
+          "independent": {
+            "status": "not_configured"
+          },
+          "ordinary": {
+            "phase": "tests",
+            "argv": [
+              "python",
+              "-m",
+              "pytest",
+              "-q"
+            ],
+            "working_directory": "/source",
+            "started_at": "2026-10-22T17:07:51.598046+00:00",
+            "stdout": ".                                                                        [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/source/pytest-cache-files-i3ppp506'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n../usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51\n  /usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/stepwise: [Errno 30] Read-only file system: '/source/pytest-cache-files-a4z81aj1'\n    session.config.cache.set(STEPWISE_CACHE_DIR, [])\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1 passed, 2 warnings in 0.01s\n",
+            "stderr": "",
+            "exit_code": 0,
+            "counts": null,
+            "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+            "output_truncated": false,
+            "status": "finished",
+            "ended_at": "2026-10-22T17:07:51.981090+00:00",
+            "duration_ms": 383
+          },
+          "commands": [
+            {
+              "phase": "tests",
+              "argv": [
+                "python",
+                "-m",
+                "pytest",
+                "-q"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-22T17:07:51.598046+00:00",
+              "stdout": ".                                                                        [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/source/pytest-cache-files-i3ppp506'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n../usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51\n  /usr/local/lib/python3.12/site-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /source/.pytest_cache/v/cache/stepwise: [Errno 30] Read-only file system: '/source/pytest-cache-files-a4z81aj1'\n    session.config.cache.set(STEPWISE_CACHE_DIR, [])\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1 passed, 2 warnings in 0.01s\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-22T17:07:51.981090+00:00",
+              "duration_ms": 383
+            }
+          ],
+          "status": "tests_passed",
+          "started_at": "2026-10-22T17:07:45.071681+00:00",
+          "runtime": {
+            "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+            "repo_digests": [
+              "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+            ],
+            "runtime": "python312",
+            "tag": "ai-agent-evaluator:python312-v1"
+          },
+          "executed_source_hashes": {
+            "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+            "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+            "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+          },
+          "container_id": "03c281643409be47dc9e74fee540dbe66eb052c14ebfaf903b5f70429ef1736c",
+          "sandbox": {
+            "user": "1000:1000",
+            "host_config": {
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "CapDrop": [
+                "ALL"
+              ],
+              "SecurityOpt": [
+                "no-new-privileges:true"
+              ],
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 1000000000,
+              "PidsLimit": 64,
+              "Tmpfs": {
+                "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+              },
+              "ShmSize": 8388608
+            },
+            "mounts": [
+              {
+                "Type": "volume",
+                "Name": "ee1ff3d821418479e5e2b10b7bdfc65362099a6fcfd9d6dd7c21689ae519aa89",
+                "Destination": "/source",
+                "RW": false
+              }
+            ]
+          },
+          "container_state": {
+            "OOMKilled": false,
+            "Error": ""
+          },
+          "cleanup": [
+            {
+              "kind": "containers",
+              "id": "03c281643409be47dc9e74fee540dbe66eb052c14ebfaf903b5f70429ef1736c",
+              "confirmed_absent": true
+            },
+            {
+              "kind": "volumes",
+              "id": "ee1ff3d821418479e5e2b10b7bdfc65362099a6fcfd9d6dd7c21689ae519aa89",
+              "confirmed_absent": true
+            }
+          ],
+          "ended_at": "2026-10-22T17:07:53.237506+00:00",
+          "duration_ms": 8166
+        },
+        "independent": {
+          "status": "checks_passed",
+          "checks": [
+            {
+              "id": "zero",
+              "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+              "input": {
+                "args": [
+                  0,
+                  0
+                ],
+                "kwargs": {}
+              },
+              "expected": 0,
+              "observed": 0,
+              "status": "passed"
+            },
+            {
+              "id": "negative",
+              "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+              "input": {
+                "args": [
+                  -3,
+                  2
+                ],
+                "kwargs": {}
+              },
+              "expected": -1,
+              "observed": -1,
+              "status": "passed"
+            }
+          ],
+          "execution": {
+            "version": "repository-result-v1",
+            "audit_id": "045aa80e-e468-4bda-9a4d-38283d1fe88d",
+            "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+            "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+            "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+            "source_binding": {
+              "repository": "fixture/project",
+              "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+              "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+              "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1"
+            },
+            "plan_id": "0a96eabd8cb9cf8ea1e53a5ea2fce815490dd8fd274f76e2bcb39832cdaae49c",
+            "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+            "policy": {
+              "version": "repository-sandbox-v1",
+              "network": "none",
+              "uid": "1000:1000",
+              "rootfs": "read-only",
+              "source": "read-only named volume; separate bounded scratch and offline dependencies",
+              "cpu": 1,
+              "memory_bytes": 536870912,
+              "pids": 64,
+              "scratch_bytes": 134217728,
+              "tmp_bytes": 8388608,
+              "shm_bytes": 8388608,
+              "output_bytes_per_stream": 65536,
+              "log_storage_bytes": 131072,
+              "file_bytes": 16777216,
+              "host_mounts": [],
+              "capabilities": [],
+              "credentials": false,
+              "docker_socket": false,
+              "artifacts": [
+                "stdout",
+                "stderr",
+                "exit status",
+                "runtime identity"
+              ]
+            },
+            "independent": {
+              "status": "not_configured"
+            },
+            "ordinary": {
+              "phase": "tests",
+              "argv": [
+                "python",
+                "-I",
+                "-B",
+                "/verifier/probe.py"
+              ],
+              "working_directory": "/source",
+              "started_at": "2026-10-22T17:07:54.558091+00:00",
+              "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": 0}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": -1}]}\n",
+              "stderr": "",
+              "exit_code": 0,
+              "counts": null,
+              "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+              "output_truncated": false,
+              "status": "finished",
+              "ended_at": "2026-10-22T17:07:54.746324+00:00",
+              "duration_ms": 188
+            },
+            "commands": [
+              {
+                "phase": "tests",
+                "argv": [
+                  "python",
+                  "-I",
+                  "-B",
+                  "/verifier/probe.py"
+                ],
+                "working_directory": "/source",
+                "started_at": "2026-10-22T17:07:54.558091+00:00",
+                "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": 0}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": -1}]}\n",
+                "stderr": "",
+                "exit_code": 0,
+                "counts": null,
+                "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                "output_truncated": false,
+                "status": "finished",
+                "ended_at": "2026-10-22T17:07:54.746324+00:00",
+                "duration_ms": 188
+              }
+            ],
+            "status": "tests_passed",
+            "started_at": "2026-10-22T17:07:53.243807+00:00",
+            "runtime": {
+              "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+              "repo_digests": [
+                "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+              ],
+              "runtime": "python312",
+              "tag": "ai-agent-evaluator:python312-v1"
+            },
+            "verifier_hashes": {
+              "inputs.json": "9497e36db4c26167c6bd660fbe8729cb89ed17bc367f55a9b7131275ff71eb97",
+              "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+            },
+            "executed_source_hashes": {
+              "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+              "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+              "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+            },
+            "container_id": "0310b35384205255337a0fbda74c169db4cb48f37abe687063108d5a3d9bc45d",
+            "sandbox": {
+              "user": "1000:1000",
+              "host_config": {
+                "NetworkMode": "none",
+                "ReadonlyRootfs": true,
+                "CapDrop": [
+                  "ALL"
+                ],
+                "SecurityOpt": [
+                  "no-new-privileges:true"
+                ],
+                "Memory": 536870912,
+                "MemorySwap": 536870912,
+                "NanoCpus": 1000000000,
+                "PidsLimit": 64,
+                "Tmpfs": {
+                  "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                  "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                },
+                "ShmSize": 8388608
+              },
+              "mounts": [
+                {
+                  "Type": "volume",
+                  "Name": "f86d1e323c543c5fac71493dc2b8f27da5bb6ed85475f52ef53b1d96dabf5aaf",
+                  "Destination": "/source",
+                  "RW": false
+                },
+                {
+                  "Type": "volume",
+                  "Name": "b24b54455707171f192d913bb43f0be07694cdcc5d5f6e85e5ca04ac79a1fbfb",
+                  "Destination": "/verifier",
+                  "RW": false
+                }
+              ]
+            },
+            "container_state": {
+              "OOMKilled": false,
+              "Error": ""
+            },
+            "cleanup": [
+              {
+                "kind": "containers",
+                "id": "0310b35384205255337a0fbda74c169db4cb48f37abe687063108d5a3d9bc45d",
+                "confirmed_absent": true
+              },
+              {
+                "kind": "volumes",
+                "id": "f86d1e323c543c5fac71493dc2b8f27da5bb6ed85475f52ef53b1d96dabf5aaf",
+                "confirmed_absent": true
+              },
+              {
+                "kind": "volumes",
+                "id": "b24b54455707171f192d913bb43f0be07694cdcc5d5f6e85e5ca04ac79a1fbfb",
+                "confirmed_absent": true
+              }
+            ],
+            "ended_at": "2026-10-22T17:07:56.570840+00:00",
+            "duration_ms": 3328
+          }
+        },
+        "controls": [],
+        "status": "completed",
+        "ended_at": "2026-10-22T17:07:56.571294+00:00"
+      },
+      "result_hash": "9e80bd0186af05518cb53f77495a41561ebb3ac2a31f25b3801f745ebfa6ba0a"
+    }
+  },
+  "missing_terminal": {
+    "id": "894277d6-21c6-4dc9-abae-951664d8db38",
+    "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+    "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+    "status": "interrupted",
+    "created_at": "2026-10-22T17:07:56.717272+00:00",
+    "updated_at": "2026-10-22T17:08:17.447281+00:00",
+    "execution_mode": "fresh_local",
+    "evidence": {
+      "snapshot": {
+        "id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "version": "repository-source-v1",
+        "repository": "fixture/project",
+        "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+        "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+        "file_hashes": {
+          "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+          "library.py": "e1a894022d1a082987b87adecb623438c9e386d86b2b621cff4a5fe7fdf7edc8",
+          "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+        },
+        "modes": {
+          "library.py": "100644",
+          "tests/test_library.py": "100644",
+          "LICENSE": "100644"
+        },
+        "files": {
+          "LICENSE": "U3ludGhldGljIE1JVCBsaWNlbnNlZCBmaXh0dXJlIGZvciBkZXRlcm1pbmlzdGljIEcxIHRlc3RzLgo=",
+          "library.py": "ZGVmIGFkZChhLCBiKToKICAgIHJldHVybiBhIC0gYgo=",
+          "tests/test_library.py": "ZnJvbSBsaWJyYXJ5IGltcG9ydCBhZGQKCmRlZiB0ZXN0X3N1bSgpOgogICAgYXNzZXJ0IGFkZCgxLCAyKSA9PSAzCg=="
+        },
+        "metadata": {
+          "license": {
+            "spdx_id": "MIT"
+          },
+          "attribution_files": [
+            "LICENSE"
+          ],
+          "adapter": "offline-synthetic-fixture"
+        }
+      },
+      "candidate": {
+        "id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+        "version": "repository-candidate-v1",
+        "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "repository": "fixture/project",
+        "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+        "applied_source_hashes": {
+          "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+          "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+          "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+        },
+        "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+        "patch": "--- a/library.py\n+++ b/library.py\n@@ -1,2 +1,2 @@\n def add(a, b):\n-    return a - b\n+    return a + b\n",
+        "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1",
+        "approved_paths": [
+          "library.py"
+        ],
+        "affected_files": [
+          "library.py"
+        ],
+        "original": {
+          "library.py": "def add(a, b):\n    return a - b\n"
+        },
+        "modified": {
+          "library.py": "def add(a, b):\n    return a + b\n"
+        },
+        "provenance": {
+          "category": "user_declared",
+          "author_label": "Unknown authorship",
+          "source_reference": "",
+          "limitations": "Imported authorship is user-declared and unverified."
+        }
+      },
+      "plan": {
+        "version": "repository-plan-v1",
+        "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+        "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+        "runtime": "python312",
+        "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+        "working_directory": ".",
+        "setup": [],
+        "tests": [
+          "python",
+          "-m",
+          "pytest",
+          "-q"
+        ],
+        "test_description": "Offline synthetic repository existing tests",
+        "timeout_seconds": 45,
+        "dependency_policy": "offline-only",
+        "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+      },
+      "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+      "approval": {
+        "local_owner": true,
+        "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+        "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+        "approved_at": "2026-10-22T17:07:44.801301+00:00",
+        "verification_id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+        "stage": "execution",
+        "approve_independent_plan": true
+      },
+      "verification": {
+        "id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+        "plan": {
+          "version": "independent-plan-v1",
+          "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+          "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+          "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+          "ordinary_plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+          "runtime": "python312",
+          "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+          "module": "library.py",
+          "export": "add",
+          "assertions": [
+            {
+              "id": "zero",
+              "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+              "args": [
+                0,
+                0
+              ],
+              "kwargs": {},
+              "expected": 0
+            },
+            {
+              "id": "negative",
+              "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+              "args": [
+                -3,
+                2
+              ],
+              "kwargs": {},
+              "expected": -1
+            }
+          ],
+          "setup": [],
+          "timeout_seconds": 30,
+          "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+          "adapter_hashes": {
+            "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+            "probe.cjs": "512cb089d8fab0de8bf700c0d14fdfa254a2cb0d26dcba29b347b9c3dbffa8bb"
+          },
+          "adapter_sources": {
+            "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+            "probe.cjs": "// Fixed adapter; expected values and scoring never enter the candidate environment.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconsole.log = (...args) => console.error(...args);\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = await fn(...call.args);\n      // JSON.stringify silently rewrites undefined/NaN; reject that unsupported domain.\n      function valid(v) {\n        if (v === null || typeof v === 'string' || typeof v === 'boolean') return;\n        if (typeof v === 'number' && Number.isFinite(v)) return;\n        if (Array.isArray(v)) return v.forEach(valid);\n        if (typeof v === 'object' && Object.getPrototypeOf(v) === Object.prototype)\n          return Object.values(v).forEach(valid);\n        throw Error('Unsupported JSON observation');\n      }\n      valid(value);\n      observations.push({id: call.id, kind: 'value', value});\n    } catch (error) {\n      observations.push({id: call.id, kind: 'execution_error', error: String(error.name)});\n    }\n  }\n  emit(JSON.stringify({version: 'observations-v1', observations}) + '\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+          },
+          "interpretation": "all-named-canonical-json-equalities-v1"
+        },
+        "requirements": [
+          {
+            "id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+            "version": "behavioral-requirement-v1",
+            "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+            "statement": "Addition returns the mathematical sum",
+            "expected_behavior": "Integer sums including zeros and negative operands",
+            "input_domain": "Finite integer operands in the declared examples",
+            "assumptions": [
+              "JSON integers"
+            ],
+            "ambiguities": [],
+            "provenance": {
+              "origin": "owner_authored_property",
+              "reference": "Synthetic arithmetic specification v1",
+              "excerpt": "add(a,b) returns a+b",
+              "excerpt_hash": "99d04bb05671b8f2548cdddfcc69fb831e04271a4c27f9db6a00f8807a037222",
+              "justification": "Owner specification fixed independently of candidate",
+              "independent_of_candidate": true
+            },
+            "approval": "owner_approved"
+          }
+        ]
+      },
+      "stage": "execution",
+      "ordinary_engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+      "validation": {
+        "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+        "result": {
+          "version": "repository-independent-result-v1",
+          "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+          "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+          "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+          "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+          "plan_id": "aade104766a65023315acb7748d23049e0b0dd8542a6c1f0ea0e626b68d6dab5",
+          "verification_id": "a9d3073caf5dfa3e253adaa0cce398d5f501cd33777d38f37c43d663b0659739",
+          "stage": "validation",
+          "engine_id": "dd4979a6c19b5a47e977aca1cffe95c537cda2e2e8d50fd4602c656342e1b319",
+          "started_at": "2026-10-22T17:07:41.236887+00:00",
+          "ordinary": null,
+          "independent": {
+            "status": "not_run",
+            "checks": []
+          },
+          "controls": [
+            {
+              "kind": "positive",
+              "execution": {
+                "version": "repository-result-v1",
+                "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+                "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+                "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+                "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+                "source_binding": {
+                  "repository": "fixture/project",
+                  "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+                  "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+                  "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1"
+                },
+                "plan_id": "0a96eabd8cb9cf8ea1e53a5ea2fce815490dd8fd274f76e2bcb39832cdaae49c",
+                "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+                "policy": {
+                  "version": "repository-sandbox-v1",
+                  "network": "none",
+                  "uid": "1000:1000",
+                  "rootfs": "read-only",
+                  "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                  "cpu": 1,
+                  "memory_bytes": 536870912,
+                  "pids": 64,
+                  "scratch_bytes": 134217728,
+                  "tmp_bytes": 8388608,
+                  "shm_bytes": 8388608,
+                  "output_bytes_per_stream": 65536,
+                  "log_storage_bytes": 131072,
+                  "file_bytes": 16777216,
+                  "host_mounts": [],
+                  "capabilities": [],
+                  "credentials": false,
+                  "docker_socket": false,
+                  "artifacts": [
+                    "stdout",
+                    "stderr",
+                    "exit status",
+                    "runtime identity"
+                  ]
+                },
+                "independent": {
+                  "status": "not_configured"
+                },
+                "ordinary": {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T17:07:41.825298+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": 0}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": -1}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T17:07:41.879011+00:00",
+                  "duration_ms": 54
+                },
+                "commands": [
+                  {
+                    "phase": "tests",
+                    "argv": [
+                      "python",
+                      "-I",
+                      "-B",
+                      "/verifier/probe.py"
+                    ],
+                    "working_directory": "/source",
+                    "started_at": "2026-10-22T17:07:41.825298+00:00",
+                    "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": 0}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": -1}]}\n",
+                    "stderr": "",
+                    "exit_code": 0,
+                    "counts": null,
+                    "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                    "output_truncated": false,
+                    "status": "finished",
+                    "ended_at": "2026-10-22T17:07:41.879011+00:00",
+                    "duration_ms": 54
+                  }
+                ],
+                "status": "tests_passed",
+                "started_at": "2026-10-22T17:07:41.239412+00:00",
+                "runtime": {
+                  "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                  "repo_digests": [
+                    "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                  ],
+                  "runtime": "python312",
+                  "tag": "ai-agent-evaluator:python312-v1"
+                },
+                "verifier_hashes": {
+                  "control.py": "0cecfde7044473439f1115d4d11e271e1ef9775166ac4e09e0be34ba826d43f9",
+                  "inputs.json": "69f6cc064acafcafeb40999248328e32f7677475c3130424dfb1b0e859170d44",
+                  "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+                },
+                "executed_source_hashes": {
+                  "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                  "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+                  "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+                },
+                "container_id": "af1646541aec8ecf1251fbe04bdd7de58113750921aef8ad079d6984abc95d97",
+                "sandbox": {
+                  "user": "1000:1000",
+                  "host_config": {
+                    "NetworkMode": "none",
+                    "ReadonlyRootfs": true,
+                    "CapDrop": [
+                      "ALL"
+                    ],
+                    "SecurityOpt": [
+                      "no-new-privileges:true"
+                    ],
+                    "Memory": 536870912,
+                    "MemorySwap": 536870912,
+                    "NanoCpus": 1000000000,
+                    "PidsLimit": 64,
+                    "Tmpfs": {
+                      "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                      "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                    },
+                    "ShmSize": 8388608
+                  },
+                  "mounts": [
+                    {
+                      "Type": "volume",
+                      "Name": "3c3ae959648158d114e7e8cc8590c6f8bcd9be2ff4b88a1cc88e7530c92fc7d8",
+                      "Destination": "/source",
+                      "RW": false
+                    },
+                    {
+                      "Type": "volume",
+                      "Name": "74dbd93cbfeaa1e20eb9697b105b2d4c2352d389e4881d0ad494d9e6b0fdeb07",
+                      "Destination": "/verifier",
+                      "RW": false
+                    }
+                  ]
+                },
+                "container_state": {
+                  "OOMKilled": false,
+                  "Error": ""
+                },
+                "cleanup": [
+                  {
+                    "kind": "containers",
+                    "id": "af1646541aec8ecf1251fbe04bdd7de58113750921aef8ad079d6984abc95d97",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "3c3ae959648158d114e7e8cc8590c6f8bcd9be2ff4b88a1cc88e7530c92fc7d8",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "74dbd93cbfeaa1e20eb9697b105b2d4c2352d389e4881d0ad494d9e6b0fdeb07",
+                    "confirmed_absent": true
+                  }
+                ],
+                "ended_at": "2026-10-22T17:07:42.369569+00:00",
+                "duration_ms": 1130
+              },
+              "status": "checks_passed",
+              "checks": [
+                {
+                  "id": "zero",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      0,
+                      0
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": 0,
+                  "observed": 0,
+                  "status": "passed"
+                },
+                {
+                  "id": "negative",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      -3,
+                      2
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": -1,
+                  "observed": -1,
+                  "status": "passed"
+                }
+              ]
+            },
+            {
+              "kind": "negative",
+              "execution": {
+                "version": "repository-result-v1",
+                "audit_id": "5b23f61e-e795-429f-92c9-06f1cff19736",
+                "candidate_id": "8fc996fc21882d0192db8c0b1a51839ac85168417862cd8090c95fcb3c0e1ab6",
+                "candidate_hash": "343783dc286258658208cd8d1788a9ddc3a8055daebfb196e856ee375777d671",
+                "snapshot_id": "f8ee1e469ccc7c66c00d138072d1994cbebaf573ce1bccee5a2f0575c61b6d18",
+                "source_binding": {
+                  "repository": "fixture/project",
+                  "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "git_tree": "51418dd7a64d4a1092ccdc7fcbf0a9ef4b66e522",
+                  "source_tree_hash": "60cedbd143e4495a9aa90f93ae4771ecdc1dc74340b314ae6c66a4ec52d553a8",
+                  "submitted_patch_hash": "29c7deb813dea6157ec21c0cb25230435d5c91626192049a6cb005e4b22e9ca1"
+                },
+                "plan_id": "0a96eabd8cb9cf8ea1e53a5ea2fce815490dd8fd274f76e2bcb39832cdaae49c",
+                "engine_id": "2b3f19668817ff1abb12e15042c0cf67ffe461957d9c467bfdc1a36041776726",
+                "policy": {
+                  "version": "repository-sandbox-v1",
+                  "network": "none",
+                  "uid": "1000:1000",
+                  "rootfs": "read-only",
+                  "source": "read-only named volume; separate bounded scratch and offline dependencies",
+                  "cpu": 1,
+                  "memory_bytes": 536870912,
+                  "pids": 64,
+                  "scratch_bytes": 134217728,
+                  "tmp_bytes": 8388608,
+                  "shm_bytes": 8388608,
+                  "output_bytes_per_stream": 65536,
+                  "log_storage_bytes": 131072,
+                  "file_bytes": 16777216,
+                  "host_mounts": [],
+                  "capabilities": [],
+                  "credentials": false,
+                  "docker_socket": false,
+                  "artifacts": [
+                    "stdout",
+                    "stderr",
+                    "exit status",
+                    "runtime identity"
+                  ]
+                },
+                "independent": {
+                  "status": "not_configured"
+                },
+                "ordinary": {
+                  "phase": "tests",
+                  "argv": [
+                    "python",
+                    "-I",
+                    "-B",
+                    "/verifier/probe.py"
+                  ],
+                  "working_directory": "/source",
+                  "started_at": "2026-10-22T17:07:43.171353+00:00",
+                  "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": {\"negative_control\": 0}}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": {\"negative_control\": -1}}]}\n",
+                  "stderr": "",
+                  "exit_code": 0,
+                  "counts": null,
+                  "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                  "output_truncated": false,
+                  "status": "finished",
+                  "ended_at": "2026-10-22T17:07:43.231857+00:00",
+                  "duration_ms": 61
+                },
+                "commands": [
+                  {
+                    "phase": "tests",
+                    "argv": [
+                      "python",
+                      "-I",
+                      "-B",
+                      "/verifier/probe.py"
+                    ],
+                    "working_directory": "/source",
+                    "started_at": "2026-10-22T17:07:43.171353+00:00",
+                    "stdout": "{\"version\": \"observations-v1\", \"observations\": [{\"id\": \"zero\", \"kind\": \"value\", \"value\": {\"negative_control\": 0}}, {\"id\": \"negative\", \"kind\": \"value\", \"value\": {\"negative_control\": -1}}]}\n",
+                    "stderr": "",
+                    "exit_code": 0,
+                    "counts": null,
+                    "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+                    "output_truncated": false,
+                    "status": "finished",
+                    "ended_at": "2026-10-22T17:07:43.231857+00:00",
+                    "duration_ms": 61
+                  }
+                ],
+                "status": "tests_passed",
+                "started_at": "2026-10-22T17:07:42.377586+00:00",
+                "runtime": {
+                  "image_id": "sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301",
+                  "repo_digests": [
+                    "ai-agent-evaluator@sha256:379d13f7b91f63995b9aaa143204149ead633755d19fb093599717ded5574301"
+                  ],
+                  "runtime": "python312",
+                  "tag": "ai-agent-evaluator:python312-v1"
+                },
+                "verifier_hashes": {
+                  "control.py": "75cf8d6926374b5f729ec41d4a6c7e14a5e759d76d170bdb38001f85fdf41922",
+                  "inputs.json": "69f6cc064acafcafeb40999248328e32f7677475c3130424dfb1b0e859170d44",
+                  "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+                },
+                "executed_source_hashes": {
+                  "LICENSE": "21358544f3ad5862a02c32f89690504449069a03c14adc80c2a62524c35192df",
+                  "library.py": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772",
+                  "tests/test_library.py": "68b0f4b042b8de25543878323d1bb09bdd8e0bf1603c2ea6b23ac35ef4a1f5bf"
+                },
+                "container_id": "c41b4fa6c2fc9d24e129a21adc1a1cf506b7323996da461d5ed1ac75a190d5ac",
+                "sandbox": {
+                  "user": "1000:1000",
+                  "host_config": {
+                    "NetworkMode": "none",
+                    "ReadonlyRootfs": true,
+                    "CapDrop": [
+                      "ALL"
+                    ],
+                    "SecurityOpt": [
+                      "no-new-privileges:true"
+                    ],
+                    "Memory": 536870912,
+                    "MemorySwap": 536870912,
+                    "NanoCpus": 1000000000,
+                    "PidsLimit": 64,
+                    "Tmpfs": {
+                      "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+                      "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+                    },
+                    "ShmSize": 8388608
+                  },
+                  "mounts": [
+                    {
+                      "Type": "volume",
+                      "Name": "3700132cbc790fb2256a2d41ddfc4ea13603cdd52b298edaa049a28b53d5f18f",
+                      "Destination": "/source",
+                      "RW": false
+                    },
+                    {
+                      "Type": "volume",
+                      "Name": "11023e102aa49b40b8be9112c96725d76ffeab28387c8d7d24f9d2a0dd381c47",
+                      "Destination": "/verifier",
+                      "RW": false
+                    }
+                  ]
+                },
+                "container_state": {
+                  "OOMKilled": false,
+                  "Error": ""
+                },
+                "cleanup": [
+                  {
+                    "kind": "containers",
+                    "id": "c41b4fa6c2fc9d24e129a21adc1a1cf506b7323996da461d5ed1ac75a190d5ac",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "3700132cbc790fb2256a2d41ddfc4ea13603cdd52b298edaa049a28b53d5f18f",
+                    "confirmed_absent": true
+                  },
+                  {
+                    "kind": "volumes",
+                    "id": "11023e102aa49b40b8be9112c96725d76ffeab28387c8d7d24f9d2a0dd381c47",
+                    "confirmed_absent": true
+                  }
+                ],
+                "ended_at": "2026-10-22T17:07:43.772543+00:00",
+                "duration_ms": 1396
+              },
+              "status": "assertions_failed",
+              "checks": [
+                {
+                  "id": "zero",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      0,
+                      0
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": 0,
+                  "observed": {
+                    "negative_control": 0
+                  },
+                  "status": "failed"
+                },
+                {
+                  "id": "negative",
+                  "requirement_id": "0fcfdae34a4cafa4d3505475fe30d73823af8cce956355b1515989525cee0f6e",
+                  "input": {
+                    "args": [
+                      -3,
+                      2
+                    ],
+                    "kwargs": {}
+                  },
+                  "expected": -1,
+                  "observed": {
+                    "negative_control": -1
+                  },
+                  "status": "failed"
+                }
+              ]
+            }
+          ],
+          "status": "validation_passed",
+          "ended_at": "2026-10-22T17:07:43.779814+00:00"
+        }
+      },
+      "reason": "No validated terminal broker evidence; no test result inferred."
+    }
+  }
+}

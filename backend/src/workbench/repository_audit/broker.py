@@ -11,6 +11,7 @@ from pydantic import BaseModel, ConfigDict
 
 from workbench.evaluator import broker
 from workbench.evaluator.catalog import identity
+from workbench.repository_audit import independent
 from workbench.repository_audit.admission import check_plan, rebuild
 from workbench.repository_audit.execution import engine_id, evaluate, runtimes
 
@@ -22,6 +23,10 @@ class Approved(BaseModel):
     plan: dict[str, Any]
     engine_id: str
     approval: dict[str, Any]
+    verification: dict[str, Any] | None = None
+    validation: dict[str, Any] | None = None
+    stage: str | None = None
+    ordinary_engine_id: str | None = None
 
 
 def install(app):
@@ -35,12 +40,15 @@ def install(app):
             await asyncio.to_thread(rebuild, payload.snapshot, payload.candidate)
             check_plan(payload.snapshot, payload.candidate, payload.plan)
             if (
-                payload.engine_id != engine_id()
+                payload.engine_id
+                != (independent.engine_id() if payload.verification else engine_id())
                 or payload.approval.get("local_owner") is not True
                 or payload.approval.get("plan_id") != identity(payload.plan)
                 or payload.approval.get("candidate_id") != payload.candidate["id"]
             ):
                 raise ValueError("Missing exact local-owner execution approval")
+            if payload.verification:
+                independent.check(payload.model_dump(exclude_none=True))
         except (ValueError, KeyError, TypeError) as error:
             raise HTTPException(422, "Repository execution admission failed") from error
         async with broker.LOCK:
@@ -62,9 +70,14 @@ def install(app):
                 broker.PENDING_CANCEL.discard(audit_id)
             broker.IDLE.clear()
         try:
-            result = await asyncio.to_thread(
-                evaluate, audit_id, payload.snapshot, payload.candidate, payload.plan, event
-            )
+            if payload.verification:
+                result = await asyncio.to_thread(
+                    independent.evaluate, audit_id, payload.model_dump(exclude_none=True), event
+                )
+            else:
+                result = await asyncio.to_thread(
+                    evaluate, audit_id, payload.snapshot, payload.candidate, payload.plan, event
+                )
             temporary = path.with_suffix(".tmp")
             temporary.write_text(json.dumps(result))
             temporary.replace(path)

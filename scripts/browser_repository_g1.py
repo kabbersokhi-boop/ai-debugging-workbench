@@ -70,7 +70,11 @@ async def main(args):
             await page.screenshot(path=output / f"{key}-review.png", full_page=True)
             if not args.confirm_local_execution:
                 continue
-            await page.get_by_role("checkbox").check()
+            await page.get_by_role(
+                "checkbox",
+                name="I reviewed this exact source, patch and plan, and approve local execution.",
+                exact=True,
+            ).check()
             async with page.expect_response(
                 lambda r: (
                     r.request.method == "POST" and r.url.endswith("/api/repository-audits/runs")
