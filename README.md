@@ -1,5 +1,7 @@
 # Patch Audit
 
+[![Milestone checks](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/workflows/ci.yml)
+
 **Patch Audit is an evidence-backed workbench for checking completed code changes.**
 It compares ordinary test results with separately approved behavioral checks, while retaining
 reproducible evidence of what was actually executed.
@@ -10,8 +12,8 @@ reproducible evidence of what was actually executed.
 [G4 engineering evidence](docs/reports/GENERALIZED-PATCH-AUDIT-G04.md)
 
 The public demo shows saved evidence. **New audits run only in the private local application.**
-The G4 interface shown here is a locally validated release candidate; the existing public site
-has not been republished as part of G4.
+The recorded viewer presents the current Patch Audit interface and retained historical evidence.
+The repository keeps its original name, `ai-debugging-workbench`; Patch Audit is its primary workflow.
 
 ![Patch Audit: immutable source, patch, existing tests and approved requirements](docs/reports/assets/generalized-patch-audit-g04/intake-desktop.png)
 
@@ -158,8 +160,10 @@ candidate execution. It includes both Patch Audit examples and the recorded debu
 docker compose up --build -d --wait api
 ```
 
-Open **http://127.0.0.1:8010/**. Select a supported task, review a patch, and explicitly confirm its
-audit. Patch Audit needs no provider key. Imports must match the supported source versions and files.
+Open **http://127.0.0.1:8010/** and choose **Audit a completed patch**. Follow the
+[first Python or Node audit](docs/PATCH-AUDIT-QUICKSTART.md) through immutable source intake,
+patch admission, requirements, controls and exact approval. Patch Audit needs no provider key.
+The separate prepared-task selector remains available for retained historical examples.
 
 The Docker execution stack is for trusted local use. Container restrictions and in-process Python
 checks are not a complete sandbox against malicious code. Keep this stack private; the public demo
@@ -216,7 +220,7 @@ uv run --project backend playwright install --with-deps chromium
 With the local stack running, `./scripts/e2e` covers PostgreSQL, MCP, Docker, and browser journeys;
 `./scripts/recovery-smoke` checks restart recovery. Recorded-server checks and isolated execution
 instructions are in the [verification guide](docs/RELEASE.md#isolated-release-verification).
-[Debugger evaluation protocol](evals/README.md) · [Patch Audit release](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.1.0).
+[Debugger evaluation protocol](evals/README.md) · [Patch Audit release](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.0).
 
 ## Scope and licensing
 

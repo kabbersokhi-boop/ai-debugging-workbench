@@ -2,7 +2,7 @@
 
 Use the recorded viewer to inspect evidence without installing anything:
 <https://ai-debugging-workbench-recorded.vercel.app/>. It has no execution or import authority.
-The G4 candidate interface is validated locally; this milestone does not update that public URL.
+The public viewer presents the released interface and historical examples; fresh audits stay local.
 
 ## Start the private local application
 
@@ -14,8 +14,8 @@ execution containers remain network-disabled. Linux is the tested environment. N
 ```sh
 git clone https://github.com/kabbersokhi-boop/ai-debugging-workbench.git
 cd ai-debugging-workbench
-# For the unmerged G4 review candidate:
-git switch feature/generalized-patch-audit-g04
+# Pin the tested release:
+git checkout v1.2.0
 docker compose up --build -d --wait api
 ```
 
