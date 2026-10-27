@@ -4,7 +4,7 @@
 
 | Mode | Entry point | Execution authority |
 | --- | --- | --- |
-| Private live workbench | `compose.yaml`, loopback `8010` | Actual NVIDIA / LangGraph / MCP; private broker owns Docker |
+| Private local workbench | `compose.yaml`, loopback `8010` | Deterministic Patch Audit; optional NVIDIA / LangGraph / MCP debugger; private broker owns Docker |
 | Recorded release | `compose.release.yaml`, loopback `8020` | Recorded Patch Audit plus original debugger; zero provider requests/tokens/execution slots |
 
 The release image contains only a small FastAPI server, built frontend and allowlisted sanitized recordings. It has no database/secret configuration, workbench broker/agent implementation, Docker socket, candidate files mounted as executable content, or live run routes. All mutation methods return 405. Private run/history/artifact APIs are absent. Recordings are shared public evidence; visitors have no private execution records to cross-access.
@@ -27,8 +27,12 @@ Candidate interaction is remote: the broker permits only reset/add/increase/decr
 
 The owner authorized the existing Vercel account for this release. Its team uses the Hobby plan.
 No upgrade, purchase, custom DNS or privileged live service is authorized. The externally verified production URL is
-**https://ai-debugging-workbench-recorded.vercel.app/**. Deployment `dpl_AmPBLGxg632KVXBjywFQMxskLESX` uses the tested
-`v1.1.0` source; no live execution service is exposed.
+**https://ai-debugging-workbench-recorded.vercel.app/**. The previous verified deployment was
+`dpl_AmPBLGxg632KVXBjywFQMxskLESX` (`v1.1.0`). Current source, version, deployment ID and
+post-publication verification receipts belong in the
+[release notes](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.0).
+No live execution service is exposed. The existing project has no Git integration or deploy hooks;
+merging a PR does not update this URL.
 
 Vercel's native FastAPI runtime exports the existing recorded server through the small
 `app.py`; root `requirements.txt` mirrors the pinned `docker/release-requirements.txt`
@@ -43,12 +47,21 @@ After committing and verifying the release head, prepare an allowlisted bundle f
 
 ```sh
 release_bundle=$(mktemp -d)
-git archive v1.1.0 app.py requirements.txt vercel.json .vercelignore .python-version docker/release-requirements.txt \
+release_ref=v1.2.0  # Resolve and test this exact commit before deployment.
+release_sha=$(git rev-parse "$release_ref^{commit}")
+git archive "$release_sha" app.py requirements.txt vercel.json .vercelignore .python-version docker/release-requirements.txt \
   backend/src/workbench/release.py frontend recordings .dockerignore |
   tar -x -C "$release_bundle"
 vercel link --project ai-debugging-workbench-recorded --scope mogging20202020 --cwd "$release_bundle"
-vercel deploy --prod --cwd "$release_bundle"
+vercel deploy --prod --skip-domain --cwd "$release_bundle" --scope mogging20202020 \
+  --meta releaseSourceCommit="$release_sha" --meta releaseVersion="$release_ref"
+# Verify the returned deployment URL, then promote that same artifact:
+vercel promote DEPLOYMENT_ID --scope mogging20202020 --yes
 ```
+
+Record a SHA-256 manifest of the uploaded allowlist and compare the actual deployed files and
+served frontend/recording bytes. Deployment metadata alone is a declared source identity, not
+proof of the uploaded artifact. Retain the prior deployment for rollback.
 
 Only this bundle is deployed: no evaluator, local secrets, backups or private execution modules.
 Vercel runs FastAPI as autoscaled Functions. Compose CPU/memory/PID/capability, network and tmpfs
@@ -86,7 +99,16 @@ E2E_BASE_URL=$RELEASE_BASE_URL ./scripts/e2e -k recorded_explorer_first
 This uses separate named volumes. The owner stack must be idle: broker cleanup labels identify
 disposable candidate environments across projects. Recovery subprocesses inherit
 `COMPOSE_PROJECT_NAME`; never omit it for isolated testing. Do not remove owner volumes or reset
-its database. Four live-provider opt-in tests remain skipped unless separately requested.
+its database. Four existing opt-ins remain skipped unless separately requested: three live-provider
+checks and one saved-live-demo reopen check.
 
 If overriding evidence output, set `E2E_EVIDENCE_DIR` and `RECOVERY_EVIDENCE_DIR` to the same
 absolute directory; the browser tests otherwise resolve relative paths from `backend/`.
+
+On shared Docker hosts, check available address pools before testing. Give every verification
+network, including the recorded network, an explicit unused subnet if the default pools are
+exhausted; candidate networks still need free default allocations. Do not prune owner networks.
+The frozen earlier offline evaluation harness also resolves the default broker by name. If that
+existing broker is stopped, verify no candidate work is active, temporarily start only that
+broker for the unchanged harness, and restore its prior state afterward. Do not alter frozen
+experiment configuration to accommodate a different local topology.
