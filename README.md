@@ -1,140 +1,64 @@
 # Patch Audit
 
-[![Milestone checks](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/workflows/ci.yml)
+[![Release v1.2.0](https://img.shields.io/badge/release-v1.2.0-315f91)](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.0) · [CI](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/workflows/ci.yml)
 
-**Patch Audit is an evidence-backed workbench for checking completed code changes.**
-It compares ordinary test results with separately approved behavioral checks, while retaining
-reproducible evidence of what was actually executed.
+**Patch Audit is a workbench for inspecting completed code changes with ordinary tests and separately approved behavioral checks.** It retains evidence about the source, patch, requirements, execution and result.
 
-[Explore the public recorded demo](https://ai-debugging-workbench-recorded.vercel.app/) ·
-[First audit walkthrough](docs/PATCH-AUDIT-QUICKSTART.md) ·
-[Architecture](docs/ARCHITECTURE.md#patch-audit-trust-boundaries) ·
-[G4 engineering evidence](docs/reports/GENERALIZED-PATCH-AUDIT-G04.md)
+> **An AI-generated fix passed 155 selected tests. It still missed a second implementation.**
+> Patch Audit makes that gap inspectable—and keeps ordinary results separate from checks based on independently justified requirements.
 
-The public demo shows saved evidence. **New audits run only in the private local application.**
-The recorded viewer presents the current Patch Audit interface and retained historical evidence.
-The repository keeps its original name, `ai-debugging-workbench`; Patch Audit is its primary workflow.
+[Explore the authentic missed-fix evidence](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02) · [Watch the 73-second walkthrough](docs/demo/patch-audit/patch-audit-current.mp4) ([captions](docs/demo/patch-audit/patch-audit-current.vtt) · [transcript](docs/demo/patch-audit/patch-audit-current-transcript.md)) · [Run an audit locally](docs/PATCH-AUDIT-QUICKSTART.md)
 
-![Patch Audit: immutable source, patch, existing tests and approved requirements](docs/reports/assets/generalized-patch-audit-g04/intake-desktop.png)
+<a href="docs/demo/patch-audit/patch-audit-current.mp4"><img src="docs/demo/patch-audit/patch-audit-current-poster.png" alt="Watch Patch Audit inspect the real Boltons missed-copy example and explain how to start a local audit" width="800"></a>
 
-## Why another check after the tests pass?
+The public site is a **recorded viewer**: inspect authentic saved results, patches and evidence. It cannot import or execute code. Fresh audits run in the private local application. This repository keeps its original name, `ai-debugging-workbench`; **Patch Audit** is the product.
 
-Passing selected tests establishes what those tests exercised. It cannot establish every behavior
-that a change must preserve. An independent check is useful only when its expected answer has a
-trustworthy specification: upstream documentation, a public API contract, an external specification
-or an owner-authored property justified independently of the candidate.
+## The real example
 
-Patch Audit does not ask a model or the submitted patch to decide what is correct. You specify the
-behavior and finite inputs, review the provenance, validate positive and negative controls, and
-approve the exact check plan. If you have no trustworthy requirement, the result says
-**Independent checks not configured**. That is never an independent pass.
+A retained AI-generated repair fixed `boltons/dictutils.py` but left a standalone copy broken in `boltons/urlutils.py`. The selected ordinary suite passed (**155 tests**). An independently specified empty-input check found that the standalone implementation reported length `1` instead of `0`. The empty keys and items were consistent with the same **single incomplete repair**, not separate bugs.
 
-## One real example: the overlooked copy
+![Authentic retained Boltons result: selected ordinary tests passed while the independent empty-input check found the overlooked copy](docs/reports/assets/generalized-patch-audit-g04/boltons-desktop.png)
 
-A genuine retained AI-generated Boltons repair changed `dictutils.py` while leaving its standalone
-copy in `urlutils.py` broken. **155 selected ordinary tests passed.** Independent checks of the
-standalone implementation showed:
+This is one genuine retained AI-generated example from a separate development run. It is not a G3 campaign result or a model comparison. In a distinct retrospective campaign, six genuine historical developer patches were reviewed: five passed selected ordinary tests, one regression was already caught by ordinary tests, and independent checks found **zero additional issues**. These small studies do not measure general detection accuracy. [Read the case study](docs/PATCH-AUDIT-CASE-STUDY.md).
 
-| Empty-input behavior | Expected | Observed |
-| --- | --- | --- |
-| Collection length | `0` | `1` |
-| Keys | `[]` | `[]` |
-| Items | `[]` | `[]` |
+## How an audit works
 
-These related observations describe **one incomplete repair**, not three unique bugs. A separate retained patch changed both copies and passed both check sets. It predates the
-missed-copy development run; the generation procedures differed; this is not a model
-ranking or a G3 discovery.
+```mermaid
+flowchart LR
+  A[Pin repository source] --> B[Admit exact patch]
+  B --> C[Run selected existing tests]
+  C --> D[Specify independent requirements]
+  D --> E[Review and approve exact plans]
+  E --> F[Inspect saved evidence]
+```
 
-[Inspect the authentic missed-copy evidence](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02) ·
-[Exact patch](evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.patch) ·
-[Generation provenance](evaluation/experiments/m02-v2/README.md)
+Ordinary tests show what the selected suite exercised. A separate behavioral check can reveal a gap only when its expected result comes from a source independent of the candidate: for example, upstream documentation, a public API contract or a justified owner-authored property. Patch Audit keeps that requirement, its provenance, controls, exact approval, execution and result inspectable. Without a trustworthy requirement it reports **Independent checks not configured**, never an independent pass.
 
-![Authentic Boltons result with ordinary and independent outcomes separated](docs/reports/assets/generalized-patch-audit-g04/boltons-desktop.png)
+## Try it
 
-## From repository to inspectable evidence
-
-**Repository → Patch → Existing tests → Independent requirements → Approval → Evidence**
-
-1. Pin a public GitHub repository to a full immutable commit. Source intake checks the archive,
-   tree and blob identities without executing project code.
-2. Admit an exact production-only patch against that snapshot. Review the change and scope.
-3. Choose the Python or Node runtime and explicit existing-test argument vector. Review any offline
-   setup; neither a README nor a PR link authorizes commands.
-4. Optionally specify independent requirements and named JSON behavior examples. Inspect provenance,
-   assumptions and exact expected values. Positive and negative controls must validate first.
-5. Approve the exact source, patch, ordinary plan and, when configured, validated independent plan.
-   Changes invalidate approval. Execution uses fresh, separate, restricted local containers.
-6. Read distinct ordinary/independent outcomes, expected versus observed values and execution logs.
-   Download the exact patch/evidence, copy the saved link, and reopen history without re-executing.
-
-The local GitHub PR convenience is **metadata preview only**. It shows observed base/head commits
-and change counts using unauthenticated, fixed-host HTTPS. It does not import a PR, infer a test
-command, approve execution or guarantee compatibility. The PR base tip need not be its diff's
-merge-base. Continue through explicit immutable source and production-only patch admission.
-
-![Node.js audit with declared checks and immutable context](docs/reports/assets/generalized-patch-audit-g04/node-result-desktop.png)
-
-<p>
-  <img src="docs/reports/assets/generalized-patch-audit-g04/intake-mobile.png" alt="Actual mobile Patch Audit intake" width="250">
-  <img src="docs/reports/assets/generalized-patch-audit-g04/boltons-mobile.png" alt="Authentic Boltons evidence on mobile" width="250">
-</p>
-
-## Supported scope
-
-| Area | Current boundary |
+| Explore the public demo | Run an audit locally |
 | --- | --- |
-| Source | Public GitHub, full 40-character commit; bounded regular-file snapshots, no submodules, LFS or symlinks |
-| Patch | UTF-8/LF exact diff, ≤64 KiB, ≤4 existing approved production files; no tests/configuration, file-mode changes, additions or deletions |
-| Python | Python 3.12, pinned pytest; offline dependencies only, source stays read-only |
-| Node.js | Node 22, built-in tests or pinned Mocha; optional pinned `array-flatten` compatibility preset |
-| Independent checks | Declarative finite JSON arguments/results from a public Python/Node function; expected values are withheld from the scored candidate’s observation container and compared by the broker |
-| Conclusions | Declared scope only; unsupported, ambiguous, incomplete, interrupted, invalid and infrastructure outcomes remain visible |
-| Prepared examples | Four historical Python tasks, plus optional existing debugger workflows; separate from generalized repository intake |
+| [Open the saved Boltons example](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02). Browse the actual patch, separate outcomes, expected/observed values and downloadable evidence. No installation required; no public execution. | Requires Docker Compose and a trusted local owner. The [quickstart](docs/PATCH-AUDIT-QUICKSTART.md) walks through immutable source, patch review, requirements, controls and exact approval. Keep this stack private. |
 
-Containers run non-root, without network, credentials, Docker sockets or unrelated host mounts,
-with read-only inputs and resource/time/output bounds. They share the host kernel. **This is not a
-complete hostile-code sandbox.** Use an isolated disposable VM for adversarial repositories and
-keep the privileged local service private.
+## Engineering behind the result
 
-Synthetic positive/negative controls necessarily encode their authored outputs. This isolation
-claim concerns the scored candidate; controls do not establish the truth of the specification.
+- **Evidence integrity:** immutable source and patch identities, exact approval bindings, saved outcomes and downloadable evidence.
+- **Execution boundary:** fresh restricted local containers for ordinary and independent checks; the public recorded service has no evaluator or execution authority.
+- **Independent oracle design:** provenance-backed requirements, explicit expected values, positive and negative controls, and separate recorded observations.
+- **Durability:** persisted state transitions, restart recovery and idempotent reconciliation of evidence.
+- **Product:** React and TypeScript flows for source review, guided requirements, diffs, evidence and saved history; Python and Node audit paths.
 
-[Detailed admission and execution policy](docs/GENERALIZED-PATCH-AUDIT.md) ·
-[Independent verification design](docs/reports/GENERALIZED-PATCH-AUDIT-G02.md)
+The checks are finite and declared. They do not discover correct specifications, prove arbitrary software correct, or provide a complete hostile-code sandbox. Containers share the host kernel; use an isolated disposable VM for adversarial source.
 
-## Engineering worth inspecting
+## Go deeper
 
-- **Backend:** typed async FastAPI, Pydantic contracts, PostgreSQL/Alembic, durable state transitions,
-  idempotent evidence reconciliation and bounded cancellation-aware restart recovery.
-- **Integrity:** recomputed source/patch identities; exact candidate/plan/runtime/approval bindings;
-  immutable terminal outcomes and downloadable evidence, including unsuccessful executions.
-- **Test-oracle design:** versioned verifiers, independently justified expectations, isolated
-  observations, positive/negative controls and validation before candidate scoring.
-- **Product:** React/TypeScript, code diffs, guided requirements, progressive evidence disclosure,
-  keyboard focus and responsive layouts. Browser tests exercise real local evaluation.
-- **Public boundary:** a physically separate recorded server/image has no workbench evaluator,
-  database credentials, Docker module/socket, host mounts or mutation endpoints.
-
-[Code tour](docs/CODE_TOUR.md) · [Design decisions](docs/DECISIONS.md) ·
-[Release boundary](docs/RELEASE.md)
-
-## What the evaluations actually found
-
-| Evidence set | Observed result |
-| --- | --- |
-| G3 historical developer patches, including separate Node addendum | Six distinct genuine candidates evaluated. Five passed selected ordinary tests; one regression was already caught by ordinary tests. **Zero additional independent findings**, no repeat disagreements. No broad detection-accuracy or false-positive-rate estimate. |
-| Earlier four-task producer comparison | 24 attempts, six submissions; all six passed both check sets. Eight attempts had no submission; ten had provider failures. **0/6 additional independent failures.** |
-| Separate Boltons development runs | Four attempts, one submission: the featured ordinary-passing missed-copy repair. Three other attempts produced no submission. Different procedure; not pooled with G3 or the comparison. |
-| Authored controls | Deliberately constructed checks of evaluator behavior, labeled separately; not genuine AI or historical developer discoveries. |
-
-[G3 original report](docs/reports/GENERALIZED-PATCH-AUDIT-G03.md) ·
-[Node addendum and accepted recovery correction](docs/reports/GENERALIZED-PATCH-AUDIT-G03-COMPATIBILITY.md) ·
-[Earlier producer comparison](docs/reports/AGENT-EVALUATOR-M02.md) ·
-[Synthetic debugger study](docs/RESULTS.md)
-
-The task sets are small and use public historical source. Results do not establish universal
-correctness, security, production-scale reliability, measured superiority or model rankings.
-G4 improves product access and release readiness; it runs **no new benchmark campaign**.
+- [First local audit, step by step](docs/PATCH-AUDIT-QUICKSTART.md)
+- [Evidence-grounded case study and study accounting](docs/PATCH-AUDIT-CASE-STUDY.md)
+- [Architecture and trust boundaries](docs/ARCHITECTURE.md#patch-audit-trust-boundaries)
+- [Code tour](docs/CODE_TOUR.md) · [Design decisions](docs/DECISIONS.md)
+- [Supported scope and execution policy](docs/GENERALIZED-PATCH-AUDIT.md)
+- [G1–G4 engineering reports](docs/reports/GENERALIZED-PATCH-AUDIT-G04.md)
+- [Release boundary](docs/RELEASE.md) · [v1.2.0 release notes](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.0)
 
 ## Run locally
 

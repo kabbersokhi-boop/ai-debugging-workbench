@@ -86,12 +86,17 @@ export function AuditIntro({
           </>
         )}
         {recorded && (
-          <a
-            className="primary-button product-cta"
-            href="#saved-patch-evidence"
-          >
-            Inspect the saved audit <ArrowRight size={17} />
-          </a>
+          <div className="recorded-actions">
+            <a
+              className="primary-button product-cta"
+              href="#saved-patch-evidence"
+            >
+              Explore the real missed fix <ArrowRight size={17} />
+            </a>
+            <a href="https://github.com/kabbersokhi-boop/ai-debugging-workbench/blob/main/docs/PATCH-AUDIT-QUICKSTART.md">
+              Run an audit locally
+            </a>
+          </div>
         )}
         <div className="product-principles">
           <article>

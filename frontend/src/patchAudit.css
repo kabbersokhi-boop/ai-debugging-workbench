@@ -172,6 +172,16 @@
   margin: 14px 0 22px;
   text-decoration: none;
 }
+.recorded-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 8px 0 10px;
+}
+.recorded-actions .product-cta {
+  margin: 0;
+}
 .patch-audit-workspace .primary-button {
   background: #b4e8d8;
   border: 1px solid #b4e8d8;
