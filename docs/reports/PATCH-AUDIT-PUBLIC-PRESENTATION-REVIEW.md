@@ -87,4 +87,4 @@ This branch changes no files under `evaluation/`, `recordings/`, frozen campaign
 
 **Engineering quality is not rescored here.** The presentation makes the existing engineering easier to inspect but does not increase the strength of the underlying evidence.
 
-**Recommendation: PASS for independent PR review; hold publication/deployment for that review.**
+**Recommendation: BLOCK publication/deployment until an independent reviewer examines the actual changes and media.** The content is ready for that review; the live site remains unchanged.
