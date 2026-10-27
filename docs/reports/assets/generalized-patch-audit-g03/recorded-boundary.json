@@ -1,0 +1,28 @@
+{
+  "mode": "real_recorded_container_audit",
+  "container_image_id": "sha256:4543a261e36dbeed1520cd6d4789cdc7867bdd8ad03580139dd839c91c87a422",
+  "nonroot": true,
+  "read_only": true,
+  "memory_bytes": 201326592,
+  "pids": 32,
+  "cpu_nanos": 500000000,
+  "mounts": [],
+  "authority_modules": {
+    "workbench": false,
+    "docker": false,
+    "langgraph": false,
+    "socket": false
+  },
+  "provider_credentials": false,
+  "database_credentials": false,
+  "mutation_routes": "405",
+  "private_history": "404",
+  "recorded_patch_audits": 2,
+  "patch_import_and_execution_routes": "absent",
+  "health": {
+    "status": "ok",
+    "mode": "recorded",
+    "live_execution_slots": 0,
+    "provider_token_budget": 0
+  }
+}

@@ -1,0 +1,9 @@
+--- a/stringcase.py
++++ b/stringcase.py
+@@ -243,3 +243,6 @@
+ 
+     """
+     return filter(str.isalnum, str(string))
++
++def alphanumcase(string):
++    return re.sub(r"[^A-Za-z0-9]", "", str(string))

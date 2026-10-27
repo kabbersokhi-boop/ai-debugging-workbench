@@ -1,0 +1,18 @@
+{
+  "version":"g3-screening-v1",
+  "method":"Public commit histories and inert source/docs inspected; no target code executed. Four initial shortlisted repositories plus arr-flatten and string-format metadata were inspected. Stopped at six selected patches, without looking for a failure.",
+  "repositories_screened":6,
+  "task_patch_pairs_considered":8,
+  "included_candidates":6,
+  "excluded_pairs":2,
+  "repositories":[
+    {"repository":"jaraco/inflect","decision":"excluded at environment screen","pairs_considered":0,"reason":"Current runtime dependencies jaraco.functools, more_itertools and typeguard are not available in the offline pytest image; no dependency installation or task screening pursued."},
+    {"repository":"jpvanhal/inflection","decision":"included","pairs_considered":2,"cases":["inflection-plural","inflection-title"]},
+    {"repository":"okunishinishi/python-stringcase","decision":"included","pairs_considered":2,"cases":["stringcase-alpha","stringcase-camel"]},
+    {"repository":"vercel/ms","decision":"excluded at ordinary environment screen","pairs_considered":2,"revisions":["a2caead13ac7f9931338a1a51ab4e36ddb505e00","2669f23e99be0bb6b65d365151884de52434301c"],"reason":"Unchanged historical tests require expect.js, absent from the existing offline Node image. No test rewrites or installs were used."},
+    {"repository":"jonschlinkert/arr-flatten","decision":"included","pairs_considered":2,"cases":["flatten-recursive","flatten-for"],"relationship":"Two authentic performance refactors at distinct historical parent bases, exercising the same flattening contract; no performance claim is evaluated."},
+    {"repository":"davidchambers/string-format","decision":"metadata/environment screen only, not pursued after sample filled","pairs_considered":0,"reason":"Current test workflow uses unavailable sanctuary-scripts. Metadata was fetched concurrently with arr-flatten investigation; no task/patch screened."}
+  ],
+  "not_screened":["mahmoud/glom","python-humanize/humanize"],
+  "limitations":["Convenience sample of dependency-light historical libraries, not representative of software changes generally.","Upstream source and fix discussions were read before assertions were prepared; no blindness or held-out claim.","Four repair patches plus two performance refactors; the two flattening cases share a contract and are not independent tasks."]
+}

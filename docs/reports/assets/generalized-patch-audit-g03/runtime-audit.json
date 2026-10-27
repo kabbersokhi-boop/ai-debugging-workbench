@@ -1,0 +1,25 @@
+{
+  "implementation": "679e3e739d172a83a8ccb8a085006c99392012de",
+  "actual_local_api_image": "sha256:cd7542eb1cd4b4d286efbe5e4ac826683cbadbec52537d8e715697801937aa6c",
+  "backend_files_match_worktree": {
+    "backend/src/workbench/repository_audit/campaign.py": "fa84c8f72005cf13a6c8a0fbdf2c3099bf2e242758c88e972acbc3c195b7ebc1",
+    "backend/src/workbench/repository_audit/routes.py": "0ad313b2ad5be6ca5d55ffb4b31f73812bd9d54a519e87b5dcf3bdd90ea471da",
+    "backend/src/workbench/repository_audit/probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+    "backend/src/workbench/repository_audit/probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133",
+    "backend/src/workbench/repository_audit/verification.py": "873a83ea25283fce67d2df27952d1841cd0d5ef57b2e24aaf6629f58331da5b2",
+    "backend/src/workbench/repository_audit/verifiers.py": "3015fa6a3b0ddfb4fbbf6f55ea624107bed61617c68b8f32b3ba7dd6feb2174b",
+    "backend/src/workbench/repository_audit/execution.py": "40ae6504ff4f82d7cecf5bc249c071420887b7f2aa4997df03e70eafdbf9712a",
+    "backend/src/workbench/repository_audit/independent.py": "1e2fc931c019e0f99752b7ebae2636fbe5aa12c3359cb1ec71440e353297482b"
+  },
+  "served_frontend_matches_built_worktree": {
+    "index.html": "f98b9174367fdb87caccb86465725b47c3a4f3b24aca82e1f37dd9f4be38e315",
+    "assets/Diff-CNgQWNDj.css": "d0cf59560a867ec8acc0e024c1cc5ab1adbfa237e741a237c22ad6eb9abf572f",
+    "assets/Comparison-Hc9Lo6dl.js": "b7c700819b949c43eb5f8629d3f9eab4a14f13639b5dc311505059f312b0600c",
+    "assets/index-DNc8xnM9.js": "3a6a25b142901f76981b02d8c586679d000c7c4f5e3fd8ec79dacff43bfe0f77",
+    "assets/RepositoryAudit-DEuaM4Q4.js": "2035493f4ca64c1cd8400b859496794c4f81f443624c0399df699f4025eb417a",
+    "assets/Diff-BvdX83Jj.js": "f2ea45129b1b0e9f80b2b02d8a9586e4bd77d499a001317a0f4a8ccfb8422a3c",
+    "assets/editor.worker-BytiCuzy.js": "7dd4c36e51af17e43fe30e5692eda7a4b7e5abe862ea4c031d1260666cdb530e",
+    "assets/index-BnCQl7L0.css": "3ab82bf3cf6e2a6c55019934b5974d1c09772c8a5436cd7bfd00297c60d08340"
+  },
+  "local_only": true
+}

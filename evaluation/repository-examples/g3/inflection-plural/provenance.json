@@ -1,0 +1,22 @@
+{
+  "repository": "jpvanhal/inflection",
+  "revision": "1969b3a06a9ff06d023863e388cf8af01978d297",
+  "base_commit": "2d2d37951f6c8871d27a1c74a2c0c1fe6a9354fb",
+  "reference": "https://github.com/jpvanhal/inflection/commit/1969b3a06a9ff06d023863e388cf8af01978d297",
+  "message": "Fixed \"passerby\" pluralized as \"passerbys\" and not \"passersby\"",
+  "authorship": "upstream developer submission; no model execution provenance claimed",
+  "author_login": "frodo821",
+  "original_sha256": "60fef5ebc26538fe641ef8584eaf4893ddf4bdace3b5d2b749b78c88a04d7236",
+  "admitted_sha256": "109b082a90c4578476a8228e1c39ddea2c620fcdecd21a8dde2165ee2429346f",
+  "projection": "all existing production hunks retained; all test hunks excluded consistently",
+  "changed_files": [
+    {
+      "path": "inflection.py",
+      "status": "modified"
+    },
+    {
+      "path": "test_inflection.py",
+      "status": "modified"
+    }
+  ]
+}

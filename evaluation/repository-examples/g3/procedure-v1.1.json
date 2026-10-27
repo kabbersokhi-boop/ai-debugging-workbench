@@ -1,0 +1,13 @@
+{
+  "version": "g3-api-campaign-v1.1",
+  "frozen_campaign_sha256": "7d521577539d910c9a86b546bf775a56b0d0f200c9da477c36140a055f4df161",
+  "reason": "Preflight exposed two unsupported Node cases and an orchestration identity issue before formal scoring. Preserve original freeze, all 20 preflight runs and original failure log.",
+  "changes": [
+    "Reuse exact existing prepared snapshot/candidate/plan from control intent journal; fetched_at makes a new intake a different snapshot, so controls cannot authorize re-fetches. No scoring/observer/expectation change.",
+    "Known unsupported cases receive additive blocked classification and no formal trials; complete per-case specification validation is required for all scored cases.",
+    "Formal execution reduced to eight audits of four Python candidates. No replacement repositories/candidates after freeze. Node coverage limitation remains explicit."
+  ],
+  "budgets": "Original maximum 12 formal audits, 36 planned API runs and two infrastructure recoveries remain ceilings. Expected actual: 20 preflight API runs + 8 formal = 28; zero recovery reruns.",
+  "initial_failure_log": "results/preflight-v1.log",
+  "limitations": "Intended six-candidate/three-repository/both-runtime coverage not achieved. Four formal Python candidates across two repositories; one Node reference/alternative pair has unsupported ordinary setup, another source is rejected before admission."
+}

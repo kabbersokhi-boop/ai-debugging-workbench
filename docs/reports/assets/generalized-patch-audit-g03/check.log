@@ -1,0 +1,55 @@
+All checks passed!
+115 files already formatted
+0 errors, 0 warnings, 0 informations
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 402 items / 93 deselected / 309 selected
+
+tests/test_agent_evaluator.py .........                                  [  2%]
+tests/test_campaign_replay.py .....                                      [  4%]
+tests/test_comparison_api.py ..                                          [  5%]
+tests/test_contracts.py ..........                                       [  8%]
+tests/test_evaluator_comparison.py .........                             [ 11%]
+tests/test_evaluator_reliability.py .....................                [ 18%]
+tests/test_independent_verification.py ...........................       [ 26%]
+tests/test_node_observation_snapshot.py ................................ [ 37%]
+..........                                                               [ 40%]
+tests/test_patch_audit.py ..........................                     [ 48%]
+tests/test_rag.py .................                                      [ 54%]
+tests/test_release.py .......                                            [ 56%]
+tests/test_repair.py .....................                               [ 63%]
+tests/test_repository_audit.py ......................................... [ 76%]
+..........................................                               [ 90%]
+tests/test_repository_campaign.py ..............                         [ 94%]
+tests/test_runner_lifecycle.py ..                                        [ 95%]
+tests/test_verifier_history.py ..............                            [100%]
+
+===================== 309 passed, 93 deselected in 22.43s ======================
+
+> ai-debugging-workbench-ui@0.1.0 build
+> tsc -b && vite build
+
+vite v6.4.4 building for production...
+transforming...
+✓ 2319 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.67 kB │ gzip:   0.41 kB
+dist/assets/editor.worker-BytiCuzy.js      277.04 kB
+dist/assets/index-BnCQl7L0.css              48.02 kB │ gzip:  11.45 kB
+dist/assets/Diff-CNgQWNDj.css               99.25 kB │ gzip:  14.36 kB
+dist/assets/Comparison-Hc9Lo6dl.js          15.23 kB │ gzip:   4.95 kB
+dist/assets/RepositoryAudit-DEuaM4Q4.js     28.39 kB │ gzip:   8.75 kB
+dist/assets/index-DNc8xnM9.js              358.53 kB │ gzip: 107.07 kB
+dist/assets/Diff-BvdX83Jj.js             2,753.41 kB │ gzip: 715.69 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 9.77s

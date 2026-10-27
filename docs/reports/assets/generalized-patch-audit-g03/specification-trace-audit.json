@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "case": "inflection-plural",
+      "excerpt_sha256": "63f438dfdc1e5c9c771caa41d9fc7fc5c1e87bb55dea31cba0fa1168635a425c",
+      "source_file": "plural-pr.json",
+      "source_sha256": "19e2c9409002e0fb6ecf8e484759af41fea6b10702ea838608d137e671056d44",
+      "exact_excerpt_present": true,
+      "kind": "upstream PR request",
+      "assertion_count": 5
+    },
+    {
+      "case": "inflection-title",
+      "excerpt_sha256": "f986b310a2be0a9fa6ed5d4a684a90380a841fe29970ec2b526d6b79077de712",
+      "source_file": "title-issue.json",
+      "source_sha256": "49a9b4491f0eb38457e6ba21283f029d5ab151c98ca382d459827c4140185616",
+      "exact_excerpt_present": true,
+      "kind": "issue title/body",
+      "assertion_count": 6
+    },
+    {
+      "case": "stringcase-alpha",
+      "excerpt_sha256": "59cfcf1a4250491774d22197b2c1c876687a5e42d16ab20521f0dac8c42967c4",
+      "source_file": "stringcase-alpha/base-README.rst",
+      "source_sha256": "135a4eea31e996dacbe664d5071b3143b022adc48fc73f5bf8d3da0d709dec52",
+      "exact_excerpt_present": true,
+      "kind": "exact-base documentation",
+      "assertion_count": 5
+    },
+    {
+      "case": "stringcase-camel",
+      "excerpt_sha256": "4ee79ccafbbefada8f49344d6cf7ed0615844907896131795f02634bd888b106",
+      "source_file": "stringcase-camel/base-README.rst",
+      "source_sha256": "ee50be756f644c1771ef121c9a178716f4872f77e3b2f17e31fe44596832ac8c",
+      "exact_excerpt_present": true,
+      "kind": "exact-base documentation",
+      "assertion_count": 6
+    },
+    {
+      "case": "flatten-recursive",
+      "excerpt_sha256": "5f469cfa169ea3fa1050596c2928b2ff2ad9b95b192cbc6f0d53fb99e5357a3d",
+      "source_file": "flatten-recursive/base-README.md",
+      "source_sha256": "14f6f86476144ff72e8c69594d47ad1f47c433110d832df14d40a281c5f1e726",
+      "exact_excerpt_present": true,
+      "kind": "exact-base documentation",
+      "assertion_count": 5
+    },
+    {
+      "case": "flatten-for",
+      "excerpt_sha256": "7583587c7ebc65bf2256d0c38bef3670563e41cb90fa1f5c21cabba4a2d7e3a9",
+      "source_file": "flatten-for/base-README.md",
+      "source_sha256": "3cf0861714d388d3c1c5ddc7e1d35a3b9dbcd113e145f3be4bce2e548db2027b",
+      "exact_excerpt_present": true,
+      "kind": "exact-base documentation",
+      "assertion_count": 5
+    }
+  ],
+  "expectations_changed_after_freeze": false,
+  "independent_human_review_claimed": false
+}

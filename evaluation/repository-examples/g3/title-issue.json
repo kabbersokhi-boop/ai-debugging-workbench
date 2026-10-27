@@ -1,0 +1,5 @@
+{
+  "title": "titleize('Ana Índia') -> 'Ana índia' but it should be 'Ana Índia'",
+  "body": "```python\r\n# This is correct:\r\n>>> titleize('Índia')\r\n'Índia'\r\n# But this is wrong:\r\n>>> titleize('Ana Índia')\r\n'Ana índia'\r\n# There is no problem without accent:\r\n>>> titleize('Ana India')\r\n'Ana India'\r\n# And the standart python library:\r\n>>> 'Ana Índia'.title()\r\n'Ana Índia'\r\n```\r\n\r\nI guess this is not a problem for English words, but I expect it to work anyway.\r\nNote that for the same word `titleize()` works right in some cases and wrong in another ones depending on where is the word with accent. ",
+  "html_url": "https://github.com/jpvanhal/inflection/issues/33"
+}
