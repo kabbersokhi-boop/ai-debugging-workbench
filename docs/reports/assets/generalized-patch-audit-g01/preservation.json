@@ -1,0 +1,43 @@
+{
+  "base": "fb2ca281c3ce9c6145b02dc051d1fbd7288e0040",
+  "implementation": "771d544490ad8c00e3b74d5c2e579a00cb2dcff6",
+  "protected_files": 1153,
+  "protected_files_unchanged": true,
+  "release_tag": "49e6071938c8a81aa735cb49b7e18e86679bb7b5",
+  "api": {
+    "image_id": "sha256:6b6118f8bc522986f99633a228280a02418e5d91fe1ead5cdfa0775d7c62b050",
+    "source_matches_implementation": true,
+    "provider_credentials_supplied": false,
+    "source_sha256": {
+      "api.py": "1613ad3feb0c873219eccd880bbe5a982b1576510078244d252a6b6b18ed6b89",
+      "db.py": "405dad037d1e1e807541d138b746d45e28dfd395c6799e8cdd08b85d3601e4be",
+      "patch_audit/broker.py": "f8f056c774ad54fe360820876e9bb617202ed67600bbd71bd710a406cc24e73e",
+      "repository_audit/routes.py": "154c08bb30800489254475329e4955a8998fc21e91aed2576e475b23a3710454",
+      "repository_audit/__init__.py": "4cf7618f08deaee0e832b984b8b0bd54440de87127f7d67e809ced1e8bd2ac4f",
+      "repository_audit/service.py": "cad5e0d52978350a0bb8c170b27bb470d59e256b6026bf38cc07f3f58ab4a7ba",
+      "repository_audit/execution.py": "431c398ebb5430b495251b4a69710ef165bea680dedad2a68740913814993f0f",
+      "repository_audit/contracts.py": "bcd84d1067b0e6a9b7b689baea510e46bf946304b3b229c92f8bf4a589689b66",
+      "repository_audit/admission.py": "ab70a0d23da2e0808034ca5406a85d0b221f979f799a39bbfbed6cbf052a797e",
+      "repository_audit/intake.py": "1c99e1690d8876b7170706875892e27661621aba3f5a6f852bab6126e579f72d",
+      "repository_audit/broker.py": "72bcf90ffb2687a76f2331c5a25c52395a3ecc7112d00ed7dbd9c07cde4cb032"
+    }
+  },
+  "evaluator": {
+    "image_id": "sha256:6b6118f8bc522986f99633a228280a02418e5d91fe1ead5cdfa0775d7c62b050",
+    "source_matches_implementation": true,
+    "provider_credentials_supplied": false,
+    "source_sha256": {
+      "api.py": "1613ad3feb0c873219eccd880bbe5a982b1576510078244d252a6b6b18ed6b89",
+      "db.py": "405dad037d1e1e807541d138b746d45e28dfd395c6799e8cdd08b85d3601e4be",
+      "patch_audit/broker.py": "f8f056c774ad54fe360820876e9bb617202ed67600bbd71bd710a406cc24e73e",
+      "repository_audit/routes.py": "154c08bb30800489254475329e4955a8998fc21e91aed2576e475b23a3710454",
+      "repository_audit/__init__.py": "4cf7618f08deaee0e832b984b8b0bd54440de87127f7d67e809ced1e8bd2ac4f",
+      "repository_audit/service.py": "cad5e0d52978350a0bb8c170b27bb470d59e256b6026bf38cc07f3f58ab4a7ba",
+      "repository_audit/execution.py": "431c398ebb5430b495251b4a69710ef165bea680dedad2a68740913814993f0f",
+      "repository_audit/contracts.py": "bcd84d1067b0e6a9b7b689baea510e46bf946304b3b229c92f8bf4a589689b66",
+      "repository_audit/admission.py": "ab70a0d23da2e0808034ca5406a85d0b221f979f799a39bbfbed6cbf052a797e",
+      "repository_audit/intake.py": "1c99e1690d8876b7170706875892e27661621aba3f5a6f852bab6126e579f72d",
+      "repository_audit/broker.py": "72bcf90ffb2687a76f2331c5a25c52395a3ecc7112d00ed7dbd9c07cde4cb032"
+    }
+  }
+}

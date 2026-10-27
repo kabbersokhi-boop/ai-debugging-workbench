@@ -28,7 +28,7 @@ jobs:
       - run: npm ci --prefix frontend
       - run: ./scripts/check
       - name: Check recorded hosting entrypoint
-        run: uv run --project backend python -c "from app import app; assert not any(r.path.startswith('/api/patch-audits') for r in app.routes)"
+        run: uv run --project backend python -c "from app import app; assert not any(r.path.startswith(('/api/patch-audits', '/api/repository-audits')) for r in app.routes)"
       - run: cmp requirements.txt docker/release-requirements.txt
       - run: uv run --project backend playwright install --with-deps chromium
       - run: docker compose up --build -d --wait api
@@ -46,6 +46,7 @@ jobs:
         with:
           name: milestone-evidence
           path: |
+            artifacts/repository-audit/
             artifacts/patch-audit/
             artifacts/evaluator/
             artifacts/evaluator-m02/

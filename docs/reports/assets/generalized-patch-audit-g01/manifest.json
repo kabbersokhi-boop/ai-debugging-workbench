@@ -1,0 +1,32 @@
+{
+  "version": "g1-evidence-assets-v1",
+  "files": {
+    "README.md": "4ed528bd76b919ddf5a41aa9949c2f532ad298e2bda95a0f2dbc656681cb0820",
+    "check.log": "7ca1540f654f21e48ebbd7a1f278b341b3ecf619bdb8d11b0525668255d03d14",
+    "ci-implementation.json": "e34f684e2f7b56d38688f8aff0a242dc29de45807ee623ccff69b6c51c0cf956",
+    "completion-evidence-audit.json": "326a7ea1b2b3ea38e9d250d3f47ce18696c86ba2256b7ffa13d49efde9e513b7",
+    "debugger-recovery.json": "8095f4b25ee1702683f00df1aa12eb8556416b1894707a833684cd585bf765c3",
+    "development-invalid-browser-evidence.json": "9bea177f069d2d1aaf7424feda0206f8ff6853c8d16e827e416306746122d803",
+    "e2e.log": "1e652d301b2ad72bf564fbe8a540f2cc4570126481e8d5e88cd75972b8fe964c",
+    "external-execution-index.json": "6b1077d147d1d144372d0fba9fc6622763bdd76d81757eb74ebe9ff39822a17c",
+    "external.log": "f0bccc8ba0adde7c40bfeef0f21222185862fc1c90cac5d4f0b22cc12fd74cf2",
+    "node-browser.json": "49edd62c6be47bce0422f5a9a7e7757099577c377cb38d0b3f19b3ac95eda876",
+    "node-regression-browser.json": "4c857a358ce8ff8e59f580072a903619de4d1fe6b6089b9ac0893a599cc6e5bb",
+    "node-regression-result.png": "71917b0be1cb01979a74271be5d402733681b9d7c59f7f26549913dc1883fbb2",
+    "node-regression.json": "1c0b90c4c68bce0c52da0c0a7caeff92dde9322b032a3512a9f8c346535ee25f",
+    "node-result.png": "77c47ad66d2f887263941163be6a5d54e224c7a4cb3095d4f2f416b55b6f275e",
+    "node-review.png": "cfefdb498b81fe08ee549ffd44e7cadfcb5afba7bd946203c52b8cc793fea94b",
+    "node.json": "25b8b4c3e1ebdece0cde7ffba6c0ab70131d9ca6d10f75b2b55f84c9135cf3a5",
+    "preservation.json": "715b9bd9f5647e684c992d1a09dfe9754fefd576fc215d3096edcfd41b1c9ca6",
+    "python-browser.json": "d2f21da0d588844c89667c843256c957f17290d50df95d2b50dcb4281fff1f25",
+    "python-result.png": "6254ef056b5fe78185bb8ef0b743972c9d1ec3110f6ec8e12fab388e3e71d127",
+    "python-review.png": "b32f0560e583ae6a5a17ec7d95de993942faae34626a28275d8240f6623abc1e",
+    "python.json": "c45989b078781858d1660d870737467b54c84dce80d7cbc4c1cb06f4e59642e8",
+    "real-browser.log": "763ebaae6c0c51c80ff30d4e2c91e4fdb4e85ddd9ad2237e0295fcb2ebabe378",
+    "recorded-boundary.json": "1087fa84a0187e4ec151cb94b3008c415060a9689806c8efe94b22adc1bf843b",
+    "recorded-browser.log": "1be69315ac9c33af2b389bbcdf4328323b8480498a459474c4b7ce15f51c1945",
+    "recovery.log": "20930b905124f7b82eba5a66e2ba7bee0fafc69cf1db0797469ae94949da104c",
+    "release.log": "1087fa84a0187e4ec151cb94b3008c415060a9689806c8efe94b22adc1bf843b",
+    "repository-recovery.json": "4aad05c6b66a87a1e39e17ccd74a1ada976cdcb31b860190c1f33a1016f94ea5"
+  }
+}

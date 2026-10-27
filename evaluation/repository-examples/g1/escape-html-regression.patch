@@ -1,0 +1,11 @@
+--- a/index.js
++++ b/index.js
+@@ -55,7 +55,7 @@
+         escape = '&#39;'
+         break
+       case 60: // <
+-        escape = '&lt;'
++        escape = '&gt;'
+         break
+       case 62: // >
+         escape = '&gt;'

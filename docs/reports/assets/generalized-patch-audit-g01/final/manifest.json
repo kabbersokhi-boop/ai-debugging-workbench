@@ -1,0 +1,33 @@
+{
+  "version": "g1-evidence-assets-v1",
+  "files": {
+    "README.md": "9c37531efbbbcc8e02224b550eb8843eee8d7d7835585fe690649551e3413bea",
+    "check.log": "7bbf7ec3dd354a38b9ac9332692a04627621a8ffdc54daeaa3573d86923c8455",
+    "ci-implementation.json": "88b72dafd4a76af38809f9e1714d5d1cba934d01d19ea93c4c52b077145cf368",
+    "completion-evidence-audit.json": "5941e53b2bb02623ae6a5971b5bb89a5e4c3002bda989ade96f59080608e836a",
+    "debugger-recovery.json": "493bbab70cc9ca49e2f8f6682fb1ba46bfcffb54958b6d47abc732809ef2ee55",
+    "e2e.log": "144169c052860f674022cb1fae7dd93991c691d839ce266d822d2622635ee006",
+    "external-execution-index.json": "31623f26a58cd2cd303fb0145a52dc993bcd97ae1dd05e3cd193893f64e35740",
+    "external.log": "9b26bc56028934b860155f56d0bfc64516461e44b96dfb72e12d994d4dea2f6a",
+    "focused-browser.log": "1f4592522817d738a16d60e0abcba4dfe52d236df7fdd49646bd511e284023e6",
+    "node-browser.json": "303ea498282807ad7a592eddeef91f8212aedded8dcc3f7ddd03cee3e7686d5d",
+    "node-regression-browser.json": "0c155be294e7d8493d8b38ce6bcad212f2230f47cb9ce7d3180c5c88c1b3f630",
+    "node-regression-result.png": "71917b0be1cb01979a74271be5d402733681b9d7c59f7f26549913dc1883fbb2",
+    "node-regression-review.png": "6e3df4c31c6e39d6be87d0bd44b5c577214af2d05e0681f984cee52539e5e1cf",
+    "node-regression.json": "6721d64e1b35f7b993483ab920e51d3e6d34d378ad8ebf8d5a25a34a3c2835b5",
+    "node-result.png": "77c47ad66d2f887263941163be6a5d54e224c7a4cb3095d4f2f416b55b6f275e",
+    "node-review.png": "3fb466dee2fbd3cec2e37ef62d45397977ff934b4314e7509414ab614bedc69a",
+    "node.json": "cb9cc4825347df56fbcd7414cbb176ff03977e30c0047a078b1c7041d14a5c8a",
+    "preservation.json": "1957da1882be3391e0912f2793724d67ddd8f69681de6f3bb1e19f7b1dd88c77",
+    "python-browser.json": "d459e6ae08440ee22b140a3253429a5d4b5957595b25b9668d5aabeb67c87747",
+    "python-result.png": "6254ef056b5fe78185bb8ef0b743972c9d1ec3110f6ec8e12fab388e3e71d127",
+    "python-review.png": "1318428352305654a603993dfdd9c9390db0382d174ad059eb3795fdc56bea7f",
+    "python.json": "e45eb7ee7b21442afb85aa49bc275e03bf0b86ce848f4f7b1145678df16261a3",
+    "real-browser.log": "f0849e8dda2d4269a4243639f973e2133b83ec5031daee7be445d06d9f4d8bb7",
+    "recorded-boundary.json": "c67be1e4a77d11b693861e37dd6b7620306cb4839849fa1abe87b1a989389c66",
+    "recorded-browser.log": "389c6654e98111b61a91dd0afd7bbc6d8d136cc7592b6ebd2e3184a991af9a81",
+    "recovery.log": "41e104957a1c5f837d9c442c3746c1d539940853a4c743c02030b321c9ee42b4",
+    "release.log": "c67be1e4a77d11b693861e37dd6b7620306cb4839849fa1abe87b1a989389c66",
+    "repository-recovery.json": "976be1ed79e4c126bf0a06debadf335f1af6b33c3145b070bb1bda89d1f294d2"
+  }
+}
