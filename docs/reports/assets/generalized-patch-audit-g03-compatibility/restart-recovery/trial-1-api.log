@@ -1,0 +1,63 @@
+2026-10-25T22:14:11.211600029Z INFO:     127.0.0.1:36972 - "GET /api/health HTTP/1.1" 200 OK
+2026-10-25T22:14:13.174909775Z INFO:     10.241.240.65:37036 - "POST /api/repository-audits/candidates HTTP/1.1" 201 Created
+2026-10-25T22:14:13.926897535Z INFO:     10.241.240.65:37036 - "POST /api/repository-audits/plans HTTP/1.1" 201 Created
+2026-10-25T22:14:13.965830446Z INFO:     10.241.240.65:37036 - "POST /api/repository-audits/runs HTTP/1.1" 202 Accepted
+2026-10-25T22:14:13.999822171Z INFO:     10.241.240.65:37036 - "POST /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c/cancel HTTP/1.1" 200 OK
+2026-10-25T22:14:14.009791034Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:14.220680976Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:14.433363740Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:14.645379323Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:14.855815916Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:15.072584952Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:15.280405007Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:15.488901683Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:15.696576354Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:15.905698123Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:16.113593641Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:16.321432185Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:16.528707645Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:16.741306144Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:16.951535610Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:17.159505581Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:17.372723956Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:17.580372707Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:17.791201301Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:18.003578737Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:18.215800471Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:18.434367658Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:18.646501448Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ee62b4b9-5182-4610-a112-e57312b1889c HTTP/1.1" 200 OK
+2026-10-25T22:14:18.696596522Z INFO:     10.241.240.65:37036 - "POST /api/repository-audits/plans HTTP/1.1" 201 Created
+2026-10-25T22:14:18.726962597Z INFO:     10.241.240.65:37036 - "POST /api/repository-audits/runs HTTP/1.1" 202 Accepted
+2026-10-25T22:14:18.734638219Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:18.948271879Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:19.159967933Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:19.370043916Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:19.583351735Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:19.796495290Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:20.004468734Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:20.212406845Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:20.429132299Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:20.647950702Z INFO:     10.241.240.65:37036 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:20.852503108Z INFO:     Shutting down
+2026-10-25T22:14:20.953207952Z INFO:     Waiting for application shutdown.
+2026-10-25T22:14:20.960426423Z INFO:     Application shutdown complete.
+2026-10-25T22:14:20.960456722Z INFO:     Finished server process [1]
+2026-10-25T22:14:25.865084045Z INFO:     Started server process [1]
+2026-10-25T22:14:25.865116074Z INFO:     Waiting for application startup.
+2026-10-25T22:14:26.012203545Z INFO:     {"attempt_id": "dc89fd4d-f8c9-43be-97af-491028295b4c", "audit_id": "ae7cfc55-67b3-4f67-8381-7cc6eba221d3", "budget_seconds": 27.0, "cancellation_count": 0, "candidate_execution_requested": false, "elapsed_seconds": 6e-06, "event": "repository_audit_recovery", "http_404_count": 0, "last_error_class": null, "poll_attempts": 0, "stage": "started", "started_monotonic": 95681.113774356, "transport_errors": 0}
+2026-10-25T22:14:26.012236230Z INFO:     {"attempt_id": "dc89fd4d-f8c9-43be-97af-491028295b4c", "audit_id": "ae7cfc55-67b3-4f67-8381-7cc6eba221d3", "budget_seconds": 10.0, "cancellation_count": 0, "candidate_execution_requested": false, "elapsed_seconds": 0.000112, "event": "repository_audit_recovery", "http_404_count": 0, "last_error_class": null, "poll_attempts": 0, "stage": "cancel_requested", "started_monotonic": 95681.113774356, "transport_errors": 0}
+2026-10-25T22:14:26.032883935Z INFO:     {"attempt_id": "dc89fd4d-f8c9-43be-97af-491028295b4c", "audit_id": "ae7cfc55-67b3-4f67-8381-7cc6eba221d3", "budget_seconds": 12.0, "cancellation_count": 0, "candidate_execution_requested": false, "elapsed_seconds": 0.020723, "event": "repository_audit_recovery", "http_404_count": 0, "last_error_class": null, "poll_attempts": 0, "stage": "terminal_poll_started", "started_monotonic": 95681.113774356, "transport_errors": 0}
+2026-10-25T22:14:26.057076267Z INFO:     {"attempt_id": "dc89fd4d-f8c9-43be-97af-491028295b4c", "audit_id": "ae7cfc55-67b3-4f67-8381-7cc6eba221d3", "cancellation_count": 0, "candidate_execution_requested": false, "deadline_reached": false, "elapsed_seconds": 0.044945, "event": "repository_audit_recovery", "http_404_count": 0, "last_error_class": null, "poll_attempts": 1, "stage": "terminal_poll_finished", "started_monotonic": 95681.113774356, "transport_errors": 0}
+2026-10-25T22:14:26.057099088Z INFO:     {"attempt_id": "dc89fd4d-f8c9-43be-97af-491028295b4c", "audit_id": "ae7cfc55-67b3-4f67-8381-7cc6eba221d3", "budget_seconds": 5.0, "cancellation_count": 0, "candidate_execution_requested": false, "elapsed_seconds": 0.045048, "event": "repository_audit_recovery", "http_404_count": 0, "last_error_class": null, "poll_attempts": 1, "stage": "persist_started", "started_monotonic": 95681.113774356, "transport_errors": 0}
+2026-10-25T22:14:26.070793576Z INFO:     {"attempt_id": "dc89fd4d-f8c9-43be-97af-491028295b4c", "audit_id": "ae7cfc55-67b3-4f67-8381-7cc6eba221d3", "cancellation_count": 0, "candidate_execution_requested": false, "classification": "tests_passed", "elapsed_seconds": 0.058585, "event": "repository_audit_recovery", "http_404_count": 0, "last_error_class": null, "poll_attempts": 1, "stage": "finished", "started_monotonic": 95681.113774356, "transport_errors": 0}
+2026-10-25T22:14:26.070821031Z INFO:     {"attempt_id": "70e3b900-5f58-4b02-9627-860430341175", "audit_id": "dd0ee434-85ff-48bf-8b95-fb97e4618592", "budget_seconds": 27.0, "cancellation_count": 0, "candidate_execution_requested": false, "elapsed_seconds": 1.7e-05, "event": "repository_audit_recovery", "http_404_count": 0, "last_error_class": null, "poll_attempts": 0, "stage": "started", "started_monotonic": 95681.17250748, "transport_errors": 0}
+2026-10-25T22:14:26.070850991Z INFO:     {"attempt_id": "70e3b900-5f58-4b02-9627-860430341175", "audit_id": "dd0ee434-85ff-48bf-8b95-fb97e4618592", "budget_seconds": 10.0, "cancellation_count": 0, "candidate_execution_requested": false, "elapsed_seconds": 6.8e-05, "event": "repository_audit_recovery", "http_404_count": 0, "last_error_class": null, "poll_attempts": 0, "stage": "cancel_requested", "started_monotonic": 95681.17250748, "transport_errors": 0}
+2026-10-25T22:14:26.092947365Z INFO:     {"attempt_id": "70e3b900-5f58-4b02-9627-860430341175", "audit_id": "dd0ee434-85ff-48bf-8b95-fb97e4618592", "budget_seconds": 12.0, "cancellation_count": 0, "candidate_execution_requested": false, "elapsed_seconds": 0.022018, "event": "repository_audit_recovery", "http_404_count": 0, "last_error_class": null, "poll_attempts": 0, "stage": "terminal_poll_started", "started_monotonic": 95681.17250748, "transport_errors": 0}
+2026-10-25T22:14:38.093780543Z INFO:     {"attempt_id": "70e3b900-5f58-4b02-9627-860430341175", "audit_id": "dd0ee434-85ff-48bf-8b95-fb97e4618592", "cancellation_count": 0, "candidate_execution_requested": false, "deadline_reached": true, "elapsed_seconds": 12.022434, "event": "repository_audit_recovery", "http_404_count": 37, "last_error_class": null, "poll_attempts": 37, "stage": "terminal_poll_finished", "started_monotonic": 95681.17250748, "transport_errors": 0}
+2026-10-25T22:14:38.093824426Z INFO:     {"attempt_id": "70e3b900-5f58-4b02-9627-860430341175", "audit_id": "dd0ee434-85ff-48bf-8b95-fb97e4618592", "budget_seconds": 5.0, "cancellation_count": 0, "candidate_execution_requested": false, "elapsed_seconds": 12.022791, "event": "repository_audit_recovery", "http_404_count": 37, "last_error_class": "TimeoutError", "poll_attempts": 37, "stage": "persist_started", "started_monotonic": 95681.17250748, "transport_errors": 0}
+2026-10-25T22:14:38.110364116Z INFO:     {"attempt_id": "70e3b900-5f58-4b02-9627-860430341175", "audit_id": "dd0ee434-85ff-48bf-8b95-fb97e4618592", "cancellation_count": 0, "candidate_execution_requested": false, "classification": "interrupted", "elapsed_seconds": 12.039117, "event": "repository_audit_recovery", "http_404_count": 37, "last_error_class": "TimeoutError", "poll_attempts": 37, "stage": "finished", "started_monotonic": 95681.17250748, "transport_errors": 0}
+2026-10-25T22:14:38.110405602Z INFO:     {"event":"api_startup_released","repository_recovery_complete":true}
+2026-10-25T22:14:38.110539368Z INFO:     Application startup complete.
+2026-10-25T22:14:38.110986732Z INFO:     Uvicorn running on http://0.0.0.0:8010 (Press CTRL+C to quit)
+2026-10-25T22:14:38.331407819Z INFO:     10.241.240.65:49808 - "GET /api/repository-audits/runs/ae7cfc55-67b3-4f67-8381-7cc6eba221d3 HTTP/1.1" 200 OK
+2026-10-25T22:14:38.339903715Z INFO:     10.241.240.65:49808 - "GET /api/repository-audits/runs/dd0ee434-85ff-48bf-8b95-fb97e4618592 HTTP/1.1" 200 OK

@@ -1,0 +1,23 @@
+flatten-recursive-control-1 cdc0b5f7-6624-4a42-a49b-2462212d54b2 validation_passed None not_run
+flatten-recursive-reference-1 14ad2507-4a78-40e6-a6d9-0f271df37e58 completed tests_passed checks_passed
+flatten-recursive-alternative_control-1 4318b679-b4d1-4236-baf1-da0e46a6af3c validation_passed None not_run
+flatten-recursive-alternative-1 210b9e7b-ddd5-4901-b5ed-f18cf24728ac completed tests_passed checks_passed
+flatten-for-control-1 a39557ca-8c54-4374-a223-43ae1ea82273 validation_passed None not_run
+flatten-for-reference-1 43740550-1e56-4bd4-8613-cfe5fcd9cbae completed tests_passed checks_passed
+flatten-for-alternative_control-1 c281c841-5c2e-4df0-b4b8-e7ee9469039c validation_passed None not_run
+flatten-for-alternative-1 262f77e0-c2a5-4381-8075-35e215a0705f completed tests_passed checks_passed
+{
+  "selected_candidates": 2,
+  "genuine_candidates_executed": 0,
+  "genuine_candidates_admitted": 2,
+  "planned_candidate_audits": 4,
+  "candidate_audits": 0,
+  "control_validations": 4,
+  "reference_audits": 2,
+  "alternative_audits": 2,
+  "fresh_environments": 16,
+  "repeat_disagreements": 0,
+  "candidate_outcomes": {
+    "incomplete": 2
+  }
+}

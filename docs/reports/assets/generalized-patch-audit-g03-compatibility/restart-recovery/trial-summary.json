@@ -1,0 +1,47 @@
+[
+  {
+    "trial": 1,
+    "restart_seconds": 17.668,
+    "missing_recovery_seconds": 12.039117,
+    "missing_polls": 37,
+    "status": "passed",
+    "candidate_reexecutions": 0,
+    "resources_absent": 3
+  },
+  {
+    "trial": 2,
+    "restart_seconds": 17.786,
+    "missing_recovery_seconds": 12.040759,
+    "missing_polls": 37,
+    "status": "passed",
+    "candidate_reexecutions": 0,
+    "resources_absent": 3
+  },
+  {
+    "trial": 3,
+    "restart_seconds": 17.719,
+    "missing_recovery_seconds": 12.042078,
+    "missing_polls": 37,
+    "status": "passed",
+    "candidate_reexecutions": 0,
+    "resources_absent": 3
+  },
+  {
+    "trial": 4,
+    "restart_seconds": 17.634,
+    "missing_recovery_seconds": 12.028744,
+    "missing_polls": 37,
+    "status": "passed",
+    "candidate_reexecutions": 0,
+    "resources_absent": 3
+  },
+  {
+    "trial": 5,
+    "restart_seconds": 17.681,
+    "missing_recovery_seconds": 12.035133,
+    "missing_polls": 37,
+    "status": "passed",
+    "candidate_reexecutions": 0,
+    "resources_absent": 3
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "version": "g3-node-compatibility-completion-audit-v1",
+  "campaign_sha256": "166219b9c4b188e90c7f48ebadf757e27246929eba5a5ba140ff516383c6ba36",
+  "counts": {
+    "selected_candidates": 2,
+    "genuine_candidates_executed": 2,
+    "genuine_candidates_admitted": 2,
+    "planned_candidate_audits": 4,
+    "candidate_audits": 4,
+    "control_validations": 4,
+    "reference_audits": 2,
+    "alternative_audits": 2,
+    "fresh_environments": 24,
+    "repeat_disagreements": 0,
+    "candidate_outcomes": {
+      "ordinary_pass_independent_pass": 2
+    }
+  },
+  "combined_coverage": {
+    "selected_distinct_candidates": 6,
+    "evaluated_distinct_candidates": 6,
+    "formal_audits": 12,
+    "ordinary_passing_candidates": 5,
+    "ordinary_failing_candidates": 1,
+    "additional_independent_defects": 0,
+    "unsupported_or_incomplete": 0,
+    "invalid_or_disputed": 0,
+    "repeat_disagreements": 0
+  },
+  "preflight_and_audit_environments": 26,
+  "recorded_resources_confirmed_actually_absent": 70,
+  "protected_historical_files_byte_identical": 1419,
+  "original_g3_status_unchanged": true,
+  "accepted_observer_bytes_unchanged": true,
+  "original_node_runtime_identity_unchanged": true,
+  "fresh_approval_and_control_ids": true,
+  "new_model_calls": 0,
+  "campaign_recovery_attempts": 0,
+  "engineering_recovery_attempts": 1,
+  "candidates": [
+    {
+      "case": "flatten-recursive",
+      "revision": "1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "base": "280845c6f384fab8ff07a1395de9568270636528",
+      "ordinary_tests_each": 2,
+      "independent_checks_each": 5,
+      "trials": [
+        "3f04cfa7-4232-4274-b952-eaa464535f37",
+        "ab9011ae-320c-40b5-89b5-4381e01432ff"
+      ],
+      "repeats_agree": true
+    },
+    {
+      "case": "flatten-for",
+      "revision": "8953ce8522ee6da8a467286c9bce23fc03b7f38e",
+      "base": "966022a4a9190ddf8c8936daa80d1a7f9f77ecb3",
+      "ordinary_tests_each": 2,
+      "independent_checks_each": 5,
+      "trials": [
+        "6556c1a8-a99e-4b20-a99b-d14106bee727",
+        "b8b787d9-0141-4f90-89ea-f0c338830a72"
+      ],
+      "repeats_agree": true
+    }
+  ]
+}

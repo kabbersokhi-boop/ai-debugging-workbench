@@ -1,0 +1,79 @@
+{
+  "implementation_sha": "98a57bd3f91116e6cd3f18ef986e2301543195d7",
+  "after_control_plane_recovery_and_recovery_smoke": true,
+  "records": [
+    {
+      "audit_id": "cdc0b5f7-6624-4a42-a49b-2462212d54b2",
+      "hash": "0764bd6283d1fb9f2468c3226a91784d211ed39b48f3bdf2fe0259d2bbbb14eb",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "14ad2507-4a78-40e6-a6d9-0f271df37e58",
+      "hash": "8f5e54f7d82b06790044adb40f0edbbbf48efd308918e1b6581cb5fb33c08881",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "4318b679-b4d1-4236-baf1-da0e46a6af3c",
+      "hash": "6706b998cef5b398b387b6f76b63e1c8f56bb086a698ca2235ead09b88d27bd1",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "210b9e7b-ddd5-4901-b5ed-f18cf24728ac",
+      "hash": "5bbc5f62dd6c465c38e0c83137cd6cb8d110e2bc848fc6217029a102f07725ab",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "a39557ca-8c54-4374-a223-43ae1ea82273",
+      "hash": "f9530e0971de37b00491a6153ec8968aaef77793a940b9379f1e86a1e6a7b277",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "43740550-1e56-4bd4-8613-cfe5fcd9cbae",
+      "hash": "b6ddd9ed5f071e34d2aa12893ab84b0487a6bb6bf141afcd16e0ff6b91215dd1",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "c281c841-5c2e-4df0-b4b8-e7ee9469039c",
+      "hash": "ef7723794a0f4d4d10ffc1020edd3c616dc3efdb3597d8c6f0cf444126eef301",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "262f77e0-c2a5-4381-8075-35e215a0705f",
+      "hash": "53f599e65cc0cf76dfe676a8659d0c0b9dadfdf79ef5c98d61cc9fa4585711b6",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "3f04cfa7-4232-4274-b952-eaa464535f37",
+      "hash": "3848dd751c78edfcceba3bae683a2e1ed0de7c7cece2597302064d3a643b1fb6",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "ab9011ae-320c-40b5-89b5-4381e01432ff",
+      "hash": "253facb345e71ea06462d3f1aeadca8011630700d2aa6d91184f7affb5a60354",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "6556c1a8-a99e-4b20-a99b-d14106bee727",
+      "hash": "52742df24fedaa9e6709455a3204c6555a317be8b2a6b7b00a98dedc0f6e3f93",
+      "exact_saved_and_downloaded": true
+    },
+    {
+      "audit_id": "b8b787d9-0141-4f90-89ea-f0c338830a72",
+      "hash": "ad98c39e5c0097438c9b8e8b93d5af03a806510c9eeeac6d9197641a17de16d7",
+      "exact_saved_and_downloaded": true
+    }
+  ],
+  "new_candidate_executions_from_reopening": 0,
+  "all_served_frontend_assets_match_worktree_build": true,
+  "backend_hashes_match_worktree": {
+    "backend/src/workbench/repository_audit/contracts.py": "4658b9e212f9f3f51d9e4c7b185c9b4fb9f4ab4905a1a81c6e17394b27b322c0",
+    "backend/src/workbench/repository_audit/execution.py": "2496d61fd3dab75bd8f5d414b6b6ff7586308d0a94d00cb9249dbd9caa771af6",
+    "backend/src/workbench/repository_audit/intake.py": "92ad505967cf9e9c6e3a233f3398241d7d8a5c74e93f6bad5c28bca2786bc886",
+    "backend/src/workbench/repository_audit/verification.py": "ae2dba9364e357e3c5d2edf7a975a9a689341ac1c16d06f27c8dba20ef346fc1",
+    "backend/src/workbench/repository_audit/campaign.py": "af4c6be603456d6a778b840c5c623158836ecc60881796f87cea4cd21b54f408",
+    "backend/src/workbench/repository_audit/routes.py": "9b0a15c3b3b93bd94d9af36dd2af2e165b7afb06641033ca25caea128619704c",
+    "backend/src/workbench/repository_audit/base_preflight.py": "747ebec556471c63b7f88d3a54b8d1e5a2ca5f76205c441e2f8536fd8482ff4b",
+    "backend/src/workbench/repository_audit/probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133",
+    "backend/src/workbench/repository_audit/probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc"
+  }
+}

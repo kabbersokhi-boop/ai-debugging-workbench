@@ -105,7 +105,7 @@ class VerificationPlan(Contract):
     candidate_id: HASH
     candidate_hash: HASH
     ordinary_plan_id: HASH
-    runtime: Literal["python312", "node22"]
+    runtime: Literal["python312", "node22", "node22_compat"]
     image_id: str = Field(pattern=r"^sha256:[a-f0-9]{64}$")
     module: str = Field(max_length=240)
     export: str = Field(max_length=200)

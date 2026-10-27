@@ -1,0 +1,366 @@
+{
+  "source": {
+    "id": "cb2946c957160aff39787fb14f64a229e19b54ce9a08010345628fa9952172e0",
+    "version": "repository-source-v1",
+    "repository": "jonschlinkert/arr-flatten",
+    "base_commit": "280845c6f384fab8ff07a1395de9568270636528",
+    "git_tree": "594c69fb62dbf616a7b118b7ac085eec203d0e5d",
+    "source_tree_hash": "1cc657315f95d3747e64313333d1919ebb41e6daee19fbd78cbbf26ea317ee61",
+    "file_hashes": {
+      ".gitattributes": "c697329350b4e95aab826aafb5cf438e2e0b60506912f740918a9e9b82dae864",
+      ".gitignore": "de7fa51b20e07f4c3a92dd315095ab16ccbbc6ea100e325649b9394429ae56f7",
+      ".jshintrc": "f8a6ac3c3eca9fb7d2ef224f95ddc9976f91ce01cadc7809fa151ddd97524f5d",
+      ".npmignore": "cd506e878f4ea9f38dd6f436a8e01197e54a0f3101c47690243dd757d1f127c9",
+      ".travis.yml": "4a2b861f1ccaf3e56388b7af075088fc8d6d0a60d1622470eb851dae5363074f",
+      ".verb.md": "9d6c4f2bbf6e28b4c4116703396bf92a88013e642c3f601cb0f6c23c5a239364",
+      "LICENSE": "815f3190f1ce722bd4b48e525a5c7d5d7b7ee7522297cd7582d3a9e301c08683",
+      "README.md": "14f6f86476144ff72e8c69594d47ad1f47c433110d832df14d40a281c5f1e726",
+      "benchmark/check.js": "363e72ad122c2b2cfabf8a58349818e67e2dfde8fa98dbaf69c692dd66cb5fa2",
+      "benchmark/code/arr-flatten-2.js": "7f7f0050394437127f94fac57e44eff9d587b11127288acfcba5d5384cd119df",
+      "benchmark/code/arr-flatten-3.js": "198845e78440ae521ad7ffd234fc08241b0df41870e7bebebddad9cbe6258361",
+      "benchmark/code/arr-flatten.js": "7f7f0050394437127f94fac57e44eff9d587b11127288acfcba5d5384cd119df",
+      "benchmark/code/current.js": "8fffdafbf298312c0c7f8d54ef7b7be3bae8adff119d64c155671cb3a656e153",
+      "benchmark/code/do-while-slice.js": "80496694c201c3b147b11ceca978e4a2de28201b9bae9131d1aa6926b85c2435",
+      "benchmark/code/do-while.js": "69c6d7b5ce79690ba9cf04192afbccd8f46333335830715f4cadde4cb1f5cdcb",
+      "benchmark/code/lib-array-flatten.js": "f86f1081b62aa7b2110cf418d94eecb18acb3af472f0e3fbc5f4ef1e331869f2",
+      "benchmark/code/while-args.js": "6b23a83042b94cc2b1d352006f5fc8a844f1907768ed2f339eb61bb153b12bbb",
+      "benchmark/code/while-depth.js": "52cf98a8806c5026b26a20afe22a0d275db3c308c09a3afc08386f1f0f30c69c",
+      "benchmark/code/while-no-depth-check.js": "2b10a30394bcc4daf381a1714fd05aeffe0ce04f84e3979b97b053fd7007db37",
+      "benchmark/code/while-no-depth-typeof.js": "07b28811a7090a9f634cd224aea48a55db13402eba2f0ae3f24aeaca0da08022",
+      "benchmark/fixtures/large.js": "41d26ffd2e5a3e1eb5271ddec629b4eb41b34467c0db96b54ad9da5adc12c051",
+      "benchmark/fixtures/medium.js": "27448acf3fc6d537355332e1fa722cf20cbdec3fbe625007d342c2a70b21bf82",
+      "benchmark/fixtures/small.js": "0bf3788f5969e9cd910e304c76909ba1ed036a4a504b49f52c1b8ce3a18de2a1",
+      "benchmark/index.js": "0eba760306d72f9e262ed57af6ae60fffc92aeee0d783f7baba3a5a8c4ec2089",
+      "bower.json": "88d22e47bcfc52b523637131a2831cb0fd025955e0003d075e3452a4073c7444",
+      "index.js": "00346df063288d72e905b148cf6893d9699d3d8d3cb7ce46fc9a3e5abba677fb",
+      "package.json": "76e6e8b5496bbea9a0abccc2aae95665b918ecf4580ed0d9a64ad88ed6a6c92d",
+      "test.js": "bce78365d6be07c103a33850c89a4d277866afea9f9237a156df3da0f9da0a3f"
+    },
+    "modes": {
+      ".gitattributes": "100644",
+      ".gitignore": "100644",
+      ".jshintrc": "100644",
+      ".npmignore": "100644",
+      ".travis.yml": "100644",
+      ".verb.md": "100644",
+      "LICENSE": "100644",
+      "README.md": "100644",
+      "benchmark/check.js": "100644",
+      "benchmark/code/arr-flatten-2.js": "100644",
+      "benchmark/code/arr-flatten-3.js": "100644",
+      "benchmark/code/arr-flatten.js": "100644",
+      "benchmark/code/current.js": "100644",
+      "benchmark/code/do-while-slice.js": "100644",
+      "benchmark/code/do-while.js": "100644",
+      "benchmark/code/lib-array-flatten.js": "100644",
+      "benchmark/code/while-args.js": "100644",
+      "benchmark/code/while-depth.js": "100644",
+      "benchmark/code/while-no-depth-check.js": "100644",
+      "benchmark/code/while-no-depth-typeof.js": "100644",
+      "benchmark/fixtures/large.js": "100644",
+      "benchmark/fixtures/medium.js": "100644",
+      "benchmark/fixtures/small.js": "100644",
+      "benchmark/index.js": "100644",
+      "bower.json": "100644",
+      "index.js": "100644",
+      "package.json": "100644",
+      "test.js": "100644"
+    },
+    "metadata": {
+      "fetched_at": "2026-10-25T18:27:31.680257+00:00",
+      "adapter": "github-https-archive-v1",
+      "path_policy": "relative-ascii-spaces-v2",
+      "transport": "HTTPS; no redirects; no credentials; 45 second total budget",
+      "archive_sha256": "a1017606a2acb1d6560310151686c584be469678dd82f35b5e8e01614599678b",
+      "normalization": "Regular files only; executable bit retained; candidate source read-only",
+      "upstream_url": "https://github.com/jonschlinkert/arr-flatten",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "attribution_files": [
+        "LICENSE"
+      ]
+    },
+    "eligible_paths": [
+      "index.js"
+    ],
+    "source_bytes": 13332,
+    "file_count": 28,
+    "license_texts": {
+      "LICENSE": "Copyright (c) 2014-2015, Jon Schlinkert.\n\nPermission is hereby granted, free of charge, to any person\nobtaining a copy of this software and associated documentation\nfiles (the \"Software\"), to deal in the Software without\nrestriction, including without limitation the rights to use,\ncopy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the\nSoftware is furnished to do so, subject to the following\nconditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.\n"
+    }
+  },
+  "candidate": {
+    "id": "0c11851902be04ff38eb3a6dcfb5f1e245385e3526724ce27d7c5dde7ad7429a",
+    "version": "repository-candidate-v1",
+    "snapshot_id": "cb2946c957160aff39787fb14f64a229e19b54ce9a08010345628fa9952172e0",
+    "repository": "jonschlinkert/arr-flatten",
+    "base_commit": "280845c6f384fab8ff07a1395de9568270636528",
+    "source_tree_hash": "1cc657315f95d3747e64313333d1919ebb41e6daee19fbd78cbbf26ea317ee61",
+    "applied_source_hashes": {
+      ".gitattributes": "c697329350b4e95aab826aafb5cf438e2e0b60506912f740918a9e9b82dae864",
+      ".gitignore": "de7fa51b20e07f4c3a92dd315095ab16ccbbc6ea100e325649b9394429ae56f7",
+      ".jshintrc": "f8a6ac3c3eca9fb7d2ef224f95ddc9976f91ce01cadc7809fa151ddd97524f5d",
+      ".npmignore": "cd506e878f4ea9f38dd6f436a8e01197e54a0f3101c47690243dd757d1f127c9",
+      ".travis.yml": "4a2b861f1ccaf3e56388b7af075088fc8d6d0a60d1622470eb851dae5363074f",
+      ".verb.md": "9d6c4f2bbf6e28b4c4116703396bf92a88013e642c3f601cb0f6c23c5a239364",
+      "LICENSE": "815f3190f1ce722bd4b48e525a5c7d5d7b7ee7522297cd7582d3a9e301c08683",
+      "README.md": "14f6f86476144ff72e8c69594d47ad1f47c433110d832df14d40a281c5f1e726",
+      "benchmark/check.js": "363e72ad122c2b2cfabf8a58349818e67e2dfde8fa98dbaf69c692dd66cb5fa2",
+      "benchmark/code/arr-flatten-2.js": "7f7f0050394437127f94fac57e44eff9d587b11127288acfcba5d5384cd119df",
+      "benchmark/code/arr-flatten-3.js": "198845e78440ae521ad7ffd234fc08241b0df41870e7bebebddad9cbe6258361",
+      "benchmark/code/arr-flatten.js": "7f7f0050394437127f94fac57e44eff9d587b11127288acfcba5d5384cd119df",
+      "benchmark/code/current.js": "8fffdafbf298312c0c7f8d54ef7b7be3bae8adff119d64c155671cb3a656e153",
+      "benchmark/code/do-while-slice.js": "80496694c201c3b147b11ceca978e4a2de28201b9bae9131d1aa6926b85c2435",
+      "benchmark/code/do-while.js": "69c6d7b5ce79690ba9cf04192afbccd8f46333335830715f4cadde4cb1f5cdcb",
+      "benchmark/code/lib-array-flatten.js": "f86f1081b62aa7b2110cf418d94eecb18acb3af472f0e3fbc5f4ef1e331869f2",
+      "benchmark/code/while-args.js": "6b23a83042b94cc2b1d352006f5fc8a844f1907768ed2f339eb61bb153b12bbb",
+      "benchmark/code/while-depth.js": "52cf98a8806c5026b26a20afe22a0d275db3c308c09a3afc08386f1f0f30c69c",
+      "benchmark/code/while-no-depth-check.js": "2b10a30394bcc4daf381a1714fd05aeffe0ce04f84e3979b97b053fd7007db37",
+      "benchmark/code/while-no-depth-typeof.js": "07b28811a7090a9f634cd224aea48a55db13402eba2f0ae3f24aeaca0da08022",
+      "benchmark/fixtures/large.js": "41d26ffd2e5a3e1eb5271ddec629b4eb41b34467c0db96b54ad9da5adc12c051",
+      "benchmark/fixtures/medium.js": "27448acf3fc6d537355332e1fa722cf20cbdec3fbe625007d342c2a70b21bf82",
+      "benchmark/fixtures/small.js": "0bf3788f5969e9cd910e304c76909ba1ed036a4a504b49f52c1b8ce3a18de2a1",
+      "benchmark/index.js": "0eba760306d72f9e262ed57af6ae60fffc92aeee0d783f7baba3a5a8c4ec2089",
+      "bower.json": "88d22e47bcfc52b523637131a2831cb0fd025955e0003d075e3452a4073c7444",
+      "index.js": "62602a4087d46ad4930eb3a99ccca4b2808160271d9d6d5833297138f56d7fae",
+      "package.json": "76e6e8b5496bbea9a0abccc2aae95665b918ecf4580ed0d9a64ad88ed6a6c92d",
+      "test.js": "bce78365d6be07c103a33850c89a4d277866afea9f9237a156df3da0f9da0a3f"
+    },
+    "candidate_hash": "2f2c1dfff4a7ad1bc663ffa97d891e97e946a0ef06194249b92dfdb2c48524c2",
+    "patch": "diff --git a/index.js b/index.js\nindex 7da9dd2..66d88ad 100644\n--- a/index.js\n+++ b/index.js\n@@ -1,7 +1,7 @@\n /*!\n  * arr-flatten <https://github.com/jonschlinkert/arr-flatten>\n  *\n- * Copyright (c) 2014 Jon Schlinkert, contributors.\n+ * Copyright (c) 2014-2015, Jon Schlinkert.\n  * Licensed under the MIT License\n  */\n \n@@ -13,15 +13,14 @@ module.exports = function flatten(arr) {\n \n function flat(arr, res) {\n   var len = arr.length;\n-  var num = 0;\n+  var i = -1;\n \n   while (len--) {\n-    var i = num++;\n-\n-    if (Array.isArray(arr[i])) {\n-      flat(arr[i], res);\n+    var cur = arr[++i];\n+    if (Array.isArray(cur)) {\n+      flat(cur, res);\n     } else {\n-      res.push(arr[i]);\n+      res.push(cur);\n     }\n   }\n   return res;\n",
+    "submitted_patch_hash": "3b2ec4c0a4daf104caa9059626f0699308d8cad833aae015c6d2d48a953c12b3",
+    "approved_paths": [
+      "index.js"
+    ],
+    "affected_files": [
+      "index.js"
+    ],
+    "original": {
+      "index.js": "/*!\n * arr-flatten <https://github.com/jonschlinkert/arr-flatten>\n *\n * Copyright (c) 2014 Jon Schlinkert, contributors.\n * Licensed under the MIT License\n */\n\n'use strict';\n\nmodule.exports = function flatten(arr) {\n  return flat(arr, []);\n};\n\nfunction flat(arr, res) {\n  var len = arr.length;\n  var num = 0;\n\n  while (len--) {\n    var i = num++;\n\n    if (Array.isArray(arr[i])) {\n      flat(arr[i], res);\n    } else {\n      res.push(arr[i]);\n    }\n  }\n  return res;\n}\n"
+    },
+    "modified": {
+      "index.js": "/*!\n * arr-flatten <https://github.com/jonschlinkert/arr-flatten>\n *\n * Copyright (c) 2014-2015, Jon Schlinkert.\n * Licensed under the MIT License\n */\n\n'use strict';\n\nmodule.exports = function flatten(arr) {\n  return flat(arr, []);\n};\n\nfunction flat(arr, res) {\n  var len = arr.length;\n  var i = -1;\n\n  while (len--) {\n    var cur = arr[++i];\n    if (Array.isArray(cur)) {\n      flat(cur, res);\n    } else {\n      res.push(cur);\n    }\n  }\n  return res;\n}\n"
+    },
+    "provenance": {
+      "category": "user_declared",
+      "author_label": "G3 original upstream developer submission",
+      "source_reference": "https://github.com/jonschlinkert/arr-flatten/commit/1597ea90072a2eaff8e523523e0105cac0bf195c",
+      "limitations": "Imported authorship is user-declared and unverified."
+    }
+  },
+  "ordinary": {
+    "id": "d0c031cd3f3608bd2a1063ade9bde84bb534505c8dc9079c4c74c4b383aae698",
+    "plan": {
+      "version": "repository-plan-v1",
+      "snapshot_id": "cb2946c957160aff39787fb14f64a229e19b54ce9a08010345628fa9952172e0",
+      "candidate_hash": "2f2c1dfff4a7ad1bc663ffa97d891e97e946a0ef06194249b92dfdb2c48524c2",
+      "runtime": "node22_compat",
+      "image_id": "sha256:b6d2d1152ed7dd9ce3fbc96290799b1903f75bfe3054d32df649bf3d691a63e4",
+      "working_directory": ".",
+      "setup": [],
+      "tests": [
+        "node",
+        "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+        "test.js"
+      ],
+      "test_description": "Unchanged complete test.js at this case base; excludes newly submitted upstream tests, lint and packaging.",
+      "timeout_seconds": 45,
+      "dependency_policy": "offline-only",
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4"
+    },
+    "approval": "not_approved"
+  },
+  "verification": {
+    "id": "a6a65077b0e8d88cd97eabe28a84d504535907d99ac1ae0f297a4c8cdd2871cc",
+    "plan": {
+      "version": "independent-plan-v1",
+      "verifier_version": "json-observer-v2",
+      "snapshot_id": "cb2946c957160aff39787fb14f64a229e19b54ce9a08010345628fa9952172e0",
+      "candidate_id": "0c11851902be04ff38eb3a6dcfb5f1e245385e3526724ce27d7c5dde7ad7429a",
+      "candidate_hash": "2f2c1dfff4a7ad1bc663ffa97d891e97e946a0ef06194249b92dfdb2c48524c2",
+      "ordinary_plan_id": "d0c031cd3f3608bd2a1063ade9bde84bb534505c8dc9079c4c74c4b383aae698",
+      "runtime": "node22_compat",
+      "image_id": "sha256:b6d2d1152ed7dd9ce3fbc96290799b1903f75bfe3054d32df649bf3d691a63e4",
+      "module": "index.js",
+      "export": "",
+      "assertions": [
+        {
+          "id": "case_1",
+          "requirement_id": "54c53ebd89f6c8a4302082b5f7083c26c61716da4661a08a981e1a1eb99ac4c5",
+          "args": [
+            []
+          ],
+          "kwargs": {},
+          "expected": []
+        },
+        {
+          "id": "case_2",
+          "requirement_id": "54c53ebd89f6c8a4302082b5f7083c26c61716da4661a08a981e1a1eb99ac4c5",
+          "args": [
+            [
+              1,
+              [
+                2,
+                [
+                  3
+                ]
+              ],
+              4
+            ]
+          ],
+          "kwargs": {},
+          "expected": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "case_3",
+          "requirement_id": "54c53ebd89f6c8a4302082b5f7083c26c61716da4661a08a981e1a1eb99ac4c5",
+          "args": [
+            [
+              [
+                [],
+                [
+                  1
+                ]
+              ],
+              [],
+              [
+                2
+              ]
+            ]
+          ],
+          "kwargs": {},
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "case_4",
+          "requirement_id": "54c53ebd89f6c8a4302082b5f7083c26c61716da4661a08a981e1a1eb99ac4c5",
+          "args": [
+            [
+              null,
+              false,
+              0,
+              [
+                "x",
+                {
+                  "a": 1
+                }
+              ]
+            ]
+          ],
+          "kwargs": {},
+          "expected": [
+            null,
+            false,
+            0,
+            "x",
+            {
+              "a": 1
+            }
+          ]
+        },
+        {
+          "id": "case_5",
+          "requirement_id": "54c53ebd89f6c8a4302082b5f7083c26c61716da4661a08a981e1a1eb99ac4c5",
+          "args": [
+            [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ]
+          ],
+          "kwargs": {},
+          "expected": [
+            1,
+            1,
+            2,
+            1
+          ]
+        }
+      ],
+      "setup": [],
+      "timeout_seconds": 30,
+      "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+      "adapter_hashes": {
+        "probe.py": "8c86960b6df2dc2a166497a93b09cfd8faf3e249c253c64811d6364b115b78bc",
+        "probe.cjs": "faa88ba1c6527f02890d697d8f5fcdb3fa10b4abce551fd2403ceb72868e2133"
+      },
+      "adapter_sources": {
+        "probe.py": "\"\"\"Fixed JSON observation adapter. Executed only inside an approved disposable container.\"\"\"\n\nimport contextlib\nimport importlib.util\nimport json\nimport sys\nfrom typing import Any\n\n\ndef main():\n    with open(\"/verifier/inputs.json\") as stream:\n        inputs = json.load(stream)\n    sys.path[:0] = [\"/work/deps\", \"/source\"]\n    observations = []\n    for call in inputs[\"calls\"]:\n        try:\n            with contextlib.redirect_stdout(sys.stderr):\n                spec = importlib.util.spec_from_file_location(\n                    \"_independent_target\", inputs[\"module\"]\n                )\n                if spec is None or spec.loader is None:\n                    raise ValueError(\"Unsupported Python import\")\n                module = importlib.util.module_from_spec(spec)\n                spec.loader.exec_module(module)\n                function: Any = module\n                for name in inputs[\"export\"].split(\".\"):\n                    function = getattr(function, name)\n                value = function(*call[\"args\"], **call[\"kwargs\"])\n                # Reject non-JSON values instead of stringifying them into apparent observations.\n                value = json.loads(json.dumps(value, allow_nan=False))\n            observations.append({\"id\": call[\"id\"], \"kind\": \"value\", \"value\": value})\n        except Exception as error:\n            observations.append(\n                {\"id\": call[\"id\"], \"kind\": \"execution_error\", \"error\": type(error).__name__}\n            )\n    print(json.dumps({\"version\": \"observations-v1\", \"observations\": observations}, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+        "probe.cjs": "// json-observer-v2: detach and encode each bounded observation before the next call.\nconst fs = require('node:fs');\nconst {pathToFileURL} = require('node:url');\nconst emit = process.stdout.write.bind(process.stdout);\nconst stringify = JSON.stringify;\nconst byteLength = Buffer.byteLength;\nconsole.log = (...args) => console.error(...args);\n\nfunction snapshot(value) {\n  const ancestors = new Set();\n  let budget = 0;\n  function account(bytes) {\n    budget += bytes;\n    if (budget > 16384) throw RangeError('JSON observation exceeds 16 KiB');\n  }\n  function copy(v, depth) {\n    if (depth > 8) throw RangeError('JSON observation nesting exceeds eight levels');\n    if (v === null || typeof v === 'boolean') { account(v === null ? 4 : v ? 4 : 5); return v; }\n    if (typeof v === 'string') { account(2 + byteLength(v, 'utf8')); return v; }\n    if (typeof v === 'number' && Number.isFinite(v)) { account(String(v).length); return v; }\n    const array = Array.isArray(v);\n    if (typeof v !== 'object' || (!array && Object.getPrototypeOf(v) !== Object.prototype))\n      throw TypeError('Unsupported JSON observation');\n    if (ancestors.has(v)) throw TypeError('Cyclic JSON observation');\n    // Serialization hooks are code, not supported JSON data; never invoke or coerce them.\n    const hook = Object.getOwnPropertyDescriptor(v, 'toJSON');\n    if ((hook && (!('value' in hook) || typeof hook.value === 'function')) ||\n        (!hook && typeof v.toJSON === 'function')) throw TypeError('Unsupported JSON hook');\n    const keys = array ? null : Object.keys(v);\n    const length = array ? v.length : keys.length;\n    if (!Number.isInteger(length) || length < 0 || length > 256)\n      throw RangeError('JSON collection exceeds 256 items');\n    account(2 + Math.max(0, length - 1));\n    ancestors.add(v);\n    try {\n      if (array) {\n        const result = [];\n        // Only our new copy is modified. Candidate arrays/objects remain untouched.\n        Object.defineProperty(result, 'toJSON', {value: null});\n        for (let i = 0; i < length; i++) {\n          if (!Object.hasOwn(v, i)) throw TypeError('Sparse arrays are not JSON observations');\n          result.push(copy(v[i], depth + 1));\n        }\n        return result;\n      }\n      const result = Object.create(null);\n      for (const key of keys) {\n        account(3 + byteLength(key, 'utf8'));\n        result[key] = copy(v[key], depth + 1);\n      }\n      return result;\n    } finally { ancestors.delete(v); }\n  }\n  const encoded = stringify(copy(value, 0));\n  if (typeof encoded !== 'string' || byteLength(encoded, 'utf8') > 16384)\n    throw RangeError('Encoded JSON observation exceeds 16 KiB');\n  return encoded;\n}\n\nasync function main() {\n  const inputs = JSON.parse(fs.readFileSync('/verifier/inputs.json', 'utf8'));\n  const observations = [];\n  for (const call of inputs.calls) {\n    try {\n      let fn = inputs.module.endsWith('.mjs')\n        ? await import(pathToFileURL(inputs.module).href)\n        : require(inputs.module);\n      for (const name of inputs.export ? inputs.export.split('.') : []) fn = fn[name];\n      const value = snapshot(await fn(...call.args));\n      // Retain immutable JSON text, never a candidate-owned reference or deferred serializer.\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"value\",\"value\":' + value + '}');\n    } catch (error) {\n      let name = 'Error';\n      try { if (typeof error?.name === 'string') name = error.name.slice(0, 200); } catch {}\n      observations.push('{\"id\":' + stringify(call.id) + ',\"kind\":\"execution_error\",\"error\":' + stringify(name) + '}');\n    }\n  }\n  emit('{\"version\":\"observations-v1\",\"observations\":[' + observations.join(',') + ']}\\n');\n}\nmain().catch(() => process.exitCode = 2);\n"
+      },
+      "interpretation": "all-named-canonical-json-equalities-v1"
+    },
+    "requirements": [
+      {
+        "id": "54c53ebd89f6c8a4302082b5f7083c26c61716da4661a08a981e1a1eb99ac4c5",
+        "version": "behavioral-requirement-v1",
+        "snapshot_id": "cb2946c957160aff39787fb14f64a229e19b54ce9a08010345628fa9952172e0",
+        "statement": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "expected_behavior": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+        "input_domain": "Dense finite JSON arrays with nested arrays, objects as leaves, scalars and null; depth at most four in these examples.",
+        "assumptions": [
+          "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+          "Exact finite JSON values in the declared domain; no universal correctness claim."
+        ],
+        "ambiguities": [],
+        "provenance": {
+          "origin": "upstream_documentation",
+          "reference": "https://github.com/jonschlinkert/arr-flatten/blob/280845c6f384fab8ff07a1395de9568270636528/README.md",
+          "excerpt": "> Recursively flatten an array or arrays. This is the fastest implementation of array flatten.",
+          "excerpt_hash": "5f469cfa169ea3fa1050596c2928b2ff2ad9b95b192cbc6f0d53fb99e5357a3d",
+          "justification": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicate elements are retained. No uniqueness or sorting behavior is specified.",
+          "independent_of_candidate": true
+        },
+        "approval": "owner_approved"
+      }
+    ],
+    "validation": "awaiting_controls",
+    "approval": "not_approved"
+  },
+  "requirement": {
+    "id": "54c53ebd89f6c8a4302082b5f7083c26c61716da4661a08a981e1a1eb99ac4c5",
+    "version": "behavioral-requirement-v1",
+    "snapshot_id": "cb2946c957160aff39787fb14f64a229e19b54ce9a08010345628fa9952172e0",
+    "statement": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+    "expected_behavior": "Recursively flatten nested arrays, retaining leaf values, duplicates and left-to-right order.",
+    "input_domain": "Dense finite JSON arrays with nested arrays, objects as leaves, scalars and null; depth at most four in these examples.",
+    "assumptions": [
+      "Retrospective public task; expectations prepared by Codex from cited sources, not separately human-reviewed.",
+      "Exact finite JSON values in the declared domain; no universal correctness claim."
+    ],
+    "ambiguities": [],
+    "provenance": {
+      "origin": "upstream_documentation",
+      "reference": "https://github.com/jonschlinkert/arr-flatten/blob/280845c6f384fab8ff07a1395de9568270636528/README.md",
+      "excerpt": "> Recursively flatten an array or arrays. This is the fastest implementation of array flatten.",
+      "excerpt_hash": "5f469cfa169ea3fa1050596c2928b2ff2ad9b95b192cbc6f0d53fb99e5357a3d",
+      "justification": "The README recursive flattening contract and ordered example justify depth-first left-to-right traversal. Objects and JSON scalars are leaves, empty arrays contribute no leaves, and duplicate elements are retained. No uniqueness or sorting behavior is specified.",
+      "independent_of_candidate": true
+    },
+    "approval": "owner_approved"
+  },
+  "execution_payload": {
+    "candidate_id": "0c11851902be04ff38eb3a6dcfb5f1e245385e3526724ce27d7c5dde7ad7429a",
+    "plan_id": "d0c031cd3f3608bd2a1063ade9bde84bb534505c8dc9079c4c74c4b383aae698",
+    "verification_id": "a6a65077b0e8d88cd97eabe28a84d504535907d99ac1ae0f297a4c8cdd2871cc"
+  },
+  "approval": "Prepared only; no execution approval inherited from G3"
+}

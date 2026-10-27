@@ -5,6 +5,7 @@ from datetime import UTC, datetime
 from typing import Any
 from uuid import UUID, uuid4
 
+import anyio
 import httpx
 from fastapi import HTTPException
 from sqlalchemy import select
@@ -20,7 +21,7 @@ from workbench.db import (
     sessions,
 )
 from workbench.evaluator.catalog import identity
-from workbench.repository_audit import independent
+from workbench.repository_audit import independent, recovery
 from workbench.repository_audit.admission import check_plan, rebuild
 from workbench.repository_audit.execution import engine_id, validate
 
@@ -228,7 +229,10 @@ class RepositoryAuditManager:
             if response.status_code == 404:
                 return None
             response.raise_for_status()
-            return response.json()
+            value = response.json()
+            if not isinstance(value, dict):
+                raise ValueError("Terminal broker evidence must be an object")
+            return value
 
     async def finish(self, audit_id, result=None, failure=None, unvalidated=None):
         async with sessions.begin() as session:
@@ -275,13 +279,34 @@ class RepositoryAuditManager:
         finally:
             self.jobs.pop(audit_id, None)
 
-    async def wait_terminal(self, audit_id):
-        async with asyncio.timeout(12):
-            while True:
-                result = await self.terminal(audit_id)
-                if result is not None:
-                    return result
-                await asyncio.sleep(0.3)
+    async def wait_terminal(self, audit_id, trace=None):
+        trace = trace or recovery.RecoveryTrace(str(audit_id))
+        loop = asyncio.get_running_loop()
+        deadline = loop.time() + recovery.POLL_SECONDS
+        trace.event("terminal_poll_started", budget_seconds=recovery.POLL_SECONDS)
+        try:
+            # HTTPX uses AnyIO. Its connect task group can consume a coincident native
+            # asyncio.timeout cancellation (AnyIO #1214). Level cancellation keeps the
+            # deadline active across HTTP requests/cleanup; the clock also bounds 404s.
+            with anyio.fail_after(recovery.POLL_SECONDS):
+                while True:
+                    recovery.cancellation_checkpoint()
+                    if loop.time() >= deadline:
+                        raise TimeoutError
+                    trace.polls += 1
+                    try:
+                        result = await self.terminal(audit_id)
+                    except httpx.TransportError as error:
+                        trace.transport_errors += 1
+                        trace.last_error = type(error).__name__
+                    else:
+                        recovery.cancellation_checkpoint()
+                        if result is not None:
+                            return result
+                        trace.missing += 1
+                    await anyio.sleep(min(recovery.POLL_INTERVAL, max(0, deadline - loop.time())))
+        finally:
+            trace.event("terminal_poll_finished", deadline_reached=loop.time() >= deadline)
 
     async def cancel(self, audit_id):
         async with sessions.begin() as session:
@@ -295,21 +320,61 @@ class RepositoryAuditManager:
         return {"status": "cancellation_requested"}
 
     async def recover(self):
-        async with sessions() as session:
-            rows = (
-                await session.scalars(
-                    select(RepositoryAudit).where(RepositoryAudit.status == "running")
-                )
-            ).all()
+        # DB availability/integrity remains a startup prerequisite. A DB failure is
+        # raised, not hidden behind an apparently healthy partially recovered API.
+        with anyio.fail_after(recovery.PERSIST_SECONDS):
+            async with sessions() as session:
+                rows = (
+                    await session.scalars(
+                        select(RepositoryAudit).where(RepositoryAudit.status == "running")
+                    )
+                ).all()
         for row in rows:
-            await self.stop(row.id)
+            trace = recovery.RecoveryTrace(str(row.id))
+            result, failure = None, None
+            trace.event(
+                "started",
+                budget_seconds=(
+                    recovery.CANCEL_SECONDS + recovery.POLL_SECONDS + recovery.PERSIST_SECONDS
+                ),
+            )
             try:
-                result = await self.wait_terminal(row.id)
-                await self.finish(row.id, result)
-            except (ValueError, KeyError, TypeError):
-                await self.finish(row.id, failure="invalid_evidence")
-            except Exception:
-                await self.finish(row.id, failure="interrupted")
+                trace.event("cancel_requested", budget_seconds=recovery.CANCEL_SECONDS)
+                try:
+                    with anyio.fail_after(recovery.CANCEL_SECONDS):
+                        await self.stop(row.id)
+                except TimeoutError:
+                    # Cancellation transport failure is not proof that evidence is absent.
+                    trace.last_error = "CancelTimeout"
+                recovery.cancellation_checkpoint()
+                try:
+                    result = await self.wait_terminal(row.id, trace)
+                except (ValueError, KeyError, TypeError) as error:
+                    failure = "invalid_evidence"
+                    trace.last_error = type(error).__name__
+                except (TimeoutError, httpx.HTTPError) as error:
+                    failure = "interrupted"
+                    trace.last_error = type(error).__name__
+                trace.event("persist_started", budget_seconds=recovery.PERSIST_SECONDS)
+                with anyio.fail_after(recovery.PERSIST_SECONDS):
+                    try:
+                        await self.finish(row.id, result, failure)
+                    except (ValueError, KeyError, TypeError) as error:
+                        failure = "invalid_evidence"
+                        trace.last_error = type(error).__name__
+                        await self.finish(row.id, failure=failure, unvalidated=result)
+                trace.event(
+                    "finished",
+                    classification=failure
+                    or (result["status"] if result else "infrastructure_error"),
+                )
+            except asyncio.CancelledError:
+                trace.event("cancelled", classification="shutdown_pending")
+                raise
+            except Exception as error:
+                trace.last_error = type(error).__name__
+                trace.event("failed", classification="startup_not_released")
+                raise
 
     async def close(self):
         for key in list(self.jobs):

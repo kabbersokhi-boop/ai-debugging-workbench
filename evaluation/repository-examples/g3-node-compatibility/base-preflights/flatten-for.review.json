@@ -1,0 +1,40 @@
+{
+  "id": "db0650a40445e8a82155151d008c0a9f74fd3f6ab59bf02bd01dd0d6037ece43",
+  "plan": {
+    "version": "unchanged-base-preflight-v1",
+    "snapshot_id": "34f7467217a8bbcffefcf6de6f17243f684d9d1a7af36dc3d7a3480d802ff1ac",
+    "base_commit": "966022a4a9190ddf8c8936daa80d1a7f9f77ecb3",
+    "git_tree": "057ed246be77c9da5564874694df9b5eaecbaddb",
+    "source_tree_hash": "0d897f28b1d6f178a54b7b20d77df2787a7086c9b5781fc36b778562571df1ef",
+    "runtime": "node22_compat",
+    "image_id": "sha256:b6d2d1152ed7dd9ce3fbc96290799b1903f75bfe3054d32df649bf3d691a63e4",
+    "tests": [
+      "node",
+      "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+      "test.js"
+    ],
+    "capsule": {
+      "version": "node-offline-dependency-capsule-v1",
+      "package": "array-flatten",
+      "version_pin": "1.0.0",
+      "registry_reference": "https://registry.npmjs.org/array-flatten/1.0.0",
+      "tarball": "https://registry.npmjs.org/array-flatten/-/array-flatten-1.0.0.tgz",
+      "tarball_sha256": "dbf8b3d1ef7c3553911e0f6fcc461b49724525a8e594f975eac81c8faf1939fa",
+      "tarball_sha1": "2b672d3b56fad41b050eee8cbf36f7a83ec3b040",
+      "registry_integrity": "sha512-Eag8a4FczkO03LIV7EuF967m45OMBSjZxbqz84BrbtSZ1Iio2hiGjhZBNnbOljnPUatjNDRNHDkqSZFKwUT4Ew==",
+      "upstream_git_commit": "b5a19b457cf6b892d45ce22a8b04c749e2146e19",
+      "license": "MIT",
+      "files": {
+        "package.json": "65e6074c1d539fbf0f0c955746adf3cc2fb9195db11cfd1446dd14ad35c1a24a",
+        "LICENSE": "4eeb3271453a891df609e5a9f4ee79a68307f730c13417a3bfeffa604ac8cf25",
+        "README.md": "4413db1640b77ed2eec6061e7a8c3b6554ad9f96c6ba188404d5571ce6aadd26",
+        "array-flatten.js": "149cc09953b53bb3d886bf8d07394c0e792f33ecb7fc66274350d533c9f1267f"
+      },
+      "historical_requirement": "arr-flatten base 280845c6f384fab8ff07a1395de9568270636528 package.json: array-flatten ^1.0.0",
+      "uncertainty": "Historical lockfile absent; 1.0.0 is the explicitly selected compatible version, not claimed to be the exact version installed by the historical upstream author.",
+      "execution": "Never imported or installed on host; no lifecycle scripts. Runtime image copies only approved inert package files."
+    },
+    "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+    "timeout_seconds": 45
+  }
+}

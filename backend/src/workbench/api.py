@@ -1,4 +1,5 @@
 import asyncio
+import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from typing import Annotated
@@ -58,6 +59,9 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
                 repository_audits = RepositoryAuditManager()
                 app.state.repository_audits = repository_audits
                 await repository_audits.recover()
+                logging.getLogger("uvicorn.error").info(
+                    '{"event":"api_startup_released","repository_recovery_complete":true}'
+                )
                 try:
                     yield
                 finally:

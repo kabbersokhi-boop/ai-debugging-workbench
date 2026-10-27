@@ -1,0 +1,25 @@
+{
+  "new_recovery_authority": false,
+  "routes": [
+    {
+      "path": "/api/repository-audits/recover",
+      "get": 404,
+      "post": 405
+    },
+    {
+      "path": "/api/repository-audits/runs",
+      "get": 404,
+      "post": 405
+    },
+    {
+      "path": "/api/repository-audits/campaigns/g3-node-compatibility",
+      "get": 404,
+      "post": 405
+    },
+    {
+      "path": "/api/repository-audits/campaigns/g3-node-compatibility/runs/3f04cfa7-4232-4274-b952-eaa464535f37",
+      "get": 404,
+      "post": 405
+    }
+  ]
+}

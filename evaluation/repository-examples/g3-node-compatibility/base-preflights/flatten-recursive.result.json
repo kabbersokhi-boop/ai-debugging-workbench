@@ -1,0 +1,264 @@
+{
+  "version": "unchanged-base-preflight-result-v1",
+  "plan": {
+    "version": "unchanged-base-preflight-v1",
+    "snapshot_id": "935200948e76999f14ee6360482df0b25e6d11bf7720374f59f883414f77d548",
+    "base_commit": "280845c6f384fab8ff07a1395de9568270636528",
+    "git_tree": "594c69fb62dbf616a7b118b7ac085eec203d0e5d",
+    "source_tree_hash": "1cc657315f95d3747e64313333d1919ebb41e6daee19fbd78cbbf26ea317ee61",
+    "runtime": "node22_compat",
+    "image_id": "sha256:b6d2d1152ed7dd9ce3fbc96290799b1903f75bfe3054d32df649bf3d691a63e4",
+    "tests": [
+      "node",
+      "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+      "test.js"
+    ],
+    "capsule": {
+      "version": "node-offline-dependency-capsule-v1",
+      "package": "array-flatten",
+      "version_pin": "1.0.0",
+      "registry_reference": "https://registry.npmjs.org/array-flatten/1.0.0",
+      "tarball": "https://registry.npmjs.org/array-flatten/-/array-flatten-1.0.0.tgz",
+      "tarball_sha256": "dbf8b3d1ef7c3553911e0f6fcc461b49724525a8e594f975eac81c8faf1939fa",
+      "tarball_sha1": "2b672d3b56fad41b050eee8cbf36f7a83ec3b040",
+      "registry_integrity": "sha512-Eag8a4FczkO03LIV7EuF967m45OMBSjZxbqz84BrbtSZ1Iio2hiGjhZBNnbOljnPUatjNDRNHDkqSZFKwUT4Ew==",
+      "upstream_git_commit": "b5a19b457cf6b892d45ce22a8b04c749e2146e19",
+      "license": "MIT",
+      "files": {
+        "package.json": "65e6074c1d539fbf0f0c955746adf3cc2fb9195db11cfd1446dd14ad35c1a24a",
+        "LICENSE": "4eeb3271453a891df609e5a9f4ee79a68307f730c13417a3bfeffa604ac8cf25",
+        "README.md": "4413db1640b77ed2eec6061e7a8c3b6554ad9f96c6ba188404d5571ce6aadd26",
+        "array-flatten.js": "149cc09953b53bb3d886bf8d07394c0e792f33ecb7fc66274350d533c9f1267f"
+      },
+      "historical_requirement": "arr-flatten base 280845c6f384fab8ff07a1395de9568270636528 package.json: array-flatten ^1.0.0",
+      "uncertainty": "Historical lockfile absent; 1.0.0 is the explicitly selected compatible version, not claimed to be the exact version installed by the historical upstream author.",
+      "execution": "Never imported or installed on host; no lifecycle scripts. Runtime image copies only approved inert package files."
+    },
+    "policy_hash": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+    "timeout_seconds": 45
+  },
+  "approval": {
+    "plan_id": "6aeb17e7192a406ab850a014ac7f5a6b2e3b3249cfeab5e8df65a788a2e227b2",
+    "approved_at": "2026-10-25T18:24:54.223633+00:00",
+    "actor": "Codex under owner-delegated compatibility task authorization"
+  },
+  "started_at": "2026-10-25T18:24:54.223722+00:00",
+  "status": "tests_passed",
+  "commands": [
+    {
+      "phase": "capsule_validation",
+      "argv": [
+        "node",
+        "/opt/node-compat/verify.cjs"
+      ],
+      "working_directory": "/source",
+      "started_at": "2026-10-25T18:24:55.400029+00:00",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0,
+      "counts": null,
+      "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+      "output_truncated": false,
+      "status": "finished",
+      "ended_at": "2026-10-25T18:24:55.615272+00:00",
+      "duration_ms": 215
+    },
+    {
+      "phase": "unchanged_ordinary_tests",
+      "argv": [
+        "node",
+        "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+        "test.js"
+      ],
+      "working_directory": "/source",
+      "started_at": "2026-10-25T18:24:55.684031+00:00",
+      "stdout": "\n\n  flatten\n    \u2714 should flatten nested arrays:\n    \u2714 should flatten deeply nested arrays:\n\n\n  2 passing (15ms)\n\n",
+      "stderr": "",
+      "exit_code": 0,
+      "counts": null,
+      "counts_note": "Framework counts are not parsed; inspect the exact retained output.",
+      "output_truncated": false,
+      "status": "finished",
+      "ended_at": "2026-10-25T18:24:56.455147+00:00",
+      "duration_ms": 771
+    }
+  ],
+  "executed_source_hashes": {
+    ".gitattributes": "c697329350b4e95aab826aafb5cf438e2e0b60506912f740918a9e9b82dae864",
+    ".gitignore": "de7fa51b20e07f4c3a92dd315095ab16ccbbc6ea100e325649b9394429ae56f7",
+    ".jshintrc": "f8a6ac3c3eca9fb7d2ef224f95ddc9976f91ce01cadc7809fa151ddd97524f5d",
+    ".npmignore": "cd506e878f4ea9f38dd6f436a8e01197e54a0f3101c47690243dd757d1f127c9",
+    ".travis.yml": "4a2b861f1ccaf3e56388b7af075088fc8d6d0a60d1622470eb851dae5363074f",
+    ".verb.md": "9d6c4f2bbf6e28b4c4116703396bf92a88013e642c3f601cb0f6c23c5a239364",
+    "LICENSE": "815f3190f1ce722bd4b48e525a5c7d5d7b7ee7522297cd7582d3a9e301c08683",
+    "README.md": "14f6f86476144ff72e8c69594d47ad1f47c433110d832df14d40a281c5f1e726",
+    "benchmark/check.js": "363e72ad122c2b2cfabf8a58349818e67e2dfde8fa98dbaf69c692dd66cb5fa2",
+    "benchmark/code/arr-flatten-2.js": "7f7f0050394437127f94fac57e44eff9d587b11127288acfcba5d5384cd119df",
+    "benchmark/code/arr-flatten-3.js": "198845e78440ae521ad7ffd234fc08241b0df41870e7bebebddad9cbe6258361",
+    "benchmark/code/arr-flatten.js": "7f7f0050394437127f94fac57e44eff9d587b11127288acfcba5d5384cd119df",
+    "benchmark/code/current.js": "8fffdafbf298312c0c7f8d54ef7b7be3bae8adff119d64c155671cb3a656e153",
+    "benchmark/code/do-while-slice.js": "80496694c201c3b147b11ceca978e4a2de28201b9bae9131d1aa6926b85c2435",
+    "benchmark/code/do-while.js": "69c6d7b5ce79690ba9cf04192afbccd8f46333335830715f4cadde4cb1f5cdcb",
+    "benchmark/code/lib-array-flatten.js": "f86f1081b62aa7b2110cf418d94eecb18acb3af472f0e3fbc5f4ef1e331869f2",
+    "benchmark/code/while-args.js": "6b23a83042b94cc2b1d352006f5fc8a844f1907768ed2f339eb61bb153b12bbb",
+    "benchmark/code/while-depth.js": "52cf98a8806c5026b26a20afe22a0d275db3c308c09a3afc08386f1f0f30c69c",
+    "benchmark/code/while-no-depth-check.js": "2b10a30394bcc4daf381a1714fd05aeffe0ce04f84e3979b97b053fd7007db37",
+    "benchmark/code/while-no-depth-typeof.js": "07b28811a7090a9f634cd224aea48a55db13402eba2f0ae3f24aeaca0da08022",
+    "benchmark/fixtures/large.js": "41d26ffd2e5a3e1eb5271ddec629b4eb41b34467c0db96b54ad9da5adc12c051",
+    "benchmark/fixtures/medium.js": "27448acf3fc6d537355332e1fa722cf20cbdec3fbe625007d342c2a70b21bf82",
+    "benchmark/fixtures/small.js": "0bf3788f5969e9cd910e304c76909ba1ed036a4a504b49f52c1b8ce3a18de2a1",
+    "benchmark/index.js": "0eba760306d72f9e262ed57af6ae60fffc92aeee0d783f7baba3a5a8c4ec2089",
+    "bower.json": "88d22e47bcfc52b523637131a2831cb0fd025955e0003d075e3452a4073c7444",
+    "index.js": "00346df063288d72e905b148cf6893d9699d3d8d3cb7ce46fc9a3e5abba677fb",
+    "package.json": "76e6e8b5496bbea9a0abccc2aae95665b918ecf4580ed0d9a64ad88ed6a6c92d",
+    "test.js": "bce78365d6be07c103a33850c89a4d277866afea9f9237a156df3da0f9da0a3f"
+  },
+  "initializer_id": "519be3bfcdad9e813156244e4921f8350102b881868d3721dcd706750894796e",
+  "container_id": "e8acefc8437c5cc2836af0c16bfd679cd03cad4726791b99dd2b7c85af6df623",
+  "sandbox": {
+    "user": "1000:1000",
+    "host_config": {
+      "Binds": [
+        "89f1c36cc22c79f8a6b4a66b6d0af32d6b12ab384daff29612491ac99a8d7011:/source:ro"
+      ],
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "none",
+        "Config": {}
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": null,
+      "DnsSearch": null,
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,nosuid,nodev,size=8m,mode=1777",
+        "/work": "rw,nosuid,nodev,size=128m,mode=1777"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 8388608,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 536870912,
+      "NanoCpus": 1000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": null,
+      "BlkioDeviceReadBps": null,
+      "BlkioDeviceWriteBps": null,
+      "BlkioDeviceReadIOps": null,
+      "BlkioDeviceWriteIOps": null,
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": null,
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 536870912,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 64,
+      "Ulimits": [
+        {
+          "Name": "fsize",
+          "Hard": 16777216,
+          "Soft": 16777216
+        },
+        {
+          "Name": "nofile",
+          "Hard": 128,
+          "Soft": 128
+        }
+      ],
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware",
+        "/sys/devices/system/cpu/cpu0/thermal_throttle",
+        "/sys/devices/system/cpu/cpu1/thermal_throttle",
+        "/sys/devices/system/cpu/cpu2/thermal_throttle",
+        "/sys/devices/system/cpu/cpu3/thermal_throttle",
+        "/sys/devices/system/cpu/cpu4/thermal_throttle",
+        "/sys/devices/system/cpu/cpu5/thermal_throttle",
+        "/sys/devices/system/cpu/cpu6/thermal_throttle",
+        "/sys/devices/system/cpu/cpu7/thermal_throttle"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "89f1c36cc22c79f8a6b4a66b6d0af32d6b12ab384daff29612491ac99a8d7011",
+        "Destination": "/source",
+        "RW": false
+      }
+    ]
+  },
+  "cleanup": [
+    {
+      "kind": "containers",
+      "id": "e8acefc8437c5cc2836af0c16bfd679cd03cad4726791b99dd2b7c85af6df623",
+      "confirmed_absent": true
+    },
+    {
+      "kind": "volumes",
+      "id": "89f1c36cc22c79f8a6b4a66b6d0af32d6b12ab384daff29612491ac99a8d7011",
+      "confirmed_absent": true
+    }
+  ],
+  "ended_at": "2026-10-25T18:24:57.526200+00:00"
+}

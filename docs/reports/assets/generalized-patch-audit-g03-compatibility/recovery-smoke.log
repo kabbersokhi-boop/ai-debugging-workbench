@@ -1,0 +1,3 @@
+ Container patch-audit-g3c-api-1 Starting 
+ Container patch-audit-g3c-api-1 Started 
+{"checkpoint_before_crash": "running", "completed_history_unchanged": true, "fresh_run_after_recovery": "23629cea-4f94-486b-89fd-85426a76b132", "fresh_run_status": "reproduced", "runner_cleanup_errors": false}

@@ -1,0 +1,17 @@
+{
+  "campaign_sha256": "166219b9c4b188e90c7f48ebadf757e27246929eba5a5ba140ff516383c6ba36",
+  "case": "flatten-recursive",
+  "role": "alternative_control",
+  "trial": 1,
+  "payload": {
+    "candidate_id": "dd9b27d0b52a4bf979fcae116ec7192b04dcf16086019596f9c152b6274d9563",
+    "plan_id": "1fd80a1e0bba2275560d27cb5795b6901b8f43ed0791fee174f3aea2b007ea4f",
+    "verification_id": "455b7b37d12bc0930cfe04ea86208b2dad4150a20f2603e455413ce74128594e",
+    "approve_independent_plan": true,
+    "approve_exact_plan": true,
+    "confirm_local_execution": true,
+    "stage": "validation"
+  },
+  "started_at": "2026-10-25T18:30:46.392431+00:00",
+  "run_id": "4318b679-b4d1-4236-baf1-da0e46a6af3c"
+}

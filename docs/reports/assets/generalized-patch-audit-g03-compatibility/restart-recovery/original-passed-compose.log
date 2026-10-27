@@ -1,0 +1,621 @@
+repository-node-image-1  | v22.22.0
+repository-node-compat-image-1  | v22.22.0
+evaluator-1                     | INFO:     Started server process [1]
+evaluator-1                     | INFO:     Waiting for application startup.
+evaluator-1                     | INFO:     Application startup complete.
+evaluator-1                     | INFO:     Uvicorn running on http://0.0.0.0:8014 (Press CTRL+C to quit)
+evaluator-1                     | INFO:     127.0.0.1:35326 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:46614 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:46618 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:57152 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:57162 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:48858 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:45642 - "POST /evaluations/821b32f5-dc94-422d-8beb-cffb2c5ad048 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:45650 - "POST /evaluations/a6a64cd9-0401-4817-8c0c-f3973b20ba1a HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:48862 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:56232 - "POST /evaluations/37b1a1db-aa31-4304-a256-0d0c844515a4 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:38434 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:56248 - "POST /evaluations/72196529-797c-4d8e-b9f8-83e2d154edb3 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:56270 - "POST /evaluations/65666ed0-909d-461d-875b-3280a39f419b/cancel HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:38444 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:56262 - "POST /evaluations/65666ed0-909d-461d-875b-3280a39f419b HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51196 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51200 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:42602 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:42400 - "POST /evaluations/fbfe2fcb-ee5d-4c01-8909-6b71699ce12b HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:42614 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:51142 - "GET /evaluations/fbfe2fcb-ee5d-4c01-8909-6b71699ce12b HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:51144 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:51148 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:36956 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:51152 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:36962 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:47156 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:54454 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:45568 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:45582 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:38664 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:38672 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:46046 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:46054 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:42856 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:42870 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:48836 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:48848 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:49152 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:49166 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:48466 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:36152 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:48472 - "POST /repository-audits/760cda1b-315d-4837-a87a-919c7d9d7b54 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:36160 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:48486 - "POST /repository-audits/7b3470ec-a4c7-426c-a0bc-8fc5a2c35d68 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:46678 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51402 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51406 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:56290 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:56306 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:54944 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:54948 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:50896 - "POST /repository-audits/bdb4a61d-f560-44e0-aeb1-a25ed5ff991c HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:50928 - "POST /evaluations/4a30c8ee-337e-41f6-b16c-a59b69cc7211/cancel HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:50912 - "POST /repository-audits/4a30c8ee-337e-41f6-b16c-a59b69cc7211 HTTP/1.1" 200 OK
+evaluator-image-1               | Python 3.12.14
+evaluator-1                     | INFO:     172.21.0.4:49178 - "POST /repository-audits/526b1404-949f-47f4-9c2c-d73311e87fa6 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:41470 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:49190 - "POST /evaluations/526b1404-949f-47f4-9c2c-d73311e87fa6/cancel HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:49204 - "GET /evaluations/526b1404-949f-47f4-9c2c-d73311e87fa6 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:49210 - "POST /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4/cancel HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:49218 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:49228 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:49234 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     127.0.0.1:41478 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:49246 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:49248 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:49250 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:49260 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:49274 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:49290 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:49296 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47548 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47564 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47580 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47594 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47604 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47608 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47624 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47630 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47632 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     127.0.0.1:58434 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:47644 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47654 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47666 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47682 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47696 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47698 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47708 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47710 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47718 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47722 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+api-1                           | INFO:     Started server process [1]
+api-1                           | INFO:     Waiting for application startup.
+api-1                           | INFO:     Application startup complete.
+api-1                           | INFO:     Uvicorn running on http://0.0.0.0:8010 (Press CTRL+C to quit)
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/health HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/3612880e-b809-47e4-968c-91a05b5d42ed HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/8f0ff0cb-070c-4e7d-b880-0349cdf7f7a7 HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "POST /api/runs HTTP/1.1" 202 Accepted
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/4cc5afb6-af12-4b54-a965-a899c78c6dbb HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/4cc5afb6-af12-4b54-a965-a899c78c6dbb HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/4cc5afb6-af12-4b54-a965-a899c78c6dbb HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/4cc5afb6-af12-4b54-a965-a899c78c6dbb HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/4cc5afb6-af12-4b54-a965-a899c78c6dbb HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/4cc5afb6-af12-4b54-a965-a899c78c6dbb HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/4cc5afb6-af12-4b54-a965-a899c78c6dbb HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/4cc5afb6-af12-4b54-a965-a899c78c6dbb HTTP/1.1" 200 OK
+api-1                           | INFO:     172.20.0.1:37858 - "GET /api/runs/4cc5afb6-af12-4b54-a965-a899c78c6dbb HTTP/1.1" 200 OK
+api-1                           | INFO:     127.0.0.1:49406 - "GET /api/health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:47734 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47746 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47762 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47774 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47786 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+api-1                           | INFO:     127.0.0.1:37502 - "GET /api/health HTTP/1.1" 200 OK
+api-1                           | INFO:     127.0.0.1:38264 - "GET /api/health HTTP/1.1" 200 OK
+runner-1                        | INFO:     Started server process [1]
+runner-1                        | INFO:     Waiting for application startup.
+runner-1                        | INFO:     Application startup complete.
+runner-1                        | INFO:     Uvicorn running on http://0.0.0.0:8011 (Press CTRL+C to quit)
+runner-1                        | INFO:     127.0.0.1:33184 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:33192 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:43326 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:43222 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:43328 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:45996 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:57382 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:46010 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:47796 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+db-1                            | The files belonging to this database system will be owned by user "postgres".
+db-1                            | This user must also own the server process.
+db-1                            | 
+db-1                            | The database cluster will be initialized with locale "en_US.utf8".
+db-1                            | The default database encoding has accordingly been set to "UTF8".
+db-1                            | The default text search configuration will be set to "english".
+db-1                            | 
+db-1                            | Data page checksums are disabled.
+db-1                            | 
+db-1                            | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1                            | creating subdirectories ... ok
+evaluator-1                     | INFO:     127.0.0.1:58446 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:47802 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:47804 - "GET /evaluations/cc26b21a-7b4b-4962-969f-af21e9f43ea4 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:50644 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:50650 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:50806 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:50660 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:50812 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51652 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51658 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:52272 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:52278 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:37122 - "POST /audits/4f1f3085-9a49-4590-8b36-79aaa437f0a4 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:38628 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:37132 - "POST /audits/873900b8-1d71-48ac-8c2b-b3cc765e3378 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:37150 - "POST /evaluations/5e3cf02c-9344-47da-a665-6f2942d94664/cancel HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:37148 - "POST /audits/5e3cf02c-9344-47da-a665-6f2942d94664 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:38636 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:37156 - "POST /audits/a82cf2ae-63b0-4367-9f48-279cde71f49c HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:37166 - "POST /audits/df06355a-ac2a-42c7-8716-085d5efd418a HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:36442 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:38730 - "GET /evaluations/df06355a-ac2a-42c7-8716-085d5efd418a HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:38738 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+db-1                            | selecting dynamic shared memory implementation ... posix
+db-1                            | selecting default "max_connections" ... 100
+repair-broker-1                 | (node:126) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:149) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+runner-1                        | INFO:     127.0.0.1:56278 - "GET /health HTTP/1.1" 200 OK
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+runner-1                        | INFO:     172.19.0.3:46764 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:38748 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+runner-1                        | INFO:     127.0.0.1:56288 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:38760 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+repair-broker-1                 | (node:344) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:367) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:384) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:395) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:406) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:423) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:440) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:451) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:468) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:485) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:508) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:532) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+runner-1                        | INFO:     127.0.0.1:55678 - "GET /health HTTP/1.1" 200 OK
+db-1                            | selecting default "shared_buffers" ... 128MB
+runner-1                        | INFO:     172.19.0.3:55494 - "GET /health HTTP/1.1" 200 OK
+db-1                            | selecting default time zone ... UTC
+evaluator-1                     | INFO:     172.21.0.4:38762 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+runner-1                        | INFO:     127.0.0.1:55686 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:38778 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38782 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38794 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38798 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38800 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38812 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38814 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38824 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38828 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38836 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38850 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38858 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     127.0.0.1:36458 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:38864 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38870 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:38882 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34554 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34556 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34572 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34582 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34588 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34596 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34602 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34606 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34608 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34612 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34624 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34628 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34636 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34650 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34662 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34674 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34684 - "GET /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:34700 - "POST /evaluations/24f6054b-10e0-4c6c-9700-a38efc45e687/cancel HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:42106 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:55012 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:42120 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:49674 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:37878 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:37880 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:55016 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:55840 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:53512 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52838 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52850 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:40156 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:35540 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:35542 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:52764 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52914 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44114 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44118 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44128 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52916 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44138 - "POST /reproduce/c32700b4-8710-43da-b2f0-cbd4aafbac32?scenario_id=cart-quantity HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52918 - "GET /retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52918 - "GET /retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52928 - "GET /retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44144 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44156 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44162 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44138 - "POST /reproduce/8f0ff0cb-070c-4e7d-b880-0349cdf7f7a7?scenario_id=cart-quantity HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52074 - "GET /retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52074 - "GET /retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52090 - "GET /retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52092 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44138 - "POST /reproduce/d38fdc70-1d8e-42d5-a357-8111e730a274?scenario_id=cart-quantity HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:33806 - "POST /reproduce/47104179-6df1-409c-855b-dc2994bc5ade?scenario_id=cart-quantity HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52106 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:33810 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:34132 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:34144 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:50308 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:51064 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:51076 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:34324 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:48006 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:48018 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:40234 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:35734 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:35740 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:50664 - "GET /health HTTP/1.1" 200 OK
+repair-broker-1                 | (node:549) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:572) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+runner-1                        | INFO:     127.0.0.1:44776 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:44782 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:35312 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:49834 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:49846 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:42342 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52862 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52870 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:38662 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:59324 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:59330 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52956 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:52958 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:40246 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:59616 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:59632 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:49344 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42884 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42890 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:33416 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:53200 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:53212 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:33804 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:46160 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:38048 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:38054 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42496 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42502 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:50798 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:57332 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:50806 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:60774 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:45788 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:60782 - "POST /reproduce/5f1b8b61-0070-429f-a6a9-de547c60a2ac?scenario_id=cart-quantity HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:45794 - "GET /retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:45794 - "GET /retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:45806 - "GET /retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:60784 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:45822 - "GET /health HTTP/1.1" 200 OK
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+db-1                            | creating configuration files ... ok
+db-1                            | running bootstrap script ... ok
+db-1                            | sh: locale: not found
+db-1                            | 2026-10-25 19:38:31.001 UTC [34] WARNING:  no usable system locales were found
+repair-broker-1                 | (node:583) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:605) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:629) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:688) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:711) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:734) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:751) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:775) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:798) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:828) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+repair-broker-1                 | (node:839) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+repair-broker-1                 | (Use `node --trace-deprecation ...` to show where the warning was created)
+runner-1                        | INFO:     127.0.0.1:46570 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:49792 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:49794 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:46582 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:49904 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:43304 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:43306 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:49912 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:43976 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:47810 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:43990 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:47826 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:54628 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:46604 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:41508 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:41522 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:49368 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:49370 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:33046 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:33062 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:39258 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:39274 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:57062 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:57068 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51112 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51122 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:40536 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:40538 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:58078 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:58092 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:37110 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:37124 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:37288 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:37304 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:53244 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57384 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57390 - "POST /repository-audits/c9b9bb02-174d-4763-8a3f-4ba1b8d64a60 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:53246 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57394 - "GET /repository-runtimes HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57422 - "POST /evaluations/2bb81b54-e6a4-46ad-ae3c-9edb65ed719e/cancel HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57406 - "POST /repository-audits/2bb81b54-e6a4-46ad-ae3c-9edb65ed719e HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57432 - "POST /repository-audits/79e6319f-c335-44df-b9e3-c77dae4781e7 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:60138 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57524 - "POST /evaluations/79e6319f-c335-44df-b9e3-c77dae4781e7/cancel HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57536 - "GET /evaluations/79e6319f-c335-44df-b9e3-c77dae4781e7 HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57540 - "POST /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3/cancel HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57552 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57566 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57572 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57588 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57596 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57608 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57612 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57618 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     127.0.0.1:60140 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:57634 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57646 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57658 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57662 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57664 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:57678 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55172 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55184 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55200 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55212 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55224 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55230 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55240 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+runner-1                        | INFO:     172.19.0.3:53000 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:54636 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:43360 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:56244 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:43370 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:48266 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:46478 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:48278 - "GET /health HTTP/1.1" 200 OK
+db-1                            | performing post-bootstrap initialization ... ok
+evaluator-1                     | INFO:     172.21.0.4:55248 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+db-1                            | initdb: warning: enabling "trust" authentication for local connections
+runner-1                        | INFO:     127.0.0.1:55646 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:49506 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:55262 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55268 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     127.0.0.1:34090 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     172.21.0.4:55278 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55280 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55284 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55296 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55300 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55310 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55324 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55340 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55346 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55362 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55372 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55376 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     172.21.0.4:55392 - "GET /evaluations/2b15d537-e723-49a7-9da9-b40bd4c5fea3 HTTP/1.1" 404 Not Found
+evaluator-1                     | INFO:     127.0.0.1:34096 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51010 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:51018 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:48680 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:48694 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:52974 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:52978 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:52464 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:52478 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:53244 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:53248 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:52058 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:33184 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:33192 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:43188 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:43200 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:35298 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:35300 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:47780 - "GET /health HTTP/1.1" 200 OK
+evaluator-1                     | INFO:     127.0.0.1:47792 - "GET /health HTTP/1.1" 200 OK
+db-1                            | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+runner-1                        | INFO:     127.0.0.1:55652 - "GET /health HTTP/1.1" 200 OK
+db-1                            | syncing data to disk ... ok
+runner-1                        | INFO:     127.0.0.1:46070 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:38074 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:46082 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:56688 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:46116 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:56702 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:48628 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:57292 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:57294 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:52906 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:57630 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:57640 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:35552 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:35568 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:44068 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:44082 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:44638 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60890 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60904 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:59146 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:44458 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:56256 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:53682 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:56262 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:33302 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:57458 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:33310 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60148 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:33762 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60162 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:33778 - "POST /reproduce/acb7d8a3-2fcf-4cdb-b0a9-927bd46636e7?scenario_id=shipping-threshold HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60178 - "GET /scenarios/shipping-threshold/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60178 - "GET /scenarios/shipping-threshold/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60190 - "GET /scenarios/shipping-threshold/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60190 - "GET /scenarios/shipping-threshold/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60190 - "GET /scenarios/shipping-threshold/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60178 - "GET /scenarios/shipping-threshold/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60178 - "GET /scenarios/shipping-threshold/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60178 - "GET /scenarios/shipping-threshold/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60190 - "GET /scenarios/shipping-threshold/retail/cart.js HTTP/1.1" 200 OK
+db-1                            | 
+db-1                            | 
+db-1                            | Success. You can now start the database server using:
+db-1                            | 
+db-1                            |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1                            | 
+db-1                            | waiting for server to start....2026-10-25 19:38:31.613 UTC [40] LOG:  starting PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+db-1                            | 2026-10-25 19:38:31.613 UTC [40] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1                            | 2026-10-25 19:38:31.616 UTC [43] LOG:  database system was shut down at 2026-10-25 19:38:31 UTC
+db-1                            | 2026-10-25 19:38:31.620 UTC [40] LOG:  database system is ready to accept connections
+db-1                            |  done
+db-1                            | server started
+db-1                            | CREATE DATABASE
+db-1                            | 
+db-1                            | 
+db-1                            | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+db-1                            | 
+db-1                            | waiting for server to shut down...2026-10-25 19:38:31.762 UTC [40] LOG:  received fast shutdown request
+db-1                            | .2026-10-25 19:38:31.762 UTC [40] LOG:  aborting any active transactions
+db-1                            | 2026-10-25 19:38:31.766 UTC [40] LOG:  background worker "logical replication launcher" (PID 46) exited with exit code 1
+db-1                            | 2026-10-25 19:38:31.768 UTC [41] LOG:  shutting down
+db-1                            | 2026-10-25 19:38:31.768 UTC [41] LOG:  checkpoint starting: shutdown immediate
+db-1                            | 2026-10-25 19:38:31.784 UTC [41] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.014 s, sync=0.002 s, total=0.017 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4266 kB, estimate=4266 kB; lsn=0/191E820, redo lsn=0/191E820
+db-1                            | 2026-10-25 19:38:31.793 UTC [40] LOG:  database system is shut down
+db-1                            |  done
+db-1                            | server stopped
+db-1                            | 
+db-1                            | PostgreSQL init process complete; ready for start up.
+db-1                            | 
+db-1                            | 2026-10-25 19:38:31.886 UTC [1] LOG:  starting PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+db-1                            | 2026-10-25 19:38:31.886 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1                            | 2026-10-25 19:38:31.886 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1                            | 2026-10-25 19:38:31.887 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1                            | 2026-10-25 19:38:31.890 UTC [56] LOG:  database system was shut down at 2026-10-25 19:38:31 UTC
+db-1                            | 2026-10-25 19:38:31.896 UTC [1] LOG:  database system is ready to accept connections
+db-1                            | 2026-10-25 19:42:35.578 UTC [649] ERROR:  Patch candidates are immutable
+db-1                            | 2026-10-25 19:42:35.578 UTC [649] CONTEXT:  PL/pgSQL function immutable_patch_candidate() line 1 at RAISE
+db-1                            | 2026-10-25 19:42:35.578 UTC [649] STATEMENT:  UPDATE patch_audit_candidates SET record=$1::JSON WHERE patch_audit_candidates.id = $2::VARCHAR
+db-1                            | 2026-10-25 19:43:31.979 UTC [54] LOG:  checkpoint starting: time
+db-1                            | 2026-10-25 19:45:42.876 UTC [54] LOG:  checkpoint complete: wrote 1313 buffers (8.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=130.855 s, sync=0.015 s, total=130.897 s; sync files=1573, longest=0.001 s, average=0.001 s; distance=12757 kB, estimate=12757 kB; lsn=0/2B7A350, redo lsn=0/2593CA0
+runner-1                        | INFO:     127.0.0.1:60190 - "GET /scenarios/shipping-threshold/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60190 - "GET /scenarios/shipping-threshold/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:60178 - "GET /scenarios/shipping-threshold/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:33778 - "POST /reproduce/906f9639-17ff-4bf1-9586-280969e0f048?scenario_id=decrement-skip HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42328 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42336 - "GET /scenarios/decrement-skip/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42336 - "GET /scenarios/decrement-skip/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42342 - "GET /scenarios/decrement-skip/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42342 - "GET /scenarios/decrement-skip/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42342 - "GET /scenarios/decrement-skip/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42336 - "GET /scenarios/decrement-skip/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42336 - "GET /scenarios/decrement-skip/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42336 - "GET /scenarios/decrement-skip/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42342 - "GET /scenarios/decrement-skip/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42342 - "GET /scenarios/decrement-skip/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42342 - "GET /scenarios/decrement-skip/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42336 - "GET /scenarios/decrement-skip/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:50858 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:33778 - "POST /reproduce/a6bf207c-a0cb-47ba-b7e9-18640029f90f?scenario_id=clamp-zero HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42356 - "GET /scenarios/clamp-zero/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42356 - "GET /scenarios/clamp-zero/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42368 - "GET /scenarios/clamp-zero/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42368 - "GET /scenarios/clamp-zero/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42368 - "GET /scenarios/clamp-zero/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42356 - "GET /scenarios/clamp-zero/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42356 - "GET /scenarios/clamp-zero/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42356 - "GET /scenarios/clamp-zero/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42368 - "GET /scenarios/clamp-zero/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42368 - "GET /scenarios/clamp-zero/retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42368 - "GET /scenarios/clamp-zero/retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42356 - "GET /scenarios/clamp-zero/retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42378 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:55794 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:36974 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:36986 - "POST /reproduce/3612880e-b809-47e4-968c-91a05b5d42ed?scenario_id=cart-quantity HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:55804 - "GET /retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:55804 - "GET /retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:55816 - "GET /retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:55830 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:36998 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:37012 - "POST /reproduce/4cc5afb6-af12-4b54-a965-a899c78c6dbb?scenario_id=cart-quantity HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:38100 - "GET /retail/ HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:38100 - "GET /retail/styles.css HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:38110 - "GET /retail/cart.js HTTP/1.1" 200 OK
+runner-1                        | Future exception was never retrieved
+runner-1                        | future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed\nCall log:\n  - navigating to "http://127.0.0.1:8011/retail/", waiting until "networkidle"\n')>
+runner-1                        | playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+runner-1                        | Call log:
+runner-1                        |   - navigating to "http://127.0.0.1:8011/retail/", waiting until "networkidle"
+runner-1                        | 
+runner-1                        | INFO:     127.0.0.1:38112 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:49368 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:38128 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:40336 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:57106 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:40348 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42206 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     172.19.0.3:50912 - "GET /health HTTP/1.1" 200 OK
+runner-1                        | INFO:     127.0.0.1:42218 - "GET /health HTTP/1.1" 200 OK

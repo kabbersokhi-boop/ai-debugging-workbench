@@ -1,0 +1,73 @@
+{
+  "reviewed_sha": "41c1bb0f00e7f27e62da48fc07af658741eebc5d",
+  "failed": {
+    "run_id": 40226794051,
+    "job_id": 121269753069,
+    "artifacts": {
+      "artifacts": [
+        {
+          "id": 12612036284,
+          "name": "milestone-evidence",
+          "size_in_bytes": 8984111,
+          "url": "https://api.github.com/repos/kabbersokhi-boop/ai-debugging-workbench/actions/artifacts/12612036284",
+          "archive_download_url": "https://api.github.com/repos/kabbersokhi-boop/ai-debugging-workbench/actions/artifacts/12612036284/zip",
+          "expired": false,
+          "created_at": "2026-10-25T19:47:39Z",
+          "expires_at": "2027-01-23T19:35:59Z",
+          "updated_at": "2026-10-25T19:47:39Z",
+          "digest": "sha256:7f85cd344767ce67211949f9e0e15e5c9c7b1c65930cdc8766528ed0fe97a49a",
+          "workflow_run": {
+            "id": 40226794051,
+            "repository_id": 1421015553,
+            "head_repository_id": 1421015553,
+            "head_branch": "feature/generalized-patch-audit-g03-compatibility",
+            "head_sha": "41c1bb0f00e7f27e62da48fc07af658741eebc5d"
+          }
+        }
+      ]
+    },
+    "relevant_job_lines": [
+      "2026-10-25T19:36:56.6984451Z ===================== 345 passed, 95 deselected in 23.14s ======================",
+      "2026-10-25T19:46:40.4204764Z tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution FAILED [ 87%]",
+      "2026-10-25T19:47:29.6439910Z tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api FAILED [ 92%]",
+      "2026-10-25T19:47:36.7808663Z __ test_repository_cancel_and_restart_reconcile_completed_without_reexecution __",
+      "2026-10-25T19:47:36.9674474Z FAILED tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution - TimeoutError",
+      "2026-10-25T19:47:36.9676389Z FAILED tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api - httpx.ReadError",
+      "2026-10-25T19:47:36.9677875Z ===== 2 failed, 89 passed, 4 skipped, 345 deselected in 517.66s (0:08:37) ======"
+    ]
+  },
+  "passed": {
+    "run_id": 40226797453,
+    "job_id": 121269763165,
+    "artifacts": {
+      "artifacts": [
+        {
+          "id": 12612170942,
+          "name": "milestone-evidence",
+          "size_in_bytes": 8984950,
+          "url": "https://api.github.com/repos/kabbersokhi-boop/ai-debugging-workbench/actions/artifacts/12612170942",
+          "archive_download_url": "https://api.github.com/repos/kabbersokhi-boop/ai-debugging-workbench/actions/artifacts/12612170942/zip",
+          "expired": false,
+          "created_at": "2026-10-25T19:47:08Z",
+          "expires_at": "2027-01-23T19:36:01Z",
+          "updated_at": "2026-10-25T19:47:08Z",
+          "digest": "sha256:2a28151fb6df873cec44871ab4b8cc3f92f7f51b6364edc762d19678173e4ef9",
+          "workflow_run": {
+            "id": 40226797453,
+            "repository_id": 1421015553,
+            "head_repository_id": 1421015553,
+            "head_branch": "feature/generalized-patch-audit-g03-compatibility",
+            "head_sha": "41c1bb0f00e7f27e62da48fc07af658741eebc5d"
+          }
+        }
+      ]
+    },
+    "relevant_job_lines": [
+      "2026-10-25T19:36:57.3404926Z ===================== 345 passed, 95 deselected in 22.89s ======================",
+      "2026-10-25T19:45:26.0528060Z tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution PASSED [ 87%]",
+      "2026-10-25T19:46:23.4839871Z tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 92%]",
+      "2026-10-25T19:46:31.2718403Z ========== 91 passed, 4 skipped, 345 deselected in 453.50s (0:07:33) ===========",
+      "2026-10-25T19:47:05.4711559Z ====================== 2 passed, 438 deselected in 5.40s ======================="
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "reason": "Frozen scripts/evaluate_repairs.py docker_identity hard-codes original compose broker; isolated local project cannot satisfy that lookup while default broker is stopped. Frozen script/test unchanged.",
+  "container_id": "0f8842e637c1c7edf96ae15e6adec0463b78f3ee0db8ad1e72d60ba068cba067",
+  "initially_running": false,
+  "candidate_campaign_runs_started": 0,
+  "unchanged_repair_broker_source_sha256": "02b580fb0168f7491b150b21ef0c120680d8c2454fbc38f7b4d649e16abf4871",
+  "targeted_existing_test_exit_code": 0,
+  "restored_original_stopped_state": true
+}

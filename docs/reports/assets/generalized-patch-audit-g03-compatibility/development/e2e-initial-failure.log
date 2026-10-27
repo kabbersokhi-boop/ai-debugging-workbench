@@ -1,0 +1,1136 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0 -- /home/libertarian/ai-debugging-workbench/backend/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/libertarian/ai-debugging-workbench/backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.9, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 437 items / 342 deselected / 95 selected
+
+tests/test_access_integration.py::test_guest_ownership_artifacts_idempotency_and_expiry PASSED [  1%]
+tests/test_access_integration.py::test_reservations_are_atomic_persisted_and_server_wide PASSED [  2%]
+tests/test_agent_evaluator_browser.py::test_evaluator_real_ui_candidates_failure_evidence_and_reopen PASSED [  3%]
+tests/test_agent_evaluator_browser.py::test_evaluator_api_rejects_arbitrary_inputs_and_cancels PASSED [  4%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_controls PASSED [  5%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_negative_processes PASSED [  6%]
+tests/test_agent_evaluator_integration.py::test_evaluator_freeze PASSED  [  7%]
+tests/test_agent_evaluator_integration.py::test_evaluator_docker_genuine_candidates PASSED [  8%]
+tests/test_agent_evaluator_integration.py::test_evaluator_missing_image_is_infrastructure_error PASSED [  9%]
+tests/test_agent_evaluator_recovery.py::test_evaluator_recovery_reconciles_terminal_broker_evidence PASSED [ 10%]
+tests/test_campaign_browser.py::test_campaign_candidate_navigation_download_and_saved_reopen PASSED [ 11%]
+tests/test_comparison_browser.py::test_comparison_actual_evidence_navigation_download_and_controls PASSED [ 12%]
+tests/test_comparison_browser.py::test_comparison_deterministic_rendering_fixtures_ties_zero_and_pending PASSED [ 13%]
+tests/test_diagnosis_browser.py::test_presentation_regression_for_passed_checks_and_interactive_footer PASSED [ 14%]
+tests/test_diagnosis_browser.py::test_live_nvidia_investigation_citations_inspector_and_reopened_history SKIPPED [ 15%]
+tests/test_diagnosis_browser.py::test_saved_investigation_reports_are_immutable_and_separate_from_draft PASSED [ 16%]
+tests/test_e2e.py::test_first_visitor_can_reproduce_inspect_and_reopen_history PASSED [ 17%]
+tests/test_e2e.py::test_actual_api_evidence_and_idempotency PASSED       [ 18%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload0] PASSED [ 20%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload1] PASSED [ 21%]
+tests/test_e2e.py::test_api_rejects_unsupported_authority[payload2] PASSED [ 22%]
+tests/test_e2e.py::test_capacity_cancellation_and_no_late_success PASSED [ 23%]
+tests/test_evaluation_harness.py::test_offline_one_shot_harness_executes_sealed_final_checks FAILED [ 24%]
+tests/test_evaluator_comparison_integration.py::test_producer_docker_access_boundary PASSED [ 25%]
+tests/test_evaluator_comparison_integration.py::test_comparison_new_task_controls PASSED [ 26%]
+tests/test_evaluator_comparison_integration.py::test_frozen_comparison_and_actual_evidence_are_valid PASSED [ 27%]
+tests/test_evaluator_comparison_integration.py::test_fresh_final_environments_and_generation_scoring_separation PASSED [ 28%]
+tests/test_guest_uuid_integration.py::test_guest_uuid_spellings_cannot_bypass_any_resource_handler PASSED [ 29%]
+tests/test_independent_browser.py::test_independent_browser_approval_failure_download_reopen_and_selection PASSED [ 30%]
+tests/test_independent_integration.py::test_independent_real_controls_and_separate_fresh_candidate_environments[python312] PASSED [ 31%]
+tests/test_independent_integration.py::test_independent_real_controls_and_separate_fresh_candidate_environments[node22] PASSED [ 32%]
+tests/test_independent_integration.py::test_authored_ordinary_pass_independent_fail_controls[python312] PASSED [ 33%]
+tests/test_independent_integration.py::test_authored_ordinary_pass_independent_fail_controls[node22] PASSED [ 34%]
+tests/test_independent_integration.py::test_actual_verifier_load_failure_and_cancellation_are_not_passes PASSED [ 35%]
+tests/test_independent_integration.py::test_candidate_cannot_write_checker_inputs_or_code PASSED [ 36%]
+tests/test_independent_integration.py::test_real_independent_timeout_and_setup_failure PASSED [ 37%]
+tests/test_independent_recovery.py::test_g2_exact_approval_cancellation_restart_and_missing_terminal PASSED [ 38%]
+tests/test_node_compatibility_browser.py::test_node_addendum_separate_history_candidate_download_and_reopen PASSED [ 40%]
+tests/test_node_compatibility_integration.py::test_compatibility_capsule_is_immutable_offline_and_source_paths_are_literal PASSED [ 41%]
+tests/test_node_snapshot_integration.py::test_real_node_snapshot_through_approved_g2_execution[shared_object] PASSED [ 42%]
+tests/test_node_snapshot_integration.py::test_real_node_snapshot_through_approved_g2_execution[hidden_early_failure] PASSED [ 43%]
+tests/test_node_snapshot_integration.py::test_real_node_snapshot_through_approved_g2_execution[nested_shared_arrays] PASSED [ 44%]
+tests/test_node_snapshot_integration.py::test_real_node_snapshot_through_approved_g2_execution[shared_array] PASSED [ 45%]
+tests/test_node_snapshot_integration.py::test_real_node_snapshot_through_approved_g2_execution[scalars] PASSED [ 46%]
+tests/test_node_snapshot_integration.py::test_real_node_unsupported_and_serialization_errors_never_pass PASSED [ 47%]
+tests/test_patch_audit_browser.py::test_patch_audit_real_ui_import_failing_passing_download_and_reopen PASSED [ 48%]
+tests/test_patch_audit_browser.py::test_patch_audit_rejections_identity_cancel_additional_tasks_and_restart PASSED [ 49%]
+tests/test_patch_audit_browser.py::test_patch_audit_delayed_candidate_cannot_replace_selected_task PASSED [ 50%]
+tests/test_patch_audit_browser.py::test_recorded_explorer_first_patch_audit_failure_pass_mobile_and_no_execution PASSED [ 51%]
+tests/test_patch_audit_browser.py::test_patch_audit_polling_fixture_serializes_requests_and_keeps_terminal_result PASSED [ 52%]
+tests/test_rag_integration.py::test_real_pgvector_fts_index_dedup_and_snapshot_isolation PASSED [ 53%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[insufficient-insufficient_evidence] PASSED [ 54%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[invalid-invalid_output] PASSED [ 55%]
+tests/test_rag_integration.py::test_saved_investigation_preserves_evidence_and_failure_classification[failure-provider_error] PASSED [ 56%]
+tests/test_rag_integration.py::test_investigation_cancel_and_restart_keep_reproduction_separate PASSED [ 57%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[start] PASSED [ 58%]
+tests/test_release_browser.py::test_repair_action_response_cannot_cross_investigation_selection[cancel] PASSED [ 60%]
+tests/test_release_browser.py::test_m4_saved_shipping_reopen_without_inference_after_ui_correction SKIPPED [ 61%]
+tests/test_release_browser.py::test_recorded_explorer_first_visit_mobile_and_no_live_requests PASSED [ 62%]
+tests/test_release_browser.py::test_selected_scenario_manual_view_is_bound_before_any_reproduction PASSED [ 63%]
+tests/test_release_browser.py::test_m4_live_workflow_shipping_scenario_video SKIPPED [ 64%]
+tests/test_repair_browser.py::test_live_nvidia_repair_diff_verification_preview_and_reopen SKIPPED [ 65%]
+tests/test_repair_browser.py::test_offline_repair_browser_diff_preview_download_and_saved_history FAILED [ 66%]
+tests/test_repair_integration.py::test_real_mcp_discovery_permission_and_stale_base PASSED [ 67%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity-passed] FAILED [ 68%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * 3-failed] FAILED [ 69%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents + 0-failed] FAILED [ 70%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (document.querySelector('[data-testid=total]').hidden = true, 0)-failed] FAILED [ 71%]
+tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (setTimeout(() => document.querySelector('[data-testid=total]').textContent = 'x'.repeat(10000), 0), 0)-failed] FAILED [ 72%]
+tests/test_repair_integration.py::test_candidate_isolation_cleanup_and_preview_headers FAILED [ 73%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[valid-verified] FAILED [ 74%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[fail-verification_failed] FAILED [ 75%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[invalid-invalid_output] FAILED [ 76%]
+tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[failure-provider_error] FAILED [ 77%]
+tests/test_repair_integration.py::test_repair_cancellation_and_interruption_preserve_prior_statuses FAILED [ 78%]
+tests/test_repair_integration.py::test_shared_wall_clock_timeout_keeps_no_verification_claim FAILED [ 80%]
+tests/test_repair_integration.py::test_real_mcp_executor_outage_is_an_execution_error PASSED [ 81%]
+tests/test_repository_audit_integration.py::test_generalized_actual_sandbox_python_node_and_unknown_counts[python312] PASSED [ 82%]
+tests/test_repository_audit_integration.py::test_generalized_actual_sandbox_python_node_and_unknown_counts[node22] PASSED [ 83%]
+tests/test_repository_audit_integration.py::test_actual_sandbox_no_network_credentials_host_or_source_writes PASSED [ 84%]
+tests/test_repository_audit_integration.py::test_actual_setup_failure_timeout_cancel_and_cleanup PASSED [ 85%]
+tests/test_repository_audit_integration.py::test_repository_browser_review_approval_download_reopen_and_stale_selection PASSED [ 86%]
+tests/test_repository_audit_integration.py::test_repository_cancel_and_restart_reconcile_completed_without_reexecution PASSED [ 87%]
+tests/test_scenarios_integration.py::test_two_real_indexes_reject_cross_snapshot_context PASSED [ 88%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[shipping-threshold] FAILED [ 89%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[decrement-skip] FAILED [ 90%]
+tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[clamp-zero] FAILED [ 91%]
+tests/test_scenarios_integration.py::test_development_scenarios_reproduce_through_existing_api PASSED [ 92%]
+tests/test_scenarios_integration.py::test_remote_preview_rejects_commands_and_kills_nonresponsive_script FAILED [ 93%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[unavailable] PASSED [ 94%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[empty] PASSED [ 95%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[invalid] PASSED [ 96%]
+tests/test_service.py::test_runner_failures_never_become_reproduced[timeout] PASSED [ 97%]
+tests/test_service.py::test_restart_recovers_unfinished_runs_and_preserves_terminal_outcomes PASSED [ 98%]
+tests/test_service.py::test_concurrent_duplicate_requests_produce_one_run PASSED [100%]
+
+=================================== FAILURES ===================================
+__________ test_offline_one_shot_harness_executes_sealed_final_checks __________
+
+    @contextlib.contextmanager
+    def map_httpcore_exceptions() -> typing.Iterator[None]:
+        global HTTPCORE_EXC_MAP
+        if len(HTTPCORE_EXC_MAP) == 0:
+            HTTPCORE_EXC_MAP = _load_httpcore_exceptions()
+        try:
+>           yield
+
+.venv/lib/python3.12/site-packages/httpx/_transports/default.py:101: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/httpx/_transports/default.py:394: in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncConnectionPool [Requests: 0 active, 0 queued | Connections: 0 active, 0 idle]>
+request = <Request [b'POST']>
+
+    async def handle_async_request(self, request: Request) -> Response:
+        """
+        Send an HTTP request, and return an HTTP response.
+    
+        This is the core implementation that is called into by `.request()` or `.stream()`.
+        """
+        scheme = request.url.scheme.decode()
+        if scheme == "":
+>           raise UnsupportedProtocol(
+                "Request URL is missing an 'http://' or 'https://' protocol."
+            )
+E           httpcore.UnsupportedProtocol: Request URL is missing an 'http://' or 'https://' protocol.
+
+.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py:207: UnsupportedProtocol
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-libertarian/pytest-5/test_offline_one_shot_harness_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f8fe15ded20>
+
+    async def test_offline_one_shot_harness_executes_sealed_final_checks(tmp_path, monkeypatch):
+        spec = importlib.util.spec_from_file_location(
+            "repair_evaluation_test", ROOT / "scripts/evaluate_repairs.py"
+        )
+        assert spec and spec.loader
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        broker_url, image = module.docker_identity()
+        config = tmp_path / "offline-experiment.json"
+        config.write_text(
+            json.dumps(
+                {
+                    "per_condition": {"one-shot-whole": {"decisions": 1, "patches": 1, "requests": 2}},
+                    "candidate_runtime_image_id": image,
+                    "verifier_version": VERIFIER_VERSION,
+                }
+            )
+        )
+        monkeypatch.setattr(module, "CONFIG", config)
+        monkeypatch.setattr(module, "OUTPUT", tmp_path / "results")
+    
+        class OfflineOneShot(OfflineRepair):
+            def __init__(self, config, transport):
+                super().__init__()
+                self.number = 1  # Complete context: deterministic fixture proposes immediately.
+                self.config = config
+                self.requests = 0
+    
+        monkeypatch.setattr(module, "NvidiaProvider", OfflineOneShot)
+>       result = await module.execute_case(scenario("cart-quantity"), "one-shot-whole", {}, broker_url)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_evaluation_harness.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../scripts/evaluate_repairs.py:407: in execute_case
+    await client.post(f"{broker_url}/repairs/{repair_id}/cleanup")
+.venv/lib/python3.12/site-packages/httpx/_client.py:1859: in post
+    return await self.request(
+.venv/lib/python3.12/site-packages/httpx/_client.py:1540: in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/httpx/_client.py:1629: in send
+    response = await self._send_handling_auth(
+.venv/lib/python3.12/site-packages/httpx/_client.py:1657: in _send_handling_auth
+    response = await self._send_handling_redirects(
+.venv/lib/python3.12/site-packages/httpx/_client.py:1694: in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/httpx/_client.py:1730: in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/httpx/_transports/default.py:393: in handle_async_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/contextlib.py:158: in __exit__
+    self.gen.throw(value)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    @contextlib.contextmanager
+    def map_httpcore_exceptions() -> typing.Iterator[None]:
+        global HTTPCORE_EXC_MAP
+        if len(HTTPCORE_EXC_MAP) == 0:
+            HTTPCORE_EXC_MAP = _load_httpcore_exceptions()
+        try:
+            yield
+        except Exception as exc:
+            mapped_exc = None
+    
+            for from_exc, to_exc in HTTPCORE_EXC_MAP.items():
+                if not isinstance(exc, from_exc):
+                    continue
+                # We want to map to the most specific exception we can find.
+                # Eg if `exc` is an `httpcore.ReadTimeout`, we want to map to
+                # `httpx.ReadTimeout`, not just `httpx.TimeoutException`.
+                if mapped_exc is None or issubclass(to_exc, mapped_exc):
+                    mapped_exc = to_exc
+    
+            if mapped_exc is None:  # pragma: no cover
+                raise
+    
+            message = str(exc)
+>           raise mapped_exc(message) from exc
+E           httpx.UnsupportedProtocol: Request URL is missing an 'http://' or 'https://' protocol.
+
+.venv/lib/python3.12/site-packages/httpx/_transports/default.py:118: UnsupportedProtocol
+_____ test_offline_repair_browser_diff_preview_download_and_saved_history ______
+
+    async def test_offline_repair_browser_diff_preview_download_and_saved_history():
+        """Real candidate/verifier/browser with an explicitly deterministic OFFLINE provider."""
+        folder = ROOT / "artifacts/milestone-03"
+        await asyncio.to_thread(folder.mkdir, parents=True, exist_ok=True)
+        async with httpx.AsyncClient(base_url=BASE_URL, timeout=10) as http:
+            response = await http.post("/api/runs", json={"bug_id": "cart-quantity"})
+            response.raise_for_status()
+            run_id = response.json()["id"]
+            async with asyncio.timeout(70):
+                while True:
+                    run = (await http.get(f"/api/runs/{run_id}")).json()
+                    if run["status"] not in ("queued", "running"):
+                        break
+                    await asyncio.sleep(0.25)
+            assert run["status"] == "reproduced"
+        fixture = json.loads(
+            (ROOT / "docs/reports/assets/milestone-02/live-investigation.json").read_text()
+        )["investigation"]
+        engine = create_async_engine(settings.database_url)
+        store = async_sessionmaker(engine, expire_on_commit=False)
+        investigation_id = uuid4()
+        client = docker.from_env()
+        try:
+            project = os.environ.get("COMPOSE_PROJECT_NAME", "ai-debugging-workbench")
+            broker = client.containers.get(f"{project}-repair-broker-1")
+            ip = broker.attrs["NetworkSettings"]["Networks"][f"{project}_repair-control"]["IPAddress"]
+        finally:
+            client.close()
+        try:
+            async with store.begin() as session:
+                session.add(
+                    Investigation(
+                        id=investigation_id,
+                        run_id=UUID(run_id),
+                        status="completed",
+                        report="OFFLINE deterministic browser fixture: " + fixture["report"],
+                        snapshot_id=load_snapshot().id,
+                        diagnosis=fixture["diagnosis"],
+                        retrieval=fixture["retrieval"],
+                        model_input={"mode": "offline_fixture"},
+                        provider_calls=[{"mode": "offline_fixture"}],
+                        events=[],
+                    )
+                )
+            manager = RepairManager(lambda: OfflineRepair(), store, f"http://{ip}:8012")
+            created = await manager.create(investigation_id)
+            await asyncio.gather(*list(manager.tasks.values()))
+            saved = await manager.get(created["id"])
+>           assert saved["status"] == "verified", saved
+E           AssertionError: {'id': UUID('864301f4-fd27-4152-ae46-c393961895df'), 'run_id': UUID('1c392d65-4ed0-42b7-be03-2add0c125467'), 'investigation_id': UUID('af71b127-7591-4b5f-8949-4e6b4234794a'), 'snapshot_id': '3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11', ...}
+E           assert 'error' == 'verified'
+E             
+E             - verified
+E             + error
+
+tests/test_repair_browser.py:190: AssertionError
+_ test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity-passed] _
+
+broker_url = 'http://192.168.208.3:8012'
+new = 'sum + item.unitPriceCents * item.quantity', expected = 'passed'
+
+    @pytest.mark.parametrize(
+        "new,expected",
+        [
+            ("sum + item.unitPriceCents * item.quantity", "passed"),
+            ("sum + item.unitPriceCents * 3", "failed"),
+            ("sum + item.unitPriceCents + 0", "failed"),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(document.querySelector('[data-testid=total]').hidden = true, 0)",
+                "failed",
+            ),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(setTimeout(() => document.querySelector('[data-testid=total]').textContent = "
+                "'x'.repeat(10000), 0), 0)",
+                "failed",
+            ),
+        ],
+    )
+    async def test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash(
+        broker_url, new, expected
+    ):
+        repair_id = uuid4()
+        async with httpx.AsyncClient(base_url=broker_url, timeout=70) as client:
+>           original = (await client.post("/original/verify")).json()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_repair_integration.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/httpx/_models.py:832: in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7f8fea4e5160>
+s = 'Internal Server Error', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:356: JSONDecodeError
+_ test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * 3-failed] _
+
+broker_url = 'http://192.168.208.3:8012', new = 'sum + item.unitPriceCents * 3'
+expected = 'failed'
+
+    @pytest.mark.parametrize(
+        "new,expected",
+        [
+            ("sum + item.unitPriceCents * item.quantity", "passed"),
+            ("sum + item.unitPriceCents * 3", "failed"),
+            ("sum + item.unitPriceCents + 0", "failed"),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(document.querySelector('[data-testid=total]').hidden = true, 0)",
+                "failed",
+            ),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(setTimeout(() => document.querySelector('[data-testid=total]').textContent = "
+                "'x'.repeat(10000), 0), 0)",
+                "failed",
+            ),
+        ],
+    )
+    async def test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash(
+        broker_url, new, expected
+    ):
+        repair_id = uuid4()
+        async with httpx.AsyncClient(base_url=broker_url, timeout=70) as client:
+>           original = (await client.post("/original/verify")).json()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_repair_integration.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/httpx/_models.py:832: in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7f8fea4e5160>
+s = 'Internal Server Error', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:356: JSONDecodeError
+_ test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents + 0-failed] _
+
+broker_url = 'http://192.168.208.3:8012', new = 'sum + item.unitPriceCents + 0'
+expected = 'failed'
+
+    @pytest.mark.parametrize(
+        "new,expected",
+        [
+            ("sum + item.unitPriceCents * item.quantity", "passed"),
+            ("sum + item.unitPriceCents * 3", "failed"),
+            ("sum + item.unitPriceCents + 0", "failed"),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(document.querySelector('[data-testid=total]').hidden = true, 0)",
+                "failed",
+            ),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(setTimeout(() => document.querySelector('[data-testid=total]').textContent = "
+                "'x'.repeat(10000), 0), 0)",
+                "failed",
+            ),
+        ],
+    )
+    async def test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash(
+        broker_url, new, expected
+    ):
+        repair_id = uuid4()
+        async with httpx.AsyncClient(base_url=broker_url, timeout=70) as client:
+>           original = (await client.post("/original/verify")).json()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_repair_integration.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/httpx/_models.py:832: in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7f8fea4e5160>
+s = 'Internal Server Error', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:356: JSONDecodeError
+_ test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (document.querySelector('[data-testid=total]').hidden = true, 0)-failed] _
+
+broker_url = 'http://192.168.208.3:8012'
+new = "sum + item.unitPriceCents * item.quantity + (document.querySelector('[data-testid=total]').hidden = true, 0)"
+expected = 'failed'
+
+    @pytest.mark.parametrize(
+        "new,expected",
+        [
+            ("sum + item.unitPriceCents * item.quantity", "passed"),
+            ("sum + item.unitPriceCents * 3", "failed"),
+            ("sum + item.unitPriceCents + 0", "failed"),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(document.querySelector('[data-testid=total]').hidden = true, 0)",
+                "failed",
+            ),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(setTimeout(() => document.querySelector('[data-testid=total]').textContent = "
+                "'x'.repeat(10000), 0), 0)",
+                "failed",
+            ),
+        ],
+    )
+    async def test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash(
+        broker_url, new, expected
+    ):
+        repair_id = uuid4()
+        async with httpx.AsyncClient(base_url=broker_url, timeout=70) as client:
+>           original = (await client.post("/original/verify")).json()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_repair_integration.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/httpx/_models.py:832: in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7f8fea4e5160>
+s = 'Internal Server Error', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:356: JSONDecodeError
+_ test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (setTimeout(() => document.querySelector('[data-testid=total]').textContent = 'x'.repeat(10000), 0), 0)-failed] _
+
+broker_url = 'http://192.168.208.3:8012'
+new = "sum + item.unitPriceCents * item.quantity + (setTimeout(() => document.querySelector('[data-testid=total]').textContent = 'x'.repeat(10000), 0), 0)"
+expected = 'failed'
+
+    @pytest.mark.parametrize(
+        "new,expected",
+        [
+            ("sum + item.unitPriceCents * item.quantity", "passed"),
+            ("sum + item.unitPriceCents * 3", "failed"),
+            ("sum + item.unitPriceCents + 0", "failed"),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(document.querySelector('[data-testid=total]').hidden = true, 0)",
+                "failed",
+            ),
+            (
+                "sum + item.unitPriceCents * item.quantity + "
+                "(setTimeout(() => document.querySelector('[data-testid=total]').textContent = "
+                "'x'.repeat(10000), 0), 0)",
+                "failed",
+            ),
+        ],
+    )
+    async def test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash(
+        broker_url, new, expected
+    ):
+        repair_id = uuid4()
+        async with httpx.AsyncClient(base_url=broker_url, timeout=70) as client:
+>           original = (await client.post("/original/verify")).json()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_repair_integration.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/httpx/_models.py:832: in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7f8fea4e5160>
+s = 'Internal Server Error', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:356: JSONDecodeError
+_____________ test_candidate_isolation_cleanup_and_preview_headers _____________
+
+broker_url = 'http://192.168.208.3:8012'
+
+    async def test_candidate_isolation_cleanup_and_preview_headers(broker_url):
+        repair_id = uuid4()
+        client = docker.from_env()
+        try:
+            async with connect_tools(repair_id, load_snapshot().id, broker_url) as tools:
+>               candidate = await tools.call("apply_candidate", {"patch": offline_patch().model_dump()})
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_repair_integration.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <workbench.repair.mcp_client.RepairTools object at 0x7f8fe0fdfd10>
+name = 'apply_candidate'
+arguments = {'patch': {'snapshot_id': '3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11', 'path': 'fixtures/retail...d2012cb709546ce221798cdc686754350ba9f1ef4d0cda9fc3c0a995e6', 'explanation': 'OFFLINE deterministic test fixture', ...}}
+
+    async def call(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        record = {"method": "tools/call", "name": name, "arguments": arguments}
+        self.events.append(record)
+        result = await self.session.call_tool(name, arguments, read_timeout_seconds=None)
+        text = "\n".join(block.text for block in result.content if block.type == "text")
+        if len(text.encode()) > 60000:
+            raise ValueError("MCP result exceeds retained-output budget")
+        record["is_error"] = result.isError
+        if result.isError:
+            record["error"] = text[:1500]
+            raise ValueError(f"MCP {name} rejected the request: {text[:800]}")
+        # FastMCP's structured content is authoritative when available.
+        data = result.structuredContent or json.loads(text)
+        record["result"] = data
+        if "tool_error" in data:
+            record["is_error"] = True
+>           raise RuntimeError(data["tool_error"]["message"])
+E           RuntimeError: Candidate executor is unavailable or its fixed procedure failed. No pass is inferred.
+
+src/workbench/repair/mcp_client.py:35: RuntimeError
+__ test_checkpointed_graph_saved_history_and_failed_attempts[valid-verified] ___
+
+rag_store = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x7f8fe0feb750>, autoflush=True, expire_on_commit=False)
+broker_url = 'http://192.168.208.3:8012', mode = 'valid', status = 'verified'
+
+    @pytest.mark.parametrize(
+        "mode,status",
+        [
+            ("valid", "verified"),
+            ("fail", "verification_failed"),
+            ("invalid", "invalid_output"),
+            ("failure", "provider_error"),
+        ],
+    )
+    async def test_checkpointed_graph_saved_history_and_failed_attempts(
+        rag_store, broker_url, mode, status
+    ):
+        investigation_id = await seed_investigation(rag_store)
+        provider = OfflineRepair(mode)
+        manager = RepairManager(lambda: provider, rag_store, broker_url)
+        created = await manager.create(investigation_id)
+        await asyncio.gather(*list(manager.tasks.values()))
+        saved = await manager.get(created["id"])
+>       assert saved["status"] == status, saved
+E       AssertionError: {'id': UUID('967af261-7c65-4869-9afe-67865a54392b'), 'run_id': UUID('eacb5d3d-6fff-4d8c-a9e6-739be7e791d1'), 'investigation_id': UUID('5e3ba726-3aa2-4e7d-b420-4f6dc3a12595'), 'snapshot_id': '3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11', ...}
+E       assert 'error' == 'verified'
+E         
+E         - verified
+E         + error
+
+tests/test_repair_integration.py:295: AssertionError
+_ test_checkpointed_graph_saved_history_and_failed_attempts[fail-verification_failed] _
+
+rag_store = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x7f8fe0df5210>, autoflush=True, expire_on_commit=False)
+broker_url = 'http://192.168.208.3:8012', mode = 'fail'
+status = 'verification_failed'
+
+    @pytest.mark.parametrize(
+        "mode,status",
+        [
+            ("valid", "verified"),
+            ("fail", "verification_failed"),
+            ("invalid", "invalid_output"),
+            ("failure", "provider_error"),
+        ],
+    )
+    async def test_checkpointed_graph_saved_history_and_failed_attempts(
+        rag_store, broker_url, mode, status
+    ):
+        investigation_id = await seed_investigation(rag_store)
+        provider = OfflineRepair(mode)
+        manager = RepairManager(lambda: provider, rag_store, broker_url)
+        created = await manager.create(investigation_id)
+        await asyncio.gather(*list(manager.tasks.values()))
+        saved = await manager.get(created["id"])
+>       assert saved["status"] == status, saved
+E       AssertionError: {'id': UUID('ef2799fc-d045-40a4-928d-79d7870de99b'), 'run_id': UUID('763613f5-9473-43af-8438-4a6ee82a3d0e'), 'investigation_id': UUID('e0acae3d-c46d-4908-946b-2b0e7caf4f2f'), 'snapshot_id': '3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11', ...}
+E       assert 'error' == 'verification_failed'
+E         
+E         - verification_failed
+E         + error
+
+tests/test_repair_integration.py:295: AssertionError
+_ test_checkpointed_graph_saved_history_and_failed_attempts[invalid-invalid_output] _
+
+rag_store = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x7f8fe12eb990>, autoflush=True, expire_on_commit=False)
+broker_url = 'http://192.168.208.3:8012', mode = 'invalid'
+status = 'invalid_output'
+
+    @pytest.mark.parametrize(
+        "mode,status",
+        [
+            ("valid", "verified"),
+            ("fail", "verification_failed"),
+            ("invalid", "invalid_output"),
+            ("failure", "provider_error"),
+        ],
+    )
+    async def test_checkpointed_graph_saved_history_and_failed_attempts(
+        rag_store, broker_url, mode, status
+    ):
+        investigation_id = await seed_investigation(rag_store)
+        provider = OfflineRepair(mode)
+        manager = RepairManager(lambda: provider, rag_store, broker_url)
+        created = await manager.create(investigation_id)
+        await asyncio.gather(*list(manager.tasks.values()))
+        saved = await manager.get(created["id"])
+>       assert saved["status"] == status, saved
+E       AssertionError: {'id': UUID('ee4a4b54-5bc1-4b7c-96d5-4e61e5203f5c'), 'run_id': UUID('c36d86cc-a074-44e0-a266-77f1410aaee9'), 'investigation_id': UUID('7f75c3ec-12b6-4812-b758-d6b12bb26961'), 'snapshot_id': '3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11', ...}
+E       assert 'error' == 'invalid_output'
+E         
+E         - invalid_output
+E         + error
+
+tests/test_repair_integration.py:295: AssertionError
+_ test_checkpointed_graph_saved_history_and_failed_attempts[failure-provider_error] _
+
+rag_store = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x7f8fe11e3e10>, autoflush=True, expire_on_commit=False)
+broker_url = 'http://192.168.208.3:8012', mode = 'failure'
+status = 'provider_error'
+
+    @pytest.mark.parametrize(
+        "mode,status",
+        [
+            ("valid", "verified"),
+            ("fail", "verification_failed"),
+            ("invalid", "invalid_output"),
+            ("failure", "provider_error"),
+        ],
+    )
+    async def test_checkpointed_graph_saved_history_and_failed_attempts(
+        rag_store, broker_url, mode, status
+    ):
+        investigation_id = await seed_investigation(rag_store)
+        provider = OfflineRepair(mode)
+        manager = RepairManager(lambda: provider, rag_store, broker_url)
+        created = await manager.create(investigation_id)
+        await asyncio.gather(*list(manager.tasks.values()))
+        saved = await manager.get(created["id"])
+>       assert saved["status"] == status, saved
+E       AssertionError: {'id': UUID('fd9a0afb-b1f9-4124-80fd-4b209bdc021f'), 'run_id': UUID('2f559129-46eb-4ef2-948e-8c168bcbca6f'), 'investigation_id': UUID('6db783f1-65d0-43ea-9e19-d412fe3d2736'), 'snapshot_id': '3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11', ...}
+E       assert 'error' == 'provider_error'
+E         
+E         - provider_error
+E         + error
+
+tests/test_repair_integration.py:295: AssertionError
+______ test_repair_cancellation_and_interruption_preserve_prior_statuses _______
+
+rag_store = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x7f8fe11a2250>, autoflush=True, expire_on_commit=False)
+broker_url = 'http://192.168.208.3:8012'
+
+    async def test_repair_cancellation_and_interruption_preserve_prior_statuses(rag_store, broker_url):
+        investigation_id = await seed_investigation(rag_store)
+        provider = OfflineRepair("wait")
+        manager = RepairManager(lambda: provider, rag_store, broker_url)
+        created = await manager.create(investigation_id)
+        async with asyncio.timeout(25):
+>           await provider.chat_started.wait()
+
+tests/test_repair_integration.py:324: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <asyncio.locks.Event object at 0x7f8fe2c9c350 [unset]>
+
+    async def wait(self):
+        """Block until the internal flag is true.
+    
+        If the internal flag is true on entry, return True
+        immediately.  Otherwise, block until another coroutine calls
+        set() to set the flag to true, then return True.
+        """
+        if self._value:
+            return True
+    
+        fut = self._get_loop().create_future()
+        self._waiters.append(fut)
+        try:
+>           await fut
+E           asyncio.exceptions.CancelledError
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/locks.py:212: CancelledError
+
+The above exception was the direct cause of the following exception:
+
+rag_store = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x7f8fe11a2250>, autoflush=True, expire_on_commit=False)
+broker_url = 'http://192.168.208.3:8012'
+
+    async def test_repair_cancellation_and_interruption_preserve_prior_statuses(rag_store, broker_url):
+        investigation_id = await seed_investigation(rag_store)
+        provider = OfflineRepair("wait")
+        manager = RepairManager(lambda: provider, rag_store, broker_url)
+        created = await manager.create(investigation_id)
+>       async with asyncio.timeout(25):
+                   ^^^^^^^^^^^^^^^^^^^
+
+tests/test_repair_integration.py:323: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Timeout [expired]>
+exc_type = <class 'asyncio.exceptions.CancelledError'>
+exc_val = CancelledError(), exc_tb = <traceback object at 0x7f8fe0d3b580>
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_val: Optional[BaseException],
+        exc_tb: Optional[TracebackType],
+    ) -> Optional[bool]:
+        assert self._state in (_State.ENTERED, _State.EXPIRING)
+    
+        if self._timeout_handler is not None:
+            self._timeout_handler.cancel()
+            self._timeout_handler = None
+    
+        if self._state is _State.EXPIRING:
+            self._state = _State.EXPIRED
+    
+            if self._task.uncancel() <= self._cancelling and exc_type is exceptions.CancelledError:
+                # Since there are no new cancel requests, we're
+                # handling this.
+>               raise TimeoutError from exc_val
+E               TimeoutError
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/timeouts.py:115: TimeoutError
+__________ test_shared_wall_clock_timeout_keeps_no_verification_claim __________
+
+rag_store = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x7f8fe18691d0>, autoflush=True, expire_on_commit=False)
+broker_url = 'http://192.168.208.3:8012'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f8fe1787a70>
+
+    async def test_shared_wall_clock_timeout_keeps_no_verification_claim(
+        rag_store, broker_url, monkeypatch
+    ):
+        investigation_id = await seed_investigation(rag_store)
+        monkeypatch.setattr(settings, "repair_timeout_seconds", 1)
+        manager = RepairManager(lambda: OfflineRepair("wait"), rag_store, broker_url)
+        created = await manager.create(investigation_id)
+        await asyncio.gather(*list(manager.tasks.values()))
+        saved = await manager.get(created["id"])
+>       assert saved["status"] == "error" and saved["error_code"] == "timeout"
+E       AssertionError: assert ('error' == 'error'
+E         
+E           error and 'execution_error' == 'timeout'
+E         
+E         - timeout
+E         + execution_error)
+
+tests/test_repair_integration.py:362: AssertionError
+_ test_development_source_mcp_candidate_and_verification_identity[shipping-threshold] _
+
+broker_url = 'http://192.168.208.3:8012', case_id = 'shipping-threshold'
+
+    @pytest.mark.parametrize("case_id", ["shipping-threshold", "decrement-skip", "clamp-zero"])
+    async def test_development_source_mcp_candidate_and_verification_identity(broker_url, case_id):
+        case = scenario(case_id)
+        snapshot = load_snapshot(case["snapshot_id"])
+        source = next(f for f in snapshot.files if f.path.endswith("cart.js"))
+        # Explicit OFFLINE verifier control, never attributed to the model or copied into its corpus.
+        original = next(f for f in load_snapshot().files if f.path.endswith("cart.js"))
+        healthy = original.content.replace(
+            "sum + item.unitPriceCents, 0", "sum + item.unitPriceCents * item.quantity, 0"
+        )
+        proposal = PatchProposal.model_validate(
+            {
+                "snapshot_id": snapshot.id,
+                "path": source.path,
+                "original_sha256": source.sha256,
+                "explanation": "OFFLINE development verifier control; no model inference",
+                "edits": [{"old": source.content, "new": healthy}],
+            }
+        )
+        repair_id = uuid4()
+        async with httpx.AsyncClient(base_url=broker_url, timeout=70) as client:
+            baseline = (
+                await client.post("/original/verify", params={"snapshot_id": snapshot.id})
+>           ).json()
+              ^^^^^^
+
+tests/test_scenarios_integration.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/httpx/_models.py:832: in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7f8fea4e5160>
+s = 'Internal Server Error', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:356: JSONDecodeError
+_ test_development_source_mcp_candidate_and_verification_identity[decrement-skip] _
+
+broker_url = 'http://192.168.208.3:8012', case_id = 'decrement-skip'
+
+    @pytest.mark.parametrize("case_id", ["shipping-threshold", "decrement-skip", "clamp-zero"])
+    async def test_development_source_mcp_candidate_and_verification_identity(broker_url, case_id):
+        case = scenario(case_id)
+        snapshot = load_snapshot(case["snapshot_id"])
+        source = next(f for f in snapshot.files if f.path.endswith("cart.js"))
+        # Explicit OFFLINE verifier control, never attributed to the model or copied into its corpus.
+        original = next(f for f in load_snapshot().files if f.path.endswith("cart.js"))
+        healthy = original.content.replace(
+            "sum + item.unitPriceCents, 0", "sum + item.unitPriceCents * item.quantity, 0"
+        )
+        proposal = PatchProposal.model_validate(
+            {
+                "snapshot_id": snapshot.id,
+                "path": source.path,
+                "original_sha256": source.sha256,
+                "explanation": "OFFLINE development verifier control; no model inference",
+                "edits": [{"old": source.content, "new": healthy}],
+            }
+        )
+        repair_id = uuid4()
+        async with httpx.AsyncClient(base_url=broker_url, timeout=70) as client:
+            baseline = (
+                await client.post("/original/verify", params={"snapshot_id": snapshot.id})
+>           ).json()
+              ^^^^^^
+
+tests/test_scenarios_integration.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/httpx/_models.py:832: in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7f8fea4e5160>
+s = 'Internal Server Error', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:356: JSONDecodeError
+_ test_development_source_mcp_candidate_and_verification_identity[clamp-zero] __
+
+broker_url = 'http://192.168.208.3:8012', case_id = 'clamp-zero'
+
+    @pytest.mark.parametrize("case_id", ["shipping-threshold", "decrement-skip", "clamp-zero"])
+    async def test_development_source_mcp_candidate_and_verification_identity(broker_url, case_id):
+        case = scenario(case_id)
+        snapshot = load_snapshot(case["snapshot_id"])
+        source = next(f for f in snapshot.files if f.path.endswith("cart.js"))
+        # Explicit OFFLINE verifier control, never attributed to the model or copied into its corpus.
+        original = next(f for f in load_snapshot().files if f.path.endswith("cart.js"))
+        healthy = original.content.replace(
+            "sum + item.unitPriceCents, 0", "sum + item.unitPriceCents * item.quantity, 0"
+        )
+        proposal = PatchProposal.model_validate(
+            {
+                "snapshot_id": snapshot.id,
+                "path": source.path,
+                "original_sha256": source.sha256,
+                "explanation": "OFFLINE development verifier control; no model inference",
+                "edits": [{"old": source.content, "new": healthy}],
+            }
+        )
+        repair_id = uuid4()
+        async with httpx.AsyncClient(base_url=broker_url, timeout=70) as client:
+            baseline = (
+                await client.post("/original/verify", params={"snapshot_id": snapshot.id})
+>           ).json()
+              ^^^^^^
+
+tests/test_scenarios_integration.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/httpx/_models.py:832: in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7f8fea4e5160>
+s = 'Internal Server Error', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/json/decoder.py:356: JSONDecodeError
+_____ test_remote_preview_rejects_commands_and_kills_nonresponsive_script ______
+
+broker_url = 'http://192.168.208.3:8012'
+
+    async def test_remote_preview_rejects_commands_and_kills_nonresponsive_script(broker_url):
+        import json
+    
+        import docker
+        from test_repair import offline_patch
+    
+        from workbench.config import ROOT
+    
+        repair_id = uuid4()
+        async with connect_tools(repair_id, load_snapshot().id, broker_url) as tools:
+>           candidate = await tools.call(
+                "apply_candidate",
+                {
+                    "patch": offline_patch(
+                        "sum + item.unitPriceCents + (() => { while (true) {} })()"
+                    ).model_dump()
+                },
+            )
+
+tests/test_scenarios_integration.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <workbench.repair.mcp_client.RepairTools object at 0x7f8fe1761730>
+name = 'apply_candidate'
+arguments = {'patch': {'snapshot_id': '3efaee90d8658d95519ffc03477d481c39de8228c2999ec6bb3fd11a6e370d11', 'path': 'fixtures/retail...d2012cb709546ce221798cdc686754350ba9f1ef4d0cda9fc3c0a995e6', 'explanation': 'OFFLINE deterministic test fixture', ...}}
+
+    async def call(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        record = {"method": "tools/call", "name": name, "arguments": arguments}
+        self.events.append(record)
+        result = await self.session.call_tool(name, arguments, read_timeout_seconds=None)
+        text = "\n".join(block.text for block in result.content if block.type == "text")
+        if len(text.encode()) > 60000:
+            raise ValueError("MCP result exceeds retained-output budget")
+        record["is_error"] = result.isError
+        if result.isError:
+            record["error"] = text[:1500]
+            raise ValueError(f"MCP {name} rejected the request: {text[:800]}")
+        # FastMCP's structured content is authoritative when available.
+        data = result.structuredContent or json.loads(text)
+        record["result"] = data
+        if "tool_error" in data:
+            record["is_error"] = True
+>           raise RuntimeError(data["tool_error"]["message"])
+E           RuntimeError: Candidate executor is unavailable or its fixed procedure failed. No pass is inferred.
+
+src/workbench/repair/mcp_client.py:35: RuntimeError
+=========================== short test summary info ============================
+FAILED tests/test_evaluation_harness.py::test_offline_one_shot_harness_executes_sealed_final_checks
+FAILED tests/test_repair_browser.py::test_offline_repair_browser_diff_preview_download_and_saved_history
+FAILED tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity-passed]
+FAILED tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * 3-failed]
+FAILED tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents + 0-failed]
+FAILED tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (document.querySelector('[data-testid=total]').hidden = true, 0)-failed]
+FAILED tests/test_repair_integration.py::test_fixed_verifier_rejects_negative_fixtures_and_binds_exact_hash[sum + item.unitPriceCents * item.quantity + (setTimeout(() => document.querySelector('[data-testid=total]').textContent = 'x'.repeat(10000), 0), 0)-failed]
+FAILED tests/test_repair_integration.py::test_candidate_isolation_cleanup_and_preview_headers
+FAILED tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[valid-verified]
+FAILED tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[fail-verification_failed]
+FAILED tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[invalid-invalid_output]
+FAILED tests/test_repair_integration.py::test_checkpointed_graph_saved_history_and_failed_attempts[failure-provider_error]
+FAILED tests/test_repair_integration.py::test_repair_cancellation_and_interruption_preserve_prior_statuses
+FAILED tests/test_repair_integration.py::test_shared_wall_clock_timeout_keeps_no_verification_claim
+FAILED tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[shipping-threshold]
+FAILED tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[decrement-skip]
+FAILED tests/test_scenarios_integration.py::test_development_source_mcp_candidate_and_verification_identity[clamp-zero]
+FAILED tests/test_scenarios_integration.py::test_remote_preview_rejects_commands_and_kills_nonresponsive_script
+===== 18 failed, 73 passed, 4 skipped, 342 deselected in 450.09s (0:07:30) =====

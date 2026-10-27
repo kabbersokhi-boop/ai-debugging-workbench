@@ -14,7 +14,7 @@ type Result = {version?:string;status:string; reason?:string; ordinary:Result|nu
 type Audit = {id:string; candidate_id:string; plan_id:string; status:string; evidence:{snapshot:Source; candidate:Candidate; plan:Plan; result?:Result; reason?:string;verification?:{id:string;requirements:Requirement[]}}};
 type Saved = {id:string; repository:string; status:string; created_at:string};
 const words = (s:string) => s.replaceAll("_"," ");
-function link(id:string,campaign=false) { const u=new URL(location.href); u.search=new URLSearchParams({source:"external",repositoryAudit:id,...(campaign?{campaign:"g3"}:{})}).toString(); history.replaceState(null,"",u); }
+function link(id:string,campaign:boolean|string=false) { const u=new URL(location.href); u.search=new URLSearchParams({source:"external",repositoryAudit:id,...(campaign?{campaign:campaign===true?"g3":String(campaign)}:{})}).toString(); history.replaceState(null,"",u); }
 function checked(a:Audit,id?:string,c?:Candidate) { if ((id && a.id!==id) || a.candidate_id!==a.evidence.candidate.id || (c && a.candidate_id!==c.id) || a.evidence.candidate.candidate_hash!==a.evidence.plan.candidate_hash) throw Error("Audit identity mismatch; no result displayed."); return a; }
 
 export default function RepositoryAudit() {
@@ -26,7 +26,7 @@ export default function RepositoryAudit() {
   const [plan,setPlan]=useState<{id:string;plan:Plan}|null>(null), [audit,setAudit]=useState<Audit|null>(null);
   const [confirmed,setConfirmed]=useState(false), [busy,setBusy]=useState(false), [error,setError]=useState("");
   const [saved,setSaved]=useState<Saved[]>([]); const epoch=useRef(0);
-  const [retained,setRetained]=useState(false);
+  const [retained,setRetained]=useState<boolean|string>(false);
   const [independentEnabled,setIndependentEnabled]=useState(false),[independentApproval,setIndependentApproval]=useState<IndependentApproval|null>(null),[independentBusy,setIndependentBusy]=useState(false);
   const running=audit?.status==="running"||independentBusy, result=audit?.evidence.result;
   const layered=result?.version==="repository-independent-result-v1", ordinary=layered?result.ordinary:result;
@@ -35,13 +35,13 @@ export default function RepositoryAudit() {
   function invalidate(clearCandidate=false) {epoch.current++;setRetained(false);setIndependentApproval(null);setAudit(null);setPlan(null);setConfirmed(false);setError("");setBusy(false);if(clearCandidate)setCandidate(null);}
   async function refresh() { setSaved(await api<Saved[]>("/repository-audits/runs")); }
   async function operation(action:(token:number)=>Promise<void>) {const token=epoch.current;setBusy(true);setError("");try {await action(token);}catch(e){if(token===epoch.current)setError(String(e));}finally{if(token===epoch.current)setBusy(false);}}
-  async function open(id:string,campaign=false) {
-    invalidate(true); await operation(async token=>{const a=checked(await api<Audit>(`/repository-audits/${campaign?"campaigns/g3/runs":"runs"}/${id}`),id);if(token!==epoch.current)return;setRetained(campaign);
+  async function open(id:string,campaign:boolean|string=false) {
+    invalidate(true); await operation(async token=>{const a=checked(await api<Audit>(`/repository-audits/${campaign?`campaigns/${campaign===true?"g3":campaign}/runs`:"runs"}/${id}`),id);if(token!==epoch.current)return;setRetained(campaign);
       setAudit(a);setSource(a.evidence.snapshot);setRepo(a.evidence.snapshot.repository);setCommit(a.evidence.snapshot.base_commit);setCandidate(a.evidence.candidate);
       setPlan({id:a.plan_id,plan:a.evidence.plan});setRuntime(a.evidence.plan.runtime);setTests(JSON.stringify(a.evidence.plan.tests));setSetup(JSON.stringify(a.evidence.plan.setup));setCwd(a.evidence.plan.working_directory);setDescription(a.evidence.plan.test_description);setTimeoutValue(a.evidence.plan.timeout_seconds);link(a.id,campaign);
     });
   }
-  useEffect(()=>{let disposed=false; (async()=>{const [rs,hs]=await Promise.all([api<Runtime[]>("/repository-audits/runtimes"),api<Saved[]>("/repository-audits/runs")]);if(disposed)return;setRuntimes(rs);setSaved(hs);const params=new URLSearchParams(location.search),id=params.get("repositoryAudit");if(id)await open(id,params.get("campaign")==="g3");})().catch(e=>{if(!disposed)setError(String(e));});return()=>{disposed=true;epoch.current++;};},[]);
+  useEffect(()=>{let disposed=false; (async()=>{const [rs,hs]=await Promise.all([api<Runtime[]>("/repository-audits/runtimes"),api<Saved[]>("/repository-audits/runs")]);if(disposed)return;setRuntimes(rs);setSaved(hs);const params=new URLSearchParams(location.search),id=params.get("repositoryAudit");if(id)await open(id,params.get("campaign")==="g3-node-compatibility"?"g3-node-compatibility":params.get("campaign")==="g3");})().catch(e=>{if(!disposed)setError(String(e));});return()=>{disposed=true;epoch.current++;};},[]);
   useEffect(()=>{if(!audit||!running)return;let disposed=false;const id=audit.id,c=audit.evidence.candidate,token=epoch.current;let timer:ReturnType<typeof setTimeout>;
     async function poll(){try{const a=checked(await api<Audit>(`/repository-audits/runs/${id}`),id,c);if(disposed||token!==epoch.current)return;setAudit(a);if(a.status!=="running"){await refresh();return;}}catch(e){if(!disposed&&token===epoch.current)setError(String(e));}if(!disposed&&token===epoch.current)timer=setTimeout(poll,700);}
     timer=setTimeout(poll,700);return()=>{disposed=true;clearTimeout(timer);};},[audit?.id,running]);
@@ -54,11 +54,12 @@ export default function RepositoryAudit() {
     <header className="evaluation-intro"><span className="eyebrow">EXTERNAL REPOSITORY · EXPERIMENTAL · LOCAL ONLY</span><h1>Bring your own repository</h1><p>Review a completed patch and run selected existing tests at an exact GitHub commit. Optionally add separately justified behavioral requirements and a validated independent-check plan.</p></header>
     {error&&<p role="alert" className="error-banner">{error}</p>}
     <RepositoryCampaign disabled={busy||running} onSelect={()=>invalidate(true)} onOpen={id=>open(id,true)}/>
+    <RepositoryCampaign campaignId="g3-node-compatibility" selectedRunId={retained==="g3-node-compatibility"?audit?.id:undefined} disabled={busy||running} onSelect={()=>invalidate(true)} onOpen={id=>open(id,"g3-node-compatibility")}/>
     {audit&&<section className="evaluation-panel audit-result" aria-label="External audit result"><div className="evaluation-heading"><h2>{source?.repository}</h2><strong role="status">{words(audit.status)}</strong></div>
       <p>{running?"Running the approved plan in a disposable local container.":audit.status==="tests_passed"?"The selected ordinary test command exited successfully. This does not independently verify the patch.":result?.reason??audit.evidence.reason??"Inspect the command outcomes below."}</p>
       <div className="evaluation-phases"><article><h3>Ordinary repository tests</h3><strong>{ordinary?words(ordinary.status):"No completed evidence"}</strong><p>Test counts: unknown. Exact output is retained.</p></article><article><h3>Independent behavioral verification</h3><strong>{independentResult&&independentResult.status!=="not_configured"?words(independentResult.status):"Not configured"}</strong><p>Only the named approved requirements are evaluated. A pass does not establish complete correctness.</p></article></div>
-      {retained&&<p>Saved G3 campaign evidence · no new execution on reopening.</p>}
-      <p><a href={retained?`/api/repository-audits/campaigns/g3/runs/${audit.id}`:`/api/repository-audits/runs/${audit.id}/evidence`} download>Download repository evidence</a>{" · "}<button onClick={()=>navigator.clipboard.writeText(location.href).catch(e=>setError(String(e)))}>Copy saved audit link</button></p>
+      {retained&&<p>{retained==="g3-node-compatibility"?"Saved G3 Node compatibility addendum evidence":"Saved G3 campaign evidence"} · no new execution on reopening.</p>}
+      <p><a href={retained?`/api/repository-audits/campaigns/${retained===true?"g3":retained}/runs/${audit.id}`:`/api/repository-audits/runs/${audit.id}/evidence`} download>Download repository evidence</a>{" · "}<button onClick={()=>navigator.clipboard.writeText(location.href).catch(e=>setError(String(e)))}>Copy saved audit link</button></p>
       <details><summary>Candidate provenance and exact admitted patch</summary><pre>{JSON.stringify(candidate,null,2)}</pre></details>
       {running&&<button onClick={()=>api(`/repository-audits/runs/${audit.id}/cancel`,{method:"POST"}).catch(e=>setError(String(e)))}>Cancel repository audit</button>}
       {[...(ordinary?.commands??[]),...(independentResult?.execution?.commands??[])].map((c,i)=><details key={i}><summary>{c.phase}: {c.exit_code===null?words(c.status):`exit ${c.exit_code}`} · {JSON.stringify(c.argv)}</summary><p>{(c.duration_ms/1000).toFixed(2)} seconds{c.output_truncated&&" · output limit reached; retained output is incomplete"}</p><pre>{c.stdout||"No stdout"}</pre><pre>{c.stderr||"No stderr"}</pre></details>)}
@@ -80,7 +81,7 @@ export default function RepositoryAudit() {
       {candidate&&<section aria-label="External candidate review"><h3>Exact submitted patch</h3><p>{candidate.provenance.limitations}</p><p>Affected files: {candidate.affected_files.join(", ")}</p><pre>{candidate.patch}</pre>{candidate.affected_files.map(p=><details key={p}><summary>Compare {p}</summary><Suspense fallback={<p>Opening diff…</p>}><Diff original={candidate.original[p]} modified={candidate.modified[p]} language={runtime==="python312"?"python":"javascript"}/></Suspense></details>)}<a href={`/api/repository-audits/candidates/${candidate.id}/patch`} download>Download exact repository patch</a></section>}
     </section>}
     {candidate&&<section className="evaluation-panel audit-import"><h2>3. Review an ordinary-test plan</h2><p>Commands below are your instructions. README files, package scripts and inferred conventions are untrusted. All dependency setup and lifecycle hooks run inside the same restricted environment. Network access is disabled; unavailable dependencies fail the audit.</p>
-      <label>Runtime preset<select aria-label="Runtime preset" value={runtime} disabled={running||busy} onChange={e=>{invalidate();setRuntime(e.target.value);setTests(e.target.value==="python312"?'["python", "-m", "pytest", "-q"]':'["node", "--test"]');}}><option value="python312">Python 3.12 · pytest 8.3.5</option><option value="node22">Node 22 · built-in tests / pinned Mocha</option></select></label>
+      <label>Runtime preset<select aria-label="Runtime preset" value={runtime} disabled={running||busy} onChange={e=>{invalidate();setRuntime(e.target.value);setTests(e.target.value==="python312"?'["python", "-m", "pytest", "-q"]':'["node", "--test"]');}}><option value="python312">Python 3.12 · pytest 8.3.5</option><option value="node22">Node 22 · built-in tests / pinned Mocha</option><option value="node22_compat">Node 22 · pinned Mocha + read-only array-flatten 1.0.0</option></select></label>
       {runtime==="node22"&&<p>For Mocha suites, use <code>["node", "/opt/test-tools/node_modules/mocha/bin/mocha.js", "test/index.js"]</code>. The preset includes Mocha 11.7.5; other project dependencies must be available offline.</p>}
       <p>Source stays read-only during setup and testing. Use <code>/work</code> for scratch output and <code>/work/deps</code> for offline Python packages. Projects that must rewrite their source tree need a different preparation plan and are unsupported in G1.</p>
       <label>Working directory<input aria-label="Working directory" value={cwd} disabled={running||busy} onChange={e=>{invalidate();setCwd(e.target.value);}}/></label>
