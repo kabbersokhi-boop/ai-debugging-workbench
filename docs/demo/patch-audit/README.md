@@ -1,5 +1,8 @@
 # Patch Audit · the films
 
+These films show the historical **v1.1.0 prepared-task workflow**. For the current v1.2.0 recorded
+viewer, use the [current walkthrough and capture guide](CURRENT-DEMO.md).
+
 One genuine retained patch passed 155 **selected** upstream tests but missed the required
 standalone implementation. Independent checks exposed length one with empty keys/items.
 A different retained patch fixes both implementations. Different generation procedures are

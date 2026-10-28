@@ -172,6 +172,32 @@
   margin: 14px 0 22px;
   text-decoration: none;
 }
+.recorded-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 8px 0 10px;
+}
+.recorded-actions .product-cta {
+  margin: 0;
+}
+.story-number {
+  color: #a7d9ca;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+}
+.story-headline {
+  display: block;
+}
+.current-walkthrough video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: #0e1521;
+}
 .patch-audit-workspace .primary-button {
   background: #b4e8d8;
   border: 1px solid #b4e8d8;
@@ -416,6 +442,12 @@
     display: grid;
     grid-template-columns: 26px 1fr;
     gap: 0 10px;
+  }
+  .recorded-story article {
+    display: block;
+  }
+  .patch-audit-workspace .recorded-story h2 {
+    margin-top: 8px;
   }
   .product-principles p {
     grid-column: 2;

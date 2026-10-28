@@ -1,0 +1,113 @@
+{
+  "head_sha": "fffe669713526014b5ae4d6f3ae08fe38bb8981f",
+  "status": "completed",
+  "conclusion": "success",
+  "run_url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/40595529908",
+  "test_summaries": [
+    "===================== 387 passed, 104 deselected in 20.24s =====================",
+    "========== 100 passed, 4 skipped, 387 deselected in 434.48s (0:07:14) ==========",
+    "====================== 3 passed, 488 deselected in 5.70s ======================="
+  ],
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run astral-sh/setup-uv@v6",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/setup-node@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run uv sync --project backend --frozen",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run npm ci --prefix frontend",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run ./scripts/check",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check recorded hosting entrypoint",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run cmp requirements.txt docker/release-requirements.txt",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run uv run --project backend playwright install --with-deps chromium",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run docker compose up --build -d --wait api",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run uv run --project backend python -m workbench.evaluator.experiment_cli import",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run ./scripts/e2e",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run ./scripts/recovery-smoke",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run docker compose -f compose.release.yaml up --build -d --wait",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run uv run --project backend python scripts/check_release.py",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run E2E_BASE_URL=http://127.0.0.1:8020 ./scripts/e2e -k recorded_explorer_first",
+      "conclusion": "success"
+    },
+    {
+      "name": "Collect service logs",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run docker compose down",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run docker compose -f compose.release.yaml down",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/setup-node@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run astral-sh/setup-uv@v6",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ]
+}

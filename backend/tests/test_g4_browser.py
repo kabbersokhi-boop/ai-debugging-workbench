@@ -309,9 +309,21 @@ async def test_recorded_explorer_first_g4_boltons_provenance_and_mobile_boundary
         )
         assert value["id"] == MISSED and value["execution_mode"] == "recorded"
         assert value["evidence"]["candidate"]["provenance"]["category"] == "retained_model"
-        assert not mutations and not errors, (mutations, errors)
         assert not await page.get_by_role("button", name="Preview public PR", exact=True).count()
         assert not await page.get_by_role("button", name="Run fresh audit", exact=True).count()
+        # The featured-case action must select the missed fix even after browsing
+        # the passing record; an anchor into whichever record is selected is misleading.
+        await page.get_by_label("Saved patch audit", exact=True).select_option(
+            "m02-v1-boltons-addlist-nemotron35-r02"
+        )
+        await expect(region.get_by_role("status")).to_have_text("passed")
+        featured = page.get_by_role("link", name="Explore the real missed fix", exact=True)
+        await featured.focus()
+        await page.keyboard.press("Enter")
+        await expect(region.get_by_role("status")).to_have_text("failed")
+        assert "recordedAudit=" + MISSED in page.url
+        await expect(region).to_be_in_viewport()
+        assert not mutations and not errors, (mutations, errors)
         (OUT / "recorded-journey.json").write_text(
             json.dumps(
                 {

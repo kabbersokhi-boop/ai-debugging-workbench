@@ -1,6 +1,18 @@
 # Product demonstrations
 
-## Patch Audit
+## Current Patch Audit · v1.2.0 recorded viewer
+
+[Download the narrated walkthrough](https://raw.githubusercontent.com/kabbersokhi-boop/ai-debugging-workbench/fffe669713526014b5ae4d6f3ae08fe38bb8981f/frontend/public/demo/patch-audit/walkthrough.mp4) ·
+[Captions](../../frontend/public/demo/patch-audit/captions.vtt) ·
+[Transcript](../../frontend/public/demo/patch-audit/transcript.txt) ·
+[Capture, reproduction and limitations](patch-audit/CURRENT-DEMO.md).
+
+Actual read-only browser interactions open the retained Boltons result, ordinary logs, independent
+requirement, exact patch, omitted implementation and behavioral observation. The recording then
+downloads the evidence and opens the local quickstart. Narration and visible captions describe the
+saved execution; the public viewer runs no candidate code.
+
+## Earlier Patch Audit · v1.1.0 prepared-task workflow
 
 [Watch the 60-second highlight](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/download/v1.1.0/patch-audit-60s-captioned.mp4) ·
 [Watch the full end-to-end demonstration](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/download/v1.1.0/patch-audit-full-captioned.mp4) ·

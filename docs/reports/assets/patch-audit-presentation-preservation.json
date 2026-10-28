@@ -1,0 +1,14 @@
+{
+  "accepted_base": "a00bbc3399d7dde96a930c7da8db2e82f99295d6",
+  "protected_prefixes": [
+    "evaluation",
+    "evals",
+    "recordings",
+    "docs/reports",
+    "backend/src",
+    "backend/migrations"
+  ],
+  "files_checked": 1726,
+  "changed_paths": [],
+  "v1.2.0_target": "a00bbc3399d7dde96a930c7da8db2e82f99295d6"
+}

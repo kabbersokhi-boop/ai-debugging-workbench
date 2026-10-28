@@ -1,0 +1,65 @@
+[
+  {
+    "id": "hook",
+    "lines": [
+      "An AI-generated fix passed one hundred and fifty-five selected tests.",
+      "It still missed a second implementation. This is Patch Audit."
+    ]
+  },
+  {
+    "id": "ordinary",
+    "lines": [
+      "These are real saved results from Boltons, a Python utility library.",
+      "The ordinary suite passed. Open its execution log to inspect the retained output."
+    ]
+  },
+  {
+    "id": "requirement",
+    "lines": [
+      "The task required both copies of the ordered multi-dictionary to handle one-shot iterables consistently.",
+      "That requirement was specified separately from the candidate patch."
+    ]
+  },
+  {
+    "id": "patch",
+    "lines": [
+      "The exact patch collects input once, then reuses it.",
+      "But the change affects only dictutils. The standalone copy in urlutils was left untouched."
+    ]
+  },
+  {
+    "id": "omitted",
+    "lines": [
+      "Here is that untouched implementation. It consumes the iterable twice.",
+      "Normal package imports can hide the fallback used in standalone mode."
+    ]
+  },
+  {
+    "id": "observation",
+    "lines": [
+      "The independent empty-input check expected length zero. It observed length one, even though keys and items were empty.",
+      "These are observations of one incomplete repair."
+    ]
+  },
+  {
+    "id": "evidence",
+    "lines": [
+      "Download the original evidence and exact patch.",
+      "Source, candidate, runtime and verifier identities bind the outcome to what actually ran."
+    ]
+  },
+  {
+    "id": "limits",
+    "lines": [
+      "Public visitors can inspect this saved evidence, but cannot execute patches.",
+      "The separate G3 study found zero additional independent issues across six historical developer patches."
+    ]
+  },
+  {
+    "id": "local",
+    "lines": [
+      "To audit a new change, follow the local Docker quickstart.",
+      "Review immutable source, the patch and declared checks. Validate controls and approve the exact plans before execution."
+    ]
+  }
+]

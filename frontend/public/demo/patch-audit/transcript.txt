@@ -1,0 +1,22 @@
+Patch Audit: 155 tests passed. The fix was incomplete.
+
+Actual saved evidence in the v1.2.0 recorded viewer. No fresh audit or model evaluation.
+
+00:00:00  An AI-generated fix passed one hundred and fifty-five selected tests.
+00:00:04  It still missed a second implementation. This is Patch Audit.
+00:00:10  These are real saved results from Boltons, a Python utility library.
+00:00:15  The ordinary suite passed. Open its execution log to inspect the retained output.
+00:00:22  The task required both copies of the ordered multi-dictionary to handle one-shot iterables consistently.
+00:00:29  That requirement was specified separately from the candidate patch.
+00:00:34  The exact patch collects input once, then reuses it.
+00:00:37  But the change affects only dictutils. The standalone copy in urlutils was left untouched.
+00:00:45  Here is that untouched implementation. It consumes the iterable twice.
+00:00:49  Normal package imports can hide the fallback used in standalone mode.
+00:00:55  The independent empty-input check expected length zero. It observed length one, even though keys and items were empty.
+00:01:03  These are observations of one incomplete repair.
+00:01:08  Download the original evidence and exact patch.
+00:01:11  Source, candidate, runtime and verifier identities bind the outcome to what actually ran.
+00:01:18  Public visitors can inspect this saved evidence, but cannot execute patches.
+00:01:23  The separate G3 study found zero additional independent issues across six historical developer patches.
+00:01:36  To audit a new change, follow the local Docker quickstart.
+00:01:39  Review immutable source, the patch and declared checks. Validate controls and approve the exact plans before execution.
