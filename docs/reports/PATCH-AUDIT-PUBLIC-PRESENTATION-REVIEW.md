@@ -43,7 +43,7 @@ A separate local quickstart link and an expandable native video player support t
 
 ## 6. Current demo deliverables
 
-The [109-second film](../../frontend/public/demo/patch-audit/walkthrough.mp4) records actual browser interactions with the built recorded-release application. It opens the retained ordinary log, task requirement, exact patch, omitted `addlist` implementation, `standalone_urlutils:empty` expected/observed values and execution identities. It downloads the actual evidence and patch, checks their bytes, explains the separate G3 outcome and opens the real GitHub local quickstart.
+The [109-second film](../../frontend/public/demo/patch-audit/walkthrough.mp4?raw=true) records actual browser interactions with the built recorded-release application. It opens the retained ordinary log, task requirement, exact patch, omitted `addlist` implementation, `standalone_urlutils:empty` expected/observed values and execution identities. It downloads the actual evidence and patch, checks their bytes, explains the separate G3 outcome and opens the real GitHub local quickstart.
 
 The film is 1440×900, H.264/AAC, with local synthetic narration and visible captions in a dedicated band below the UI. [WebVTT captions](../../frontend/public/demo/patch-audit/captions.vtt), a [transcript](../../frontend/public/demo/patch-audit/transcript.txt), [poster](../../frontend/public/demo/patch-audit/poster.png), [capture manifest](../demo/patch-audit/current-capture.json), [script and reproduction guide](../demo/patch-audit/CURRENT-DEMO.md) accompany it. The poster crops actual result pixels and adds an editorial title. No application output, control or result text was fabricated.
 
@@ -91,7 +91,7 @@ The before image is the actual existing production deployment. The after images 
 
 ## 11. Remaining limitations
 
-The film shows saved inspection and the local setup instructions, not a newly executed generalized audit. Its voice is synthesized; no human narration or independent human comprehension feedback is claimed. GitHub's MP4 file view may download rather than play in some clients; the recorded website includes an ordinary native player. The production URL remains on the accepted version until separately authorized publication.
+The film shows saved inspection and the local setup instructions, not a newly executed generalized audit. Its voice is synthesized; no human narration or independent human comprehension feedback is claimed. GitHub's repository file viewer does not play this MP4, and GitHub strips embedded video HTML. The README therefore labels the raw-file link as a download and bypasses the unhelpful binary preview; the recorded preview website has a verified native player. The final MP4 download path was checked against its exact hash. The production URL remains on the accepted version until separately authorized publication.
 
 Trustworthy requirement authoring and Docker setup remain substantial work for a new local user. The historical convenience samples establish no general accuracy rate, and G3 provides no added detections. The repository does not grant a project license. No personal ownership claims were inferred from commit metadata.
 

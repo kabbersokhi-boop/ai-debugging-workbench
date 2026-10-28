@@ -2,7 +2,7 @@
 
 ## Current Patch Audit · v1.2.0 recorded viewer
 
-[Watch the narrated walkthrough](../../frontend/public/demo/patch-audit/walkthrough.mp4) ·
+[Download the narrated walkthrough](../../frontend/public/demo/patch-audit/walkthrough.mp4?raw=true) ·
 [Captions](../../frontend/public/demo/patch-audit/captions.vtt) ·
 [Transcript](../../frontend/public/demo/patch-audit/transcript.txt) ·
 [Capture, reproduction and limitations](patch-audit/CURRENT-DEMO.md).

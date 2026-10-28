@@ -1,6 +1,6 @@
 # Current Patch Audit walkthrough
 
-[Watch the narrated, captioned film](../../../frontend/public/demo/patch-audit/walkthrough.mp4) ·
+[Download the narrated, captioned film](../../../frontend/public/demo/patch-audit/walkthrough.mp4?raw=true) ·
 [WebVTT captions](../../../frontend/public/demo/patch-audit/captions.vtt) ·
 [Transcript](../../../frontend/public/demo/patch-audit/transcript.txt) ·
 [Poster](../../../frontend/public/demo/patch-audit/poster.png).

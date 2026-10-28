@@ -8,9 +8,9 @@
 
 The public demo replays authentic saved evidence. **New audits run locally with Docker; the public site cannot execute code.**
 
-[![Watch the current Patch Audit walkthrough: actual saved Boltons results with ordinary tests passed and independent checks failed](frontend/public/demo/patch-audit/poster.png)](frontend/public/demo/patch-audit/walkthrough.mp4)
+[![Download the current Patch Audit film: actual saved Boltons results with ordinary tests passed and independent checks failed](frontend/public/demo/patch-audit/poster.png)](frontend/public/demo/patch-audit/walkthrough.mp4?raw=true)
 
-**[Watch the 109-second narrated walkthrough](frontend/public/demo/patch-audit/walkthrough.mp4)** · [Captions](frontend/public/demo/patch-audit/captions.vtt) · [Transcript](frontend/public/demo/patch-audit/transcript.txt)
+**[Download the 109-second narrated walkthrough (MP4, 3.98 MB)](frontend/public/demo/patch-audit/walkthrough.mp4?raw=true)** · [Captions](frontend/public/demo/patch-audit/captions.vtt) · [Transcript](frontend/public/demo/patch-audit/transcript.txt)
 
 `ai-debugging-workbench` is the repository's original name; **Patch Audit** is its primary workflow.
 
