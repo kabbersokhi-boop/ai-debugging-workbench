@@ -15,7 +15,7 @@ execution containers remain network-disabled. Linux is the tested environment. N
 git clone https://github.com/kabbersokhi-boop/ai-debugging-workbench.git
 cd ai-debugging-workbench
 # Pin the tested release:
-git checkout v1.2.0
+git checkout v1.2.1
 docker compose up --build -d --wait api
 ```
 

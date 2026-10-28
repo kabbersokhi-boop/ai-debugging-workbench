@@ -4,7 +4,7 @@
 
 > An AI-generated fix passed **155 selected tests**. It still missed a second implementation.
 
-[Explore the real missed fix](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02#saved-patch-evidence) · [Run an audit locally](docs/PATCH-AUDIT-QUICKSTART.md) · [v1.2.0](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.0) · [CI](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/workflows/ci.yml)
+[Explore the real missed fix](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02#saved-patch-evidence) · [Run an audit locally](docs/PATCH-AUDIT-QUICKSTART.md) · [v1.2.1](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.1) · [CI](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/workflows/ci.yml)
 
 The public demo replays authentic saved evidence. **New audits run locally with Docker; the public site cannot execute code.**
 
@@ -35,7 +35,7 @@ Normal package imports can reuse the repaired class, masking the standalone fall
 ```sh
 git clone https://github.com/kabbersokhi-boop/ai-debugging-workbench.git
 cd ai-debugging-workbench
-git checkout v1.2.0
+git checkout v1.2.1
 docker compose up --build -d --wait api
 ```
 

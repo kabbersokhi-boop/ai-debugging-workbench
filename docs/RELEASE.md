@@ -27,10 +27,11 @@ Candidate interaction is remote: the broker permits only reset/add/increase/decr
 
 The owner authorized the existing Vercel account for this release. Its team uses the Hobby plan.
 No upgrade, purchase, custom DNS or privileged live service is authorized. The externally verified production URL is
-**https://ai-debugging-workbench-recorded.vercel.app/**. The previous verified deployment was
-`dpl_AmPBLGxg632KVXBjywFQMxskLESX` (`v1.1.0`). Current source, version, deployment ID and
+**https://ai-debugging-workbench-recorded.vercel.app/**. The prior verified deployment was
+`dpl_5c4imLG8TbkjGjiJVMr7mhbq5iHC` (`v1.2.0`); retain it for rollback.
+Current source, version, deployment ID and
 post-publication verification receipts belong in the
-[release notes](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.0).
+[release notes](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.1).
 No live execution service is exposed. The existing project has no Git integration or deploy hooks;
 merging a PR does not update this URL.
 
@@ -47,7 +48,7 @@ After committing and verifying the release head, prepare an allowlisted bundle f
 
 ```sh
 release_bundle=$(mktemp -d)
-release_ref=v1.2.0  # Resolve and test this exact commit before deployment.
+release_ref=v1.2.1  # Resolve and test this exact commit before deployment.
 release_sha=$(git rev-parse "$release_ref^{commit}")
 git archive "$release_sha" app.py requirements.txt vercel.json .vercelignore .python-version docker/release-requirements.txt \
   backend/src/workbench/release.py frontend recordings .dockerignore |
