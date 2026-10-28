@@ -1,6 +1,6 @@
 # Current Patch Audit walkthrough
 
-[Download the narrated, captioned film](../../../frontend/public/demo/patch-audit/walkthrough.mp4?raw=true) ·
+[Download the narrated, captioned film](https://raw.githubusercontent.com/kabbersokhi-boop/ai-debugging-workbench/fffe669713526014b5ae4d6f3ae08fe38bb8981f/frontend/public/demo/patch-audit/walkthrough.mp4) ·
 [WebVTT captions](../../../frontend/public/demo/patch-audit/captions.vtt) ·
 [Transcript](../../../frontend/public/demo/patch-audit/transcript.txt) ·
 [Poster](../../../frontend/public/demo/patch-audit/poster.png).
@@ -63,3 +63,8 @@ media bytes; the committed manifest identifies this particular cut.
 
 The video demonstrates saved inspection and documented local setup. It does not show a fresh audit
 or establish that a new user can author a correct specification unaided.
+
+The download link uses an immutable raw-content URL. GitHub's repository file viewer cannot play
+this MP4, and its client navigation can intercept a relative raw-file link. The direct URL was
+verified as a browser download with the exact committed file hash. The local recorded preview
+provides native in-page playback.

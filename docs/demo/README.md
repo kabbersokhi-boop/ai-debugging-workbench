@@ -2,7 +2,7 @@
 
 ## Current Patch Audit · v1.2.0 recorded viewer
 
-[Download the narrated walkthrough](../../frontend/public/demo/patch-audit/walkthrough.mp4?raw=true) ·
+[Download the narrated walkthrough](https://raw.githubusercontent.com/kabbersokhi-boop/ai-debugging-workbench/fffe669713526014b5ae4d6f3ae08fe38bb8981f/frontend/public/demo/patch-audit/walkthrough.mp4) ·
 [Captions](../../frontend/public/demo/patch-audit/captions.vtt) ·
 [Transcript](../../frontend/public/demo/patch-audit/transcript.txt) ·
 [Capture, reproduction and limitations](patch-audit/CURRENT-DEMO.md).
