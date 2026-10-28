@@ -1,6 +1,6 @@
 # Product demonstrations
 
-## Current Patch Audit · v1.2.0 recorded viewer
+## Current Patch Audit · v1.2.1 recorded viewer
 
 [Download the narrated walkthrough](https://raw.githubusercontent.com/kabbersokhi-boop/ai-debugging-workbench/fffe669713526014b5ae4d6f3ae08fe38bb8981f/frontend/public/demo/patch-audit/walkthrough.mp4) ·
 [Captions](../../frontend/public/demo/patch-audit/captions.vtt) ·

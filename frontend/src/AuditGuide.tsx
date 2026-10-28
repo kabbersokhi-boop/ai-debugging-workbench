@@ -37,8 +37,8 @@ export function AuditIntro({
           </a>
           {!recorded && <a href="/recorded/">Recorded examples</a>}
           {!recorded && <a href="/?workspace=evaluation">Agent Evaluation</a>}
-          <a href="https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.0">
-            v1.2.0
+          <a href="https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.1">
+            v1.2.1
           </a>
           <a href="https://github.com/kabbersokhi-boop/ai-debugging-workbench#readme">
             Documentation ↗

@@ -5,8 +5,9 @@
 [Transcript](../../../frontend/public/demo/patch-audit/transcript.txt) ·
 [Poster](../../../frontend/public/demo/patch-audit/poster.png).
 
-The film shows real read-only browser interactions with a local build of the v1.2.0 recorded
-application. It opens the authentic Boltons missed-copy record, the ordinary log showing 155
+Published with v1.2.1, the film shows real read-only browser interactions with the reviewed
+presentation branch based on v1.2.0. Its original capture manifest and transcript remain unchanged.
+It opens the authentic Boltons missed-copy record, the ordinary log showing 155
 selected tests passed, the pinned task requirement, the exact patch, the omitted `addlist` method,
 the `standalone_urlutils:empty` observation, evidence downloads and execution identities. It ends
 with the separate G3 outcome and the real local quickstart on GitHub.
@@ -66,5 +67,5 @@ or establish that a new user can author a correct specification unaided.
 
 The download link uses an immutable raw-content URL. GitHub's repository file viewer cannot play
 this MP4, and its client navigation can intercept a relative raw-file link. The direct URL was
-verified as a browser download with the exact committed file hash. The local recorded preview
-provides native in-page playback.
+verified as a browser download with the exact committed file hash. The public recorded viewer
+and local recorded preview provide native in-page playback.
