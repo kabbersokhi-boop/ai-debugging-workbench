@@ -75,7 +75,7 @@ The public recorded service contains curated evidence, static media and the buil
 | Media decode | Full FFmpeg decode passed; 108.74 seconds; about 3.98 MB; audio peak −1.1 dB. Caption samples were inspected against the actual method and observation frames. |
 | Historical preservation | **1,726 existing files** across evaluation inputs, recordings, frozen evals, reports, runtime source and migrations match accepted-base Git blob identities. `v1.2.0` still resolves to the accepted commit. [Receipt](assets/patch-audit-presentation-preservation.json). |
 | Links and formatting | Changed-document relative paths, media references and `git diff --check` checked before handoff. |
-| Full established CI | Exact final-head workflow status and run URL are recorded on [PR #18](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/18/checks); this is separate from the local checks above. |
+| Full established CI | Implementation `fffe669713526014b5ae4d6f3ae08fe38bb8981f` passed: **387 offline**, **100 integration/browser**, four live opt-in skips, recovery, recorded boundary and **3 recorded browsers**. [Exact run and step receipt](assets/patch-audit-presentation-ci.json). Final review-head status is on [PR #18](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/18/checks). |
 
 No independent human testers were available. Browser automation and this author's first-minute walkthrough are not evidence of unaided human comprehension.
 
@@ -86,6 +86,8 @@ The before image is the actual existing production deployment. The after images 
 | Before | After |
 | --- | --- |
 | ![Previous recorded intro](assets/patch-audit-presentation-before.png) | ![Current review intro](assets/patch-audit-presentation-after.png) |
+
+[GitHub README before](assets/patch-audit-readme-before.png) · [GitHub README after](assets/patch-audit-readme-after.png). These are actual GitHub-rendered pages at immutable source commits, with loaded images. The [rendering receipt](assets/patch-audit-readme-rendering.json) also records a successful click-and-download of the final MP4 and its exact digest.
 
 [Mobile intro](assets/patch-audit-presentation-after-mobile.png) · [Mobile result](assets/patch-audit-presentation-result-mobile.png) · [Actual in-page video playback](assets/patch-audit-presentation-video-playback.png).
 

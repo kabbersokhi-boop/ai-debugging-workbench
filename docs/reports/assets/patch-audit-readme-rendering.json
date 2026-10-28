@@ -1,0 +1,42 @@
+{
+  "before": {
+    "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/blob/a00bbc3399d7dde96a930c7da8db2e82f99295d6/README.md",
+    "source_commit": "a00bbc3399d7dde96a930c7da8db2e82f99295d6",
+    "readme_blob": "4e3303b214da874635472e27dc7a51de708afd84",
+    "visible_images": [
+      {
+        "alt": "Milestone checks",
+        "loaded": true
+      },
+      {
+        "alt": "Patch Audit: immutable source, patch, existing tests and approved requirements",
+        "loaded": true
+      }
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "after": {
+    "url": "https://github.com/kabbersokhi-boop/ai-debugging-workbench/blob/33f2d8a1c4ca58079698e3ad6268665c1f02fb6d/README.md",
+    "source_commit": "33f2d8a1c4ca58079698e3ad6268665c1f02fb6d",
+    "readme_blob": "97ac79acade94253b29c4960b26907a8652f9732",
+    "visible_images": [
+      {
+        "alt": "Download the current Patch Audit film: actual saved Boltons results with ordinary tests passed and independent checks failed",
+        "loaded": true
+      }
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "download": {
+      "filename": "walkthrough.mp4",
+      "bytes": 3976118,
+      "sha256": "c777ee55e41e6fcc7a54158686983fc58936875b22bd5e3d725b02a5bad30bbd",
+      "url": "https://raw.githubusercontent.com/kabbersokhi-boop/ai-debugging-workbench/fffe669713526014b5ae4d6f3ae08fe38bb8981f/frontend/public/demo/patch-audit/walkthrough.mp4"
+    }
+  }
+}
