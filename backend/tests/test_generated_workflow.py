@@ -184,6 +184,10 @@ async def test_generated_positive_browser_negative_cli_reduction_and_explicit_re
         await expect(display).to_contain_text("Reproduced failing input")
         await expect(display).to_contain_text("Why this matters")
         await expect(display).to_contain_text('"a"')
+        artifacts = ROOT / "artifacts/generated-verifier-v3"
+        artifacts.mkdir(parents=True, exist_ok=True)
+        await display.scroll_into_view_if_needed()
+        await page.screenshot(path=str(artifacts / "failure-desktop.png"))
         await page.set_viewport_size({"width": 390, "height": 844})
         await page.wait_for_function("document.documentElement.scrollWidth <= innerWidth")
         report = (out / f"{negative_id}.md").read_text()
@@ -204,6 +208,28 @@ async def test_generated_positive_browser_negative_cli_reduction_and_explicit_re
         )
         replay_prepared = json.loads(replay_file.read_text())
         assert replay_prepared["verification"]["plan"]["search"]["replay_inputs"] == [["a"]]
+        assert replay_prepared["replay_of"] == negative_id
+        no_failure = await client.post(
+            f"/api/repository-audits/runs/{positive_id}/generated-replay-plans",
+            json={"plan": replay_prepared["verification"]["plan"]},
+        )
+        assert no_failure.status_code == 422
+        # A prior candidate's controls and missing exact approval cannot authorize replay.
+        payload = {
+            "candidate_id": replay_prepared["verification"]["plan"]["candidate_id"],
+            "plan_id": replay_prepared["ordinary"]["id"],
+            "verification_id": replay_prepared["verification"]["id"],
+            "replay_audit_id": negative_id,
+            "approve_exact_plan": True,
+            "confirm_local_execution": True,
+            "approve_independent_plan": True,
+        }
+        assert (await client.post("/api/repository-audits/runs", json=payload)).status_code == 409
+        assert (
+            await client.post(
+                "/api/repository-audits/runs", json={**payload, "validation_run_id": validation_id}
+            )
+        ).status_code == 409
         validation = await cli(
             "controls",
             "--preparation",
@@ -214,6 +240,26 @@ async def test_generated_positive_browser_negative_cli_reduction_and_explicit_re
             out,
         )
         replay_validation = json.loads(validation.splitlines()[-1])["audit_id"]
+        assert (
+            await client.post(
+                "/api/repository-audits/runs",
+                json={
+                    **payload,
+                    "validation_run_id": replay_validation,
+                    "approve_exact_plan": False,
+                },
+            )
+        ).status_code == 422
+        assert (
+            await client.post(
+                "/api/repository-audits/runs",
+                json={
+                    **payload,
+                    "validation_run_id": replay_validation,
+                    "approve_independent_plan": False,
+                },
+            )
+        ).status_code == 409
         replay_execution = await cli(
             "run",
             "--preparation",
@@ -233,9 +279,24 @@ async def test_generated_positive_browser_negative_cli_reduction_and_explicit_re
             "input"
         ] == ["a"]
         assert replay["evidence"]["result"]["counterexample"]["fresh_reproductions"] == 2
+        assert replay["evidence"]["replay_of"] == negative_id
+        # Replaying an already reduced replay has the same plan hash. Its old controls
+        # still predate that audit and must not count as fresh validation.
+        same_plan_replay = await client.post(
+            f"/api/repository-audits/runs/{replay_id}/generated-replay-plans",
+            json={"plan": replay["evidence"]["verification"]["plan"]},
+        )
+        assert same_plan_replay.status_code == 201, same_plan_replay.text
+        stale_same_plan = await client.post(
+            "/api/repository-audits/runs",
+            json={**payload, "replay_audit_id": replay_id, "validation_run_id": replay_validation},
+        )
+        assert stale_same_plan.status_code == 409
+        assert "fresh controls" in stale_same_plan.text
+        assert (
+            await client.get(f"/api/repository-audits/runs/{negative_id}/evidence")
+        ).json() == negative
         assert not errors, errors
-        artifacts = ROOT / "artifacts/generated-verifier-v3"
-        artifacts.mkdir(parents=True, exist_ok=True)
         (artifacts / "authored-negative.json").write_text(json.dumps(negative, indent=2) + "\n")
         (artifacts / "authored-negative.md").write_text(report)
         (artifacts / "reproduction.json").write_text(json.dumps(replay, indent=2) + "\n")

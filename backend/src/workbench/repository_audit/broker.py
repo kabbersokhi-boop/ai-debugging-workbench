@@ -29,6 +29,7 @@ class Approved(BaseModel):
     stage: str | None = None
     ordinary_engine_id: str | None = None
     checklist_use: dict[str, Any] | None = None
+    replay_of: str | None = None
 
 
 def install(app):
@@ -53,6 +54,8 @@ def install(app):
                 or payload.approval.get("candidate_id") != payload.candidate["id"]
             ):
                 raise ValueError("Missing exact local-owner execution approval")
+            if payload.replay_of != payload.approval.get("replay_audit_id"):
+                raise ValueError("Missing exact replay approval reference")
             if bool(payload.checklist_use) != bool(payload.approval.get("checklist_use_id")):
                 raise ValueError("Missing checklist application or exact approval reference")
             if payload.checklist_use:

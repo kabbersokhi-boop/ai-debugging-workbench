@@ -7,6 +7,7 @@ from uuid import UUID
 import httpx
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import JSONResponse, PlainTextResponse
+from pydantic import Field
 from sqlalchemy import select
 
 from workbench.config import ROOT, settings
@@ -36,6 +37,7 @@ from workbench.repository_audit.generated import GeneratedPlan
 from workbench.repository_audit.generated import admit as admit_generated
 from workbench.repository_audit.github_preview import Preview, preview
 from workbench.repository_audit.intake import Rejected, fetch, summary
+from workbench.repository_audit.replay import ReplayRequest, replay_plan
 from workbench.repository_audit.service import load, material, store, view
 from workbench.repository_audit.verification import (
     Requirement,
@@ -71,6 +73,7 @@ async def prepared_examples():
 
 class ChecklistConfirm(Confirm):
     checklist_use_id: HASH | None = None
+    replay_audit_id: str | None = Field(default=None, pattern=r"^[a-f0-9-]{36}$")
 
 
 @router.post("/checklists/validate")
@@ -269,6 +272,7 @@ async def start(payload: ChecklistConfirm, request: Request):
             payload.stage,
             payload.approve_independent_plan,
             payload.checklist_use_id,
+            payload.replay_audit_id,
         )
     except ValueError as error:
         raise HTTPException(409, str(error)) from None
@@ -320,6 +324,17 @@ async def independent_plan(payload: VerificationPlan):
     }
     await store(RepositoryVerificationPlan, value)
     return {**value, "validation": "awaiting_controls", "approval": "not_approved"}
+
+
+@router.post("/runs/{audit_id}/generated-replay-plans", status_code=201)
+async def generated_replay(audit_id: UUID, payload: ReplayRequest):
+    try:
+        expected = await asyncio.to_thread(replay_plan, await saved(audit_id))
+        if identity(payload.plan.model_dump()) != identity(expected):
+            raise ValueError("Exact replay plan conflicts with the original generated check")
+    except (ValueError, KeyError, TypeError) as error:
+        raise HTTPException(422, str(error)) from None
+    return {**await generated_plan(payload.plan), "replay_of": str(audit_id)}
 
 
 @router.get("/verification-plans/{verification_id}")

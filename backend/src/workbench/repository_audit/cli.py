@@ -94,24 +94,21 @@ def main(argv=None):
                 if len(approved["requirements"]) != 1:
                     raise ValueError("Generation needs exactly one reviewed requirement")
                 search = json.loads(args.search.read_bytes())
+                replay_plan = None
                 if args.replay_audit:
-                    saved = request(client, "GET", "/runs/" + args.replay_audit)
-                    if (
-                        saved["candidate_id"] != source_plan["candidate_id"]
-                        or saved["plan_id"] != ordinary["id"]
-                    ):
-                        raise ValueError(
-                            "Reproduction must use the same exact candidate and ordinary plan"
-                        )
-                    search["replay_inputs"] = [
-                        saved["evidence"]["result"]["counterexample"]["input"]
-                    ]
-                    search["reduction_rounds"] = 0
+                    from workbench.repository_audit.replay import prepare_replay
+
+                    saved = request(client, "GET", "/runs/" + args.replay_audit + "/evidence")
+                    replay_plan = prepare_replay(saved, original, search)
                 verification = request(
                     client,
                     "POST",
-                    "/generated-plans",
-                    {
+                    f"/runs/{args.replay_audit}/generated-replay-plans"
+                    if args.replay_audit
+                    else "/generated-plans",
+                    {"plan": replay_plan}
+                    if args.replay_audit
+                    else {
                         "snapshot_id": source_plan["snapshot_id"],
                         "candidate_id": source_plan["candidate_id"],
                         "candidate_hash": source_plan["candidate_hash"],
@@ -131,6 +128,7 @@ def main(argv=None):
                     "verification": verification,
                     "execution_approval": "not_approved",
                     "validation": "awaiting_fresh_controls",
+                    **({"replay_of": args.replay_audit} if args.replay_audit else {}),
                 }
                 args.out.write_text(json.dumps(prepared, indent=2) + "\n")
                 print(json.dumps(prepared, indent=2))
@@ -206,6 +204,11 @@ def main(argv=None):
                     "plan_id": prepared["ordinary"]["id"],
                     "verification_id": verification["id"],
                     **({"checklist_use_id": use["id"]} if use else {}),
+                    **(
+                        {"replay_audit_id": prepared["replay_of"]}
+                        if prepared.get("replay_of")
+                        else {}
+                    ),
                     "approve_exact_plan": True,
                     "confirm_local_execution": True,
                     "approve_independent_plan": True,
@@ -217,7 +220,16 @@ def main(argv=None):
                 audit = export(client, audit["id"], args.out_dir)
             print(json.dumps({"audit_id": audit["id"], "status": audit["status"]}))
             return 0 if audit["status"] in {"completed", "tests_passed", "validation_passed"} else 1
-    except (ValueError, KeyError, OSError, RuntimeError, httpx.HTTPError) as error:
+    except (
+        ValueError,
+        KeyError,
+        TypeError,
+        AttributeError,
+        IndexError,
+        OSError,
+        RuntimeError,
+        httpx.HTTPError,
+    ) as error:
         print(str(error))
         if isinstance(error, httpx.HTTPStatusError):
             print(error.response.text)

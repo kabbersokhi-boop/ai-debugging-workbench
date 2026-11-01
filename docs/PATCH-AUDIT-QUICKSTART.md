@@ -223,8 +223,20 @@ uv run --project backend python -m workbench.repository_audit.cli generated-prep
   --replay-audit FAILING_AUDIT_ID --approve-property --out replay-preparation.json
 ```
 
-This requires the same exact candidate and ordinary plan, retains the domain/property, sets
-`replay_inputs` to the saved input and disables further reduction. Review the new fingerprint,
+This loads and semantically validates the original generated-v3 failure. The original source,
+candidate, ordinary plan, requirement, target, runtime, property, domain, seed, case budget
+and verifier material must match; conflicting preparation/search files are rejected.
+The local replay-plan endpoint repeats the identity check against saved evidence. It derives
+the plan from the original, sets `replay_inputs` to the retained input and disables further
+reduction. The supplied search may retain its original reduction setting or set it to zero;
+it may retain the original replay list or contain only that exact retained input. These are
+the only replay-specific substitutions. To change the property or domain, omit
+`--replay-audit` and prepare a new experiment, which is not an exact reproduction.
+
+Review the new fingerprint,
 run fresh controls, and approve a new execution. Reopening a saved audit or downloading its
-reproduction declaration performs no execution. The algorithm and observer belong to the
+reproduction declaration performs no execution. Replay execution carries the original audit
+reference and rejects controls created before that audit completed, including replay of an
+already reduced replay whose plan hash happens to be unchanged. The original audit remains
+intact and each new execution is saved separately. The algorithm and observer belong to the
 new v3 verifier; future behavior changes must use a new version and retain v3 history.

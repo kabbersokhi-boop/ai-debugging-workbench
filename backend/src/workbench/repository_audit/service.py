@@ -90,6 +90,8 @@ def validate_saved(evidence, audit_id):
         raise ValueError("Missing exact candidate/plan approval evidence")
     if evidence.get("verification"):
         independent.check(evidence, historical=True)
+    if evidence.get("replay_of") != approval.get("replay_audit_id"):
+        raise ValueError("Missing exact replay approval reference")
     if bool(evidence.get("checklist_use")) != bool(approval.get("checklist_use_id")):
         raise ValueError("Missing checklist application or exact approval reference")
     if evidence.get("checklist_use"):
@@ -165,9 +167,11 @@ class RepositoryAuditManager:
         stage="execution",
         approve_independent_plan=False,
         checklist_use_id=None,
+        replay_audit_id=None,
     ):
         snapshot, candidate, plan = await material(candidate_id, plan_id)
         extra = {}
+        validated = None
         if verification_id is not None:
             verification = await load(RepositoryVerificationPlan, verification_id)
             extra = {
@@ -189,6 +193,21 @@ class RepositoryAuditManager:
                 }
         elif stage != "execution" or validation_run_id or approve_independent_plan:
             raise ValueError("Independent execution requires an explicit verification plan")
+        if replay_audit_id is not None:
+            from workbench.repository_audit.replay import replay_plan
+
+            async with sessions() as session:
+                original = await session.get(RepositoryAudit, UUID(str(replay_audit_id)))
+            if original is None or "verification" not in extra:
+                raise ValueError("Exact replay requires an original generated audit")
+            expected = replay_plan(view(original))
+            if identity(extra["verification"]["plan"]) != identity(expected):
+                raise ValueError("Exact replay differs from the original generated check")
+            if stage == "execution" and (
+                validated is None or validated.created_at <= original.updated_at
+            ):
+                raise ValueError("Exact replay requires fresh controls after the original audit")
+            extra["replay_of"] = str(original.id)
         if checklist_use_id is not None:
             from workbench.repository_audit.checklists import validate_use
 
@@ -216,6 +235,7 @@ class RepositoryAuditManager:
                     "candidate_id": candidate_id,
                     "approved_at": now.isoformat(),
                     **({"checklist_use_id": checklist_use_id} if checklist_use_id else {}),
+                    **({"replay_audit_id": str(replay_audit_id)} if replay_audit_id else {}),
                     **(
                         {
                             "verification_id": verification_id,

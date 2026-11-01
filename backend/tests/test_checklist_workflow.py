@@ -14,6 +14,7 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 from workbench.config import ROOT, settings
 from workbench.db import RepositorySource
+from workbench.evaluator.catalog import digest, identity
 from workbench.repository_audit.cli import approval_id
 from workbench.repository_audit.intake import summary
 from workbench.repository_audit.service import validate_saved
@@ -137,6 +138,25 @@ async def test_checklist_export_browser_cli_parity_and_second_patch(tmp_path, la
                 "Actual observation:",
             )
         )
+        evidence_dir = ROOT / "artifacts/project-checklists"
+        evidence_dir.mkdir(parents=True, exist_ok=True)
+        await region.scroll_into_view_if_needed()
+        await page.screenshot(path=str(evidence_dir / f"{language}-desktop.png"))
+        await page.set_viewport_size({"width": 390, "height": 844})
+        await page.wait_for_function("document.documentElement.scrollWidth <= innerWidth")
+        await page.screenshot(path=str(evidence_dir / f"{language}-mobile.png"))
+        await page.set_viewport_size({"width": 1440, "height": 1000})
+        parity = {
+            "classification": "prepared public example and authored negative control",
+            "language": language,
+            "browser_audit_id": browser_id,
+            "browser_bindings": {
+                k: identity(browser_audit["evidence"][k])
+                for k in ("snapshot", "candidate", "plan", "verification", "checklist_use")
+            },
+            "browser_checks": browser_audit["evidence"]["result"]["independent"]["checks"],
+            "cli": [],
+        }
         # Same source/checklist/patch through the CLI must compile identical exact plans.
         positive_validation = ""
         for key, expected_status, exit_code in (
@@ -224,6 +244,23 @@ async def test_checklist_export_browser_cli_parity_and_second_patch(tmp_path, la
                 )
                 assert audit["evidence"]["plan"] != browser_audit["evidence"]["plan"]
                 assert audit["evidence"]["result"]["ordinary"]["status"] == "tests_passed"
+            parity["cli"].append(
+                {
+                    "case": key,
+                    "audit_id": audit_id,
+                    "status": audit["status"],
+                    "ordinary_status": audit["evidence"]["result"]["ordinary"]["status"],
+                    "bindings": {
+                        k: identity(audit["evidence"][k])
+                        for k in ("snapshot", "candidate", "plan", "verification", "checklist_use")
+                    },
+                    "checks": audit["evidence"]["result"]["independent"]["checks"],
+                    "report_sha256": digest((out / f"{audit_id}.md").read_bytes()),
+                    "patch_sha256": digest((out / f"{audit_id}.patch").read_bytes()),
+                    "exports_equal_api": True,
+                    "prior_candidate_controls_rejected": key.endswith("negative"),
+                }
+            )
         # An explicitly incompatible revision must be visible and unapprovable.
         outdated = {
             **checklist,
@@ -239,4 +276,5 @@ async def test_checklist_export_browser_cli_parity_and_second_patch(tmp_path, la
             panel.get_by_label("Approve checklist requirements", exact=True)
         ).to_be_disabled()
         assert not errors, errors
+        (evidence_dir / f"{language}-parity.json").write_text(json.dumps(parity, indent=2) + "\n")
         await browser.close()

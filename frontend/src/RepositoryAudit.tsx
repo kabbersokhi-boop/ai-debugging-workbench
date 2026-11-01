@@ -287,7 +287,7 @@ export default function RepositoryAudit() {
       setExamples(catalog.examples);
       if (!new URLSearchParams(location.search).get("repositoryAudit")) {
         const requested = new URLSearchParams(location.search).get("prepared");
-        if (requested)
+        if (requested && initialSelection === epoch.current)
           choosePrepared(catalog.examples.find((x) => x.key === requested));
       }
       setRuntimes(rs);

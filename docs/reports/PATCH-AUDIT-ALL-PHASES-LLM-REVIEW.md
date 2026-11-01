@@ -262,3 +262,120 @@ or expand a passing conclusion to satisfy the presentation goals.
   [Phase 5 preparation](PATCH-AUDIT-PHASE-05-PREPARATION.md).
 - User instructions: [quickstart](../PATCH-AUDIT-QUICKSTART.md) and
   [participant-session protocol](../PATCH-AUDIT-USABILITY-SESSION.md).
+
+## Independent Review Corrections — 2026-11-01
+
+Review snapshot: `dffeeff9f20ddf2cd2792795e995d1ed7597ca37`; main base:
+`9d83cfa2aee592f6e329fd34024d00db8b57fcd2`. Corrections retain this branch's history.
+The earlier self-review, combined-run counts and unsuccessful attempts above remain
+historical observations. They are not substituted for final-head CI acceptance.
+
+### A. Exact generated replay
+
+The review finding is correct. Previously `--replay-audit` checked only candidate and
+ordinary-plan IDs, then took property/domain and target settings from supplied files.
+It could therefore describe a different assertion as a reproduction. This was a semantic
+identity defect, not a demonstrated execution-authorization bypass.
+
+Added a separate replay-preparation module and local-only
+`POST /runs/{audit_id}/generated-replay-plans` endpoint. Both CLI and server revalidate
+complete original saved generated-v3 evidence, require an execution-stage confirmed
+counterexample, and derive the replay from that validated original. Source/candidate/
+ordinary plan, requirements, module/export/setup, runtime/image, property/domain/seed/
+case budget and verifier identities are preserved. Conflicting input is rejected.
+Only the original retained input and zero further reduction replace search settings;
+the original reduction setting or zero and the original/exact replay list are accepted
+as supplied replay-specific settings. Changing a property is a new experiment and must
+not use `--replay-audit`.
+
+Replay execution carries an original-audit reference bound to its new exact approval.
+The API rechecks its plan against the original and requires controls created after that
+original audit completed. This also handles replay of an already reduced replay, where
+plan hashes can be equal. The strict broker request model preserves and checks the new
+reference. Controls/approval and execution produce separate fresh audit records; the
+original saved audit remains unchanged. No database migration or verifier interpretation
+change was required. `generated.py`, all v1/v2 observer/host implementations and frozen
+experiment inputs remain unchanged.
+
+`test_generated_replay.py` adds synthetic-transport tests through the actual semantic
+validator for unchanged replay; property/domain/target/requirement/source/candidate/
+ordinary-plan/runtime/verifier conflicts; forged, malformed and non-generated evidence;
+server-side rejection; CLI rejection before plan POST; and broker reference transport.
+It includes the exact sort-versus-sum example using a valid integer domain. The real
+`test_generated_workflow.py` checks fresh controls and exact approval, replay-of-replay
+stale validation rejection, positive/no-counterexample rejection, distinct execution,
+unchanged original evidence, saved reopening and report exports.
+
+### B. Delayed prepared-example initialization
+
+The review finding is correct. The initial effect captured a selection epoch but did not
+check it before applying the URL-requested prepared example. Added that comparison only
+around automatic selection, allowing catalogs, runtimes and history to continue loading.
+
+Deterministic desktop/mobile tests delay the catalog while manual edits occur. Another
+holds a history detail request in flight, releases the initial catalog, then releases the
+saved result: a late catalog must not invalidate that newer selection. Tests also cover
+explicit example selection afterward, saved deep links, visible late loading errors,
+Python/Node switching clearing candidate/plan/final approval/controls/result state, and
+absence of a result bound to the wrong selection. The existing runtime-delay integration
+journey now starts with the prepared URL and synchronizes the initial request before
+manual editing and candidate admission. No hidden form or arbitrary delay is used.
+
+### CI and evidence corrections
+
+The PR targets `main`, which is already in the existing pull-request trigger. No push to
+`main` or expanded workflow token permissions is needed. Checkout now selects the exact
+PR head rather than implicitly testing a different merge-ref SHA. The total job budget
+is 45 minutes for cold installation/image builds, the full suite, recovery, recorded
+container checks and evidence upload; individual tests and execution budgets are not
+relaxed. The four opt-in model/demo gates remain unchanged.
+
+The existing full integration invocation captures JUnit and stdout/stderr with `pipefail`.
+The existing offline/build, migration, recovery, recorded-boundary and recorded-browser
+steps remain required. Migration 011 and its immutable-record trigger are checked on the
+CI database. New stable producer outputs retain generated negative/reduced/replay JSON,
+readable report, desktop/mobile screenshots, both languages' checklist binding/check
+comparisons, export hashes/equality and stale-control rejection.
+
+`scripts/ci_review_evidence.py` packages only fixed allowed files, rejects missing/empty/
+symlink/oversized inputs and credential-shaped text, records the tested `HEAD`, and
+verifies per-file hashes and ZIP integrity. Missing evidence leaves an explicitly
+incomplete diagnostic ZIP and fails the job. The new upload includes only
+`ci-review-evidence.zip` and its SHA-256 sidecar, with 14-day retention. It does not upload
+an entire artifacts tree, environment files, database dumps or arbitrary owner history.
+The older milestone artifact remains separate. GitHub's outer artifact digest and the
+inner evidence ZIP checksum are separate values and will both be checked after download.
+
+### Verification and readiness at correction publication
+
+Status: **FIX — final-head PR CI and uploaded-evidence inspection pending**.
+No pending CI result is reported as passed. Final receipts will identify corrected
+implementation SHA, tested review head, PR/run/artifact URLs, actual counts and checksums.
+The final handoff must not use PASS unless the complete final-head pipeline is green and
+the downloaded artifact contains the required files with matching checksums.
+
+Local observations so far: the final full check passed **457 offline tests**, lint,
+formatting, Python types and the production frontend build. The additional broker
+transport regression passed in a 33-case focused contract/package run.
+The initial local browser run passed all four initialization tests, then exposed the
+strict broker model's omitted replay field. That failed attempt is retained; the wire
+field and its approval-binding regression were added rather than retrying unchanged.
+That batch ended with **9 passed / 2 failed**: the second failure was a five-second Node
+saved-history readiness timeout while a local image build was running. The stored audit
+remained valid and subsequent direct API reads returned HTTP 200 within 0.12 seconds;
+the exact cause of that earlier delay is not established. No readiness budget or outcome
+assertion was changed. After finishing the image build and starting the corrected normal
+image, the complete affected group passed **11/11 in one invocation** (144.87 seconds).
+These targeted results are not claimed as a full integration-suite pass.
+An earlier unit run had an over-specific exception-message assertion; it was corrected
+and augmented with the valid sort-to-sum regression. Focused checks also caught missing
+type narrowing in the test HTTP stub; it was fixed. These are separate from the review's
+product defects and do not erase any earlier full-suite failure.
+
+Historical v1/v2 checks remain in the offline suite. Previously retained v3 failure and
+replay evidence revalidated successfully after the corrections. The genuine Boltons
+case remains separate from generated authored controls. The frozen G3 retrospective
+remains six genuine patches, five selected-ordinary-test-passing candidates, one
+ordinary-detected regression and zero additional independent findings. No detection-rate,
+universal verification, autonomous specification discovery or human-usability claim is
+added. No merge, version tag, release or application deployment is authorized or performed.

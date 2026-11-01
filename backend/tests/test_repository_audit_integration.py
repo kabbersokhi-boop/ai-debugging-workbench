@@ -162,8 +162,9 @@ async def test_repository_browser_review_approval_download_reopen_and_stale_sele
         await page.route(
             "**/api/repository-audits/sources", lambda route: route.fulfill(json=summary(source))
         )
-        await page.goto(BASE + "/?source=external")
+        await page.goto(BASE + "/?source=external&prepared=python-positive")
         await expect(page.get_by_role("heading", name="Audit a completed patch")).to_be_visible()
+        await asyncio.wait_for(runtime_requested.wait(), 15)
         await page.get_by_label("GitHub owner/repository", exact=True).fill(source["repository"])
         await page.get_by_label("Immutable base commit", exact=True).fill(source["base_commit"])
         await page.get_by_role("button", name="Fetch source for review", exact=True).click()
@@ -192,6 +193,13 @@ async def test_repository_browser_review_approval_download_reopen_and_stale_sele
         await expect(prepare).to_be_disabled()
         release_runtime.set()
         await expect(prepare).to_be_enabled()
+        await expect(page.get_by_label("GitHub owner/repository", exact=True)).to_have_value(
+            source["repository"]
+        )
+        await expect(page.get_by_label("Immutable base commit", exact=True)).to_have_value(
+            source["base_commit"]
+        )
+        await expect(page.get_by_label("Prepared example", exact=True)).to_have_value("")
         await prepare.click()
         run = page.get_by_role("button", name="Run approved repository tests", exact=True)
         await expect(run).to_be_disabled()

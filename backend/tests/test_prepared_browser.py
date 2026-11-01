@@ -209,6 +209,26 @@ async def test_prepared_example_without_json_editing(key):
             )
             + "\n"
         )
+        # A new example cannot inherit the saved candidate/plan or final exact approval.
+        final_approval = page.get_by_role(
+            "checkbox", name="I reviewed this exact source, patch and plan"
+        )
+        await final_approval.check()
+        await expect(final_approval).to_be_checked()
+        other = "node-positive" if key == "python-positive" else "python-positive"
+        await page.get_by_label("Prepared example", exact=True).select_option(other)
+        await expect(page.get_by_label("External candidate review", exact=True)).to_have_count(0)
+        await expect(region).to_have_count(0)
+        await expect(final_approval).to_have_count(0)
+        await expect(page.get_by_label("Independent validation result", exact=True)).to_have_count(
+            0
+        )
+        await expect(
+            page.get_by_label("Approve validated independent plan", exact=True)
+        ).to_have_count(0)
+        await expect(
+            page.get_by_role("button", name="Run ordinary and independent checks", exact=True)
+        ).to_have_count(0)
         assert not errors, errors
         await browser.close()
 
