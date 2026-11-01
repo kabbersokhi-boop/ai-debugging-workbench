@@ -379,3 +379,57 @@ remains six genuine patches, five selected-ordinary-test-passing candidates, one
 ordinary-detected regression and zero additional independent findings. No detection-rate,
 universal verification, autonomous specification discovery or human-usability claim is
 added. No merge, version tag, release or application deployment is authorized or performed.
+
+### Verified corrected-implementation CI receipt — 2026-11-01 12:15 UTC
+
+PR: [#20](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/20), targeting
+`main` at `9d83cfa2aee592f6e329fd34024d00db8b57fcd2`.
+Corrected implementation and tested head:
+`d75d5763967bae51864fda49991d90e62e1838d3`.
+[Full PR CI run 41304593379](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/41304593379)
+completed successfully in one invocation; it was not a focused-rerun aggregation.
+
+| Gate | Verified result |
+| --- | --- |
+| Offline checks, lint/format/types, production frontend build | 457 offline tests passed; checks/build successful |
+| Complete integration/browser suite | **110 passed, 4 skipped, 0 failed**; 114 selected |
+| Recorded-only browser suite | **3 passed**, 0 skipped/failed |
+| Migration | Revision 011 and `immutable_repository_record` trigger present on CI database |
+| Recovery | Interrupted state retained, completed history unchanged, fresh reproduction succeeded; no cleanup errors |
+| Public-recorded boundary | Non-root/read-only; no privileged modules/socket, credentials or private history; execution authority absent |
+| Evidence completeness | All 20 required payloads plus manifest and checksum list present; no missing entries |
+| Generated failure/replay | Both saved evidence records passed semantic revalidation; `["a"]` → expected `"a"` → observed `null`, two fresh confirmations; original/replay audit IDs distinct |
+| Checklist parity and exports | Both Python and Node browser/CLI bindings and checks match; positive/negative outcomes, API export equality/hashes and stale-control rejection retained |
+| Screenshots | Desktop/mobile PNG dimensions checked; generated mobile failure and Node desktop evidence visually inspected |
+
+The unchanged opt-in skips are exactly:
+
+- `tests/test_diagnosis_browser.py::test_live_nvidia_investigation_citations_inspector_and_reopened_history`
+- `tests/test_release_browser.py::test_m4_saved_shipping_reopen_without_inference_after_ui_correction`
+- `tests/test_release_browser.py::test_m4_live_workflow_shipping_scenario_video`
+- `tests/test_repair_browser.py::test_live_nvidia_repair_diff_verification_preview_and_reopen`
+
+[CI evidence artifact 13082617509](https://github.com/kabbersokhi-boop/ai-debugging-workbench/actions/runs/41304593379/artifacts/13082617509)
+was downloaded and inspected. The GitHub outer ZIP SHA-256 matched both its advertised
+digest and the actual download:
+
+`8bf6dce5c0d8ad30603433c14c062c5363187529fba1de261ba4403707437f4f`
+
+The inner `ci-review-evidence.zip` SHA-256 matched its uploaded sidecar:
+
+`7149cc0de780cb9ea86ce4f55fb9003e4fc3ac029bfbb5cb0abd2603ef7b8953`
+
+Every inner file hash and ZIP CRC passed. `manifest.json` identifies the tested
+`d75d5763967bae51864fda49991d90e62e1838d3` head, with no missing files. The artifact's
+14-day retention expires 2026-11-15; it is separate from the older milestone artifact.
+Raw runtime evidence remains out of Git; it is now inspectable through the bounded CI
+artifact instead of relying only on local author logs.
+
+This receipt documents the corrected implementation, not an untested future commit.
+Adding this receipt produces a documentation-only review head, which must pass the same
+complete pipeline and artifact inspection before final handoff. The final tested
+review-head SHA, final CI/artifact URLs and checksums are maintained in the canonical
+[PR #20 handoff](https://github.com/kabbersokhi-boop/ai-debugging-workbench/pull/20).
+No implementation, test or workflow bytes change in this receipt-only commit. No new
+code blocker was found in the bounded adversarial review. Independent final review is
+still required; merge, release, tag and deployment remain unauthorized.
