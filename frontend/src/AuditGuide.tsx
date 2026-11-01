@@ -83,9 +83,9 @@ export function AuditIntro({
             {!repository && (
               <a
                 className="primary-button product-cta"
-                href="/?source=external"
+                href="/?source=external&prepared=python-positive"
               >
-                Audit a completed patch <ArrowRight size={17} />
+                Run a prepared example locally <ArrowRight size={17} />
               </a>
             )}
           </>
@@ -94,7 +94,7 @@ export function AuditIntro({
           <div className="recorded-actions">
             <a
               className="primary-button product-cta"
-              href="/recorded/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02#saved-patch-evidence"
+              href="/recorded/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02#guided-boltons"
             >
               Explore the real missed fix <ArrowRight size={17} />
             </a>
@@ -103,32 +103,7 @@ export function AuditIntro({
             </a>
           </div>
         )}
-        {recorded ? (
-          <div
-            className="product-principles recorded-story"
-            aria-label="The featured Boltons result"
-          >
-            <article>
-              <span className="story-number">01 / ORDINARY TESTS</span>
-              <h2>155 selected tests passed</h2>
-              <p>The existing suite exercised the package imports.</p>
-            </article>
-            <article>
-              <span className="story-number">02 / INDEPENDENT CHECK</span>
-              <h2>Empty input, unexpected state</h2>
-              <p>
-                The standalone copy reported length 1. The requirement was 0.
-              </p>
-            </article>
-            <article>
-              <span className="story-number">03 / THE MISSED COPY</span>
-              <h2>One incomplete repair</h2>
-              <p>
-                The patch changed dictutils.py and left urlutils.py unchanged.
-              </p>
-            </article>
-          </div>
-        ) : (
+        {!recorded && (
           <div className="product-principles">
             <article>
               <GitPullRequest size={20} />

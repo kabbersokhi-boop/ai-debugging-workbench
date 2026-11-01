@@ -11,8 +11,9 @@ from pydantic import BaseModel, ConfigDict
 
 from workbench.evaluator import broker
 from workbench.evaluator.catalog import identity
-from workbench.repository_audit import independent
+from workbench.repository_audit import verification_dispatch as independent
 from workbench.repository_audit.admission import check_plan, rebuild
+from workbench.repository_audit.checklists import validate_use
 from workbench.repository_audit.execution import engine_id, evaluate, runtimes
 
 
@@ -27,6 +28,7 @@ class Approved(BaseModel):
     validation: dict[str, Any] | None = None
     stage: str | None = None
     ordinary_engine_id: str | None = None
+    checklist_use: dict[str, Any] | None = None
 
 
 def install(app):
@@ -41,12 +43,31 @@ def install(app):
             check_plan(payload.snapshot, payload.candidate, payload.plan)
             if (
                 payload.engine_id
-                != (independent.engine_id() if payload.verification else engine_id())
+                != (
+                    independent.engine_id(payload.verification)
+                    if payload.verification
+                    else engine_id()
+                )
                 or payload.approval.get("local_owner") is not True
                 or payload.approval.get("plan_id") != identity(payload.plan)
                 or payload.approval.get("candidate_id") != payload.candidate["id"]
             ):
                 raise ValueError("Missing exact local-owner execution approval")
+            if bool(payload.checklist_use) != bool(payload.approval.get("checklist_use_id")):
+                raise ValueError("Missing checklist application or exact approval reference")
+            if payload.checklist_use:
+                if not payload.verification or payload.approval.get(
+                    "checklist_use_id"
+                ) != payload.checklist_use.get("id"):
+                    raise ValueError("Missing exact checklist application approval")
+                validate_use(
+                    payload.checklist_use,
+                    payload.snapshot,
+                    payload.candidate,
+                    payload.plan,
+                    payload.verification,
+                    historical=False,
+                )
             if payload.verification:
                 independent.check(payload.model_dump(exclude_none=True))
         except (ValueError, KeyError, TypeError) as error:

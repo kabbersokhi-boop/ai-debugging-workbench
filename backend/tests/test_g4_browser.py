@@ -322,7 +322,9 @@ async def test_recorded_explorer_first_g4_boltons_provenance_and_mobile_boundary
         await page.keyboard.press("Enter")
         await expect(region.get_by_role("status")).to_have_text("failed")
         assert "recordedAudit=" + MISSED in page.url
-        await expect(region).to_be_in_viewport()
+        await expect(
+            page.get_by_label("Guided Boltons walkthrough", exact=True)
+        ).to_be_in_viewport()
         assert not mutations and not errors, (mutations, errors)
         (OUT / "recorded-journey.json").write_text(
             json.dumps(

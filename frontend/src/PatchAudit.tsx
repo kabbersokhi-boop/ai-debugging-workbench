@@ -3,6 +3,7 @@ import { api } from "./types";
 import { evidenceSummary } from "./evaluationSummary";
 import "./evaluation.css";
 import "./patchAudit.css";
+import BoltonsWalkthrough from "./BoltonsWalkthrough";
 import { AuditIntro, StudyContext } from "./AuditGuide";
 const RepositoryAudit = lazy(() => import("./RepositoryAudit"));
 const Diff = lazy(() => import("./Diff"));
@@ -136,8 +137,12 @@ function PreparedPatchAudit({ recorded = false }: { recorded?: boolean }) {
   const task = tasks.find((t) => t.id === taskId) ?? audit?.evidence.task;
   const result = audit?.evidence.envelope?.result;
   useEffect(() => {
-    if (recorded && audit && location.hash === "#saved-patch-evidence") {
-      document.getElementById("saved-patch-evidence")?.scrollIntoView();
+    if (
+      recorded &&
+      audit &&
+      ["#saved-patch-evidence", "#guided-boltons"].includes(location.hash)
+    ) {
+      document.getElementById(location.hash.slice(1))?.scrollIntoView();
     }
   }, [recorded, audit]);
   function clear() {
@@ -360,6 +365,13 @@ function PreparedPatchAudit({ recorded = false }: { recorded?: boolean }) {
     <main className="evaluation-workspace patch-audit-workspace">
       <AuditIntro recorded={recorded} />
       <div id="audit-content" tabIndex={-1} />
+      {recorded && missedStandalone && (
+        <BoltonsWalkthrough
+          key={audit?.id}
+          checks={result?.independent?.checks ?? []}
+          patch={candidate?.patch ?? ""}
+        />
+      )}
       {recorded && (
         <details className="evaluation-panel current-walkthrough">
           <summary>

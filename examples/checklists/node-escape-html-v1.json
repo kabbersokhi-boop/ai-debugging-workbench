@@ -1,0 +1,103 @@
+{
+  "version": "project-checklist-v1",
+  "name": "Accepted Node HTML escaping",
+  "revision": 1,
+  "repository": "component/escape-html",
+  "supported_sources": [
+    {
+      "base_commit": "b42947eefa79efff01b3fe988c4c7e7b051ec8d8",
+      "file_hashes": {
+        ".editorconfig": "7bd6d83307b85e0401c9b1b1bd487f1e3f375c9be8ceff9ea32b0315815f992d",
+        ".eslintignore": "a786abe86173ef47e5512b82f125da6b89776d2f39b3f3ce153b1791d54e35bd",
+        ".eslintrc.yml": "472abeea8f591af5cdf1a34622ac9b8019b0b1f33bfac3eeb26811061a83039e",
+        ".gitignore": "ac901be8c1ab2509a839e1e49f3e0a9315d077e7fbdccb280271a3415b136f89",
+        ".travis.yml": "273ca06fc2eb08532b37fee32d851f8c5fe8fda5142593d2772c88c5bbc98466",
+        "HISTORY.md": "47e0e4ca90edcf4f04326ae73c8d197b5e8db0e1c439be12f66ed1eca6c4957d",
+        "LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+        "README.md": "6e309ed84ee24037a17148234b19c03905dc3a7d15e3b96384d3f17d3f989258",
+        "benchmark/index.js": "248016f887ccaa79dc4eb56fd038a5214543fbaf7058de32fa5fe95c7a5fe1ac",
+        "component.json": "00e9870404566bdd5f021601fae9ac2d5f6aca763a8bf28cb5aedd0af13e423f",
+        "index.js": "1c7b645125ab02890931944f5b9c628aeb3f6525c812aa4621bf646ff7f9e55b",
+        "package.json": "e41453856ce09702145bccac19cf593fea9b2f7a2d76ebfc153eeac1338952bf",
+        "test/.eslintrc.yml": "d5191500ede898e4317a74798ecefe46d3db55185bdeadc49bded8d02e1722e5",
+        "test/index.js": "5a75835c8040f91a7b65ab9849195b4223bc8f27484fa6e0a13e29003ad65fc2"
+      }
+    }
+  ],
+  "approved_paths": [
+    "index.js"
+  ],
+  "runtime": "node22",
+  "verifier_version": "json-observer-v2",
+  "working_directory": ".",
+  "setup": [],
+  "tests": [
+    "node",
+    "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+    "test/index.js"
+  ],
+  "test_description": "Unchanged selected upstream tests from frozen G2 declaration",
+  "timeout_seconds": 45,
+  "module": "index.js",
+  "export": "",
+  "independent_setup": [],
+  "independent_timeout_seconds": 30,
+  "requirements": [
+    {
+      "statement": "Escape all five documented HTML special characters in string input, including Unicode text.",
+      "expected_behavior": "Escape all five documented HTML special characters in string input, including Unicode text.",
+      "input_domain": "Finite JSON strings containing plain Unicode text and documented HTML special characters.",
+      "assumptions": [
+        "HTML text content or quoted attribute contexts only",
+        "Entity spellings follow upstream documented examples and owner-approved conventional HTML entity spellings; no raw-text element claim"
+      ],
+      "ambiguities": [],
+      "provenance": {
+        "origin": "upstream_documentation",
+        "reference": "https://github.com/component/escape-html/blob/b42947eefa79efff01b3fe988c4c7e7b051ec8d8/README.md",
+        "excerpt": "This function will escape the following characters: `\"`, `'`, `&`, `<`, and\n`>`.",
+        "excerpt_hash": "71a5655b5f8a8a988b692afce317b357655ce889d53cd2f50fb774d59c56d229",
+        "justification": "Contract taken from exact-base upstream documentation; expected JSON examples owner-specified independently of candidate. Documentation is evidence only, never executed.",
+        "independent_of_candidate": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "id": "unicode_prefix",
+      "requirement_index": 0,
+      "args": [
+        "é<&"
+      ],
+      "kwargs": {},
+      "expected": "é&lt;&amp;"
+    },
+    {
+      "id": "mixed_symbols",
+      "requirement_index": 0,
+      "args": [
+        "\"'&<>"
+      ],
+      "kwargs": {},
+      "expected": "&quot;&#39;&amp;&lt;&gt;"
+    },
+    {
+      "id": "astral_prefix",
+      "requirement_index": 0,
+      "args": [
+        "🚀<go>"
+      ],
+      "kwargs": {},
+      "expected": "🚀&lt;go&gt;"
+    },
+    {
+      "id": "plain",
+      "requirement_index": 0,
+      "args": [
+        "plain"
+      ],
+      "kwargs": {},
+      "expected": "plain"
+    }
+  ]
+}

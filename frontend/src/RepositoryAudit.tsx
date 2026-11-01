@@ -1,10 +1,19 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api } from "./types";
-import IndependentPlan, { type IndependentApproval } from "./IndependentPlan";
+import IndependentPlan, {
+  type IndependentApproval,
+  type PreparedExample,
+} from "./IndependentPlan";
 import RepositoryCampaign from "./RepositoryCampaign";
 import { AuditIntro, AuditSteps } from "./AuditGuide";
 import GithubPreview from "./GithubPreview";
-const Diff = lazy(() => import("./Diff"));
+import DiffDisclosure from "./DiffDisclosure";
+import GeneratedPlan from "./GeneratedPlan";
+import GeneratedEvidence from "./GeneratedEvidence";
+import ProjectChecklist, {
+  downloadJson,
+  type ChecklistPreparation,
+} from "./ProjectChecklist";
 type Source = {
   id: string;
   repository: string;
@@ -80,6 +89,9 @@ type Result = {
   reason?: string;
   ordinary: Result | null;
   independent: { status: string; checks?: Check[]; execution?: Result };
+  counterexample?: unknown;
+  search?: unknown;
+  generated_runs?: unknown[];
   commands?: Command[];
   duration_ms?: number;
   container_id?: string;
@@ -97,6 +109,10 @@ type Audit = {
     result?: Result;
     reason?: string;
     verification?: { id: string; requirements: Requirement[] };
+    checklist_use?: {
+      checklist_id: string;
+      checklist: { name: string; revision: number };
+    };
   };
 };
 type Saved = {
@@ -129,6 +145,14 @@ function checked(a: Audit, id?: string, c?: Candidate) {
 }
 
 export default function RepositoryAudit() {
+  const [examples, setExamples] = useState<PreparedExample[]>([]);
+  const [prepared, setPrepared] = useState<PreparedExample | undefined>();
+  const [setupStarted, setSetupStarted] = useState<number | null>(null);
+  const [setupMs, setSetupMs] = useState<number | null>(null);
+  const [checklistPreparation, setChecklistPreparation] =
+    useState<ChecklistPreparation | null>(null);
+  const [checklistName, setChecklistName] = useState("Project behavior checks");
+  const [checklistRevision, setChecklistRevision] = useState(1);
   const [repo, setRepo] = useState(""),
     [commit, setCommit] = useState("");
   const [source, setSource] = useState<Source | null>(null),
@@ -153,14 +177,18 @@ export default function RepositoryAudit() {
   const [saved, setSaved] = useState<Saved[]>([]);
   const epoch = useRef(0);
   const [retained, setRetained] = useState<boolean | string>(false);
+  const [generatedEnabled, setGeneratedEnabled] = useState(false);
   const [independentEnabled, setIndependentEnabled] = useState(false),
     [independentApproval, setIndependentApproval] =
       useState<IndependentApproval | null>(null),
     [independentBusy, setIndependentBusy] = useState(false);
   const running = audit?.status === "running" || independentBusy,
     result = audit?.evidence.result;
-  const layered = result?.version === "repository-independent-result-v1",
-    ordinary = layered ? result.ordinary : result;
+  const layered = [
+      "repository-independent-result-v1",
+      "repository-generated-result-v1",
+    ].includes(result?.version ?? ""),
+    ordinary = layered ? result?.ordinary : result;
   const independentResult = result?.independent;
   const selectedRuntime = runtimes.find(
     (r) => r.runtime === runtime && r.available && r.image_id,
@@ -168,6 +196,8 @@ export default function RepositoryAudit() {
   function invalidate(clearCandidate = false) {
     epoch.current++;
     setRetained(false);
+    setChecklistPreparation(null);
+    setGeneratedEnabled(false);
     setIndependentApproval(null);
     setAudit(null);
     setPlan(null);
@@ -175,6 +205,28 @@ export default function RepositoryAudit() {
     setError("");
     setBusy(false);
     if (clearCandidate) setCandidate(null);
+  }
+  function choosePrepared(selected?: PreparedExample) {
+    invalidate(true);
+    setSource(null);
+    setScope([]);
+    setSetupMs(null);
+
+    setPrepared(selected);
+    setSetupStarted(selected ? performance.now() : null);
+    setRepo(selected?.repository ?? "");
+    setCommit(selected?.base_commit ?? "");
+    setPatch(selected?.patch ?? "");
+    setScope(selected ? [selected.module] : []);
+    setRuntime(selected?.runtime ?? "python312");
+    setTests(
+      JSON.stringify(selected?.tests ?? ["python", "-m", "pytest", "-q"]),
+    );
+    setSetup("[]");
+    setCwd(".");
+    setTimeoutValue(45);
+    setDescription("Unchanged upstream tests from frozen prepared declaration");
+    setIndependentEnabled(!!selected);
   }
   async function refresh() {
     setSaved(await api<Saved[]>("/repository-audits/runs"));
@@ -193,6 +245,9 @@ export default function RepositoryAudit() {
   }
   async function open(id: string, campaign: boolean | string = false) {
     invalidate(true);
+    setPrepared(undefined);
+    setSetupStarted(null);
+    setSetupMs(null);
     await operation(async (token) => {
       const a = checked(
         await api<Audit>(
@@ -221,11 +276,20 @@ export default function RepositoryAudit() {
     let disposed = false;
     const initialSelection = epoch.current;
     (async () => {
-      const [rs, hs] = await Promise.all([
+      const [rs, hs, catalog] = await Promise.all([
         api<Runtime[]>("/repository-audits/runtimes"),
         api<Saved[]>("/repository-audits/runs"),
+        api<{ examples: PreparedExample[] }>(
+          "/repository-audits/prepared-examples",
+        ),
       ]);
       if (disposed) return;
+      setExamples(catalog.examples);
+      if (!new URLSearchParams(location.search).get("repositoryAudit")) {
+        const requested = new URLSearchParams(location.search).get("prepared");
+        if (requested)
+          choosePrepared(catalog.examples.find((x) => x.key === requested));
+      }
       setRuntimes(rs);
       setSaved(hs);
       const params = new URLSearchParams(location.search),
@@ -285,7 +349,7 @@ export default function RepositoryAudit() {
   async function fetchSource() {
     invalidate(true);
     setSource(null);
-    setScope([]);
+    if (!prepared) setScope([]);
     await operation(async (token) => {
       const s = await api<Source>("/repository-audits/sources", {
         method: "POST",
@@ -347,6 +411,7 @@ export default function RepositoryAudit() {
     )
       return;
     const c = candidate;
+    if (setupStarted !== null) setSetupMs(performance.now() - setupStarted);
     await operation(async (token) => {
       const a = checked(
         await api<Audit>("/repository-audits/runs", {
@@ -357,6 +422,11 @@ export default function RepositoryAudit() {
             approve_exact_plan: true,
             confirm_local_execution: true,
             ...(independentEnabled ? independentApproval : {}),
+            ...(checklistPreparation &&
+            independentApproval?.verification_id ===
+              checklistPreparation.verification.id
+              ? { checklist_use_id: checklistPreparation.checklist_use.id }
+              : {}),
           }),
         }),
         undefined,
@@ -372,6 +442,58 @@ export default function RepositoryAudit() {
   return (
     <main className="evaluation-workspace patch-audit-workspace">
       <AuditIntro repository />
+      <section
+        className="evaluation-panel"
+        aria-label="Run a prepared example locally"
+      >
+        <h2>Run a prepared example locally</h2>
+        <p>
+          Choose accepted historical inputs, review each step, validate the
+          checker controls, then approve this exact execution. No JSON editing
+          is required.
+        </p>
+        <label>
+          Prepared example
+          <select
+            aria-label="Prepared example"
+            value={prepared?.key ?? ""}
+            disabled={busy || running}
+            onChange={(e) =>
+              choosePrepared(examples.find((x) => x.key === e.target.value))
+            }
+          >
+            <option value="">Custom audit · advanced configuration</option>
+            {examples.map((x) => (
+              <option key={x.key} value={x.key}>
+                {x.runtime === "python312"
+                  ? "Python · first truthy element"
+                  : "Node · HTML escaping"}
+              </option>
+            ))}
+          </select>
+        </label>
+        {prepared && (
+          <>
+            <p>{prepared.patch_provenance}</p>
+            <p>
+              Frozen G2 prepared example · historical developer change. New runs
+              create fresh local evidence.
+            </p>
+            <p>
+              Next: fetch the pinned source for review, then admit the prefilled
+              patch.
+            </p>
+          </>
+        )}
+        {setupMs !== null && (
+          <p>
+            Local setup time: {(setupMs / 1000).toFixed(1)} seconds from example
+            selection to run request, including review and control validation.
+            Audit execution durations are recorded separately in command
+            evidence.
+          </p>
+        )}
+      </section>
       <AuditSteps
         step={
           audit ? 5 : confirmed ? 4 : plan ? 3 : candidate ? 2 : source ? 1 : 0
@@ -429,6 +551,15 @@ export default function RepositoryAudit() {
                           audit.evidence.reason ??
                           `Audit ${words(audit.status)}. No complete passing conclusion is available.`)}
           </p>
+          {audit.evidence.checklist_use && (
+            <p>
+              Applied project checklist:{" "}
+              <strong>{audit.evidence.checklist_use.checklist.name}</strong> ·
+              revision {audit.evidence.checklist_use.checklist.revision}
+              <br />
+              <code>{audit.evidence.checklist_use.checklist_id}</code>
+            </p>
+          )}
           <dl className="audit-facts">
             <div>
               <dt>Repository / source revision</dt>
@@ -518,6 +649,15 @@ export default function RepositoryAudit() {
             >
               Download repository evidence
             </a>
+            {" · "}
+            {!retained && (
+              <a
+                href={`/api/repository-audits/runs/${audit.id}/report`}
+                download
+              >
+                Download readable report
+              </a>
+            )}
             {" · "}
             <button
               onClick={() =>
@@ -638,6 +778,12 @@ export default function RepositoryAudit() {
               })}
             </section>
           )}
+          {result?.version === "repository-generated-result-v1" && (
+            <GeneratedEvidence
+              result={result}
+              verification={audit.evidence.verification}
+            />
+          )}
           <details>
             <summary>
               Approved requirement provenance and independent evidence
@@ -673,36 +819,46 @@ export default function RepositoryAudit() {
           Public GitHub repositories only. Supply a full 40-character commit
           SHA. Intake reads source bytes and does not execute project code.
         </p>
-        <GithubPreview key={repo + ":" + commit} disabled={running || busy} />
-        <h3>Manual immutable source intake</h3>
-        <label>
-          GitHub owner/repository
-          <input
-            aria-label="GitHub owner/repository"
-            placeholder="owner/repository"
-            value={repo}
-            disabled={running || busy}
-            onChange={(e) => {
-              invalidate(true);
-              setSource(null);
-              setRepo(e.target.value);
-            }}
-          />
-        </label>
-        <label>
-          Immutable base commit
-          <input
-            aria-label="Immutable base commit"
-            value={commit}
-            placeholder="Full 40-character SHA"
-            disabled={running || busy}
-            onChange={(e) => {
-              invalidate(true);
-              setSource(null);
-              setCommit(e.target.value);
-            }}
-          />
-        </label>
+        {prepared && (
+          <p>
+            Source: <strong>{repo}</strong> at <code>{commit}</code>
+          </p>
+        )}
+        <details open={prepared ? undefined : true}>
+          <summary>Advanced source configuration</summary>
+          <GithubPreview key={repo + ":" + commit} disabled={running || busy} />
+          <h3>Manual immutable source intake</h3>
+          <label>
+            GitHub owner/repository
+            <input
+              aria-label="GitHub owner/repository"
+              placeholder="owner/repository"
+              value={repo}
+              disabled={running || busy}
+              onChange={(e) => {
+                invalidate(true);
+                setSource(null);
+                setPrepared(undefined);
+                setRepo(e.target.value);
+              }}
+            />
+          </label>
+          <label>
+            Immutable base commit
+            <input
+              aria-label="Immutable base commit"
+              value={commit}
+              placeholder="Full 40-character SHA"
+              disabled={running || busy}
+              onChange={(e) => {
+                invalidate(true);
+                setSource(null);
+                setPrepared(undefined);
+                setCommit(e.target.value);
+              }}
+            />
+          </label>
+        </details>
         <button
           className="primary-button"
           disabled={!repo || !/^[a-f0-9]{40}$/.test(commit) || busy || running}
@@ -748,66 +904,83 @@ export default function RepositoryAudit() {
             Explicitly select the permitted scope. Changes to tests, setup,
             configuration, file modes and new/deleted files are unsupported.
           </p>
-          <label>
-            Approved production file scope
-            <select
-              aria-label="Approved production file scope"
-              multiple
-              size={Math.min(8, source.eligible_paths?.length ?? 4)}
-              value={scope}
-              disabled={running || busy}
-              onChange={(e) => {
-                invalidate(true);
-                setScope(Array.from(e.target.selectedOptions, (o) => o.value));
-              }}
-            >
-              {(source.eligible_paths ?? Object.keys(source.file_hashes)).map(
-                (p) => (
-                  <option key={p} value={p}>
-                    {p}
-                  </option>
-                ),
-              )}
-            </select>
-          </label>
-          <label>
-            External patch file
-            <input
-              aria-label="External patch file"
-              type="file"
-              accept=".patch,.diff"
-              disabled={running || busy}
-              onChange={async (e) => {
-                const f = e.target.files?.[0];
-                if (!f) return;
-                invalidate(true);
-                const token = epoch.current;
-                try {
-                  if (f.size > 65536) throw Error("Patch exceeds 64 KiB");
-                  const value = new TextDecoder("utf-8", {
-                    fatal: true,
-                    ignoreBOM: true,
-                  }).decode(await f.arrayBuffer());
-                  if (token === epoch.current) setPatch(value);
-                } catch (e) {
-                  if (token === epoch.current) setError(String(e));
-                }
-              }}
-            />
-          </label>
-          <label>
-            External unified diff
-            <textarea
-              aria-label="External unified diff"
-              rows={8}
-              value={patch}
-              disabled={running || busy}
-              onChange={(e) => {
-                invalidate(true);
-                setPatch(e.target.value);
-              }}
-            />
-          </label>
+          {prepared && (
+            <>
+              <p>
+                Review permitted file: <code>{scope.join(", ")}</code>
+              </p>
+              <pre>{patch}</pre>
+            </>
+          )}
+          <details open={prepared ? undefined : true}>
+            <summary>Advanced patch configuration</summary>
+            <label>
+              Approved production file scope
+              <select
+                aria-label="Approved production file scope"
+                multiple
+                size={Math.min(8, source.eligible_paths?.length ?? 4)}
+                value={scope}
+                disabled={running || busy}
+                onChange={(e) => {
+                  invalidate(true);
+                  setScope(
+                    Array.from(e.target.selectedOptions, (o) => o.value),
+                  );
+                }}
+              >
+                {(source.eligible_paths ?? Object.keys(source.file_hashes)).map(
+                  (p) => (
+                    <option key={p} value={p}>
+                      {p}
+                    </option>
+                  ),
+                )}
+              </select>
+            </label>
+            <label>
+              External patch file
+              <input
+                aria-label="External patch file"
+                type="file"
+                accept=".patch,.diff"
+                disabled={running || busy}
+                onChange={async (e) => {
+                  const f = e.target.files?.[0];
+                  if (!f) return;
+                  invalidate(true);
+                  const token = epoch.current;
+                  try {
+                    if (f.size > 65536) throw Error("Patch exceeds 64 KiB");
+                    const value = new TextDecoder("utf-8", {
+                      fatal: true,
+                      ignoreBOM: true,
+                    }).decode(await f.arrayBuffer());
+                    if (token === epoch.current) {
+                      setPrepared(undefined);
+                      setPatch(value);
+                    }
+                  } catch (e) {
+                    if (token === epoch.current) setError(String(e));
+                  }
+                }}
+              />
+            </label>
+            <label>
+              External unified diff
+              <textarea
+                aria-label="External unified diff"
+                rows={8}
+                value={patch}
+                disabled={running || busy}
+                onChange={(e) => {
+                  invalidate(true);
+                  setPrepared(undefined);
+                  setPatch(e.target.value);
+                }}
+              />
+            </label>
+          </details>
           <button
             className="primary-button"
             disabled={!patch || !scope.length || running || busy}
@@ -822,18 +995,13 @@ export default function RepositoryAudit() {
               <p>Affected files: {candidate.affected_files.join(", ")}</p>
               <pre>{candidate.patch}</pre>
               {candidate.affected_files.map((p) => (
-                <details key={p}>
-                  <summary>Compare {p}</summary>
-                  <Suspense fallback={<p>Opening diff…</p>}>
-                    <Diff
-                      original={candidate.original[p]}
-                      modified={candidate.modified[p]}
-                      language={
-                        runtime === "python312" ? "python" : "javascript"
-                      }
-                    />
-                  </Suspense>
-                </details>
+                <DiffDisclosure
+                  key={candidate.id + p}
+                  path={p}
+                  original={candidate.original[p]}
+                  modified={candidate.modified[p]}
+                  language={runtime === "python312" ? "python" : "javascript"}
+                />
               ))}
               <a
                 href={`/api/repository-audits/candidates/${candidate.id}/patch`}
@@ -844,6 +1012,28 @@ export default function RepositoryAudit() {
             </section>
           )}
         </section>
+      )}
+      {candidate && (
+        <ProjectChecklist
+          key={candidate.id}
+          candidateId={candidate.id}
+          onBusy={setBusy}
+          runtimes={runtimes}
+          disabled={busy || running}
+          onPrepared={(value) => {
+            invalidate();
+            setChecklistPreparation(value);
+            setPlan(value.ordinary);
+            setRuntime(value.ordinary.plan.runtime);
+            setTests(JSON.stringify(value.ordinary.plan.tests));
+            setSetup(JSON.stringify(value.ordinary.plan.setup));
+            setCwd(value.ordinary.plan.working_directory);
+            setDescription(value.ordinary.plan.test_description);
+            setTimeoutValue(value.ordinary.plan.timeout_seconds);
+            setPrepared(undefined);
+            setIndependentEnabled(true);
+          }}
+        />
       )}
       {candidate && (
         <section
@@ -857,113 +1047,127 @@ export default function RepositoryAudit() {
             lifecycle hooks run inside the same restricted environment. Network
             access is disabled; unavailable dependencies fail the audit.
           </p>
-          <label>
-            Runtime preset
-            <select
-              aria-label="Runtime preset"
-              value={runtime}
-              disabled={running || busy}
-              onChange={(e) => {
-                invalidate();
-                setRuntime(e.target.value);
-                setTests(
-                  e.target.value === "python312"
-                    ? '["python", "-m", "pytest", "-q"]'
-                    : '["node", "--test"]',
-                );
-              }}
-            >
-              <option value="python312">Python 3.12 · pytest 8.3.5</option>
-              <option value="node22">
-                Node 22 · built-in tests / pinned Mocha
-              </option>
-              <option value="node22_compat">
-                Node 22 · pinned Mocha + read-only array-flatten 1.0.0
-              </option>
-            </select>
-          </label>
-          {runtime === "node22" && (
-            <p>
-              For Mocha suites, use{" "}
-              <code>
-                ["node", "/opt/test-tools/node_modules/mocha/bin/mocha.js",
-                "test/index.js"]
-              </code>
-              . The preset includes Mocha 11.7.5; other project dependencies
-              must be available offline.
-            </p>
+          {prepared && (
+            <>
+              <p>
+                Runtime: {runtime} · working directory: {cwd} · budget:{" "}
+                {timeout}s · offline setup: {setup}
+              </p>
+              <p>{description}</p>
+              <pre>{tests}</pre>
+            </>
           )}
-          <p>
-            Source stays read-only during setup and testing. Use{" "}
-            <code>/work</code> for scratch output and <code>/work/deps</code>{" "}
-            for offline Python packages. Projects that must rewrite their source
-            tree need a different preparation plan and are unsupported in G1.
-          </p>
-          <label>
-            Working directory
-            <input
-              aria-label="Working directory"
-              value={cwd}
-              disabled={running || busy}
-              onChange={(e) => {
-                invalidate();
-                setCwd(e.target.value);
-              }}
-            />
-          </label>
-          <label>
-            Dependency setup argument vectors (JSON)
-            <textarea
-              aria-label="Dependency setup argument vectors"
-              rows={2}
-              value={setup}
-              disabled={running || busy}
-              onChange={(e) => {
-                invalidate();
-                setSetup(e.target.value);
-              }}
-            />
-          </label>
-          <label>
-            Test command arguments (JSON)
-            <textarea
-              aria-label="Test command arguments"
-              rows={2}
-              value={tests}
-              disabled={running || busy}
-              onChange={(e) => {
-                invalidate();
-                setTests(e.target.value);
-              }}
-            />
-          </label>
-          <label>
-            Selected test scope
-            <input
-              aria-label="Selected test scope"
-              value={description}
-              disabled={running || busy}
-              onChange={(e) => {
-                invalidate();
-                setDescription(e.target.value);
-              }}
-            />
-          </label>
-          <label>
-            Total command timeout (seconds)
-            <input
-              aria-label="Total command timeout"
-              type="number"
-              min={1}
-              max={120}
-              value={timeout}
-              disabled={running || busy}
-              onChange={(e) => {
-                invalidate();
-                setTimeoutValue(Number(e.target.value));
-              }}
-            />
-          </label>
+          <details open={prepared ? undefined : true}>
+            <summary>Advanced command configuration</summary>
+            <label>
+              Runtime preset
+              <select
+                aria-label="Runtime preset"
+                value={runtime}
+                disabled={running || busy}
+                onChange={(e) => {
+                  invalidate();
+                  setRuntime(e.target.value);
+                  setTests(
+                    e.target.value === "python312"
+                      ? '["python", "-m", "pytest", "-q"]'
+                      : '["node", "--test"]',
+                  );
+                }}
+              >
+                <option value="python312">Python 3.12 · pytest 8.3.5</option>
+                <option value="node22">
+                  Node 22 · built-in tests / pinned Mocha
+                </option>
+                <option value="node22_compat">
+                  Node 22 · pinned Mocha + read-only array-flatten 1.0.0
+                </option>
+              </select>
+            </label>
+            {runtime === "node22" && (
+              <p>
+                For Mocha suites, use{" "}
+                <code>
+                  ["node", "/opt/test-tools/node_modules/mocha/bin/mocha.js",
+                  "test/index.js"]
+                </code>
+                . The preset includes Mocha 11.7.5; other project dependencies
+                must be available offline.
+              </p>
+            )}
+            <p>
+              Source stays read-only during setup and testing. Use{" "}
+              <code>/work</code> for scratch output and <code>/work/deps</code>{" "}
+              for offline Python packages. Projects that must rewrite their
+              source tree need a different preparation plan and are unsupported
+              in G1.
+            </p>
+            <label>
+              Working directory
+              <input
+                aria-label="Working directory"
+                value={cwd}
+                disabled={running || busy}
+                onChange={(e) => {
+                  invalidate();
+                  setCwd(e.target.value);
+                }}
+              />
+            </label>
+            <label>
+              Dependency setup argument vectors (JSON)
+              <textarea
+                aria-label="Dependency setup argument vectors"
+                rows={2}
+                value={setup}
+                disabled={running || busy}
+                onChange={(e) => {
+                  invalidate();
+                  setSetup(e.target.value);
+                }}
+              />
+            </label>
+            <label>
+              Test command arguments (JSON)
+              <textarea
+                aria-label="Test command arguments"
+                rows={2}
+                value={tests}
+                disabled={running || busy}
+                onChange={(e) => {
+                  invalidate();
+                  setTests(e.target.value);
+                }}
+              />
+            </label>
+            <label>
+              Selected test scope
+              <input
+                aria-label="Selected test scope"
+                value={description}
+                disabled={running || busy}
+                onChange={(e) => {
+                  invalidate();
+                  setDescription(e.target.value);
+                }}
+              />
+            </label>
+            <label>
+              Total command timeout (seconds)
+              <input
+                aria-label="Total command timeout"
+                type="number"
+                min={1}
+                max={120}
+                value={timeout}
+                disabled={running || busy}
+                onChange={(e) => {
+                  invalidate();
+                  setTimeoutValue(Number(e.target.value));
+                }}
+              />
+            </label>
+          </details>
           {!runtimes.length && (
             <p role="status">Loading local runtime identities…</p>
           )}
@@ -1011,8 +1215,141 @@ export default function RepositoryAudit() {
                 )}
               </div>
               {independentEnabled && (
-                <IndependentPlan
+                <div>
+                  <label>
+                    Checklist name
+                    <input
+                      aria-label="Checklist name"
+                      value={checklistName}
+                      disabled={busy || running}
+                      onChange={(e) => setChecklistName(e.target.value)}
+                    />
+                  </label>
+                  <label>
+                    Checklist revision
+                    <input
+                      type="number"
+                      min={1}
+                      aria-label="Checklist revision"
+                      value={checklistRevision}
+                      disabled={busy || running}
+                      onChange={(e) =>
+                        setChecklistRevision(Number(e.target.value))
+                      }
+                    />
+                  </label>
+                </div>
+              )}
+              {independentEnabled && plan.plan.runtime === "python312" && (
+                <label>
+                  <input
+                    type="checkbox"
+                    aria-label="Generate bounded Python checks"
+                    checked={generatedEnabled}
+                    disabled={busy || running}
+                    onChange={(e) => {
+                      setGeneratedEnabled(e.target.checked);
+                      setIndependentApproval(null);
+                      setConfirmed(false);
+                    }}
+                  />
+                  Generate bounded Python inputs and simplify failures (verifier
+                  v3)
+                </label>
+              )}
+              {independentEnabled && generatedEnabled && (
+                <GeneratedPlan
                   key={candidate.id + plan.id}
+                  snapshotId={source!.id}
+                  candidateId={candidate.id}
+                  candidateHash={candidate.candidate_hash}
+                  ordinaryPlanId={plan.id}
+                  imageId={plan.plan.image_id}
+                  prepared={prepared}
+                  target={checklistPreparation?.verification.plan}
+                  requirement={
+                    checklistPreparation?.verification.requirements[0]
+                  }
+                  disabled={busy || audit?.status === "running"}
+                  onChange={(value) => {
+                    setIndependentApproval(value);
+                    setConfirmed(false);
+                    if (!value) setAudit(null);
+                  }}
+                  onBusy={setIndependentBusy}
+                />
+              )}
+              {independentEnabled && !generatedEnabled && (
+                <IndependentPlan
+                  key={
+                    candidate.id +
+                    plan.id +
+                    (checklistPreparation?.checklist_use.id ?? "")
+                  }
+                  loadedPlan={checklistPreparation?.verification}
+                  checklistUseId={checklistPreparation?.checklist_use.id}
+                  onExport={async (draft) => {
+                    if (!source) return;
+                    const requirements = await Promise.all(
+                      draft.requirements.map(async (r) => {
+                        const {
+                          id,
+                          version,
+                          snapshot_id,
+                          approval,
+                          ...template
+                        } = r;
+                        const digest = await crypto.subtle.digest(
+                          "SHA-256",
+                          new TextEncoder().encode(r.provenance.excerpt),
+                        );
+                        return {
+                          ...template,
+                          provenance: {
+                            ...r.provenance,
+                            excerpt_hash: Array.from(
+                              new Uint8Array(digest),
+                              (b) => b.toString(16).padStart(2, "0"),
+                            ).join(""),
+                          },
+                        };
+                      }),
+                    );
+                    const body = {
+                      version: "project-checklist-v1",
+                      name: checklistName,
+                      revision: checklistRevision,
+                      repository: source.repository,
+                      supported_sources: [
+                        {
+                          base_commit: source.base_commit,
+                          file_hashes: source.file_hashes,
+                        },
+                      ],
+                      approved_paths: candidate.affected_files,
+                      runtime: plan.plan.runtime,
+                      working_directory: plan.plan.working_directory,
+                      setup: plan.plan.setup,
+                      tests: plan.plan.tests,
+                      test_description: plan.plan.test_description,
+                      timeout_seconds: plan.plan.timeout_seconds,
+                      module: draft.module,
+                      export: draft.export,
+                      independent_setup: draft.setup,
+                      independent_timeout_seconds: draft.timeout_seconds,
+                      requirements,
+                      assertions: draft.assertions,
+                    };
+                    const validated = await api<{ checklist: unknown }>(
+                      "/repository-audits/checklists/validate",
+                      { method: "POST", body: JSON.stringify(body) },
+                    );
+                    downloadJson(
+                      validated.checklist,
+                      `project-checklist-r${checklistRevision}.json`,
+                    );
+                  }}
+                  prepared={prepared}
                   snapshotId={source!.id}
                   candidateId={candidate.id}
                   candidateHash={candidate.candidate_hash}

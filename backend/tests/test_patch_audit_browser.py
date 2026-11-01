@@ -48,7 +48,10 @@ async def test_patch_audit_real_ui_import_failing_passing_download_and_reopen(tm
                     "heading", name="A patch is more than a green test run.", exact=True
                 )
             ).to_be_visible()
-            await expect(page.get_by_role("region", name="Candidate review")).to_be_visible()
+            # A cold load validates archived provenance before admitting curated material.
+            await expect(page.get_by_role("region", name="Candidate review")).to_be_visible(
+                timeout=20000
+            )
             before = (await client.get("/api/patch-audits/runs")).json()
             await page.get_by_text(
                 "Import a completed patch · review before execution", exact=True
@@ -295,7 +298,10 @@ async def test_patch_audit_delayed_candidate_cannot_replace_selected_task():
         browser = await p.chromium.launch()
         page = await browser.new_page()
         await page.goto(BASE)
-        await expect(page.get_by_role("region", name="Candidate review")).to_be_visible()
+        # Match the cold-load readiness budget used by the complete import journey.
+        await expect(page.get_by_role("region", name="Candidate review")).to_be_visible(
+            timeout=20000
+        )
         captured = asyncio.Event()
         release = asyncio.Event()
 

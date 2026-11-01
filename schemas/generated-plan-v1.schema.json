@@ -1,0 +1,211 @@
+{
+  "$defs": {
+    "JsonValue": {},
+    "Search": {
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": "bounded-json-list-v1",
+          "default": "bounded-json-list-v1",
+          "title": "Version",
+          "type": "string"
+        },
+        "property": {
+          "enum": [
+            "first_truthy",
+            "integer_sum",
+            "integer_sort"
+          ],
+          "title": "Property",
+          "type": "string"
+        },
+        "atoms": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "Atoms",
+          "type": "array"
+        },
+        "max_length": {
+          "default": 8,
+          "maximum": 8,
+          "minimum": 1,
+          "title": "Max Length",
+          "type": "integer"
+        },
+        "seed": {
+          "default": 1,
+          "maximum": 2147483647,
+          "minimum": 0,
+          "title": "Seed",
+          "type": "integer"
+        },
+        "cases": {
+          "default": 16,
+          "maximum": 32,
+          "minimum": 1,
+          "title": "Cases",
+          "type": "integer"
+        },
+        "reduction_rounds": {
+          "default": 4,
+          "maximum": 4,
+          "minimum": 0,
+          "title": "Reduction Rounds",
+          "type": "integer"
+        },
+        "replay_inputs": {
+          "items": {
+            "items": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "array"
+          },
+          "maxItems": 32,
+          "title": "Replay Inputs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "property",
+        "atoms"
+      ],
+      "title": "Search",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "generated-plan-v1",
+      "default": "generated-plan-v1",
+      "title": "Version",
+      "type": "string"
+    },
+    "verifier_version": {
+      "const": "json-generated-v3",
+      "default": "json-generated-v3",
+      "title": "Verifier Version",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "candidate_id": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "candidate_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Candidate Hash",
+      "type": "string"
+    },
+    "ordinary_plan_id": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Ordinary Plan Id",
+      "type": "string"
+    },
+    "runtime": {
+      "const": "python312",
+      "default": "python312",
+      "title": "Runtime",
+      "type": "string"
+    },
+    "image_id": {
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "title": "Image Id",
+      "type": "string"
+    },
+    "module": {
+      "maxLength": 240,
+      "title": "Module",
+      "type": "string"
+    },
+    "export": {
+      "maxLength": 200,
+      "title": "Export",
+      "type": "string"
+    },
+    "requirement_id": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Requirement Id",
+      "type": "string"
+    },
+    "property_approval": {
+      "const": "owner_approved",
+      "title": "Property Approval",
+      "type": "string"
+    },
+    "stateless_function": {
+      "const": true,
+      "title": "Stateless Function",
+      "type": "boolean"
+    },
+    "search": {
+      "$ref": "#/$defs/Search"
+    },
+    "setup": {
+      "items": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "maxItems": 3,
+      "title": "Setup",
+      "type": "array"
+    },
+    "timeout_seconds": {
+      "default": 5,
+      "maximum": 15,
+      "minimum": 1,
+      "title": "Timeout Seconds",
+      "type": "integer"
+    },
+    "policy_hash": {
+      "default": "b3b81ecd64ef1e59ded04acc59e46fd9a941218491bb8ae835f1443aec9005e4",
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Policy Hash",
+      "type": "string"
+    },
+    "host_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Host Hash",
+      "type": "string"
+    },
+    "adapter_sources": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Adapter Sources",
+      "type": "object"
+    },
+    "adapter_hashes": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Adapter Hashes",
+      "type": "object"
+    }
+  },
+  "required": [
+    "snapshot_id",
+    "candidate_id",
+    "candidate_hash",
+    "ordinary_plan_id",
+    "image_id",
+    "module",
+    "export",
+    "requirement_id",
+    "property_approval",
+    "stateless_function",
+    "search"
+  ],
+  "title": "GeneratedPlan",
+  "type": "object"
+}

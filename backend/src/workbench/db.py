@@ -220,3 +220,10 @@ class RepositoryVerificationPlan(Base):
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     record: Mapped[dict[str, Any]] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class RepositoryChecklistUse(Base):
+    __tablename__ = "repository_audit_checklist_uses"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    record: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
