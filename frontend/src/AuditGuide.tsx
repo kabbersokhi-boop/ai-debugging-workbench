@@ -38,7 +38,7 @@ export function AuditIntro({
           {!recorded && <a href="/recorded/">Recorded examples</a>}
           {!recorded && <a href="/?workspace=evaluation">Agent Evaluation</a>}
           <a href="https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.1">
-            v1.2.1
+            Published v1.2.1
           </a>
           <a href="https://github.com/kabbersokhi-boop/ai-debugging-workbench#readme">
             Documentation ↗
@@ -125,7 +125,7 @@ export function AuditIntro({
               <FileCheck2 size={20} />
               <h2>Read the evidence</h2>
               <p>
-                Ordinary tests and independent checks stay separate. Missing
+                Existing tests and independent checks stay separate. Missing
                 checks never mean a pass.
               </p>
             </article>

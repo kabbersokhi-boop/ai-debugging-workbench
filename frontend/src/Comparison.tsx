@@ -7,7 +7,7 @@ const endpoint = "/evaluator/comparisons/m02-v1";
 const friendly = (s: string) => s.replaceAll("_", " ");
 const labels: Record<string, string> = {
   both_passed: "Both passed",
-  ordinary_failed: "Ordinary failed",
+  ordinary_failed: "Existing tests failed",
   additional_independent_failure: "Additional independent failure",
   no_usable_candidate: "No submitted candidate",
   infrastructure_or_provider_failure: "Provider / infrastructure failure",
@@ -352,7 +352,7 @@ export default function Comparison() {
                     usage unknown for {g.usage_missing_requests} requests.
                   </p>
                   <p>
-                    Generation wall: {seconds(g.generation_wall_ms)}. Ordinary
+                    Generation wall: {seconds(g.generation_wall_ms)}. Existing test
                     tools within that wall: {seconds(g.ordinary_tool_ms)}.
                     Separate final evaluation: {seconds(g.evaluation_ms)}.
                   </p>
@@ -501,7 +501,7 @@ export default function Comparison() {
                   >
                     <strong>{c.id}</strong>
                     <span>
-                      Ordinary {c.ordinary} · independent {c.independent}
+                      Existing tests {c.ordinary} · independent {c.independent}
                     </span>
                   </button>
                 </li>
@@ -691,7 +691,7 @@ function CheckEvidence({ result }: { result: Result }) {
             <article key={name}>
               <h3>
                 {name === "ordinary"
-                  ? "Ordinary repository checks"
+                  ? "Existing repository checks"
                   : "Independent behavioral checks"}
               </h3>
               <strong
@@ -717,14 +717,14 @@ function CheckEvidence({ result }: { result: Result }) {
       </div>
       {result.ordinary?.outcome === "failed" && (
         <p>
-          Ordinary tests detected this failure too; independent observations add
+          Existing tests detected this failure too; independent observations add
           behavioral detail.
         </p>
       )}
       {result.ordinary?.outcome === "passed" &&
         result.independent?.outcome === "failed" && (
           <p>
-            Ordinary checks passed; the independent observations failed.
+            Existing checks passed; the independent observations failed.
             Authored controls remain outside genuine-producer counts.
           </p>
         )}

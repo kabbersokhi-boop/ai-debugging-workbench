@@ -523,7 +523,7 @@ function PreparedPatchAudit({ recorded = false }: { recorded?: boolean }) {
           </p>
           <div className="evaluation-phases">
             <PhaseCard
-              title="Ordinary repository checks"
+              title="Existing repository checks"
               phase={result?.ordinary}
             />
             <PhaseCard
@@ -542,7 +542,7 @@ function PreparedPatchAudit({ recorded = false }: { recorded?: boolean }) {
             )}
           {result?.ordinary?.outcome === "failed" && (
             <p>
-              Ordinary checks detected a failure too. Independent observations
+              Existing checks detected a failure too. Independent observations
               are additional evidence, not a unique discovery.
             </p>
           )}

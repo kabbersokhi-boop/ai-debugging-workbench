@@ -100,7 +100,7 @@ async def test_patch_audit_real_ui_import_failing_passing_download_and_reopen(tm
             region = page.get_by_role("region", name="Patch audit result")
             await expect(region.get_by_role("status")).to_have_text(outcome, timeout=90000)
             await expect(
-                region.get_by_text("Ordinary repository checks", exact=True)
+                region.get_by_text("Existing repository checks", exact=True)
             ).to_be_visible()
             saved = await wait_audit(client, audit_id)
             result = saved["evidence"]["envelope"]["result"]

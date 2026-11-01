@@ -596,7 +596,7 @@ export default function RepositoryAudit() {
           <div className="evaluation-phases">
             <article>
               <span className="eyebrow">01 · EXISTING TESTS</span>
-              <h3>Ordinary repository tests</h3>
+              <h3>Existing repository tests</h3>
               <strong className={`evaluation-status ${ordinary?.status}`}>
                 {ordinary ? words(ordinary.status) : "No completed evidence"}
               </strong>

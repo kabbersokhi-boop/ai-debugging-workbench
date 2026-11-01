@@ -402,7 +402,7 @@ function SingleEvaluation() {
           </p>
           <div className="evaluation-phases">
             <PhaseCard
-              title="Ordinary repository checks"
+              title="Existing repository checks"
               phase={result?.ordinary}
               description="Existing upstream checks at the pinned base."
             />
@@ -414,7 +414,7 @@ function SingleEvaluation() {
           </div>
           {result?.ordinary?.outcome === "failed" && (
             <p className="evaluation-mismatch">
-              Ordinary repository checks detected a failure too. The independent
+              Existing repository checks detected a failure too. The independent
               results provide additional behavioral evidence; they did not
               uniquely discover this failure.
             </p>
@@ -422,7 +422,7 @@ function SingleEvaluation() {
           {result?.ordinary?.outcome === "passed" &&
             result?.independent?.outcome === "failed" && (
               <p className="evaluation-mismatch">
-                Ordinary checks passed. Independent behavioral checks found a
+                Existing checks passed. Independent behavioral checks found a
                 failure.{" "}
                 {shown?.kind === "control"
                   ? "This candidate is an authored control; it is not evidence of an AI failure."
