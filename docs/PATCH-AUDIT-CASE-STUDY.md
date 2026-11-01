@@ -48,7 +48,7 @@ additional unique defect counts.
 
 The [saved public record](https://ai-debugging-workbench-recorded.vercel.app/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02)
 reopens the actual evidence without re-execution. Inspect the [exact patch](../evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.patch),
-[generation provenance](../evaluation/experiments/m02-v2/development/trials/m02-v2-development-boltons-addlist-nemotron3-r02/generation.json),
+[generation source record](../evaluation/experiments/m02-v2/development/trials/m02-v2-development-boltons-addlist-nemotron3-r02/generation.json),
 [original independent execution](../evaluation/experiments/m02-v2/development/independent/m02-v2-development-boltons-addlist-nemotron3-r02.json),
 and [recorded observations](../recordings/patch-audit-missed.json).
 
@@ -64,38 +64,38 @@ from a prepared example into a local workflow for bounded public Python and Node
 1. Pin and inspect an immutable source snapshot. Intake does not execute repository code.
 2. Admit and review an exact, production-only patch.
 3. Declare the runtime and selected ordinary test command explicitly.
-4. Optionally add requirements whose provenance is reviewed independently of the patch, with named
+4. Optionally add requirements whose supporting sources are reviewed independently of the patch, with named
    finite inputs and expected values.
 5. Validate positive and negative controls, then approve the exact source, patch and plans.
-6. Run separate restricted local environments and retain the ordinary and independent outcomes,
+6. Run separate restricted local environments and retain the existing-test and independent-check outcomes,
    observations, logs and downloadable evidence.
 
 The [quickstart](PATCH-AUDIT-QUICKSTART.md) walks through a real accepted example. This workflow
 does not infer correct requirements from code or a model. A passing result applies only to the
 declared checks and environment.
 
-## A separate retrospective study (G3)
+## A separate historical developer-patch study
 
-G3 examined **six genuine historical developer candidate patches**, using its separately frozen
-method and requirements. Five passed the selected ordinary tests; one regression was already
-detected by those tests. Independent checks produced **zero additional findings**. G3 therefore
+The study examined **six genuine historical developer candidate patches**, using its separately frozen
+method and requirements. Five passed the selected existing tests; one regression was already
+detected by those tests. Independent checks produced **zero additional findings**. The study therefore
 does not show added detection value on its sample, and does not estimate accuracy or false-positive
 rates. The Boltons AI-generated development example above is a distinct study with different
-provenance and is not part of that denominator.
+source history and is not part of that denominator.
 
-See the [G3 report](reports/GENERALIZED-PATCH-AUDIT-G03.md) and its
+See the [study report](reports/GENERALIZED-PATCH-AUDIT-G03.md) and its
 [Node compatibility addendum](reports/GENERALIZED-PATCH-AUDIT-G03-COMPATIBILITY.md) for the
 method, candidate accounting, and limitations. The earlier producer comparison is another
-separate evidence set; its outcomes are summarized in the [final review](reports/PATCH-AUDIT-FINAL-REVIEW.md).
+separate evidence set; its outcomes are summarized in the [model-comparison report](reports/AGENT-EVALUATOR-M02.md).
 
 ## What proved difficult
 
 The hard part is not adding another test runner. It is deciding where expected behavior comes from,
-keeping candidate code away from the oracle and its expected values, binding approval to exact
-inputs, separating ordinary and independent outcomes, and preserving evidence through interruption
+keeping candidate code away from the checker and its expected values, binding approval to exact
+inputs, separating existing-test and independent-check outcomes, and preserving evidence through interruption
 and restart. The product also has to make an absent or unsupported check visible without presenting
 it as a pass. The [architecture](ARCHITECTURE.md), [code tour](CODE_TOUR.md), and
-[G1–G4 reports](reports/GENERALIZED-PATCH-AUDIT-G04.md) document those decisions and their tests.
+[historical engineering reports](reports/GENERALIZED-PATCH-AUDIT-G04.md) document those decisions and their tests.
 
 ## What is available today
 
@@ -109,11 +109,9 @@ it as a pass. The [architecture](ARCHITECTURE.md), [code tour](CODE_TOUR.md), an
   complete sandbox for hostile code. Containers share the host kernel; adversarial work belongs in
   an isolated disposable VM.
 
-## Provenance and ownership
+## Sources and AI assistance
 
-Repository artifacts establish the retained inputs, code, tests, execution records and release
-history. They do not by themselves establish who made each design or implementation decision, what
-anyone learned, or which work was completed unaided. **This presentation review and its copy, UI and
-media edits were prepared with Codex assistance.** No unaided-authorship claim is made. Personal
-ownership, motivation and learning statements should be added only after the project owner confirms
-them.
+Repository artifacts retain the inputs, code, tests, execution records and release history.
+Implementation, documentation and interface work used Codex assistance. The project makes no
+claim of unaided authorship. Retained execution evidence supports the reported behavior; it
+does not by itself establish individual contributions or learning outcomes.

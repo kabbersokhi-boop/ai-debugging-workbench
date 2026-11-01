@@ -1,0 +1,10 @@
+{
+  "version": "bounded-json-list-v1",
+  "property": "first_truthy",
+  "atoms": [0, false, null, "ready", "a", 1, -1],
+  "max_length": 8,
+  "seed": 1,
+  "cases": 16,
+  "reduction_rounds": 4,
+  "replay_inputs": []
+}

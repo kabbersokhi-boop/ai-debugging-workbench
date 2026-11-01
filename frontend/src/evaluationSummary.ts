@@ -33,7 +33,7 @@ export function evidenceSummary(
     }
   }
   if (result.status === "passed") {
-    return "Ordinary checks and the frozen independent observations both passed. Coverage is finite.";
+    return "Existing checks and the frozen independent observations both passed. Coverage is finite.";
   }
   if (failed.length && taskId === "more-seekable") {
     return "The recorded peek, truth-test, and iteration sequence differs from the frozen contract for preserving unconsumed items.";
@@ -48,7 +48,7 @@ export function evidenceSummary(
     return "The addlist observations differ from the required values, item order, or length after one-shot inputs. Inspect the first differing case below.";
   }
   if (result.ordinary?.outcome === "failed") {
-    return "Ordinary repository checks detected a failure. The saved transcript and independent observations explain the tested behavior.";
+    return "Existing repository checks detected a failure. The saved transcript and independent observations explain the tested behavior.";
   }
   return (
     result.reason ??

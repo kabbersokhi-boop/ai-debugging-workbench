@@ -1,16 +1,16 @@
 # Architecture
 
-Patch Audit is the primary workflow in v1.2.0. Start with its execution and evidence boundaries below. The earlier debugger, retrieval and repair architecture is preserved afterward to explain the project's evolution.
+Patch Audit is the primary workflow in current source. Start with its execution and evidence boundaries below. The earlier debugger, retrieval and repair architecture is preserved afterward to explain the project's evolution.
 
 ## Patch Audit trust boundaries
 
 ```mermaid
 flowchart LR
-    O[Trusted local owner] --> UI[React / TypeScript workspace]
+    O[Local developer] --> UI[React / TypeScript workspace]
     GH[Public GitHub] -->|bounded HTTPS / immutable source| A[Local API: admission and identities]
     UI -->|read-only PR metadata preview| A
     UI -->|exact source / patch / plan approval| A
-    SPEC[Independently justified specification] -->|owner-approved requirements| A
+    SPEC[Independently justified specification] -->|approved requirements| A
     A <--> DB[(Private PostgreSQL: immutable evidence and history)]
     A -->|approved typed plans| B[Local execution broker]
     B --> T[Fresh ordinary-test container]
@@ -40,9 +40,9 @@ valid completed evidence without re-execution; missing results have bounded per-
 budgets and become interrupted. Required database/integrity failures still fail startup. See the
 [accepted recovery correction](reports/GENERALIZED-PATCH-AUDIT-G03-COMPATIBILITY.md#api-restart--recovery-reliability-correction).
 
-[G4 first-audit walkthrough](PATCH-AUDIT-QUICKSTART.md) ·
+[First-audit walkthrough](PATCH-AUDIT-QUICKSTART.md) ·
 [Detailed generalized contracts](GENERALIZED-PATCH-AUDIT.md) ·
-[G4 release-readiness report](reports/GENERALIZED-PATCH-AUDIT-G04.md)
+[Historical release-readiness report](reports/GENERALIZED-PATCH-AUDIT-G04.md)
 
 ## Earlier debugger and repair architecture
 
@@ -173,6 +173,6 @@ The old visitor-side generated-script iframe described in milestone 3 is **retir
 
 Private staging can enable PostgreSQL-backed guest ownership and atomic admission reservations. Parent run ownership governs investigations, repairs, artifacts and snapshots; historical ownerless evidence remains local-only. Limits survive API restart and include conservative input/output reservations for failed/retried calls. Existing single-coordinator concurrency, cancellation, deadlines, interruption reconciliation and native LangGraph checkpoints remain.
 
-Public release is a **separate recorded-only application**, not this Compose stack exposed through a reverse proxy. Its image contains sanitized immutable records and the built UI, with no live API, DB, provider credentials, Docker socket or execution broker. It rejects mutation methods, limits per-visitor/global traffic and concurrency, expires guest windows, validates release health, and uses nonroot/read-only/resource-capped execution. The recorded explorer labels actual live NVIDIA evidence and offline security probes separately; there is no automatic fallback from a live request. [Release policy and exact remaining activation](RELEASE.md).
+Public release is a **separate recorded-only application**, not this Compose stack exposed through a reverse proxy. Its image contains sanitized immutable records and the built UI, with no live API, DB, provider credentials, Docker socket or execution broker. It rejects mutation methods, limits per-visitor/global traffic and concurrency, expires guest windows, validates release health, and uses nonroot/read-only/resource-capped execution. The recorded explorer labels actual live NVIDIA evidence and offline security probes separately; there is no automatic fallback from a live request. [Recorded-viewer guide](RELEASE.md).
 
 The frozen comparison reuses the existing graph/provider and changes only whole/retrieved context and decision/patch budgets. Benchmark state is atomically retained on disk with an in-memory LangGraph saver; product runs retain native PostgreSQL checkpoints. Evaluation-only final checks run after the graph and never feed revision prompts. They rehash actual served bytes and bind candidate, source, final-check code and actual runtime. Failed attempts contribute to request/token accounting. [Protocol](../evals/README.md) and [results](RESULTS.md).

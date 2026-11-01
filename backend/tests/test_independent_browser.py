@@ -49,7 +49,7 @@ async def test_independent_browser_approval_failure_download_reopen_and_selectio
         await page.get_by_role("button", name="Fetch source for review").click()
         await page.get_by_label("Approved production file scope").select_option("library.py")
         await page.get_by_label("External unified diff", exact=True).fill(patch)
-        await page.get_by_role("button", name="Admit patch for review").click()
+        await page.get_by_role("button", name="Validate patch for review").click()
         await page.get_by_label("Test command arguments", exact=True).fill(
             '["python","-m","pytest","-q"]'
         )
@@ -57,7 +57,7 @@ async def test_independent_browser_approval_failure_download_reopen_and_selectio
         await page.get_by_label("Add independent verification", exact=True).check()
         await page.get_by_role("button", name="Advanced JSON", exact=True).click()
         await page.get_by_label("Independent requirements", exact=True).fill(json.dumps([req]))
-        await page.get_by_text("I reviewed the provenance", exact=False).click()
+        await page.get_by_text("I reviewed the supporting sources", exact=False).click()
         await page.get_by_label("Independent target file", exact=True).fill("library.py")
         await page.get_by_label("Public function export", exact=True).fill("add")
         await page.get_by_label("Named assertions", exact=True).fill(json.dumps(assertions))
@@ -78,7 +78,7 @@ async def test_independent_browser_approval_failure_download_reopen_and_selectio
             page.get_by_label("Approve validated independent plan", exact=True)
         ).to_be_visible(timeout=60000)
         await expect(
-            page.get_by_role("button", name="Run ordinary and independent checks")
+            page.get_by_role("button", name="Run existing tests and independent checks")
         ).to_be_disabled()
         await page.screenshot(path=str(output / "validated-plan.png"), full_page=True)
         await page.get_by_label("Approve validated independent plan", exact=True).check()
@@ -86,7 +86,9 @@ async def test_independent_browser_approval_failure_download_reopen_and_selectio
         async with page.expect_response(
             lambda r: r.request.method == "POST" and r.url.endswith("/api/repository-audits/runs")
         ) as response:
-            await page.get_by_role("button", name="Run ordinary and independent checks").click()
+            await page.get_by_role(
+                "button", name="Run existing tests and independent checks"
+            ).click()
         audit_id = (await (await response.value).json())["id"]
         await expect(page.locator(".audit-result [role=status]")).to_have_text(
             "assertions failed", timeout=60000
@@ -95,7 +97,7 @@ async def test_independent_browser_approval_failure_download_reopen_and_selectio
         await expect(page.get_by_label("Independent assertion observations")).to_contain_text(
             "Addition returns the mathematical sum"
         )
-        await page.get_by_text("Requirement provenance and assumptions", exact=True).click()
+        await page.get_by_text("Supporting sources and assumptions", exact=True).click()
         await expect(page.get_by_label("Independent assertion observations")).to_contain_text(
             "Synthetic arithmetic specification v1"
         )

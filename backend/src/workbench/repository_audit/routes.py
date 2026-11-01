@@ -1,17 +1,20 @@
 """Local-only G1 routes. Intake and patch review never execute project code."""
 
 import asyncio
+import json
 from uuid import UUID
 
 import httpx
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import JSONResponse, PlainTextResponse
+from pydantic import Field
 from sqlalchemy import select
 
 from workbench.config import ROOT, settings
 from workbench.db import (
     RepositoryAudit,
     RepositoryCandidate,
+    RepositoryChecklistUse,
     RepositoryPlan,
     RepositoryRequirement,
     RepositorySource,
@@ -22,9 +25,19 @@ from workbench.evaluator.catalog import identity
 from workbench.patch_audit.routes import local_only
 from workbench.repository_audit.admission import admit, check_plan
 from workbench.repository_audit.campaign import retained_campaign, retained_compatibility
-from workbench.repository_audit.contracts import Confirm, Import, Intake, Plan
+from workbench.repository_audit.checklists import (
+    Checklist,
+    CompatibilityRequest,
+    PrepareRequest,
+    compatibility,
+    compile_plans,
+)
+from workbench.repository_audit.contracts import HASH, Confirm, Import, Intake, Plan
+from workbench.repository_audit.generated import GeneratedPlan
+from workbench.repository_audit.generated import admit as admit_generated
 from workbench.repository_audit.github_preview import Preview, preview
 from workbench.repository_audit.intake import Rejected, fetch, summary
+from workbench.repository_audit.replay import ReplayRequest, replay_plan
 from workbench.repository_audit.service import load, material, store, view
 from workbench.repository_audit.verification import (
     Requirement,
@@ -37,6 +50,68 @@ router = APIRouter(prefix="/api/repository-audits", dependencies=[Depends(local_
 FETCH_LOCK = asyncio.Lock()
 CAMPAIGN_ROOT = ROOT / "evaluation/repository-examples/g3"
 COMPATIBILITY_ROOT = ROOT / "evaluation/repository-examples/g3-node-compatibility"
+
+
+@router.get("/prepared-examples")
+async def prepared_examples():
+    """Frozen convenience inputs only; normal admission and approval still apply."""
+    root = ROOT / "evaluation/repository-examples/g2"
+    declaration = json.loads((root / "examples.json").read_text())
+    examples = []
+    for item in declaration["examples"]:
+        if item["key"] not in {"python-positive", "node-positive"}:
+            continue
+        examples.append(
+            {
+                **item,
+                "patch": (root / item["patch"]).read_text(),
+                "requirement": {**item["requirement"], "approval": "unapproved"},
+            }
+        )
+    return {"version": declaration["version"], "examples": examples}
+
+
+class ChecklistConfirm(Confirm):
+    checklist_use_id: HASH | None = None
+    replay_audit_id: str | None = Field(default=None, pattern=r"^[a-f0-9-]{36}$")
+
+
+@router.post("/checklists/validate")
+async def checklist_validate(payload: Checklist):
+    return {
+        "id": identity(payload.model_dump()),
+        "checklist": payload.model_dump(),
+        "execution_authorized": False,
+    }
+
+
+@router.post("/checklists/compatibility")
+async def checklist_compatibility(payload: CompatibilityRequest):
+    snapshot, candidate = await material(payload.candidate_id)
+    return compatibility(payload.checklist, snapshot, candidate)
+
+
+@router.post("/checklists/prepare", status_code=201)
+async def checklist_prepare(payload: PrepareRequest):
+    snapshot, candidate = await material(payload.candidate_id)
+    try:
+        ordinary, verification, use = compile_plans(
+            payload.checklist, snapshot, candidate, payload.image_id
+        )
+    except ValueError as error:
+        raise HTTPException(422, str(error)) from None
+    await store(RepositoryPlan, ordinary)
+    for item in verification["requirements"]:
+        await store(RepositoryRequirement, item)
+    await store(RepositoryVerificationPlan, verification)
+    await store(RepositoryChecklistUse, use)
+    return {
+        "ordinary": ordinary,
+        "verification": verification,
+        "checklist_use": use,
+        "execution_approval": "not_approved",
+        "validation": "awaiting_fresh_controls",
+    }
 
 
 @router.post("/github-preview")
@@ -187,7 +262,7 @@ async def plan(payload: Plan):
 
 
 @router.post("/runs", status_code=202)
-async def start(payload: Confirm, request: Request):
+async def start(payload: ChecklistConfirm, request: Request):
     try:
         return await request.app.state.repository_audits.create(
             payload.candidate_id,
@@ -196,6 +271,8 @@ async def start(payload: Confirm, request: Request):
             payload.validation_run_id,
             payload.stage,
             payload.approve_independent_plan,
+            payload.checklist_use_id,
+            payload.replay_audit_id,
         )
     except ValueError as error:
         raise HTTPException(409, str(error)) from None
@@ -210,6 +287,23 @@ async def requirement_record(payload: Requirement):
 @router.get("/requirements/{requirement_id}")
 async def requirement_review(requirement_id: str):
     return await load(RepositoryRequirement, requirement_id)
+
+
+@router.post("/generated-plans", status_code=201)
+async def generated_plan(payload: GeneratedPlan):
+    snapshot, candidate, ordinary = await material(payload.candidate_id, payload.ordinary_plan_id)
+    requirements = [await load(RepositoryRequirement, payload.requirement_id)]
+    try:
+        admit_generated(snapshot, candidate, ordinary, payload.model_dump(), requirements)
+    except ValueError as error:
+        raise HTTPException(422, str(error)) from None
+    value = {
+        "id": identity(payload.model_dump()),
+        "plan": payload.model_dump(),
+        "requirements": requirements,
+    }
+    await store(RepositoryVerificationPlan, value)
+    return {**value, "validation": "awaiting_controls", "approval": "not_approved"}
 
 
 @router.post("/verification-plans", status_code=201)
@@ -230,6 +324,17 @@ async def independent_plan(payload: VerificationPlan):
     }
     await store(RepositoryVerificationPlan, value)
     return {**value, "validation": "awaiting_controls", "approval": "not_approved"}
+
+
+@router.post("/runs/{audit_id}/generated-replay-plans", status_code=201)
+async def generated_replay(audit_id: UUID, payload: ReplayRequest):
+    try:
+        expected = await asyncio.to_thread(replay_plan, await saved(audit_id))
+        if identity(payload.plan.model_dump()) != identity(expected):
+            raise ValueError("Exact replay plan conflicts with the original generated check")
+    except (ValueError, KeyError, TypeError) as error:
+        raise HTTPException(422, str(error)) from None
+    return {**await generated_plan(payload.plan), "replay_of": str(audit_id)}
 
 
 @router.get("/verification-plans/{verification_id}")
@@ -271,6 +376,16 @@ async def evidence(audit_id: UUID):
     return JSONResponse(
         await saved(audit_id),
         headers={"Content-Disposition": f'attachment; filename="repository-audit-{audit_id}.json"'},
+    )
+
+
+@router.get("/runs/{audit_id}/report")
+async def readable_report(audit_id: UUID):
+    from workbench.repository_audit.report import render_report
+
+    return PlainTextResponse(
+        render_report(await saved(audit_id)),
+        headers={"Content-Disposition": f'attachment; filename="repository-audit-{audit_id}.md"'},
     )
 
 

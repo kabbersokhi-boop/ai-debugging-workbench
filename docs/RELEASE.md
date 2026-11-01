@@ -1,115 +1,52 @@
-# Release boundary
+# Recorded viewer and local execution
 
-## Two explicit modes
+Patch Audit has two separate applications:
 
-| Mode | Entry point | Execution authority |
+| Application | Purpose | Can run new code? |
 | --- | --- | --- |
-| Private local workbench | `compose.yaml`, loopback `8010` | Deterministic Patch Audit; optional NVIDIA / LangGraph / MCP debugger; private broker owns Docker |
-| Recorded release | `compose.release.yaml`, loopback `8020` | Recorded Patch Audit plus original debugger; zero provider requests/tokens/execution slots |
+| Local Docker application | Review and run patches you explicitly approve | Yes, in restricted local containers |
+| Recorded viewer | Inspect saved patches, results and downloads | No |
 
-The release image contains only a small FastAPI server, built frontend and allowlisted sanitized recordings. It has no database/secret configuration, workbench broker/agent implementation, Docker socket, candidate files mounted as executable content, or live run routes. All mutation methods return 405. Private run/history/artifact APIs are absent. Recordings are shared public evidence; visitors have no private execution records to cross-access.
+The [public viewer](https://ai-debugging-workbench-recorded.vercel.app/) serves saved evidence. It has no model or database credentials, Docker access, repository-import endpoints or private execution history. Opening a result does not run it again. Unavailable evidence stays unavailable; the viewer does not fall back to live execution.
 
-In the single-container Compose deployment, per-visitor admission is 120 requests/minute with opaque HttpOnly SameSite=Strict cookies expiring after 15 minutes. At most 1,024 resident sessions and 600 requests/minute globally are admitted. Uvicorn has 32 concurrency slots and a five-second idle connection timeout. Container policy is nonroot, read-only root, no capabilities/new privileges, 192 MiB memory, 0.5 CPU, 32 PIDs and 8 MiB tmp. Immutable recording assets are retained with their release version; there are no uploaded/generated release artifacts or preview environments to expire. Session windows are reaped on requests and reset on restart; this cannot replenish a provider budget because the public process has none.
+The source on `main`, published releases and the hosted viewer can be different versions. See [published releases](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases) for released versions. Merging a source change does not deploy the hosted viewer.
 
-CSP permits only local application scripts/assets, locally loaded Monaco workers and pixel images; no remote candidate scripts, frames, forms or arbitrary connections. Model/source text is rendered as text or a read-only editor. `nosniff`, no-referrer and frame denial apply. The public surface supports no cross-origin action. Health checks validate the frontend and recording bundle; missing evidence is unavailable, with no live fallback. Local Uvicorn access logging is disabled and no secret is supplied to the image. Hosted platform request logging is controlled by Vercel.
+## Run the viewer locally
 
-## Private execution and guests
-
-`compose.guest.yaml` optionally adds session access controls for **private staging**, behind an owner-controlled tunnel. It is not authorization to internet-expose Docker-backed execution. Runs and derived investigations/repairs/artifacts are authorized through a persisted run owner. Historical ownerless rows remain visible only in trusted local mode. Session expiry revokes guest access; idempotency keys are scoped per guest. Guest resource URLs require canonical lowercase, hyphenated UUIDs; alternate spellings and malformed IDs return 404 before resource handlers. Trusted local UUID parsing is unchanged. Cross-origin POSTs are denied. Set `ALLOWED_ORIGIN` to the actual private origin, and use secure cookies when TLS is active.
-
-PostgreSQL row locks persist nonrefundable conservative input/output reservations and request counts across API restarts: default 2,000 requests / 1,000,000 reserved tokens per 24-hour guest session; 20,000 requests / 5,000,000 reserved tokens per UTC day globally. Existing coordinator concurrency limits, deadlines and provider retries remain. Rejected admissions never start provider work. Cookie renewal cannot bypass the global ceiling. These are admission reservations, not measured billing.
-
-The fixed runner receives no NVIDIA credentials and runs only approved frozen scenarios. Candidate networks/volumes are separate from it. Trusted checks hash actual candidate bytes before/after execution and bind source, scenario expectations, verifier and actual candidate image. Cache keys include all those identities; historical passes remain historical. Containers are cleaned after verification/cancellation, idle previews expire after ten minutes, and broker restart reconciles/removes remaining environments. Saved local evidence stays in its named volumes, intentionally retained for owner review and backup; no automatic deletion of historical artifacts is performed.
-
-Candidate interaction is remote: the broker permits only reset/add/increase/decrease, captures bounded PNGs and small text fields, and sends no candidate JavaScript to a visitor tab. A nonresponsive script is stopped and its environment removed; controls cannot submit scripts or shell commands. The obsolete script-delivery gateway returns 410. Container/browser/OS/Docker exploits remain outside this demonstrated private boundary. Playwright itself warns against treating its Docker image as a complete untrusted-web sandbox: [official Docker guidance](https://playwright.dev/python/docs/docker).
-
-## Recorded-only Vercel deployment
-
-The owner authorized the existing Vercel account for this release. Its team uses the Hobby plan.
-No upgrade, purchase, custom DNS or privileged live service is authorized. The externally verified production URL is
-**https://ai-debugging-workbench-recorded.vercel.app/**. The prior verified deployment was
-`dpl_5c4imLG8TbkjGjiJVMr7mhbq5iHC` (`v1.2.0`); retain it for rollback.
-Current source, version, deployment ID and
-post-publication verification receipts belong in the
-[release notes](https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.1).
-No live execution service is exposed. The existing project has no Git integration or deploy hooks;
-merging a PR does not update this URL.
-
-Vercel's native FastAPI runtime exports the existing recorded server through the small
-`app.py`; root `requirements.txt` mirrors the pinned `docker/release-requirements.txt`
-(byte equality is checked in CI; Vercel rejected a requirements include directive).
-`vercel.json` runs the existing frontend build and explicitly includes its output and curated
-recordings. Native tracing also packages required frontend source and build metadata.
-No new framework/service is added. This avoids the Container Runtime registry storage charge.
-Set only the nonsecret `RELEASE_SECURE_COOKIES=true`; supply no provider/database credentials.
-Never deploy the privileged root `Dockerfile` or attach its normal Compose services.
-
-After committing and verifying the release head, prepare an allowlisted bundle from that commit:
+From a checkout of the version you want to inspect:
 
 ```sh
-release_bundle=$(mktemp -d)
-release_ref=v1.2.1  # Resolve and test this exact commit before deployment.
-release_sha=$(git rev-parse "$release_ref^{commit}")
-git archive "$release_sha" app.py requirements.txt vercel.json .vercelignore .python-version docker/release-requirements.txt \
-  backend/src/workbench/release.py frontend recordings .dockerignore |
-  tar -x -C "$release_bundle"
-vercel link --project ai-debugging-workbench-recorded --scope mogging20202020 --cwd "$release_bundle"
-vercel deploy --prod --skip-domain --cwd "$release_bundle" --scope mogging20202020 \
-  --meta releaseSourceCommit="$release_sha" --meta releaseVersion="$release_ref"
-# Verify the returned deployment URL, then promote that same artifact:
-vercel promote DEPLOYMENT_ID --scope mogging20202020 --yes
+docker compose -f compose.release.yaml up --build -d --wait
 ```
 
-Record a SHA-256 manifest of the uploaded allowlist and compare the actual deployed files and
-served frontend/recording bytes. Deployment metadata alone is a declared source identity, not
-proof of the uploaded artifact. Retain the prior deployment for rollback.
+Open <http://127.0.0.1:8020/>. Building the image needs network access to package sources. Once built, the viewer serves its bundled evidence without running a candidate patch or contacting a model provider.
 
-Only this bundle is deployed: no evaluator, local secrets, backups or private execution modules.
-Vercel runs FastAPI as autoscaled Functions. Compose CPU/memory/PID/capability, network and tmpfs
-settings are **local container checks, not verified Vercel settings**. Request/session windows are
-per process and reset with recycling, not a deployment-wide quota. The top-level recorded
-middleware remains active, including for static files; do not force static CDN promotion.
-Keep existing Hobby limits; exceeding a free limit can pause service. Do not enable paid capacity.
-[FastAPI runtime](https://vercel.com/docs/frameworks/backend/fastapi) ·
-[Hobby included usage](https://vercel.com/docs/plans/hobby).
-
-Verify unauthenticated HTTPS, both audits, exact diffs/evidence downloads, the original recorded
-debugger, health/security headers, and absent mutation/private routes. No public patch import,
-candidate execution, model call, database or broker is permitted.
-
-## Isolated release verification
-
-Normal ports and project names remain defaults. To leave existing owner volumes/services intact:
+Stop it with:
 
 ```sh
-export COMPOSE_PROJECT_NAME=patch-audit-verify
-export WORKBENCH_DB_PORT=55429 WORKBENCH_API_PORT=18010 WORKBENCH_PREVIEW_PORT=18013
-export DATABASE_URL=postgresql+asyncpg://workbench:workbench@127.0.0.1:55429/workbench
-export E2E_BASE_URL=http://127.0.0.1:18010 E2E_PREVIEW_URL=http://127.0.0.1:18013
-docker compose up --build -d --wait api
-./scripts/check
-./scripts/e2e
-./scripts/recovery-smoke
-export RELEASE_COMPOSE_PROJECT_NAME=patch-audit-release-verify
-export RECORDED_PORT=18020 RELEASE_BASE_URL=http://127.0.0.1:18020
-docker compose -p "$RELEASE_COMPOSE_PROJECT_NAME" -f compose.release.yaml up --build -d --wait
+docker compose -f compose.release.yaml down
+```
+
+For fresh audits, follow the [local quickstart](PATCH-AUDIT-QUICKSTART.md). Keep that application private. Its source import, execution and saved-history endpoints do not belong in the public viewer.
+
+## What the build contains
+
+The recorded image includes the small server in [`release.py`](../backend/src/workbench/release.py), the built interface and an approved set of saved recordings. It excludes the execution services and their credentials. The [image definition](../docker/release.Dockerfile) and [Compose settings](../compose.release.yaml) run it as a non-root user with a read-only filesystem and resource limits.
+
+Content is displayed as text or read-only code. Security headers restrict loading of scripts, frames and other remote content. The viewer accepts no submitted patch, command or target URL. Container limits apply to the local image; they do not establish the settings of a hosted platform.
+
+## Verification
+
+The normal CI pipeline builds both applications and checks the separation. For local
+checks, start the recorded viewer above and install the browser-test prerequisites:
+
+```sh
+uv sync --project backend --frozen
+uv run --project backend playwright install --with-deps chromium
 uv run --project backend python scripts/check_release.py
-E2E_BASE_URL=$RELEASE_BASE_URL ./scripts/e2e -k recorded_explorer_first
+E2E_BASE_URL=http://127.0.0.1:8020 ./scripts/e2e -k recorded_explorer_first
 ```
 
-This uses separate named volumes. The owner stack must be idle: broker cleanup labels identify
-disposable candidate environments across projects. Recovery subprocesses inherit
-`COMPOSE_PROJECT_NAME`; never omit it for isolated testing. Do not remove owner volumes or reset
-its database. Four existing opt-ins remain skipped unless separately requested: three live-provider
-checks and one saved-live-demo reopen check.
+These checks cover the actual recorded container, absent execution/private-history routes, saved results, downloads and browser navigation. See [verification and evidence](VALIDATION.md).
 
-If overriding evidence output, set `E2E_EVIDENCE_DIR` and `RECOVERY_EVIDENCE_DIR` to the same
-absolute directory; the browser tests otherwise resolve relative paths from `backend/`.
-
-On shared Docker hosts, check available address pools before testing. Give every verification
-network, including the recorded network, an explicit unused subnet if the default pools are
-exhausted; candidate networks still need free default allocations. Do not prune owner networks.
-The frozen earlier offline evaluation harness also resolves the default broker by name. If that
-existing broker is stopped, verify no candidate work is active, temporarily start only that
-broker for the unchanged harness, and restore its prior state afterward. Do not alter frozen
-experiment configuration to accommodate a different local topology.
+Deployment configuration is in [`app.py`](../app.py), [`vercel.json`](../vercel.json) and the recorded server. Configure your own hosting account separately. Deploying or creating a release is a separate action from merging source changes; never deploy the full local execution stack as the public viewer.

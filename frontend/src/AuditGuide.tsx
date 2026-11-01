@@ -24,7 +24,7 @@ export function AuditIntro({
         </a>
         <div>
           <span className="mode-badge">
-            {recorded ? "Recorded viewer" : "Local owner"}
+            {recorded ? "Recorded viewer" : "Local workspace"}
           </span>
           <a
             href={
@@ -38,7 +38,7 @@ export function AuditIntro({
           {!recorded && <a href="/recorded/">Recorded examples</a>}
           {!recorded && <a href="/?workspace=evaluation">Agent Evaluation</a>}
           <a href="https://github.com/kabbersokhi-boop/ai-debugging-workbench/releases/tag/v1.2.1">
-            v1.2.1
+            Published v1.2.1
           </a>
           <a href="https://github.com/kabbersokhi-boop/ai-debugging-workbench#readme">
             Documentation ↗
@@ -77,15 +77,15 @@ export function AuditIntro({
         ) : (
           <>
             <p>
-              Python 3.12 and Node.js 22 · bounded, offline execution · explicit
-              local owner approval · no model call required
+              Python 3.12 and Node.js 22 · bounded, offline execution ·
+              explicit local approval · no model call required
             </p>
             {!repository && (
               <a
                 className="primary-button product-cta"
-                href="/?source=external"
+                href="/?source=external&prepared=python-positive"
               >
-                Audit a completed patch <ArrowRight size={17} />
+                Run a prepared example locally <ArrowRight size={17} />
               </a>
             )}
           </>
@@ -94,7 +94,7 @@ export function AuditIntro({
           <div className="recorded-actions">
             <a
               className="primary-button product-cta"
-              href="/recorded/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02#saved-patch-evidence"
+              href="/recorded/?recordedAudit=m02-v2-development-boltons-addlist-nemotron3-r02#guided-boltons"
             >
               Explore the real missed fix <ArrowRight size={17} />
             </a>
@@ -103,32 +103,7 @@ export function AuditIntro({
             </a>
           </div>
         )}
-        {recorded ? (
-          <div
-            className="product-principles recorded-story"
-            aria-label="The featured Boltons result"
-          >
-            <article>
-              <span className="story-number">01 / ORDINARY TESTS</span>
-              <h2>155 selected tests passed</h2>
-              <p>The existing suite exercised the package imports.</p>
-            </article>
-            <article>
-              <span className="story-number">02 / INDEPENDENT CHECK</span>
-              <h2>Empty input, unexpected state</h2>
-              <p>
-                The standalone copy reported length 1. The requirement was 0.
-              </p>
-            </article>
-            <article>
-              <span className="story-number">03 / THE MISSED COPY</span>
-              <h2>One incomplete repair</h2>
-              <p>
-                The patch changed dictutils.py and left urlutils.py unchanged.
-              </p>
-            </article>
-          </div>
-        ) : (
+        {!recorded && (
           <div className="product-principles">
             <article>
               <GitPullRequest size={20} />
@@ -143,14 +118,14 @@ export function AuditIntro({
               <h2>Specify what matters</h2>
               <p>
                 Independent checks need a trustworthy requirement. Confidence
-                alone is not an oracle.
+                alone does not establish the expected behavior.
               </p>
             </article>
             <article>
               <FileCheck2 size={20} />
               <h2>Read the evidence</h2>
               <p>
-                Ordinary tests and independent checks stay separate. Missing
+                Existing tests and independent checks stay separate. Missing
                 checks never mean a pass.
               </p>
             </article>
@@ -203,16 +178,16 @@ export function StudyContext() {
         <article>
           <h3>Separate Boltons development evidence</h3>
           <p>
-            155 selected ordinary tests passed; independent checks exposed the
+            155 selected existing tests passed; independent checks exposed the
             overlooked standalone copy. Generation procedures differed; this is
             not a model ranking.
           </p>
         </article>
         <article>
-          <h3>G3 historical developer patches</h3>
+          <h3>Historical developer patches</h3>
           <p>
             Six distinct historical candidates evaluated. Five passed selected
-            ordinary tests; one regression was already caught by ordinary tests.
+            existing tests; one regression was already caught by existing tests.
             Zero additional independent discoveries. No broad accuracy or
             false-positive estimate.
           </p>
@@ -223,7 +198,7 @@ export function StudyContext() {
         Replaying saved evidence creates no fresh execution or new finding.
       </p>
       <a href="https://github.com/kabbersokhi-boop/ai-debugging-workbench/blob/9c025a37cc4a01d86ce0af599776a73a07b2bc16/docs/reports/GENERALIZED-PATCH-AUDIT-G03-COMPATIBILITY.md">
-        Read the G3 methodology and limitations ↗
+        Read the study methods and limits ↗
       </a>
     </section>
   );

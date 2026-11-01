@@ -15,13 +15,15 @@ from workbench.config import settings
 from workbench.db import (
     RepositoryAudit,
     RepositoryCandidate,
+    RepositoryChecklistUse,
     RepositoryPlan,
     RepositorySource,
     RepositoryVerificationPlan,
     sessions,
 )
 from workbench.evaluator.catalog import identity
-from workbench.repository_audit import independent, recovery
+from workbench.repository_audit import recovery
+from workbench.repository_audit import verification_dispatch as independent
 from workbench.repository_audit.admission import check_plan, rebuild
 from workbench.repository_audit.execution import engine_id, validate
 
@@ -88,6 +90,16 @@ def validate_saved(evidence, audit_id):
         raise ValueError("Missing exact candidate/plan approval evidence")
     if evidence.get("verification"):
         independent.check(evidence, historical=True)
+    if evidence.get("replay_of") != approval.get("replay_audit_id"):
+        raise ValueError("Missing exact replay approval reference")
+    if bool(evidence.get("checklist_use")) != bool(approval.get("checklist_use_id")):
+        raise ValueError("Missing checklist application or exact approval reference")
+    if evidence.get("checklist_use"):
+        from workbench.repository_audit.checklists import validate_use
+
+        validate_use(evidence["checklist_use"], snapshot, candidate, plan, evidence["verification"])
+        if approval.get("checklist_use_id") != evidence["checklist_use"]["id"]:
+            raise ValueError("Missing exact checklist application approval")
     if evidence.get("result") is not None:
         if identity(evidence["result"]) != evidence.get("result_hash"):
             raise ValueError("Saved result hash mismatch")
@@ -154,16 +166,19 @@ class RepositoryAuditManager:
         validation_run_id=None,
         stage="execution",
         approve_independent_plan=False,
+        checklist_use_id=None,
+        replay_audit_id=None,
     ):
         snapshot, candidate, plan = await material(candidate_id, plan_id)
         extra = {}
+        validated = None
         if verification_id is not None:
             verification = await load(RepositoryVerificationPlan, verification_id)
             extra = {
                 "verification": verification,
                 "stage": stage,
                 "ordinary_engine_id": engine_id(),
-                "engine_id": independent.engine_id(),
+                "engine_id": independent.engine_id(verification),
             }
             if stage == "execution":
                 if not validation_run_id:
@@ -178,6 +193,29 @@ class RepositoryAuditManager:
                 }
         elif stage != "execution" or validation_run_id or approve_independent_plan:
             raise ValueError("Independent execution requires an explicit verification plan")
+        if replay_audit_id is not None:
+            from workbench.repository_audit.replay import replay_plan
+
+            async with sessions() as session:
+                original = await session.get(RepositoryAudit, UUID(str(replay_audit_id)))
+            if original is None or "verification" not in extra:
+                raise ValueError("Exact replay requires an original generated audit")
+            expected = replay_plan(view(original))
+            if identity(extra["verification"]["plan"]) != identity(expected):
+                raise ValueError("Exact replay differs from the original generated check")
+            if stage == "execution" and (
+                validated is None or validated.created_at <= original.updated_at
+            ):
+                raise ValueError("Exact replay requires fresh controls after the original audit")
+            extra["replay_of"] = str(original.id)
+        if checklist_use_id is not None:
+            from workbench.repository_audit.checklists import validate_use
+
+            use = await load(RepositoryChecklistUse, checklist_use_id)
+            if "verification" not in extra:
+                raise ValueError("Checklist application requires its independent plan")
+            validate_use(use, snapshot, candidate, plan, extra["verification"], historical=False)
+            extra["checklist_use"] = use
         now = datetime.now(UTC)
         row = RepositoryAudit(
             id=uuid4(),
@@ -196,6 +234,8 @@ class RepositoryAuditManager:
                     "plan_id": plan_id,
                     "candidate_id": candidate_id,
                     "approved_at": now.isoformat(),
+                    **({"checklist_use_id": checklist_use_id} if checklist_use_id else {}),
+                    **({"replay_audit_id": str(replay_audit_id)} if replay_audit_id else {}),
                     **(
                         {
                             "verification_id": verification_id,

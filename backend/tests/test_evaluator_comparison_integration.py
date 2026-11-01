@@ -23,7 +23,7 @@ def test_producer_docker_access_boundary():
 import os, pathlib, socket
 root = pathlib.Path('/source')
 assert sorted(p.name for p in root.iterdir()) == ['approved.txt']
-for name in ['/app/evaluation', '/home/libertarian/ai-debugging-workbench',
+for name in ['/app/evaluation', HOST_PROJECT_PATH,
              '/var/run/docker.sock', '/app/backend/.env', '/evaluation', '/source/.git']:
     assert not pathlib.Path(name).exists(), name
 assert not any(k in os.environ for k in ['NVIDIA_API_KEY', 'OPENAI_API_KEY',
@@ -33,6 +33,7 @@ s = socket.socket(); s.settimeout(1)
 assert s.connect_ex(('1.1.1.1',443)) != 0
 print('approved source only; no evaluator, references, history, credentials, socket or network')
 """
+    code = code.replace("HOST_PROJECT_PATH", json.dumps(str(ROOT)))
     result = execute(
         {"approved.txt": "development only"}, ["python", "-I", "-c", code], image, threading.Event()
     )

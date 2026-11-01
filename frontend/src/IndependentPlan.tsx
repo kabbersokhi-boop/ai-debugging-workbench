@@ -6,7 +6,46 @@ export type IndependentApproval = {
   validation_run_id: string;
   approve_independent_plan: true;
 };
+export type PreparedExample = {
+  key: string;
+  repository: string;
+  base_commit: string;
+  runtime: string;
+  module: string;
+  export: string;
+  tests: string[];
+  patch: string;
+  patch_provenance: string;
+  requirement: {
+    statement: string;
+    expected_behavior: string;
+    input_domain: string;
+    assumptions: string[];
+    ambiguities: string[];
+    approval: string;
+    provenance: {
+      origin: string;
+      reference: string;
+      excerpt: string;
+      excerpt_hash: string;
+      justification: string;
+      independent_of_candidate: boolean;
+    };
+  };
+  assertions: { id: string; args: unknown[]; expected: unknown }[];
+};
 type Props = {
+  prepared?: PreparedExample;
+  loadedPlan?: { id: string; plan: any; requirements: any[] };
+  checklistUseId?: string;
+  onExport?: (value: {
+    requirements: any[];
+    assertions: any[];
+    module: string;
+    export: string;
+    setup: string[][];
+    timeout_seconds: number;
+  }) => Promise<void>;
   snapshotId: string;
   candidateId: string;
   candidateHash: string;
@@ -29,23 +68,27 @@ const hex = async (s: string) =>
 export default function IndependentPlan(p: Props) {
   const [requirements, setRequirements] = useState(
     JSON.stringify(
-      [
-        {
-          statement: "",
-          expected_behavior: "",
-          input_domain: "",
-          assumptions: [],
-          ambiguities: [],
-          provenance: {
-            origin: "owner_authored_property",
-            reference: "",
-            excerpt: "",
-            justification: "",
-            independent_of_candidate: true,
-          },
-          approval: "unapproved",
-        },
-      ],
+      p.loadedPlan
+        ? p.loadedPlan.requirements
+        : p.prepared
+          ? [p.prepared.requirement]
+          : [
+              {
+                statement: "",
+                expected_behavior: "",
+                input_domain: "",
+                assumptions: [],
+                ambiguities: [],
+                provenance: {
+                  origin: "owner_authored_property",
+                  reference: "",
+                  excerpt: "",
+                  justification: "",
+                  independent_of_candidate: true,
+                },
+                approval: "unapproved",
+              },
+            ],
       null,
       2,
     ),
@@ -77,9 +120,30 @@ export default function IndependentPlan(p: Props) {
       return null;
     }
   })();
-  const [module, setModule] = useState(""),
-    [exportName, setExport] = useState("");
-  const [assertions, setAssertions] = useState("[]");
+  const [module, setModule] = useState(
+      p.loadedPlan?.plan.module ?? p.prepared?.module ?? "",
+    ),
+    [exportName, setExport] = useState(
+      p.loadedPlan?.plan.export ?? p.prepared?.export ?? "",
+    );
+  const [assertions, setAssertions] = useState(
+    JSON.stringify(
+      p.loadedPlan
+        ? p.loadedPlan.plan.assertions.map((a: any) => {
+            const { requirement_id, ...rest } = a;
+            return {
+              ...rest,
+              requirement_index: p.loadedPlan!.requirements.findIndex(
+                (r) => r.id === requirement_id,
+              ),
+            };
+          })
+        : (p.prepared?.assertions.map((c) => ({
+            ...c,
+            requirement_index: 0,
+          })) ?? []),
+    ),
+  );
   const [assertionName, setAssertionName] = useState(""),
     [argumentDraft, setArgumentDraft] = useState("[]"),
     [expectedDraft, setExpectedDraft] = useState("");
@@ -120,13 +184,15 @@ export default function IndependentPlan(p: Props) {
       setError(String(e));
     }
   }
-  const [setup, setSetup] = useState("[]"),
-    [timeout, setTimeout] = useState(30);
+  const [setup, setSetup] = useState(
+      JSON.stringify(p.loadedPlan?.plan.setup ?? []),
+    ),
+    [timeout, setTimeout] = useState(p.loadedPlan?.plan.timeout_seconds ?? 30);
   const [plan, setPlan] = useState<{
     id: string;
     plan: unknown;
     requirements: unknown[];
-  } | null>(null);
+  } | null>(p.loadedPlan ?? null);
   const [validation, setValidation] = useState<{
     id: string;
     status: string;
@@ -163,7 +229,8 @@ export default function IndependentPlan(p: Props) {
       if (!Array.isArray(input) || !input.length || input.length > 32)
         throw Error("Provide 1–32 requirements.");
       const records: { id: string }[] = [];
-      for (const r of input) {
+      for (const entry of input) {
+        const { id: _id, ...r } = entry;
         const source = r.provenance;
         if (!source?.excerpt)
           throw Error("Every requirement needs a source excerpt.");
@@ -240,6 +307,9 @@ export default function IndependentPlan(p: Props) {
             candidate_id: p.candidateId,
             plan_id: p.ordinaryPlanId,
             verification_id: plan.id,
+            ...(p.checklistUseId && plan.id === p.loadedPlan?.id
+              ? { checklist_use_id: p.checklistUseId }
+              : {}),
             stage: "validation",
             approve_independent_plan: true,
             approve_exact_plan: true,
@@ -275,7 +345,7 @@ export default function IndependentPlan(p: Props) {
       <p>
         Supply requirements justified separately from this patch. The checker
         supports finite JSON arguments and exact JSON results from a public
-        Python or Node function. Expected values remain in the trusted broker.
+        Python or Node function. Expected values stay outside the code under test.
         This establishes only the named examples.
       </p>
       <ol className="verification-stages">
@@ -290,147 +360,181 @@ export default function IndependentPlan(p: Props) {
           <strong>Approve</strong> this exact candidate-bound plan.
         </li>
       </ol>
-      <div
-        className="authoring-toggle"
-        role="group"
-        aria-label="Requirement authoring mode"
-      >
-        <button
-          aria-pressed={!advanced}
-          disabled={disabled || !guided}
-          onClick={() => setAdvanced(false)}
-        >
-          Guided requirement
-        </button>
-        <button
-          aria-pressed={advanced}
-          disabled={disabled}
-          onClick={() => setAdvanced(true)}
-        >
-          Advanced JSON
-        </button>
-      </div>
-      {!advanced && guided && (
-        <div className="guided-requirement">
-          <label>
-            What behavior is required?
-            <input
-              aria-label="Required behavior"
-              value={guided.statement}
-              disabled={disabled}
-              onChange={(e) => editRequirement("statement", e.target.value)}
-            />
-          </label>
-          <label>
-            Expected behavior
-            <input
-              aria-label="Expected behavior"
-              value={guided.expected_behavior}
-              disabled={disabled}
-              onChange={(e) =>
-                editRequirement("expected_behavior", e.target.value)
-              }
-            />
-          </label>
-          <label>
-            Supported input domain
-            <input
-              aria-label="Supported input domain"
-              value={guided.input_domain}
-              disabled={disabled}
-              onChange={(e) => editRequirement("input_domain", e.target.value)}
-            />
-          </label>
-          <label>
-            Requirement origin
-            <select
-              aria-label="Requirement origin"
-              value={guided.provenance.origin}
-              disabled={disabled}
-              onChange={(e) =>
-                editRequirement("provenance.origin", e.target.value)
-              }
-            >
-              <option value="owner_authored_property">
-                Owner-authored specification
-              </option>
-              <option value="upstream_documentation">
-                Upstream documentation
-              </option>
-              <option value="external_specification">
-                External specification
-              </option>
-              <option value="public_api_contract">Public API contract</option>
-              <option value="model_proposed_hypothesis">
-                Model hypothesis · cannot authorize scoring
-              </option>
-            </select>
-          </label>
-          <label>
-            Specification reference
-            <input
-              aria-label="Specification reference"
-              value={guided.provenance.reference}
-              disabled={disabled}
-              onChange={(e) =>
-                editRequirement("provenance.reference", e.target.value)
-              }
-            />
-          </label>
-          <label>
-            Exact supporting excerpt
-            <textarea
-              aria-label="Supporting excerpt"
-              rows={3}
-              value={guided.provenance.excerpt}
-              disabled={disabled}
-              onChange={(e) =>
-                editRequirement("provenance.excerpt", e.target.value)
-              }
-            />
-          </label>
-          <label>
-            Why is this expectation trustworthy?
-            <textarea
-              aria-label="Expectation justification"
-              rows={3}
-              value={guided.provenance.justification}
-              disabled={disabled}
-              onChange={(e) =>
-                editRequirement("provenance.justification", e.target.value)
-              }
-            />
-          </label>
+      {p.prepared && guided && (
+        <section aria-label="Prepared requirements and checks">
+          <h4>Review what must keep working</h4>
+          <p>{guided.statement}</p>
+          <blockquote>{guided.provenance.excerpt}</blockquote>
+          <p>{guided.provenance.reference}</p>
+          <p>{guided.provenance.justification}</p>
+          <p>Supported inputs: {guided.input_domain}</p>
+          <ul>
+            {(Array.isArray(guided.assumptions) ? guided.assumptions : []).map(
+              (a: string) => (
+                <li key={a}>{a}</li>
+              ),
+            )}
+          </ul>
           <p>
-            Record assumptions, ambiguities and multiple requirements in
-            Advanced JSON. Do not derive expected answers from the candidate, an
-            unjustified reference implementation or model confidence.
+            Target: <code>{module}</code> · export:{" "}
+            <code>{exportName || "module function"}</code>
           </p>
+          {namedAssertions?.map((c) => (
+            <article key={c.id}>
+              <strong>{c.id}</strong>
+              <pre>
+                {JSON.stringify(c.args)} → {JSON.stringify(c.expected)}
+              </pre>
+            </article>
+          ))}
+        </section>
+      )}
+      <details open={p.prepared ? undefined : true}>
+        <summary>Advanced requirement configuration</summary>
+        <div
+          className="authoring-toggle"
+          role="group"
+          aria-label="Requirement authoring mode"
+        >
+          <button
+            aria-pressed={!advanced}
+            disabled={disabled || !guided}
+            onClick={() => setAdvanced(false)}
+          >
+            Guided requirement
+          </button>
+          <button
+            aria-pressed={advanced}
+            disabled={disabled}
+            onClick={() => setAdvanced(true)}
+          >
+            Advanced JSON
+          </button>
         </div>
-      )}
-      {advanced && (
-        <>
-          <p>
-            Multiple requirements, assumptions and exact provenance payloads.
-            Switching to guided mode is available only for a single requirement.
-            Nothing is inferred from candidate code.
-          </p>
-          <label>
-            Independent requirements (JSON)
-            <textarea
-              aria-label="Independent requirements"
-              rows={12}
-              value={requirements}
-              disabled={disabled}
-              onChange={(e) => {
-                invalidate();
-                setRequirements(e.target.value);
-                setApproveRequirements(false);
-              }}
-            />
-          </label>
-        </>
-      )}
+        {!advanced && guided && (
+          <div className="guided-requirement">
+            <label>
+              What behavior is required?
+              <input
+                aria-label="Required behavior"
+                value={guided.statement}
+                disabled={disabled}
+                onChange={(e) => editRequirement("statement", e.target.value)}
+              />
+            </label>
+            <label>
+              Expected behavior
+              <input
+                aria-label="Expected behavior"
+                value={guided.expected_behavior}
+                disabled={disabled}
+                onChange={(e) =>
+                  editRequirement("expected_behavior", e.target.value)
+                }
+              />
+            </label>
+            <label>
+              Supported input domain
+              <input
+                aria-label="Supported input domain"
+                value={guided.input_domain}
+                disabled={disabled}
+                onChange={(e) =>
+                  editRequirement("input_domain", e.target.value)
+                }
+              />
+            </label>
+            <label>
+              Requirement origin
+              <select
+                aria-label="Requirement origin"
+                value={guided.provenance.origin}
+                disabled={disabled}
+                onChange={(e) =>
+                  editRequirement("provenance.origin", e.target.value)
+                }
+              >
+                <option value="owner_authored_property">
+                  User-authored specification
+                </option>
+                <option value="upstream_documentation">
+                  Upstream documentation
+                </option>
+                <option value="external_specification">
+                  External specification
+                </option>
+                <option value="public_api_contract">Public API contract</option>
+                <option value="model_proposed_hypothesis">
+                  Model hypothesis · cannot authorize scoring
+                </option>
+              </select>
+            </label>
+            <label>
+              Specification reference
+              <input
+                aria-label="Specification reference"
+                value={guided.provenance.reference}
+                disabled={disabled}
+                onChange={(e) =>
+                  editRequirement("provenance.reference", e.target.value)
+                }
+              />
+            </label>
+            <label>
+              Exact supporting excerpt
+              <textarea
+                aria-label="Supporting excerpt"
+                rows={3}
+                value={guided.provenance.excerpt}
+                disabled={disabled}
+                onChange={(e) =>
+                  editRequirement("provenance.excerpt", e.target.value)
+                }
+              />
+            </label>
+            <label>
+              Why is this expectation trustworthy?
+              <textarea
+                aria-label="Expectation justification"
+                rows={3}
+                value={guided.provenance.justification}
+                disabled={disabled}
+                onChange={(e) =>
+                  editRequirement("provenance.justification", e.target.value)
+                }
+              />
+            </label>
+            <p>
+              Record assumptions, ambiguities and multiple requirements in
+              Advanced JSON. Do not derive expected answers from the candidate,
+              an unjustified reference implementation or model confidence.
+            </p>
+          </div>
+        )}
+        {advanced && (
+          <>
+            <p>
+              Multiple requirements, assumptions and complete supporting-source details.
+              Switching to guided mode is available only for a single
+              requirement. Nothing is inferred from candidate code.
+            </p>
+            <label>
+              Independent requirements (JSON)
+              <textarea
+                aria-label="Independent requirements"
+                rows={12}
+                value={requirements}
+                disabled={disabled}
+                onChange={(e) => {
+                  invalidate();
+                  setRequirements(e.target.value);
+                  setApproveRequirements(false);
+                }}
+              />
+            </label>
+          </>
+        )}
+      </details>
       <label>
         <input
           type="checkbox"
@@ -441,7 +545,7 @@ export default function IndependentPlan(p: Props) {
             setApproveRequirements(e.target.checked);
           }}
         />
-        I reviewed the provenance, input domains, assumptions and expected
+        I reviewed the supporting sources, input domains, assumptions and expected
         behavior independently of the candidate. I approve these requirements.
       </label>
       <p>
@@ -449,184 +553,208 @@ export default function IndependentPlan(p: Props) {
         Model suggestions need separately supported, approved requirements. No
         model is called.
       </p>
-      <label>
-        Independent target file
-        <input
-          aria-label="Independent target file"
-          value={module}
-          disabled={disabled}
-          onChange={(e) => {
-            invalidate();
-            setModule(e.target.value);
-          }}
-        />
-      </label>
-      <label>
-        Public function export
-        <input
-          aria-label="Public function export"
-          value={exportName}
-          placeholder="Leave empty for a Node module exporting a function"
-          disabled={disabled}
-          onChange={(e) => {
-            invalidate();
-            setExport(e.target.value);
-          }}
-        />
-      </label>
-      {advanced ? (
-        <>
-          {" "}
-          <label>
-            Named assertions (JSON)
-            <textarea
-              aria-label="Named assertions"
-              rows={7}
-              value={assertions}
-              disabled={disabled}
-              onChange={(e) => {
-                invalidate();
-                setAssertions(e.target.value);
-              }}
-            />
-          </label>
-          <p>
-            Each assertion includes <code>id</code>, zero-based{" "}
-            <code>requirement_index</code>, <code>args</code>, optional Python{" "}
-            <code>kwargs</code>, and <code>expected</code>. At least one
-            assertion is required.
-          </p>
-        </>
-      ) : (
-        <section aria-label="Behavior examples">
-          <h3>Finite behavior examples</h3>
-          <p>
-            Each named input and expected JSON value checks the requirement
-            above. Supply your own justified expectation; Patch Audit does not
-            invent it.
-          </p>
-          <label>
-            Example name
-            <input
-              aria-label="Example name"
-              disabled={disabled}
-              value={assertionName}
-              onChange={(e) => {
-                invalidate();
-                setAssertionName(e.target.value);
-              }}
-            />
-          </label>
-          <label>
-            Function arguments (JSON array)
-            <textarea
-              aria-label="Function arguments"
-              rows={2}
-              disabled={disabled}
-              value={argumentDraft}
-              onChange={(e) => {
-                invalidate();
-                setArgumentDraft(e.target.value);
-              }}
-            />
-          </label>
-          <label>
-            Expected JSON result
-            <textarea
-              aria-label="Expected JSON result"
-              rows={2}
-              disabled={disabled}
-              placeholder='For example: null, 3, "ready", or [1, 2]'
-              value={expectedDraft}
-              onChange={(e) => {
-                invalidate();
-                setExpectedDraft(e.target.value);
-              }}
-            />
-          </label>
-          <p>
-            These fields are a draft. Add the example to include it in the plan.
-            Python keyword arguments and multiple requirements are available in
-            Advanced JSON.
-          </p>
-          <button
-            disabled={disabled || !assertionName || !expectedDraft}
-            onClick={addAssertion}
-          >
-            Add named example
-          </button>
-        </section>
-      )}
-      {namedAssertions && (
-        <section aria-label="Declared assertions">
-          <h3>{namedAssertions.length} named behavior examples</h3>
-          {namedAssertions.map((a, i) => (
-            <details key={a.id}>
-              <summary>
-                {a.id} · requirement {a.requirement_index + 1}
-              </summary>
-              <p>Input arguments</p>
-              <pre>{JSON.stringify(a.args, null, 2)}</pre>
-              <p>Expected result</p>
-              <pre>{JSON.stringify(a.expected, null, 2)}</pre>
-              <button
+      <details open={p.prepared ? undefined : true}>
+        <summary>Advanced checker configuration</summary>
+        <label>
+          Independent target file
+          <input
+            aria-label="Independent target file"
+            value={module}
+            disabled={disabled}
+            onChange={(e) => {
+              invalidate();
+              setModule(e.target.value);
+            }}
+          />
+        </label>
+        <label>
+          Public function export
+          <input
+            aria-label="Public function export"
+            value={exportName}
+            placeholder="Leave empty for a Node module exporting a function"
+            disabled={disabled}
+            onChange={(e) => {
+              invalidate();
+              setExport(e.target.value);
+            }}
+          />
+        </label>
+        {advanced ? (
+          <>
+            {" "}
+            <label>
+              Named assertions (JSON)
+              <textarea
+                aria-label="Named assertions"
+                rows={7}
+                value={assertions}
                 disabled={disabled}
-                onClick={() => {
+                onChange={(e) => {
                   invalidate();
-                  setAssertions(
-                    JSON.stringify(
-                      namedAssertions.filter((_, j) => i !== j),
-                      null,
-                      2,
-                    ),
-                  );
+                  setAssertions(e.target.value);
                 }}
-              >
-                Remove {a.id}
-              </button>
-            </details>
-          ))}
-          {!namedAssertions.length && (
+              />
+            </label>
             <p>
-              No examples declared. At least one justified assertion is required
-              before preparing a plan.
+              Each assertion includes <code>id</code>, zero-based{" "}
+              <code>requirement_index</code>, <code>args</code>, optional Python{" "}
+              <code>kwargs</code>, and <code>expected</code>. At least one
+              assertion is required.
             </p>
-          )}
-        </section>
-      )}
-      <label>
-        Independent offline setup (JSON)
-        <textarea
-          aria-label="Independent offline setup"
-          value={setup}
-          disabled={disabled}
-          onChange={(e) => {
-            invalidate();
-            setSetup(e.target.value);
-          }}
-        />
-      </label>
-      <label>
-        Independent timeout (seconds)
-        <input
-          aria-label="Independent timeout"
-          type="number"
-          min={1}
-          max={120}
-          value={timeout}
-          disabled={disabled}
-          onChange={(e) => {
-            invalidate();
-            setTimeout(Number(e.target.value));
-          }}
-        />
-      </label>
+          </>
+        ) : (
+          <section aria-label="Behavior examples">
+            <h3>Finite behavior examples</h3>
+            <p>
+              Each named input and expected JSON value checks the requirement
+              above. Supply your own justified expectation; Patch Audit does not
+              invent it.
+            </p>
+            <label>
+              Example name
+              <input
+                aria-label="Example name"
+                disabled={disabled}
+                value={assertionName}
+                onChange={(e) => {
+                  invalidate();
+                  setAssertionName(e.target.value);
+                }}
+              />
+            </label>
+            <label>
+              Function arguments (JSON array)
+              <textarea
+                aria-label="Function arguments"
+                rows={2}
+                disabled={disabled}
+                value={argumentDraft}
+                onChange={(e) => {
+                  invalidate();
+                  setArgumentDraft(e.target.value);
+                }}
+              />
+            </label>
+            <label>
+              Expected JSON result
+              <textarea
+                aria-label="Expected JSON result"
+                rows={2}
+                disabled={disabled}
+                placeholder='For example: null, 3, "ready", or [1, 2]'
+                value={expectedDraft}
+                onChange={(e) => {
+                  invalidate();
+                  setExpectedDraft(e.target.value);
+                }}
+              />
+            </label>
+            <p>
+              These fields are a draft. Add the example to include it in the
+              plan. Python keyword arguments and multiple requirements are
+              available in Advanced JSON.
+            </p>
+            <button
+              disabled={disabled || !assertionName || !expectedDraft}
+              onClick={addAssertion}
+            >
+              Add named example
+            </button>
+          </section>
+        )}
+        {namedAssertions && (
+          <section aria-label="Declared assertions">
+            <h3>{namedAssertions.length} named behavior examples</h3>
+            {namedAssertions.map((a, i) => (
+              <details key={a.id}>
+                <summary>
+                  {a.id} · requirement {a.requirement_index + 1}
+                </summary>
+                <p>Input arguments</p>
+                <pre>{JSON.stringify(a.args, null, 2)}</pre>
+                <p>Expected result</p>
+                <pre>{JSON.stringify(a.expected, null, 2)}</pre>
+                <button
+                  disabled={disabled}
+                  onClick={() => {
+                    invalidate();
+                    setAssertions(
+                      JSON.stringify(
+                        namedAssertions.filter((_, j) => i !== j),
+                        null,
+                        2,
+                      ),
+                    );
+                  }}
+                >
+                  Remove {a.id}
+                </button>
+              </details>
+            ))}
+            {!namedAssertions.length && (
+              <p>
+                No examples declared. At least one justified assertion is
+                required before preparing a plan.
+              </p>
+            )}
+          </section>
+        )}
+        <label>
+          Independent offline setup (JSON)
+          <textarea
+            aria-label="Independent offline setup"
+            value={setup}
+            disabled={disabled}
+            onChange={(e) => {
+              invalidate();
+              setSetup(e.target.value);
+            }}
+          />
+        </label>
+        <label>
+          Independent timeout (seconds)
+          <input
+            aria-label="Independent timeout"
+            type="number"
+            min={1}
+            max={120}
+            value={timeout}
+            disabled={disabled}
+            onChange={(e) => {
+              invalidate();
+              setTimeout(Number(e.target.value));
+            }}
+          />
+        </label>
+      </details>
       <button
         disabled={disabled || !approveRequirements || !module}
         onClick={prepare}
       >
         Prepare independent plan
       </button>
+      {p.onExport && (
+        <button
+          disabled={disabled || !module}
+          onClick={async () => {
+            try {
+              await p.onExport!({
+                requirements: JSON.parse(requirements),
+                assertions: JSON.parse(assertions),
+                module,
+                export: exportName,
+                setup: JSON.parse(setup),
+                timeout_seconds: timeout,
+              });
+            } catch (e) {
+              setError(String(e));
+            }
+          }}
+        >
+          Download reusable project checklist
+        </button>
+      )}
       {error && <p role="alert">{error}</p>}
       {plan && (
         <>
@@ -639,7 +767,7 @@ export default function IndependentPlan(p: Props) {
               : "controls not yet validated"}
           </p>
           <details>
-            <summary>Exact independent plan and requirement provenance</summary>
+            <summary>Exact independent plan and supporting sources</summary>
             <pre>{JSON.stringify(plan, null, 2)}</pre>
           </details>
           <label>

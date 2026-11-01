@@ -1,0 +1,349 @@
+{
+  "$defs": {
+    "ChecklistAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "requirement_index": {
+          "maximum": 31,
+          "minimum": 0,
+          "title": "Requirement Index",
+          "type": "integer"
+        },
+        "args": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "maxItems": 32,
+          "title": "Args",
+          "type": "array"
+        },
+        "kwargs": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "maxProperties": 32,
+          "title": "Kwargs",
+          "type": "object"
+        },
+        "expected": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "required": [
+        "id",
+        "requirement_index",
+        "args",
+        "expected"
+      ],
+      "title": "ChecklistAssertion",
+      "type": "object"
+    },
+    "ChecklistRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "statement": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "expected_behavior": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Expected Behavior",
+          "type": "string"
+        },
+        "input_domain": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Input Domain",
+          "type": "string"
+        },
+        "assumptions": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "ambiguities": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Ambiguities",
+          "type": "array"
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        }
+      },
+      "required": [
+        "statement",
+        "expected_behavior",
+        "input_domain",
+        "assumptions",
+        "provenance"
+      ],
+      "title": "ChecklistRequirement",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "enum": [
+            "upstream_documentation",
+            "public_api_contract",
+            "external_specification",
+            "owner_authored_property",
+            "model_proposed_hypothesis"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "reference": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Reference",
+          "type": "string"
+        },
+        "excerpt": {
+          "maxLength": 6000,
+          "minLength": 1,
+          "title": "Excerpt",
+          "type": "string"
+        },
+        "excerpt_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Excerpt Hash",
+          "type": "string"
+        },
+        "justification": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Justification",
+          "type": "string"
+        },
+        "independent_of_candidate": {
+          "const": true,
+          "title": "Independent Of Candidate",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origin",
+        "reference",
+        "excerpt",
+        "excerpt_hash",
+        "justification",
+        "independent_of_candidate"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "SupportedSource": {
+      "additionalProperties": false,
+      "properties": {
+        "base_commit": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Base Commit",
+          "type": "string"
+        },
+        "file_hashes": {
+          "additionalProperties": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "maxProperties": 1000,
+          "minProperties": 1,
+          "title": "File Hashes",
+          "type": "object"
+        }
+      },
+      "required": [
+        "base_commit",
+        "file_hashes"
+      ],
+      "title": "SupportedSource",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "project-checklist-v1",
+      "default": "project-checklist-v1",
+      "title": "Version",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "revision": {
+      "minimum": 1,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "repository": {
+      "title": "Repository",
+      "type": "string"
+    },
+    "supported_sources": {
+      "items": {
+        "$ref": "#/$defs/SupportedSource"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Supported Sources",
+      "type": "array"
+    },
+    "approved_paths": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "title": "Approved Paths",
+      "type": "array"
+    },
+    "runtime": {
+      "enum": [
+        "python312",
+        "node22",
+        "node22_compat"
+      ],
+      "title": "Runtime",
+      "type": "string"
+    },
+    "verifier_version": {
+      "default": "json-observer-v2",
+      "maxLength": 80,
+      "title": "Verifier Version",
+      "type": "string"
+    },
+    "working_directory": {
+      "default": ".",
+      "maxLength": 240,
+      "title": "Working Directory",
+      "type": "string"
+    },
+    "setup": {
+      "items": {
+        "items": {
+          "maxLength": 500,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 32,
+        "minItems": 1,
+        "type": "array"
+      },
+      "maxItems": 3,
+      "title": "Setup",
+      "type": "array"
+    },
+    "tests": {
+      "items": {
+        "maxLength": 500,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Tests",
+      "type": "array"
+    },
+    "test_description": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Test Description",
+      "type": "string"
+    },
+    "timeout_seconds": {
+      "default": 45,
+      "maximum": 120,
+      "minimum": 1,
+      "title": "Timeout Seconds",
+      "type": "integer"
+    },
+    "module": {
+      "title": "Module",
+      "type": "string"
+    },
+    "export": {
+      "title": "Export",
+      "type": "string"
+    },
+    "independent_setup": {
+      "items": {
+        "items": {
+          "maxLength": 500,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 32,
+        "minItems": 1,
+        "type": "array"
+      },
+      "maxItems": 3,
+      "title": "Independent Setup",
+      "type": "array"
+    },
+    "independent_timeout_seconds": {
+      "default": 30,
+      "maximum": 120,
+      "minimum": 1,
+      "title": "Independent Timeout Seconds",
+      "type": "integer"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/ChecklistRequirement"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Requirements",
+      "type": "array"
+    },
+    "assertions": {
+      "items": {
+        "$ref": "#/$defs/ChecklistAssertion"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Assertions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "name",
+    "revision",
+    "repository",
+    "supported_sources",
+    "approved_paths",
+    "runtime",
+    "tests",
+    "test_description",
+    "module",
+    "export",
+    "requirements",
+    "assertions"
+  ],
+  "title": "Checklist",
+  "type": "object"
+}

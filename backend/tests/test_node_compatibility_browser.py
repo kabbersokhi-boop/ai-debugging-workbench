@@ -27,8 +27,8 @@ async def test_node_addendum_separate_history_candidate_download_and_reopen():
             errors = []
             page.on("pageerror", lambda e: errors.append(str(e)))
             await page.goto(BASE + "/?source=external")
-            old = page.get_by_role("region", name="G3 real change campaign", exact=True)
-            new = page.get_by_role("region", name="G3 Node compatibility addendum", exact=True)
+            old = page.get_by_role("region", name="Historical patch study", exact=True)
+            new = page.get_by_role("region", name="Node compatibility study", exact=True)
             await expect(old).to_contain_text("4 / 6 genuine candidates formally evaluated")
             await expect(new).to_contain_text("2 / 2 genuine candidates formally evaluated")
             await expect(new).to_contain_text("Combined distinct coverage: 6 / 6")
@@ -38,9 +38,7 @@ async def test_node_addendum_separate_history_candidate_download_and_reopen():
                 )
                 await new.get_by_role("button", name="Inspect candidate 1", exact=True).click()
                 result = page.get_by_label("External audit result", exact=True)
-                await expect(result).to_contain_text(
-                    "Saved G3 Node compatibility addendum evidence"
-                )
+                await expect(result).to_contain_text("Saved Node compatibility study evidence")
                 async with page.expect_download() as info:
                     await result.get_by_role(
                         "link", name="Download repository evidence", exact=True

@@ -46,14 +46,14 @@ async def test_evaluator_real_ui_candidates_failure_evidence_and_reopen():
                     timeout=90000,
                 )
                 await expect(
-                    page.get_by_text("Ordinary repository checks", exact=True)
+                    page.get_by_text("Existing repository checks", exact=True)
                 ).to_be_visible()
                 await expect(
                     page.get_by_text("Independent behavioral checks", exact=True)
                 ).to_be_visible()
                 if label == "negative":
                     await expect(
-                        page.get_by_text("Ordinary checks passed.", exact=False)
+                        page.get_by_text("Existing checks passed.", exact=False)
                     ).to_be_visible()
                     observations = page.locator("details.evaluation-observations")
                     await expect(observations).to_be_visible()
