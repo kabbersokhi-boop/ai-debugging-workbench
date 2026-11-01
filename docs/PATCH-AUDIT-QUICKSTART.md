@@ -1,19 +1,18 @@
 # Your first Patch Audit
 
 Use the recorded viewer to inspect evidence without installing anything:
-<https://ai-debugging-workbench-recorded.vercel.app/>. It has no execution or import authority.
+<https://ai-debugging-workbench-recorded.vercel.app/>. It cannot import or execute new code.
 The public viewer presents the released interface and historical examples; fresh audits stay local.
 
 ## Start the private local application
 
 Prerequisites: Git, Docker with Compose, sufficient space for the pinned browser/Python/Node
-images, and a trusted local owner. Image building and the trusted API’s repository intake/PR
+images, and a local environment you control. Image building and the trusted API’s repository intake/PR
 preview require outbound network access to their package sources and GitHub respectively. Candidate
 execution containers remain network-disabled. Linux is the tested environment. No model key is needed for Patch Audit.
 
-The prepared workflow and project checklists described here are local development
-changes. Use a checkout containing these implementations; they are not part of the
-published v1.2.1 tag. From that checkout's root:
+Use current `main` for the prepared workflow, reusable checklists and generated Python checks.
+The older published v1.2.1 tag does not include these features. From the repository root:
 
 ```sh
 docker compose up --build -d --wait api
@@ -27,21 +26,21 @@ source; container isolation is not a complete hostile-code sandbox.
 
 Choose **Run a prepared example locally** from the local home page. The Python example
 is prefilled; use **Prepared example** to switch to the accepted Node HTML escaping example.
-These inputs come directly from the frozen [G2 declarations](../evaluation/repository-examples/g2/examples.json).
-The patches are historical developer changes, with their provenance shown in the interface.
+These inputs come directly from the accepted [example definitions](../evaluation/repository-examples/g2/examples.json).
+The patches are historical developer changes, with their original sources shown in the interface.
 
 1. Review the pinned repository and commit. Select **Fetch source for review** and inspect
    its source identities and attribution. Fetching never runs repository code.
-2. Review the prefilled production file scope and exact patch. Select **Admit patch for review**.
+2. Review the prefilled production file scope and exact patch. Select **Validate patch for review**.
 3. Review the runtime, offline setup, selected tests and timeout. Select **Prepare exact plan for approval**.
 4. Review the prepared requirement, supporting excerpt, justification, assumptions, target,
-   input arguments and expected results. Explicitly approve the requirement provenance,
+   input arguments and expected results. Explicitly approve the requirement and its supporting source,
    then select **Prepare independent plan**.
 5. Approve the positive and negative synthetic controls, then **Validate independent checker**.
    This starts restricted local execution. Successful controls validate the checker;
    they do not establish the truth of the specification. Inspect the validation evidence
    and approve the exact independent plan.
-6. Approve the exact source, patch and ordinary plan, then **Run ordinary and independent checks**.
+6. Approve the exact source, patch and existing-test plan, then **Run existing tests and independent checks**.
 7. Inspect the separate existing-test and independent-check results. Download the evidence
    and exact patch. Reopening the saved audit reads evidence without executing it again.
 
@@ -73,17 +72,17 @@ for rejected, invalid, interrupted or infrastructure evidence.
 
 For the authentic AI missed-copy case, open **Recorded examples** and select the retained
 Boltons development repair. Ordinary checks passed; the standalone copy failed independent
-checks. Related assertion failures describe one defect. The G3 research panels in the private
+checks. Related assertion failures describe one defect. The historical patch study panels in the private
 repository workspace retain separate original/addendum evidence and their honest zero-additional-
 discovery result. Neither replay starts execution.
 
 Stop local services with `docker compose down`; saved volumes remain. `down -v` deletes local
 history. For contributor checks see [README](../README.md) and the
-[G4 engineering report](reports/GENERALIZED-PATCH-AUDIT-G04.md).
+[historical engineering report](reports/GENERALIZED-PATCH-AUDIT-G04.md).
 
 ## Reuse a project checklist
 
-After configuring the ordinary plan and independent requirements, name the checklist,
+After configuring the existing-test plan and independent requirements, name the checklist,
 choose its revision, and select **Download reusable project checklist**. This exports
 `project-checklist-v1`: source compatibility declarations, production scope, commands,
 justified requirements, supported inputs, and named checks. It contains no execution
@@ -103,7 +102,7 @@ change. Portable files do not consult a central registry for a newer revision of
 name. Historical evidence retains the checklist bytes that actually applied.
 
 Use **Download readable report** beside the complete JSON evidence download. The Markdown
-report includes source and patch identities, ordinary and independent results, requirements,
+report includes source and patch identities, existing-test and independent-check results, requirements,
 inputs and observations, command output, approval, and inspection/reproduction instructions.
 
 ## Use the same local workflow from a terminal
@@ -111,7 +110,7 @@ inputs and observations, command output, approval, and inspection/reproduction i
 The local stack must be running. Start with the checked-in
 [Python checklist](../examples/checklists/python-first-v1.json) or
 [Node checklist](../examples/checklists/node-escape-html-v1.json), or export your own from the
-browser. These example checklists reuse the accepted historical G2 declarations.
+browser. These example checklists reuse the accepted historical example definitions.
 The CLI talks only to the local API on `127.0.0.1:8010`; it uses the same intake,
 admission, plan preparation, control validation, approval, execution and evidence services.
 No model key is needed.
@@ -155,11 +154,11 @@ The checked-in [project-checklist-v1 JSON Schema](../schemas/project-checklist-v
 is the portable format contract. Unknown fields (including saved approvals) are rejected.
 The browser validates exports against the same backend model before downloading them.
 
-## Generate and simplify Python failures (verifier v3)
+## Generate and simplify Python failures
 
 The Python independent-scope section offers **Generate bounded Python inputs and simplify
 failures**. Start with the prepared Python example, or configure your own immutable source,
-production patch and ordinary plan. Review a separately justified requirement, target file
+production patch and existing-test plan. Review a separately justified requirement, target file
 and public function. Choose one of the trusted built-in reference behaviors:
 
 - `first_truthy`: first Python-truthy scalar in a list, or `None`.
@@ -170,24 +169,24 @@ Generation supports a single positional list containing values from an explicitl
 palette of at most eight scalars. Scalars are null, booleans, integers from -32 to 32, or
 strings of at most 16 characters; integer properties require integer-only palettes. Lists
 have at most eight elements. These are deterministic, stateless function checks, with
-bounded JSON outputs. Other call shapes, reference programs, arbitrary oracle code,
+bounded JSON outputs. Other call shapes, reference programs, arbitrary expected-result programs,
 stateful behavior and unsupported values are outside this verifier.
 
 Review the source excerpt, justification and input domain. Explicitly approve the selected
 property as an executable interpretation of that requirement and approve the budgets.
-Prepare the generated plan, inspect its exact source/patch/ordinary-plan identities,
+Prepare the generated plan, inspect its exact source/patch/test-plan identities,
 property, domain, seed, case/reduction limits, host implementation hash and observer bytes.
 Approve and validate its positive/negative synthetic controls; then approve the exact
-validated generated plan and final ordinary plan before execution. Editing inputs clears
+validated generated plan and final existing-test plan before execution. Editing inputs clears
 approval and controls. Control validation checks the adapter and generated assertions;
 it does not establish that a specification is true.
 
 The host creates inputs and expectations. Candidate code runs in restricted containers,
-with ordinary tests and observer runs separate. Up to 32 initial cases and four reduction
+with existing tests and observer runs separate. Up to 32 initial cases and four reduction
 rounds of up to 16 proposals are allowed. Every observer batch gets a fresh environment.
 The original failure must replay, and the final retained input must fail consistently in
 two further fresh environments. The per-observer timeout is at most 15 seconds (five by
-default). A complete execution uses at most eight observer environments plus ordinary tests.
+default). A complete execution uses at most eight observer environments plus existing tests.
 A timeout, invalid observation or inconsistent replay does not become a confirmed reduced
 counterexample. Passing covers only the declared generated cases. Reduction is a bounded
 search for a simpler example, never a globally smallest-input claim.
@@ -213,7 +212,7 @@ uv run --project backend python -m workbench.repository_audit.cli generated-prep
 Use `controls` and `run` with this new preparation's reviewed fingerprint. They use the same
 exact approval and evidence services as named checks. The prepared source's existing
 requirement must justify the property; generation requires exactly one approved requirement
-and the same Python runtime image as the ordinary plan.
+and the same Python runtime image as the existing-test plan.
 
 For a retained counterexample, create a new plan that explicitly replays its reduced input:
 
@@ -224,7 +223,7 @@ uv run --project backend python -m workbench.repository_audit.cli generated-prep
 ```
 
 This loads and semantically validates the original generated-v3 failure. The original source,
-candidate, ordinary plan, requirement, target, runtime, property, domain, seed, case budget
+candidate, existing-test plan, requirement, target, runtime, property, domain, seed, case budget
 and verifier material must match; conflicting preparation/search files are rejected.
 The local replay-plan endpoint repeats the identity check against saved evidence. It derives
 the plan from the original, sets `replay_inputs` to the retained input and disables further

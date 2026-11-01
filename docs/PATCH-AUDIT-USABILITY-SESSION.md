@@ -1,6 +1,6 @@
 # Patch Audit: unfamiliar-developer session
 
-This is a protocol and blank observation record for Phase 5. No participant sessions
+This is a guide and blank record for observing unfamiliar developers. No participant sessions
 or usability outcomes have been recorded here. Automated journeys and authored controls
 are engineering evidence, not participant observations.
 
@@ -88,7 +88,7 @@ again where possible. Preserve the initial observation alongside the follow-up. 
 participant counts and individual outcomes; do not infer general usability from a small
 sample or replace missing observations with automated timings.
 
-Before claiming Phase 5 complete, retain an actual interaction recording, a readable
+To support a usability claim, retain an actual interaction recording, a readable
 read-only evidence report and an independent explanation/reproduction attempt. Prepare
 any social-post draft around those measured results and link to the corresponding
 evidence. Publishing, uploading recordings, hosting reports and releasing software

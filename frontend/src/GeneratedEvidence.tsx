@@ -14,7 +14,7 @@ export default function GeneratedEvidence({
       className="evaluation-panel"
       aria-label="Generated failure evidence"
     >
-      <h3>Generated Python checks · verifier v3</h3>
+      <h3>Generated Python checks</h3>
       <p>{result.limitations}</p>
       <p>
         Property: <code>{result.search?.property}</code> · seed{" "}

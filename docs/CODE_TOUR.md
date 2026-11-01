@@ -20,11 +20,19 @@ Follow one evidence object across these boundaries:
    [recovery.py](../backend/src/workbench/repository_audit/recovery.py) for bounded lifecycle diagnostics.
 5. [release.py](../backend/src/workbench/release.py) and
    [release.Dockerfile](../docker/release.Dockerfile): the physically separate recorded-only surface.
-   [G4 browser acceptance](../backend/tests/test_g4_browser.py) exercises the complete local journey;
+   [Local browser acceptance](../backend/tests/test_g4_browser.py) exercises the complete local journey;
    [recovery regressions](../backend/tests/test_repository_recovery_deadlines.py) exercise failures.
 
-[Actual G4 evidence and limits](reports/GENERALIZED-PATCH-AUDIT-G04.md) ·
+[Historical evidence and limits](reports/GENERALIZED-PATCH-AUDIT-G04.md) ·
 [First audit](PATCH-AUDIT-QUICKSTART.md) · [Trust-boundary diagram](ARCHITECTURE.md#patch-audit-trust-boundaries)
+
+## Reusable checks and generated examples
+
+- [checklists.py](../backend/src/workbench/repository_audit/checklists.py) validates portable checklists and source compatibility.
+- [cli.py](../backend/src/workbench/repository_audit/cli.py) uses the same local approval and execution services as the browser.
+- [generated.py](../backend/src/workbench/repository_audit/generated.py) implements bounded Python input generation and failure simplification.
+- [replay.py](../backend/src/workbench/repository_audit/replay.py) validates saved failures and prepares a fresh, separately approved reproduction.
+- [Verification and evidence](VALIDATION.md) describes the checks, retained evidence and limits.
 
 ## Earlier debugger and repair workflows
 

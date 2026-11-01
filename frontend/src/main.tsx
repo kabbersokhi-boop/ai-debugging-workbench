@@ -319,7 +319,7 @@ function App() {
         <div className="sidebar-bottom">
           <div className="foundation-badge">
             <Box size={14} />
-            Release candidate<span>M4</span>
+            Local workspace<span>Patch Audit</span>
           </div>
           <p>
             Live reproduction. Real evidence.
@@ -328,7 +328,7 @@ function App() {
           </p>
           <div className="repo-label">
             <GitBranch size={13} />
-            <span>milestone/04</span>
+            <span>Local execution</span>
             <span className="private">Private</span>
           </div>
         </div>

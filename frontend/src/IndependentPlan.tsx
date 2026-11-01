@@ -345,7 +345,7 @@ export default function IndependentPlan(p: Props) {
       <p>
         Supply requirements justified separately from this patch. The checker
         supports finite JSON arguments and exact JSON results from a public
-        Python or Node function. Expected values remain in the trusted broker.
+        Python or Node function. Expected values stay outside the code under test.
         This establishes only the named examples.
       </p>
       <ol className="verification-stages">
@@ -455,7 +455,7 @@ export default function IndependentPlan(p: Props) {
                 }
               >
                 <option value="owner_authored_property">
-                  Owner-authored specification
+                  User-authored specification
                 </option>
                 <option value="upstream_documentation">
                   Upstream documentation
@@ -514,7 +514,7 @@ export default function IndependentPlan(p: Props) {
         {advanced && (
           <>
             <p>
-              Multiple requirements, assumptions and exact provenance payloads.
+              Multiple requirements, assumptions and complete supporting-source details.
               Switching to guided mode is available only for a single
               requirement. Nothing is inferred from candidate code.
             </p>
@@ -545,7 +545,7 @@ export default function IndependentPlan(p: Props) {
             setApproveRequirements(e.target.checked);
           }}
         />
-        I reviewed the provenance, input domains, assumptions and expected
+        I reviewed the supporting sources, input domains, assumptions and expected
         behavior independently of the candidate. I approve these requirements.
       </label>
       <p>
@@ -767,7 +767,7 @@ export default function IndependentPlan(p: Props) {
               : "controls not yet validated"}
           </p>
           <details>
-            <summary>Exact independent plan and requirement provenance</summary>
+            <summary>Exact independent plan and supporting sources</summary>
             <pre>{JSON.stringify(plan, null, 2)}</pre>
           </details>
           <label>

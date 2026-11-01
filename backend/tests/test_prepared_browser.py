@@ -92,7 +92,7 @@ async def test_prepared_example_without_json_editing(key):
         admitted = await response.json()
         assert admitted["base_commit"] == example["base_commit"]
         assert admitted["source_tree_hash"] == source["source_tree_hash"]
-        await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+        await page.get_by_role("button", name="Validate patch for review", exact=True).click()
         await expect(page.get_by_label("External candidate review", exact=True)).to_be_visible()
         compare = page.get_by_text("Compare " + example["module"], exact=True)
         await expect(page.get_by_label("Read-only candidate diff", exact=True)).to_have_count(0)
@@ -109,7 +109,7 @@ async def test_prepared_example_without_json_editing(key):
         await expect(
             page.get_by_role("button", name="Prepare independent plan", exact=True)
         ).to_be_disabled()
-        await page.get_by_text("I reviewed the provenance", exact=False).click()
+        await page.get_by_text("I reviewed the supporting sources", exact=False).click()
         await page.get_by_label(
             "Independent verification plan", exact=True
         ).scroll_into_view_if_needed()
@@ -123,7 +123,9 @@ async def test_prepared_example_without_json_editing(key):
         await expect(
             page.get_by_label("Approve validated independent plan", exact=True)
         ).to_be_visible(timeout=60000)
-        run = page.get_by_role("button", name="Run ordinary and independent checks", exact=True)
+        run = page.get_by_role(
+            "button", name="Run existing tests and independent checks", exact=True
+        )
         await expect(run).to_be_disabled()
         await page.get_by_label("Approve validated independent plan", exact=True).check()
         await page.get_by_text("I reviewed this exact source, patch and plan", exact=False).click()
@@ -227,7 +229,7 @@ async def test_prepared_example_without_json_editing(key):
             page.get_by_label("Approve validated independent plan", exact=True)
         ).to_have_count(0)
         await expect(
-            page.get_by_role("button", name="Run ordinary and independent checks", exact=True)
+            page.get_by_role("button", name="Run existing tests and independent checks", exact=True)
         ).to_have_count(0)
         assert not errors, errors
         await browser.close()

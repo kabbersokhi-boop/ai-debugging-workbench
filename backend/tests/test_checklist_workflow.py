@@ -70,7 +70,7 @@ async def test_checklist_export_browser_cli_parity_and_second_patch(tmp_path, la
             f"{language}-positive"
         )
         await page.get_by_role("button", name="Fetch source for review", exact=True).click()
-        await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+        await page.get_by_role("button", name="Validate patch for review", exact=True).click()
         await page.get_by_role("button", name="Prepare exact plan for approval", exact=True).click()
         await page.get_by_label("Checklist name", exact=True).fill("Reusable function contract")
         async with page.expect_download() as download:
@@ -112,7 +112,7 @@ async def test_checklist_export_browser_cli_parity_and_second_patch(tmp_path, la
             lambda r: r.url.endswith("/repository-audits/runs") and r.request.method == "POST"
         ) as started:
             await page.get_by_role(
-                "button", name="Run ordinary and independent checks", exact=True
+                "button", name="Run existing tests and independent checks", exact=True
             ).click()
         browser_id = (await (await started.value).json())["id"]
         region = page.get_by_label("External audit result", exact=True)

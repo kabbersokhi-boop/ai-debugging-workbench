@@ -46,7 +46,7 @@ async def test_generated_positive_browser_negative_cli_reduction_and_explicit_re
             "python-positive"
         )
         await page.get_by_role("button", name="Fetch source for review", exact=True).click()
-        await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+        await page.get_by_role("button", name="Validate patch for review", exact=True).click()
         await page.get_by_role("button", name="Prepare exact plan for approval", exact=True).click()
         await page.get_by_label("Generate bounded Python checks", exact=True).check()
         section = page.get_by_label("Generated Python verification", exact=True)
@@ -76,7 +76,7 @@ async def test_generated_positive_browser_negative_cli_reduction_and_explicit_re
             lambda r: r.url.endswith("/repository-audits/runs") and r.request.method == "POST"
         ) as response:
             await page.get_by_role(
-                "button", name="Run ordinary and independent checks", exact=True
+                "button", name="Run existing tests and independent checks", exact=True
             ).click()
         positive_id = (await (await response.value).json())["id"]
         region = page.get_by_label("External audit result", exact=True)
@@ -99,7 +99,7 @@ async def test_generated_positive_browser_negative_cli_reduction_and_explicit_re
             page.get_by_label("Approve generated property", exact=True)
         ).not_to_be_checked()
         await expect(
-            page.get_by_role("button", name="Run ordinary and independent checks", exact=True)
+            page.get_by_role("button", name="Run existing tests and independent checks", exact=True)
         ).to_be_disabled()
         # The accepted authored negative passes upstream tests but skips truthy strings.
         base = tmp_path / "negative-base.json"

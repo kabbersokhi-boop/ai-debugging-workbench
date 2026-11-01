@@ -188,10 +188,11 @@ export default function GeneratedPlan(p: {
     >
       <h3>Generate bounded inputs and simplify a failure</h3>
       <p>
-        Verifier v3 supports one positional JSON list of approved scalar values.
+        Each check calls the Python function with one JSON-compatible list of approved
+        scalar values (null, booleans, integers or strings).
         The selected property is a trusted built-in reference behavior; review
-        its justification separately from the patch. Only deterministic
-        stateless Python functions are supported.
+        its justification separately from the patch. Functions must return the same
+        result for the same input and must not keep state between calls.
       </p>
       <label>
         Required behavior
@@ -306,7 +307,7 @@ export default function GeneratedPlan(p: {
       <details>
         <summary>Generation and reduction limits</summary>
         <label>
-          Allowed scalar palette (JSON)
+          Allowed values (JSON)
           <textarea
             aria-label="Generation atoms"
             value={atoms}
@@ -393,7 +394,7 @@ export default function GeneratedPlan(p: {
       {plan && (
         <>
           <details>
-            <summary>Exact generated plan, oracle and requirements</summary>
+            <summary>Exact inputs, expected results and requirements</summary>
             <pre>{JSON.stringify(plan, null, 2)}</pre>
           </details>
           <label>

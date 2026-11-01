@@ -92,7 +92,7 @@ async def test_g4_accepted_example_guided_approval_execution_download_history(ke
         await page.get_by_label("External unified diff", exact=True).fill(
             (EXAMPLES / example["patch"]).read_text()
         )
-        await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+        await page.get_by_role("button", name="Validate patch for review", exact=True).click()
         await expect(page.get_by_label("External candidate review", exact=True)).to_be_visible()
         await page.get_by_label("Runtime preset", exact=True).select_option(example["runtime"])
         await page.get_by_label("Test command arguments", exact=True).fill(
@@ -113,7 +113,7 @@ async def test_g4_accepted_example_guided_approval_execution_download_history(ke
         await expect(page.get_by_label("Required behavior", exact=True)).to_have_value(
             req["statement"]
         )
-        await page.get_by_text("I reviewed the provenance", exact=False).click()
+        await page.get_by_text("I reviewed the supporting sources", exact=False).click()
         # Guided edits invalidate approval; advanced details survive round-trip unchanged.
         await page.get_by_label("Required behavior", exact=True).fill(req["statement"] + " ")
         await expect(
@@ -126,7 +126,7 @@ async def test_g4_accepted_example_guided_approval_execution_download_history(ke
         )
         assert authored == [req]
         await page.get_by_role("button", name="Guided requirement", exact=True).click()
-        await page.get_by_text("I reviewed the provenance", exact=False).click()
+        await page.get_by_text("I reviewed the supporting sources", exact=False).click()
         await page.get_by_label("Independent target file", exact=True).fill(example["module"])
         await page.get_by_label("Public function export", exact=True).fill(example["export"])
         for assertion in example["assertions"]:
@@ -160,7 +160,9 @@ async def test_g4_accepted_example_guided_approval_execution_download_history(ke
         await expect(
             page.get_by_label("Approve validated independent plan", exact=True)
         ).to_be_visible(timeout=60000)
-        run = page.get_by_role("button", name="Run ordinary and independent checks", exact=True)
+        run = page.get_by_role(
+            "button", name="Run existing tests and independent checks", exact=True
+        )
         await expect(run).to_be_disabled()
         await page.get_by_label("Approve validated independent plan", exact=True).check()
         await page.get_by_text("I reviewed this exact source, patch and plan", exact=False).click()
@@ -448,7 +450,7 @@ async def test_g4_actual_rejected_test_patch_creates_no_audit():
         async with page.expect_response(
             lambda r: r.url.endswith("/repository-audits/candidates")
         ) as admission:
-            await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+            await page.get_by_role("button", name="Validate patch for review", exact=True).click()
         assert (await admission.value).status == 422
         await expect(page.get_by_role("alert")).to_contain_text("patch rejected")
         await expect(page.get_by_label("External candidate review", exact=True)).to_have_count(0)

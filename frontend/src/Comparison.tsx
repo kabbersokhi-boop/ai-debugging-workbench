@@ -303,7 +303,7 @@ export default function Comparison() {
             <p className="comparison-history-note">
               {data.historical_m1}{" "}
               <a href="/?workspace=evaluation">
-                Inspect historical M1 evidence
+                Inspect earlier evaluation evidence
               </a>
               .
             </p>

@@ -131,7 +131,7 @@ export default function ProjectChecklist({
       <h2>Reuse a project checklist</h2>
       <p>
         Load a versioned checklist for this patch. Compatibility checks compare
-        the project, immutable source, declared scope and verifier version. Each
+        the project, pinned source revision, allowed files and checker version. Each
         application requires new review and execution approval.
       </p>
       <label>
@@ -208,7 +208,7 @@ export default function ProjectChecklist({
         </>
       )}
       <p>
-        To create a checklist, configure the ordinary and independent checks
+        To create a checklist, configure the existing tests and independent checks
         below, then choose “Download reusable project checklist”. Checklists
         contain declarations and preserve no execution approvals.
       </p>

@@ -183,7 +183,7 @@ async def test_repository_browser_review_approval_download_reopen_and_stale_sele
             "\ufeff" + exact_patch
         )
         await page.get_by_label("External unified diff", exact=True).fill(exact_patch)
-        await page.get_by_role("button", name="Admit patch for review", exact=True).click()
+        await page.get_by_role("button", name="Validate patch for review", exact=True).click()
         await expect(page.get_by_role("region", name="External candidate review")).to_be_visible()
         assert await page.get_by_role("region", name="External audit result").count() == 0
         await page.get_by_text("Compare library.py", exact=True).click()

@@ -225,7 +225,7 @@ export default function RepositoryAudit() {
     setSetup("[]");
     setCwd(".");
     setTimeoutValue(45);
-    setDescription("Unchanged upstream tests from frozen prepared declaration");
+    setDescription("Selected unchanged tests from the prepared example");
     setIndependentEnabled(!!selected);
   }
   async function refresh() {
@@ -476,11 +476,11 @@ export default function RepositoryAudit() {
           <>
             <p>{prepared.patch_provenance}</p>
             <p>
-              Frozen G2 prepared example · historical developer change. New runs
+              Prepared example · historical developer change. New runs
               create fresh local evidence.
             </p>
             <p>
-              Next: fetch the pinned source for review, then admit the prefilled
+              Next: fetch the pinned source for review, then validate the prefilled
               patch.
             </p>
           </>
@@ -502,7 +502,7 @@ export default function RepositoryAudit() {
       <div id="audit-content" tabIndex={-1} className="local-boundary">
         <strong>Private local evaluation</strong>
         <p>
-          Docker and a trusted local owner are required. Intake is read-only;
+          Docker and explicit local approval are required. Intake is read-only;
           only your exact approval starts restricted execution. Keep this
           privileged development service private.
         </p>
@@ -570,7 +570,7 @@ export default function RepositoryAudit() {
               </dd>
             </div>
             <div>
-              <dt>Admitted patch identity</dt>
+              <dt>Accepted patch identity</dt>
               <dd>
                 <code>{candidate?.candidate_hash}</code>
               </dd>
@@ -633,8 +633,8 @@ export default function RepositoryAudit() {
           {retained && (
             <p>
               {retained === "g3-node-compatibility"
-                ? "Saved G3 Node compatibility addendum evidence"
-                : "Saved G3 campaign evidence"}{" "}
+                ? "Saved Node compatibility study evidence"
+                : "Saved historical patch study evidence"}{" "}
               · no new execution on reopening.
             </p>
           )}
@@ -670,7 +670,7 @@ export default function RepositoryAudit() {
             </button>
           </p>
           <details>
-            <summary>Candidate provenance and exact admitted patch</summary>
+            <summary>Patch source and exact accepted patch</summary>
             <pre>{JSON.stringify(candidate, null, 2)}</pre>
           </details>
           {running && (
@@ -754,7 +754,7 @@ export default function RepositoryAudit() {
                     {requirement && (
                       <details>
                         <summary>
-                          Requirement provenance and assumptions
+                          Supporting sources and assumptions
                         </summary>
                         <p>
                           Expected behavior: {requirement.expected_behavior}
@@ -786,7 +786,7 @@ export default function RepositoryAudit() {
           )}
           <details>
             <summary>
-              Approved requirement provenance and independent evidence
+              Approved supporting sources and independent evidence
             </summary>
             <pre>{JSON.stringify(audit.evidence, null, 2)}</pre>
           </details>
@@ -986,7 +986,7 @@ export default function RepositoryAudit() {
             disabled={!patch || !scope.length || running || busy}
             onClick={importPatch}
           >
-            Admit patch for review
+            Validate patch for review
           </button>
           {candidate && (
             <section aria-label="External candidate review">
@@ -1040,7 +1040,7 @@ export default function RepositoryAudit() {
           id="repository-tests"
           className="evaluation-panel audit-import"
         >
-          <h2>3. Review an ordinary-test plan</h2>
+          <h2>3. Review an existing-test plan</h2>
           <p>
             Commands below are your instructions. README files, package scripts
             and inferred conventions are untrusted. All dependency setup and
@@ -1100,7 +1100,7 @@ export default function RepositoryAudit() {
               <code>/work</code> for scratch output and <code>/work/deps</code>{" "}
               for offline Python packages. Projects that must rewrite their
               source tree need a different preparation plan and are unsupported
-              in G1.
+              in this workflow.
             </p>
             <label>
               Working directory
@@ -1209,7 +1209,7 @@ export default function RepositoryAudit() {
                 </label>
                 {!independentEnabled && (
                   <p className="evaluation-mismatch">
-                    Independent checks not configured. An ordinary-test pass
+                    Independent checks not configured. An existing-test pass
                     will not be presented as independent verification.
                   </p>
                 )}
@@ -1399,7 +1399,7 @@ export default function RepositoryAudit() {
                   </div>
                 </dl>
                 <details>
-                  <summary>Exact ordinary plan and runtime identity</summary>
+                  <summary>Exact test plan and runtime identity</summary>
                   <pre>{JSON.stringify(plan.plan, null, 2)}</pre>
                 </details>
                 <p>
@@ -1431,7 +1431,7 @@ export default function RepositoryAudit() {
                   onClick={start}
                 >
                   {independentEnabled
-                    ? "Run ordinary and independent checks"
+                    ? "Run existing tests and independent checks"
                     : "Run approved repository tests"}
                 </button>
               </div>
@@ -1453,7 +1453,7 @@ export default function RepositoryAudit() {
         </p>
         {!saved.length && (
           <p>
-            No saved repository audits yet. Admit a patch and approve a plan to
+            No saved repository audits yet. Validate a patch and approve a plan to
             create one.
           </p>
         )}
@@ -1479,7 +1479,7 @@ export default function RepositoryAudit() {
         <h2>Inspect the research behind the tool</h2>
         <p>
           Historical developer patches, authored controls and compatibility
-          evidence remain separate. The G3 campaign found zero additional
+          evidence remain separate. The historical patch study found zero additional
           independent defects; it does not estimate broad detection accuracy.
         </p>{" "}
         <RepositoryCampaign
